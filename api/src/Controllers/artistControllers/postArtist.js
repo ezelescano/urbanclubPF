@@ -5,7 +5,6 @@ const postArtist = async (req) => {
     const Nombre = name.toUpperCase().split(" ").join("-");
 
     const newArtist = {
-        
         name,
         lastname,
         email,
