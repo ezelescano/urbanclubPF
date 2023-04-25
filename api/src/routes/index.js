@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const { getArtistHandler } = require("../Handlers/artistHandlers");
+const artistRouter = require("./artistRouter");
 
 
-const mainrouter = Router();
+const mainRouter = Router();
 
-mainrouter.use("/artist", getArtistHandler )
+mainRouter.use("/artist", artistRouter )
 
 
-module.exports = mainrouter;
+module.exports = mainRouter;
