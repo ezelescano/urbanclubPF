@@ -8,5 +8,5 @@ mainRouter.use("/artist", artistRouter )
 mainRouter.use("/artist", getArtistHandler )
 
 
-module.exports = mainRouter;
+
 module.exports = mainRouter;
