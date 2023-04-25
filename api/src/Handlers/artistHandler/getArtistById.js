@@ -1,4 +1,4 @@
-const artistById = require("../../Controllers/artistControllers/artistById")
+const {artistById} = require("../../Controllers/artistControllers")
 
 
 const getArtistById = async function (req, res) {
