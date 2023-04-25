@@ -12,7 +12,6 @@ git clone --single-branch --branch Alex_Dev https://github.com/ezelescano/urbanc
 
 ## Authors
 
-- [@AlhuayOscar](https://www.github.com/AlhuayOscar)
 - [@Alex-ty10](https://www.github.com/Alex-ty10)
 
 

@@ -1,0 +1,66 @@
+.portada-profile{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.foto-nombre{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foto-profile{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.info-profile{
+  display: flex;
+  flex-direction: column;
+  margin: 70px;
+}
+
+.nombre{
+display: flex;
+flex-direction: column;
+}
+
+.verificado-div{
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.verificado{
+  width: 35px;
+  height: 35px;
+}
+
+.seguidores{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-profile{
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  width: auto;
+  height: auto;
+  padding: 10px 20px;
+  margin: 0 50px;
+  border: none;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
