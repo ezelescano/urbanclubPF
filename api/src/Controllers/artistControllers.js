@@ -5,6 +5,8 @@ const getAllArtist = async () => {
     return "ESTA ES LA RUTA DEL getAllArtist"
 }
 
+// !estiven pull
+
 module.exports = {
     getAllArtist
 }
