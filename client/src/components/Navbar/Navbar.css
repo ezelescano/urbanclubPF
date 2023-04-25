@@ -1,12 +1,12 @@
-nav {
-  background-color: #1A1919;
+nav.navbar {
+  background-color: #1a1919;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
 }
 
-ul {
+nav.navbar ul {
   display: flex;
   list-style: none;
   margin: 0;
@@ -15,17 +15,29 @@ ul {
   justify-content: space-around;
 }
 
-li {
+nav.navbar ul li {
   margin-right: 10px;
 }
 
-a {
+nav.navbar ul li:not(:last-child) {
+  margin-right: 10px;
+}
+
+nav.navbar ul li a {
   color: white;
   text-decoration: none;
 }
-a:hover {
-    font-size: 110%;
-  background-image: linear-gradient(to right, violet, blue, green, yellow, orange, red);
+nav.navbar ul li a:hover {
+  font-size: 110%;
+  background-image: linear-gradient(
+    to right,
+    violet,
+    blue,
+    green,
+    yellow,
+    orange,
+    red
+  );
   background-clip: text;
   -webkit-background-clip: text; /* necesario para compatibilidad con algunos navegadores */
   color: transparent;
