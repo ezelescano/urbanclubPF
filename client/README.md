@@ -1,10 +1,10 @@
-# Ultimo cambio de la Rama de Oscar :)!
+# Ultimo cambio de la Rama de Alex :/!
 
 
 
 Para clonar unicamente de está rama:
 ```bash
-git clone --single-branch --branch oscar_repo https://github.com/ezelescano/urbanclubPF
+git clone --single-branch --branch Alex_Dev https://github.com/ezelescano/urbanclubPF
 
 ```
 
@@ -13,6 +13,7 @@ git clone --single-branch --branch oscar_repo https://github.com/ezelescano/urba
 ## Authors
 
 - [@AlhuayOscar](https://www.github.com/AlhuayOscar)
+- [@Alex-ty10](https://www.github.com/Alex-ty10)
 
 
 
