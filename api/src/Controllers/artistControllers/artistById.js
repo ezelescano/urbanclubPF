@@ -1,6 +1,6 @@
 const {Artist} = require("../../db")
 
-const userById = async (userId) => {
+const artistById = async (userId) => {
 
     if (!userId) {
       throw new Error("No se especificó el ID del usuario");
@@ -30,4 +30,4 @@ const userById = async (userId) => {
     }
   
   };
-module.exports = userById
+module.exports = {artistById};
