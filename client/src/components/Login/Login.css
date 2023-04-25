@@ -6,6 +6,7 @@
   -ms-border-radius: 50px;
   -o-border-radius: 50px;
 }
+
 .form-picture img,
 .MuiSvgIcon-root {
   border-radius: 50%;
@@ -53,6 +54,13 @@
   max-height: 800px;
   margin: auto;
 }
+.form-login-title{
+  max-width: 150px;
+  font-size: 30px;
+}
+.form-login-subtitle{
+  font-size:35px;
+}
 
 .form-container > * {
   padding: 5px;
@@ -76,6 +84,7 @@
 }
 
 .form-container__right {
+  margin:auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

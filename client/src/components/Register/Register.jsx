@@ -4,7 +4,6 @@ import "./Register.css";
 
 function Formulario() {
   const [nombre, setNombre] = useState("");
-  const [correo, setCorreo] = useState("");
   const [apellido, setApellido] = useState("");
   const [alias, setAlias] = useState("");
   const [ciudad, setCiudad] = useState("");
@@ -28,47 +27,40 @@ function Formulario() {
     };
   };
 
-  const handleCorreoChange = (event) => {
-    const correoValue = event.target.value;
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (regex.test(correoValue)) {
-      setCorreo(correoValue);
-    }
-  };
-
   const handleNombreChange = (event) => {
     const nombreValue = event.target.value;
     if (nombreValue.length <= 15) {
       setNombre(nombreValue);
     }
   };
-  // Se utilizará luego
-  //   const handleApellidoChange = (event) => {
-  //     const apellidoValue = event.target.value;
-  //     if (apellidoValue.length <= 15) {
-  //       setApellido(apellidoValue);
-  //     }
-  //   };
-
-  //   const handleDescripcionChange = (event) => {
-  //     const descripcionValue = event.target.value;
-  //     if (descripcionValue.length <= 500) {
-  //       setDescripcion(descripcionValue);
-  //     }
-  //   };
 
   const handleClick = () => {
     fileInputRef.current.click();
   };
+  /* {
 
+        name,   not null
+        lastname,  not null
+        email, not null
+        profilePhoto:"", null
+        coverPhoto:"", null
+        nickName, not null
+        country:"", null
+        city:"", null
+        ocupation:"", null
+        aboutMe:"", null
+        password not null
+    } 
+    */
   return (
     <div className="formulario-externo">
       <div className="formulario-container formulario-background">
         <form onSubmit={handleSubmit} className="form-container">
+          Registro de usuario.
           <div className="form-container__left">
             <label>
               {rutaImagen ? (
-                <img src={rutaImagen} alt="Imagen de perfil" />
+                <img className="form-picture" src={rutaImagen} alt="Imagen de perfil" />
               ) : (
                 <AccountCircleIcon />
               )}
@@ -89,71 +81,77 @@ function Formulario() {
             </label>
           </div>
           <div className="form-container__middle">
-            <label>
-              Nombre:
+            <label className="required">
+              <div>
+                <span style={{ color: "red" }}>*</span> Nombre:
+              </div>
               <input
                 type="text"
                 value={nombre}
                 onChange={handleNombreChange}
-                maxLength="15"
+                maxLength="35"
                 required
               />
             </label>
             <label>
-              Correo:
-              <input
-                type="email"
-                value={correo}
-                onChange={handleCorreoChange}
-                pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
-              />
-            </label>
-            <label>
-              Apellido:
+              <div>
+                <span style={{ color: "red" }}>*</span> Apellido:
+              </div>
               <input
                 type="text"
                 value={apellido}
                 onChange={(e) => setApellido(e.target.value)}
-                maxLength={15}
+                maxLength={35}
                 required
               />
             </label>
             <label>
-              Alias (opcional):
+              <div>
+                <span style={{ color: "red" }}>*</span> Correo:
+              </div>
+              <input type="email" maxLength={45} required />
+            </label>
+            <label>
+              <div>
+                <span style={{ color: "red" }}>*</span> Nickname:
+              </div>
               <input
                 type="text"
                 value={alias}
                 onChange={(e) => setAlias(e.target.value)}
               />
             </label>
+            <label>
+              <div>
+                <span style={{ color: "red" }}>*</span> Contraseña:
+              </div>
+              <input type="text" maxLength={45} required />
+            </label>
           </div>
           <div className="form-container__right">
             <label>
-              Ciudad:
+              <div>Ciudad:</div>
               <input
                 type="text"
                 value={ciudad}
                 onChange={(e) => setCiudad(e.target.value)}
-                required
               />
             </label>
             <label>
-              País:
+              <div>Pais:</div>
               <input
                 type="text"
                 value={pais}
                 onChange={(e) => setPais(e.target.value)}
-                required
               />
             </label>
             <label>
-              Ocupación:
+              <div>Ocupacion:</div>
               <input
                 type="text"
                 value={ocupacion}
                 onChange={(e) => setOcupacion(e.target.value)}
-                maxLength={15}
-                required
+                maxLength={35}
               />
             </label>
             <label>
@@ -165,7 +163,7 @@ function Formulario() {
               />
             </label>
             <button className="upload-picture-button" type="submit">
-              Enviar
+              Registrarse
             </button>
           </div>
         </form>
