@@ -1,6 +1,6 @@
-const {Artist} = require("../db");
+const {Artist} = require("../../db");
 
-const getAllArtist = async () => {
+const getAllArtist = () => {
     return "ESTA ES LA RUTA DEL getAllArtist"
 }
 
