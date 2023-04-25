@@ -1,5 +1,5 @@
 const {Artist} = require("../../db");
-const postArtis = async (req) => {
+const postArtist = async (req) => {
     const {name,lastname,email,password,nickName
     } = req.body;
     const Nombre = name.toUpperCase().split(" ").join("-");
@@ -25,4 +25,4 @@ const postArtis = async (req) => {
 
     return newArtist
 }
-module.exports = {postArtis}
+module.exports = {postArtist}

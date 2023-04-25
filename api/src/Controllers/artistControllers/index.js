@@ -1,5 +1,5 @@
 const { artistById } = require("./artistById");
 const { getAllArtist } = require("./getAllArtist");
-const {postArtis} = require("./postArtis")
+const {postArtist} = require("./postArtist")
 
-module.exports = { artistById, getAllArtist,postArtis };
+module.exports = { artistById, getAllArtist,postArtist };
