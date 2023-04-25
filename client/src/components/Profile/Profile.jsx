@@ -13,7 +13,8 @@ const Profile = () => {
     city:"Buenos aires",
     ocupation:"Delincuente",
     aboutMe:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe enim animi nobis, tempora, facere ex dolorem magnam corporis excepturi nihil voluptates inventore perferendis, laboriosam velit. Facilis praesentium distinctio autem recusandae.",
-    followers:3
+    followers:3,
+    verified: true
   }
 
   return (
@@ -26,10 +27,13 @@ const Profile = () => {
           <div className='info-profile'>
             <div className='nombre'>
               <h1>Oscar sin Etiquetas</h1>
+              {/* para saber si es verificado funcion aun no implementada */}
+              {usuario.verified &&
               <div className='verificado-div'>
                 <img className='verificado' src='https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg' alt='verificado paa' />
                 <p>Artista verificado</p>
               </div>
+              }
             </div>
             <div className='seguidores'>
             <h4>{usuario.followers} Seguidores</h4>
@@ -37,6 +41,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className='cuerpo'>
+        <p>{usuario.aboutMe}</p>
       </div>
     </div>
   );
