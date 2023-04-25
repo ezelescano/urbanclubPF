@@ -1,0 +1,45 @@
+nav {
+  background-color: #1A1919;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+li {
+  margin-right: 10px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+    font-size: 110%;
+  background-image: linear-gradient(to right, violet, blue, green, yellow, orange, red);
+  background-clip: text;
+  -webkit-background-clip: text; /* necesario para compatibilidad con algunos navegadores */
+  color: transparent;
+  animation: rainbow 2s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
