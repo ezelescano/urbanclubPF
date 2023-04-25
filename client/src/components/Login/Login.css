@@ -35,8 +35,12 @@
   -o-border-radius: 5px;
 }
 
-.formulario-externo {
-  height: 90vh;
+.formulario-externo-login {
+  background-image: url(https://res.cloudinary.com/dipn8zmq3/image/upload/v1682455230/UrbanClub/image_lsaixn.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
