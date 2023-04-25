@@ -6,9 +6,9 @@ const updateArtist = async (userId, body) => {
   } else {
     const artist = await Artist.findByPk(userId);
     if (!artist) throw new Error("No se encontró ningún usuario con ese ID");
-    const updatedArtist = await Artist.update({id: userId}, body);
-    return updatedArtist;
-  } 
+    await Artist.update(body, {where: {id: parseInt(userId)}});
+  }
+  return "Datos actualizados correctamente";
 };
 
 module.exports = { updateArtist };
