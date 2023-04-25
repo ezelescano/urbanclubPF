@@ -1,7 +1,7 @@
 const app = require("./src/app");
 const {sequelize} = require("./src/db");
 
-app.listen(3001, ()=>{
+app.listen(3009, ()=>{
 
     sequelize.sync({alter: true});
 

@@ -3,9 +3,10 @@ const fs = require('fs');
 const path = require('path');
 require("dotenv").config();
 
-const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
+const {DB_USER, DB_PASSWORD, DB_HOST, DB_NAME} = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/urbanClub`, {logging: false}
+//! se monta en el .env en nombre de la base de datos con nombre urbanClub DB_NAME = urbanClub
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {logging: false}
 );
 
 const basename = path.basename(__filename);
