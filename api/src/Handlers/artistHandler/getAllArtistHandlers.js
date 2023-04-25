@@ -1,4 +1,4 @@
-const { getAllArtist } = require("../../Controllers/artistControllers/getAllArtist")
+const { getAllArtist } = require("../../Controllers/artistControllers")
 
 
 const getAllArtistHandler = async (req, res) => {
