@@ -2,11 +2,13 @@ const {Router} = require("express");
 const { getAllArtistHandler } = require("../Handlers/artistHandler/getAllArtistHandlers");
 const {getArtistById} = require("../Handlers/artistHandler/getArtistById")
 // const {postArtistHandler} = require("../Handlers/postArtistHandler")
+const { updateArtistHandler } = require("../Handlers/artistHandler/updateArtistHandler");
 const artistRouter = Router();
 
 
 artistRouter.get("/", getAllArtistHandler);
 artistRouter.get("/:id", getArtistById);
+artistRouter.put("/update/:id", updateArtistHandler);
 
 
 
