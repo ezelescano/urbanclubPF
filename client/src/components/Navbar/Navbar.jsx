@@ -1,27 +1,27 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import "./Navbar.css";
 function Navbar() {
   return (
     <nav>
       <ul>
         <li>
-          <NavLink exact to="/" activeClassName="active">
+          <NavLink to="/" className="active">
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/register" activeClassName="active">
+          <NavLink to="/register" className="active">
             Register
           </NavLink>
         </li>
         <li>
-          <NavLink to="/profile" activeClassName="active">
+          <NavLink to="/profile" className="active">
             Profile
           </NavLink>
         </li>
         <li>
-          <NavLink to="/login" activeClassName="active">
+          <NavLink to="/login" className="active">
             Login
           </NavLink>
         </li>

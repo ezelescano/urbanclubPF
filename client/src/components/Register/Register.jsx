@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Register.css";
 
 function Formulario() {
@@ -10,88 +10,123 @@ function Formulario() {
   const [pais, setPais] = useState("");
   const [ocupacion, setOcupacion] = useState("");
   const [descripcion, setDescripcion] = useState("");
+  const [rutaImagen, setRutaImagen] = useState("");
+  const fileInputRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Aquí podrías enviar los datos del formulario al servidor o realizar alguna acción con ellos
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setRutaImagen(reader.result);
+    };
+  };
+  const handleCorreoChange = (event) => {
+    const correoValue = event.target.value;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (regex.test(correoValue)) {
+      setCorreo(correoValue);
+    }
+  };
+  const handleClick = () => {
+    fileInputRef.current.click();
+  };
+
   return (
-    <>
-      Está es la página register
-      <div className="formulario-container">
-        <form onSubmit={handleSubmit}>
-          <label>
-            Foto de Perfil:
-            <input type="file" />
-          </label>
-          <label>
-            Nombre:
-            <input
-              type="text"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-            />
-          </label>
-          <label>
-            Correo:
-            <input
-              type="email"
-              value={correo}
-              onChange={(e) => setCorreo(e.target.value)}
-            />
-          </label>
-          <label>
-            Apellido:
-            <input
-              type="text"
-              value={apellido}
-              onChange={(e) => setApellido(e.target.value)}
-            />
-          </label>
-          <label>
-            Alias (opcional):
-            <input
-              type="text"
-              value={alias}
-              onChange={(e) => setAlias(e.target.value)}
-            />
-          </label>
-          <label>
-            Ciudad:
-            <input
-              type="text"
-              value={ciudad}
-              onChange={(e) => setCiudad(e.target.value)}
-            />
-          </label>
-          <label>
-            País:
-            <input
-              type="text"
-              value={pais}
-              onChange={(e) => setPais(e.target.value)}
-            />
-          </label>
-          <label>
-            Ocupación:
-            <input
-              type="text"
-              value={ocupacion}
-              onChange={(e) => setOcupacion(e.target.value)}
-            />
-          </label>
-          <label>
-            Descripción:
-            <textarea
-              value={descripcion}
-              onChange={(e) => setDescripcion(e.target.value)}
-            />
-          </label>
-          <button type="submit">Enviar</button>
+    <div className="formulario-externo">
+      <div className="formulario-container formulario-background">
+        <form onSubmit={handleSubmit} className="form-container">
+          <div className="form-container__left">
+            <label>
+              {rutaImagen && <img src={rutaImagen} alt="Imagen de perfil" />}
+              <button type="button" onClick={handleClick}>
+                Subir foto
+              </button>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+                style={{ display: "none" }}
+              />
+            </label>
+          </div>
+          <div className="form-container__middle">
+            <label>
+              Nombre:
+              <input
+                type="text"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+              />
+            </label>
+            <label>
+              Correo:
+              <input
+                type="email"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
+              />
+            </label>
+            <label>
+              Apellido:
+              <input
+                type="text"
+                value={apellido}
+                onChange={(e) => setApellido(e.target.value)}
+              />
+            </label>
+            <label>
+              Alias (opcional):
+              <input
+                type="text"
+                value={alias}
+                onChange={(e) => setAlias(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className="form-container__right">
+            <label>
+              Ciudad:
+              <input
+                type="text"
+                value={ciudad}
+                onChange={(e) => setCiudad(e.target.value)}
+              />
+            </label>
+            <label>
+              País:
+              <input
+                type="text"
+                value={pais}
+                onChange={(e) => setPais(e.target.value)}
+              />
+            </label>
+            <label>
+              Ocupación:
+              <input
+                type="text"
+                value={ocupacion}
+                onChange={(e) => setOcupacion(e.target.value)}
+              />
+            </label>
+            <label>
+              Descripción:
+              <textarea
+                value={descripcion}
+                onChange={(e) => setDescripcion(e.target.value)}
+              />
+            </label>
+            <button type="submit">Enviar</button>
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

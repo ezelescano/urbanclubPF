@@ -1,15 +1,60 @@
-.formulario-container {
+img {
+  max-width: 100px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  margin-block: 38%;
+}
+.formulario-externo {
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+}
+.form-container {
+  background-color: rgb(39, 64, 207);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  padding-inline: 50px;
+  max-width: 120%;
+  max-height: 800px;
+  margin: auto;
+}
+.form-container > * {
+  padding: 5px;
+  padding-inline: 40px;
 }
 
-form {
+.form-container__left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 1;
+}
+
+.form-container__middle {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  padding: 20px;
-  border-radius: 10px;
+  order: 2;
+}
+
+.form-container__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  order: 3;
+}
+
+.form-container label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
