@@ -4,8 +4,9 @@ module.exports = (sequelize) => {
     sequelize.define('Artist', {
         id: {
             type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true,
-            autoincrement: true,
+            
         },
         name: {
             type: DataTypes.STRING,
@@ -17,14 +18,16 @@ module.exports = (sequelize) => {
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false,
             unique: true,
+            allowNull: false
         },
         profilePhoto: {
             type: DataTypes.STRING,
+            allowNull: true,
         },
         coverPhoto: {
             type: DataTypes.STRING,
+            allowNull: true,
         },
         password: {
             type: DataTypes.STRING,
@@ -32,23 +35,24 @@ module.exports = (sequelize) => {
         },
         nickName: {
             type: DataTypes.STRING,
-            allowNull: false,
             unique: true,
+            allowNull: false,
         },
         Country: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         city: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         ocupation: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         aboutMe: {
             type: DataTypes.STRING,
+            allowNull: true,
         },
     })
 }

@@ -1,27 +1,28 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+
 function Navbar() {
   return (
-    <nav>
-      <ul>
+    <nav className="navbar">
+      <ul className="nav-links">
         <li>
-          <NavLink to="/" className="active">
+          <NavLink to="/" className="nav-link active">
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/register" className="active">
+          <NavLink to="/register" className="nav-link active">
             Register
           </NavLink>
         </li>
         <li>
-          <NavLink to="/profile" className="active">
+          <NavLink to="/profile" className="nav-link active">
             Profile
           </NavLink>
         </li>
         <li>
-          <NavLink to="/login" className="active">
+          <NavLink to="/login" className="nav-link active">
             Login
           </NavLink>
         </li>
