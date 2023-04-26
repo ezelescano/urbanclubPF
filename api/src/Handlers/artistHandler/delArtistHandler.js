@@ -9,7 +9,7 @@ const delArtistHandler = async function (req,res){
     const { id } = req.params;
     try {
       const deleted = await delArtist(id);
-      res.status(200).send("Artist is deleted");
+      res.status(200).send("Artist " + id + " is deleted");
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
