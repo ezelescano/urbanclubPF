@@ -31,11 +31,11 @@ module.exports = (sequelize) => {
         },
         password: {
             type: DataTypes.STRING,
-            unique:true,
             allowNull: false,
         },
         nickName: {
             type: DataTypes.STRING,
+            unique:true,
             allowNull: false,
         },
         Country: {
