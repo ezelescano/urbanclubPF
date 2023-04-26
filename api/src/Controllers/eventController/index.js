@@ -1,3 +1,4 @@
 const getEventsController = require("./getEventsController");
+const postEventController = require("./postEventController");
 
-module.exports = {getEventsController};
+module.exports = {getEventsController, postEventController};

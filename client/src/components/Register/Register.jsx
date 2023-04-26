@@ -106,7 +106,7 @@ function Formulario() {
                   ref={fileInputRef}
                   style={{ display: "none" }}
                 />
-                <hr />
+                <br></br>
                 Registrate a<br></br> <b>Urban Club!</b>
               </label>
             </div>
