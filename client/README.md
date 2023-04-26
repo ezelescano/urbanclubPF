@@ -1,4 +1,6 @@
-# Ultimo cambio de la Rama de Oscar :)!
+
+# Ultimo cambio de la Rama de Eudes :)!
+
 
 
 
@@ -12,10 +14,13 @@ git clone --single-branch --branch oscar_repo https://github.com/ezelescano/urba
 
 ## Authors
 
-- [@AlhuayOscar](https://www.github.com/AlhuayOscar)
+- [@eudesmieres](https://github.com/eudesmieres)
+
 
 
 
 
 ## Urban Club Banner, Woo
+
 ![Texto alternativo](https://res.cloudinary.com/dipn8zmq3/image/upload/v1682396744/UrbanClub/BannerGithub_p67qhm.png)
+
