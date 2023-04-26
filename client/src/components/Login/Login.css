@@ -1,4 +1,4 @@
-.form-picture {
+.form-picture img {
   max-width: 100px;
   border-radius: 50px;
   -webkit-border-radius: 50px;
@@ -20,22 +20,8 @@
   color: white;
   border: none;
   padding: 10px;
-  margin-top: 20px;
   border-radius: 5px;
 }
-
-.upload-form-button {
-  cursor: pointer;
-  background-color: white;
-  box-shadow: 0px 2px 2px 2px black;
-  color: black;
-  font-weight: 600;
-  border: none;
-  padding: 10px;
-  margin-top: 20px;
-  border-radius: 5px;
-}
-
 .upload-submit-button {
   background-color: white;
   border: 2px solid black;
@@ -49,8 +35,8 @@
   -o-border-radius: 5px;
 }
 
-.formulario-externo-registro {
-  background-image: url(https://res.cloudinary.com/dipn8zmq3/image/upload/v1682454858/UrbanClub/DSC_5894_rev5jt.jpg);
+.formulario-externo-login {
+  background-image: url(https://res.cloudinary.com/dipn8zmq3/image/upload/v1682455230/UrbanClub/image_lsaixn.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -60,22 +46,27 @@
   align-items: center;
   background-color: black;
 }
-
 .form-container {
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
-  /* Agregado para alinear en la parte superior */
+  align-items: flex-start; /* Agregado para alinear en la parte superior */
   padding: 10%;
   padding-inline: 50px;
   max-width: 120%;
   max-height: 800px;
   margin: auto;
 }
+.form-login-title{
+  max-width: 150px;
+  font-size: 30px;
+}
+.form-login-subtitle{
+  font-size:35px;
+}
 
-.form-container>* {
+.form-container > * {
   padding: 5px;
   padding-inline: 40px;
 }
@@ -85,7 +76,7 @@
   justify-content: center;
   align-items: center;
   order: 1;
-  margin: auto
+  margin:auto
 }
 
 .form-container__middle {
@@ -97,6 +88,7 @@
 }
 
 .form-container__right {
+  margin:auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
