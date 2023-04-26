@@ -4,6 +4,7 @@ const {getArtistById} = require("../Handlers/artistHandler/getArtistById")
 const {delArtistHandler} = require("../Handlers/artistHandler/delArtistHandler")
 const {postArtistHandler} = require("../Handlers/artistHandler/postArtistHandler")
 const { updateArtistHandler } = require("../Handlers/artistHandler/updateArtistHandler");
+const {delLogArtistHandler} = require("../Handlers/artistHandler/delLogArtistHandler")
 const artistRouter = Router();
 
 
@@ -11,6 +12,7 @@ artistRouter.get("/", getArtistHandler);
 artistRouter.get("/:id", getArtistById);
 artistRouter.delete("/:id", delArtistHandler);
 artistRouter.put("/update/:id", updateArtistHandler);
+artistRouter.put("/delete/:id", delLogArtistHandler)
 artistRouter.post("/", postArtistHandler);
 
 
