@@ -8,7 +8,6 @@ function Login() {
   };
 
   /* {
-
         email, not null
         nickName, not null
         password not null

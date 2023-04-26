@@ -1,56 +1,75 @@
 import React, { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./Register.css";
 
 function Formulario() {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [alias, setAlias] = useState("");
-  const [ciudad, setCiudad] = useState("");
-  const [pais, setPais] = useState("");
-  const [ocupacion, setOcupacion] = useState("");
-  const [descripcion, setDescripcion] = useState("");
+  const [input, setInput] = useState({
+    name: "",
+    lastName: "",
+    nickName: "",
+    profilePhoto: "",
+    coverPhoto: "",
+    email: "",
+    password: "",
+    city: "",
+    country: "",
+    ocupation: "",
+    aboutMe: "",
+  });
+  
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
-  /* {
-    -Cambiar los valores por objetos, y usar solo un useState,
-     
-    -Cambiar los nombres por los de abajo qué usamos en la BD:
-        name,   not null
-        lastname,  not null
-        email, not null
-        profilePhoto:"", null
-        coverPhoto:"", null
-        nickName, not null
-        country:"", null
-        city:"", null
-        ocupation:"", null
-        aboutMe:"", null
-        password not null
-        
-    } 
-    */
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    // aquí va nuestra lógica para enviar el formulario
-    window.location.href = "/profile";
+  function handleOnChange(e) {
+    console.log(input);
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+      coverPhoto: "No en Register.jsx"
+    });
   }
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log("Se envio el formulario");
+    alert(`El usuario ${input.name} Fue añadido`);
+    setInput({
+      name: "",
+      lastName: "",
+      nickName: "",
+      profilePhoto: "",
+      email: "",
+      password: "",
+      city: "",
+      country: "",
+      ocupation: "",
+      aboutMe: "",
+    });
+    console.log("Esto es lo qué escribiste: " );
+    console.table(input);
+    // El console.table es para qué se pueda LEER el 
+    // [object Object] qué te trae la consola al poner 
+    // console.log("Esto: " + input)
+  }
+
+  const handleFileChange = (e) => {
+    
+    const file = e.target.files[0];
     const reader = new FileReader();
+
+     console.log("El nombre de tu foto de perfil es " + file.name);
+     setInput({
+       ...input,
+       profilePhoto: file.name,
+     });
+
+
     reader.readAsDataURL(file);
     reader.onload = () => {
       setRutaImagen(reader.result);
     };
-  };
-
-  const handleNombreChange = (event) => {
-    const nombreValue = event.target.value;
-    if (nombreValue.length <= 15) {
-      setNombre(nombreValue);
-    }
+    
   };
 
   const handleClick = () => {
@@ -97,11 +116,11 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Nombre:
                 </div>
                 <input
+                  onChange={handleOnChange}
                   type="text"
-                  value={nombre}
-                  onChange={handleNombreChange}
+                  value={input.name}
                   maxLength="35"
-                  required
+                  name="name"
                 />
               </label>
               <label>
@@ -110,8 +129,9 @@ function Formulario() {
                 </div>
                 <input
                   type="text"
-                  value={apellido}
-                  onChange={(e) => setApellido(e.target.value)}
+                  value={input.lastName}
+                  onChange={handleOnChange}
+                  name="lastName"
                   maxLength={35}
                   required
                 />
@@ -120,7 +140,14 @@ function Formulario() {
                 <div>
                   <span style={{ color: "red" }}>*</span> Correo:
                 </div>
-                <input type="email" maxLength={45} required />
+                <input
+                  type="email"
+                  value={input.email}
+                  onChange={handleOnChange}
+                  name="email"
+                  maxLength={45}
+                  required
+                />
               </label>
               <label>
                 <div>
@@ -128,15 +155,23 @@ function Formulario() {
                 </div>
                 <input
                   type="text"
-                  value={alias}
-                  onChange={(e) => setAlias(e.target.value)}
+                  value={input.nickName}
+                  onChange={handleOnChange}
+                  name="nickName"
                 />
               </label>
               <label>
                 <div>
                   <span style={{ color: "red" }}>*</span> Contraseña:
                 </div>
-                <input type="text" maxLength={45} required />
+                <input
+                  type="text"
+                  maxLength={45}
+                  value={input.password}
+                  onChange={handleOnChange}
+                  name="password"
+                  required
+                />
               </label>
             </div>
             <div className="form-container__right">
@@ -144,33 +179,37 @@ function Formulario() {
                 <div>Ciudad:</div>
                 <input
                   type="text"
-                  value={ciudad}
-                  onChange={(e) => setCiudad(e.target.value)}
+                  value={input.city}
+                  onChange={handleOnChange}
+                  name="city"
                 />
               </label>
               <label>
                 <div>Pais:</div>
                 <input
                   type="text"
-                  value={pais}
-                  onChange={(e) => setPais(e.target.value)}
+                  value={input.country}
+                  onChange={handleOnChange}
+                  name="country"
                 />
               </label>
               <label>
                 <div>Ocupacion:</div>
                 <input
                   type="text"
-                  value={ocupacion}
-                  onChange={(e) => setOcupacion(e.target.value)}
+                  value={input.ocupation}
+                  onChange={handleOnChange}
                   maxLength={35}
+                  name="ocupation"
                 />
               </label>
               <label>
                 Descripción:
                 <textarea
-                  value={descripcion}
-                  onChange={(e) => setDescripcion(e.target.value)}
+                  value={input.aboutMe}
+                  onChange={handleOnChange}
                   maxLength={500}
+                  name="aboutMe"
                 />
               </label>
               <button className="upload-form-button" type="submit">
