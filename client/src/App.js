@@ -6,6 +6,7 @@ import ProfileEdit from "./components/ProfileEdit/ProfileEdit";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
+import Artists from "./components/Artists/Artists";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/profileEdit" element={<ProfileEdit />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/artistas" element={<Artists />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </div>

@@ -1,4 +1,4 @@
-.form-picture{
+.form-picture {
   max-width: 100px;
   border-radius: 50px;
   -webkit-border-radius: 50px;
@@ -6,6 +6,7 @@
   -ms-border-radius: 50px;
   -o-border-radius: 50px;
 }
+
 .form-picture img,
 .MuiSvgIcon-root {
   border-radius: 50%;
@@ -22,6 +23,7 @@
   margin-top: 20px;
   border-radius: 5px;
 }
+
 .upload-form-button {
   cursor: pointer;
   background-color: white;
@@ -33,6 +35,7 @@
   margin-top: 20px;
   border-radius: 5px;
 }
+
 .upload-submit-button {
   background-color: white;
   border: 2px solid black;
@@ -57,12 +60,14 @@
   align-items: center;
   background-color: black;
 }
+
 .form-container {
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start; /* Agregado para alinear en la parte superior */
+  align-items: flex-start;
+  /* Agregado para alinear en la parte superior */
   padding: 10%;
   padding-inline: 50px;
   max-width: 120%;
@@ -70,7 +75,7 @@
   margin: auto;
 }
 
-.form-container > * {
+.form-container>* {
   padding: 5px;
   padding-inline: 40px;
 }
@@ -80,7 +85,7 @@
   justify-content: center;
   align-items: center;
   order: 1;
-  margin:auto
+  margin: auto
 }
 
 .form-container__middle {
