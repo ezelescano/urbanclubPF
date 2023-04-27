@@ -4,7 +4,7 @@ const updateEvent = async (eventId, body) => {
     if (!eventId) {
         throw new Error("Not specific Id")
     } else {
-        const eventUp = await Event.findByPK(eventId);
+        const eventUp = await Event.findByPk(eventId);
         if (!eventUp) {
             throw new Error(`No event was found with that ${eventId}`)
         } else {
