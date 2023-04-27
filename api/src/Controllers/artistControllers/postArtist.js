@@ -1,9 +1,10 @@
 const {Artist} = require("../../db");
-const postArtist = async (req) => {
-    const {name,lastname,email,password,nickName
+const bcrypt = require("bcrypt")
+const postArtist = async (req, res) => {
+    let {name,lastname,email,password,nickName
     } = req.body;
     const Nombre = name.toUpperCase().split(" ").join("-");
-
+    password = await bcrypt.hash(password, 8);
     const newArtist = {
         name,
         lastname,
@@ -17,11 +18,7 @@ const postArtist = async (req) => {
         aboutMe:"",
         password
     }
-    console.log(newArtist)
-  const crea = await Artist.create(newArtist)
-//  console.log("fdfdfsfs",crea)
-
-
-    return newArtist
+    const create = await Artist.create(newArtist)
+    return create
 }
 module.exports = {postArtist}
