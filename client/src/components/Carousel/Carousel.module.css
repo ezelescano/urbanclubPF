@@ -1,5 +1,6 @@
 .carousel-img {
-    max-width: 100%;
+
+    max-width: 50%;
     height: auto;
     opacity: 0;
     transition: 1s;
@@ -22,14 +23,3 @@
     padding: 8px;
     margin: 0 5px;
 }
-
-/* const CarouselImg = style.img`
-max-width: 500px;
-width:100%;
-height: auto;
-opacity: 0;
-transition: 1s;
-&.loaded {
-    opacity: 1;
-}
-`; */
