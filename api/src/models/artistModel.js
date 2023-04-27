@@ -22,12 +22,20 @@ module.exports = (sequelize) => {
             unique: true,
             allowNull: false
         },
+        id_profilePhoto: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         estado: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue:ACTIVATED
         },
         profilePhoto: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        id_coverPhoto: {
             type: DataTypes.STRING,
             allowNull: true,
         },
@@ -41,7 +49,7 @@ module.exports = (sequelize) => {
         },
         nickName: { 
             type: DataTypes.STRING,
-            unique: true,
+            unique:true,
             allowNull: false,
         },
         Country: {
@@ -62,3 +70,4 @@ module.exports = (sequelize) => {
         },
     })
 }
+
