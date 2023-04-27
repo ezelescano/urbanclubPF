@@ -19,7 +19,7 @@ const Profile = () => {
     likes: 46,
    
     links: [{
-      youtube: "https://www.youtube.com/el perfil",
+      youtube: "https://www.youtube.com/",
       twitter: "https://twitter.com/"
     }
     ],
