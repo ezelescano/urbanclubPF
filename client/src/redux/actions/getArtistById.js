@@ -1,4 +1,5 @@
 import { GET_ARTIST_DETAIL } from "./index";
+import axios from "axios";
 
 export const getArtistDetail = (id) => {
     return async (dispatch) => {

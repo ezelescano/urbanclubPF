@@ -1,2 +1,4 @@
 export const GET_ARTIST_DETAIL = "GET_ARTIST_DETAIL";
 export const POST_ARTIST = "POST_ARTIST";
+export const GET_ALL_ARTISTS = "GET_ALL_ARTISTS";
+export const GET_ARTIST_BY_NAME = "GET_ARTIST_BY_NAME";
