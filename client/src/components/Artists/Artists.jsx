@@ -53,6 +53,7 @@ const Artists = () => {
     aboutMe: "Soy la Reina del pop"},
     
   ];
+
   
 
   return (
