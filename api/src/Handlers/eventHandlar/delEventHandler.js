@@ -4,8 +4,9 @@ const deleteEvent = require("../../Controllers/eventController/delEventControlle
 const delEventHandler = async (req, res) => {
     const { id } = req.params;
     try {
+        console.log('id', id);
             const result = await deleteEvent(id);
-            res.status(204).json({ message: 'The event was deleted successfully' });
+            res.status(200).send('The event was deleted successfully');
     } catch (error) {
         res.status(500).json({ error: 'An error occurred while deleting the user' });
 
