@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import postartist from "../../redux/actions/postartist";
+import axios from "axios";
 
 function validate(input) {
   let errors = {};
@@ -17,6 +18,8 @@ export default function Register() {
     name: "",
     profilePhoto: "",
     password: "",
+    email: "oas@asj.com",
+    nickName: "algo",
   });
   const [errors, setErrors] = useState({});
 
@@ -47,20 +50,24 @@ export default function Register() {
     }
   }
 
-  async function handleSubmit(e) {
+ function handleSubmit(e) {
     e.preventDefault();
     if (!input.name) {
       return alert("Name is required");
     }
-    dispatch(postartist(input));
-    alert(`Artist ${input.name} has been added`);
-     setInput({
-       name: "",
-       password: "",
-       aboutMe: "",
-     });
+    console.log(input);
+    axios
+      .post("http://localhost:3001/artist", {name:"AlgodelPost"})
+      .then((res) => console.log(res))
+      .catch((errors) => errors);
+    // dispatch(postartist(input));
+    //alert(`Artist ${input.name} has been added`);
+    setInput({
+      name: "",
+      password: "",
+      aboutMe: "",
+    });
   }
-  
 
   return (
     <>
