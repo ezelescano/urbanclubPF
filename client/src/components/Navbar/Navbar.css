@@ -1,10 +1,11 @@
+/* Color negro de la Navbar es #1a1919*/
 nav.navbar {
   background-color: #0d5a73;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  border-bottom:1.5px solid#004258;
+  border-bottom: 1.5px solid#004258;
 }
 .nav-title {
   height: auto;
@@ -21,8 +22,46 @@ input[name="searchbar"] {
   -ms-border-radius: 50px;
   -o-border-radius: 50px;
 }
-.searchbar{
-     margin-right: 50px;
+.searchbar {
+  margin-right: 50px;
+  border: 2px solid #ccc;
+}
+.searchbar-wrapper {
+  position: relative;
+}
+
+.search-icon {
+  background-color: #79cfd5;
+  border-radius: 100%;
+  padding-inline: 2.2%;
+  padding-block: 1.4%;
+  position: absolute;
+  top: 51%;
+  /*PosicionAlto*/
+  right: 17%;
+  /*PosicionAncho*/
+  transform: translateY(-50%);
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+.search-icon:hover {
+  cursor: pointer;
+}
+
+.search-icon svg {
+  color: #222222;
+}
+input[name="searchbar"]::placeholder {
+  color: #7e8b99;
+}
+input[name="searchbar"]:focus {
+  outline: none;
 }
 nav.navbar ul {
   display: flex;
@@ -45,6 +84,7 @@ nav.navbar ul li a {
   color: white;
   text-decoration: none;
   padding: 12px;
+  outline: none;
 }
 .nav-link.active.login {
   box-shadow: 5px black;
@@ -60,10 +100,18 @@ nav.navbar ul li a {
 .nav-link.active.merch {
   padding-right: 30px;
 }
-/* Color negro de la Navbar es #1a1919*/
+
 nav.navbar ul li a:hover {
   background-color: #0d779b;
-  box-shadow: 0.5px 0.5px 0.5px 0.5px  black;
+  box-shadow: 0.5px 0.5px 0.5px 0.5px black;
   padding: 12px;
   border-radius: 15px;
+  outline: none;
+}
+nav.navbar ul li a.nav-home:hover {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 12px;
+  border-radius: 0;
+  outline: none;
 }
