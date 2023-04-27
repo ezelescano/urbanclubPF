@@ -39,11 +39,6 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/artistas" className="nav-link active">
-            Artistas
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="/aboutMe" className="nav-link active">
             Acerca de
           </NavLink>

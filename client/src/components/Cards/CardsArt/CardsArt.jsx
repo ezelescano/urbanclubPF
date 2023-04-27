@@ -1,8 +1,10 @@
 import React from 'react';
 import style from "./CardsArt.module.css";
+import { NavLink } from "react-router-dom";
 
 const CardsArt = ({ name, profilePhoto, ocupation, aboutMe }) => {
   return (
+    <NavLink to="/profile">
     <div className={style.Container}>
             
             <img className={style.image} src={profilePhoto} alt={name} />
@@ -14,6 +16,7 @@ const CardsArt = ({ name, profilePhoto, ocupation, aboutMe }) => {
              <p> {aboutMe}</p> 
              </div>            
     </div>
+    </NavLink>
   )
 }
 
