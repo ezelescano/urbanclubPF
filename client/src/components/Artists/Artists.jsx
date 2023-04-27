@@ -1,4 +1,4 @@
-
+import React from "react";
 import style from "./Artists.module.css";
 import Jenny from "../../imagenes/Jenny.jpg";
 import Jorge from "../../imagenes/jorgeblass.jpg";
