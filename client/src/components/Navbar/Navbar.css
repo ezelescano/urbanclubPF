@@ -1,11 +1,29 @@
 nav.navbar {
-  background-color: #1a1919;
+  background-color: #0d5a73;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
+  border-bottom:1.5px solid#004258;
+}
+.nav-title {
+  height: auto;
+  width: auto;
+  padding-right: 500px;
 }
 
+input[name="searchbar"] {
+  border-radius: 50px;
+  padding: 10px;
+  width: 250px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+.searchbar{
+     margin-right: 50px;
+}
 nav.navbar ul {
   display: flex;
   list-style: none;
@@ -26,32 +44,26 @@ nav.navbar ul li:not(:last-child) {
 nav.navbar ul li a {
   color: white;
   text-decoration: none;
+  padding: 12px;
 }
+.nav-link.active.login {
+  box-shadow: 5px black;
+  border-radius: 5px;
+  color: black;
+  font-weight: 550;
+  background-color: white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.nav-link.active.merch {
+  padding-right: 30px;
+}
+/* Color negro de la Navbar es #1a1919*/
 nav.navbar ul li a:hover {
-  font-size: 110%;
-  background-image: linear-gradient(
-    to right,
-    violet,
-    blue,
-    green,
-    yellow,
-    orange,
-    red
-  );
-  background-clip: text;
-  -webkit-background-clip: text; /* necesario para compatibilidad con algunos navegadores */
-  color: transparent;
-  animation: rainbow 2s linear infinite;
-}
-
-@keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background-color: #0d779b;
+  box-shadow: 0.5px 0.5px 0.5px 0.5px  black;
+  padding: 12px;
+  border-radius: 15px;
 }

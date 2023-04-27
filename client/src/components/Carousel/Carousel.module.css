@@ -1,0 +1,35 @@
+.carousel-img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: 1s;
+}
+
+.carousel-img.loaded_ {
+    opacity: 1;
+}
+
+.ButtonContainer {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    margin-top: 15px;
+}
+
+.button {
+    color: white;
+    background-color: blueviolet;
+    padding: 8px;
+    margin: 0 5px;
+}
+
+/* const CarouselImg = style.img`
+max-width: 500px;
+width:100%;
+height: auto;
+opacity: 0;
+transition: 1s;
+&.loaded {
+    opacity: 1;
+}
+`; */
