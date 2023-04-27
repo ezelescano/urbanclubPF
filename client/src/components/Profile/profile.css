@@ -1,18 +1,35 @@
+.container{
+  margin: 10px 100px;
+}
+
 .portada-profile{
   width: 100%;
-  height: 200px;
+  height: 246px;
   object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 4px 8px 6px 0 #adabab;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.prim-profile{
+  margin: 0 155px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .foto-nombre{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-top: 90px;
 }
 
 .foto-profile{
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 170px;
+  border: 5px solid #fff;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -20,21 +37,50 @@
   -o-border-radius: 50%;
 }
 
-.info-profile{
-  display: flex;
-  flex-direction: column;
-  margin: 70px;
-}
-
 .nombre{
-display: flex;
-flex-direction: column;
-}
-
-.verificado-div{
-  margin: 0;
+  height: 30px;
   display: flex;
   align-items: center;
+}
+
+.nombre h1, h2{
+  margin: 10px 0;
+}
+
+
+
+.ocupation-container{
+  display: flex;
+  margin: 0;
+}
+
+.ocupation{
+  padding: 5px 10px;
+  margin-right: 10px;
+  background-color: rgb(139, 213, 252);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.stas-btns{
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 30px;
+}
+
+.stas-profile{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btns{
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .verificado{
@@ -42,11 +88,7 @@ flex-direction: column;
   height: 35px;
 }
 
-.seguidores{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .btn-profile{
   background-color: #000;
@@ -54,7 +96,7 @@ flex-direction: column;
   font-weight: 600;
   width: auto;
   height: auto;
-  padding: 10px 20px;
+  padding: 15px 30px;
   margin: 0 50px;
   border: none;
   border-radius: 15px;
@@ -64,3 +106,43 @@ flex-direction: column;
   -o-border-radius: 15px;
 }
 
+.ab-re{
+  display: flex;
+}
+
+.redes{
+  margin-left: 50px;
+  width: 350px;
+}
+
+.aboutme{
+  padding: 0 0 0 100px;
+  margin-top: 10px;
+}
+
+.container-links{
+  margin: auto;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.redes-div h4{
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.icon{
+  width: auto;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.titulo-ev{
+  margin: 15px 100px;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid #000;
+}
