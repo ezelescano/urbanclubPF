@@ -1,0 +1,6 @@
+DB_USER=//usuario
+DB_PASSWORD=//password
+DB_HOST=localhost
+DB_NAME=urbanClub
+DB_PORT= 5432
+PORT = 3001

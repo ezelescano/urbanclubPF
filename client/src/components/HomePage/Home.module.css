@@ -1,0 +1,12 @@
+.main {
+    background-color: blue;
+    object-fit: cover;
+    display: flex;
+
+
+    margin-top: 0%;
+    margin-left: 3px;
+    margin-right: 3px;
+
+    overflow: hidden;
+}

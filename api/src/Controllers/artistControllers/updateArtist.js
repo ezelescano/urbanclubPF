@@ -10,5 +10,5 @@ const updateArtist = async (userId, body) => {
   }
   return "Datos actualizados correctamente";
 };
-
+  
 module.exports = { updateArtist };
