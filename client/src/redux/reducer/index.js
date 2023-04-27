@@ -1,7 +1,7 @@
 import { POST_ARTIST, GET_ARTIST_DETAIL, GET_ALL_ARTISTS, GET_ARTIST_BY_NAME } from "../actions";
 
 const initialState = {
-  allArtist: [],
+  allArtists: [],
   artists: [],
   artistDetail: [],
 };
@@ -32,6 +32,13 @@ export default function rootReducer(state = initialState, action) {
         artistDetail: action.payload,
       };
     case GET_ARTIST_BY_NAME:
+      const artists = state.allArtists;
+      const filteredArtist = artists.filter((artist) => artist.name === action.payload);
+      const filtrado = action.payload === "" ? artists : filteredArtist;
+      return {
+        ...state,
+        artists: filtrado,
+      }
 
     default:
       return state;
