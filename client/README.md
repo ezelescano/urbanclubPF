@@ -1,12 +1,10 @@
-
-# Ultimo cambio de la Rama de Eudes :)!
-
+# Ultimo cambio de la Rama de Alex :/!
 
 
 
 Para clonar unicamente de está rama:
 ```bash
-git clone --single-branch --branch oscar_repo https://github.com/ezelescano/urbanclubPF
+git clone --single-branch --branch Alex_Dev https://github.com/ezelescano/urbanclubPF
 
 ```
 
@@ -14,8 +12,7 @@ git clone --single-branch --branch oscar_repo https://github.com/ezelescano/urba
 
 ## Authors
 
-- [@eudesmieres](https://github.com/eudesmieres)
-
+- [@Alex-ty10](https://www.github.com/Alex-ty10)
 
 
 
