@@ -38,7 +38,7 @@ export default function Register() {
 
   function handleImageUpload(e) {
     const file = e.target.files;
-    console.log(file)
+    console.log(file);
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -51,29 +51,32 @@ export default function Register() {
     }
   }
 
- function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    // if (!input.name) {
-    //   return alert("Name is required");
-    // }
-    // console.log(input);
-    console.log(input)
-    axios
-      .post("http://localhost:3008/artist", input)
+    if (!input.name) {
+      return alert("Name is required");
+    }
+    console.log(input);
+    console.log(input);
+
+     axios
+      .post("http://localhost:3001/artist", input)
       .then((res) => console.log(res))
       .catch((errors) => errors);
+
+
     // dispatch(postartist(input));
-    //alert(`Artist ${input.name} has been added`);
-    // setInput({
-    //   name: "",
-    //   password: "",
-    //   aboutMe: "",
-    // });
+    alert(`Artist ${input.name} has been added`);
+     setInput({
+       name: "",
+       password: "",
+       aboutMe: "",
+     });
   }
 
   return (
     <>
-       <div>
+      <div>
         <h1>Add a new artist</h1>
         <form onSubmit={handleSubmit}>
           <div>

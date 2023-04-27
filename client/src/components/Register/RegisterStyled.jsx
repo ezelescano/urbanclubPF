@@ -6,8 +6,8 @@ import "./Register.css";
 function Formulario() {
   const [input, setInput] = useState({
     name: "",
-    lastName: "",
-    nickName: "",
+    lastname: "",
+    nickname: "",
     profilePhoto: "",
     coverPhoto: "",
     email: "",
