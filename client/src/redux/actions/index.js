@@ -1,2 +1,2 @@
-export const ADD_VIDEOGAME = "ADD_VIDEOGAME";
+export const GET_ARTIST_DETAIL = "GET_ARTIST_DETAIL";
 export const POST_ARTIST = "POST_ARTIST";
