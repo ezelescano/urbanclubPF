@@ -1,5 +1,6 @@
 import React from "react";
 import "./Login.css";
+import { NavLink } from "react-router-dom";
 
 function Login() {
   const handleSubmit = (event) => {
@@ -20,12 +21,15 @@ function Login() {
           <div className="form-container__left">
             <label className="form-login-title">
               Bienvenido a <b className="form-login-subtitle">UrbanClub!</b>
+              {/*El isotipo en negro para el login:
+              <img src="isoneg.png" alt="Logo Negro" />
+              */}
             </label>
           </div>
           <div className="form-container__middle">
             <label>
               <div>Nickname:</div>
-              <input type="text" maxLength={45} required/>
+              <input type="text" maxLength={45} required />
             </label>
             <label>
               <div>Correo:</div>
@@ -40,6 +44,12 @@ function Login() {
             <button className="upload-picture-button" type="submit">
               Ingresar
             </button>
+            <br />
+            <label>
+              <NavLink to="/register" className="nav-link active">
+                Aun no tiene usuario?
+              </NavLink>
+            </label>
           </div>
         </form>
       </div>

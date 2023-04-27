@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <>
       <div>
-        <span>Está es la Profile :)!</span>
+        <span>Está es la Homepage :D!</span>
       </div>
       <img src="https://relix.com/wp-content/uploads/2018/07/UM1.gif" alt="" />
     </>

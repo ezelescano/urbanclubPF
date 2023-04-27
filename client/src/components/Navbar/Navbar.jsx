@@ -9,18 +9,26 @@ function Navbar() {
     <nav className="navbar">
       <ul className="nav-title">
         <li>
-          <img
-            className="nav-title-img"
-            src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682542442/UrbanClub/Urban_Club_Logo_fh8zlb.png"
-            alt=""
-          />
+          <NavLink className="nav-home" to="/">
+            <img
+              className="nav-title-img nav-img"
+              src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682542442/UrbanClub/Urban_Club_Logo_fh8zlb.png"
+              alt=""
+            />
+          </NavLink>
         </li>
       </ul>
       <ul className="nav-links">
-        <input
-          className="searchbar"
-          name="searchbar"
-          placeholder="¿Qué artista quieres ver hóy?"></input>
+        <div className="searchbar-wrapper">
+          <input
+            className="searchbar"
+            name="searchbar"
+            placeholder="¿Qué artista quieres ver hoy?"
+          />
+          <i className="search-icon">
+            <SearchIcon />
+          </i>
+        </div>
         {/*<SearchIcon style={{color:"white"}}/>*/}
         <li>
           <NavLink to="/artists" className="nav-link active">
