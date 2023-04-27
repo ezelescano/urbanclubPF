@@ -21,7 +21,15 @@ module.exports = (sequelize) => {
             unique: true,
             allowNull: false
         },
+        id_profilePhoto: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         profilePhoto: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        id_coverPhoto: {
             type: DataTypes.STRING,
             allowNull: true,
         },
@@ -57,4 +65,3 @@ module.exports = (sequelize) => {
     })
 }
 
-// cloudinary/upload/bucket subir imagenes
