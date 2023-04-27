@@ -1,4 +1,4 @@
-import { GET_ARTISTS, GET_ARTIST_DETAIL } from "../actions";
+import { POST_ARTIST, GET_ARTIST_DETAIL } from "../actions";
 
 const initialState = {
   artists: [],
@@ -7,7 +7,7 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_ARTISTS:
+    case POST_ARTIST:
       if (action.payload) {
         return {
           ...state,
