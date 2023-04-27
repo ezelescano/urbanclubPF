@@ -2,6 +2,7 @@
 const { Artist } = require("../../db");
 const fileupload = require("express-fileupload")
 const fs_extra = require("fs-extra")
+const bcrypt = require("bcrypt")
 const cloudinary = require("cloudinary").v2
 require("dotenv").config();
 
@@ -15,7 +16,7 @@ const postArtist = async (req) => {
     const { profilePhoto, coverPhoto } = req.files
     // const {profilePhoto,coverPhoto} = req.files
     //?el name se agrega con mayuscula
-
+    
 
 
     if (!name || !lastname || !email || !nickName)
@@ -76,6 +77,7 @@ const postArtist = async (req) => {
         cloudiconfig()
         saveCover = await loadPhoto(coverPhoto.tempFilePath);
     }
+    password = await bcrypt.hash(password, 8);
     try {
         const newArtist = {
             name: Nombre,

@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const {ACTIVATED} = require("../constants")
 
 module.exports = (sequelize) => {
     sequelize.define('Artist', {
@@ -25,6 +26,11 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        estado: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue:ACTIVATED
+        },
         profilePhoto: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -41,7 +47,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        nickName: {
+        nickName: { 
             type: DataTypes.STRING,
             unique:true,
             allowNull: false,
