@@ -6,22 +6,22 @@ const bcrypt = require("bcrypt")
 const cloudinary = require("cloudinary").v2
 require("dotenv").config();
 
-const {CLOUD_NAME, API_KEY, API_SECRET} = process.env;
+const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 
 const postArtist = async (req) => {
-
-    const {
+    let saveProfile = {}
+    let saveCover = {}
+    let {
         name, lastname, email, password, nickName, Country, city,
         ocupation, aboutMe, } = req.body;
-    const { profilePhoto, coverPhoto } = req.files
-    // const {profilePhoto,coverPhoto} = req.files
-    //?el name se agrega con mayuscula
-    
 
 
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
+
+    //?el name se agrega con mayuscula
     const Nombre = name.toUpperCase();
+   
     //? validacion de correo electronico
     const valueEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!valueEmail.test(email)) {
@@ -53,7 +53,7 @@ const postArtist = async (req) => {
     const searchNick = await Artist.findOne({
         where: { nickName: nickName }
     })
-    searchEmail = await Artist.findOne({
+    const searchEmail = await Artist.findOne({
         where: { email: email }
     })
     //? si existe el nickName devuelve el error
@@ -65,21 +65,25 @@ const postArtist = async (req) => {
         return { error: "El Correo ya esta en uso" }
     }
 
+    
+    if (req.files) {
+        const { profilePhoto, coverPhoto } = req.files
 
-    let saveProfile = {}
-    if (profilePhoto) {
+        if (profilePhoto) {
+            cloudiconfig()
+            saveProfile = await loadPhoto(profilePhoto.tempFilePath);
+        }
 
-        cloudiconfig()
-        saveProfile = await loadPhoto(profilePhoto.tempFilePath);
+        if (coverPhoto) {
+            cloudiconfig()
+            saveCover = await loadPhoto(coverPhoto.tempFilePath);
+        }
     }
-    let saveCover = {}
-    if (coverPhoto) {
-        cloudiconfig()
-        saveCover = await loadPhoto(coverPhoto.tempFilePath);
-    }
+    
     password = await bcrypt.hash(password, 8);
+  
     try {
-        const newArtist = {
+        let newArtist = {
             name: Nombre,
             lastname,
             email,
@@ -94,8 +98,10 @@ const postArtist = async (req) => {
             aboutMe,
             password
         }
+        console.log(newArtist)
+        
         const crea = await Artist.create(newArtist)
-
+       
 
         return newArtist
     } catch (error) {
@@ -104,7 +110,7 @@ const postArtist = async (req) => {
 }
 
 const cloudiconfig = () => {
-    cloudinary.config({ 
+    cloudinary.config({
         cloud_name: CLOUD_NAME,
         api_key: API_KEY,
         api_secret: API_SECRET,
