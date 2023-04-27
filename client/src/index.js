@@ -3,10 +3,13 @@ import "./index.css";
 import App from "./App";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-// Colocar el respectivo  import { Provider } from "react-redux"; Más el <Provider store={store}> Agrupando a BrowserRouter
 createRoot(document.getElementById("root")).render(
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
+  </Provider>
 );

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+//Si aun te rompes con CSS, imaginate con iconos, import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchIcon from "@mui/icons-material/Search";
 
 function Navbar() {
@@ -43,7 +43,7 @@ function Navbar() {
         <li>
           <NavLink to="/merch" className="nav-link active merch">
             Tienda / Merchandising
-            <KeyboardArrowDownIcon style={{ position: "fixed" }} />
+            {/*<KeyboardArrowDownIcon style={{ position: "fixed" }} /> Lo siento chevron, Pero estás mal fixeado*/}
           </NavLink>
         </li>
         <li>
