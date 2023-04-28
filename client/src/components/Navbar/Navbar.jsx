@@ -14,8 +14,6 @@ function Navbar() {
               alt=""
             />
           </NavLink>
-          
-      
         <div className="searchbar-wrapper">
           <input
             className="searchbar"
@@ -25,8 +23,6 @@ function Navbar() {
             <SearchIcon />
           </i>
         </div>
-
-
         {/*<SearchIcon style={{color:"white"}}/>*/}
         <ul className="nav-links">
         <li>
@@ -35,25 +31,13 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/events" className="nav-link active">
-            Eventos
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/merch" className="nav-link active merch">
-            Tienda / Merchandising
-            {/*<KeyboardArrowDownIcon style={{ position: "fixed" }} /> Lo siento chevron, Pero estás mal fixeado*/}
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/aboutMe" className="nav-link active">
+          <NavLink to="/aboutus" className="nav-link active">
             Acerca de
           </NavLink>
         </li>
         </ul>
-        
         <NavLink to="/login" >
-          <button className="nav-login-btn">ingresar</button>
+          <button className="nav-login-btn">Ingresar</button>
         </NavLink>
         
     </nav>

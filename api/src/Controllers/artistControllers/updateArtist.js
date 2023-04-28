@@ -1,4 +1,5 @@
 const { Artist } = require("../../db");
+const { DELETED } = require("../../constants");
 
 const updateArtist = async (userId, body) => {
   let actualizados = {}
@@ -8,6 +9,8 @@ const updateArtist = async (userId, body) => {
     const artist = await Artist.findByPk(userId);
 
     if (!artist) throw new Error("No se encontró ningún usuario con ese ID");
+    if (artist.estado===DELETED) throw new Error("No se encontró ningún usuario con ese ID");
+    
     await Artist.update(body, { where: { id: parseInt(userId) } });
 
   }
