@@ -74,11 +74,18 @@ const postArtist = async (req) => {
             cloudiconfig()
             saveProfile = await loadPhoto(profilePhoto.tempFilePath);
         }
+        else saveProfile.secure_url = "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682709510/Profile_Icon_Transparante_abxpqx.png"
 
         if (coverPhoto) {
             cloudiconfig()
             saveCover = await loadPhoto(coverPhoto.tempFilePath);
         }
+        else  saveCover.secure_url = "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682703714/aboutusbannerperfect_hbm0xf.png"
+        
+    }
+    else { //si no vienen las fotos
+        saveProfile.secure_url = "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682709510/Profile_Icon_Transparante_abxpqx.png"
+        saveCover.secure_url = "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682703714/aboutusbannerperfect_hbm0xf.png"
     }
     
     password = await bcrypt.hash(password, 8);
