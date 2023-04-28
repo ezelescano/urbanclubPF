@@ -1,11 +1,8 @@
 // const { Op, json } = require("sequelize");
 const { Artist } = require("../../db");
-const fs_extra = require("fs-extra")
 const bcrypt = require("bcrypt")
-const cloudinary = require("cloudinary").v2
-require("dotenv").config();
+const {cloudiconfig,loadPhoto} = require("../../../utils/cloudinary")
 
-const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 
 const postArtist = async (req) => {
     let saveProfile = {}
@@ -104,20 +101,5 @@ const postArtist = async (req) => {
     }
 }
 
-const cloudiconfig = () => {
-    cloudinary.config({
-        cloud_name: CLOUD_NAME,
-        api_key: API_KEY,
-        api_secret: API_SECRET,
-        secure: true
-    });
-}
-const loadPhoto = async (path) => {
-    savePhoto = await cloudinary.uploader.upload(path, {
-        folder: "UrbanClub"
-    });
 
-    await fs_extra.unlink(path)
-    return savePhoto;
-}
 module.exports = { postArtist }

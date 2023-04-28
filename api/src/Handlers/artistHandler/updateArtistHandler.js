@@ -3,10 +3,9 @@ const {
 } = require("../../Controllers/artistControllers/updateArtist");
 
 const updateArtistHandler = async (req, res) => {
-  const { id } = req.params;
-  const { body } = req;
+  
   try {
-    const updatedArtist = await updateArtist(id, body);
+    const updatedArtist = await updateArtist(req);
     return res.status(200).json(updatedArtist);
   } catch (error){
     return res.status(400).json({ message: error.message });

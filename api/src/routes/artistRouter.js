@@ -8,16 +8,16 @@ const {delLogArtistHandler} = require("../Handlers/artistHandler/delLogArtistHan
 const authLogin = require("../Handlers/artistHandler/authLogin");
 const testFunction = require("../handlers/artistHandler/testFunction");
 const verifyAuth = require("../middlewares/verifyAuth");
-
+const fileupload = require("express-fileupload")
 const artistRouter = Router();
 
-
+ 
 artistRouter.get("/", getArtistHandler);
 artistRouter.get("/:id", getArtistById);
 artistRouter.delete("/:id", delArtistHandler);
-artistRouter.put("/update/:id", updateArtistHandler);
+artistRouter.put("/update/:id", fileupload({useTempFiles: true,tempFileDir: "./uploads"}) ,updateArtistHandler);
 artistRouter.put("/delete/:id", delLogArtistHandler)
-artistRouter.post("/", postArtistHandler);
+artistRouter.post("/",fileupload({useTempFiles: true,tempFileDir: "./uploads"}), postArtistHandler);
 artistRouter.post("/login", authLogin);
 artistRouter.get("/:id/prueba", verifyAuth, testFunction)
 
