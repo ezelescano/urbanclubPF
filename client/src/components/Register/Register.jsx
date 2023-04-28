@@ -248,15 +248,19 @@ function Formulario() {
                 />
               </label>
               <label>
-                <div>Ocupacion:</div>
-                <input
-                  type="text"
+                <div>Ocupación:</div>
+                <select
                   value={input.ocupation}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  maxLength={35}
                   name="ocupation"
-                />
+                >
+                  <option value="Dancer">Dancer</option>
+                  <option value="Circus">Circus</option>
+                  <option value="Puppeteer">Puppeteer</option>
+                  <option value="Statue">Statue</option>
+                  <option value="Magician">Magician</option>
+                </select>
               </label>
               <label>
                 Descripción:
