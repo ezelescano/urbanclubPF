@@ -9,38 +9,41 @@ const Profile = () => {
    const dispatch = useDispatch();
    const usuario = useSelector(state => state.artist.usuario)
 
+   const { name, lastname, profilePhoto, coverPhoto, Country, city, ocupation, aboutMe } = usuario
+   const { id } = useParams();
+
    useEffect(() => {
     dispatch(getArtistId(id))
    },[dispatch])
    
-   const id = useParams;
+  
 
 
   return (
     <div className='container'>
       <div>
         <div className="portada-profile">
-          <img  src={usuario.coverPhoto} alt="coverfoto" />
+          <img  src={coverPhoto} alt="coverfoto" />
         </div>
 
         <div className='prim-profile'>
           <div className='foto-nombre'>
-              <img className='foto-profile' src={usuario.profilePhoto} alt='no se jaja x2' />   
+              <img className='foto-profile' src={profilePhoto} alt='no se jaja x2' />   
               <div className='nombre'>
-                <h1>{usuario.nickName}</h1>
+                <h1>{name} {lastname}</h1>
                 {/* para saber si es verificado funcion aun no implementada */}
-                {usuario.verified &&
+                {/* {verified &&
                   <img className='verificado' src='https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg' alt='verificado paa' />
-                }
+                } */}
               </div>
-              <h3>{usuario.city}, {usuario.country}</h3>
+              <h3>{city}, {Country}</h3>
               <div className='ocupation-container'>
               {/* {usuario.ocupation?.map(o => {
                 return(
                   <div className='ocupation'>{o}</div>
                 )
               })} */}
-              {usuario.ocupation && <div className='ocupation'>{usuario.ocupation}</div>}
+              {ocupation && <div className='ocupation'>{ocupation}</div>}
               </div>
           </div>
           <div className='stas-btns'>
@@ -54,9 +57,9 @@ const Profile = () => {
               </div> 
 
               <div className='stas-profile'>
-                <h4>{usuario.followers} Seguidores</h4>
-                <h4>{usuario.followers} Seguidores</h4>
-                <h4>{usuario.likes} Likes</h4>
+                <h4>5 Seguidores</h4>
+                <h4>5 Seguidores</h4>
+                <h4>5 Likes</h4>
               </div>
           </div>
         </div>
@@ -64,7 +67,7 @@ const Profile = () => {
       </div>
       <div className='ab-re'>
         <div className='aboutme'>
-          <p>{usuario.aboutMe}</p>
+          <p>{aboutMe}</p>
         </div>
         <div className='redes'>
           {usuario.links?.map(l => {

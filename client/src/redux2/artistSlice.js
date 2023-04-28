@@ -29,21 +29,12 @@ export const artistSlice = createSlice({
     getArtistNameSuccess(state, action){
       return {
         ...state,
+        allUsuarios: action.payload
       }
     }
   }
 });
 
-/* export const getArtistDetail = () => {
-  return async (dispatch) => {
-    const apiData = await axios.get(`/artist`);
-    const artists = apiData.data;
-    return dispatch({
-      type: GET_ALL_ARTISTS,
-      payload: artists,
-    });
-  };
-}; */
 
 export const getAllArts = () => {
   return async (dispatch) => {
@@ -74,6 +65,7 @@ export const getArtistName = (name) => {
 
 export const {
   getArtistIdSuccess,
+  getAllArtsSuccess,
   getArtistNameSuccess
 } = artistSlice.actions;
 
