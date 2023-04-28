@@ -11,7 +11,7 @@ const Profile = () => {
 
    useEffect(() => {
     dispatch(getArtistId(id))
-   },[])
+   },[dispatch])
    
    const id = useParams;
 
@@ -19,7 +19,9 @@ const Profile = () => {
   return (
     <div className='container'>
       <div>
-        <img  className="portada-profile" src={usuario.coverPhoto} alt="coverfoto" />
+        <div className="portada-profile">
+          <img  src={usuario.coverPhoto} alt="coverfoto" />
+        </div>
 
         <div className='prim-profile'>
           <div className='foto-nombre'>
@@ -38,6 +40,7 @@ const Profile = () => {
                   <div className='ocupation'>{o}</div>
                 )
               })} */}
+              {usuario.ocupation && <div className='ocupation'>{usuario.ocupation}</div>}
               </div>
           </div>
           <div className='stas-btns'>

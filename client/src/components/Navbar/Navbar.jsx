@@ -2,8 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 //Si aun te rompes con CSS, imaginate con iconos, import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import SearchIcon from "@mui/icons-material/Search";
-
+import SearchBar from "../SearchBar/SearchBar";
 function Navbar() {
   return (
     <nav className="navbar">
@@ -15,13 +14,7 @@ function Navbar() {
             />
           </NavLink>
         <div className="searchbar-wrapper">
-          <input
-            className="searchbar"
-            placeholder="¿Qué artista quieres ver hoy?"
-          />
-          <i className="search-icon">
-            <SearchIcon />
-          </i>
+          <SearchBar/>
         </div>
         {/*<SearchIcon style={{color:"white"}}/>*/}
         <ul className="nav-links">
