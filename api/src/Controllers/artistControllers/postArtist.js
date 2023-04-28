@@ -98,7 +98,6 @@ const postArtist = async (req) => {
             aboutMe,
             password
         }
-        console.log(newArtist)
         
         const crea = await Artist.create(newArtist)
        
