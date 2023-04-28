@@ -6,7 +6,7 @@ const {postArtistHandler} = require("../Handlers/artistHandler/postArtistHandler
 const { updateArtistHandler } = require("../Handlers/artistHandler/updateArtistHandler");
 const {delLogArtistHandler} = require("../Handlers/artistHandler/delLogArtistHandler")
 const authLogin = require("../Handlers/artistHandler/authLogin");
-const testFunction = require("../handlers/artistHandler/testFunction");
+const authArtist = require("../Handlers/artistHandler/authArtist")
 const verifyAuth = require("../middlewares/verifyAuth");
 
 const artistRouter = Router();
@@ -19,7 +19,7 @@ artistRouter.put("/update/:id", updateArtistHandler);
 artistRouter.put("/delete/:id", delLogArtistHandler)
 artistRouter.post("/", postArtistHandler);
 artistRouter.post("/login", authLogin);
-artistRouter.get("/:id/prueba", verifyAuth, testFunction)
+artistRouter.get("/login/me", verifyAuth, authArtist)
 
 
 
