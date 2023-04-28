@@ -1,3 +1,4 @@
+const { ACTIVATED, DELETED } = require("../../constants");
 const {Artist} = require("../../db")
 
 const artistById = async (artistId) => {
@@ -9,7 +10,8 @@ const artistById = async (artistId) => {
       if (!infoArtistDB) {
         throw new Error("No se encontró ningún usuario con ese ID")
       } else {
-        
+        if (infoArtistDB.estado === DELETED)
+          throw new Error("No se encontró ningún usuario con ese ID")
         const infoArtistClean = {
           id: infoArtistDB.id,
           nickname: infoArtistDB.nickname,
