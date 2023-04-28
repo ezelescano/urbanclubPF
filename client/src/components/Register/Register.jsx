@@ -16,10 +16,10 @@ export default function Register() {
 
   const [input, setInput] = useState({
     name: "",
-    profilePhoto: "",
+    lastname: "",
+    nickName: "",
     password: "",
-    email: "oas@asj.com",
-    nickName: "algo",
+    email: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -37,7 +37,8 @@ export default function Register() {
   }
 
   function handleImageUpload(e) {
-    const file = e.target.files[0];
+    const file = e.target.files;
+    console.log(file)
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -52,37 +53,29 @@ export default function Register() {
 
  function handleSubmit(e) {
     e.preventDefault();
-    if (!input.name) {
-      return alert("Name is required");
-    }
-    console.log(input);
+    // if (!input.name) {
+    //   return alert("Name is required");
+    // }
+    // console.log(input);
+    console.log(input)
     axios
-      .post("http://localhost:3001/artist", {name:"AlgodelPost"})
+      .post("http://localhost:3008/artist", input)
       .then((res) => console.log(res))
       .catch((errors) => errors);
     // dispatch(postartist(input));
     //alert(`Artist ${input.name} has been added`);
-    setInput({
-      name: "",
-      password: "",
-      aboutMe: "",
-    });
+    // setInput({
+    //   name: "",
+    //   password: "",
+    //   aboutMe: "",
+    // });
   }
 
   return (
     <>
-      <div>
+       <div>
         <h1>Add a new artist</h1>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Description:</label>
-            <textarea
-              onChange={handleOnChange}
-              type="text"
-              name="aboutMe"
-              value={input.aboutMe}
-            />
-          </div>
           <div>
             <label>Artist Name:</label>
             <input
@@ -93,6 +86,31 @@ export default function Register() {
               value={input.name}
             />
             {errors.name && <p> {errors.name} </p>}
+            <label>Last Name:</label>
+            <input
+              onChange={handleOnChange}
+              onBlur={handleOnChange}
+              type="text"
+              name="lastname"
+              value={input.lastname}
+            />
+            <label>Email:</label>
+            <input
+              onChange={handleOnChange}
+              onBlur={handleOnChange}
+              type="text"
+              name="email"
+              value={input.email}
+            />
+            <label>NickName:</label>
+            <input
+              onChange={handleOnChange}
+              onBlur={handleOnChange}
+              type="text"
+              name="nickName"
+              value={input.nickName}
+            />
+
             <label>Artist Password:</label>
             <input
               onChange={handleOnChange}
