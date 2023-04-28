@@ -21,17 +21,17 @@ const id = 1;
 
 
   const [input, setInput] = useState({
-    name: usuario.name,
-    lastname: usuario.lastname,
-    nickName: usuario.nickName,
+    name: "",
+    lastname: "",
+    nickName: "",
     profilePhoto: "",
     coverPhoto: "", //Not here
-    email: usuario.email,
-    password: usuario.password,
-    city: usuario.city, //Not here
-    Country: usuario.Country, //Not here:
-    ocupation: usuario.ocupation, //Not here:
-    aboutMe: usuario.aboutMe, //Not here:
+    email: "",
+    password: "",
+    city: "", //Not here
+    Country: "", //Not here:
+    ocupation: "", //Not here:
+    aboutMe: "", //Not here:
   });
 
   function validate(input) {
