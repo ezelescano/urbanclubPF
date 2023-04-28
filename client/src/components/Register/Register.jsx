@@ -67,9 +67,6 @@ function Formulario() {
       ...input,
       [e.target.name]: e.target.value,
       coverPhoto: "Cambiarlo en el editar perfil.",
-      city: "Cambiarlo en el editar perfil.",
-      country: "Cambiarlo en el editar perfil.",
-      aboutMe: "Cambiarlo en el editar perfil.",
     });
   }
   //Manipular el archivo qué se sube:
