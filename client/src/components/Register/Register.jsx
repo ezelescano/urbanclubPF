@@ -13,17 +13,22 @@ function validate(input) {
 
 export default function Register() {
   const dispatch = useDispatch();
-
+  const [file,setFile] = useState({})
   const [input, setInput] = useState({
     name: "",
     lastname: "",
     nickName: "",
     password: "",
     email: "",
+    profilePhoto :[]
   });
   const [errors, setErrors] = useState({});
 
   function handleOnChange(e) {
+    // const formData = new FormData()
+    // formData.get([e.target.name],e.target.value)
+    // debugger
+
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -38,31 +43,64 @@ export default function Register() {
 
   function handleImageUpload(e) {
     const file = e.target.files;
-    console.log(file)
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setInput({
-          ...input,
-          profilePhoto: reader.result,
-        });
-      };
-      reader.readAsDataURL(file);
-    }
+  setFile(file)
+   
+  //  axios
+  //  .post("http://localhost:3008/artist", e.target.files)
+  //  .then((res) => console.log(res))
+  //  .catch((errors) => errors);
+  //  debugger
+//  setInput({...input, [input.profilePhoto]:file})
+//  console.log("img",input)
+    // if (file) {
+    //   const reader = new FileReader();
+    //   reader.onloadend = () => {
+    //     setInput({
+    //       ...input,
+    //       profilePhoto: reader.result,
+    //     });
+    //   };
+    //   reader.readAsDataURL(file);
+    // }
   }
 
  function handleSubmit(e) {
     e.preventDefault();
+   
     // if (!input.name) {
     //   return alert("Name is required");
     // }
     // console.log(input);
-    console.log(input)
-    axios
-      .post("http://localhost:3008/artist", input)
-      .then((res) => console.log(res))
-      .catch((errors) => errors);
-    // dispatch(postartist(input));
+    // console.log(input)
+    
+      
+      const formData = new FormData(e.target);
+      const ob = {
+        name:formData.get("name"),
+        lastname:formData.get("lastname"),
+        nickName:formData.get("nickName"),
+        email:formData.get("email"),
+        password:formData.get("password"),
+      }
+    //  axios
+    //   .post("http://localhost:3008/artist", formData)
+    //   .then((res) => console.log(res))
+    //   .catch((errors) => errors);
+      dispatch(postartist(formData));
+    // fetch('http://localhost:3008/artist', {
+    //   method: 'POST',
+    //   body: formData
+      
+    // })
+    // .then(response => {
+    //   console.log("respuesta",response)
+    // })
+    // .catch(error => {
+    //   // manejar el error
+    // });
+    //  dispatch(postartist(ob,formData.getAll("profilePhoto")));
+    // console.log(formData)
+    //  dispatch(postartist(formData));
     //alert(`Artist ${input.name} has been added`);
     // setInput({
     //   name: "",
@@ -120,7 +158,7 @@ export default function Register() {
               value={input.password}
             />
             <label>Image:</label>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <input type="file" name="profilePhoto" accept="image/*" onChange={handleImageUpload} />
             {input.image && <img src={input.image} alt="preview" />}
 
             <button type="submit">Add artist</button>
