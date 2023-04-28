@@ -7,29 +7,28 @@ import SearchIcon from "@mui/icons-material/Search";
 function Navbar() {
   return (
     <nav className="navbar">
-      <ul className="nav-title">
-        <li>
-          <NavLink className="nav-home" to="/">
+          <NavLink to="/">
             <img
-              className="nav-title-img nav-img"
+              className="nav-title-img"
               src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682542442/UrbanClub/Urban_Club_Logo_fh8zlb.png"
               alt=""
             />
           </NavLink>
-        </li>
-      </ul>
-      <ul className="nav-links">
+          
+      
         <div className="searchbar-wrapper">
           <input
             className="searchbar"
-            name="searchbar"
             placeholder="¿Qué artista quieres ver hoy?"
           />
           <i className="search-icon">
             <SearchIcon />
           </i>
         </div>
+
+
         {/*<SearchIcon style={{color:"white"}}/>*/}
+        <ul className="nav-links">
         <li>
           <NavLink to="/artists" className="nav-link active">
             Artistas
@@ -51,12 +50,12 @@ function Navbar() {
             Acerca de
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/login" className="nav-link active login">
-            Ingresar
-          </NavLink>
-        </li>
-      </ul>
+        </ul>
+        
+        <NavLink to="/login" >
+          <button className="nav-login-btn">ingresar</button>
+        </NavLink>
+        
     </nav>
   );
 }
