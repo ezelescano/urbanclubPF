@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode"; // Solo utilizar para saber Qué es el token que te traen. ###
 
 function Login() {
   const [input, setInput] = useState({
@@ -19,13 +19,14 @@ function Login() {
         "http://localhost:3001/artist/login",
         input
       );
+      //Esto es para debuggear, No dejar en produccion #####porfavor#####.
       const token = response.data.token;
-      const artist = jwt_decode(token);
+      const artist = jwt_decode(token); // Acá te lo decodifica ###
       localStorage.setItem("token", token);
       localStorage.setItem("artist", JSON.stringify(artist));
       // No funciona más en esta version history.push("/home");
       console.log(artist);
-      console.log(token);
+      console.log(token); //Acá te lo muestra ###
     } catch (error) {
       console.log(error.response.data.error); //Hacer esto para todas las veces qué la llamada de ruta por axios, De error.
     }
