@@ -166,6 +166,7 @@ function Formulario() {
                   value={input.name}
                   maxLength="35"
                   name="name"
+                  required
                 />
               </label>
               <label>
@@ -206,6 +207,7 @@ function Formulario() {
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="nickName"
+                  required
                 />
               </label>
               <label>
@@ -232,6 +234,7 @@ function Formulario() {
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="city"
+                  
                 />
               </label>
               <label>
