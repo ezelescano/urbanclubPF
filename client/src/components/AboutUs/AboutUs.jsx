@@ -9,7 +9,7 @@ function AboutUs() {
           <h1>About Us</h1>
         </div>
         <div className="about-us-text">
-          <h4>
+          <h2>
             ¡Bienvenido a nuestra página de UrbanClub! Aquí en nuestra plataforma,
             conectamos a artistas de todo tipo con aquellos que buscan su
             creatividad y talento. Creemos que el arte es una forma poderosa de
@@ -18,7 +18,7 @@ function AboutUs() {
             conectar a músicos y bandas. También nos enfocamos en una amplia
             variedad de disciplinas artísticas, incluyendo pintura, escultura,
             fotografía, diseño gráfico y más. 
-          </h4>
+          </h2>
           <br />
         </div>
         <div className="card-container">

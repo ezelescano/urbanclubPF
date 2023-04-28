@@ -36,7 +36,6 @@ function Navbar() {
           </NavLink>
         </li>
         </ul>
-        
         <NavLink to="/login" >
           <button className="nav-login-btn">ingresar</button>
         </NavLink>
