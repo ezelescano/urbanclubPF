@@ -1,15 +1,15 @@
 import React from "react";
-import style from "./Artists.module.css";
+import style from "./HomeArt.module.css";
 import Jenny from "../../imagenes/Jenny.jpg";
 import Jorge from "../../imagenes/jorgeblass.jpg";
 import Oscar from "../../imagenes/OscarNavarro.jpg";
 import Dario from "../../imagenes/mago3.jpg";
-import CardsArt from "../Cards/CardsArt/CardsArt";
+import TopArt from "./TopArt";
 
 
 
 
-const Artists = () => {
+const HomeArt = () => {
   const artistas = [
     { name: "Jennifer Lopez",
     profilePhoto: Jenny,
@@ -57,12 +57,12 @@ const Artists = () => {
   
 
   return (
-  <div>
+  <div className={style.ConteinerArt}>
     
-    <div className={style.container}>
+    <div className={style.TopArt}>
     {artistas.map((artista, index) => (
-      <div className={style.containerCar}>  
-        <CardsArt
+      <div >  
+        <TopArt
           key={index}
           name={artista.name}
           profilePhoto={artista.profilePhoto}
@@ -79,4 +79,4 @@ const Artists = () => {
   )
 }
 
-export default Artists;
+export default HomeArt;

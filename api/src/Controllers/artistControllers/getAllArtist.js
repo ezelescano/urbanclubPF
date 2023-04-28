@@ -3,7 +3,7 @@ const { Artist } = require("../../db");
 
 const getAllArtist = async () => {
     const artistDB = await Artist?.findAll({
-        attributes: ["name", "lastname", "nickName", "ocupation"]
+        attributes: ["name", "lastname", "nickName", "ocupation", "aboutMe"]
     })
     return artistDB;
 }
