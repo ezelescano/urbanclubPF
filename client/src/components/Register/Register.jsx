@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import postArtist from "../../redux2/artistSlice";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import postartist from "../../redux/actions/postartist";
 import "./Register.css";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
@@ -63,11 +64,11 @@ function Formulario() {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-      coverPhoto: "No en Register.jsx",
-      city: "No en Register.jsx",
-      country: "No en Register.jsx",
+      coverPhoto: "Cambiarlo en el editar perfil.",
+      city: "Cambiarlo en el editar perfil.",
+      country: "Cambiarlo en el editar perfil.",
       ocupation: "Dancer",
-      aboutMe: "No en Register.jsx",
+      aboutMe: "Cambiarlo en el editar perfil.",
     });
   }
   //Manipular el archivo qué se sube:
@@ -94,8 +95,8 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    dispatch(postArtist(formData));
-    alert("Se creo tu monito");
+    dispatch(postartist(formData));
+    alert("Se creo tu perfil");
     // ##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios  <3. ######
     // console.log("Se envio el formulario");
     // alert(`El Artista ${input.name} Fue añadido`);
@@ -134,10 +135,9 @@ function Formulario() {
                     alt="Imagen de perfil"
                   />
                 ) : (
-                  "No hay monito :("
+                  ""
                 )}
                 <button
-                  key={1}
                   className="upload-picture-button"
                   type="button"
                   name="profilePhoto"

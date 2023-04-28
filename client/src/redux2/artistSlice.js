@@ -27,25 +27,15 @@ export const artistSlice = createSlice({
         usuario: action.payload
       };
     },
-    postArtistSuccess(state, action){
+    getArtistNameSuccess(state, action){
       return {
         ...state,
-        artists: action.payload,
-      };
+        allUsuarios: action.payload
+      }
     }
   }
 });
 
-/* export const getArtistDetail = () => {
-  return async (dispatch) => {
-    const apiData = await axios.get(`/artist`);
-    const artists = apiData.data;
-    return dispatch({
-      type: GET_ALL_ARTISTS,
-      payload: artists,
-    });
-  };
-}; */
 
 export const getAllArts = () => {
   return async (dispatch) => {
@@ -63,28 +53,23 @@ export const getArtistId = (id) => {
     return dispatch(getArtistIdSuccess(artist));
   };
 };
-export const postArtist = (payload) => {
-  return async function (dispatch) {
-    try {
-          const result = await axios.post("/artist", payload);
-          const dataResult = result.data;
-          console.log(result.data);
-          // console.log(result)
 
-          return dispatch(postArtistSuccess(dataResult));
-    } catch (error) {
-      alert(error);
-      console.log(error);
-    }
+export const getArtistName  = (name) => {
+  return async (dispatch) => {
+    const apiData = await axios.get(`/artist?name=${name}`);
+    const artist = apiData.data;
+    return dispatch(getArtistNameSuccess(artist));
+  };
+};
 
     
-  };
-}
+  
+
 
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
-  postArtistSuccess
+  getArtistNameSuccess
 } = artistSlice.actions;
 
 export default artistSlice.reducer;
