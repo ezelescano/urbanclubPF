@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import postartist from "../../redux/actions/postartist";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
@@ -26,6 +27,7 @@ function validate(input) {
 }
 //ocupation: "" , ###### Si o si tiene qué ser algo como "Dancer" o "Freak Show" #######
 function Formulario() {
+ const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
@@ -67,7 +69,6 @@ function Formulario() {
       coverPhoto: "Cambiarlo en el editar perfil.",
       city: "Cambiarlo en el editar perfil.",
       country: "Cambiarlo en el editar perfil.",
-      ocupation: "Dancer",
       aboutMe: "Cambiarlo en el editar perfil.",
     });
   }
@@ -97,6 +98,7 @@ function Formulario() {
     const formData = new FormData(e.target);
     dispatch(postartist(formData));
     alert("Se creo tu perfil");
+    navigate("/"); // redirige al usuario a la ruta /artists
     // ##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios  <3. ######
     // console.log("Se envio el formulario");
     // alert(`El Artista ${input.name} Fue añadido`);
