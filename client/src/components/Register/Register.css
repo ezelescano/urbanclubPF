@@ -11,10 +11,6 @@
 .MuiSvgIcon-root {
   border-radius: 50%;
   margin-inline: auto;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
 }
 
 .upload-picture-button {
