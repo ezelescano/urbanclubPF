@@ -10,14 +10,14 @@ function AboutUs() {
         </div>
         <div className="about-us-text">
           <h2>
-            ¡Bienvenido a nuestra página de UrbanClub! Aquí en nuestra plataforma,
-            conectamos a artistas de todo tipo con aquellos que buscan su
-            creatividad y talento. Creemos que el arte es una forma poderosa de
-            expresión, y nuestro objetivo es ayudar a que cada artista encuentre
-            su lugar en el mundo. Nuestra página de UrbanClub no se trata solo de
-            conectar a músicos y bandas. También nos enfocamos en una amplia
-            variedad de disciplinas artísticas, incluyendo pintura, escultura,
-            fotografía, diseño gráfico y más. 
+            ¡Bienvenido a nuestra página de UrbanClub! Aquí en nuestra
+            plataforma, conectamos a artistas de todo tipo con aquellos que
+            buscan su creatividad y talento. Creemos que el arte es una forma
+            poderosa de expresión, y nuestro objetivo es ayudar a que cada
+            artista encuentre su lugar en el mundo. Nuestra página de UrbanClub
+            no se trata solo de conectar a músicos y bandas. También nos
+            enfocamos en una amplia variedad de disciplinas artísticas,
+            incluyendo pintura, escultura, fotografía, diseño gráfico y más.
           </h2>
           <br />
         </div>
@@ -25,7 +25,7 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://picsum.photos/200/300?grayscale"
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712069/photo-1419242902214-272b3f66ee7a_yjcuva.png"
                 alt="Dua Lipa"
               />
             </div>
@@ -46,7 +46,7 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://picsum.photos/200/301?grayscale"
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712168/photo-1490604001847-b712b0c2f967_flsfsy.png"
                 alt="Harry Styles"
               />
             </div>
@@ -68,7 +68,7 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://picsum.photos/200/302?grayscale"
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712168/photo-1485201543483-f06c8d2a8fb4_o7tcki.png"
                 alt="Beyoncé"
               />
             </div>
@@ -89,7 +89,7 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://picsum.photos/200/303?grayscale"
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1459213599465-03ab6a4d5931_wo41ug.png"
                 alt="Ed Sheeran"
               />
             </div>
@@ -111,7 +111,7 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://picsum.photos/200/304?grayscale"
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1534447677768-be436bb09401_rampxl.png"
                 alt="Rihanna"
               />
             </div>
@@ -133,7 +133,7 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://picsum.photos/200/305?grayscale"
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1518098268026-4e89f1a2cd8e_kifydl.png"
                 alt="Justin Bieber"
               />
             </div>
@@ -154,7 +154,10 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
-              <img src="https://picsum.photos/200/306?grayscale" alt="Adele" />
+              <img
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1502786129293-79981df4e689_ivqjf8.png"
+                alt="Adele"
+              />
             </div>
             <div className="card-content">
               <h2>Alex</h2>
@@ -175,7 +178,7 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://picsum.photos/200/302?grayscale"
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1444080748397-f442aa95c3e5_lvphop.png"
                 alt="The Weeknd"
               />
             </div>

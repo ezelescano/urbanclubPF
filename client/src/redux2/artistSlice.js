@@ -5,6 +5,7 @@ import axios from 'axios';
 const initialState = {
   usuario: [],
   allUsuarios: [],
+  artists: [],
   allUsuariosArt: [],
 }
 
@@ -25,12 +26,6 @@ export const artistSlice = createSlice({
         ...state,
         usuario: action.payload
       };
-    },
-    getArtistNameSuccess(state, action){
-      return {
-        ...state,
-        allUsuarios: action.payload
-      }
     }
   }
 });
@@ -53,20 +48,13 @@ export const getArtistId = (id) => {
   };
 };
 
-export const getArtistName = (name) => {
-  return async (dispatch) => {
-      const apiData = await axios.get(`/artist?name=${name}`);
-      const artist = apiData.data;
-      return dispatch(getArtistNameSuccess(artist));
-    };
-};
-
+    
+  
 
 
 export const {
   getArtistIdSuccess,
-  getAllArtsSuccess,
-  getArtistNameSuccess
+  getAllArtsSuccess
 } = artistSlice.actions;
 
 export default artistSlice.reducer;

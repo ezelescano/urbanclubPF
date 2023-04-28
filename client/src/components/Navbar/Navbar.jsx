@@ -30,7 +30,7 @@ function Navbar() {
         </li>
         </ul>
         <NavLink to="/login" >
-          <button className="nav-login-btn">ingresar</button>
+          <button className="nav-login-btn">Ingresar</button>
         </NavLink>
         
     </nav>

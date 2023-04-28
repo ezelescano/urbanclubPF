@@ -20,7 +20,7 @@ const Profile = () => {
 
 
   return (
-    <div className='container'>
+    <div className="container">
       <div>
         <div className="portada-profile">
           <img  src={coverPhoto} alt="coverfoto" />
@@ -46,15 +46,15 @@ const Profile = () => {
               {ocupation && <div className='ocupation'>{ocupation}</div>}
               </div>
           </div>
-          <div className='stas-btns'>
-            <div className='btns'>
+          <div className="stas-btns">
+            <div className="btns">
               <NavLink to="/profileEdit">
-                <button className='btn-profile' >Seguir</button>
+                <button className="btn-profile">Seguir</button>
               </NavLink>
               <NavLink to="/chat">
-                <button className='btn-profile' >Contactar</button>
+                <button className="btn-profile">Contactar</button>
               </NavLink>
-              </div> 
+            </div>
 
               <div className='stas-profile'>
                 <h4>5 Seguidores</h4>
@@ -63,28 +63,51 @@ const Profile = () => {
               </div>
           </div>
         </div>
-
       </div>
       <div className='ab-re'>
         <div className='aboutme'>
           <p>{aboutMe}</p>
         </div>
-        <div className='redes'>
-          {usuario.links?.map(l => {
-            return(
-              <div className='redes-div'>
+        <div className="redes">
+          {usuario.links?.map((l) => {
+            return (
+              <div className="redes-div">
                 <h4>Otras redes!!</h4>
-                <div className='container-links'>
-                {l.youtube && <a href={l.youtube} target="_blank" rel="noreferrer noopener"><img className='icon' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU' alt='ds'/></a>}
-                
-                {l.twitter && <a href={l.twitter} target="_blank" rel="noreferrer noopener"><img className='icon' src='https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png' alt='ds'/></a>}
+                <div className="container-links">
+                  {l.youtube && (
+                    <a
+                      href={l.youtube}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <img
+                        className="icon"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
+                        alt="ds"
+                      />
+                    </a>
+                  )}
+
+                  {l.twitter && (
+                    <a
+                      href={l.twitter}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <img
+                        className="icon"
+                        src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
+                        alt="ds"
+                      />
+                    </a>
+                  )}
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </div>
-      <div className='titulo-ev'>Eventos</div>
+      <div className="titulo-ev">Eventos</div>
       <div>
         {/* {usuario.eventos?.map(el => {
           return (
