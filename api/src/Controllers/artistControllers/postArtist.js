@@ -1,6 +1,5 @@
 // const { Op, json } = require("sequelize");
 const { Artist } = require("../../db");
-const fileupload = require("express-fileupload")
 const fs_extra = require("fs-extra")
 const bcrypt = require("bcrypt")
 const cloudinary = require("cloudinary").v2
@@ -13,9 +12,9 @@ const postArtist = async (req) => {
     let saveCover = {}
     let {
         name, lastname, email, password, nickName, Country, city,
-        ocupation, aboutMe, } = req.body;
+        ocupation, aboutMe,hola} = req.body;
 
-
+ 
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
 
@@ -98,11 +97,7 @@ const postArtist = async (req) => {
             aboutMe,
             password
         }
-        console.log(newArtist)
-        
-        const crea = await Artist.create(newArtist)
-       
-
+        await Artist.create(newArtist)
         return newArtist
     } catch (error) {
         throw new Error(error)
