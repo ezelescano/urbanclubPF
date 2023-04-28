@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styles from "./ProfileEdit.module.css";
 // import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import {getArtistById} from "../../redux/actions/getArtistById";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArtistId } from '../../redux2/artistSlice';
@@ -13,26 +12,26 @@ const ProfileEdit = () => {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const usuario = useSelector(state => state.artist.usuario);
-  // console.log(usuario);
+  console.log(usuario);
 
-  const id = 1;
+const id = 1;
   useEffect(() => {
    dispatch(getArtistId(id))
-  },[]);
+  },[dispatch]);
 
 
   const [input, setInput] = useState({
-    name: "",
-    lastname: "",
-    nickName: "",
+    name: usuario.name,
+    lastname: usuario.lastname,
+    nickName: usuario.nickName,
     profilePhoto: "",
     coverPhoto: "", //Not here
-    email: "",
-    password: "",
-    city: "", //Not here
-    country: "", //Not here:
-    ocupation: "", //Not here:
-    aboutMe: "", //Not here:
+    email: usuario.email,
+    password: usuario.password,
+    city: usuario.city, //Not here
+    Country: usuario.Country, //Not here:
+    ocupation: usuario.ocupation, //Not here:
+    aboutMe: usuario.aboutMe, //Not here:
   });
 
   function validate(input) {
@@ -45,14 +44,15 @@ const ProfileEdit = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const id = 1;
     // if (!input.name) {
     //   return alert("Name is required");
     // }
-    // console.log(input);
+    // console.log(input); 
     axios
-      .put(`http://localhost:3001/artist/${id}`, input)
-      .then((res) => console.log(res))
-      .catch((errors) => errors);
+      .put(`http://localhost:3001/artist/update/${id}`, input)
+      .then(alert("Datos actualizados correctamente"))
+      .catch((errors) => console.log(errors))
     // dispatch(postartist(input));
     //alert(`Artist ${input.name} has been added`);
     // setInput({
@@ -68,12 +68,12 @@ const ProfileEdit = () => {
       ...input,
       [e.target.name]: e.target.value,
     });
-    // setErrors(
-    //   validate({
-    //     ...input,
-    //     [e.target.name]: e.target.value,
-    //   })
-    // );
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   return (<>
@@ -191,10 +191,10 @@ const ProfileEdit = () => {
                 <div>Pais:</div>
                 <input
                   type="text"
-                  value={input.country}
+                  value={input.Country}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  name="country"
+                  name="Country"
                 />
               </label>
               <label>
