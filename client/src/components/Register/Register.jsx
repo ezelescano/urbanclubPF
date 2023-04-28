@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import postartist from "../../redux/actions/postartist";
-import axios from "axios";
 import "./Register.css";
 
 /*Sinó usá esto: 
