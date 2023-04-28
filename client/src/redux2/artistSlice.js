@@ -5,6 +5,7 @@ import axios from 'axios';
 const initialState = {
   usuario: [],
   allUsuarios: [],
+  artists: [],
   allUsuariosArt: [],
 }
 
@@ -24,6 +25,12 @@ export const artistSlice = createSlice({
       return {
         ...state,
         usuario: action.payload
+      };
+    },
+    postArtistSuccess(state, action){
+      return {
+        ...state,
+        artists: action.payload,
       };
     }
   }
@@ -56,11 +63,28 @@ export const getArtistId = (id) => {
     return dispatch(getArtistIdSuccess(artist));
   };
 };
+export const postArtist = (payload) => {
+  return async function (dispatch) {
+    try {
+          const result = await axios.post("/artist", payload);
+          const dataResult = result.data;
+          console.log(result.data);
+          // console.log(result)
 
+          return dispatch(postArtistSuccess(dataResult));
+    } catch (error) {
+      alert(error);
+      console.log(error);
+    }
+
+    
+  };
+}
 
 export const {
   getArtistIdSuccess,
-  getAllArtsSuccess
+  getAllArtsSuccess,
+  postArtistSuccess
 } = artistSlice.actions;
 
 export default artistSlice.reducer;
