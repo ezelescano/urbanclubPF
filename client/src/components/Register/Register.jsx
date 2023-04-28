@@ -99,6 +99,7 @@ function Formulario() {
     fileInputRef.current.click();
   };
   //Esta función aun tiene qué ser migrada a dispatch, pero funciona :)
+  //OCUPATION SI O SI TIENE QUE SER UN VALOR VALIDO PARA EL MODELO COMO "Dancer" o "Freak Show"
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Se envio el formulario");
@@ -112,7 +113,7 @@ function Formulario() {
       password: "",
       city: "",
       country: "",
-      ocupation: "",
+      ocupation: "", //Ahora esté debe ser un select Option
       aboutMe: "",
     });
     console.log("Esto es lo qué escribiste: ");
