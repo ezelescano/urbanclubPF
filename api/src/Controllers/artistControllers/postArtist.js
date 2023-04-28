@@ -9,12 +9,10 @@ require("dotenv").config();
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 
 const postArtist = async (req) => {
-    let saveProfile = {}
-    let saveCover = {}
+
     let {
         name, lastname, email, password, nickName, Country, city,
         ocupation, aboutMe, } = req.body;
-
 
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
@@ -67,7 +65,8 @@ const postArtist = async (req) => {
         return { error: "El Correo ya esta en uso" }
     }
 
-    
+    let saveProfile = {}, saveCover = {}
+
     if (req.files) {
         const { profilePhoto, coverPhoto } = req.files
 

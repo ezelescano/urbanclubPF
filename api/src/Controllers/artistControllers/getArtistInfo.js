@@ -1,11 +1,13 @@
 const generateJWT = require("../../../utils/generateJWT")
 const bcrypt = require("bcrypt")
-const {Artist} = require("../../db")
+const {Artist} = require("../../db");
+const { ACTIVATED } = require("../../constants");
 
 const getArtistInfo = async (email, password) => {
     const artist = await Artist.findOne({
         where: {
-          email
+          email,
+          estado:ACTIVATED
         }
       })
       
@@ -20,7 +22,8 @@ const getArtistInfo = async (email, password) => {
                 name : artist.name,
                 lastname : artist.lastname,
                 email : artist.email,
-                token : generateJWT(artist.id,artist.name)
+                token : generateJWT(artist.id,artist.name),
+                estado: ACTIVATED //se agrega para funcionar borrado logico no comparar si esta DELETED
             }
             //!aqui podemos agregar informacion a la que qisieramos acceder
             return datos
