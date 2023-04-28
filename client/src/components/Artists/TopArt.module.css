@@ -1,0 +1,30 @@
+.container {
+    margin: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text {
+    margin: 10px;
+    color: black;
+    opacity: 0;
+}
+
+
+
+.foto {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.foto:hover+.text {
+    opacity: 100%;
+
+}
