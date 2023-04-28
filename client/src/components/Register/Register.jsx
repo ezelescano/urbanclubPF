@@ -77,10 +77,10 @@ function Formulario() {
     console.log(e + e.target + e.target.files[0]);
     console.log(e.target);
     //Este es el file -> console.log(e.target.files[0]);
-    axios
-      .post("http://localhost:3001/artist", e.target.files[0])
-      .then((res) => console.log(res))
-      .catch((errors) => errors);
+    // axios
+    //   .post("http://localhost:3001/artist", e.target.files[0])
+    //   .then((res) => console.log(res))
+    //   .catch((errors) => errors);
     const reader = new FileReader();
 
     console.log("El nombre de tu foto de perfil es " + file.name);
