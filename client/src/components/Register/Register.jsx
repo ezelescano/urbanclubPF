@@ -64,11 +64,11 @@ function Formulario() {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-      coverPhoto: "No en Register.jsx",
-      city: "No en Register.jsx",
-      country: "No en Register.jsx",
+      coverPhoto: "Cambiarlo en el editar perfil.",
+      city: "Cambiarlo en el editar perfil.",
+      country: "Cambiarlo en el editar perfil.",
       ocupation: "Dancer",
-      aboutMe: "No en Register.jsx",
+      aboutMe: "Cambiarlo en el editar perfil.",
     });
   }
   //Manipular el archivo qué se sube:
@@ -135,10 +135,9 @@ function Formulario() {
                     alt="Imagen de perfil"
                   />
                 ) : (
-                  "No hay monito :("
+                  ""
                 )}
                 <button
-                  key={1}
                   className="upload-picture-button"
                   type="button"
                   name="profilePhoto"
@@ -249,15 +248,19 @@ function Formulario() {
                 />
               </label>
               <label>
-                <div>Ocupacion:</div>
-                <input
-                  type="text"
+                <div>Ocupación:</div>
+                <select
                   value={input.ocupation}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  maxLength={35}
                   name="ocupation"
-                />
+                >
+                  <option value="Dancer">Dancer</option>
+                  <option value="Circus">Circus</option>
+                  <option value="Puppeteer">Puppeteer</option>
+                  <option value="Statue">Statue</option>
+                  <option value="Magician">Magician</option>
+                </select>
               </label>
               <label>
                 Descripción:
