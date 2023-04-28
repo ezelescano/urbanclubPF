@@ -10,14 +10,14 @@ function AboutUs() {
         </div>
         <div className="about-us-text">
           <h2>
-            ¡Bienvenido a nuestra página de UrbanClub! Aquí en nuestra plataforma,
-            conectamos a artistas de todo tipo con aquellos que buscan su
-            creatividad y talento. Creemos que el arte es una forma poderosa de
-            expresión, y nuestro objetivo es ayudar a que cada artista encuentre
-            su lugar en el mundo. Nuestra página de UrbanClub no se trata solo de
-            conectar a músicos y bandas. También nos enfocamos en una amplia
-            variedad de disciplinas artísticas, incluyendo pintura, escultura,
-            fotografía, diseño gráfico y más. 
+            ¡Bienvenido a nuestra página de UrbanClub! Aquí en nuestra
+            plataforma, conectamos a artistas de todo tipo con aquellos que
+            buscan su creatividad y talento. Creemos que el arte es una forma
+            poderosa de expresión, y nuestro objetivo es ayudar a que cada
+            artista encuentre su lugar en el mundo. Nuestra página de UrbanClub
+            no se trata solo de conectar a músicos y bandas. También nos
+            enfocamos en una amplia variedad de disciplinas artísticas,
+            incluyendo pintura, escultura, fotografía, diseño gráfico y más.
           </h2>
           <br />
         </div>
