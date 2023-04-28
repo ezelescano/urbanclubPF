@@ -1,8 +1,9 @@
 const { Op } = require("sequelize");
 const { Artist } = require("../../db");
+const { ACTIVATED } = require("../../constants");
 
 const getAllArtist = async () => {
-    const artistDB = await Artist?.findAll({})
+    const artistDB = await Artist?.findAll({ where: { estado: ACTIVATED}})
     return artistDB;
 }
 
@@ -20,11 +21,12 @@ const getArtistByName = async (name) => {
     console.log("//soy el finalstring", finalString);
     const dataBaseByName = await Artist.findAll({ 
     where: {
+        estado: ACTIVATED,   //se agrega para funcionar borrado logico no obtener si esta DELETED
+
     [Op.or]: [
         { name: { [Op.iLike]: `%${finalString}%` } },
         { nickName: { [Op.iLike]: `%${finalString}%` } },
-        { lastname: {[Op.iLike]: `%${finalString}%`}
-        }  
+        { lastname: {[Op.iLike]: `%${finalString}%`}},
     ]
     },
     

@@ -7,6 +7,9 @@ const delLogArtist = async (userId) => {
   } else {
     const artist = await Artist.findByPk(userId);
     if (!artist) throw new Error("No se encontró ningún artistas con ese ID");
+    
+    if (artist.estado===DELETED) throw new Error("No se encontró ningún usuario con ese ID");
+
     await Artist.update( {estado:DELETED}, {where: {id: parseInt(userId)}});
   }
   return "Arista borrado correctamente";
