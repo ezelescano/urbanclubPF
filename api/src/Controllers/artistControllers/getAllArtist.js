@@ -2,9 +2,7 @@ const { Op } = require("sequelize");
 const { Artist } = require("../../db");
 
 const getAllArtist = async () => {
-    const artistDB = await Artist?.findAll({
-        attributes: ["name", "lastname", "nickName", "ocupation", "aboutMe"]
-    })
+    const artistDB = await Artist?.findAll({})
     return artistDB;
 }
 
