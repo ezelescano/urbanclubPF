@@ -7,6 +7,7 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Artists from "./components/Artists/Artists";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -14,11 +15,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profileEdit" element={<ProfileEdit />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/artists" element={<Artists />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/aboutus" element={<AboutUs />} />
       </Routes>
     </div>
   );

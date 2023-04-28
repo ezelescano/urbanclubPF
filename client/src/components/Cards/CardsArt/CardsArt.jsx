@@ -2,9 +2,9 @@ import React from 'react';
 import style from "./CardsArt.module.css";
 import { NavLink } from "react-router-dom";
 
-const CardsArt = ({ name, profilePhoto, ocupation, aboutMe }) => {
+const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id }) => {
   return (
-    <NavLink to="/profile">
+    <NavLink to={`/profile/${id}`}>
     <div className={style.Container}>
             
             <img className={style.image} src={profilePhoto} alt={name} />
