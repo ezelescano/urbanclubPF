@@ -1,38 +1,25 @@
 import './profile.css'
 import React from "react";
-import { NavLink } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getArtistId } from '../../redux2/artistSlice';
 
 const Profile = () => {
-  const usuario = {
-    name: "Oscar",
-    lastname: "Etiquetas",
-    email: "soyoscar@gmail.com",
-    profilePhoto:"https://avatars.githubusercontent.com/u/90626121?v=4",
-    coverPhoto:"https://img.freepik.com/vector-gratis/ilustracion-abstracta-retratos-contemporaneos_107791-17266.jpg?w=1380&t=st=1682451734~exp=1682452334~hmac=1e0f7e24a688c9679048095dc6379d3b0dc5a8b77c2bb8c3b206978533b1a374",
-    nickName: "Oscar sin Etiquetas",
-    country:"Argentina",
-    city:"Buenos aires",
-    ocupation:["Delincuente", "Mago", "Artista"],
-    aboutMe:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe enim animi nobis, tempora, facere ex dolorem magnam corporis excepturi nihil voluptates inventore perferendis, laboriosam velit. Facilis praesentium distinctio autem recusandae.",
-    followers:3,
-    verified: false,
-    likes: 46,
+   const dispatch = useDispatch();
+   const usuario = useSelector(state => state.artist.usuario)
+
+   useEffect(() => {
+    dispatch(getArtistId(id))
+   },[])
    
-    links: [{
-      youtube: "https://www.youtube.com/",
-      twitter: "https://twitter.com/"
-    }
-    ],
-    eventos: [{
-      
-    }]
-    
-  }
+   const id = useParams;
+
 
   return (
     <div className='container'>
       <div>
-        <img  className="portada-profile" src={usuario.coverPhoto} alt="no se jaja" />
+        <img  className="portada-profile" src={usuario.coverPhoto} alt="coverfoto" />
 
         <div className='prim-profile'>
           <div className='foto-nombre'>
@@ -46,11 +33,11 @@ const Profile = () => {
               </div>
               <h3>{usuario.city}, {usuario.country}</h3>
               <div className='ocupation-container'>
-              {usuario.ocupation?.map(o => {
+              {/* {usuario.ocupation?.map(o => {
                 return(
                   <div className='ocupation'>{o}</div>
                 )
-              })}
+              })} */}
               </div>
           </div>
           <div className='stas-btns'>

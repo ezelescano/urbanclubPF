@@ -49,6 +49,7 @@ const postArtist = async (req) => {
     - Al menos 1 caracter especial
     `}
     }
+    
     //? se busca el nick en la base de datos
     const searchNick = await Artist.findOne({
         where: { nickName: nickName }
@@ -56,6 +57,7 @@ const postArtist = async (req) => {
     const searchEmail = await Artist.findOne({
         where: { email: email }
     })
+    console.log("probando", searchEmail);
     //? si existe el nickName devuelve el error
     if (searchNick) {
         return { error: "El NickName ya esta en uso" }
@@ -98,11 +100,9 @@ const postArtist = async (req) => {
             aboutMe,
             password
         }
+        const create = await Artist.create(newArtist)
+        return create
         
-        const crea = await Artist.create(newArtist)
-       
-
-        return newArtist
     } catch (error) {
         throw new Error(error)
     }
