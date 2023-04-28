@@ -29,13 +29,11 @@ const [input, setInput] = useState({
   links: {links}
 })
 
-const handleImage = (e) => {
-  e.preventEvent()
-}
+
 
   return (
     <div>
-      <button onClick={handlePoner}>
+      <button>
         <img src={input.coverPhoto} alt='portada'/>
       </button>
       <div className='profile-foto-p'>
