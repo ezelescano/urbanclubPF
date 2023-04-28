@@ -1,19 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import jwt_decode from "jwt-decode"; // Solo utilizar para saber Qué es el token que te traen. ###
 
 function Login() {
-  const handleSubmit = (event) => {
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+  // No funciona más en esta version const history = useHistory();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Aquí podrías enviar los datos del formulario al servidor o realizar alguna acción con ellos
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/artist/login",
+        input
+      );
+      //Esto es para debuggear, No dejar en produccion #####porfavor#####.
+      const token = response.data.token;
+      const artist = jwt_decode(token); // Acá te lo decodifica ###
+      localStorage.setItem("token", token);
+      localStorage.setItem("artist", JSON.stringify(artist));
+      // No funciona más en esta version history.push("/home");
+      console.log(artist);
+      console.log(token); //Acá te lo muestra ###
+    } catch (error) {
+      console.log(error.response.data.error); //Hacer esto para todas las veces qué la llamada de ruta por axios, De error.
+    }
   };
 
-  /* {
-        email, not null
-        nickName, not null
-        password not null
-    } 
-    */
   return (
     <div className="formulario-externo-login">
       <div className="formulario-container formulario-background">
@@ -21,23 +39,32 @@ function Login() {
           <div className="form-container__left">
             <label className="form-login-title">
               Bienvenido a <b className="form-login-subtitle">UrbanClub!</b>
-              {/*El isotipo en negro para el login:
-              <img src="isoneg.png" alt="Logo Negro" />
-              */}
             </label>
           </div>
           <div className="form-container__middle">
             <label>
-              <div>Nickname:</div>
-              <input type="text" maxLength={45} required />
-            </label>
-            <label>
               <div>Correo:</div>
-              <input type="email" maxLength={45} required />
+              <input
+                type="email"
+                maxLength={45}
+                required
+                value={input.email}
+                onChange={(event) =>
+                  setInput({ ...input, email: event.target.value })
+                }
+              />
             </label>
             <label>
               <div>Contraseña:</div>
-              <input type="text" maxLength={45} required />
+              <input
+                type="password"
+                maxLength={45}
+                required
+                value={input.password}
+                onChange={(event) =>
+                  setInput({ ...input, password: event.target.value })
+                }
+              />
             </label>
           </div>
           <div className="form-container__right">
@@ -47,7 +74,7 @@ function Login() {
             <br />
             <label>
               <NavLink to="/register" className="nav-link active">
-                Aun no tiene usuario?
+                Aún no tiene usuario?
               </NavLink>
             </label>
           </div>

@@ -1,5 +1,6 @@
 const { cloudiconfig,loadPhoto,DeletePhoto } = require("../../../utils/cloudinary");
 const { Artist } = require("../../db");
+const { DELETED } = require("../../constants");
 
 const updateArtist = async (req) => {
   const { id } = req.params;
@@ -39,6 +40,8 @@ const updateArtist = async (req) => {
     console.log(body)
   return artist
     if (!artist) throw new Error("No se encontró ningún usuario con ese ID");
+    if (artist.estado===DELETED) throw new Error("No se encontró ningún usuario con ese ID");
+    
     await Artist.update(body, { where: { id: parseInt(id) } });
 
   }

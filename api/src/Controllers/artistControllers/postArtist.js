@@ -5,8 +5,7 @@ const {cloudiconfig,loadPhoto} = require("../../../utils/cloudinary")
 
 
 const postArtist = async (req) => {
-    let saveProfile = {}
-    let saveCover = {}
+
     let {
         name, lastname, email, password, nickName, Country, city,
         ocupation, aboutMe,hola} = req.body;
@@ -45,6 +44,7 @@ const postArtist = async (req) => {
     - Al menos 1 caracter especial
     `}
     }
+    
     //? se busca el nick en la base de datos
     const searchNick = await Artist.findOne({
         where: { nickName: nickName }
@@ -52,6 +52,7 @@ const postArtist = async (req) => {
     const searchEmail = await Artist.findOne({
         where: { email: email }
     })
+    console.log("probando", searchEmail);
     //? si existe el nickName devuelve el error
     if (searchNick) {
         return { error: "El NickName ya esta en uso" }
@@ -61,7 +62,8 @@ const postArtist = async (req) => {
         return { error: "El Correo ya esta en uso" }
     }
 
-    
+    let saveProfile = {}, saveCover = {}
+
     if (req.files) {
         const { profilePhoto, coverPhoto } = req.files
 
