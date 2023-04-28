@@ -61,7 +61,6 @@ function Formulario() {
         [e.target.name]: e.target.value,
       })
     );
-    console.log(input + errors);
     //Este "setInput({"Aclara qué no va en los inputs en mi objeto
     setInput({
       ...input,
@@ -94,7 +93,6 @@ function Formulario() {
     e.preventDefault();
     const formData = new FormData(e.target);
     dispatch(postartist(formData));
-    alert("Se creo tu perfil");
     navigate("/"); // redirige al usuario a la ruta /artists
     // ##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios  <3. ######
     // console.log("Se envio el formulario");
