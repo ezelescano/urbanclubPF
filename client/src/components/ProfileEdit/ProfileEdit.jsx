@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ProfileEdit.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -86,6 +87,10 @@ console.log(usuario)
     );
   }
 
+  return (
+    <>
+      <form onSubmit={handleSubmit} className="form-container">
+        {/* <div className="form-container__left">
   return (
     <>
       <form onSubmit={handleSubmit} className="form-container">

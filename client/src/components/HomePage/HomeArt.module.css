@@ -1,0 +1,16 @@
+.ConteinerArt {
+  margin-top: 5%;
+  margin-left: 5%;
+  overflow: hidden;
+}
+
+.TopArt {
+  background-color: #303030;
+  margin: 1px;
+  display: grid;
+  padding-block:20px;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  grid-template-rows: repeat(1, auto);
+  grid-template-columns: repeat(10, auto);
+}
