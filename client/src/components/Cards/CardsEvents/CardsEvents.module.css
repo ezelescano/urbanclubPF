@@ -11,22 +11,56 @@
   transition: 0.3s;
   border-radius: 5px;
   overflow: hidden;
+  position: relative;
 }
 
-.card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.imageContainer {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
 }
 
 .image {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  object-position: center;
 }
 
-.content {
+.overlay {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
   padding: 1rem;
+  transition: bottom 0.3s;
 }
-
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.card:hover .content {
+  opacity: 1;
+  transform: translateY(0);
+}
+.card:hover .overlay {
+  bottom: 0;
+}
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 1rem;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  transition-delay: 1s;
+}
 h2 {
   margin-top: 0;
 }
