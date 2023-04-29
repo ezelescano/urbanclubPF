@@ -1,25 +1,57 @@
-.carousel-img {
+.carousel-container {
+  background-color: black;
+  position: relative;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    max-width: 50%;
-    height: auto;
-    opacity: 0;
-    transition: 1s;
+.carousel-img {
+  max-width: 50vw;
+  height: auto;
+  opacity: 0;
+  transition: 1s;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .carousel-img.loaded_ {
-    opacity: 1;
+  opacity: 1;
 }
 
 .ButtonContainer {
-    display: flex;
-    align-content: center;
-    flex-direction: row;
-    margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 15px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
+.button:first-of-type { /* Aplicar estilos solo al primer botón */
+  justify-self: flex-start; /* Alinear el botón a la izquierda */
+}
+
+.button:last-of-type { /* Aplicar estilos solo al último botón */
+  justify-self: flex-end; /* Alinear el botón a la derecha */
+}
+
+
 .button {
-    color: white;
-    background-color: blueviolet;
-    padding: 8px;
-    margin: 0 5px;
+  color: rgb(250, 250, 250);
+  cursor: pointer;
+  background-color: rgba(221, 221, 221, 0.081);
+  border-radius: 50%;
+  padding: 8px 14px;
+  border: 1px transparent;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }

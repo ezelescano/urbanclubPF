@@ -1,9 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import postartist from "../../redux/actions/postartist";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
+import { postArtist } from "../../redux/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 /*Sinó usá esto: 
@@ -27,7 +26,7 @@ function validate(input) {
 }
 //ocupation: "" , ###### Si o si tiene qué ser algo como "Dancer" o "Freak Show" #######
 function Formulario() {
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
@@ -38,7 +37,7 @@ function Formulario() {
     email: "",
     password: "",
     city: "", //Not here
-    country: "", //Not here:
+    Country: "", //Not here:
     ocupation: "", //Not here: //Ahora esté debe ser un select Option proximamente. ########
     aboutMe: "", //Not here:
   });
@@ -61,7 +60,6 @@ function Formulario() {
         [e.target.name]: e.target.value,
       })
     );
-    console.log(input + errors);
     //Este "setInput({"Aclara qué no va en los inputs en mi objeto
     setInput({
       ...input,
@@ -93,31 +91,10 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    dispatch(postartist(formData));
-    alert("Se creo tu perfil");
+    dispatch(postArtist(formData));
+    alert("Se creo el perfil, sera redirigido a home");
     navigate("/"); // redirige al usuario a la ruta /artists
-    // ##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios  <3. ######
-    // console.log("Se envio el formulario");
-    // alert(`El Artista ${input.name} Fue añadido`);
-    // setInput({
-    //   name: "",
-    //   lastname: "",
-    //   nickName: "",
-    //   profilePhoto: "",
-    //   email: "",
-    //   password: "",
-    //   city: "",
-    //   country: "",
-    //   ocupation: "",
-    //   aboutMe: "",
-    // });
-    // console.log("Esto es lo qué escribiste: ");
-    // console.table(input);
-    // axios
-    //   .post("http://localhost:3001/artist", input)
-    //   .then((res) => console.log(res))
-    //   .catch((errors) => errors);
-    //##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios <3. ######
+
   }
 
   return (
@@ -168,6 +145,7 @@ function Formulario() {
                   value={input.name}
                   maxLength="35"
                   name="name"
+                  required
                 />
               </label>
               <label>
@@ -208,6 +186,7 @@ function Formulario() {
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="nickName"
+                  required
                 />
               </label>
               <label>
@@ -240,10 +219,10 @@ function Formulario() {
                 <div>Pais:</div>
                 <input
                   type="text"
-                  value={input.country}
+                  value={input.Country}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  name="country"
+                  name="Country"
                 />
               </label>
               <label>
