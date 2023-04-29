@@ -11,7 +11,7 @@ export default function Carousel(props) {
     if (autoPlay || !showButtons) {
       const interval = setInterval(() => {
         selectNewImage(selectedIndex, images);
-      }, 1000);
+      }, 5000);
       return () => clearInterval(interval);
     }
   });
@@ -44,26 +44,31 @@ export default function Carousel(props) {
 
   return (
     <>
-      <img
-        className={`${Style["carousel-img"]} ${loaded ? Style.loaded_ : ""}`}
-        src={selectedImage}
-        alt="banda"
-        style={{ objectFit: "cover" }}
-        onLoad={() => setLoaded(true)}
-      />
-      <div className={Style.ButtonContainer}>
-        {showButtons ? (
-          <>
-            <button className={Style.button} onClick={previous}>
-              {"<"}
-            </button>
-            <button className={Style.button} onClick={next}>
-              {">"}
-            </button>
-          </>
-        ) : (
-          <></>
-        )}
+      <div className="carousel-container" style={{ position: "relative" }}>
+        <img
+          className={`${Style["carousel-img"]} ${loaded ? Style.loaded_ : ""}`}
+          src={selectedImage}
+          alt="banda"
+          style={{ objectFit: "cover" }}
+          onLoad={() => setLoaded(true)}
+        />
+        <div
+          className={Style.ButtonContainer}
+          style={{ position: "absolute", left: 0, right: 0, zIndex: 1 }}
+        >
+          {showButtons ? (
+            <>
+              <button className={Style.button} onClick={previous}>
+                {"<"}
+              </button>
+              <button className={Style.button} onClick={next}>
+                {">"}
+              </button>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     </>
   );

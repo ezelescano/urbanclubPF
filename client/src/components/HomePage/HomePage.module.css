@@ -1,11 +1,9 @@
 .main {
   height: 100%;
+  background-color: rgb(99, 98, 98);
 }
 
 .ConteinerArt {
-  margin-top: 1%;
-  margin-left: 3px;
-  margin-right: 3px;
   overflow: hidden;
 }
 
