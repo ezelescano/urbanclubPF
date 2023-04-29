@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { postArtist } from "../../redux2/artistSlice";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
@@ -26,6 +27,7 @@ function validate(input) {
 }
 //ocupation: "" , ###### Si o si tiene qué ser algo como "Dancer" o "Freak Show" #######
 function Formulario() {
+ const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
@@ -65,10 +67,6 @@ function Formulario() {
       ...input,
       [e.target.name]: e.target.value,
       coverPhoto: "Cambiarlo en el editar perfil.",
-      city: "Cambiarlo en el editar perfil.",
-      country: "Cambiarlo en el editar perfil.",
-      ocupation: "Dancer",
-      aboutMe: "Cambiarlo en el editar perfil.",
     });
   }
   //Manipular el archivo qué se sube:
@@ -97,6 +95,7 @@ function Formulario() {
     const formData = new FormData(e.target);
     dispatch(postArtist(formData));
     alert("Se creo tu perfil");
+    navigate("/"); // redirige al usuario a la ruta /artists
     // ##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios  <3. ######
     // console.log("Se envio el formulario");
     // alert(`El Artista ${input.name} Fue añadido`);
@@ -248,15 +247,19 @@ function Formulario() {
                 />
               </label>
               <label>
-                <div>Ocupacion:</div>
-                <input
-                  type="text"
+                <div>Ocupación:</div>
+                <select
                   value={input.ocupation}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  maxLength={35}
                   name="ocupation"
-                />
+                >
+                  <option value="Dancer">Dancer</option>
+                  <option value="Circus">Circus</option>
+                  <option value="Puppeteer">Puppeteer</option>
+                  <option value="Statue">Statue</option>
+                  <option value="Magician">Magician</option>
+                </select>
               </label>
               <label>
                 Descripción:
