@@ -31,7 +31,6 @@ const SearchBar = () => {
           onChange={handleOnChange}
           placeholder="¿Qué artista quieres ver hoy?"
         />
-
         <NavLink to={`/home?name=${name}`}>
           <button className="searchbar-btn" onClick={(e) => handleOnClick(e)}>
             <i className="search-icon">
