@@ -19,6 +19,7 @@
   width: 300px;
   height: 200px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .image {
@@ -36,6 +37,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
   padding: 1rem;
+  cursor: pointer;
   transition: bottom 0.3s;
 }
 .card:hover {
