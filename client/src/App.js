@@ -8,6 +8,7 @@ import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Artists from "./components/Artists/Artists";
 import AboutUs from "./components/AboutUs/AboutUs";
+import Events from "./components/Events/Events"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/profileEdit" element={<ProfileEdit />} />
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/events" element={<Events />} />
       </Routes>
     </div>
   );
