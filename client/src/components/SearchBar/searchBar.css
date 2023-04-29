@@ -37,16 +37,19 @@
 .searchbar::placeholder{
   color: #000;
 }
-
+.searchbar-btn{
+  background-color: transparent;
+  border-color: transparent;
+}
 
 
 .search-icon {
   background-color: #79cfd5;
   border-radius: 100%;
   padding-inline: 2.2%;
-  padding-block: 1.4%;
+  padding-block: 1.35%;
   position: absolute;
-  top: 51%;
+  top: 17.65px;
   /*PosicionAlto*/
   right: 0;
   /*PosicionAncho*/
