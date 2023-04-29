@@ -79,13 +79,6 @@ const Events = () => {
         "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712069/photo-1419242902214-272b3f66ee7a_yjcuva.png",
     },
   ];
-
-  //const events = useSelector((state) => state.event.allEvents);
-  //const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getAllEvents());
-  // }, [dispatch]);
-
   return (
     <div className={style.container}>
       <CardsEvents events={events} />
