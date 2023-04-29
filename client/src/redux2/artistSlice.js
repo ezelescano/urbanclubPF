@@ -5,7 +5,7 @@ import axios from 'axios';
 const initialState = {
   usuario: [],
   allUsuarios: [],
-  artists: [],
+  artist: [],
   allUsuariosArt: [],
 }
 
@@ -31,6 +31,12 @@ export const artistSlice = createSlice({
       return {
         ...state,
         allUsuarios: action.payload
+      }
+    },
+    postArtistSuccess(state, action){
+      return{
+        ...state,
+        artist: action.payload
       }
     }
   }
@@ -62,14 +68,25 @@ export const getArtistName  = (name) => {
   };
 };
 
-    
-  
+export const postArtist = (payload) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.post('/artist', payload);
+      const result = apiData.data;
+      return dispatch(postArtistSuccess(result));
+    } catch (error) {
+      alert('No se pudo crear el artista')
+    }
+  };
+};
+
 
 
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
-  getArtistNameSuccess
+  getArtistNameSuccess,
+  postArtistSuccess
 } = artistSlice.actions;
 
 export default artistSlice.reducer;
