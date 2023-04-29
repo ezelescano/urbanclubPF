@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./HomeArt.module.css";
-import TopArt from "./TopArt";
+import TopArt from "../Artists/TopArt"
 import { getAllArts } from "../../redux/artistSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
