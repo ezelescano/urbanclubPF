@@ -93,6 +93,7 @@ function Formulario() {
     e.preventDefault();
     const formData = new FormData(e.target);
     dispatch(postartist(formData));
+    alert("Se creo el perfil, sera redirigido a home");
     navigate("/"); // redirige al usuario a la ruta /artists
     // ##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios  <3. ######
     // console.log("Se envio el formulario");
