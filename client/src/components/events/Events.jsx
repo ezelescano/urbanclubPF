@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+//import { useSelector, useDispatch } from "react-redux";
 // import { getAllEvents } from "../../redux/eventSlice";
 import style from "./Events.module.css";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";

@@ -60,6 +60,10 @@
   opacity: 0;
   transition: opacity 0.3s, transform 0.3s;
   transition-delay: 1s;
+  -webkit-transition: opacity 0.3s, transform 0.3s;
+  -moz-transition: opacity 0.3s, transform 0.3s;
+  -ms-transition: opacity 0.3s, transform 0.3s;
+  -o-transition: opacity 0.3s, transform 0.3s;
 }
 h2 {
   margin-top: 0;
