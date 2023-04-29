@@ -4,6 +4,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import postartist from "../../redux/actions/postartist";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
+//import { postArtist } from "../../redux2/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 /*Sinó usá esto: 
@@ -93,7 +94,7 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    dispatch(postartist(formData));
+    dispatch(postArtist(formData));
     alert("Se creo tu perfil");
     navigate("/"); // redirige al usuario a la ruta /artists
     // ##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios  <3. ######
