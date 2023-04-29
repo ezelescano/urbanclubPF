@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import React, { useEffect, useState } from "react";
 import styles from "./ProfileEdit.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteArtist } from "../../redux2/artistSlice";
+import { deleteArtist } from "../../redux/artistSlice";
 
 
 const ProfileEdit = () => {
