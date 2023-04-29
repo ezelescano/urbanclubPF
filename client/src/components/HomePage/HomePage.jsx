@@ -14,9 +14,14 @@ const HomePage = () => {
       <div className={`${style.ConteinerArt} ${style.CarouselContainer}`}>
         <Carousel images={images} autoPlay={true} showButtons={true} />
       </div>
-      <h1>Top Artistas</h1>
+      <br></br>
+      <h1 className={style.title}>Artistas más populares</h1>
       <div>
         <HomeArt />
+      </div>
+      <h1 className={style.title}>Eventos más populares</h1>
+      <div>
+        Aca va eventos
       </div>
     </div>
   );

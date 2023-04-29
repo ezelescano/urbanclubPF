@@ -1,15 +1,16 @@
 .ConteinerArt {
-    margin-top: 1%;
-    margin-left: 3px;
-    margin-right: 3px;
-    overflow: hidden;
+  margin-top: 5%;
+  margin-left: 5%;
+  overflow: hidden;
 }
 
 .TopArt {
-    background-color: rgba(155, 155, 155, 0.456);
-    margin: 1px;
-    display: grid;
-    grid-template-rows: repeat(1, auto);
-    grid-template-columns: repeat(10, auto);
-
+  background-color: #303030;
+  margin: 1px;
+  display: grid;
+  padding-block:20px;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  grid-template-rows: repeat(1, auto);
+  grid-template-columns: repeat(10, auto);
 }

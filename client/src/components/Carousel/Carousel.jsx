@@ -11,7 +11,7 @@ export default function Carousel(props) {
     if (autoPlay || !showButtons) {
       const interval = setInterval(() => {
         selectNewImage(selectedIndex, images);
-      }, 5000);
+      }, 8000);
       return () => clearInterval(interval);
     }
   });

@@ -1,6 +1,9 @@
 .main {
   height: 100%;
-  background-color: rgb(99, 98, 98);
+  background-color: #212226;
+}
+.title{
+  color: #efefef;
 }
 
 .ConteinerArt {
