@@ -12,7 +12,7 @@ export default function postartist(payload) {
     // //     return dispatch({ type: POST_ARTIST, payload: res });
     // //   })
     // //   .catch((errors) => errors);
-    const result = await axios.post("http://localhost:3001/artist", payload);
+    const result = await axios.post("http://localhost:3008/artist", payload);
     console.log(result.data);
     // console.log(result)
 
