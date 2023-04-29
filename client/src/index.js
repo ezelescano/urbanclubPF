@@ -6,9 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 //import store from "./redux/store";
 import axios from "axios";
-import store from './redux2/store2'
+import store from "./redux/store";
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = "http://localhost:3001";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>

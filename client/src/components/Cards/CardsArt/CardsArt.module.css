@@ -1,5 +1,5 @@
 .Container {
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../../../imagenes/card.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../../../img/card.jpg");
     background-size: cover;
     cursor: pointer;
     border-radius: 20px;
