@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode"; // Solo utilizar para saber Qué es el token que te traen. ###
+import { login } from "../../redux2/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
+const dispatch = useDispatch();
+const token = useSelector(state => state.auth.token)
+
    const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
@@ -17,20 +21,17 @@ function Login() {
     event.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3001/artist/login",
-        input
-      );
-      navigate("/artist");
+      dispatch(login(input))
+      //navigate("/artist");
       //Esto es para debuggear, No dejar en produccion #####porfavor#####.
-      const token = response.data.token;
+      //const token = response.data.token;
       const artist = jwt_decode(token); // Acá te lo decodifica ###
       localStorage.setItem("token", token);
       localStorage.setItem("artist", JSON.stringify(artist));
       // No funciona más en esta version history.push("/home");
       console.log(artist);
       console.log(token); //Acá te lo muestra ###
-      navigate("/artists");
+      //navigate("/artists");
     } catch (error) {
       alert("Datos Invalidos, Porfavor Revisar")
       console.log(error.response.data.error); //Hacer esto para todas las veces qué la llamada de ruta por axios, De error.
