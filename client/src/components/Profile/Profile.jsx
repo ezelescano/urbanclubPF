@@ -64,7 +64,7 @@ const Profile = () => {
           </div>
           <div className="stas-btns">
             <div className="btns">
-              <NavLink to="/profileEdit">
+              <NavLink to={`/profileEdit/${id}`}>
                 <button className="btn-profile">Seguir</button>
               </NavLink>
               <NavLink to="/chat">

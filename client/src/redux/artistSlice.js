@@ -38,6 +38,13 @@ export const artistSlice = createSlice({
         ...state,
         artist: action.payload
       }
+    },
+    // Acá también agregó ALAN
+    deleteArtistSuccess(state, action){
+      return{
+        ...state,
+        artist: action.payload
+      }
     }
   }
 });
@@ -81,12 +88,27 @@ export const postArtist = (payload) => {
 };
 
 
+// Esto agregó ALAN
+export const deleteArtist = (id) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.delete(`/artist/${id}`);
+      const result = apiData.data;
+      return dispatch(deleteArtistSuccess(result));
+    } catch (error) {
+      alert("No se pudo borrar el artista");
+    }
+  }
+}
+
+
 
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
   getArtistNameSuccess,
-  postArtistSuccess
+  postArtistSuccess,
+  deleteArtistSuccess
 } = artistSlice.actions;
 
 export default artistSlice.reducer;

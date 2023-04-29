@@ -14,7 +14,7 @@ const artistById = async (artistId) => {
           throw new Error("No se encontró ningún usuario con ese ID")
         const infoArtistClean = {
           id: infoArtistDB.id,
-          nickname: infoArtistDB.nickname,
+          nickname: infoArtistDB.nickName,
           name: infoArtistDB.name,
           lastname: infoArtistDB.lastname,
           email: infoArtistDB.email,
