@@ -5,7 +5,7 @@ import axios from 'axios';
 const initialState = {
   usuario: [],
   allUsuarios: [],
-  artists: [],
+  artist: [],
   allUsuariosArt: [],
 }
 
@@ -31,6 +31,12 @@ export const artistSlice = createSlice({
       return {
         ...state,
         allUsuarios: action.payload
+      }
+    },
+    postArtistSuccess(state, action){
+      return{
+        ...state,
+        artist: action.payload
       }
     }
   }
@@ -62,6 +68,36 @@ export const getArtistName  = (name) => {
   };
 };
 
+export const postArtist = (payload) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.post('/artist', payload);
+      const result = apiData.data;
+      return dispatch(postArtistSuccess(result));
+    } catch (error) {
+      alert('No se pudo crear el artista')
+    }
+  };
+};
+
+export function postartist(payload) {
+  return async function (dispatch) {
+    // var result = await axios.post("http://localhost:3001/artist", payload); // Este va a tener un get unicamente en getAllArtist copiar y pegar.
+    // return dispatch({ type: POST_ARTIST, payload: result });
+    // // axios
+    // //   .post("http://localhost:3001/artist", payload)
+    // //   .then((res) => {
+    // //     console.log(res);
+    // //     return dispatch({ type: POST_ARTIST, payload: res });
+    // //   })
+    // //   .catch((errors) => errors);
+    const result = await axios.post("/artist", payload);
+    console.log(result.data);
+    // console.log(result)
+
+    return dispatch(postArtistSuccess(result));
+  };
+}
     
   
 
@@ -69,7 +105,8 @@ export const getArtistName  = (name) => {
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
-  getArtistNameSuccess
+  getArtistNameSuccess,
+  postArtistSuccess
 } = artistSlice.actions;
 
 export default artistSlice.reducer;

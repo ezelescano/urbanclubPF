@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from "./ProfileEdit.module.css";
 // import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import {getArtistById} from "../../redux/actions/getArtistById";
+//import {getArtistById} from "../../redux/actions/getArtistById";
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArtistId } from '../../redux2/artistSlice';

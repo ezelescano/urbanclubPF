@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import postartist from "../../redux/actions/postartist";
+import { postArtist } from "../../redux2/artistSlice";
 import "./Register.css";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
@@ -95,7 +95,7 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    dispatch(postartist(formData));
+    dispatch(postArtist(formData));
     alert("Se creo tu perfil");
     // ##### Ya utilizamos dispatch, Esté es el fixing leftovers del axios  <3. ######
     // console.log("Se envio el formulario");
