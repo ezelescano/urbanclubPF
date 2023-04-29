@@ -1,9 +1,14 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { postArtist } from "../../redux2/artistSlice";
+
+
+
+
+
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
+//import { postArtist } from "../../redux2/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 /*Sinó usá esto: 
