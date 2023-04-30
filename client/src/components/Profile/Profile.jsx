@@ -21,8 +21,6 @@ const Profile = () => {
   } = usuario;
   const { id } = useParams();
 
-
-
   useEffect(() => {
     dispatch(getArtistId(id));
   }, [dispatch]);
@@ -33,7 +31,6 @@ const Profile = () => {
         <div className="portada-profile">
           <img src={coverPhoto} alt="" />
         </div>
-
         <div className="prim-profile">
           <div className="foto-nombre">
             <img

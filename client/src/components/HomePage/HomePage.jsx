@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "../Carousel/Carousel.jsx";
 import style from "../HomePage/HomePage.module.css";
 import HomeArt from "../HomePage/HomeArt.jsx";
+import Events from "../Events/Events.jsx";
 
 const HomePage = () => {
   const images = [
@@ -14,14 +15,16 @@ const HomePage = () => {
       <div className={`${style.ConteinerArt} ${style.CarouselContainer}`}>
         <Carousel images={images} autoPlay={true} showButtons={true} />
       </div>
-      <br></br>
+      <br />
       <h1 className={style.title}>Artistas más populares</h1>
       <div>
         <HomeArt />
       </div>
+      <br />
       <h1 className={style.title}>Eventos más populares</h1>
+      <br />
       <div>
-        Aca va eventos
+        <Events />
       </div>
     </div>
   );
