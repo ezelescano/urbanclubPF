@@ -45,6 +45,7 @@ const Profile = () => {
               <h1>
                 {name} {lastname}
               </h1>
+              <NavLink to={`/profileEdit/${id}`}>🖉 Editar Perfil</NavLink>
               {/* para saber si es verificado funcion aun no implementada */}
               {/* {verified &&
                   <img className='verificado' src='https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg' alt='verificado paa' />
@@ -64,9 +65,9 @@ const Profile = () => {
           </div>
           <div className="stas-btns">
             <div className="btns">
-              <NavLink to={`/profileEdit/${id}`}>
+              {/* <NavLink to={`/profileEdit/${id}`}> */}
                 <button className="btn-profile">Seguir</button>
-              </NavLink>
+              {/* </NavLink> */}
               <NavLink to="/chat">
                 <button className="btn-profile">Contactar</button>
               </NavLink>

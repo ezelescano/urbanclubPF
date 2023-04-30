@@ -45,6 +45,12 @@ export const artistSlice = createSlice({
         ...state,
         artist: action.payload
       }
+    },
+    updateArtistSucces(state, action){
+      return {
+        ...state, 
+        artist: action.payload
+      }
     }
   }
 });
@@ -101,6 +107,19 @@ export const deleteArtist = (id) => {
   }
 }
 
+// Acá también metí mano (ALAN)
+export const updateArtist = (id, input) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.put(`http://localhost:3001/artist/update/${id}`, input);
+      const result = apiData.data;
+      console.log(result)
+      return dispatch(updateArtistSucces(result));
+    } catch (error) {
+      alert("No se pudo actualizar el artista");
+    }
+  }
+}
 
 
 export const {
@@ -108,7 +127,8 @@ export const {
   getAllArtsSuccess,
   getArtistNameSuccess,
   postArtistSuccess,
-  deleteArtistSuccess
+  deleteArtistSuccess, 
+  updateArtistSucces
 } = artistSlice.actions;
 
 export default artistSlice.reducer;
