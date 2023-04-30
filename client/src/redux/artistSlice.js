@@ -5,7 +5,7 @@ import axios from 'axios';
 const initialState = {
   usuario: [],
   allUsuarios: [],
-  artists: [],
+  artist: [],
   allUsuariosArt: [],
 }
 
@@ -31,6 +31,19 @@ export const artistSlice = createSlice({
       return {
         ...state,
         allUsuarios: action.payload
+      }
+    },
+    postArtistSuccess(state, action){
+      return{
+        ...state,
+        artist: action.payload
+      }
+    },
+    // Acá también agregó ALAN
+    deleteArtistSuccess(state, action){
+      return{
+        ...state,
+        artist: action.payload
       }
     }
   }
@@ -62,14 +75,40 @@ export const getArtistName  = (name) => {
   };
 };
 
-    
-  
+export const postArtist = (payload) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.post('/artist', payload);
+      const result = apiData.data;
+      return dispatch(postArtistSuccess(result));
+    } catch (error) {
+      alert('No se pudo crear el artista')
+    }
+  };
+};
+
+
+// Esto agregó ALAN
+export const deleteArtist = (id) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.delete(`/artist/${id}`);
+      const result = apiData.data;
+      return dispatch(deleteArtistSuccess(result));
+    } catch (error) {
+      alert("No se pudo borrar el artista");
+    }
+  }
+}
+
 
 
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
-  getArtistNameSuccess
+  getArtistNameSuccess,
+  postArtistSuccess,
+  deleteArtistSuccess
 } = artistSlice.actions;
 
 export default artistSlice.reducer;
