@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id }) => {
   return (
-    <NavLink to={`/profile/${id}`}>
+    <NavLink className={style.Link} to={`/profile/${id}`}>
       <div className={style.Container}>
         <img className={style.image} src={profilePhoto} alt={name} />
         <div className={style.text}>
