@@ -24,6 +24,15 @@ module.exports = (sequelize) => {
         },
         date: {
             type: DataTypes.DATE,
+        },
+        id_eventPhoto: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        eventPhoto: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            default: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png"
         }
     })
 }
