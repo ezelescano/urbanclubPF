@@ -1,0 +1,25 @@
+.main {
+  height: 100%;
+  background-color: #212226;
+}
+.title{
+  color: #efefef;
+}
+
+.ConteinerArt {
+  overflow: hidden;
+}
+
+.TopArt {
+  background-color: rgba(155, 155, 155, 0.456);
+  margin: 1px;
+  display: grid;
+  grid-template-rows: repeat(1, auto);
+  grid-template-columns: repeat(10, auto);
+}
+
+.CarouselContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

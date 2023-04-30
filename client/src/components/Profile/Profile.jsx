@@ -1,54 +1,88 @@
-import './profile.css'
+import "./profile.css";
 import React from "react";
-import { NavLink, useParams } from "react-router-dom"
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getArtistId } from '../../redux2/artistSlice';
+import { NavLink, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+//import { getArtistId } from "../../redux/artistSlice";
+import { getauth, clearProfile } from "../../redux/artistSlice";
+import { logout } from "../../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-   const dispatch = useDispatch();
-   const usuario = useSelector(state => state.artist.usuario)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const usuario = useSelector((state) => state.artist.usuario);
 
-   const { name, lastname, profilePhoto, coverPhoto, Country, city, ocupation, aboutMe } = usuario
-   const { id } = useParams();
+  const {
+    name,
+    lastname,
+    profilePhoto,
+    coverPhoto,
+    Country,
+    city,
+    ocupation,
+    aboutMe,
+  } = usuario;
+  //const { id } = useParams();
 
-   useEffect(() => {
-    dispatch(getArtistId(id))
-   },[dispatch])
-   
-  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+   if (!token /* || tokenExpirado(token) */) {
+      // Redirigir a la página de inicio de sesión
+      alert('inicia sesion')
+      navigate("/login");
+      return
+    }
+    dispatch(getauth(navigate));
+    return () => {      //le paso un return cuando se desmonta
+      dispatch(clearProfile())
+    }
+  }, [dispatch, navigate]);
 
+  const handleLogout = (e) => {
+    e.preventDefault()
+    dispatch(logout())
+    navigate("/")
+  }
 
   return (
     <div className="container">
       <div>
         <div className="portada-profile">
-          <img  src={coverPhoto} alt="coverfoto" />
+          <img src={coverPhoto} alt="" />
         </div>
 
-        <div className='prim-profile'>
-          <div className='foto-nombre'>
-              <img className='foto-profile' src={profilePhoto} alt='no se jaja x2' />   
-              <div className='nombre'>
-                <h1>{name} {lastname}</h1>
-                {/* para saber si es verificado funcion aun no implementada */}
-                {/* {verified &&
+        <div className="prim-profile">
+          <div className="foto-nombre">
+            <img
+              className="foto-profile"
+              src={profilePhoto}
+              alt="no se jaja x2"
+            />
+            <div className="nombre">
+              <h1>
+                {name} {lastname}
+              </h1>
+              {/* para saber si es verificado funcion aun no implementada */}
+              {/* {verified &&
                   <img className='verificado' src='https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg' alt='verificado paa' />
                 } */}
-              </div>
-              <h3>{city}, {Country}</h3>
-              <div className='ocupation-container'>
+            </div>
+            <h3>
+              {city}, {Country}
+            </h3>
+            <div className="ocupation-container">
               {/* {usuario.ocupation?.map(o => {
                 return(
                   <div className='ocupation'>{o}</div>
                 )
               })} */}
-              {ocupation && <div className='ocupation'>{ocupation}</div>}
-              </div>
+              {ocupation && <div className="ocupation">{ocupation}</div>}
+            </div>
           </div>
           <div className="stas-btns">
             <div className="btns">
-              <NavLink to="/profileEdit">
+              <NavLink /* to={`/profileEdit/${id}`} */>
                 <button className="btn-profile">Seguir</button>
               </NavLink>
               <NavLink to="/chat">
@@ -56,16 +90,16 @@ const Profile = () => {
               </NavLink>
             </div>
 
-              <div className='stas-profile'>
-                <h4>5 Seguidores</h4>
-                <h4>5 Seguidores</h4>
-                <h4>5 Likes</h4>
-              </div>
+            <div className="stas-profile">
+              <h4>5 Seguidores</h4>
+              <h4>5 Seguidores</h4>
+              <h4>5 Likes</h4>
+            </div>
           </div>
         </div>
       </div>
-      <div className='ab-re'>
-        <div className='aboutme'>
+      <div className="ab-re">
+        <div className="aboutme">
           <p>{aboutMe}</p>
         </div>
         <div className="redes">
@@ -117,6 +151,7 @@ const Profile = () => {
           )
         })} */}
       </div>
+      <button onClick={handleLogout}>logout</button>
     </div>
   );
 };

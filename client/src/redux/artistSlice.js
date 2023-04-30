@@ -5,7 +5,7 @@ import { login } from './authSlice';
 const initialState = {
   usuario: [],
   allUsuarios: [],
-  artist: [],
+  artist: {},
   allUsuariosArt: [],
 }
 
@@ -27,6 +27,12 @@ export const artistSlice = createSlice({
         usuario: action.payload
       };
     },
+    getauthSuccess(state, action){
+      return {
+        ...state,
+        usuario: action.payload
+      };
+    },
     getArtistNameSuccess(state, action){
       return {
         ...state,
@@ -37,6 +43,19 @@ export const artistSlice = createSlice({
       return{
         ...state,
         artist: action.payload
+      }
+    },
+    // Acá también agregó ALAN
+    deleteArtistSuccess(state, action){
+      return{
+        ...state,
+        artist: action.payload
+      }
+    },
+    clearProfile(state){
+      return{
+        ...state,
+        usuario: {}
       }
     }
   }
@@ -74,10 +93,10 @@ export const postArtist = (payload) => {
       const apiData = await axios.post('/artist', payload);
       const result = apiData.data;
       dispatch(postArtistSuccess(result));
-      dispatch(login({
+       dispatch(login({
         email: result.email,
         password: result.password
-      }))
+      })) 
     } catch (error) {
       alert('No se pudo crear el artista')
     }
@@ -85,12 +104,41 @@ export const postArtist = (payload) => {
 };
 
 
+// Esto agregó ALAN
+export const deleteArtist = (id) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.delete(`/artist/${id}`);
+      const result = apiData.data;
+      return dispatch(deleteArtistSuccess(result));
+    } catch (error) {
+      alert("No se pudo borrar el artista");
+    }
+  }
+};
+
+export const getauth = (navigate) => {
+  return async(dispatch) => {
+  try {
+    const apiData = await axios.get(`/artist/login/me`);
+    const artist = apiData.data;
+    return dispatch(getauthSuccess(artist));
+  } catch (e) {
+    alert('inicia sesion')
+    //navigate("/artists")
+  }
+ }}
+
+
 
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
   getArtistNameSuccess,
-  postArtistSuccess
+  postArtistSuccess,
+  deleteArtistSuccess,
+  getauthSuccess,
+  clearProfile
 } = artistSlice.actions;
 
 export default artistSlice.reducer;

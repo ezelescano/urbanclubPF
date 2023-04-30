@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
 
 //slice de inicio de secion
 //para usar el estado 
@@ -10,23 +11,29 @@ import axios from 'axios';
 
 
 const initialState = {
-  isLoggedIn: false,
-  token: null,
-  user: {},
+  token: localStorage.getItem('token') || null,
+  isAuthenticated: false,
+  user: localStorage.getItem('user') || {},
   error: null,
-}
+};
+
+
+
+
+
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
     loginSuccess(state, action){
-      return { 
-        ...state,
-        isLoggedIn: true,
-        token: action.payload.token,
-        user: action.payload
-      }
+      state.isAuthenticated = true;
+      state.token = action.payload.token;
+      state.user = action.payload;
+      state.error = null;
+      const artist = jwt_decode(action.payload.token); // Acá te lo decodifica ###
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user", JSON.stringify(artist));
     },
 
     loginFailure(state, action){
@@ -37,31 +44,34 @@ export const authSlice = createSlice({
     },
 
     logout(state){
-      return {
-        ...state,
-        isLoggedIn: false,
-        token: null,
-        user: {},
-        error: null,
-      };
-    }
+        
+        state.isAuthenticated = false;
+        state.token = null;
+        state.user = {};
+        state.error = null;
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+        }
   }
 });
 
-export const login = (payload) => {
+export const login = (payload, navigate) => {
   return async(dispatch) => {
     try {
       const response = await axios.post('/artist/login', payload);
       const data = response.data;
-      dispatch(loginSuccess(data))
+      dispatch(loginSuccess(data));
+      alert('login exitoso');
+      navigate("/artists")
     } catch (e) {
-      alert()
       dispatch(loginFailure(e))
+      alert('Datos Invalidos, Porfavor Revisar')
     }
   }
 };
 
-export const createandLoginUser = (payload) => {
+
+/* export const createandLoginUser = (payload) => {
   return async (dispatch) => {
     try {
       const apiData = await axios.post('/artist', payload);
@@ -71,7 +81,7 @@ export const createandLoginUser = (payload) => {
       alert('No se pudo crear el artista')
     }
   };
-};
+}; */
 
 
 export const {

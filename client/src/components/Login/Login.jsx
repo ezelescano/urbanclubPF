@@ -2,40 +2,39 @@ import React, { useState } from "react";
 import "./Login.css";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode"; // Solo utilizar para saber Qué es el token que te traen. ###
-import { login } from "../../redux2/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+//import jwt_decode from "jwt-decode"; // Solo utilizar para saber Qué es el token que te traen. ###
+import { login } from "../../redux/authSlice";
+import { useDispatch } from "react-redux";
 
 function Login() {
 const dispatch = useDispatch();
-const token = useSelector(state => state.auth.token)
 
-   const navigate = useNavigate();
+
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
-    password: "",
+    password: ""
   });
   // No funciona más en esta version const history = useHistory();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      dispatch(login(input))
+      dispatch(login(input, navigate))
+      setInput({
+        email: "",
+        password: ""
+      })
+      
+    
+      
       //navigate("/artist");
       //Esto es para debuggear, No dejar en produccion #####porfavor#####.
       //const token = response.data.token;
-      const artist = jwt_decode(token); // Acá te lo decodifica ###
+     /*  const artist = jwt_decode(token); // Acá te lo decodifica ###
       localStorage.setItem("token", token);
-      localStorage.setItem("artist", JSON.stringify(artist));
+      localStorage.setItem("artist", JSON.stringify(artist)); */
       // No funciona más en esta version history.push("/home");
-      console.log(artist);
-      console.log(token); //Acá te lo muestra ###
-      //navigate("/artists");
-    } catch (error) {
-      alert("Datos Invalidos, Porfavor Revisar")
-      console.log(error.response.data.error); //Hacer esto para todas las veces qué la llamada de ruta por axios, De error.
-    }
+       //Acá te lo muestra ###
   };
 
   return (
