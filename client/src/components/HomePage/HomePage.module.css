@@ -2,7 +2,7 @@
   height: 100%;
   background-color: #212226;
 }
-.title{
+.title {
   color: #efefef;
 }
 
@@ -19,7 +19,9 @@
 }
 
 .CarouselContainer {
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 5%;
 }

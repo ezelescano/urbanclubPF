@@ -15,6 +15,7 @@ const HomePage = () => {
       <div className={`${style.ConteinerArt} ${style.CarouselContainer}`}>
         <Carousel images={images} autoPlay={true} showButtons={true} />
       </div>
+      <br />
       <h1 className={style.title}>Artistas más populares</h1>
       <div>
         <HomeArt />
