@@ -32,8 +32,8 @@ function Formulario() {
     name: "",
     lastname: "",
     nickName: "",
-    profilePhoto: "",
-    coverPhoto: "", //Not here
+    profilePhoto: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
+    coverPhoto: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png", //Not here
     email: "",
     password: "",
     city: "", //Not here
@@ -61,11 +61,11 @@ function Formulario() {
       })
     );
     //Este "setInput({"Aclara qué no va en los inputs en mi objeto
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-      coverPhoto: "Cambiarlo en el editar perfil.",
-    });
+    // setInput({
+    //   ...input,
+    //   [e.target.name]: e.target.value,
+    //   coverPhoto: "Cambiarlo en el editar perfil.",
+    // });
   }
   //Manipular el archivo qué se sube:
   const handleFileChange = (e) => {
@@ -91,8 +91,9 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
+    console.log(formData)
     dispatch(postArtist(formData));
-    alert("Se creo el perfil, sera redirigido a home");
+    alert("Se creo tu perfil");
     navigate("/"); // redirige al usuario a la ruta /artists
 
   }

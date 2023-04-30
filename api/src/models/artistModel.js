@@ -63,21 +63,8 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         ocupation: {
-            type: DataTypes.ENUM(
-                "Band",
-                "Circus",
-                "Dancer",
-                "Freak Show",
-                "Magician",
-                "Musician",
-                "Performer",
-                "Puppeteer",
-                "Statue",
-                "Stand Up",
-                "theatre",
-                "Other"
-            ),
-        },
+            type: DataTypes.JSON
+           },
         aboutMe: {
             type: DataTypes.STRING,
             allowNull: true,
