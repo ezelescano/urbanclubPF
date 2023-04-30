@@ -68,9 +68,9 @@ const postArtist = async (req) => {
     coverSave = { id:"", photo :""}
     if (req.files) {
         const { profilePhoto, coverPhoto } = req.files
-
+        cloudiconfig()
         if (profilePhoto) {
-            cloudiconfig()
+            
             saveProfile = await loadPhoto(profilePhoto.tempFilePath);
             profileSave.id =  saveProfile.public_id;
             profileSave.photo = saveProfile.secure_url
@@ -81,7 +81,7 @@ const postArtist = async (req) => {
         }
 
         if (coverPhoto) {
-            cloudiconfig()
+            // cloudiconfig()
             saveCover = await loadPhoto(coverPhoto.tempFilePath);
             coverSave.id = saveCover.public_id
             coverSave.photo = saveCover.secure_url
