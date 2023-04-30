@@ -15,9 +15,9 @@ function validate(input) {
 }
 
 const Events = () => {
-  
-const navigate = useNavigate();
-const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [errors, setErrors] = useState({})
   const [input, setInput] = useState({
@@ -36,11 +36,16 @@ const dispatch = useDispatch();
     });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+  }
+
 
   return (
     <div>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <div>
             <label>
