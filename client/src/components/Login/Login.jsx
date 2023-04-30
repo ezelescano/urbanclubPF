@@ -18,7 +18,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/artist/login",
+        "http://localhost:3008/artist/login",
         input
       );
       navigate("/artist");
