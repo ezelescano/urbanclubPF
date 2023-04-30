@@ -18,10 +18,9 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3008/artist/login",
+        "http://localhost:3001/artist/login",
         input
       );
-      navigate("/artist");
       //Esto es para debuggear, No dejar en produccion #####porfavor#####.
       const token = response.data.token;
       const artist = jwt_decode(token); // Acá te lo decodifica ###
@@ -30,7 +29,6 @@ function Login() {
       // No funciona más en esta version history.push("/home");
       console.log(artist);
       console.log(token); //Acá te lo muestra ###
-      navigate("/artists");
     } catch (error) {
       alert("Datos Invalidos, Porfavor Revisar")
       console.log(error.response.data.error); //Hacer esto para todas las veces qué la llamada de ruta por axios, De error.

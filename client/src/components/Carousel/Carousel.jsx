@@ -45,6 +45,29 @@ export default function Carousel(props) {
   return (
     <>
       <div className="carousel-container" style={{ position: "relative" }}>
+        <div
+          style={{
+            backgroundColor: "rgba(0, 0, 0, 0.289)",
+            width: "90%",
+            height: "80%",
+            alignItems: "center",
+            textAlign: "center",
+            paddingTop:"20%",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <h1
+            style={{ fontSize: "4rem", color: "#fff", marginBottom: "0.5rem" }}
+          >
+            Urban Club!
+          </h1>
+          <h2 style={{ fontSize: "1.5rem", color: "#fff" }}>
+            La página de los artistas de todo el mundo, ahora en el tuyo!
+          </h2>
+        </div>
         <img
           className={`${Style["carousel-img"]} ${loaded ? Style.loaded_ : ""}`}
           src={selectedImage}
