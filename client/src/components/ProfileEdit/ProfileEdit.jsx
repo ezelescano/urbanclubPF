@@ -35,7 +35,10 @@ const ProfileEdit = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(updateArtist(id, input));
+    axios
+      .put(`http://localhost:3008/artist/update/${id}`, input)
+      .then(alert("Datos actualizados correctamente"))
+      .catch((errors) => console.log(errors));
     // setInput({
     //   name: usuario.name,
     //   lastname: usuario.lastname,
