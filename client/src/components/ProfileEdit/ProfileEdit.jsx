@@ -3,7 +3,7 @@ import styles from "./ProfileEdit.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteArtist } from "../../redux/artistSlice";
+import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
 const ProfileEdit = () => {
   const { id } = useParams();
@@ -11,6 +11,7 @@ const ProfileEdit = () => {
   const [errors, setErrors] = useState({});
   const usuario = useSelector((state) => state.artist.usuario);
   console.log(usuario);
+
   const [input, setInput] = useState({
     name: usuario.name,
     lastname: usuario.lastname,
@@ -18,10 +19,10 @@ const ProfileEdit = () => {
     // profilePhoto: "",
     // coverPhoto: "",
     email: usuario.email,
-    password: "",
+    // password: "",
     city: usuario.city,
     Country: usuario.Country,
-    ocupation: usuario.ocupation,
+    ocupation: [],
     aboutMe: usuario.aboutMe,
   });
 
@@ -67,27 +68,42 @@ const ProfileEdit = () => {
       password: "",
       city: "",
       Country: "",
-      ocupation: "",
+      ocupation: [],
       aboutMe: "",
     });
   }
 
   function handleOnChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-    setErrors(
-      validate({
+    const property = e.target.name;
+    const value = e.target.value;
+    if (property === "ocupation") {
+      console.log(input)
+      setErrors(validate({ ...input, ocupation: [...input.ocupation, value] }));
+      setInput({
         ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
+        ocupation: [...input.ocupation, value],
+      });
+    } else {
+      setInput({
+        ...input,
+        [property]: value,
+      });
+      setErrors(
+        validate({
+          ...input,
+          [property]: value,
+        })
+      );
+    }
+  }
+  
+  function handleDeleteOcupation(){
+
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="form-container">
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.formContainer}>
         {/* <div className="form-container__left">
   return (
     <>
@@ -175,7 +191,7 @@ const ProfileEdit = () => {
               name="nickname"
             />
           </label>
-          <label>
+          {/* <label>
             <div>
               <span style={{ color: "red" }}>*</span> Contraseña:
             </div>
@@ -188,7 +204,7 @@ const ProfileEdit = () => {
               name="password"
               required
             />
-          </label>
+          </label> */}
         </div>
         <div className="form-container__right">
           <label>
@@ -213,17 +229,21 @@ const ProfileEdit = () => {
           </label>
           <label>
             <div>Ocupacion:</div>
-            <input
-              type="text"
-              value={input.ocupation}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              maxLength={35}
-              name="ocupation"
-            />
+            <select
+                  value={input.ocupation}
+                  onChange={handleOnChange}
+                  onBlur={handleOnChange}
+                  name="ocupation"
+                >
+                  <option value="Dancer">Dancer</option>
+                  <option value="Circus">Circus</option>
+                  <option value="Puppeteer">Puppeteer</option>
+                  <option value="Statue">Statue</option>
+                  <option value="Magician">Magician</option>
+                </select>
           </label>
           <label>
-            Descripción:
+            <div>Descripción:</div>
             <textarea
               value={input.aboutMe}
               onChange={handleOnChange}
@@ -237,8 +257,12 @@ const ProfileEdit = () => {
           </button>
         </div>
       </form>
-      <button onClick={handleClick}>Delete user</button>
-    </>
+      <div className={styles.button}>
+        <button className={styles.deleteButton} onClick={handleClick}>
+          Delete user
+        </button>
+      </div>
+    </div>
   );
 };
 
