@@ -3,16 +3,18 @@ import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import { getArtistId } from "../../redux/artistSlice";
-import { getauth, clearProfile } from "../../redux/artistSlice";
+import { getArtistId, clearProfile } from "../../redux/artistSlice";
+//import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const usuario = useSelector((state) => state.artist.usuario);
+  const usuario = useSelector(state => state.artist.usuario);
+  const usuarioActual = useSelector(state => state.auth.user);
 
+  const isCurrentUser = usuarioActual && usuarioActual.id === usuario.id;
   const {
     name,
     lastname,
@@ -23,21 +25,23 @@ const Profile = () => {
     ocupation,
     aboutMe,
   } = usuario;
-  //const { id } = useParams();
+  const { id } = useParams();
+
+  
+/*   const token = localStorage.getItem("token");
+ if (!token) {
+    // Redirigir a la página de inicio de sesión
+    alert('inicia sesion')
+    navigate("/login");
+    return
+  } */
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-   if (!token /* || tokenExpirado(token) */) {
-      // Redirigir a la página de inicio de sesión
-      alert('inicia sesion')
-      navigate("/login");
-      return
-    }
-    dispatch(getauth(navigate));
+    dispatch(getArtistId(id));
     return () => {      //le paso un return cuando se desmonta
       dispatch(clearProfile())
     }
-  }, [dispatch, navigate]);
+  }, [dispatch, id]);
 
   const handleLogout = (e) => {
     e.preventDefault()
@@ -151,7 +155,7 @@ const Profile = () => {
           )
         })} */}
       </div>
-      <button onClick={handleLogout}>logout</button>
+      {isCurrentUser && <button onClick={handleLogout}>logout</button>}
     </div>
   );
 };

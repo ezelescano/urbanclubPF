@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
-import { login } from './authSlice';
+import { loginSuccess } from './authSlice';
 
 const initialState = {
   usuario: [],
@@ -39,10 +39,9 @@ export const artistSlice = createSlice({
         allUsuarios: action.payload
       }
     },
-    postArtistSuccess(state, action){
+    postArtistSuccess(state){
       return{
         ...state,
-        artist: action.payload
       }
     },
     // Acá también agregó ALAN
@@ -92,11 +91,8 @@ export const postArtist = (payload) => {
     try {
       const apiData = await axios.post('/artist', payload);
       const result = apiData.data;
-      dispatch(postArtistSuccess(result));
-       dispatch(login({
-        email: result.email,
-        password: result.password
-      })) 
+      dispatch(postArtistSuccess());
+      dispatch(loginSuccess(result))
     } catch (error) {
       alert('No se pudo crear el artista')
     }

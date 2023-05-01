@@ -13,7 +13,7 @@ import jwt_decode from "jwt-decode";
 const initialState = {
   token: localStorage.getItem('token') || null,
   isAuthenticated: false,
-  user: localStorage.getItem('user') || {},
+  user: {},
   error: null,
 };
 
@@ -27,13 +27,14 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess(state, action){
-      state.isAuthenticated = true;
-      state.token = action.payload.token;
-      state.user = action.payload;
-      state.error = null;
       const artist = jwt_decode(action.payload.token); // Acá te lo decodifica ###
       localStorage.setItem("token", action.payload.token);
-      localStorage.setItem("user", JSON.stringify(artist));
+      //localStorage.setItem("user", JSON.stringify(artist));
+      state.isAuthenticated = true;
+      state.token = action.payload;
+      //state.user = action.payload;
+      state.user = artist;
+      state.error = null;
     },
 
     loginFailure(state, action){
@@ -44,14 +45,13 @@ export const authSlice = createSlice({
     },
 
     logout(state){
-        
+        localStorage.removeItem('token');
+        //localStorage.removeItem('user');
         state.isAuthenticated = false;
         state.token = null;
         state.user = {};
         state.error = null;
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
-        }
+       }
   }
 });
 
