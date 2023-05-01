@@ -1,0 +1,28 @@
+.container{
+    padding-top: 5%;
+    /* border: 1px solid black; */
+}
+
+/* .formContainer{
+    border: 1px solid red;
+    
+} */
+
+.button{
+    /* border: 5px solid green; */
+    /* align-items: center; */
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+.deleteButton{
+    cursor: pointer;
+  background-color: white;
+  box-shadow: 0px 2px 2px 2px black;
+  color: black;
+  font-weight: 600;
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+}

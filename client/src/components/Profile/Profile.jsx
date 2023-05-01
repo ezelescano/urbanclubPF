@@ -161,6 +161,8 @@ const Profile = () => {
               src={profilePhoto}
               alt="no se jaja x2"
             />
+
+
             <div className="ocupation-container">
               {/* {usuario.ocupation?.map(o => {
                 return(
@@ -170,9 +172,7 @@ const Profile = () => {
               {ocupation && <div className="ocupation">{ocupation}</div>}
             </div>
           </div>
-
           <div className="info-perfil">
-
             <div className="nombre-btns">
               <div>
                 <div className="nombre">
@@ -201,9 +201,7 @@ const Profile = () => {
                   {city}, {Country}
                 </h3>
               </div>
-      
             </div>
-
             <div className="stas-profile">
               <button className="btn-stas" onClick={scrollToEventos}>{events.length + ' '} Eventos</button>
               <button className="btn-stas">{followDemostrativo} Seguidores</button>

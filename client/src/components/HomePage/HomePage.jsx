@@ -2,9 +2,10 @@ import React from "react";
 import Carousel from "../Carousel/Carousel.jsx";
 import style from "../HomePage/HomePage.module.css";
 import HomeArt from "../HomePage/HomeArt.jsx";
-import Events from "../events/Events.jsx";
+import Events from "../Events/Events.jsx";
 
 const HomePage = () => {
+  //para un push
   const images = [
     "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682605223/Proyecto_nuevo_2_amp37d.jpg",
     "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682604885/Proyecto_nuevo_rxedju.jpg",
