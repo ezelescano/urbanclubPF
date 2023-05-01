@@ -20,7 +20,8 @@ const Profile = () => {
   const [followDemostrativo, setFollowDemostrativo] = useState(911)
   const verified = true
   const links = [{
-    youtube: "https://www.youtube.com/"
+    youtube: "https://www.youtube.com/",
+    twitter: "https://twitter.com/"
   }]
   const events = [
     {
@@ -133,8 +134,11 @@ const Profile = () => {
   }
 
   const handleLogout = () => {
-    dispatch(logout())
-    navigate("/")
+    const confirmed = window.confirm(`Desea cerrar sesion`)
+    if(confirmed && isCurrentUser){
+      dispatch(logout())
+      navigate("/")
+    }
   }
 
   const handleFollow = () => {
