@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { postArtist } from "../../redux/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -28,6 +28,7 @@ import { postArtist } from "../../redux/artistSlice";
 // }
 
 function Formulario() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
@@ -120,6 +121,7 @@ function Formulario() {
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation); //N
     console.log(input);
+    navigate("/");
     dispatch(postArtist(formData));
     alert("Se creo tu perfil");
   }
