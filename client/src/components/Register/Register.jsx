@@ -119,7 +119,6 @@ function Formulario() {
     e.preventDefault();
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation); //N
-
     console.log(input);
     dispatch(postArtist(formData));
     alert("Se creo tu perfil");
