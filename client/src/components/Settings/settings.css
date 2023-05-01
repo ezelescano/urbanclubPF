@@ -16,16 +16,16 @@
   -o-border-radius: 15px;
 }
 
-.div-settings{
+/* .div-settings{
   width: 100%;
   text-align: center;
   height: 50px;
   padding: 16px 0;
   border-bottom: 1px solid #fff;
-}
+} */
 
 
-.div-settings-p{
+.div-settings{
   width: 100%;
   text-align: center;
   height: 50px;
@@ -40,7 +40,7 @@
   height: 50px;
 }
 
-.div-settings-p button,.div-settings-d button{
+.div-settings button,.div-settings-d button{
  background: none;
  border: none;
  color: #fff;
@@ -54,4 +54,11 @@
   color: #fff;
   width: 100%;
   border-bottom: 1px solid #fff;
+}
+
+.edit{
+  position: absolute;
+  width: 400px;
+  height: 800px;
+  background-color: #ff7575;
 }

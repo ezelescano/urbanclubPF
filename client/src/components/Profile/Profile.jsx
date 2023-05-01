@@ -13,6 +13,7 @@ import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
+import ProfileEdit from "../ProfileEdit/ProfileEdit";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Profile = () => {
   const currentUser = useSelector((state) => state.auth.user);
 
   const [showSettings, setShowSettings] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const verified = true;
   const links = [
@@ -126,6 +128,14 @@ const Profile = () => {
     setShowSettings(!showSettings);
   };
 
+  const handleShowEdit = () => {
+    setShowEdit(!showEdit);
+  };
+
+  const handlePasswordChange = () => {
+    alert("Te estas portado mal seras castiga!!!! 🔥🍻🍻😎😎👩‍🦽💉💉");
+  };
+
   const handleOnBlur = () => {
     setShowSettings(false);
   };
@@ -141,6 +151,10 @@ const Profile = () => {
     }
   };
 
+  const handleEdit = (input) => {
+    //dispatch(updateArtist(id, input))
+  };
+
   const handleLogout = () => {
     const confirmed = window.confirm(`Desea cerrar sesion`);
     if (confirmed && isCurrentUser) {
@@ -154,7 +168,7 @@ const Profile = () => {
   };
 
   const handleContact = () => {
-    alert("funcion aun no implementada 😁");
+    alert("Funcion aun no implementada 😁");
   };
 
   return (
@@ -163,6 +177,7 @@ const Profile = () => {
         <img src={coverPhoto} alt="" />
         <div className="rating-g">4.3</div>
       </div>
+
       <div className="prim-profile">
         <div className="foto-ocupacion">
           <img
@@ -170,6 +185,7 @@ const Profile = () => {
             src={profilePhoto}
             alt="no se jaja x2"
           />
+
           <div className="ocupation-container">
             {/* {usuario.ocupation?.map(o => {
                 return(
@@ -209,6 +225,16 @@ const Profile = () => {
                         <Settings
                           handleDeleteAccount={handleDeleteAccount}
                           handleLogout={handleLogout}
+                          handlePasswordChange={handlePasswordChange}
+                          handleShowEdit={handleShowEdit}
+                        />
+                      )}
+                      {showEdit && (
+                        <ProfileEdit
+                          handleEdit={handleEdit}
+                          id={id}
+                          usuario={usuario}
+                          handleShowEdit={handleShowEdit}
                         />
                       )}
                     </div>
@@ -238,12 +264,13 @@ const Profile = () => {
             </button>
             <h4>5 Seguidos</h4>
           </div>
+
           <div className="ab-re">
             <div className="aboutme">{aboutMe}</div>
             <div className="redes">
               {links?.map((l) => {
                 return (
-                  <div key={l} className="redes-div">
+                  <div key={l}className="redes-div">
                     <h4>Otras redes!!</h4>
                     <div className="container-links">
                       {l.youtube && (
@@ -281,12 +308,13 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <div className="div-eventos">
+        <div ref={eventosRef} className="titulo-ev">
+          Eventos
+        </div>
 
-      <div ref={eventosRef} className="titulo-ev">
-        Eventos
+        <div>{events && <CardsEvents events={events} />}</div>
       </div>
-
-      <div>{events && <CardsEvents events={events} />}</div>
     </div>
   );
 };
