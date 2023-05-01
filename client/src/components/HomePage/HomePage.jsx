@@ -5,7 +5,6 @@ import HomeArt from "../HomePage/HomeArt.jsx";
 import Events from "../Events/Events.jsx";
 
 const HomePage = () => {
-  //para un push
   const images = [
     "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682605223/Proyecto_nuevo_2_amp37d.jpg",
     "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682604885/Proyecto_nuevo_rxedju.jpg",
@@ -20,6 +19,11 @@ const HomePage = () => {
       <h1 className={style.title}>Artistas más populares</h1>
       <div>
         <HomeArt />
+      </div>
+      <br/>
+      <h1 className={style.title}>Productos más populares</h1>
+      <br />
+      <div className={style.eldivdeeu}>
       </div>
       <br />
       <h1 className={style.title}>Eventos más populares</h1>
