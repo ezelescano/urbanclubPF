@@ -4,27 +4,29 @@ import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { postArtist } from "../../redux/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// function validate(input) {
+//   const errors = {};
+//   if (!input.name) {
+//     errors.name = "Name is required";
+//   }
+//   if (!input.lastname) {
+//     errors.lastname = "Last name is required";
+//   }
+//   if (!input.email) {
+//     errors.email = "Email is required";
+//   }
+//   if (!input.nickName) {
+//     errors.nickName = "Nickname is required";
+//   }
+//   if (!input.password) {
+//     errors.password = "Password is required";
+//   }
+//   if (input.occupation.length === 0) {
+//     errors.occupation = "Occupation is required";
+//   }
+//   return errors;
+// }
 
-/*Sinó usá esto: 
-let errors = {};
-  if (!input.name) {
-    errors.name = "Name is required";
-  }
-  return errors;
-
-  Y Lo haces con cada propiedad de
-*/
-//Codigo nuevo, Tendriamos que console loguearlo cada error porfavor: @@@@@
-function validate(input) {
-  return Object.keys(input).reduce((errors, key) => {
-    console.log(errors + "Aquí" + key); //Por ejemplo algo así. @@@@@
-    return {
-      ...errors,
-      [key]: input[key] ? "" : `El ${key} es obligatorio`,
-    };
-  }, {});
-}
-//ocupation: "" , ###### Si o si tiene qué ser algo como "Dancer" o "Freak Show" #######
 function Formulario() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,40 +34,53 @@ function Formulario() {
     name: "",
     lastname: "",
     nickName: "",
-    profilePhoto: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
-    coverPhoto: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png", //Not here
+    profilePhoto:
+      "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
+    coverPhoto:
+      "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png", //Not here
     email: "",
     password: "",
     city: "", //Not here
     Country: "", //Not here:
-    ocupation: "", //Not here: //Ahora esté debe ser un select Option proximamente. ########
+    ocupation: [],
     aboutMe: "", //Not here:
   });
-
+  const options = [
+    "Dancer",
+    "Singer",
+    "Musician",
+    "Actor",
+    // ...
+  ];
   const [errors, setErrors] = useState({});
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
 
   function handleOnChange(e) {
-    //Colocar los inputs en mi objeto
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    //Colocar los errores en un listado
-    setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-    //Este "setInput({"Aclara qué no va en los inputs en mi objeto
-    // setInput({
-    //   ...input,
-    //   [e.target.name]: e.target.value,
-    //   coverPhoto: "Cambiarlo en el editar perfil.",
-    // });
+    console.log(input.ocupation);
+  }
+  function handleOccupationChange(e) {
+    const selectedOption = e.target.value;
+    const isSelected = e.target.checked;
+
+    if (isSelected) {
+      setInput((prevInput) => ({
+        ...prevInput,
+        ocupation: [...prevInput.ocupation, selectedOption],
+      }));
+    } else {
+      setInput((prevInput) => ({
+        ...prevInput,
+        ocupation: prevInput.ocupation.filter(
+          (option) => option !== selectedOption
+        ),
+      }));
+    }
   }
   //Manipular el archivo qué se sube:
   const handleFileChange = (e) => {
@@ -91,11 +106,10 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData)
+    console.log(formData);
     dispatch(postArtist(formData));
     alert("Se creo tu perfil");
     navigate("/"); // redirige al usuario a la ruta /artists
-
   }
 
   return (
@@ -204,8 +218,6 @@ function Formulario() {
                   required
                 />
               </label>
-            </div>
-            <div className="form-container__right">
               <label>
                 <div>Ciudad:</div>
                 <input
@@ -226,20 +238,38 @@ function Formulario() {
                   name="Country"
                 />
               </label>
+            </div>
+            <div className="form-container__right">
               <label>
-                <div>Ocupación:</div>
-                <select
-                  value={input.ocupation}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="ocupation"
-                >
-                  <option value="Dancer">Dancer</option>
-                  <option value="Circus">Circus</option>
-                  <option value="Puppeteer">Puppeteer</option>
-                  <option value="Statue">Statue</option>
-                  <option value="Magician">Magician</option>
-                </select>
+                <div className="occupation-options">
+                  {options.map((option) => (
+                    <label key={option}>
+                      <input
+                        type="checkbox"
+                        value={option}
+                        checked={input.ocupation.includes(option)}
+                        onChange={handleOccupationChange}
+                      />
+                      {option}
+                    </label>
+                  ))}
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="other"
+                      checked={input.ocupation.includes("other")}
+                      onChange={handleOccupationChange}
+                    />
+                    Otros
+                  </label>
+                  {input.ocupation.includes("other") && (
+                    <input
+                      type="text"
+                      name="otherOccupation"
+                      placeholder="Arte 1 + Enter"
+                    />
+                  )}
+                </div>
               </label>
               <label>
                 Descripción:
