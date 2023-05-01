@@ -178,7 +178,7 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1444080748397-f442aa95c3e5_lvphop.png"
+                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682602207/AcaVaLaURLdeLaFotoCargada_eqxmmm.png"
                 alt="The Weeknd"
               />
             </div>

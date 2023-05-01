@@ -133,7 +133,7 @@
   transition: background-color 0.3s ease;
 
 }
-.occupation-options input[type="checkbox"]:hover {
+.occupation-options label input[type="checkbox"]:hover {
   background-color: #007bff5e;
 }
 
