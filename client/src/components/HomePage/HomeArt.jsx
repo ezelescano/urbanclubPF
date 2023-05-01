@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./HomeArt.module.css";
-import TopArt from "../Artists/TopArt"
+import TopArt from "../Artists/TopArt";
 import { getAllArts } from "../../redux/artistSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -17,10 +17,9 @@ const HomeArt = () => {
   return (
     <div className={style.ConteinerArt}>
       <div className={style.TopArt}>
-        {artista.map((item) => (
-          <div>
+        {artista.map((item, index) => (
+          <div key={index}>
             <TopArt
-              key={item.index}
               id={item.id}
               name={item.name}
               profilePhoto={item.profilePhoto}
