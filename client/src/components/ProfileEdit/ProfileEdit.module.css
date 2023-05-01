@@ -1,4 +1,9 @@
 .container{
+    position: absolute;
+    left: -400px;
+    width: 400px;
+    height: 500px;
+    background-color: #939393;
     padding-top: 5%;
     /* border: 1px solid black; */
 }
