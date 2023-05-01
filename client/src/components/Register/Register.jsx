@@ -3,29 +3,6 @@ import { useDispatch } from "react-redux";
 //import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { postArtist } from "../../redux/artistSlice";
-//import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// function validate(input) {
-//   const errors = {};
-//   if (!input.name) {
-//     errors.name = "Name is required";
-//   }
-//   if (!input.lastname) {
-//     errors.lastname = "Last name is required";
-//   }
-//   if (!input.email) {
-//     errors.email = "Email is required";
-//   }
-//   if (!input.nickName) {
-//     errors.nickName = "Nickname is required";
-//   }
-//   if (!input.password) {
-//     errors.password = "Password is required";
-//   }
-//   if (input.occupation.length === 0) {
-//     errors.occupation = "Occupation is required";
-//   }
-//   return errors;
-// }
 
 function Formulario() {
   const dispatch = useDispatch();
@@ -94,7 +71,7 @@ function Formulario() {
     }
   }
 
-  //Manipular el archivo qué se sube:
+  //Manipular el archivo foto qué se sube:
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const files = e.target.files;
@@ -118,7 +95,7 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    formData.append("ocupation", input.ocupation);
+    console.log(input);
     dispatch(postArtist(formData));
     alert("Se creo tu perfil");
   }
