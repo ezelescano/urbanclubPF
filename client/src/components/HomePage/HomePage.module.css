@@ -19,9 +19,13 @@
 }
 
 .CarouselContainer {
-  background-color: black;
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 5%;
+}
+
+.lower {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
 }
