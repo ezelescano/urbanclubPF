@@ -95,6 +95,10 @@ const ProfileEdit = () => {
       );
     }
   }
+  
+  function handleDeleteOcupation(){
+
+  }
 
   return (
     <div className={styles.container}>
