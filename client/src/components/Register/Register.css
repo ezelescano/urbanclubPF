@@ -130,6 +130,11 @@
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   margin-right: 0.5rem;
+  transition: background-color 0.3s ease;
+
+}
+.occupation-options input[type="checkbox"]:hover {
+  background-color: #007bff5e;
 }
 
 .occupation-options input[type="checkbox"]:checked {
