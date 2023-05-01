@@ -3,12 +3,18 @@ import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getArtistId } from "../../redux/artistSlice";
+import { getArtistId, clearProfile } from "../../redux/artistSlice";
+//import { getauth, clearProfile } from "../../redux/artistSlice";
+import { logout } from "../../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const usuario = useSelector((state) => state.artist.usuario);
+  const navigate = useNavigate();
+  const usuario = useSelector(state => state.artist.usuario);
+  const usuarioActual = useSelector(state => state.auth.user);
 
+  const isCurrentUser = usuarioActual && usuarioActual.id === usuario.id;
   const {
     name,
     lastname,
@@ -21,11 +27,27 @@ const Profile = () => {
   } = usuario;
   const { id } = useParams();
 
-
+  
+/*   const token = localStorage.getItem("token");
+ if (!token) {
+    // Redirigir a la página de inicio de sesión
+    alert('inicia sesion')
+    navigate("/login");
+    return
+  } */
 
   useEffect(() => {
     dispatch(getArtistId(id));
-  }, [dispatch]);
+    return () => {      //le paso un return cuando se desmonta
+      dispatch(clearProfile())
+    }
+  }, [dispatch, id]);
+
+  const handleLogout = (e) => {
+    e.preventDefault()
+    dispatch(logout())
+    navigate("/")
+  }
 
   return (
     <div className="container">
@@ -33,7 +55,6 @@ const Profile = () => {
         <div className="portada-profile">
           <img src={coverPhoto} alt="" />
         </div>
-
         <div className="prim-profile">
           <div className="foto-nombre">
             <img
@@ -64,7 +85,7 @@ const Profile = () => {
           </div>
           <div className="stas-btns">
             <div className="btns">
-              <NavLink to={`/profileEdit/${id}`}>
+              <NavLink /* to={`/profileEdit/${id}`} */>
                 <button className="btn-profile">Seguir</button>
               </NavLink>
               <NavLink to="/chat">
@@ -133,6 +154,7 @@ const Profile = () => {
           )
         })} */}
       </div>
+      {isCurrentUser && <button onClick={handleLogout}>logout</button>}
     </div>
   );
 };

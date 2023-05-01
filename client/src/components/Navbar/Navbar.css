@@ -2,7 +2,7 @@
 .navbar {
   background-color: #0d5a73;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   padding: 15px 80px;
   border-bottom: 1.5px solid#004258;
@@ -88,3 +88,13 @@
   outline: none;
 }
 
+.sesionfoto {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}

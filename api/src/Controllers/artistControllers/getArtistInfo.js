@@ -4,6 +4,7 @@ const {Artist} = require("../../db");
 const { ACTIVATED } = require("../../constants");
 
 const getArtistInfo = async (email, password) => {
+  console.log(email)
     const artist = await Artist.findOne({
         where: {
           email,
@@ -18,14 +19,15 @@ const getArtistInfo = async (email, password) => {
         const comparePassword = bcrypt.compareSync(password, artist.password);
         if (comparePassword) {
             const datos = {
-                id : artist.id,
-                name : artist.name,
-                lastname : artist.lastname,
-                email : artist.email,
-                token : generateJWT(artist.id,artist.name),
-                estado: ACTIVATED //se agrega para funcionar borrado logico no comparar si esta DELETED
+            //     id : artist.id,
+            //     name : artist.name,
+            //     lastname : artist.lastname,
+            //     email : artist.email,
+                token : generateJWT(artist.id,artist.name,artist.profilePhoto),
+                // estado: ACTIVATED //se agrega para funcionar borrado logico no comparar si esta DELETED
             }
             //!aqui podemos agregar informacion a la que qisieramos acceder
+           
             return datos
 
       } else {

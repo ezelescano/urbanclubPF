@@ -1,32 +1,33 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { postArtist } from "../../redux/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// function validate(input) {
+//   const errors = {};
+//   if (!input.name) {
+//     errors.name = "Name is required";
+//   }
+//   if (!input.lastname) {
+//     errors.lastname = "Last name is required";
+//   }
+//   if (!input.email) {
+//     errors.email = "Email is required";
+//   }
+//   if (!input.nickName) {
+//     errors.nickName = "Nickname is required";
+//   }
+//   if (!input.password) {
+//     errors.password = "Password is required";
+//   }
+//   if (input.occupation.length === 0) {
+//     errors.occupation = "Occupation is required";
+//   }
+//   return errors;
+// }
 
-/*Sinó usá esto: 
-let errors = {};
-  if (!input.name) {
-    errors.name = "Name is required";
-  }
-  return errors;
-
-  Y Lo haces con cada propiedad de
-*/
-//Codigo nuevo, Tendriamos que console loguearlo cada error porfavor: @@@@@
-function validate(input) {
-  return Object.keys(input).reduce((errors, key) => {
-    console.log(errors + "Aquí" + key); //Por ejemplo algo así. @@@@@
-    return {
-      ...errors,
-      [key]: input[key] ? "" : `El ${key} es obligatorio`,
-    };
-  }, {});
-}
-//ocupation: "" , ###### Si o si tiene qué ser algo como "Dancer" o "Freak Show" #######
 function Formulario() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
@@ -36,11 +37,18 @@ function Formulario() {
     coverPhoto: "", //Not here
     email: "",
     password: "",
-    city: "", //Not here
-    Country: "", //Not here:
-    ocupation: "", //Not here: //Ahora esté debe ser un select Option proximamente. ########
-    aboutMe: "", //Not here:
+    city: "",
+    Country: "",
+    ocupation: [],
+    aboutMe: "",
   });
+
+  const [options, setOptions] = useState([
+    "Dancer",
+    "Singer",
+    "Musician",
+    "Actor",
+  ]);
 
   const [errors, setErrors] = useState({});
   const [rutaImagen, setRutaImagen] = useState("");
@@ -48,25 +56,44 @@ function Formulario() {
   const [files, setFiles] = useState({});
 
   function handleOnChange(e) {
-    //Colocar los inputs en mi objeto
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-    });
-    //Colocar los errores en un listado
-    setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-    //Este "setInput({"Aclara qué no va en los inputs en mi objeto
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-      coverPhoto: "Cambiarlo en el editar perfil.",
     });
   }
+  function handleOccupationChange(e) {
+    const selectedOption = e.target.value;
+    const isSelected = e.target.checked;
+
+    if (isSelected) {
+      setInput((prevInput) => ({
+        ...prevInput,
+        ocupation: [...prevInput.ocupation, selectedOption],
+      }));
+    } else {
+      setInput((prevInput) => ({
+        ...prevInput,
+        ocupation: prevInput.ocupation.filter(
+          (option) => option !== selectedOption
+        ),
+      }));
+    }
+
+    // check if "other" option is selected and a value is entered
+    const otherInput = document.querySelector('input[name="otherOccupation"]');
+    if (
+      otherInput &&
+      selectedOption === "other" &&
+      otherInput.value.trim() !== ""
+    ) {
+      setInput((prevInput) => ({
+        ...prevInput,
+        ocupation: [...prevInput.ocupation, otherInput.value.trim()],
+      }));
+      otherInput.value = ""; // clear the input field
+    }
+  }
+
   //Manipular el archivo qué se sube:
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -81,7 +108,7 @@ function Formulario() {
     reader.onload = () => {
       setRutaImagen(reader.result);
     };
-    console.log("El nombre de tu foto de perfil es " + file.name);
+    //console.log("El nombre de tu foto de perfil es " + file.name);
   };
 
   const handleClick = () => {
@@ -91,10 +118,10 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
+    formData.append("ocupation", input.ocupation); //N
+    console.log(input);
     dispatch(postArtist(formData));
-    alert("Se creo el perfil, sera redirigido a home");
-    navigate("/"); // redirige al usuario a la ruta /artists
-
+    alert("Se creo tu perfil");
   }
 
   return (
@@ -203,8 +230,6 @@ function Formulario() {
                   required
                 />
               </label>
-            </div>
-            <div className="form-container__right">
               <label>
                 <div>Ciudad:</div>
                 <input
@@ -225,20 +250,42 @@ function Formulario() {
                   name="Country"
                 />
               </label>
+            </div>
+            <div className="form-container__right">
               <label>
-                <div>Ocupación:</div>
-                <select
-                  value={input.ocupation}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="ocupation"
-                >
-                  <option value="Dancer">Dancer</option>
-                  <option value="Circus">Circus</option>
-                  <option value="Puppeteer">Puppeteer</option>
-                  <option value="Statue">Statue</option>
-                  <option value="Magician">Magician</option>
-                </select>
+                <div className="occupation-options">
+                  {options.map((option) => (
+                    <label key={option}>
+                      <input
+                        type="checkbox"
+                        value={option}
+                        checked={input.ocupation.includes(option)}
+                        onChange={handleOccupationChange}
+                      />
+                      {option}
+                    </label>
+                  ))}
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="other"
+                      value="Aun no se agrega otros"
+                      checked={input.ocupation.includes(
+                        "Aun no se agrega otros"
+                      )}
+                      onChange={handleOccupationChange}
+                    />
+                    Otros
+                  </label>
+                  {input.ocupation.includes("Aun no se agrega otros") && (
+                    <input
+                      type="text"
+                      value={input.value}
+                      name="otherOccupation"
+                      placeholder="Ingresa tu oficio"
+                    />
+                  )}
+                </div>
               </label>
               <label>
                 Descripción:

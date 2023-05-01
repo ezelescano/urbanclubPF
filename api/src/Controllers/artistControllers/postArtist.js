@@ -1,22 +1,22 @@
 // const { Op, json } = require("sequelize");
 const { Artist } = require("../../db");
 const bcrypt = require("bcrypt")
-const {cloudiconfig,loadPhoto} = require("../../../utils/cloudinary")
+const { cloudiconfig, loadPhoto } = require("../../../utils/cloudinary")
+const getArtistInfo = require("./getArtistInfo")
 
 
 const postArtist = async (req) => {
 
     let {
         name, lastname, email, password, nickName, Country, city,
-        ocupation, aboutMe,hola} = req.body;
-
- 
+        ocupation, aboutMe } = req.body;
+console.log(name, lastname, email, password, nickName,)
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
 
     //?el name se agrega con mayuscula
     const Nombre = name.toUpperCase();
-   
+
     //? validacion de correo electronico
     const valueEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!valueEmail.test(email)) {
@@ -44,7 +44,7 @@ const postArtist = async (req) => {
     - Al menos 1 caracter especial
     `}
     }
-    
+
     //? se busca el nick en la base de datos
     const searchNick = await Artist.findOne({
         where: { nickName: nickName }
@@ -52,7 +52,6 @@ const postArtist = async (req) => {
     const searchEmail = await Artist.findOne({
         where: { email: email }
     })
-    console.log("probando", searchEmail);
     //? si existe el nickName devuelve el error
     if (searchNick) {
         return { error: "El NickName ya esta en uso" }
@@ -62,49 +61,62 @@ const postArtist = async (req) => {
         return { error: "El Correo ya esta en uso" }
     }
 
-    let saveProfile = {}, saveCover = {}
-
+    let saveProfile = {},
+     saveCover = {}
+    let profileSave = { id:"", photo:"" }, 
+    coverSave = { id:"", photo :""}
     if (req.files) {
         const { profilePhoto, coverPhoto } = req.files
-
+        cloudiconfig()
         if (profilePhoto) {
-            cloudiconfig()
+            
             saveProfile = await loadPhoto(profilePhoto.tempFilePath);
+            profileSave.id =  saveProfile.public_id;
+            profileSave.photo = saveProfile.secure_url
+        }else{
+            
+            profileSave.id = ""
+            profileSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png"
         }
-        else saveProfile.secure_url = "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682709510/Profile_Icon_Transparante_abxpqx.png"
 
         if (coverPhoto) {
-            cloudiconfig()
+            // cloudiconfig()
             saveCover = await loadPhoto(coverPhoto.tempFilePath);
+            coverSave.id = saveCover.public_id
+            coverSave.photo = saveCover.secure_url
+        } else {
+            coverSave.id = ""
+            coverSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png"
         }
-        else  saveCover.secure_url = "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682703714/aboutusbannerperfect_hbm0xf.png"
-        
-    }
-    else { //si no vienen las fotos
-        saveProfile.secure_url = "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682709510/Profile_Icon_Transparante_abxpqx.png"
-        saveCover.secure_url = "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682703714/aboutusbannerperfect_hbm0xf.png"
+    }else{
+        profileSave.id = ""
+        profileSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png"
+        coverSave.id = ""
+        coverSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png"   
     }
     
-    password = await bcrypt.hash(password, 8);
-  
+    
+    passwordcrypt = await bcrypt.hash(password, 8);
+
     try {
         let newArtist = {
             name: Nombre,
             lastname,
             email,
-            id_profilePhoto: saveProfile.public_id,
-            profilePhoto: saveProfile.secure_url,
-            id_coverPhoto: saveCover.public_id,
-            coverPhoto: saveCover.secure_url,
+            id_profilePhoto: profileSave.id ,
+            profilePhoto: profileSave.photo,
+            id_coverPhoto: coverSave.id,
+            coverPhoto: coverSave.photo,
             nickName,
             Country,
             city,
             ocupation,
             aboutMe,
-            password
+            password:passwordcrypt
         }
         await Artist.create(newArtist)
-        return newArtist
+        const getall = getArtistInfo(newArtist.email,password)
+        return (getall)
     } catch (error) {
         throw new Error(error)
     }
