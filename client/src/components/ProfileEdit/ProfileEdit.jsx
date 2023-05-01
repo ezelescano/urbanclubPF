@@ -69,9 +69,9 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
       selectedOption === "other" &&
       otherInput.value.trim() !== ""
     ) {
-      setInput((prevInput) => ({
-        ...prevInput,
-        ocupation: [...prevInput.ocupation, otherInput.value.trim()],
+      setInput((input) => ({
+        ...input,
+        ocupation: [...input.ocupation, otherInput.value.trim()],
       }));
       otherInput.value = ""; // clear the input field
     }
