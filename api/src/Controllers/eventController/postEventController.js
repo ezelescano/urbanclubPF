@@ -1,8 +1,9 @@
 const {Event} = require("../../db");
 
 const postEventController = async (req) => {
-    const {name, price, location, nameArena, date} = req.body;
+    const {eventPhoto, name, price, location, nameArena, date} = req.body;
     const newEvent = {
+        eventPhoto,
         name, 
         price,
         location,
@@ -10,6 +11,7 @@ const postEventController = async (req) => {
         date
     }
     await Event.create(newEvent);
+    console.log("////soy el event", newEvent);
     return newEvent;
 };
 
