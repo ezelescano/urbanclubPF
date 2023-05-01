@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Artists from "./components/Artists/Artists";
 import AboutUs from "./components/AboutUs/AboutUs";
 import Events from "./components/Events/Events"
+import Footer from "./components/Footer/Footer";
 
 //verificacion del token
 import { useEffect } from 'react';
@@ -17,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { loginSuccess, logout } from './redux/authSlice';
 import { Redirect } from 'react-router-dom';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +56,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
