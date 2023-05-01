@@ -10,7 +10,8 @@ const ProfileEdit = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const usuario = useSelector((state) => state.artist.usuario);
-  // console.log(usuario);
+  console.log(usuario);
+
   const [input, setInput] = useState({
     name: usuario.name,
     lastname: usuario.lastname,
