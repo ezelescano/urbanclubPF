@@ -5,11 +5,16 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
-const ProfileEdit = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
+const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
+
   const [errors, setErrors] = useState({});
-  const usuario = useSelector(state => state.artist.usuario)
+  
+  const [options, setOptions] = useState([
+    "Dancer",
+    "Singer",
+    "Musician",
+    "Actor",
+  ]);
 
   const [input, setInput] = useState({
     name: usuario.name,
@@ -21,7 +26,7 @@ const ProfileEdit = () => {
     // password: usuario.password,
     city: usuario.city,
     Country: usuario.Country,
-    ocupation: usuario.ocupation,
+    ocupation: [...usuario.ocupation],
     aboutMe: usuario.aboutMe,
   });
 
@@ -55,22 +60,38 @@ const ProfileEdit = () => {
     // });
   }
 
-  function handleClick() {
-    dispatch(deleteArtist(id));
-    alert("Artista borrado correctamente");
-    setInput({
-      name: "",
-      lastname: "",
-      nickname: "",
-      // profilePhoto: "",
-      // coverPhoto: "",
-      email: "",
-      password: "",
-      city: "",
-      Country: "",
-      ocupation: [],
-      aboutMe: "",
-    });
+ 
+  function handleOccupationChange(e) {
+    const selectedOption = e.target.value;
+    const isSelected = e.target.checked;
+
+    if (isSelected) {
+      setInput((input) => ({
+        ...input,
+        ocupation: [...input.ocupation, selectedOption],
+      }));
+    } else {
+      setInput((input) => ({
+        ...input,
+        ocupation: input.ocupation.filter(
+          (option) => option !== selectedOption
+        ),
+      }));
+    }
+
+    // check if "other" option is selected and a value is entered
+    const otherInput = document.querySelector('input[name="otherOccupation"]');
+    if (
+      otherInput &&
+      selectedOption === "other" &&
+      otherInput.value.trim() !== ""
+    ) {
+      setInput((prevInput) => ({
+        ...prevInput,
+        ocupation: [...prevInput.ocupation, otherInput.value.trim()],
+      }));
+      otherInput.value = ""; // clear the input field
+    }
   }
 
   function handleOnChange(e) {
@@ -100,6 +121,7 @@ const ProfileEdit = () => {
 
   return (
     <div className={styles.container}>
+      {/* <button onClick={handleShowEdit()}>X</button> */}
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         {/* <div className="form-container__left">
   return (
@@ -188,20 +210,6 @@ const ProfileEdit = () => {
               name="nickname"
             />
           </label>
-          {/* <label>
-            <div>
-              <span style={{ color: "red" }}>*</span> Contraseña:
-            </div>
-            <input
-              type="text"
-              maxLength={45}
-              value={input.password}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="password"
-              required
-            />
-          </label> */}
         </div>
         <div className="form-container__right">
           <label>
@@ -263,9 +271,6 @@ const ProfileEdit = () => {
         </div>
       </form>
       <div className={styles.button}>
-        <button className={styles.deleteButton} onClick={handleClick}>
-          Delete user
-        </button>
       </div>
     </div>
   );

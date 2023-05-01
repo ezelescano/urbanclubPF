@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getArtistId, clearProfile, deleteArtist } from "../../redux/artistSlice";
+import { getArtistId, clearProfile, deleteArtist, updateArtist } from "../../redux/artistSlice";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -144,7 +144,7 @@ const Profile = () => {
   }
 
   const handleEdit = (input) => {
-    //dispatch(updateArtist(id, input))
+    dispatch(updateArtist(id, input))
   }
 
   const handleLogout = () => {
@@ -271,13 +271,13 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      <div className="div-eventos">
+      {/* <div className="div-eventos">
         <div ref={eventosRef} className="titulo-ev">Eventos</div>
         
         <div>
           {events && <CardsEvents events={events}/>} 
         </div>
-      </div>
+      </div> */}
       
     </div>
   );
