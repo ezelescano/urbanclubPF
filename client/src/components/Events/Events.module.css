@@ -10,11 +10,5 @@
   width: 100vw;
   height: 100vh;
 }
-.containerHelp {
-  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
+
 /*Limpiar fondo luego*/
