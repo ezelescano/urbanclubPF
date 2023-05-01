@@ -1,0 +1,47 @@
+.settings-container{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: #333333;
+  color: #fff;
+  font-size: 14px;
+  width: 180px;
+  left: 70px;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+
+.div-settings{
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.div-settings-d{
+  background-color: #ff7575;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.div-settings:not(:last-child){
+  border-bottom: 1px solid #fff;
+}
+
+.div-settings button,.div-settings-d button{
+ background: none;
+ border: none;
+ color: #fff;
+ font-size: 14px;
+}
+
+.navlink-st{
+  text-decoration: none;
+  color: #fff;
+}
