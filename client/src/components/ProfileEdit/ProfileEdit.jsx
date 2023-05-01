@@ -5,22 +5,12 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
-const ProfileEdit = ({id, hanldeEdit}) => {
-  
+const ProfileEdit = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
-  const usuario = useSelector((state) => state.artist.usuario);
-<<<<<<< Updated upstream
-  console.log(usuario);
+  const usuario = useSelector(state => state.artist.usuario)
 
-=======
-
-  console.log(usuario);
-  // useEffect(()=>{
-  // },[])
-  const ocupation = usuario.ocupation
-  console.log(typeof ocupation);
->>>>>>> Stashed changes
   const [input, setInput] = useState({
     name: usuario.name,
     lastname: usuario.lastname,
@@ -28,7 +18,7 @@ const ProfileEdit = ({id, hanldeEdit}) => {
     // profilePhoto: "",
     // coverPhoto: "",
     email: usuario.email,
-    // password: "",
+    // password: usuario.password,
     city: usuario.city,
     Country: usuario.Country,
     ocupation: usuario.ocupation,
@@ -45,10 +35,11 @@ const ProfileEdit = ({id, hanldeEdit}) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios
-      .put(`http://localhost:3001/artist/update/${id}`, input)
-      .then(alert("Datos actualizados correctamente"))
-      .catch((errors) => console.log(errors));
+    handleEdit(input);
+    // axios
+    //   .put(`http://localhost:3001/artist/update/${id}`, input)
+    //   .then(alert("Datos actualizados correctamente"))
+    //   .catch((errors) => console.log(errors));
     // setInput({
     //   name: usuario.name,
     //   lastname: usuario.lastname,
@@ -105,10 +96,7 @@ const ProfileEdit = ({id, hanldeEdit}) => {
       );
     }
   }
-  
-  function handleDeleteOcupation(){
 
-  }
 
   return (
     <div className={styles.container}>
@@ -236,33 +224,39 @@ const ProfileEdit = ({id, hanldeEdit}) => {
               name="Country"
             />
           </label>
-          <label>
-            <div>Ocupacion:</div>
-
-            <select
-                  value={input.ocupation}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="ocupation"
-                >
-                  {/* {usuario.ocupation.map(oc => {
-                    return(
-                      <option value={oc}>{oc}</option>
-                    )
-                  })} */}
-                  
-                </select>
-          </label>
-          <label>
-            <div>Descripción:</div>
-            <textarea
-              value={input.aboutMe}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              maxLength={500}
-              name="aboutMe"
-            />
-          </label>
+          <div className="occupation-options">
+                  {options.map((option) => (
+                    <label key={option}>
+                      <input
+                        type="checkbox"
+                        value={option}
+                        checked={input.ocupation.includes(option)}
+                        onChange={handleOccupationChange}
+                      />
+                      {option}
+                    </label>
+                  ))}
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="other"
+                      value="Aun no se agrega otros"
+                      checked={input.ocupation.includes(
+                        "Aun no se agrega otros"
+                      )}
+                      onChange={handleOccupationChange}
+                    />
+                    Otros
+                  </label>
+                  {input.ocupation.includes("Aun no se agrega otros") && (
+                    <input
+                      type="text"
+                      value={input.value}
+                      name="otherOccupation"
+                      placeholder="Ingresa tu oficio"
+                    />
+                  )}
+                </div>
           <button className="upload-form-button" type="submit">
             Save Changes
           </button>
