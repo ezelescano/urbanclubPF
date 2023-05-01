@@ -16,32 +16,42 @@
   -o-border-radius: 15px;
 }
 
-
 .div-settings{
-  padding: 20px;
   width: 100%;
   text-align: center;
+  height: 50px;
+  padding: 16px 0;
+  border-bottom: 1px solid #fff;
+}
+
+
+.div-settings-p{
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  border-bottom: 2px solid #fff;
 }
 
 .div-settings-d{
   background-color: #ff7575;
-  padding: 20px;
+  /* padding: 20px; */
   width: 100%;
   text-align: center;
+  height: 50px;
 }
 
-.div-settings:not(:last-child){
-  border-bottom: 1px solid #fff;
-}
-
-.div-settings button,.div-settings-d button{
+.div-settings-p button,.div-settings-d button{
  background: none;
  border: none;
  color: #fff;
  font-size: 14px;
+ width: 100%;
+ height: 100%;
 }
 
 .navlink-st{
   text-decoration: none;
   color: #fff;
+  width: 100%;
+  border-bottom: 1px solid #fff;
 }
