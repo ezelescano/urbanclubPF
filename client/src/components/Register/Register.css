@@ -138,6 +138,7 @@
 }
 
 .occupation-options input[type="checkbox"]:checked::before {
+  font-size:10px;
   content: "\00a0\2714"; /* el 00a0 es un blanco espacio y el 2714 es el signo de check*/
   color: #fff;
   font-weight: bold;

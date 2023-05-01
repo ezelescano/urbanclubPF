@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { postArtist } from "../../redux/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -28,24 +28,28 @@ import { postArtist } from "../../redux/artistSlice";
 // }
 
 function Formulario() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
     lastname: "",
     nickName: "",
-    profilePhoto:
-      "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
-    coverPhoto:
-      "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png", //Not here
+    profilePhoto: "",
+    coverPhoto: "", //Not here
     email: "",
     password: "",
-    city: "", //Not here
-    Country: "", //Not here:
+    city: "",
+    Country: "",
     ocupation: [],
-    aboutMe: "", //Not here:
+    aboutMe: "",
   });
-  const options = ["Dancer", "Singer", "Musician", "Actor"];
+
+  const [options, setOptions] = useState([
+    "Dancer",
+    "Singer",
+    "Musician",
+    "Actor",
+  ]);
+
   const [errors, setErrors] = useState({});
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
@@ -56,7 +60,6 @@ function Formulario() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input.ocupation);
   }
   function handleOccupationChange(e) {
     const selectedOption = e.target.value;
@@ -115,10 +118,9 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData);
+    formData.append("ocupation", input.ocupation);
     dispatch(postArtist(formData));
     alert("Se creo tu perfil");
-    navigate("/"); // redirige al usuario a la ruta /artists
   }
 
   return (
@@ -266,13 +268,15 @@ function Formulario() {
                     <input
                       type="checkbox"
                       name="other"
-                      value="Necesita otra lógica"
-                      checked={input.ocupation.includes("Necesita otra lógica")}
+                      value="Aun no se agrega otros"
+                      checked={input.ocupation.includes(
+                        "Aun no se agrega otros"
+                      )}
                       onChange={handleOccupationChange}
                     />
                     Otros
                   </label>
-                  {input.ocupation.includes("Necesita otra lógica") && (
+                  {input.ocupation.includes("Aun no se agrega otros") && (
                     <input
                       type="text"
                       value={input.value}
