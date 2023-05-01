@@ -38,6 +38,7 @@
 .foto-ocupacion{
   display: flex;
   width: 300px;
+  margin: -1vh 0; /*Separa las ocupaciones de la imagen*/
   flex-direction: column;
   justify-content: end;
   position: relative;
