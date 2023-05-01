@@ -37,7 +37,7 @@ console.log(usuario)
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:3008/artist/update/${id}`, input)
+      .put(`http://localhost:3001/artist/update/${id}`, input)
       .then(alert("Datos actualizados correctamente"))
       .catch((errors) => console.log(errors));
     // setInput({

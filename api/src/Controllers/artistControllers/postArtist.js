@@ -10,7 +10,7 @@ const postArtist = async (req) => {
     let {
         name, lastname, email, password, nickName, Country, city,
         ocupation, aboutMe } = req.body;
-console.log(name, lastname, email, password, nickName,)
+console.log(name, lastname, email, password, nickName,ocupation)
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
 

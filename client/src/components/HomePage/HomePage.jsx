@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "../Carousel/Carousel.jsx";
 import style from "../HomePage/HomePage.module.css";
 import HomeArt from "../HomePage/HomeArt.jsx";
-import Events from "../Events/Events.jsx";
+import Events from "../events/Events.jsx";
 
 const HomePage = () => {
   const images = [
