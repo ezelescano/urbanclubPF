@@ -1,9 +1,32 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 //import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { postArtist } from "../../redux/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// function validate(input) {
+//   const errors = {};
+//   if (!input.name) {
+//     errors.name = "Name is required";
+//   }
+//   if (!input.lastname) {
+//     errors.lastname = "Last name is required";
+//   }
+//   if (!input.email) {
+//     errors.email = "Email is required";
+//   }
+//   if (!input.nickName) {
+//     errors.nickName = "Nickname is required";
+//   }
+//   if (!input.password) {
+//     errors.password = "Password is required";
+//   }
+//   if (input.occupation.length === 0) {
+//     errors.occupation = "Occupation is required";
+//   }
+//   return errors;
+// }
 // function validate(input) {
 //   const errors = {};
 //   if (!input.name) {
@@ -36,8 +59,14 @@ function Formulario() {
     nickName: "",
     profilePhoto: "",
     coverPhoto: "", //Not here
+    profilePhoto: "",
+    coverPhoto: "", //Not here
     email: "",
     password: "",
+    city: "",
+    Country: "",
+    ocupation: [],
+    aboutMe: "",
     city: "",
     Country: "",
     ocupation: [],
@@ -99,6 +128,7 @@ function Formulario() {
     }
   }
 
+
   //Manipular el archivo qué se sube:
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -113,7 +143,7 @@ function Formulario() {
     reader.onload = () => {
       setRutaImagen(reader.result);
     };
-    console.log("El nombre de tu foto de perfil es " + file.name);
+    //console.log("El nombre de tu foto de perfil es " + file.name);
   };
 
   const handleClick = () => {
@@ -256,6 +286,8 @@ function Formulario() {
                   name="Country"
                 />
               </label>
+            </div>
+            <div className="form-container__right">
             </div>
             <div className="form-container__right">
               <label>
