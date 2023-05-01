@@ -4,28 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { postArtist } from "../../redux/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// function validate(input) {
-//   const errors = {};
-//   if (!input.name) {
-//     errors.name = "Name is required";
-//   }
-//   if (!input.lastname) {
-//     errors.lastname = "Last name is required";
-//   }
-//   if (!input.email) {
-//     errors.email = "Email is required";
-//   }
-//   if (!input.nickName) {
-//     errors.nickName = "Nickname is required";
-//   }
-//   if (!input.password) {
-//     errors.password = "Password is required";
-//   }
-//   if (input.occupation.length === 0) {
-//     errors.occupation = "Occupation is required";
-//   }
-//   return errors;
-// }
 
 function Formulario() {
   const navigate = useNavigate();
