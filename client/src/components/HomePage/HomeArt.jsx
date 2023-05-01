@@ -18,7 +18,7 @@ const HomeArt = () => {
     <div className={style.ConteinerArt}>
       <div className={style.TopArt}>
         {artista.map((item, index) => (
-          <div key={index}>
+          <div key={index}> {/*A esté le tenes qué poner key*/}
             <TopArt
               id={item.id}
               name={item.name}
