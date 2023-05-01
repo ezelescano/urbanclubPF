@@ -1,6 +1,6 @@
 .container {
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
   background-size: cover;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
