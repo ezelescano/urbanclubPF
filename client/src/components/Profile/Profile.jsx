@@ -9,6 +9,7 @@ import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
+import ProfileEdit from "../ProfileEdit/ProfileEdit";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Profile = () => {
   const currentUser = useSelector(state => state.auth.user);
 
   const [showSettings, setShowSettings] = useState(false);
+  const [showEdit, setShowEdit] = useState(false)
   const [followDemostrativo, setFollowDemostrativo] = useState(911)
   const verified = true
   const links = [{
@@ -120,6 +122,14 @@ const Profile = () => {
     setShowSettings(!showSettings)
   }
 
+  const handleShowEdit = () => {
+    setShowEdit(!showEdit)
+  }
+
+  const handlePasswordChange = () => {
+    alert("Te estas portado mal seras castiga!!!! 🔥🍻🍻😎😎👩‍🦽💉💉")
+  }
+
   const handleOnBlur = () => {
     setShowSettings(false)
   }
@@ -131,6 +141,10 @@ const Profile = () => {
       alert(`La cuenta ${name} ha sido eliminada correctamente`)
       navigate('/home')
     }
+  }
+
+  const handleEdit = (input) => {
+    //dispatch(updateArtist(id, input))
   }
 
   const handleLogout = () => {
@@ -146,12 +160,11 @@ const Profile = () => {
   }
 
   const handleContact = () => {
-    alert("funcion aun no implementada 😁")
+    alert("Funcion aun no implementada 😁")
   }
 
   return (
     <div className="container">
-
         <div className="portada-profile">
           <img src={coverPhoto} alt="" />
           <div className="rating-g">4.3</div>
@@ -192,7 +205,8 @@ const Profile = () => {
                   {isCurrentUser ? 
                   <div className="settings-div">
                     <button className="btn-ajustes" onClick={handleSettings} ><img className="ajustes" src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg" alt="ajuste"/></button>
-                    {showSettings && <Settings handleDeleteAccount={handleDeleteAccount} handleLogout={handleLogout}/>}
+                    {showSettings && <Settings handleDeleteAccount={handleDeleteAccount} handleLogout={handleLogout}  handlePasswordChange={handlePasswordChange} handleShowEdit={handleShowEdit}/>}
+                    {showEdit && <ProfileEdit handleEdit={handleEdit} id={id} usuario={usuario} handleShowEdit={handleShowEdit}/>}
                   </div>
                   : <div>
                     <button className="btn-profile" onClick={handleFollow}>Seguir</button>
@@ -257,12 +271,14 @@ const Profile = () => {
             </div>
           </div>
         </div>
-    
-      <div ref={eventosRef} className="titulo-ev">Eventos</div>
-      
-      <div>
-         {events && <CardsEvents events={events}/>} 
+      <div className="div-eventos">
+        <div ref={eventosRef} className="titulo-ev">Eventos</div>
+        
+        <div>
+          {events && <CardsEvents events={events}/>} 
+        </div>
       </div>
+      
     </div>
   );
 };
