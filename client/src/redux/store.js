@@ -3,10 +3,12 @@ import { tokenMiddleware } from './tokenMiddleware';
 
 import authReducer  from './authSlice';
 import artistReducer from './artistSlice';
+import eventReducer from './eventSlice'
 
 const rootReducer = {
   auth: authReducer,
-  artist: artistReducer
+  artist: artistReducer,
+  events: eventReducer
 }
 
 const middleware = [...getDefaultMiddleware(), tokenMiddleware];
