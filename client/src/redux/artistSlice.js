@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
-import { loginSuccess } from './authSlice';
+import { loginSuccess, logout } from './authSlice';
 
 const initialState = {
   usuario: [],
@@ -106,7 +106,9 @@ export const deleteArtist = (id) => {
     try {
       const apiData = await axios.delete(`/artist/${id}`);
       const result = apiData.data;
-      return dispatch(deleteArtistSuccess(result));
+      dispatch(deleteArtistSuccess(result));
+      dispatch(logout());
+      
     } catch (error) {
       alert("No se pudo borrar el artista");
     }
