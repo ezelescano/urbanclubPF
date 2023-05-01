@@ -56,6 +56,12 @@ export const artistSlice = createSlice({
         ...state,
         usuario: {}
       }
+    },
+    updateArtistSuccess(state, action){
+      return {
+        ...state,
+        usuario: action.payload
+      }
     }
   }
 });
@@ -127,6 +133,18 @@ export const getauth = (navigate) => {
   }
  }}
 
+ export const updateArtist = (id, input) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.put(`/artist/update/${id}`, input);
+      const response = apiData.data;
+      dispatch(updateArtistSuccess(response));
+    } catch (error) {
+      alert("Datos actualizados");
+    }
+  }
+ }
+
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
@@ -134,7 +152,8 @@ export const {
   postArtistSuccess,
   deleteArtistSuccess,
   getauthSuccess,
-  clearProfile
+  clearProfile,
+  updateArtistSuccess
 } = artistSlice.actions;
 
 export default artistSlice.reducer;

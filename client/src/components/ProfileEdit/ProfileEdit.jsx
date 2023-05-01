@@ -3,14 +3,18 @@ import styles from "./ProfileEdit.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteArtist, updateArtist } from "../../redux/artistSlice";
+// import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
-const ProfileEdit = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
+const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
+
   const [errors, setErrors] = useState({});
-  const usuario = useSelector((state) => state.artist.usuario);
-  console.log(usuario);
+  
+  const [options, setOptions] = useState([
+    "Dancer",
+    "Singer",
+    "Musician",
+    "Actor",
+  ]);
 
   const [input, setInput] = useState({
     name: usuario.name,
@@ -19,10 +23,10 @@ const ProfileEdit = () => {
     // profilePhoto: "",
     // coverPhoto: "",
     email: usuario.email,
-    // password: "",
+    // password: usuario.password,
     city: usuario.city,
     Country: usuario.Country,
-    ocupation: [],
+    ocupation: [...usuario.ocupation],
     aboutMe: usuario.aboutMe,
   });
 
@@ -36,41 +40,41 @@ const ProfileEdit = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios
-      .put(`http://localhost:3008/artist/update/${id}`, input)
-      .then(alert("Datos actualizados correctamente"))
-      .catch((errors) => console.log(errors));
-    // setInput({
-    //   name: usuario.name,
-    //   lastname: usuario.lastname,
-    //   nickName: usuario.nickName,
-    //   // profilePhoto: "",
-    //   // coverPhoto: "",
-    //   email: usuario.email,
-    //   password: "",
-    //   city: usuario.city,
-    //   Country: usuario.Country,
-    //   ocupation: usuario.ocupation,
-    //   aboutMe: usuario.aboutMe,
-    // });
+    handleEdit(input);
   }
 
-  function handleClick() {
-    dispatch(deleteArtist(id));
-    alert("Artista borrado correctamente");
-    setInput({
-      name: "",
-      lastname: "",
-      nickname: "",
-      // profilePhoto: "",
-      // coverPhoto: "",
-      email: "",
-      password: "",
-      city: "",
-      Country: "",
-      ocupation: [],
-      aboutMe: "",
-    });
+ 
+  function handleOccupationChange(e) {
+    const selectedOption = e.target.value;
+    const isSelected = e.target.checked;
+
+    if (isSelected) {
+      setInput((input) => ({
+        ...input,
+        ocupation: [...input.ocupation, selectedOption],
+      }));
+    } else {
+      setInput((input) => ({
+        ...input,
+        ocupation: input.ocupation.filter(
+          (option) => option !== selectedOption
+        ),
+      }));
+    }
+
+    // check if "other" option is selected and a value is entered
+    const otherInput = document.querySelector('input[name="otherOccupation"]');
+    if (
+      otherInput &&
+      selectedOption === "other" &&
+      otherInput.value.trim() !== ""
+    ) {
+      setInput((input) => ({
+        ...input,
+        ocupation: [...input.ocupation, otherInput.value.trim()],
+      }));
+      otherInput.value = ""; // clear the input field
+    }
   }
 
   function handleOnChange(e) {
@@ -96,13 +100,11 @@ const ProfileEdit = () => {
       );
     }
   }
-  
-  function handleDeleteOcupation(){
 
-  }
 
   return (
     <div className={styles.container}>
+      <button onClick={handleShowEdit}>X</button>
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         {/* <div className="form-container__left">
   return (
@@ -191,20 +193,6 @@ const ProfileEdit = () => {
               name="nickname"
             />
           </label>
-          {/* <label>
-            <div>
-              <span style={{ color: "red" }}>*</span> Contraseña:
-            </div>
-            <input
-              type="text"
-              maxLength={45}
-              value={input.password}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="password"
-              required
-            />
-          </label> */}
         </div>
         <div className="form-container__right">
           <label>
@@ -227,40 +215,45 @@ const ProfileEdit = () => {
               name="Country"
             />
           </label>
-          <label>
-            <div>Ocupacion:</div>
-            <select
-                  value={input.ocupation}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="ocupation"
-                >
-                  <option value="Dancer">Dancer</option>
-                  <option value="Circus">Circus</option>
-                  <option value="Puppeteer">Puppeteer</option>
-                  <option value="Statue">Statue</option>
-                  <option value="Magician">Magician</option>
-                </select>
-          </label>
-          <label>
-            <div>Descripción:</div>
-            <textarea
-              value={input.aboutMe}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              maxLength={500}
-              name="aboutMe"
-            />
-          </label>
+          <div className="occupation-options">
+                  {options.map((option) => (
+                    <label key={option}>
+                      <input
+                        type="checkbox"
+                        value={option}
+                        checked={input.ocupation.includes(option)}
+                        onChange={handleOccupationChange}
+                      />
+                      {option}
+                    </label>
+                  ))}
+                  <label>
+                    <input
+                      type="checkbox"
+                      name="other"
+                      value="Aun no se agrega otros"
+                      checked={input.ocupation.includes(
+                        "Aun no se agrega otros"
+                      )}
+                      onChange={handleOccupationChange}
+                    />
+                    Otros
+                  </label>
+                  {input.ocupation.includes("Aun no se agrega otros") && (
+                    <input
+                      type="text"
+                      value={input.value}
+                      name="otherOccupation"
+                      placeholder="Ingresa tu oficio"
+                    />
+                  )}
+                </div>
           <button className="upload-form-button" type="submit">
             Save Changes
           </button>
         </div>
       </form>
       <div className={styles.button}>
-        <button className={styles.deleteButton} onClick={handleClick}>
-          Delete user
-        </button>
       </div>
     </div>
   );

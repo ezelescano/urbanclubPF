@@ -7,7 +7,9 @@ import {
   getArtistId,
   clearProfile,
   deleteArtist,
+  updateArtist
 } from "../../redux/artistSlice";
+
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -152,7 +154,8 @@ const Profile = () => {
   };
 
   const handleEdit = (input) => {
-    //dispatch(updateArtist(id, input))
+
+    dispatch(updateArtist(id, input))
   };
 
   const handleLogout = () => {
