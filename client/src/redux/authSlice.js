@@ -31,7 +31,7 @@ export const authSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       //localStorage.setItem("user", JSON.stringify(artist));
       state.isAuthenticated = true;
-      state.token = action.payload;
+      state.token = action.payload.token;
       //state.user = action.payload;
       state.user = artist;
       state.error = null;

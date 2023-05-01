@@ -49,7 +49,7 @@ function Navbar() {
         <button className="nav-login-btn">Ingresar</button>
       </NavLink>
         :<NavLink to={`/profile/${islogin.user.id}`}>
-          <img src={islogin.user.profilePhoto} alt="No hay"/>
+          <img className="sesionfoto" src={islogin.user.profilePhoto} alt="No hay"/>
           </NavLink>}
         
     </nav>

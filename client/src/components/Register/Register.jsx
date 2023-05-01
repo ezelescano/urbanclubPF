@@ -81,7 +81,7 @@ function Formulario() {
     reader.onload = () => {
       setRutaImagen(reader.result);
     };
-    console.log("El nombre de tu foto de perfil es " + file.name);
+    //console.log("El nombre de tu foto de perfil es " + file.name);
   };
 
   const handleClick = () => {
@@ -91,7 +91,7 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData)
+    //console.log(formData)
     dispatch(postArtist(formData));
     alert("Se creo tu perfil");
     navigate("/"); // redirige al usuario a la ruta /artists
