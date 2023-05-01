@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 //import { useNavigate } from "react-router-dom";
-//import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import { postArtist } from "../../redux/artistSlice";
 //import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -27,38 +26,13 @@ import { postArtist } from "../../redux/artistSlice";
 //   }
 //   return errors;
 // }
-// function validate(input) {
-//   const errors = {};
-//   if (!input.name) {
-//     errors.name = "Name is required";
-//   }
-//   if (!input.lastname) {
-//     errors.lastname = "Last name is required";
-//   }
-//   if (!input.email) {
-//     errors.email = "Email is required";
-//   }
-//   if (!input.nickName) {
-//     errors.nickName = "Nickname is required";
-//   }
-//   if (!input.password) {
-//     errors.password = "Password is required";
-//   }
-//   if (input.occupation.length === 0) {
-//     errors.occupation = "Occupation is required";
-//   }
-//   return errors;
-// }
 
 function Formulario() {
-  //const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: "",
     lastname: "",
     nickName: "",
-    profilePhoto: "",
-    coverPhoto: "", //Not here
     profilePhoto: "",
     coverPhoto: "", //Not here
     email: "",
@@ -67,17 +41,15 @@ function Formulario() {
     Country: "",
     ocupation: [],
     aboutMe: "",
-    city: "",
-    Country: "",
-    ocupation: [],
-    aboutMe: "",
   });
+
   const [options, setOptions] = useState([
     "Dancer",
     "Singer",
     "Musician",
     "Actor",
   ]);
+
   const [errors, setErrors] = useState({});
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
@@ -88,13 +60,7 @@ function Formulario() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
   }
-  function handleOtherChange(e) {
-    console.log(e.target.value);
-    setOptions([...options, e.target.value]);
-  }
-
   function handleOccupationChange(e) {
     const selectedOption = e.target.value;
     const isSelected = e.target.checked;
@@ -128,7 +94,6 @@ function Formulario() {
     }
   }
 
-
   //Manipular el archivo qué se sube:
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -153,11 +118,10 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
-    formData.append("ocupation",input.ocupation)
-    console.log(formData);
+    formData.append("ocupation", input.ocupation); //N
+    console.log(input);
     dispatch(postArtist(formData));
     alert("Se creo tu perfil");
-    console.log(input);
   }
 
   return (
@@ -288,8 +252,6 @@ function Formulario() {
               </label>
             </div>
             <div className="form-container__right">
-            </div>
-            <div className="form-container__right">
               <label>
                 <div className="occupation-options">
                   {options.map((option) => (
@@ -307,18 +269,20 @@ function Formulario() {
                     <input
                       type="checkbox"
                       name="other"
-                      value="Necesita otra lógica"
-                      checked={input.ocupation.includes("Necesita otra lógica")}
+                      value="Aun no se agrega otros"
+                      checked={input.ocupation.includes(
+                        "Aun no se agrega otros"
+                      )}
                       onChange={handleOccupationChange}
                     />
                     Otros
                   </label>
-                  {input.ocupation.includes("Necesita otra lógica") && (
+                  {input.ocupation.includes("Aun no se agrega otros") && (
                     <input
                       type="text"
+                      value={input.value}
                       name="otherOccupation"
                       placeholder="Ingresa tu oficio"
-                      onKeyDown={handleOtherChange}
                     />
                   )}
                 </div>
