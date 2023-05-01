@@ -20,7 +20,8 @@ const Profile = () => {
   const [followDemostrativo, setFollowDemostrativo] = useState(911)
   const verified = true
   const links = [{
-    youtube: "links"
+    youtube: "https://www.youtube.com/",
+    twitter: "https://twitter.com/"
   }]
   const events = [
     {
@@ -119,6 +120,10 @@ const Profile = () => {
     setShowSettings(!showSettings)
   }
 
+  const handleOnBlur = () => {
+    setShowSettings(false)
+  }
+
   const handleDeleteAccount = () => {
     const confirmed = window.confirm(`Estas seguro que deseas eliminar la cuenta con el nombre ${name}`)
     if(confirmed && isCurrentUser){
@@ -129,8 +134,11 @@ const Profile = () => {
   }
 
   const handleLogout = () => {
-    dispatch(logout())
-    navigate("/")
+    const confirmed = window.confirm(`Desea cerrar sesion`)
+    if(confirmed && isCurrentUser){
+      dispatch(logout())
+      navigate("/")
+    }
   }
 
   const handleFollow = () => {
@@ -183,7 +191,7 @@ const Profile = () => {
                   
                   {isCurrentUser ? 
                   <div className="settings-div">
-                    <button className="btn-ajustes" onClick={handleSettings}><img className="ajustes" src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg" alt="ajuste"/></button>
+                    <button className="btn-ajustes" onClick={handleSettings} ><img className="ajustes" src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg" alt="ajuste"/></button>
                     {showSettings && <Settings handleDeleteAccount={handleDeleteAccount} handleLogout={handleLogout}/>}
                   </div>
                   : <div>
@@ -255,7 +263,6 @@ const Profile = () => {
       <div>
          {events && <CardsEvents events={events}/>} 
       </div>
-      {isCurrentUser && <button onClick={handleLogout}>logout</button>}
     </div>
   );
 };
