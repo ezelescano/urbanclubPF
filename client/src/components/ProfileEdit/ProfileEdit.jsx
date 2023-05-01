@@ -5,13 +5,12 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteArtist } from "../../redux/artistSlice";
 
-
 const ProfileEdit = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const usuario = useSelector((state) => state.artist.usuario);
-console.log(usuario)
+  console.log(usuario);
   const [input, setInput] = useState({
     name: usuario.name,
     lastname: usuario.lastname,
@@ -55,7 +54,7 @@ console.log(usuario)
     // });
   }
 
-  function handleClick(){
+  function handleClick() {
     dispatch(deleteArtist(id));
     alert("Artista borrado correctamente");
     setInput({
