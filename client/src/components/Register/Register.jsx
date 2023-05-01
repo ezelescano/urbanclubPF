@@ -45,13 +45,7 @@ function Formulario() {
     ocupation: [],
     aboutMe: "", //Not here:
   });
-  const options = [
-    "Dancer",
-    "Singer",
-    "Musician",
-    "Actor",
-    // ...
-  ];
+  const options = ["Dancer", "Singer", "Musician", "Actor"];
   const [errors, setErrors] = useState({});
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
@@ -81,7 +75,22 @@ function Formulario() {
         ),
       }));
     }
+
+    // check if "other" option is selected and a value is entered
+    const otherInput = document.querySelector('input[name="otherOccupation"]');
+    if (
+      otherInput &&
+      selectedOption === "other" &&
+      otherInput.value.trim() !== ""
+    ) {
+      setInput((prevInput) => ({
+        ...prevInput,
+        ocupation: [...prevInput.ocupation, otherInput.value.trim()],
+      }));
+      otherInput.value = ""; // clear the input field
+    }
   }
+
   //Manipular el archivo qué se sube:
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -256,17 +265,19 @@ function Formulario() {
                   <label>
                     <input
                       type="checkbox"
-                      value="other"
-                      checked={input.ocupation.includes("other")}
+                      name="other"
+                      value="Necesita otra lógica"
+                      checked={input.ocupation.includes("Necesita otra lógica")}
                       onChange={handleOccupationChange}
                     />
                     Otros
                   </label>
-                  {input.ocupation.includes("other") && (
+                  {input.ocupation.includes("Necesita otra lógica") && (
                     <input
                       type="text"
+                      value={input.value}
                       name="otherOccupation"
-                      placeholder="Arte 1 + Enter"
+                      placeholder="Ingresa tu oficio"
                     />
                   )}
                 </div>
