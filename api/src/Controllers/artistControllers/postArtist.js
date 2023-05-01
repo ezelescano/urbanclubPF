@@ -2,6 +2,7 @@
 const { Artist } = require("../../db");
 const bcrypt = require("bcrypt")
 const { cloudiconfig, loadPhoto } = require("../../../utils/cloudinary")
+const getArtistInfo = require("./getArtistInfo")
 
 
 const postArtist = async (req) => {
@@ -9,8 +10,7 @@ const postArtist = async (req) => {
     let {
         name, lastname, email, password, nickName, Country, city,
         ocupation, aboutMe } = req.body;
-
-
+console.log(name, lastname, email, password, nickName,)
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
 
@@ -52,7 +52,6 @@ const postArtist = async (req) => {
     const searchEmail = await Artist.findOne({
         where: { email: email }
     })
-    console.log("probando", searchEmail);
     //? si existe el nickName devuelve el error
     if (searchNick) {
         return { error: "El NickName ya esta en uso" }
@@ -68,9 +67,9 @@ const postArtist = async (req) => {
     coverSave = { id:"", photo :""}
     if (req.files) {
         const { profilePhoto, coverPhoto } = req.files
-
+        cloudiconfig()
         if (profilePhoto) {
-            cloudiconfig()
+            
             saveProfile = await loadPhoto(profilePhoto.tempFilePath);
             profileSave.id =  saveProfile.public_id;
             profileSave.photo = saveProfile.secure_url
@@ -81,7 +80,7 @@ const postArtist = async (req) => {
         }
 
         if (coverPhoto) {
-            cloudiconfig()
+            // cloudiconfig()
             saveCover = await loadPhoto(coverPhoto.tempFilePath);
             coverSave.id = saveCover.public_id
             coverSave.photo = saveCover.secure_url
@@ -95,8 +94,8 @@ const postArtist = async (req) => {
         coverSave.id = ""
         coverSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png"
     }
-
-    password = await bcrypt.hash(password, 8);
+    
+    passwordcrypt = await bcrypt.hash(password, 8);
 
     try {
         let newArtist = {
@@ -112,10 +111,11 @@ const postArtist = async (req) => {
             city,
             ocupation,
             aboutMe,
-            password
+            password:passwordcrypt
         }
         await Artist.create(newArtist)
-        return newArtist
+        const getall = getArtistInfo(newArtist.email,password)
+        return (getall)
     } catch (error) {
         throw new Error(error)
     }

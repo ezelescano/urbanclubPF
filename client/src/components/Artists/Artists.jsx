@@ -15,7 +15,7 @@ const Artists = () => {
   }, []);
 
   return (
-    <div>
+    <div className={style.ourPage}>
       <div className={style.container}>
         {artistas.map((item) => (
           <div className={style.containerCar}>

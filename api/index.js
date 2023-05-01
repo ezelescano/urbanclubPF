@@ -4,7 +4,7 @@ require("dotenv").config();;
 const {PORT} = process.env || process.env.PORT
 app.listen(PORT, ()=>{
 
-    sequelize.sync({force: true});
+    sequelize.sync({force: false});
 
     console.log(`Listening on port ${PORT}`);
 });
