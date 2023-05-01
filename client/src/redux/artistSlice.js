@@ -125,8 +125,6 @@ export const getauth = (navigate) => {
   }
  }}
 
-
-
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
