@@ -3,7 +3,18 @@ import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 //Si aun te rompes con CSS, imaginate con iconos, import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchBar from "../SearchBar/SearchBar";
+import { useSelector } from "react-redux";
+
+
+
+
 function Navbar() {
+
+  const islogin = useSelector(state => state.auth);
+
+ 
+
+   
   return (
     <nav className="navbar">
       <NavLink to="/">
@@ -34,9 +45,13 @@ function Navbar() {
           </NavLink>
         </li>
       </ul>
-      <NavLink to="/login">
+      {!islogin.isAuthenticated ? <NavLink to="/login">
         <button className="nav-login-btn">Ingresar</button>
       </NavLink>
+        :<NavLink to={`/profile/${islogin.user.id}`}>
+          <img className="sesionfoto" src={islogin.user.profilePhoto} alt="No hay"/>
+          </NavLink>}
+        
     </nav>
   );
 }

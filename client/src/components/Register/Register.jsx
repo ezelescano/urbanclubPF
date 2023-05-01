@@ -108,7 +108,7 @@ function Formulario() {
     reader.onload = () => {
       setRutaImagen(reader.result);
     };
-    console.log("El nombre de tu foto de perfil es " + file.name);
+    //console.log("El nombre de tu foto de perfil es " + file.name);
   };
 
   const handleClick = () => {
