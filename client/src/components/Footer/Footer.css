@@ -39,7 +39,8 @@
 }
 
 .foot-links li{
-   vertical-align:middle;
+  padding: 5px 0px;
+  vertical-align:middle;
   transition: 0.8s;
   -webkit-transition: 0.8s;
   -moz-transition: 0.8s;
@@ -48,7 +49,9 @@
 }
 
 .foot-links li:hover{
-   vertical-align:middle;
+  
+  padding: 5px 0px;
+  vertical-align:middle;
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -59,7 +62,6 @@
 .foot-links li a{
   color: white;
   text-decoration: none;
-  padding: 10px 0px;
   outline: none;
 }
 
