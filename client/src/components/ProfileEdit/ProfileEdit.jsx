@@ -3,15 +3,24 @@ import styles from "./ProfileEdit.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteArtist, updateArtist } from "../../redux/artistSlice";
+// import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
-const ProfileEdit = () => {
-  const { id } = useParams();
+const ProfileEdit = ({id, hanldeEdit}) => {
+  
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const usuario = useSelector((state) => state.artist.usuario);
+<<<<<<< Updated upstream
   console.log(usuario);
 
+=======
+
+  console.log(usuario);
+  // useEffect(()=>{
+  // },[])
+  const ocupation = usuario.ocupation
+  console.log(typeof ocupation);
+>>>>>>> Stashed changes
   const [input, setInput] = useState({
     name: usuario.name,
     lastname: usuario.lastname,
@@ -22,7 +31,7 @@ const ProfileEdit = () => {
     // password: "",
     city: usuario.city,
     Country: usuario.Country,
-    ocupation: [],
+    ocupation: usuario.ocupation,
     aboutMe: usuario.aboutMe,
   });
 
@@ -37,7 +46,7 @@ const ProfileEdit = () => {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .put(`http://localhost:3008/artist/update/${id}`, input)
+      .put(`http://localhost:3001/artist/update/${id}`, input)
       .then(alert("Datos actualizados correctamente"))
       .catch((errors) => console.log(errors));
     // setInput({
@@ -229,17 +238,19 @@ const ProfileEdit = () => {
           </label>
           <label>
             <div>Ocupacion:</div>
+
             <select
                   value={input.ocupation}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="ocupation"
                 >
-                  <option value="Dancer">Dancer</option>
-                  <option value="Circus">Circus</option>
-                  <option value="Puppeteer">Puppeteer</option>
-                  <option value="Statue">Statue</option>
-                  <option value="Magician">Magician</option>
+                  {/* {usuario.ocupation.map(oc => {
+                    return(
+                      <option value={oc}>{oc}</option>
+                    )
+                  })} */}
+                  
                 </select>
           </label>
           <label>
