@@ -41,23 +41,6 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
   function handleSubmit(e) {
     e.preventDefault();
     handleEdit(input);
-    // axios
-    //   .put(`http://localhost:3001/artist/update/${id}`, input)
-    //   .then(alert("Datos actualizados correctamente"))
-    //   .catch((errors) => console.log(errors));
-    // setInput({
-    //   name: usuario.name,
-    //   lastname: usuario.lastname,
-    //   nickName: usuario.nickName,
-    //   // profilePhoto: "",
-    //   // coverPhoto: "",
-    //   email: usuario.email,
-    //   password: "",
-    //   city: usuario.city,
-    //   Country: usuario.Country,
-    //   ocupation: usuario.ocupation,
-    //   aboutMe: usuario.aboutMe,
-    // });
   }
 
  
@@ -121,7 +104,7 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
 
   return (
     <div className={styles.container}>
-      {/* <button onClick={handleShowEdit()}>X</button> */}
+      <button onClick={handleShowEdit}>X</button>
       <form onSubmit={handleSubmit} className={styles.formContainer}>
         {/* <div className="form-container__left">
   return (
