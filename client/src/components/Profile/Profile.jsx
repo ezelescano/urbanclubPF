@@ -7,7 +7,7 @@ import {
   getArtistId,
   clearProfile,
   deleteArtist,
-  updateArtist
+  updateArtist,
 } from "../../redux/artistSlice";
 import swal from 'sweetalert'
 //import { getauth, clearProfile } from "../../redux/artistSlice";
@@ -173,8 +173,7 @@ const Profile = () => {
   };
 
   const handleEdit = (input) => {
-
-    dispatch(updateArtist(id, input))
+    dispatch(updateArtist(id, input));
   };
 
   const handleLogout = () => {
@@ -210,15 +209,15 @@ const Profile = () => {
         <img src={coverPhoto} alt="" />
         <div className="rating-g">4.3</div>
       </div>
-
       <div className="prim-profile">
-        <div className="foto-ocupacion">
-          <img
-            className="foto-profile"
-            src={profilePhoto}
-            alt="no se jaja x2"
-          />
-
+        <div className="">
+          <div className="foto-ocupacion">
+            <img
+              className="foto-profile"
+              src={profilePhoto}
+              alt="no se jaja x2"
+            />
+          </div>
           <div className="ocupation-container">
             {/* {usuario.ocupation?.map(o => {
                 return(
@@ -244,44 +243,6 @@ const Profile = () => {
                     alt="verificado paa"
                   />
                 )}
-                <div className="btns">
-                  {isCurrentUser ? (
-                    <div className="settings-div">
-                      <button className="btn-ajustes" onClick={handleSettings}>
-                        <img
-                          className="ajustes"
-                          src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
-                          alt="ajuste"
-                        />
-                      </button>
-                      {showSettings && (
-                        <Settings
-                          handleDeleteAccount={handleDeleteAccount}
-                          handleLogout={handleLogout}
-                          handlePasswordChange={handlePasswordChange}
-                          handleShowEdit={handleShowEdit}
-                        />
-                      )}
-                      {showEdit && (
-                        <ProfileEdit
-                          handleEdit={handleEdit}
-                          id={id}
-                          usuario={usuario}
-                          handleShowEdit={handleShowEdit}
-                        />
-                      )}
-                    </div>
-                  ) : (
-                    <div>
-                      <button className="btn-profile" onClick={handleFollow}>
-                        Seguir
-                      </button>
-                      <button className="btn-profile" onClick={handleContact}>
-                        Contactar
-                      </button>
-                    </div>
-                  )}
-                </div>
               </div>
               <h3>
                 {city}, {Country}
@@ -297,7 +258,6 @@ const Profile = () => {
             </button>
             <h4>5 Seguidos</h4>
           </div>
-
           <div className="ab-re">
             <div className="aboutme">{aboutMe}</div>
             <div className="redes">
@@ -340,14 +300,52 @@ const Profile = () => {
             </div>
           </div>
         </div>
+        <div className="btns">
+          {isCurrentUser ? (
+            <div className="settings-div">
+              <button className="btn-ajustes" onClick={handleSettings}>
+                <img
+                  className="ajustes"
+                  src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
+                  alt="ajuste"
+                />
+              </button>
+              {showSettings && (
+                <Settings
+                  handleDeleteAccount={handleDeleteAccount}
+                  handleLogout={handleLogout}
+                  handlePasswordChange={handlePasswordChange}
+                  handleShowEdit={handleShowEdit}
+                />
+              )}
+              {showEdit && (
+                <ProfileEdit
+                  handleEdit={handleEdit}
+                  id={id}
+                  usuario={usuario}
+                  handleShowEdit={handleShowEdit}
+                />
+              )}
+            </div>
+          ) : (
+            <div>
+              <button className="btn-profile" onClick={handleFollow}>
+                Seguir
+              </button>
+              <button className="btn-profile" onClick={handleContact}>
+                Contactar
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-      {/* <div className="div-eventos">
+      <div className="div-eventos">
         <div ref={eventosRef} className="titulo-ev">
           Eventos
         </div>
 
         <div>{events && <CardsEvents events={events} />}</div>
-      </div> */}
+      </div>
     </div>
   );
 };

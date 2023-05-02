@@ -66,8 +66,17 @@
 
 .search-icon svg{
   color: #fff;
+  margin: unset;
 }
 
 .search-icon:hover {
   cursor: pointer;
+}
+@media (max-width: 620px) {
+  .searchbar{
+    width: 200px;
+  }
+  .search-icon{
+    right:3px;
+  }
 }

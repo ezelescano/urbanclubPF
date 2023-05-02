@@ -13,6 +13,7 @@
 @media (max-width: 1267px) {
   .container {
     height: unset;
+    width: unset
   }
 }
 

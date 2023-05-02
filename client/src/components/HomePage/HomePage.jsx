@@ -6,9 +6,12 @@ import Events from "../Events/Events.jsx";
 
 const HomePage = () => {
   const images = [
-    "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682605223/Proyecto_nuevo_2_amp37d.jpg",
-    "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682604885/Proyecto_nuevo_rxedju.jpg",
-    "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682605224/Proyecto_nuevo_1_psedq6.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/3_kaor4h.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/6_xuxple.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/1_flhnhc.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/4_zckxd6.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/5_cdgswn.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/2_ehhiho.jpg",
   ];
   return (
     <div className={style.main}>

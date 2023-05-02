@@ -26,7 +26,7 @@ function AboutUs() {
             <div className="card-image">
               <a href="">
               <img
-                src="../../assets/estiven.jpeg"
+                src="../../assets/alex.jpeg"
                 alt="Dua Lipa"
               />
               </a>
