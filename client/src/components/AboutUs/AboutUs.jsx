@@ -24,13 +24,17 @@ function AboutUs() {
         <div className="card-container">
           <div className="card">
             <div className="card-image">
+              <a href="">
               <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712069/photo-1419242902214-272b3f66ee7a_yjcuva.png"
+                src="../../assets/estiven.jpeg"
                 alt="Dua Lipa"
               />
+              </a>
             </div>
             <div className="card-content">
               <h2>Estiven</h2>
+              <img src="../../assets/colombia.ico" alt="" />
+              <h4>Colombia</h4>
               <p>CEO & Fullstack Master</p>
               <br />
               <br />
@@ -45,13 +49,17 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
-              <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712168/photo-1490604001847-b712b0c2f967_flsfsy.png"
-                alt="Harry Styles"
+             <a href="">
+             <img
+                src="../../assets/alan.jpeg"
+                alt="Dua Lipa"
               />
+             </a>
             </div>
             <div className="card-content">
               <h2>Alan</h2>
+              <img src="../../assets/argentina.ico" alt="" />
+              <h4>Argentina</h4>
               <p>
                 Technology Operations Manager <br />& Fullstack Master
               </p>
@@ -67,13 +75,17 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
-              <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712168/photo-1485201543483-f06c8d2a8fb4_o7tcki.png"
-                alt="Beyoncé"
+             <a href="">
+             <img
+                src="../../assets/miguel.jpeg"
+                alt="Dua Lipa"
               />
+             </a>
             </div>
             <div className="card-content">
               <h2>Miguel</h2>
+              <img src="../../assets/peru.ico" alt="" />
+              <h4>Peru</h4>
               <p>CTO & Fullstack Master</p>
               <br />
               <br />
@@ -88,13 +100,17 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
-              <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1459213599465-03ab6a4d5931_wo41ug.png"
-                alt="Ed Sheeran"
+             <a href="">
+             <img
+                src="../../assets/eze.jpeg"
+                alt="Dua Lipa"
               />
+             </a>
             </div>
             <div className="card-content">
               <h2>Eze</h2>
+              <img src="../../assets/argentina.ico" alt="" />
+              <h4>Argentina</h4>
               <p>
                 CIO <br />& Fullstack Master
               </p>
@@ -110,13 +126,17 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
+              <a href="">
               <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1534447677768-be436bb09401_rampxl.png"
-                alt="Rihanna"
+                src="../../assets/eudes.jpeg"
+                alt="Dua Lipa"
               />
+              </a>
             </div>
             <div className="card-content">
               <h2>Eudes</h2>
+              <img src="../../assets/colombia.ico" alt="" />
+              <h4>Colombia</h4>
               <p>
                 Software Quality Manager <br />& Fullstack Master
               </p>
@@ -132,13 +152,17 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
-              <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1518098268026-4e89f1a2cd8e_kifydl.png"
+              <a href="">
+              <img 
+                src="../../assets/pablo.jpeg"
                 alt="Justin Bieber"
               />
+              </a>
             </div>
             <div className="card-content">
               <h2>Pablo</h2>
+              <img src="../../assets/chile.ico" alt="" />
+              <h4>Chile</h4>
               <p>
                 Technology Infrastructure Manager <br />& Fullstack Master
               </p>
@@ -154,13 +178,17 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
+              <a href="">
               <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1502786129293-79981df4e689_ivqjf8.png"
-                alt="Adele"
+                src="../../assets/alex.jpeg"
+                alt="Dua Lipa"
               />
+              </a>
             </div>
             <div className="card-content">
               <h2>Alex</h2>
+              <img src="../../assets/colombia.ico" alt="" />
+              <h4>Colombia</h4>
               <p>
                 Director of Technology Innovation
                 <br />& Fullstack Master
@@ -177,13 +205,17 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
+              <a href="">
               <img
-                src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1444080748397-f442aa95c3e5_lvphop.png"
-                alt="The Weeknd"
+                src="../../assets/oscar.jpeg"
+                alt="Dua Lipa"
               />
+              </a>
             </div>
             <div className="card-content">
               <h2>Oscar</h2>
+              <img src="../../assets/argentina.ico" alt="" />
+              <h4>Argentina</h4>
               <p>
                 Technology Manager <br />& Fullstack Master
               </p>

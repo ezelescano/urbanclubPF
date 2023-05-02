@@ -1,33 +1,15 @@
-import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import { postArtist } from "../../redux/artistSlice";
-//import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// function validate(input) {
-//   const errors = {};
-//   if (!input.name) {
-//     errors.name = "Name is required";
-//   }
-//   if (!input.lastname) {
-//     errors.lastname = "Last name is required";
-//   }
-//   if (!input.email) {
-//     errors.email = "Email is required";
-//   }
-//   if (!input.nickName) {
-//     errors.nickName = "Nickname is required";
-//   }
-//   if (!input.password) {
-//     errors.password = "Password is required";
-//   }
-//   if (input.occupation.length === 0) {
-//     errors.occupation = "Occupation is required";
-//   }
-//   return errors;
-// }
+import { postArtist,errorsCreate } from "../../redux/artistSlice";
+import swal from 'sweetalert'
+
+// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 
 function Formulario() {
+  const {errorForm} = useSelector(state=>state.artist)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -43,7 +25,7 @@ function Formulario() {
     ocupation: [],
     aboutMe: "",
   });
-
+ 
   const [options, setOptions] = useState([
     "Dancer",
     "Singer",
@@ -56,11 +38,37 @@ function Formulario() {
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
 
+  // function validate(input) {
+  //   console.log(input)
+  //   const errors = {};
+  //   if (!input.name) {
+  //     errors.name = "Name is required";
+  //   }
+  //   if (!input.lastname) {
+  //     errors.lastname = "Last name is required";
+  //   }
+  //   if (!input.email) {
+  //     errors.email = "Email is required";
+  //   }
+  //   if (!input.nickName) {
+  //     errors.nickName = "Nickname is required";
+  //   }
+  //   if (!input.password) {
+  //     errors.password = "Password is required";
+  //   }
+  //   return errors;
+  // }
+
   function handleOnChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
+    // validate({
+    //   ...input,
+    //   [e.target.name]: e.target.value,
+    // });
+   
   }
   function handleOccupationChange(e) {
     const selectedOption = e.target.value;
@@ -109,29 +117,40 @@ function Formulario() {
     reader.onload = () => {
       setRutaImagen(reader.result);
     };
-    //console.log("El nombre de tu foto de perfil es " + file.name);
   };
-
+  
+ 
   const handleClick = () => {
     fileInputRef.current.click();
   };
 
   function handleSubmit(e) {
     e.preventDefault();
+  //   swal({
+  //     title: "Usuario Creado",
+  //     text: "Usuario Creado con exito",
+  //     icon: "success",
+  //     buttons: "Aceptar"
+  //  })
+   console.log(errors)
     const formData = new FormData(e.target);
-    formData.append("ocupation", input.ocupation); //N
-    console.log(input);
-    navigate("/");
-    dispatch(postArtist(formData));
-    alert("Se creo tu perfil");
+    formData.append("ocupation", input.ocupation); 
+    dispatch(postArtist(formData,navigate));
+   
   }
 
   return (
     <>
       <div className="formulario-externo-registro">
+      
         <div className="formulario-container formulario-background">
+        <div className="error_back">
+             <p>{errorForm.error}</p>
+          </div>
           <form onSubmit={handleSubmit} className="form-container">
+         
             <div className="form-container__left">
+           
               <label>
                 {rutaImagen ? (
                   <img
@@ -303,7 +322,8 @@ function Formulario() {
                 Registrarse
               </button>
             </div>
-          </form>
+             </form>
+            
         </div>
       </div>
     </>
