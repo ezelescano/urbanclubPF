@@ -1,12 +1,12 @@
 .about-us-container {
-  background-image: url("https://res.cloudinary.com/dipn8zmq3/image/upload/v1682703714/aboutusbannerperfect_hbm0xf.png");
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 50px;
-  
+  min-height: 100vh;
 }
 
 .about-us-header {
@@ -90,7 +90,8 @@
   font-family: "Lobster", cursive;
   text-align: center;
   color: #fff;
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0d5a73,    0 0 70px #0d5a73, 0 0 80px #0d5a73, 0 0 100px #0d5a73, 0 0 150px #0d5a73;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0d5a73,
+    0 0 70px #0d5a73, 0 0 80px #0d5a73, 0 0 100px #0d5a73, 0 0 150px #0d5a73;
   animation: flicker 15s infinite;
   -webkit-animation: flicker 15s infinite;
 }

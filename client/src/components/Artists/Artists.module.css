@@ -1,11 +1,11 @@
 .container {
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url(https://res.cloudinary.com/dipn8zmq3/image/upload/v1682454858/UrbanClub/DSC_5894_rev5jt.jpg);
-  display: grid;
-  grid-template-rows: repeat(4, auto);
-  grid-template-columns: repeat(3, auto);
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
   overflow: hidden; /* cambiar a 'hidden' */
+  min-height: 100vh;
 }
 
 .containerCar {

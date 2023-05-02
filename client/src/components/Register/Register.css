@@ -131,9 +131,8 @@
   border-radius: 0.25rem;
   margin-right: 0.5rem;
   transition: background-color 0.3s ease;
-
 }
-.occupation-options input[type="checkbox"]:hover {
+.occupation-options label input[type="checkbox"]:hover {
   background-color: #007bff5e;
 }
 
@@ -143,7 +142,7 @@
 }
 
 .occupation-options input[type="checkbox"]:checked::before {
-  font-size:10px;
+  font-size: 10px;
   content: "\00a0\2714"; /* el 00a0 es un blanco espacio y el 2714 es el signo de check*/
   color: #fff;
   font-weight: bold;
@@ -151,10 +150,49 @@
   line-height: 1.5rem;
   text-align: center;
 }
+
 .error_back{
   font-size: 25px;
   color: red;
   text-align: center;
   font-family: 'Times New Roman', Times, serif;
 
+}
+.form-submit-button {
+  background-color: #007aff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.form-submit-button:hover {
+  background-color: #006fe6;
+}
+
+.form-submit-button:active {
+  background-color: #0062cc;
+  transform: translateY(1px);
+}
+/*Faltan los media queries oscar :)))) Dale metele pataaaa...*/
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    padding: 5%;
+  }
+
+  .form-container > * {
+    padding: 5px;
+    padding-inline: 10px;
+  }
+
+  .form-picture {
+    max-width: 50%;
+  }
 }

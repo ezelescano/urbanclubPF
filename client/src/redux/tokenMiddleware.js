@@ -13,7 +13,6 @@ export const tokenMiddleware = (store) => (next) => (action) => {
   //const token = useSelector(state => state.auth.token);
   //const token = store.getState().auth.token
   const token = localStorage.getItem('token');
-  console.log(token)
 
   if (token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;

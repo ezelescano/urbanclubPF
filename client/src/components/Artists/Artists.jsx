@@ -18,9 +18,9 @@ const Artists = () => {
     <div className={style.ourPage}>
       <div className={style.container}>
         {artistas.map((item) => (
-          <div className={style.containerCar}>
+          <div key={item.id} className={style.containerCar}>
+            {/*A esté le tenes qué poner key*/}
             <CardsArt
-              key={item.id}
               id={item.id}
               name={item.name}
               profilePhoto={item.profilePhoto}

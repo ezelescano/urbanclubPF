@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
-import { loginSuccess } from './authSlice';
+import { loginSuccess, logout } from './authSlice';
 
 
 const initialState = {
@@ -70,6 +70,12 @@ export const artistSlice = createSlice({
         ...state,
         usuario: {}
       }
+    },
+    updateArtistSuccess(state, action){
+      return {
+        ...state,
+        usuario: action.payload
+      }
     }
     
   }
@@ -102,7 +108,21 @@ export const getArtistName = (name) => {
   };
 };
 
+export const ErrorsCreate = (payload) =>{
 
+ return async (dispatch) =>{
+  try {
+    const apiData = await axios.post('/artist', payload);
+    const result = apiData.data;
+    if (result.error) {
+       dispatch(setErrors(result))
+      return
+     }
+  } catch (error) {
+    
+  }
+ }
+}
 
 export const postArtist = (payload,navigate) => {
 
@@ -112,6 +132,7 @@ export const postArtist = (payload,navigate) => {
       const result = apiData.data;
       if (result.error) {
          dispatch(setErrors(result))
+        dispatch(postArtistSuccess());
         return
        }
        dispatch(postArtistSuccess());
@@ -151,6 +172,18 @@ export const getauth = (navigate) => {
   }
 }
 
+export const updateArtist = (id, input) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.put(`/artist/update/${id}`, input);
+      const response = apiData.data;
+      dispatch(updateArtistSuccess(response));
+    } catch (error) {
+      alert("Datos actualizados");
+    }
+  }
+ }
+
 
 
 export const {
@@ -161,6 +194,7 @@ export const {
   deleteArtistSuccess,
   getauthSuccess,
   clearProfile,
+  updateArtistSuccess,
   setErrors,
   clearErrors
 } = artistSlice.actions;

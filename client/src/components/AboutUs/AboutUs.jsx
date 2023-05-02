@@ -6,7 +6,7 @@ function AboutUs() {
     <div className="about-us-container">
       <div className="about-us-background">
         <div className="about-us-header">
-          <h1>About Us</h1>
+          <h1>Sobre Nosotros</h1>
         </div>
         <div className="about-us-text">
           <h2>

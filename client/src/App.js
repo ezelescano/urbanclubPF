@@ -8,7 +8,9 @@ import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Artists from "./components/Artists/Artists";
 import AboutUs from "./components/AboutUs/AboutUs";
-import Events from "./components/Events/Events"
+import Events from "./components/Events/Events";
+import CreateEvent from"./components/createEvent/CreateEvent";
+import Footer from "./components/Footer/Footer"
 
 //verificacion del token
 import { useEffect } from 'react';
@@ -53,7 +55,9 @@ function App() {
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/createevent" element={<CreateEvent/>} />
       </Routes>
+      <Footer />
     </div>
   );
 }
