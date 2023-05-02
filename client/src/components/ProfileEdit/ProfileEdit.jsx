@@ -26,7 +26,7 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
     // password: usuario.password,
     city: usuario.city,
     Country: usuario.Country,
-    ocupation: [...usuario.ocupation],
+    ocupation: usuario.ocupation,
     aboutMe: usuario.aboutMe,
   });
 
@@ -43,22 +43,52 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
     handleEdit(input);
   }
 
- 
+  function addOcupation(ocupation,selected){
+    if(ocupation.includes(selected)){
+      return ocupation
+    }
+    else{
+      return ocupation.length > 0 ? ocupation + "," + selected : selected
+    }
+  }
+
+  function remOcupation(ocupation, selected){
+    if(ocupation.includes(selected)){
+      ocupation = ocupation.replace(selected,"").replace(",,",",")
+      if (ocupation.charAt(0)=== ",")  ocupation = ocupation.substring(1)
+      if (ocupation.charAt(ocupation.length-1) === ",")  ocupation = ocupation.substring(0,ocupation.length-1)
+      return ocupation
+    }
+    else{
+      return ocupation
+    }
+  }
   function handleOccupationChange(e) {
     const selectedOption = e.target.value;
     const isSelected = e.target.checked;
 
+    // if (isSelected) {
+    //   setInput((input) => ({
+    //     ...input,
+    //     ocupation: [...input.ocupation, selectedOption],
+    //   }));
+    // } else {
+    //   setInput((input) => ({
+    //     ...input,
+    //     ocupation: input.ocupation.filter(
+    //       (option) => option !== selectedOption
+    //     ),
+    //   }));
+    // }
     if (isSelected) {
       setInput((input) => ({
         ...input,
-        ocupation: [...input.ocupation, selectedOption],
+        ocupation: addOcupation(input.ocupation,selectedOption),
       }));
     } else {
       setInput((input) => ({
         ...input,
-        ocupation: input.ocupation.filter(
-          (option) => option !== selectedOption
-        ),
+        ocupation: remOcupation(input.ocupation,selectedOption),
       }));
     }
 
@@ -85,7 +115,7 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
       setErrors(validate({ ...input, ocupation: [...input.ocupation, value] }));
       setInput({
         ...input,
-        ocupation: [...input.ocupation, value],
+        ocupation: [/*...input.ocupation,*/ value],
       });
     } else {
       setInput({
