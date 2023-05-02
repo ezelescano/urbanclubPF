@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { loginSuccess, logout } from './authSlice';
 
+
 const initialState = {
   usuario: [],
   allUsuarios: [],
   artist: {},
   allUsuariosArt: [],
+  errorForm: {}
 }
 
 
@@ -27,32 +29,44 @@ export const artistSlice = createSlice({
         usuario: action.payload
       };
     },
-    getauthSuccess(state, action){
+    getauthSuccess(state, action) {
       return {
         ...state,
         usuario: action.payload
       };
     },
-    getArtistNameSuccess(state, action){
+    getArtistNameSuccess(state, action) {
       return {
         ...state,
         allUsuarios: action.payload
       }
     },
-    postArtistSuccess(state){
-      return{
+    postArtistSuccess(state) {
+      return {
         ...state,
       }
     },
-    // Acá también agregó ALAN
-    deleteArtistSuccess(state, action){
+    setErrors(state, action) {
       return{
+        ...state,
+        errorForm:action.payload
+      }
+    },
+    clearErrors(state){
+      return{
+        ...state,
+        errorForm:{}
+      }
+    },
+    // Acá también agregó ALAN
+    deleteArtistSuccess(state, action) {
+      return {
         ...state,
         artist: action.payload
       }
     },
-    clearProfile(state){
-      return{
+    clearProfile(state) {
+      return {
         ...state,
         usuario: {}
       }
@@ -63,7 +77,9 @@ export const artistSlice = createSlice({
         usuario: action.payload
       }
     }
+    
   }
+  
 });
 
 
@@ -84,7 +100,7 @@ export const getArtistId = (id) => {
   };
 };
 
-export const getArtistName  = (name) => {
+export const getArtistName = (name) => {
   return async (dispatch) => {
     const apiData = await axios.get(`/artist?name=${name}`);
     const artist = apiData.data;
@@ -92,13 +108,37 @@ export const getArtistName  = (name) => {
   };
 };
 
-export const postArtist = (payload) => {
+export const ErrorsCreate = (payload) =>{
+
+ return async (dispatch) =>{
+  try {
+    const apiData = await axios.post('/artist', payload);
+    const result = apiData.data;
+    if (result.error) {
+       dispatch(setErrors(result))
+      return
+     }
+  } catch (error) {
+    
+  }
+ }
+}
+
+export const postArtist = (payload,navigate) => {
+
   return async (dispatch) => {
     try {
       const apiData = await axios.post('/artist', payload);
       const result = apiData.data;
-      dispatch(postArtistSuccess());
+      if (result.error) {
+         dispatch(setErrors(result))
+        dispatch(postArtistSuccess());
+        return
+       }
+       dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))
+      dispatch(clearErrors())
+      navigate("/")
     } catch (error) {
       alert('No se pudo crear el artista')
     }
@@ -112,9 +152,7 @@ export const deleteArtist = (id) => {
     try {
       const apiData = await axios.delete(`/artist/${id}`);
       const result = apiData.data;
-      dispatch(deleteArtistSuccess(result));
-      dispatch(logout());
-      
+      return dispatch(deleteArtistSuccess(result));
     } catch (error) {
       alert("No se pudo borrar el artista");
     }
@@ -122,18 +160,19 @@ export const deleteArtist = (id) => {
 };
 
 export const getauth = (navigate) => {
-  return async(dispatch) => {
-  try {
-    const apiData = await axios.get(`/artist/login/me`);
-    const artist = apiData.data;
-    return dispatch(getauthSuccess(artist));
-  } catch (e) {
-    alert('inicia sesion')
-    //navigate("/artists")
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.get(`/artist/login/me`);
+      const artist = apiData.data;
+      return dispatch(getauthSuccess(artist));
+    } catch (e) {
+      alert('inicia sesion')
+      //navigate("/artists")
+    }
   }
- }}
+}
 
- export const updateArtist = (id, input) => {
+export const updateArtist = (id, input) => {
   return async (dispatch) => {
     try {
       const apiData = await axios.put(`/artist/update/${id}`, input);
@@ -145,6 +184,8 @@ export const getauth = (navigate) => {
   }
  }
 
+
+
 export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
@@ -153,7 +194,9 @@ export const {
   deleteArtistSuccess,
   getauthSuccess,
   clearProfile,
-  updateArtistSuccess
+  updateArtistSuccess,
+  setErrors,
+  clearErrors
 } = artistSlice.actions;
 
 export default artistSlice.reducer;
