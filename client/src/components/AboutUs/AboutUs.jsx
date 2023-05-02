@@ -1,6 +1,6 @@
 import React from "react";
 import "./AboutUs.css";
-
+import { NavLink } from "react-router-dom";
 function AboutUs() {
   return (
     <div className="about-us-container">
@@ -24,13 +24,13 @@ function AboutUs() {
         <div className="card-container">
           <div className="card">
             <div className="card-image">
-              <a href="">
+              <NavLink to="/About/Estiven">
               <img
                 src="../../assets/estiven.jpeg"
                 alt="Dua Lipa"
               />
-              </a>
-            </div>
+              </NavLink>
+               </div>
             <div className="card-content">
               <h2>Estiven</h2>
               <img src="../../assets/colombia.ico" alt="" />

@@ -146,29 +146,31 @@ const Profile = () => {
     // const confirmed = window.confirm(
     //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
     // );
-    let confirmed = false
+
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
       icon: "warning",
       buttons: ["No", "Si"]
-    }).then(respuesta => {
-      if (respuesta && isCurrentUser) {
-        swal({
+    }).then(async res=>{
+      if (res && isCurrentUser) {
+        const confirmed = await dispatch(deleteArtist(id));
+       if (confirmed) {
+       return swal({
           title: "CUENTA ELIMINADA",
           text: `La cuenta ${name} ha sido eliminada correctamente`,
           icon: "success",
           button: "Aceptar"
-        }).then(res => {
-          if (res) {
-            dispatch(deleteArtist(id));
-            dispatch(logout());
-            window.location.replace("/")
-            // navigate("/");
-          }
         })
+       }
+      } 
+    }).then(res=>{
+      if (res) {
+        dispatch(logout());
+        window.location.replace("/")
+        // navigate("/");
       }
-    });
+    })
 
   };
 
@@ -189,11 +191,6 @@ const Profile = () => {
         navigate("/");
       }
     })
-    // const confirmed = window.confirm(`Desea cerrar sesion`);
-    // if (confirmed && isCurrentUser) {
-    //   dispatch(logout());
-    //   navigate("/");
-    // }
   };
 
   const handleFollow = () => {
@@ -341,13 +338,13 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {/* <div className="div-eventos">
+      <div className="div-eventos">
         <div ref={eventosRef} className="titulo-ev">
           Eventos
         </div>
 
         <div>{events && <CardsEvents events={events} />}</div>
-      </div> */}
+      </div>
     </div>
   );
 };
