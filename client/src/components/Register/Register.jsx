@@ -28,7 +28,7 @@ function Formulario() {
   const [options, setOptions] = useState([
     "Bailarin",
     "Cantante",
-    "Músico",
+    "Musico",
     "Actor",
     "Pintor",
     "Modelo",
