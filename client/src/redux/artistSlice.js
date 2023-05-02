@@ -179,7 +179,8 @@ export const updateArtist = (id, input) => {
       const response = apiData.data;
       dispatch(updateArtistSuccess(response));
     } catch (error) {
-      alert("Datos actualizados");
+      alert(error);
+      // console.log();
     }
   }
  }
