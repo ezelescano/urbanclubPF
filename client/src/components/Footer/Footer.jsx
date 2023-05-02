@@ -29,7 +29,9 @@ const Footer = () => {
             <NavLink to="/aboutus">Nosotros</NavLink>
           </li>
           <li>
-            <NavLink to="/aboutus">Términos y Condiciones</NavLink>
+            <a href="https://www.facebook.com/legal/terms" target="_blank">
+              Términos y Condiciones
+            </a>
           </li>
         </ul>
       </div>
