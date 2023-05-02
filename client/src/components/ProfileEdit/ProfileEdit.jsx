@@ -9,9 +9,9 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
   const [errors, setErrors] = useState({});
 
   const [options, setOptions] = useState([
-    "Dancer",
-    "Singer",
-    "Musician",
+    "Bailarin",
+    "Cantante",
+    "Musico",
     "Actor",
   ]);
 
@@ -268,13 +268,13 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 <input
                   type="checkbox"
                   name="other"
-                  value="Aun no se agrega otros"
-                  checked={input.ocupation.includes("Aun no se agrega otros")}
+                  value="Otros"
+                  checked={input.ocupation.includes("Otros")}
                   onChange={handleOccupationChange}
                 />
                 Otros
               </label>
-              {input.ocupation.includes("Aun no se agrega otros") && (
+              {input.ocupation.includes("Otros") && (
                 <input
                   type="text"
                   value={input.value}

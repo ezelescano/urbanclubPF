@@ -135,7 +135,7 @@ const Profile = () => {
   };
 
   const handlePasswordChange = () => {
-    alert("Te estas portado mal seras castiga!!!! 🔥🍻🍻😎😎👩‍🦽💉💉");
+    alert("Funcion aún no implementada :)");
   };
 
   const handleOnBlur = () => {
@@ -180,8 +180,8 @@ const Profile = () => {
 
   const handleLogout = () => {
     swal({
-      title: "CERRAR SECCION",
-      text: `Deseas cerrar la seccion de ${name}`,
+      title: "CERRAR SESION",
+      text: `Deseas cerrar la sesion de ${name}`,
       icon: "warning",
       buttons: ["No", "Si"]
     }).then(res => {

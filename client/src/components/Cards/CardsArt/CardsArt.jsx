@@ -12,7 +12,7 @@ const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id }) => {
           <h5>Occupation:</h5>
           <p>{ocupation}</p>
           <h5>About me:</h5>
-          <p> {aboutMe}</p>
+          <p>{aboutMe}</p>
         </div>
       </div>
     </NavLink>
