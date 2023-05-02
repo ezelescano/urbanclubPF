@@ -158,6 +158,10 @@
   font-family: 'Times New Roman', Times, serif;
 
 }
+.errors_frond{
+  font-size: 15px;
+  color: red;
+}
 .form-submit-button {
   background-color: #007aff;
   border: none;
