@@ -325,7 +325,7 @@ const Profile = () => {
               )}
             </div>
           ) : (
-            <div>
+            <div className="NoAhora">
               <button className="btn-profile" onClick={handleFollow}>
                 Seguir
               </button>

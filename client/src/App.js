@@ -12,6 +12,7 @@ import AboutEstiven from "./components/AboutUs/AboutEstiven";
 import Events from "./components/Events/Events";
 import CreateEvent from"./components/createEvent/CreateEvent";
 import Footer from "./components/Footer/Footer"
+import Merch from "./components/Merch/Merch"
 
 //verificacion del token
 import { useEffect } from 'react';
@@ -56,8 +57,9 @@ function App() {
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/createevent" element={<CreateEvent/>} />
-        <Route path="/About/Estiven" element={<AboutEstiven/>} />
+        <Route path="/createevent" element={<CreateEvent />} />
+        <Route path="/About/Estiven" element={<AboutEstiven />} />
+        <Route path="/merch" element={<Merch />} />
       </Routes>
       <Footer />
     </div>

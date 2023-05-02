@@ -13,6 +13,8 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
     "Cantante",
     "Musico",
     "Actor",
+    "Pintor",
+    "Modelo"
   ]);
 
   const [input, setInput] = useState({
