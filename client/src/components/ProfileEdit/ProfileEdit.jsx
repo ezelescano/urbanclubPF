@@ -132,7 +132,9 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
   return (
     <div className={styles.container}>
       <div className={styles.containerflex}>
-        <button className={styles.containerexit}onClick={handleShowEdit}>X</button>
+        <button className={styles.containerexit} onClick={handleShowEdit}>
+          X
+        </button>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           {/* <div className="form-container__left">
   return (
@@ -243,7 +245,14 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 name="Country"
               />
             </label>
-            <div className="occupation-options">
+            <div
+              style={{
+                justifyContent: "space-between",
+                gap: "0.5rem",
+                padding: "5px",
+              }}
+              className="occupation-options"
+            >
               {options.map((option) => (
                 <label key={option}>
                   <input
