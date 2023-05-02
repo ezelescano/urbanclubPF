@@ -1,11 +1,23 @@
 .container{
     position: absolute;
-    left: -400px;
+    border-radius: 10px;
+    left: -800px;
+    top: -300px;
     width: 400px;
     height: 500px;
-    background-color: #939393;
+    background-color: #939393f5;
     padding-top: 5%;
     /* border: 1px solid black; */
+}
+.containerflex{
+    display: flex;
+    flex-direction: column;
+}
+.containerexit {
+    width: 40px;
+    margin-left: auto;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 /* .formContainer{

@@ -131,9 +131,10 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
 
   return (
     <div className={styles.container}>
-      <button onClick={handleShowEdit}>X</button>
-      <form onSubmit={handleSubmit} className={styles.formContainer}>
-        {/* <div className="form-container__left">
+      <div className={styles.containerflex}>
+        <button className={styles.containerexit}onClick={handleShowEdit}>X</button>
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
+          {/* <div className="form-container__left">
   return (
     <>
       <form onSubmit={handleSubmit} className="form-container">
@@ -166,21 +167,21 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 Registrate a<br></br> <b>Urban Club!</b>
               </label>
             </div> */}
-        <div className="form-container__middle">
-          <label className="required">
-            <div>
-              <span style={{ color: "red" }}>*</span> Nombre:
-            </div>
-            <input
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              type="text"
-              value={input.name}
-              maxLength="35"
-              name="name"
-            />
-          </label>
-          {/* <label>
+          <div className="form-container__middle">
+            <label className="required">
+              <div>
+                <span style={{ color: "red" }}>*</span> Nombre:
+              </div>
+              <input
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                type="text"
+                value={input.name}
+                maxLength="35"
+                name="name"
+              />
+            </label>
+            {/* <label>
             <div>
               <span style={{ color: "red" }}>*</span> Apellido:
             </div>
@@ -194,21 +195,21 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
               required
             />
           </label> */}
-          <label>
-            <div>
-              <span style={{ color: "red" }}>*</span> Correo:
-            </div>
-            <input
-              type="email"
-              value={input.email}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="email"
-              maxLength={45}
-              required
-            />
-          </label>
-          {/* <label>
+            {/* <label>
+              <div>
+                <span style={{ color: "red" }}>*</span> Correo:
+              </div>
+              <input
+                type="email"
+                value={input.email}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="email"
+                maxLength={45}
+                required
+              />
+            </label> */}
+            {/* <label>
             <div>
               <span style={{ color: "red" }}>*</span> Nickname:
             </div>
@@ -220,65 +221,66 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
               name="nickName"
             />
           </label> */}
-        </div>
-        <div className="form-container__right">
-          <label>
-            <div>Ciudad:</div>
-            <input
-              type="text"
-              value={input.city}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="city"
-            />
-          </label>
-          <label>
-            <div>Pais:</div>
-            <input
-              type="text"
-              value={input.Country}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="Country"
-            />
-          </label>
-          <div className="occupation-options">
-            {options.map((option) => (
-              <label key={option}>
-                <input
-                  type="checkbox"
-                  value={option}
-                  checked={input.ocupation.includes(option)}
-                  onChange={handleOccupationChange}
-                />
-                {option}
-              </label>
-            ))}
+          </div>
+          <div className="form-container__right">
             <label>
-              <input
-                type="checkbox"
-                name="other"
-                value="Aun no se agrega otros"
-                checked={input.ocupation.includes("Aun no se agrega otros")}
-                onChange={handleOccupationChange}
-              />
-              Otros
-            </label>
-            {input.ocupation.includes("Aun no se agrega otros") && (
+              <div>Ciudad:</div>
               <input
                 type="text"
-                value={input.value}
-                name="otherOccupation"
-                placeholder="Ingresa tu oficio"
+                value={input.city}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="city"
               />
-            )}
+            </label>
+            <label>
+              <div>Pais:</div>
+              <input
+                type="text"
+                value={input.Country}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="Country"
+              />
+            </label>
+            <div className="occupation-options">
+              {options.map((option) => (
+                <label key={option}>
+                  <input
+                    type="checkbox"
+                    value={option}
+                    checked={input.ocupation.includes(option)}
+                    onChange={handleOccupationChange}
+                  />
+                  {option}
+                </label>
+              ))}
+              <label>
+                <input
+                  type="checkbox"
+                  name="other"
+                  value="Aun no se agrega otros"
+                  checked={input.ocupation.includes("Aun no se agrega otros")}
+                  onChange={handleOccupationChange}
+                />
+                Otros
+              </label>
+              {input.ocupation.includes("Aun no se agrega otros") && (
+                <input
+                  type="text"
+                  value={input.value}
+                  name="otherOccupation"
+                  placeholder="Ingresa tu oficio"
+                />
+              )}
+            </div>
+            <button className="upload-form-button" type="submit">
+              Save Changes
+            </button>
           </div>
-          <button className="upload-form-button" type="submit">
-            Save Changes
-          </button>
-        </div>
-      </form>
-      <div className={styles.button}></div>
+        </form>
+        <div className={styles.button}></div>
+      </div>
     </div>
   );
 };
