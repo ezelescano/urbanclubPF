@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { loginSuccess, logout } from './authSlice';
-
+import swal from 'sweetalert'
 
 const initialState = {
   usuario: [],
@@ -138,9 +138,24 @@ export const postArtist = (payload,navigate) => {
        dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))
       dispatch(clearErrors())
-      navigate("/")
+      swal({
+        title: "Usuario Creado",
+        text: "Usuario Creado con exito",
+        icon: "success",
+        buttons: "Aceptar"
+     }).then(res=>{
+      if(res){
+        navigate("/")
+      }
+     })
+     
     } catch (error) {
-      alert('No se pudo crear el artista')
+      swal({
+        title: "ERROR",
+        text: "No se pudo crear el usuario",
+        icon: "error",
+        buttons: "Aceptar"
+     })
     }
   };
 };
@@ -154,7 +169,12 @@ export const deleteArtist = (id) => {
       const result = apiData.data;
       return dispatch(deleteArtistSuccess(result));
     } catch (error) {
-      alert("No se pudo borrar el artista");
+      swal({
+        title: "ERROR",
+        text: "No se pudo borrar el artista",
+        icon: "error",
+        buttons: "Aceptar"
+     })
     }
   }
 };
@@ -166,7 +186,12 @@ export const getauth = (navigate) => {
       const artist = apiData.data;
       return dispatch(getauthSuccess(artist));
     } catch (e) {
-      alert('inicia sesion')
+      swal({
+        title: "ERROR",
+        text: "Inicia seccion",
+        icon: "warning",
+        buttons: "Aceptar"
+     })
       //navigate("/artists")
     }
   }
@@ -179,7 +204,12 @@ export const updateArtist = (id, input) => {
       const response = apiData.data;
       dispatch(updateArtistSuccess(response));
     } catch (error) {
-      alert(error);
+      swal({
+        title: "ERROR",
+        text: error,
+        icon: "warning",
+        buttons: "Aceptar"
+     })
       // console.log();
     }
   }

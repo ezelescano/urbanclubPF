@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
-
+import swal from 'sweetalert'
 
 const initialState = {
     creaEvents: []
@@ -28,7 +28,12 @@ export const postEvent = (payload) => {
        
         return dispatch(postEventSuccess(eventData));
       } catch (error) {
-        alert("No se pudo crear el evento")
+        swal({
+            title: "EVENTOS",
+            text:  `No se pudo crear el evento`,
+            icon: "error",
+            buttons: "Aceptar"
+         })
       }  
     };
 };

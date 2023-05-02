@@ -34,40 +34,42 @@ function Formulario() {
   ]);
 
   const [errors, setErrors] = useState({});
+  const [showPassword,setShowPassword] = useState(false)
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
 
-  // function validate(input) {
-  //   console.log(input)
-  //   const errors = {};
-  //   if (!input.name) {
-  //     errors.name = "Name is required";
-  //   }
-  //   if (!input.lastname) {
-  //     errors.lastname = "Last name is required";
-  //   }
-  //   if (!input.email) {
-  //     errors.email = "Email is required";
-  //   }
-  //   if (!input.nickName) {
-  //     errors.nickName = "Nickname is required";
-  //   }
-  //   if (!input.password) {
-  //     errors.password = "Password is required";
-  //   }
-  //   return errors;
-  // }
+  function validate(input) {
+    const errors = {};
+    if (!input.name) {
+      errors.name = "Name is required";
+    }
+    if (!input.lastname) {
+      errors.lastname = "Lasname is required";
+    }
+    if (!input.email) {
+      errors.email = "Email is required";
+    }
+    if (!input.nickName) {
+      errors.nickName = "Nickname is required";
+    }
+    if (input.password.length <= 8) {
+      errors.password = "mayor o igual a 8 caracteres";
+    }
+    return errors;
+  }
 
   function handleOnChange(e) {
+    console.log("errores///",errors.password)
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    // validate({
-    //   ...input,
-    //   [e.target.name]: e.target.value,
-    // });
+    setErrors(
+      validate({
+      ...input,
+      [e.target.name]: e.target.value,
+    }))
    
   }
   function handleOccupationChange(e) {
@@ -131,12 +133,7 @@ function Formulario() {
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation); 
     dispatch(postArtist(formData,navigate));
-        swal({
-      title: "Usuario Creado",
-      text: "Usuario Creado con exito",
-      icon: "success",
-      buttons: "Aceptar"
-   })
+     
    
   }
 
@@ -188,6 +185,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Nombre:
                 </div>
                 <input
+                placeholder={errors.name}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   type="text"
@@ -202,6 +200,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Apellido:
                 </div>
                 <input
+                placeholder={errors.lastname}
                   type="text"
                   value={input.lastname}
                   onChange={handleOnChange}
@@ -216,6 +215,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Correo:
                 </div>
                 <input
+                 placeholder={errors.email}
                   type="email"
                   value={input.email}
                   onChange={handleOnChange}
@@ -230,6 +230,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Nickname:
                 </div>
                 <input
+                 placeholder={errors.nickName}
                   type="text"
                   value={input.nickName}
                   onChange={handleOnChange}
@@ -243,7 +244,8 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Contraseña:
                 </div>
                 <input
-                  type="text"
+                  placeholder={errors.password}
+                  type="password"
                   maxLength={45}
                   value={input.password}
                   onChange={handleOnChange}
@@ -252,6 +254,7 @@ function Formulario() {
                   required
                 />
               </label>
+              <p className="errors_frond">{errors.password}</p>
               <label>
                 <div>Ciudad:</div>
                 <input
