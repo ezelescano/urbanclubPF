@@ -10,6 +10,8 @@ const Footer = () => {
       <div>
         <h3>Atencion al cliente</h3>
         <br />
+        <h5>Av. Corrientes 500</h5>
+        <br />
         <h4>DPTO DE VENTAS</h4>
         Lunes a Sabado <br />
         08:00 a 18:00h
@@ -37,12 +39,20 @@ const Footer = () => {
       </div>
       <div>
         <h3>Contactenos</h3>
-        <NavLink to="/aboutus">
+        <a
+          href="https://www.facebook.com/profile.php?id=100068893039514"
+          target="_blank"
+          style={{ cursor: "pointer" }}
+        >
           <img className="ftr-img" src={fbftr} alt=""></img>
-        </NavLink>
-        <NavLink to="/aboutus">
+        </a>
+        <a
+          href="https://drive.google.com/drive/folders/1KaKgiDDZ4VnWFAYnxHlJ96JboY1RU6hK"
+          target="_blank"
+          style={{ cursor: "pointer" }}
+        >
           <img className="ftr-img" src={gglftr} alt=""></img>
-        </NavLink>
+        </a>
       </div>
     </div>
   );
