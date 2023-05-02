@@ -173,7 +173,8 @@
 }
 
 .aboutme {
-  max-width: 2200px;
+  max-width: 30vw;
+  word-wrap: break-word;
   margin-right: 30px;
 }
 
@@ -246,6 +247,8 @@
     transform: translate(0px, -530px);
   }
   .aboutme {
+    max-width: 50vw;
+    word-wrap: break-word;
     width: unset;
     margin-right: unset;
   }
