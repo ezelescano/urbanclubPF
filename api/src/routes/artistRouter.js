@@ -10,8 +10,8 @@ const authLogin = require("../Handlers/artistHandler/authLogin");
 const authArtist = require("../Handlers/artistHandler/authArtist")
 const verifyAuth = require("../middlewares/verifyAuth");
 const fileupload = require("express-fileupload")
-const passport = require("../middlewares/authGoogle")
-const artistRouter = Router();
+// const passport = require("../middlewares/authGoogle")
+// const artistRouter = Router();
 
  
 artistRouter.get("/", getArtistHandler);
@@ -24,50 +24,50 @@ artistRouter.post("/",fileupload({useTempFiles: true,tempFileDir: "./uploads"}),
 artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
 
-artistRouter.get(
-    "/auth/google",
-    passport.authenticate("google", {
-      scope: [
-          "profile", 
-          "email"
-      ]
-  }),
-(req, res, next) => {
-  // Esta función se ejecutará solo si la autenticación falla
-  res.status(401).json({ error: "Autenticación fallida" });
-}
-);
+// artistRouter.get(
+//     "/auth/google",
+//     passport.authenticate("google", {
+//       scope: [
+//           "profile", 
+//           "email"
+//       ]
+//   }),
+// (req, res, next) => {
+//   // Esta función se ejecutará solo si la autenticación falla
+//   res.status(401).json({ error: "Autenticación fallida" });
+// }
+// );
 
-artistRouter.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureMessage: "no se pudo iniciar sesion con google",
-    failureRedirect: "/auth/google",
-    // session: false,
-    }),
-    (req, res) => {
+// artistRouter.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     failureMessage: "no se pudo iniciar sesion con google",
+//     failureRedirect: "/auth/google",
+//     // session: false,
+//     }),
+//     (req, res) => {
   
-      try{
-    //   const userString = JSON.stringify(req.user);
-      console.log('se envia respuesta');
+//       try{
+//     //   const userString = JSON.stringify(req.user);
+//       console.log('se envia respuesta');
       
-      res.send(req.user
-        // ` 
-        // <!DOCTYPE html>
-        // <html lang="en">
+//       res.send(req.user
+//         // ` 
+//         // <!DOCTYPE html>
+//         // <html lang="en">
   
-        // <body>
+//         // <body>
             
   
-        // </body>
-        // <script> window.opener.postMessage(${userString}, 'http://localhost:3001') </script>
-        // </html>
-        // `
-      )}catch (error) {
-        res.status(400).json({error: error.message})
-      }
-    }
-  );
+//         // </body>
+//         // <script> window.opener.postMessage(${userString}, 'http://localhost:3001') </script>
+//         // </html>
+//         // `
+//       )}catch (error) {
+//         res.status(400).json({error: error.message})
+//       }
+//     }
+//   );
 
 
 
