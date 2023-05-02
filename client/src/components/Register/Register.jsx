@@ -2,14 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import { postArtist,errorsCreate } from "../../redux/artistSlice";
-import swal from 'sweetalert'
+import { postArtist, errorsCreate } from "../../redux/artistSlice";
+import swal from "sweetalert";
 
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-
 function Formulario() {
-  const {errorForm} = useSelector(state=>state.artist)
+  const { errorForm } = useSelector((state) => state.artist);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -25,7 +24,7 @@ function Formulario() {
     ocupation: [],
     aboutMe: "",
   });
- 
+
   const [options, setOptions] = useState([
     "Bailarin",
     "Cantante",
@@ -36,7 +35,7 @@ function Formulario() {
   ]);
 
   const [errors, setErrors] = useState({});
-  const [showPassword,setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
@@ -62,17 +61,17 @@ function Formulario() {
   }
 
   function handleOnChange(e) {
-    console.log("errores///",errors.password)
+    console.log("errores///", errors.password);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
-      ...input,
-      [e.target.name]: e.target.value,
-    }))
-   
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
   function handleOccupationChange(e) {
     const selectedOption = e.target.value;
@@ -122,8 +121,7 @@ function Formulario() {
       setRutaImagen(reader.result);
     };
   };
-  
- 
+
   const handleClick = () => {
     fileInputRef.current.click();
   };
@@ -131,12 +129,10 @@ function Formulario() {
   function handleSubmit(e) {
     e.preventDefault();
 
-   console.log(errors)
+    console.log(errors);
     const formData = new FormData(e.target);
-    formData.append("ocupation", input.ocupation); 
-    dispatch(postArtist(formData,navigate));
-     
-   
+    formData.append("ocupation", input.ocupation);
+    dispatch(postArtist(formData, navigate));
   }
 
   return (
@@ -288,7 +284,7 @@ function Formulario() {
                       />
                       {option}
                     </label>
-                  ))} 
+                  ))}
                   <label>
                     <input
                       type="checkbox"
@@ -312,15 +308,17 @@ function Formulario() {
               <label>
                 Descripción:
                 <textarea
+                  className="descripcion-area"
                   value={input.aboutMe}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  maxLength={500}
+                  placeholder="500 Palabras max"
+                  maxLength={150}
                   name="aboutMe"
                 />
               </label>
               <button className="upload-form-button" type="submit">
-                Registrarse
+                Registrarse 
               </button>
             </div>
           </form>

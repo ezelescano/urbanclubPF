@@ -184,6 +184,12 @@
   background-color: #0062cc;
   transform: translateY(1px);
 }
+.descripcion-area{
+  max-width: 140px;
+  max-height: 100px;
+  min-width: 140px;
+  min-height: 50px;
+}
 /*Faltan los media queries oscar :)))) Dale metele pataaaa...*/
 @media (max-width: 768px) {
   .form-container {
