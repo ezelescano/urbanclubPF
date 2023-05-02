@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
-
+import swal from 'sweetalert'
 //slice de inicio de secion
 //para usar el estado 
 //const nombredelavariable = useSelector(state => state.auth.elestado que necesiten)
@@ -61,11 +61,25 @@ export const login = (payload, navigate) => {
       const response = await axios.post('/artist/login', payload);
       const data = response.data;
       dispatch(loginSuccess(data));
-      alert('login exitoso');
-      navigate("/artists")
+      swal({
+        title: "LOGUEO EXITOSO",
+        text:  `Bienvenido`,
+        icon: "success",
+        buttons: "Aceptar"
+     }).then(res=>{
+      if (res) {
+        navigate("/artists")
+      } 
+     })
+      
     } catch (e) {
       dispatch(loginFailure(e))
-      alert('Datos Invalidos, Porfavor Revisar')
+      swal({
+        title: "DATOS INVÁLIDOS",
+        text:  `Datos Inválidos, Por favor Revisar`,
+        icon: "warning",
+        buttons: "Aceptar"
+     })
     }
   }
 };

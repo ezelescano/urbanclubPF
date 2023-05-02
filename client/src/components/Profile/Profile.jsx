@@ -3,7 +3,13 @@ import React, { useRef } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getArtistId, clearProfile, deleteArtist } from "../../redux/artistSlice";
+import {
+  getArtistId,
+  clearProfile,
+  deleteArtist,
+  updateArtist
+} from "../../redux/artistSlice";
+import swal from 'sweetalert'
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -82,7 +88,7 @@ const Profile = () => {
       description: "Descripción del evento 6",
       image:
         "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1459213599465-03ab6a4d5931_wo41ug.png",
-    }
+    },
   ];
 
   const isCurrentUser = currentUser && currentUser.id === usuario.id;
@@ -101,8 +107,7 @@ const Profile = () => {
   const { id } = useParams();
   const eventosRef = useRef(null);
 
-  
-/*   const token = localStorage.getItem("token");
+  /*   const token = localStorage.getItem("token");
  if (!token) {
     // Redirigir a la página de inicio de sesión
     alert('inicia sesion')
@@ -112,55 +117,89 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(getArtistId(id));
-    return () => {      //le paso un return cuando se desmonta
-      dispatch(clearProfile())
-    }
+    return () => {
+      //le paso un return cuando se desmonta
+      dispatch(clearProfile());
+    };
   }, [dispatch, id]);
 
   const scrollToEventos = () => {
-    eventosRef.current.scrollIntoView({ behavior: 'smooth' });
-  }
+    eventosRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleSettings = () => {
-    setShowSettings(!showSettings)
-  }
+    setShowSettings(!showSettings);
+  };
 
   const handleShowEdit = () => {
-    setShowEdit(!showEdit)
-  }
+    setShowEdit(!showEdit);
+  };
 
   const handlePasswordChange = () => {
     alert("Te estas portando mal seras castigada!!!! 🔥🍻🍻😎😎👩‍🦽💉💉")
   }
 
-  /* const handleOnBlur = () => {
+  const handleOnBlur = () => {
     setShowSettings(false)
-  } */
+  }
 
   const handleDeleteAccount = () => {
-    const confirmed = window.confirm(`Estas seguro que deseas eliminar la cuenta con el nombre ${name}`)
-    if(confirmed && isCurrentUser){
-      dispatch(deleteArtist(id))
-      alert(`La cuenta ${name} ha sido eliminada correctamente`)
-      navigate('/home')
-    }
-  }
+    // const confirmed = window.confirm(
+    //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
+    // );
+    let confirmed = false
+    swal({
+      title: "ELIMINAR CUENTA",
+      text: `Estas seguro de eliminar la cuenta de ${name}`,
+      icon: "warning",
+      buttons: ["No", "Si"]
+    }).then(respuesta => {
+      if (respuesta && isCurrentUser) {
+        swal({
+          title: "CUENTA ELIMINADA",
+          text: `La cuenta ${name} ha sido eliminada correctamente`,
+          icon: "success",
+          button: "Aceptar"
+        }).then(res => {
+          if (res) {
+            dispatch(deleteArtist(id));
+            dispatch(logout());
+            window.location.replace("/")
+            // navigate("/");
+          }
+        })
+      }
+    });
+
+  };
 
   const handleEdit = (input) => {
-    //dispatch(updateArtist(id, input))
-  }
+
+    dispatch(updateArtist(id, input))
+  };
 
   const handleLogout = () => {
-    const confirmed = window.confirm(`Desea cerrar sesion`)
-    if(confirmed && isCurrentUser){
-      dispatch(logout())
-      navigate("/")
-    }
-  }
+    swal({
+      title: "CERRAR SECCION",
+      text: `Deseas cerrar la seccion de ${name}`,
+      icon: "warning",
+      buttons: ["No", "Si"]
+    }).then(res => {
+      if (res && isCurrentUser) {
+        dispatch(logout());
+        navigate("/");
+      }
+    })
+    // const confirmed = window.confirm(`Desea cerrar sesion`);
+    // if (confirmed && isCurrentUser) {
+    //   dispatch(logout());
+    //   navigate("/");
+    // }
+  };
 
   const handleFollow = () => {
-    setFollowDemostrativo(followDemostrativo + 1)
-  }
+    setFollowDemostrativo(followDemostrativo + 1);
+  };
 
   const handleContact = () => {
     alert("Te estas portando mal seras castigada!!!! 🔥🍻🍻😎😎👩‍🦽💉💉")
@@ -168,6 +207,10 @@ const Profile = () => {
 
   return (
     <div className="container">
+      <div className="portada-profile">
+        <img src={coverPhoto} alt="" />
+        <div className="rating-g">4.3</div>
+      </div>
       <div className="portada-profile">
         <img src={coverPhoto} alt="" />
         <div className="rating-g">4.3</div>
@@ -198,7 +241,8 @@ const Profile = () => {
             <div>
               <div className="nombre">
                 <h1>
-                    {name}{/*  {lastname} */}
+                  {name}
+                  {/*  {lastname} */}
                 </h1>
                 {/* para saber si es verificado funcion aun no implementada */}
                 {verified &&
@@ -284,8 +328,7 @@ const Profile = () => {
         <div>
           {events && <CardsEvents events={events}/>} 
         </div>
-      </div>
-      
+      </div> 
     </div>
   );
 };

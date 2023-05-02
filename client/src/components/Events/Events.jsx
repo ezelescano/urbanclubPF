@@ -81,7 +81,9 @@ const Events = () => {
   ];
   return (
     <div className={style.container}>
-      <CardsEvents events={events} />
+      <div className={style.containerHelp}>
+        <CardsEvents events={events} />
+      </div>
     </div>
   );
 };
