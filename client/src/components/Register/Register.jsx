@@ -126,16 +126,17 @@ function Formulario() {
 
   function handleSubmit(e) {
     e.preventDefault();
-  //   swal({
-  //     title: "Usuario Creado",
-  //     text: "Usuario Creado con exito",
-  //     icon: "success",
-  //     buttons: "Aceptar"
-  //  })
+
    console.log(errors)
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation); 
     dispatch(postArtist(formData,navigate));
+        swal({
+      title: "Usuario Creado",
+      text: "Usuario Creado con exito",
+      icon: "success",
+      buttons: "Aceptar"
+   })
    
   }
 
