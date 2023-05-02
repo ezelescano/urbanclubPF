@@ -27,10 +27,12 @@ function Formulario() {
   });
  
   const [options, setOptions] = useState([
-    "Dancer",
-    "Singer",
-    "Musician",
+    "Bailarin",
+    "Cantante",
+    "Músico",
     "Actor",
+    "Pintor",
+    "Modelo",
   ]);
 
   const [errors, setErrors] = useState({});
