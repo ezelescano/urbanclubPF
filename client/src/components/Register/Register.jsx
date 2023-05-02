@@ -27,10 +27,12 @@ function Formulario() {
   });
  
   const [options, setOptions] = useState([
-    "Dancer",
-    "Singer",
-    "Musician",
+    "Bailarin",
+    "Cantante",
+    "Músico",
     "Actor",
+    "Pintor",
+    "Modelo",
   ]);
 
   const [errors, setErrors] = useState({});
@@ -140,15 +142,12 @@ function Formulario() {
   return (
     <>
       <div className="formulario-externo-registro">
-      
         <div className="formulario-container formulario-background">
-        <div className="error_back">
-             <p>{errorForm.error}</p>
+          <div className="error_back">
+            <p>{errorForm.error}</p>
           </div>
           <form onSubmit={handleSubmit} className="form-container">
-         
             <div className="form-container__left">
-           
               <label>
                 {rutaImagen ? (
                   <img
@@ -185,7 +184,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Nombre:
                 </div>
                 <input
-                placeholder={errors.name}
+                  placeholder={errors.name}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   type="text"
@@ -200,7 +199,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Apellido:
                 </div>
                 <input
-                placeholder={errors.lastname}
+                  placeholder={errors.lastname}
                   type="text"
                   value={input.lastname}
                   onChange={handleOnChange}
@@ -215,7 +214,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Correo:
                 </div>
                 <input
-                 placeholder={errors.email}
+                  placeholder={errors.email}
                   type="email"
                   value={input.email}
                   onChange={handleOnChange}
@@ -230,7 +229,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Nickname:
                 </div>
                 <input
-                 placeholder={errors.nickName}
+                  placeholder={errors.nickName}
                   type="text"
                   value={input.nickName}
                   onChange={handleOnChange}
@@ -289,20 +288,18 @@ function Formulario() {
                       />
                       {option}
                     </label>
-                  ))}
+                  ))} 
                   <label>
                     <input
                       type="checkbox"
                       name="other"
-                      value="Aun no se agrega otros"
-                      checked={input.ocupation.includes(
-                        "Aun no se agrega otros"
-                      )}
+                      value="Otros"
+                      checked={input.ocupation.includes("Otros")}
                       onChange={handleOccupationChange}
                     />
                     Otros
                   </label>
-                  {input.ocupation.includes("Aun no se agrega otros") && (
+                  {input.ocupation.includes("Otros") && (
                     <input
                       type="text"
                       value={input.value}
@@ -326,8 +323,7 @@ function Formulario() {
                 Registrarse
               </button>
             </div>
-             </form>
-            
+          </form>
         </div>
       </div>
     </>

@@ -26,7 +26,7 @@ function AboutUs() {
             <div className="card-image">
               <NavLink to="/About/Estiven">
               <img
-                src="../../assets/alex.jpeg"
+                src="../../assets/Estiven.jpeg"
                 alt="Dua Lipa"
               />
               </NavLink>

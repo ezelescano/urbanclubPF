@@ -54,7 +54,7 @@
   width: 250px;
   height: 250px;
   position: absolute;
- 
+
   top: -110px;
   background-color: #fff;
   border: 5px solid #fff;
@@ -74,12 +74,12 @@
 .ocupation {
   padding: 5px 10px;
   margin-right: 10px;
-  max-width: 200px;
+  max-width: 198px;
   max-height: 70px;
-   margin-top: 190px;
+  margin-top: 190px;
   background-color: #d9d9d9;
   border-radius: 10px;
-  min-width: 200px;
+  word-wrap: break-word;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -208,7 +208,7 @@
   display: flex;
   position: relative;
 }
-.sub-prim-profile{
+.sub-prim-profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -220,7 +220,7 @@
     margin-right: 10px;
     background-color: #d9d9d9;
     border-radius: 10px;
-    min-width: 200px;
+    min-width: 190px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;

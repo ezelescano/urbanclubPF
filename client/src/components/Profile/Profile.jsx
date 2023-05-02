@@ -135,7 +135,7 @@ const Profile = () => {
   };
 
   const handlePasswordChange = () => {
-    alert("Te estas portado mal seras castiga!!!! 🔥🍻🍻😎😎👩‍🦽💉💉");
+    alert("Funcion aún no implementada :)");
   };
 
   const handleOnBlur = () => {

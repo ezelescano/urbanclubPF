@@ -11,6 +11,7 @@
   color: rgb(202, 201, 201);
   font-size: 25px;
   position: relative; /* añadido para que .overlay y .text sean relativos a .Container */
+  
 }
 
 .overlay {
@@ -68,6 +69,10 @@
   font-size: 22px;
 }
 
+.text p{
+  max-width: 280px;
+  word-wrap:break-word;
+}
 .Link {
   text-decoration: none;
 }

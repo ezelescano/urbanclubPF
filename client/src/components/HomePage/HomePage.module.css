@@ -1,6 +1,7 @@
 .main {
   height: 100%;
   background-color: #212226;
+  overflow: hidden;
 }
 .title {
   color: #efefef;
@@ -9,7 +10,7 @@
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
 }
 .events {
-  height:unset;
+  height: unset;
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
 }
 .products {
