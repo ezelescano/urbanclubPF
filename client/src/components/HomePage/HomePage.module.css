@@ -47,7 +47,7 @@
 .eldivdeeu {
   background: url("../../img/productos.png");
   width: 1438px;
-  //Si no funciona eliminar lo de arriba de propiedades y usar este : width: 90vw;
+  /*Si no funciona eliminar lo de arriba de propiedades y usar este : width: 90vw;*/
   height: 240px;
   margin: auto;
   border-radius: 50px;
