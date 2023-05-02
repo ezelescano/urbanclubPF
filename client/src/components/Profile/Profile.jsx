@@ -12,14 +12,17 @@ import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 
 const Profile = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const usuario = useSelector(state => state.artist.usuario);
   const currentUser = useSelector(state => state.auth.user);
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false)
   const [followDemostrativo, setFollowDemostrativo] = useState(911)
+
   const verified = true
   const links = [{
     youtube: "https://www.youtube.com/",
@@ -127,12 +130,12 @@ const Profile = () => {
   }
 
   const handlePasswordChange = () => {
-    alert("Te estas portado mal seras castiga!!!! 🔥🍻🍻😎😎👩‍🦽💉💉")
+    alert("Te estas portando mal seras castigada!!!! 🔥🍻🍻😎😎👩‍🦽💉💉")
   }
 
-  const handleOnBlur = () => {
+  /* const handleOnBlur = () => {
     setShowSettings(false)
-  }
+  } */
 
   const handleDeleteAccount = () => {
     const confirmed = window.confirm(`Estas seguro que deseas eliminar la cuenta con el nombre ${name}`)
@@ -160,39 +163,40 @@ const Profile = () => {
   }
 
   const handleContact = () => {
-    alert("Funcion aun no implementada 😁")
+    alert("Te estas portando mal seras castigada!!!! 🔥🍻🍻😎😎👩‍🦽💉💉")
   }
 
   return (
     <div className="container">
-        <div className="portada-profile">
-          <img src={coverPhoto} alt="" />
-          <div className="rating-g">4.3</div>
+      <div className="portada-profile">
+        <img src={coverPhoto} alt="" />
+        <div className="rating-g">4.3</div>
+      </div>
+
+      <div className="prim-profile">
+          
+        <div className="foto-ocupacion">
+          <img
+            className="foto-profile"
+            src={profilePhoto}
+            alt="no se jaja x2"
+          />
+
+
+          <div className="ocupation-container">
+           {/* {usuario.ocupation?.map(o => {
+            return(
+            <div className='ocupation'>{o}</div>
+            )
+           })} */}
+           {ocupation && <div className="ocupation">{ocupation}</div>}
+          </div>
         </div>
 
-        <div className="prim-profile">
-          
-          <div className="foto-ocupacion">
-            <img
-              className="foto-profile"
-              src={profilePhoto}
-              alt="no se jaja x2"
-            />
-
-
-            <div className="ocupation-container">
-              {/* {usuario.ocupation?.map(o => {
-                return(
-                  <div className='ocupation'>{o}</div>
-                )
-              })} */}
-              {ocupation && <div className="ocupation">{ocupation}</div>}
-            </div>
-          </div>
-          <div className="info-perfil">
-            <div className="nombre-btns">
-              <div>
-                <div className="nombre">
+        <div className="info-perfil">
+          <div className="nombre-btns">
+            <div>
+              <div className="nombre">
                 <h1>
                     {name}{/*  {lastname} */}
                 </h1>
@@ -200,8 +204,8 @@ const Profile = () => {
                 {verified &&
                     <img className='verificado' src='https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg' alt='verificado paa' />
                     }
+
                 <div className="btns">
-                  
                   {isCurrentUser ? 
                   <div className="settings-div">
                     <button className="btn-ajustes" onClick={handleSettings} ><img className="ajustes" src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg" alt="ajuste"/></button>
@@ -209,68 +213,71 @@ const Profile = () => {
                     {showEdit && <ProfileEdit handleEdit={handleEdit} id={id} usuario={usuario} handleShowEdit={handleShowEdit}/>}
                   </div>
                   : <div>
-                    <button className="btn-profile" onClick={handleFollow}>Seguir</button>
-                    <button className="btn-profile" onClick={handleContact}>Contactar</button>
+                      <button className="btn-profile" onClick={handleFollow}>Seguir</button>
+                      <button className="btn-profile" onClick={handleContact}>Contactar</button>
                     </div>
                   }
                 </div>  
-                </div>
-                <h3>
-                  {city}, {Country}
-                </h3>
               </div>
-            </div>
-            <div className="stas-profile">
-              <button className="btn-stas" onClick={scrollToEventos}>{events.length + ' '} Eventos</button>
-              <button className="btn-stas">{followDemostrativo} Seguidores</button>
-              <h4>5 Seguidos</h4>
-            </div>
 
-            <div className="ab-re">
-              <div className="aboutme">
-                {aboutMe}
-              </div>
-              <div className="redes">
-                {links?.map((l) => {
-                  return (
-                    <div className="redes-div">
-                      <h4>Otras redes!!</h4>
-                      <div className="container-links">
-                        {l.youtube && (
-                          <a
-                            href={l.youtube}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                          >
-                            <img
+              <h3>
+                 {city}, {Country}
+              </h3>
+            </div>
+          </div>
+
+          <div className="stas-profile">
+            <button className="btn-stas" onClick={scrollToEventos}>{events.length + ' '} Eventos</button>
+            <button className="btn-stas">{followDemostrativo} Seguidores</button>
+            <h4>5 Seguidos</h4>
+          </div>
+
+          <div className="ab-re">
+            <div className="aboutme">
+              {aboutMe}
+            </div>
+            <div className="redes">
+              {links?.map((l) => {
+                return (
+                  <div className="redes-div">
+                    <h4>Otras redes!!</h4>
+                    <div className="container-links">
+                      {l.youtube && (
+                        <a
+                          href={l.youtube}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                         >
+                          <img
                               className="icon"
                               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
                               alt="ds"
-                            />
-                          </a>
+                          />
+                        </a>
                         )}
 
-                        {l.twitter && (
-                          <a
-                            href={l.twitter}
-                            target="_blank"
-                            rel="noreferrer noopener"
-                          >
-                            <img
-                              className="icon"
-                              src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
-                              alt="ds"
-                            />
-                          </a>
-                        )}
-                      </div>
+                      {l.twitter && (
+                        <a
+                          href={l.twitter}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          <img
+                            className="icon"
+                            src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
+                            alt="ds"
+                          />
+                        </a>
+                      )}
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
+      </div>
+
       <div className="div-eventos">
         <div ref={eventosRef} className="titulo-ev">Eventos</div>
         
