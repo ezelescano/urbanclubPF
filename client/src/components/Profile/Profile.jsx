@@ -7,7 +7,7 @@ import {
   getArtistId,
   clearProfile,
   deleteArtist,
-  updateArtist
+  updateArtist,
 } from "../../redux/artistSlice";
 
 //import { getauth, clearProfile } from "../../redux/artistSlice";
@@ -154,8 +154,7 @@ const Profile = () => {
   };
 
   const handleEdit = (input) => {
-
-    dispatch(updateArtist(id, input))
+    dispatch(updateArtist(id, input));
   };
 
   const handleLogout = () => {
@@ -273,7 +272,7 @@ const Profile = () => {
             <div className="redes">
               {links?.map((l) => {
                 return (
-                  <div key={l}className="redes-div">
+                  <div key={l} className="redes-div">
                     <h4>Otras redes!!</h4>
                     <div className="container-links">
                       {l.youtube && (
@@ -311,13 +310,13 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {/* <div className="div-eventos">
+      <div className="div-eventos">
         <div ref={eventosRef} className="titulo-ev">
           Eventos
         </div>
 
         <div>{events && <CardsEvents events={events} />}</div>
-      </div> */}
+      </div>
     </div>
   );
 };

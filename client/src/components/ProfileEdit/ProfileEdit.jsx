@@ -5,10 +5,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
-const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
-
+const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
   const [errors, setErrors] = useState({});
-  
+
   const [options, setOptions] = useState([
     "Dancer",
     "Singer",
@@ -18,8 +17,8 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
 
   const [input, setInput] = useState({
     name: usuario.name,
-    lastname: usuario.lastname,
-    nickname: usuario.nickname,
+    // lastname: usuario.lastname, //Aun no se ve reflejado
+    // nickName: usuario.nickName, //Aun no se ve reflejado
     // profilePhoto: "",
     // coverPhoto: "",
     email: usuario.email,
@@ -43,24 +42,23 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
     handleEdit(input);
   }
 
-  function addOcupation(ocupation,selected){
-    if(ocupation.includes(selected)){
-      return ocupation
-    }
-    else{
-      return ocupation.length > 0 ? ocupation + "," + selected : selected
+  function addOcupation(ocupation, selected) {
+    if (ocupation.includes(selected)) {
+      return ocupation;
+    } else {
+      return ocupation.length > 0 ? ocupation + "," + selected : selected;
     }
   }
 
-  function remOcupation(ocupation, selected){
-    if(ocupation.includes(selected)){
-      ocupation = ocupation.replace(selected,"").replace(",,",",")
-      if (ocupation.charAt(0)=== ",")  ocupation = ocupation.substring(1)
-      if (ocupation.charAt(ocupation.length-1) === ",")  ocupation = ocupation.substring(0,ocupation.length-1)
-      return ocupation
-    }
-    else{
-      return ocupation
+  function remOcupation(ocupation, selected) {
+    if (ocupation.includes(selected)) {
+      ocupation = ocupation.replace(selected, "").replace(",,", ",");
+      if (ocupation.charAt(0) === ",") ocupation = ocupation.substring(1);
+      if (ocupation.charAt(ocupation.length - 1) === ",")
+        ocupation = ocupation.substring(0, ocupation.length - 1);
+      return ocupation;
+    } else {
+      return ocupation;
     }
   }
   function handleOccupationChange(e) {
@@ -83,12 +81,12 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
     if (isSelected) {
       setInput((input) => ({
         ...input,
-        ocupation: addOcupation(input.ocupation,selectedOption),
+        ocupation: addOcupation(input.ocupation, selectedOption),
       }));
     } else {
       setInput((input) => ({
         ...input,
-        ocupation: remOcupation(input.ocupation,selectedOption),
+        ocupation: remOcupation(input.ocupation, selectedOption),
       }));
     }
 
@@ -111,7 +109,7 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
     const property = e.target.name;
     const value = e.target.value;
     if (property === "ocupation") {
-      console.log(input)
+      console.log(input);
       setErrors(validate({ ...input, ocupation: [...input.ocupation, value] }));
       setInput({
         ...input,
@@ -130,7 +128,6 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
       );
     }
   }
-
 
   return (
     <div className={styles.container}>
@@ -183,7 +180,7 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
               name="name"
             />
           </label>
-          <label>
+          {/* <label>
             <div>
               <span style={{ color: "red" }}>*</span> Apellido:
             </div>
@@ -196,7 +193,7 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
               maxLength={35}
               required
             />
-          </label>
+          </label> */}
           <label>
             <div>
               <span style={{ color: "red" }}>*</span> Correo:
@@ -211,18 +208,18 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
               required
             />
           </label>
-          <label>
+          {/* <label>
             <div>
               <span style={{ color: "red" }}>*</span> Nickname:
             </div>
             <input
               type="text"
-              value={input.nickname}
+              value={input.nickName}
               onChange={handleOnChange}
               onBlur={handleOnChange}
-              name="nickname"
+              name="nickName"
             />
-          </label>
+          </label> */}
         </div>
         <div className="form-container__right">
           <label>
@@ -246,45 +243,42 @@ const ProfileEdit = ({usuario, handleEdit, handleShowEdit}) => {
             />
           </label>
           <div className="occupation-options">
-                  {options.map((option) => (
-                    <label key={option}>
-                      <input
-                        type="checkbox"
-                        value={option}
-                        checked={input.ocupation.includes(option)}
-                        onChange={handleOccupationChange}
-                      />
-                      {option}
-                    </label>
-                  ))}
-                  <label>
-                    <input
-                      type="checkbox"
-                      name="other"
-                      value="Aun no se agrega otros"
-                      checked={input.ocupation.includes(
-                        "Aun no se agrega otros"
-                      )}
-                      onChange={handleOccupationChange}
-                    />
-                    Otros
-                  </label>
-                  {input.ocupation.includes("Aun no se agrega otros") && (
-                    <input
-                      type="text"
-                      value={input.value}
-                      name="otherOccupation"
-                      placeholder="Ingresa tu oficio"
-                    />
-                  )}
-                </div>
+            {options.map((option) => (
+              <label key={option}>
+                <input
+                  type="checkbox"
+                  value={option}
+                  checked={input.ocupation.includes(option)}
+                  onChange={handleOccupationChange}
+                />
+                {option}
+              </label>
+            ))}
+            <label>
+              <input
+                type="checkbox"
+                name="other"
+                value="Aun no se agrega otros"
+                checked={input.ocupation.includes("Aun no se agrega otros")}
+                onChange={handleOccupationChange}
+              />
+              Otros
+            </label>
+            {input.ocupation.includes("Aun no se agrega otros") && (
+              <input
+                type="text"
+                value={input.value}
+                name="otherOccupation"
+                placeholder="Ingresa tu oficio"
+              />
+            )}
+          </div>
           <button className="upload-form-button" type="submit">
             Save Changes
           </button>
         </div>
       </form>
-      <div className={styles.button}>
-      </div>
+      <div className={styles.button}></div>
     </div>
   );
 };

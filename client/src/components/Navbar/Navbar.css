@@ -105,6 +105,9 @@
 .nav-login-btn-zoom {
   display: none;
 }
+.sesionfotozoom {
+  display: none;
+}
 @media screen and (max-width: 968px) {
   .navbar img.nav-title-img {
     display: none;
@@ -143,5 +146,4 @@
   .sesionfoto {
     display: none;
   }
-  
 }
