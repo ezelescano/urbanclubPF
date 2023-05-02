@@ -148,8 +148,9 @@ const Profile = () => {
     );
     if (confirmed && isCurrentUser) {
       dispatch(deleteArtist(id));
+      dispatch(logout());
       alert(`La cuenta ${name} ha sido eliminada correctamente`);
-      navigate("/home");
+      navigate("/");
     }
   };
 
