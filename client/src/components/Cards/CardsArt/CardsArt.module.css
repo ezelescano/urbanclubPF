@@ -68,6 +68,10 @@
   font-size: 22px;
 }
 
+.text p{
+  max-width: 280px;
+  word-wrap:break-word;
+}
 .Link {
   text-decoration: none;
 }
