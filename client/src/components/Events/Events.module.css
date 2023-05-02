@@ -1,6 +1,20 @@
 .container {
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-attachment: fixed;
+
+  height: 300vh;
   width: 100vw;
   height: 100vh;
 }
+@media (max-width: 1267px) {
+  .container {
+    height: unset;
+    width: unset
+  }
+}
+
+/*Limpiar fondo luego*/

@@ -1,0 +1,104 @@
+/* Color negro de la Navbar es #1a1919*/
+.footer-container {
+  background-color: #0d5a73;
+  color:#fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 30px 80px;
+  border-bottom: 1.5px solid#004258;
+}
+
+.footer-container img{
+  padding: 15px 20px 0 0;
+}
+.ftr-img{
+  transition: 0.8s;
+  -webkit-transition: 0.8s;
+  -moz-transition: 0.8s;
+  -ms-transition: 0.8s;
+  -o-transition: 0.8s;
+}
+
+.ftr-img:hover{
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+
+
+.searchbar-wrapper{
+  position: relative;
+}
+
+.foot-links{
+  flex-direction: column;
+  list-style: none;
+}
+
+.foot-links li{
+  padding: 5px 0px;
+  vertical-align:middle;
+  transition: 0.8s;
+  -webkit-transition: 0.8s;
+  -moz-transition: 0.8s;
+  -ms-transition: 0.8s;
+  -o-transition: 0.8s;
+}
+
+.foot-links li:hover{
+  
+  padding: 5px 0px;
+  vertical-align:middle;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+
+.foot-links li a{
+  color: white;
+  text-decoration: none;
+  outline: none;
+}
+
+.nav-login-btn {
+  box-shadow: 5px black;
+  padding: 10px 30px;
+  border-radius: 15px;
+  border: none;
+  color: black;
+  font-weight: 550;
+  transition: 0.8s;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  -webkit-transition: 0.8s;
+  -moz-transition: 0.8s;
+  -ms-transition: 0.8s;
+  -o-transition: 0.8s;
+}
+
+.nav-login-btn:hover{
+  background-color: #79cfd5;
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+.sesionfoto {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}

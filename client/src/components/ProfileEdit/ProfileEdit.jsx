@@ -3,26 +3,29 @@ import styles from "./ProfileEdit.module.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteArtist, updateArtist } from "../../redux/artistSlice";
+// import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
-const ProfileEdit = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
+const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
   const [errors, setErrors] = useState({});
-  const usuario = useSelector((state) => state.artist.usuario);
-  console.log(usuario);
+
+  const [options, setOptions] = useState([
+    "Dancer",
+    "Singer",
+    "Musician",
+    "Actor",
+  ]);
 
   const [input, setInput] = useState({
     name: usuario.name,
-    lastname: usuario.lastname,
-    nickname: usuario.nickname,
+    // lastname: usuario.lastname, //Aun no se ve reflejado
+    // nickName: usuario.nickName, //Aun no se ve reflejado
     // profilePhoto: "",
     // coverPhoto: "",
     email: usuario.email,
-    // password: "",
+    // password: usuario.password,
     city: usuario.city,
     Country: usuario.Country,
-    ocupation: [],
+    ocupation: usuario.ocupation,
     aboutMe: usuario.aboutMe,
   });
 
@@ -36,52 +39,81 @@ const ProfileEdit = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    axios
-      .put(`http://localhost:3008/artist/update/${id}`, input)
-      .then(alert("Datos actualizados correctamente"))
-      .catch((errors) => console.log(errors));
-    // setInput({
-    //   name: usuario.name,
-    //   lastname: usuario.lastname,
-    //   nickName: usuario.nickName,
-    //   // profilePhoto: "",
-    //   // coverPhoto: "",
-    //   email: usuario.email,
-    //   password: "",
-    //   city: usuario.city,
-    //   Country: usuario.Country,
-    //   ocupation: usuario.ocupation,
-    //   aboutMe: usuario.aboutMe,
-    // });
+    handleEdit(input);
   }
 
-  function handleClick() {
-    dispatch(deleteArtist(id));
-    alert("Artista borrado correctamente");
-    setInput({
-      name: "",
-      lastname: "",
-      nickname: "",
-      // profilePhoto: "",
-      // coverPhoto: "",
-      email: "",
-      password: "",
-      city: "",
-      Country: "",
-      ocupation: [],
-      aboutMe: "",
-    });
+  function addOcupation(ocupation, selected) {
+    if (ocupation.includes(selected)) {
+      return ocupation;
+    } else {
+      return ocupation.length > 0 ? ocupation + "," + selected : selected;
+    }
+  }
+
+  function remOcupation(ocupation, selected) {
+    if (ocupation.includes(selected)) {
+      ocupation = ocupation.replace(selected, "").replace(",,", ",");
+      if (ocupation.charAt(0) === ",") ocupation = ocupation.substring(1);
+      if (ocupation.charAt(ocupation.length - 1) === ",")
+        ocupation = ocupation.substring(0, ocupation.length - 1);
+      return ocupation;
+    } else {
+      return ocupation;
+    }
+  }
+  function handleOccupationChange(e) {
+    const selectedOption = e.target.value;
+    const isSelected = e.target.checked;
+
+    // if (isSelected) {
+    //   setInput((input) => ({
+    //     ...input,
+    //     ocupation: [...input.ocupation, selectedOption],
+    //   }));
+    // } else {
+    //   setInput((input) => ({
+    //     ...input,
+    //     ocupation: input.ocupation.filter(
+    //       (option) => option !== selectedOption
+    //     ),
+    //   }));
+    // }
+    if (isSelected) {
+      setInput((input) => ({
+        ...input,
+        ocupation: addOcupation(input.ocupation, selectedOption),
+      }));
+    } else {
+      setInput((input) => ({
+        ...input,
+        ocupation: remOcupation(input.ocupation, selectedOption),
+      }));
+    }
+
+    // check if "other" option is selected and a value is entered
+    const otherInput = document.querySelector('input[name="otherOccupation"]');
+    if (
+      otherInput &&
+      selectedOption === "other" &&
+      otherInput.value.trim() !== ""
+    ) {
+      setInput((input) => ({
+        ...input,
+        ocupation: [...input.ocupation, otherInput.value.trim()],
+      }));
+      otherInput.value = ""; // clear the input field
+    }
   }
 
   function handleOnChange(e) {
     const property = e.target.name;
     const value = e.target.value;
     if (property === "ocupation") {
-      console.log(input)
+      console.log(input);
       setErrors(validate({ ...input, ocupation: [...input.ocupation, value] }));
       setInput({
         ...input,
-        ocupation: [...input.ocupation, value],
+        ocupation: [/*...input.ocupation,*/ value],
       });
     } else {
       setInput({
@@ -96,15 +128,15 @@ const ProfileEdit = () => {
       );
     }
   }
-  
-  function handleDeleteOcupation(){
-
-  }
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit} className={styles.formContainer}>
-        {/* <div className="form-container__left">
+      <div className={styles.containerflex}>
+        <button className={styles.containerexit} onClick={handleShowEdit}>
+          X
+        </button>
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
+          {/* <div className="form-container__left">
   return (
     <>
       <form onSubmit={handleSubmit} className="form-container">
@@ -137,21 +169,21 @@ const ProfileEdit = () => {
                 Registrate a<br></br> <b>Urban Club!</b>
               </label>
             </div> */}
-        <div className="form-container__middle">
-          <label className="required">
-            <div>
-              <span style={{ color: "red" }}>*</span> Nombre:
-            </div>
-            <input
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              type="text"
-              value={input.name}
-              maxLength="35"
-              name="name"
-            />
-          </label>
-          <label>
+          <div className="form-container__middle">
+            <label className="required">
+              <div>
+                <span style={{ color: "red" }}>*</span> Nombre:
+              </div>
+              <input
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                type="text"
+                value={input.name}
+                maxLength="35"
+                name="name"
+              />
+            </label>
+            {/* <label>
             <div>
               <span style={{ color: "red" }}>*</span> Apellido:
             </div>
@@ -164,103 +196,99 @@ const ProfileEdit = () => {
               maxLength={35}
               required
             />
-          </label>
-          <label>
-            <div>
-              <span style={{ color: "red" }}>*</span> Correo:
-            </div>
-            <input
-              type="email"
-              value={input.email}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="email"
-              maxLength={45}
-              required
-            />
-          </label>
-          <label>
+          </label> */}
+            {/* <label>
+              <div>
+                <span style={{ color: "red" }}>*</span> Correo:
+              </div>
+              <input
+                type="email"
+                value={input.email}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="email"
+                maxLength={45}
+                required
+              />
+            </label> */}
+            {/* <label>
             <div>
               <span style={{ color: "red" }}>*</span> Nickname:
             </div>
             <input
               type="text"
-              value={input.nickname}
+              value={input.nickName}
               onChange={handleOnChange}
               onBlur={handleOnChange}
-              name="nickname"
-            />
-          </label>
-          {/* <label>
-            <div>
-              <span style={{ color: "red" }}>*</span> Contraseña:
-            </div>
-            <input
-              type="text"
-              maxLength={45}
-              value={input.password}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="password"
-              required
+              name="nickName"
             />
           </label> */}
-        </div>
-        <div className="form-container__right">
-          <label>
-            <div>Ciudad:</div>
-            <input
-              type="text"
-              value={input.city}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="city"
-            />
-          </label>
-          <label>
-            <div>Pais:</div>
-            <input
-              type="text"
-              value={input.Country}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="Country"
-            />
-          </label>
-          <label>
-            <div>Ocupacion:</div>
-            <select
-                  value={input.ocupation}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="ocupation"
-                >
-                  <option value="Dancer">Dancer</option>
-                  <option value="Circus">Circus</option>
-                  <option value="Puppeteer">Puppeteer</option>
-                  <option value="Statue">Statue</option>
-                  <option value="Magician">Magician</option>
-                </select>
-          </label>
-          <label>
-            <div>Descripción:</div>
-            <textarea
-              value={input.aboutMe}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              maxLength={500}
-              name="aboutMe"
-            />
-          </label>
-          <button className="upload-form-button" type="submit">
-            Save Changes
-          </button>
-        </div>
-      </form>
-      <div className={styles.button}>
-        <button className={styles.deleteButton} onClick={handleClick}>
-          Delete user
-        </button>
+          </div>
+          <div className="form-container__right">
+            <label>
+              <div>Ciudad:</div>
+              <input
+                type="text"
+                value={input.city}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="city"
+              />
+            </label>
+            <label>
+              <div>Pais:</div>
+              <input
+                type="text"
+                value={input.Country}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="Country"
+              />
+            </label>
+            <div
+              style={{
+                justifyContent: "space-between",
+                gap: "0.5rem",
+                padding: "5px",
+              }}
+              className="occupation-options"
+            >
+              {options.map((option) => (
+                <label key={option}>
+                  <input
+                    type="checkbox"
+                    value={option}
+                    checked={input.ocupation.includes(option)}
+                    onChange={handleOccupationChange}
+                  />
+                  {option}
+                </label>
+              ))}
+              <label>
+                <input
+                  type="checkbox"
+                  name="other"
+                  value="Aun no se agrega otros"
+                  checked={input.ocupation.includes("Aun no se agrega otros")}
+                  onChange={handleOccupationChange}
+                />
+                Otros
+              </label>
+              {input.ocupation.includes("Aun no se agrega otros") && (
+                <input
+                  type="text"
+                  value={input.value}
+                  name="otherOccupation"
+                  placeholder="Ingresa tu oficio"
+                />
+              )}
+            </div>
+            <button className="upload-form-button" type="submit">
+              Save Changes
+            </button>
+          </div>
+        </form>
+        <div className={styles.button}></div>
       </div>
     </div>
   );
