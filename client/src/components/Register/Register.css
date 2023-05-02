@@ -151,6 +151,13 @@
   text-align: center;
 }
 
+.error_back{
+  font-size: 25px;
+  color: red;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+
+}
 .form-submit-button {
   background-color: #007aff;
   border: none;

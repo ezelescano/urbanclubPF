@@ -10,7 +10,7 @@ const postArtist = async (req) => {
     let {
         name, lastname, email, password, nickName, Country, city,
         ocupation, aboutMe } = req.body;
-console.log(name, lastname, email, password, nickName,)
+console.log(name, lastname, email, password, nickName,ocupation)
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
 
@@ -34,15 +34,7 @@ console.log(name, lastname, email, password, nickName,)
     const valeuPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/;
     if (!valeuPassword.test(password)) {
         return {
-            error: `el password debe contener
-    - Minimo 8 caracteres
-    - Maximo 15
-    - Al menos una letra mayúscula
-    - Al menos una letra minucula
-    - Al menos un numero
-    - No espacios en blanco
-    - Al menos 1 caracter especial
-    `}
+            error: "Contraseña incorrecta"}
     }
 
     //? se busca el nick en la base de datos

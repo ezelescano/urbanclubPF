@@ -4,7 +4,8 @@ const { DELETED, ACTIVATED } = require("../../constants");
 
 const updateArtist = async (req) => {
   const { id } = req.params;
-  const { body } = req;
+  let { body } = req;
+  body.id= parseInt(id)
   let actualizados = {}
   if (!id) {
     throw new Error("No se especificó el ID del usuario");
@@ -17,7 +18,7 @@ const updateArtist = async (req) => {
     if (!artist) throw new Error("No se encontró ningún usuario con ese ID");
     if (artist.estado === DELETED) throw new Error("No se encontró ningún usuario con ese ID");
     if (req.files && artist.estado === ACTIVATED) {
-      const { profilePhoto, coverPhoto } = req.files
+      const { profilePhoto, coverPhoto } = req.fileszz
       cloudiconfig()
       if (profilePhoto) {
 
