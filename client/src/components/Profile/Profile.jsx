@@ -311,13 +311,13 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="div-eventos">
+      {/* <div className="div-eventos">
         <div ref={eventosRef} className="titulo-ev">
           Eventos
         </div>
 
         <div>{events && <CardsEvents events={events} />}</div>
-      </div>
+      </div> */}
     </div>
   );
 };

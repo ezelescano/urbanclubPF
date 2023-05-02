@@ -140,7 +140,8 @@ export const getauth = (navigate) => {
       const response = apiData.data;
       dispatch(updateArtistSuccess(response));
     } catch (error) {
-      alert("Datos actualizados");
+      alert(error);
+      // console.log();
     }
   }
  }
