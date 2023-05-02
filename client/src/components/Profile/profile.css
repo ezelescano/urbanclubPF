@@ -44,6 +44,9 @@
   justify-content: end;
   position: relative;
 }
+.foto-ocupacion img{
+  object-fit: cover;
+}
 
 .foto-profile{
   width: 250px;

@@ -108,6 +108,11 @@
 .sesionfotozoom {
   display: none;
 }
+.sesionfoto, .sesionfotozoom {
+  object-fit: cover;
+}
+
+
 @media screen and (max-width: 968px) {
   .navbar img.nav-title-img {
     display: none;
@@ -145,5 +150,18 @@
 
   .sesionfoto {
     display: none;
+  }
+  .sesionfotozoom {
+    object-fit: cover;
+    display: block;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+    background-color: #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
   }
 }
