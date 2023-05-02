@@ -8,6 +8,7 @@ import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Artists from "./components/Artists/Artists";
 import AboutUs from "./components/AboutUs/AboutUs";
+import AboutEstiven from "./components/AboutUs/AboutEstiven";
 import Events from "./components/Events/Events";
 import CreateEvent from"./components/createEvent/CreateEvent";
 import Footer from "./components/Footer/Footer"
@@ -56,6 +57,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/createevent" element={<CreateEvent/>} />
+        <Route path="/About/Estiven" element={<AboutEstiven/>} />
       </Routes>
       <Footer />
     </div>

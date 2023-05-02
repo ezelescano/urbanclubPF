@@ -71,6 +71,7 @@ export const login = (payload, navigate) => {
         navigate("/artists")
       } 
      })
+  
       
     } catch (e) {
       dispatch(loginFailure(e))
