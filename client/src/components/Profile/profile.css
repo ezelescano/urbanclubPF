@@ -2,7 +2,9 @@
   position: relative;
   margin: 10px 100px;
 }
-
+.NoAhora{
+  display:none;
+}
 .portada-profile {
   position: relative;
 }
@@ -244,7 +246,7 @@
     align-items: center;
   }
   .btns {
-    transform: translate(0px, -530px);
+    transform: translate(0px, -450px);
   }
   .aboutme {
     max-width: 50vw;

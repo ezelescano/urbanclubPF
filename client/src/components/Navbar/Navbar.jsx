@@ -41,6 +41,11 @@ function Navbar() {
             Eventos
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/merch" className="nav-link active">
+            Tienda
+          </NavLink>
+        </li>
       </ul>
       {!islogin.isAuthenticated ? (
         <NavLink to="/login">
