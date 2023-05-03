@@ -34,11 +34,10 @@ console.log(profile)
 
           name : profile.name.givenName,
           lastname: profile.name.familyName,
-          nickName: profile.name.familyName.substring(0,3) + profile.name.givenName.substring(0,3) + Math.floor(Math.random() * 1000),
           email : profile._json.email,
-          profile_img: profile._json.picture,
-          confirmed:true,
-          password: ''
+          nickName: profile.name.familyName.substring(0,3) + profile.name.givenName.substring(0,3) + Math.floor(Math.random() * 1000),
+          password: '',
+          profilePhoto : profile._json.picture
     })
     
     artistByGoogle.token = generateJWT(artistByGoogle.id, artistByGoogle.name);
