@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
+import UpdatePassword from "../UpdatePassword/UpdatePassword";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Profile = () => {
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [showEditPassword, setShowEditPassword] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const verified = true;
   const links = [
@@ -135,7 +137,7 @@ const Profile = () => {
   };
 
   const handlePasswordChange = () => {
-    alert("Te estas portado mal seras castiga!!!! 🔥🍻🍻😎😎👩‍🦽💉💉");
+    setShowEditPassword(!showEditPassword)
   };
 
   const handleOnBlur = () => {
@@ -240,6 +242,9 @@ const Profile = () => {
                           handleShowEdit={handleShowEdit}
                         />
                       )}
+                      {
+                        showEditPassword && (<UpdatePassword handleEdit={handleEdit}/>)
+                      }
                     </div>
                   ) : (
                     <div>
