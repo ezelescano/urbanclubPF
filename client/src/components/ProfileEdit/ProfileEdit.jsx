@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
 const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
+
   const [errors, setErrors] = useState({});
 
   const [options, setOptions] = useState([
@@ -41,7 +42,9 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleEdit(input);
+    const formData = new FormData(e.target);
+    formData.append("ocupation", input.ocupation)
+    handleEdit(formData);
   }
 
   function addOcupation(ocupation, selected) {
@@ -171,6 +174,8 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 Registrate a<br></br> <b>Urban Club!</b>
               </label>
             </div> */}
+            <input type="file" name="profilePhoto"></input>
+            <input type="file" name="coverPhoto"></input>
           <div className="form-container__middle">
             <label className="required">
               <div>

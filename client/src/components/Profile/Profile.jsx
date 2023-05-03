@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
-import UpdatePassword from "../UpdatePassword/UpdatePassword";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -242,47 +241,6 @@ const Profile = () => {
                     alt="verificado paa"
                   />
                 )}
-                <div className="btns">
-                  {isCurrentUser ? (
-                    <div className="settings-div">
-                      <button className="btn-ajustes" onClick={handleSettings}>
-                        <img
-                          className="ajustes"
-                          src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
-                          alt="ajuste"
-                        />
-                      </button>
-                      {showSettings && (
-                        <Settings
-                          handleDeleteAccount={handleDeleteAccount}
-                          handleLogout={handleLogout}
-                          handlePasswordChange={handlePasswordChange}
-                          handleShowEdit={handleShowEdit}
-                        />
-                      )}
-                      {showEdit && (
-                        <ProfileEdit
-                          handleEdit={handleEdit}
-                          id={id}
-                          usuario={usuario}
-                          handleShowEdit={handleShowEdit}
-                        />
-                      )}
-                      {
-                        showEditPassword && (<UpdatePassword handleEdit={handleEdit}/>)
-                      }
-                    </div>
-                  ) : (
-                    <div>
-                      <button className="btn-profile" onClick={handleFollow}>
-                        Seguir
-                      </button>
-                      <button className="btn-profile" onClick={handleContact}>
-                        Contactar
-                      </button>
-                    </div>
-                  )}
-                </div>
               </div>
               <h3>
                 {city}, {Country}
@@ -366,6 +324,9 @@ const Profile = () => {
                   handleShowEdit={handleShowEdit}
                 />
               )}
+              {
+                        showEditPassword && (<UpdatePassword handleEdit={handleEdit}/>)
+                      }
             </div>
           ) : (
             <div className="NoAhora">
