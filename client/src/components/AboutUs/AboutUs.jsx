@@ -100,12 +100,12 @@ function AboutUs() {
           </div>
           <div className="card">
             <div className="card-image">
-             <a href="">
+            <NavLink to="/About/eze">
              <img
                 src="../../assets/eze.jpeg"
                 alt="Dua Lipa"
               />
-             </a>
+            </NavLink>
             </div>
             <div className="card-content">
               <h2>Eze</h2>

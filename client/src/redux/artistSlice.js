@@ -145,7 +145,7 @@ export const postArtist = (payload,navigate) => {
         buttons: "Aceptar"
      }).then(res=>{
       if(res){
-        navigate("/")
+        // navigate("/")
       }
      })
      

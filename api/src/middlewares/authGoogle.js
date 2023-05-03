@@ -17,7 +17,7 @@ passport.use(
       passReqToCallback: true
   },
   async (req, accessToken, refreshToken, profile, done) => {
-
+console.log(profile)
     const newArtist = await Artist.findOne({
         where: {
           email : profile._json.email,
