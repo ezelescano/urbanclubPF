@@ -13,7 +13,6 @@ import Events from "./components/Events/Events";
 import CreateEvent from"./components/createEvent/CreateEvent";
 import Footer from "./components/Footer/Footer"
 import Merch from "./components/Merch/Merch"
-import Merch from "./components/Merch/Merch"
 
 //verificacion del token
 import { useEffect } from 'react';
