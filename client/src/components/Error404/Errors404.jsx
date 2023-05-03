@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Errors404.css"
-import { NavLink } from "react-router-dom";
+import img from "./img/404.png"
+
 function Errors404() {
     return (
         <div className='container'>
@@ -8,7 +9,7 @@ function Errors404() {
                 <h1 className='border'>Lo Sentimos...</h1>
             </div>
             <div className='img'>
-                <img src="./assets/404.png" alt="" />
+                <img src={img} alt="" />
 
             </div>
             <div className='txt'>
