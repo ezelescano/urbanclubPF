@@ -68,6 +68,13 @@
   font-size: 22px;
 }
 
+.text p {
+  max-width: 280px;
+  word-wrap: break-word;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .Link {
   text-decoration: none;
 }

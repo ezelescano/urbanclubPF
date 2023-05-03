@@ -151,6 +151,17 @@
   text-align: center;
 }
 
+.error_back{
+  font-size: 25px;
+  color: red;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+.errors_frond{
+  font-size: 13px;
+  color: red;
+}
 .form-submit-button {
   background-color: #007aff;
   border: none;
@@ -172,6 +183,12 @@
 .form-submit-button:active {
   background-color: #0062cc;
   transform: translateY(1px);
+}
+.descripcion-area{
+  max-width: 140px;
+  max-height: 100px;
+  min-width: 140px;
+  min-height: 50px;
 }
 /*Faltan los media queries oscar :)))) Dale metele pataaaa...*/
 @media (max-width: 768px) {

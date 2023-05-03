@@ -32,8 +32,8 @@ module.exports = (sequelize) => {
       },
       profilePhoto: {
         type: DataTypes.STRING,
-        allowNull: true,
-        default:
+        allowNull:false,
+        defaultValue:
           "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png",
       },
       id_coverPhoto: {
@@ -42,8 +42,8 @@ module.exports = (sequelize) => {
       },
       coverPhoto: {
         type: DataTypes.STRING,
-        allowNull: true,
-        default:
+        allowNull:false,
+        defaultValue:
           "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
       },
       password: {

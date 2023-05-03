@@ -87,5 +87,5 @@ const Events = () => {
     </div>
   );
 };
-
+/* Añadiremos valores más autenticos */
 export default Events;

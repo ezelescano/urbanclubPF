@@ -7,9 +7,9 @@ import {
   getArtistId,
   clearProfile,
   deleteArtist,
-  updateArtist
+  updateArtist,
 } from "../../redux/artistSlice";
-
+import swal from 'sweetalert'
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -145,27 +145,53 @@ const Profile = () => {
   };
 
   const handleDeleteAccount = () => {
-    const confirmed = window.confirm(
-      `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
-    );
-    if (confirmed && isCurrentUser) {
-      dispatch(deleteArtist(id));
-      alert(`La cuenta ${name} ha sido eliminada correctamente`);
-      navigate("/home");
-    }
+    // const confirmed = window.confirm(
+    //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
+    // );
+
+    swal({
+      title: "ELIMINAR CUENTA",
+      text: `Estas seguro de eliminar la cuenta de ${name}`,
+      icon: "warning",
+      buttons: ["No", "Si"]
+    }).then(async res=>{
+      if (res && isCurrentUser) {
+        const confirmed = await dispatch(deleteArtist(id));
+       if (confirmed) {
+       return swal({
+          title: "CUENTA ELIMINADA",
+          text: `La cuenta ${name} ha sido eliminada correctamente`,
+          icon: "success",
+          button: "Aceptar"
+        })
+       }
+      } 
+    }).then(res=>{
+      if (res) {
+        dispatch(logout());
+        window.location.replace("/")
+        // navigate("/");
+      }
+    })
+
   };
 
   const handleEdit = (input) => {
-
-    dispatch(updateArtist(id, input))
+    dispatch(updateArtist(id, input));
   };
 
   const handleLogout = () => {
-    const confirmed = window.confirm(`Desea cerrar sesion`);
-    if (confirmed && isCurrentUser) {
-      dispatch(logout());
-      navigate("/");
-    }
+    swal({
+      title: "CERRAR SESION",
+      text: `Deseas cerrar la sesion de ${name}`,
+      icon: "warning",
+      buttons: ["No", "Si"]
+    }).then(res => {
+      if (res && isCurrentUser) {
+        dispatch(logout());
+        navigate("/");
+      }
+    })
   };
 
   const handleFollow = () => {
@@ -182,15 +208,15 @@ const Profile = () => {
         <img src={coverPhoto} alt="" />
         <div className="rating-g">4.3</div>
       </div>
-
       <div className="prim-profile">
-        <div className="foto-ocupacion">
-          <img
-            className="foto-profile"
-            src={profilePhoto}
-            alt="no se jaja x2"
-          />
-
+        <div className="">
+          <div className="foto-ocupacion">
+            <img
+              className="foto-profile"
+              src={profilePhoto}
+              alt="no se jaja x2"
+            />
+          </div>
           <div className="ocupation-container">
             {/* {usuario.ocupation?.map(o => {
                 return(
@@ -272,13 +298,12 @@ const Profile = () => {
             </button>
             <h4>5 Seguidos</h4>
           </div>
-
           <div className="ab-re">
             <div className="aboutme">{aboutMe}</div>
             <div className="redes">
               {links?.map((l) => {
                 return (
-                  <div key={l}className="redes-div">
+                  <div key={l} className="redes-div">
                     <h4>Otras redes!!</h4>
                     <div className="container-links">
                       {l.youtube && (
@@ -314,6 +339,44 @@ const Profile = () => {
               })}
             </div>
           </div>
+        </div>
+        <div className="btns">
+          {isCurrentUser ? (
+            <div className="settings-div">
+              <button className="btn-ajustes" onClick={handleSettings}>
+                <img
+                  className="ajustes"
+                  src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
+                  alt="ajuste"
+                />
+              </button>
+              {showSettings && (
+                <Settings
+                  handleDeleteAccount={handleDeleteAccount}
+                  handleLogout={handleLogout}
+                  handlePasswordChange={handlePasswordChange}
+                  handleShowEdit={handleShowEdit}
+                />
+              )}
+              {showEdit && (
+                <ProfileEdit
+                  handleEdit={handleEdit}
+                  id={id}
+                  usuario={usuario}
+                  handleShowEdit={handleShowEdit}
+                />
+              )}
+            </div>
+          ) : (
+            <div className="NoAhora">
+              <button className="btn-profile" onClick={handleFollow}>
+                Seguir
+              </button>
+              <button className="btn-profile" onClick={handleContact}>
+                Contactar
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <div className="div-eventos">

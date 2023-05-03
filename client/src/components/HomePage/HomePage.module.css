@@ -1,7 +1,9 @@
 .main {
   height: 100%;
   background-color: #212226;
+  overflow: hidden;
 }
+
 .title {
   color: #efefef;
 }
@@ -9,7 +11,7 @@
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
 }
 .events {
-  height:unset;
+  height: unset;
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
 }
 .products {
@@ -43,7 +45,9 @@
 }
 
 .eldivdeeu {
+  background: url("../../img/productos.png");
   width: 1438px;
+  /*Si no funciona eliminar lo de arriba de propiedades y usar este : width: 90vw;*/
   height: 240px;
   margin: auto;
   border-radius: 50px;
