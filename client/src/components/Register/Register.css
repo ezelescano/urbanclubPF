@@ -1,4 +1,6 @@
 .form-picture {
+  object-fit: cover;
+  max-height: 90px;
   max-width: 100px;
   border-radius: 50px;
   -webkit-border-radius: 50px;
@@ -151,14 +153,13 @@
   text-align: center;
 }
 
-.error_back{
+.error_back {
   font-size: 25px;
   color: red;
   text-align: center;
-  font-family: 'Times New Roman', Times, serif;
-
+  font-family: "Times New Roman", Times, serif;
 }
-.errors_frond{
+.errors_frond {
   font-size: 13px;
   color: red;
 }
@@ -184,7 +185,7 @@
   background-color: #0062cc;
   transform: translateY(1px);
 }
-.descripcion-area{
+.descripcion-area {
   max-width: 140px;
   max-height: 100px;
   min-width: 140px;

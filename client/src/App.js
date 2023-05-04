@@ -59,11 +59,12 @@ function App() {
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/merch" element={<Merch />} />
         <Route path="/createevent" element={<CreateEvent />} />
         <Route path="/About/Estiven" element={<AboutEstiven />} />
-        <Route path="/About/eze" element={<AboutEze/>} />
+        <Route path="/About/eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
-        <Route path="*" element={<Errors404/>}/>
+        <Route path="*" element={<Errors404 />} />
       </Routes>
       <Footer />
     </div>

@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const UpdatePassword = ({ handleEdit }) => {
 
+
   const [password, setPassword] = useState({
     password: "",
   });
@@ -14,6 +15,7 @@ const UpdatePassword = ({ handleEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setErrors(validate({ password: password.password, password2: password2.password2 }));
     if (Object.keys(validate({ password: password.password, password2: password2.password2 })).length === 0) {
       handleEdit(password);
@@ -57,7 +59,7 @@ const UpdatePassword = ({ handleEdit }) => {
   }
 
   return (
-    <div className="container">
+    <div className="container-updatePassword">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -71,7 +73,7 @@ const UpdatePassword = ({ handleEdit }) => {
           value={password2.password2}
           onChange={changeHanlderPassword2}
         ></input>
-        { errors && <p>{errors.password}</p>}
+        {errors && <p>{errors.password}</p>}
         <button type="submit">Guardar nueva contraseña</button>
       </form>
     </div>
