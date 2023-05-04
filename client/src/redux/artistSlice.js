@@ -200,9 +200,11 @@ export const getauth = (navigate) => {
 export const updateArtist = (id, input) => {
   return async (dispatch) => {
     try {
+      console.log(input)
       const apiData = await axios.put(`/artist/update/${id}`, input);
       const response = apiData.data;
       dispatch(updateArtistSuccess(response));
+      console.log(response)
     } catch (error) {
       swal({
         title: "ERROR",

@@ -9,13 +9,14 @@ import {
   deleteArtist,
   updateArtist,
 } from "../../redux/artistSlice";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
+import UpdatePassword from "../UpdatePassword/UpdatePassword"
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -136,7 +137,7 @@ const Profile = () => {
   };
 
   const handlePasswordChange = () => {
-    setShowEditPassword(!showEditPassword)
+    setShowEditPassword(!showEditPassword);
   };
 
   const handleOnBlur = () => {
@@ -152,27 +153,28 @@ const Profile = () => {
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
       icon: "warning",
-      buttons: ["No", "Si"]
-    }).then(async res=>{
-      if (res && isCurrentUser) {
-        const confirmed = await dispatch(deleteArtist(id));
-       if (confirmed) {
-       return swal({
-          title: "CUENTA ELIMINADA",
-          text: `La cuenta ${name} ha sido eliminada correctamente`,
-          icon: "success",
-          button: "Aceptar"
-        })
-       }
-      } 
-    }).then(res=>{
-      if (res) {
-        dispatch(logout());
-        window.location.replace("/")
-        // navigate("/");
-      }
+      buttons: ["No", "Si"],
     })
-
+      .then(async (res) => {
+        if (res && isCurrentUser) {
+          const confirmed = await dispatch(deleteArtist(id));
+          if (confirmed) {
+            return swal({
+              title: "CUENTA ELIMINADA",
+              text: `La cuenta ${name} ha sido eliminada correctamente`,
+              icon: "success",
+              button: "Aceptar",
+            });
+          }
+        }
+      })
+      .then((res) => {
+        if (res) {
+          dispatch(logout());
+          window.location.replace("/");
+          // navigate("/");
+        }
+      });
   };
 
   const handleEdit = (input) => {
@@ -184,13 +186,13 @@ const Profile = () => {
       title: "CERRAR SESION",
       text: `Deseas cerrar la sesion de ${name}`,
       icon: "warning",
-      buttons: ["No", "Si"]
-    }).then(res => {
+      buttons: ["No", "Si"],
+    }).then((res) => {
       if (res && isCurrentUser) {
         dispatch(logout());
         navigate("/");
       }
-    })
+    });
   };
 
   const handleFollow = () => {
@@ -324,9 +326,7 @@ const Profile = () => {
                   handleShowEdit={handleShowEdit}
                 />
               )}
-              {
-                        showEditPassword && (<UpdatePassword handleEdit={handleEdit}/>)
-                      }
+              {showEditPassword && <UpdatePassword handleEdit={handleEdit} />}
             </div>
           ) : (
             <div className="NoAhora">
