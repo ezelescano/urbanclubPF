@@ -6,9 +6,10 @@
   align-items: center;
   padding: 15px 80px;
   border-bottom: 1.5px solid#004258;
+  /* overflow: hidden; */
 }
 
-.nav-title-img{
+.nav-title-img {
   width: 180px;
   transition: 0.8s;
   -webkit-transition: 0.8s;
@@ -17,7 +18,7 @@
   -o-transition: 0.8s;
 }
 
-.nav-title-img:hover{
+.nav-title-img:hover {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
@@ -25,18 +26,17 @@
   -o-transform: scale(1.1);
 }
 
-
-.searchbar-wrapper{
+.searchbar-wrapper {
   position: relative;
 }
 
-.nav-links{
+.nav-links {
   display: flex;
   list-style: none;
   width: auto;
 }
 
-.nav-links li{
+.nav-links li {
   margin-left: 30px;
   transition: 0.8s;
   -webkit-transition: 0.8s;
@@ -45,14 +45,13 @@
   -o-transition: 0.8s;
 }
 
-.nav-links li:hover{
+.nav-links li:hover {
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
 }
-
 
 .nav-login-btn {
   box-shadow: 5px black;
@@ -72,7 +71,7 @@
   -o-transition: 0.8s;
 }
 
-.nav-login-btn:hover{
+.nav-login-btn:hover {
   background-color: #79cfd5;
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
@@ -81,7 +80,7 @@
   -o-transform: scale(1.1);
 }
 
-.nav-links li a{
+.nav-links li a {
   color: white;
   text-decoration: none;
   padding: 12px;
@@ -98,4 +97,71 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+.nav-title-img-zoom {
+  display: none;
+}
+.nav-login-btn-zoom {
+  display: none;
+}
+.sesionfotozoom {
+  display: none;
+}
+.sesionfoto, .sesionfotozoom {
+  object-fit: cover;
+}
+
+
+@media screen and (max-width: 968px) {
+  .navbar img.nav-title-img {
+    display: none;
+  }
+
+  .navbar img.nav-title-img-zoom {
+    display: block;
+  }
+  .nav-login-btn-zoom {
+    display: block;
+    padding: 10px 30px;
+    border-radius: 15px;
+    border: none;
+    color: black;
+    font-weight: 550;
+    transition: 0.8s;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    -webkit-transition: 0.8s;
+    -moz-transition: 0.8s;
+    -ms-transition: 0.8s;
+    -o-transition: 0.8s;
+  }
+  .navbar {
+    padding: 20px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-login-btn {
+    display: none;
+  }
+
+  .sesionfoto {
+    display: none;
+  }
+  .sesionfotozoom {
+    object-fit: cover;
+    display: block;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+    background-color: #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
 }

@@ -7,15 +7,16 @@ import {
   getArtistId,
   clearProfile,
   deleteArtist,
-  updateArtist
+  updateArtist,
 } from "../../redux/artistSlice";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
+import UpdatePassword from "../UpdatePassword/UpdatePassword"
 
 const Profile = () => {
 
@@ -26,14 +27,16 @@ const Profile = () => {
   const currentUser = useSelector(state => state.auth.user);
 
   const [showSettings, setShowSettings] = useState(false);
-  const [showEdit, setShowEdit] = useState(false)
-  const [followDemostrativo, setFollowDemostrativo] = useState(911)
-
-  const verified = true
-  const links = [{
-    youtube: "https://www.youtube.com/",
-    twitter: "https://twitter.com/"
-  }]
+  const [showEdit, setShowEdit] = useState(false);
+  const [showEditPassword, setShowEditPassword] = useState(false);
+  const [followDemostrativo, setFollowDemostrativo] = useState(911);
+  const verified = true;
+  const links = [
+    {
+      youtube: "https://www.youtube.com/",
+      twitter: "https://twitter.com/",
+    },
+  ];
   const events = [
     {
       id: 1,
@@ -104,6 +107,8 @@ const Profile = () => {
     aboutMe,
   } = usuario;
 
+  const ocupationArray = ocupation && ocupation.split(",");
+
   const { id } = useParams();
   const eventosRef = useRef(null);
 
@@ -123,6 +128,7 @@ const Profile = () => {
     };
   }, [dispatch, id]);
 
+
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -136,8 +142,8 @@ const Profile = () => {
   };
 
   const handlePasswordChange = () => {
-    alert("Te estas portando mal seras castigada!!!! 🔥🍻🍻😎😎👩‍🦽💉💉")
-  }
+    setShowEditPassword(!showEditPassword);
+  };
 
   const handleOnBlur = () => {
     setShowSettings(false)
@@ -147,54 +153,51 @@ const Profile = () => {
     // const confirmed = window.confirm(
     //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
     // );
-    let confirmed = false
+
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
       icon: "warning",
-      buttons: ["No", "Si"]
-    }).then(respuesta => {
-      if (respuesta && isCurrentUser) {
-        swal({
-          title: "CUENTA ELIMINADA",
-          text: `La cuenta ${name} ha sido eliminada correctamente`,
-          icon: "success",
-          button: "Aceptar"
-        }).then(res => {
-          if (res) {
-            dispatch(deleteArtist(id));
-            dispatch(logout());
-            window.location.replace("/")
-            // navigate("/");
+      buttons: ["No", "Si"],
+    })
+      .then(async (res) => {
+        if (res && isCurrentUser) {
+          const confirmed = await dispatch(deleteArtist(id));
+          if (confirmed) {
+            return swal({
+              title: "CUENTA ELIMINADA",
+              text: `La cuenta ${name} ha sido eliminada correctamente`,
+              icon: "success",
+              button: "Aceptar",
+            });
           }
-        })
-      }
-    });
-
+        }
+      })
+      .then((res) => {
+        if (res) {
+          dispatch(logout());
+          window.location.replace("/");
+          // navigate("/");
+        }
+      });
   };
 
   const handleEdit = (input) => {
-
-    dispatch(updateArtist(id, input))
+    dispatch(updateArtist(id, input));
   };
 
   const handleLogout = () => {
     swal({
-      title: "CERRAR SECCION",
-      text: `Deseas cerrar la seccion de ${name}`,
+      title: "CERRAR SESION",
+      text: `Deseas cerrar la sesion de ${name}`,
       icon: "warning",
-      buttons: ["No", "Si"]
-    }).then(res => {
+      buttons: ["No", "Si"],
+    }).then((res) => {
       if (res && isCurrentUser) {
         dispatch(logout());
         navigate("/");
       }
-    })
-    // const confirmed = window.confirm(`Desea cerrar sesion`);
-    // if (confirmed && isCurrentUser) {
-    //   dispatch(logout());
-    //   navigate("/");
-    // }
+    });
   };
 
   const handleFollow = () => {
@@ -211,28 +214,23 @@ const Profile = () => {
         <img src={coverPhoto} alt="" />
         <div className="rating-g">4.3</div>
       </div>
-      <div className="portada-profile">
-        <img src={coverPhoto} alt="" />
-        <div className="rating-g">4.3</div>
-      </div>
-
       <div className="prim-profile">
-          
-        <div className="foto-ocupacion">
-          <img
-            className="foto-profile"
-            src={profilePhoto}
-            alt="no se jaja x2"
-          />
-
-
+        <div className="">
+          <div className="foto-ocupacion">
+            <img
+              className="foto-profile"
+              src={profilePhoto}
+              alt="no se jaja x2"
+            />
+          </div>
           <div className="ocupation-container">
-           {/* {usuario.ocupation?.map(o => {
-            return(
-            <div className='ocupation'>{o}</div>
-            )
-           })} */}
-           {ocupation && <div className="ocupation">{ocupation}</div>}
+            {/* {usuario.ocupation?.map(o => {
+                return(
+                  <div className='ocupation'>{o}</div>
+                )
+              })} */}
+            {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
+            {ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
           </div>
         </div>
 
@@ -245,23 +243,13 @@ const Profile = () => {
                   {/*  {lastname} */}
                 </h1>
                 {/* para saber si es verificado funcion aun no implementada */}
-                {verified &&
-                    <img className='verificado' src='https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg' alt='verificado paa' />
-                    }
-
-                <div className="btns">
-                  {isCurrentUser ? 
-                  <div className="settings-div">
-                    <button className="btn-ajustes" onClick={handleSettings} ><img className="ajustes" src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg" alt="ajuste"/></button>
-                    {showSettings && <Settings handleDeleteAccount={handleDeleteAccount} handleLogout={handleLogout}  handlePasswordChange={handlePasswordChange} handleShowEdit={handleShowEdit}/>}
-                    {showEdit && <ProfileEdit handleEdit={handleEdit} id={id} usuario={usuario} handleShowEdit={handleShowEdit}/>}
-                  </div>
-                  : <div>
-                      <button className="btn-profile" onClick={handleFollow}>Seguir</button>
-                      <button className="btn-profile" onClick={handleContact}>Contactar</button>
-                    </div>
-                  }
-                </div>  
+                {verified && (
+                  <img
+                    className="verificado"
+                    src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
+                    alt="verificado paa"
+                  />
+                )}
               </div>
 
               <h3>
@@ -275,7 +263,6 @@ const Profile = () => {
             <button className="btn-stas">{followDemostrativo} Seguidores</button>
             <h4>5 Seguidos</h4>
           </div>
-
           <div className="ab-re">
             <div className="aboutme">
               {aboutMe}
@@ -320,15 +307,53 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="div-eventos">
-        <div ref={eventosRef} className="titulo-ev">Eventos</div>
-        
-        <div>
-          {events && <CardsEvents events={events}/>} 
+        <div className="btns">
+          {isCurrentUser ? (
+            <div className="settings-div">
+              <button className="btn-ajustes" onClick={handleSettings}>
+                <img
+                  className="ajustes"
+                  src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
+                  alt="ajuste"
+                />
+              </button>
+              {showSettings && (
+                <Settings
+                  handleDeleteAccount={handleDeleteAccount}
+                  handleLogout={handleLogout}
+                  handlePasswordChange={handlePasswordChange}
+                  handleShowEdit={handleShowEdit}
+                />
+              )}
+              {showEdit && (
+                <ProfileEdit
+                  handleEdit={handleEdit}
+                  id={id}
+                  usuario={usuario}
+                  handleShowEdit={handleShowEdit}
+                />
+              )}
+              {showEditPassword && <UpdatePassword handleEdit={handleEdit} />}
+            </div>
+          ) : (
+            <div className="NoAhora">
+              <button className="btn-profile" onClick={handleFollow}>
+                Seguir
+              </button>
+              <button className="btn-profile" onClick={handleContact}>
+                Contactar
+              </button>
+            </div>
+          )}
         </div>
-      </div> 
+      </div>
+      <div className="div-eventos">
+        <div ref={eventosRef} className="titulo-ev">
+          Eventos
+        </div>
+
+        <div>{events && <CardsEvents events={events} />}</div>
+      </div>
     </div>
   );
 };

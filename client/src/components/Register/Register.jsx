@@ -2,16 +2,17 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import { postArtist,errorsCreate } from "../../redux/artistSlice";
-import swal from 'sweetalert'
+import { postArtist, errorsCreate } from "../../redux/artistSlice";
+import swal from "sweetalert";
 
+import loading from '../../img/loading.gif'
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-
 function Formulario() {
-  const {errorForm} = useSelector(state=>state.artist)
+  const { errorForm } = useSelector((state) => state.artist);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false)
   const [input, setInput] = useState({
     name: "",
     lastname: "",
@@ -25,16 +26,18 @@ function Formulario() {
     ocupation: [],
     aboutMe: "",
   });
- 
+
   const [options, setOptions] = useState([
-    "Dancer",
-    "Singer",
-    "Musician",
+    "Bailarin",
+    "Cantante",
+    "Musico",
     "Actor",
+    "Pintor",
+    "Modelo",
   ]);
 
   const [errors, setErrors] = useState({});
-  const [showPassword,setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
@@ -60,17 +63,17 @@ function Formulario() {
   }
 
   function handleOnChange(e) {
-    console.log("errores///",errors.password)
+    // console.log("errores///", errors.password);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
-      ...input,
-      [e.target.name]: e.target.value,
-    }))
-   
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
   function handleOccupationChange(e) {
     const selectedOption = e.target.value;
@@ -120,35 +123,37 @@ function Formulario() {
       setRutaImagen(reader.result);
     };
   };
-  
- 
+
   const handleClick = () => {
     fileInputRef.current.click();
   };
-
-  function handleSubmit(e) {
+  
+  async function handleSubmit(e) {
     e.preventDefault();
 
-   console.log(errors)
+    //console.log(errors);
+    setIsLoading(true)
     const formData = new FormData(e.target);
-    formData.append("ocupation", input.ocupation); 
-    dispatch(postArtist(formData,navigate));
-     
-   
+    formData.append("ocupation", input.ocupation);
+    const error = await dispatch(postArtist(formData, navigate));
+    console.log(error)
+    console.log(2)
+    setIsLoading(false)
+
   }
 
   return (
     <>
       <div className="formulario-externo-registro">
-      
         <div className="formulario-container formulario-background">
-        <div className="error_back">
-             <p>{errorForm.error}</p>
+          <div className="error_back">
+            <p>{errorForm.error}</p>
+          </div>
+          <div className="loading-gif">
+            <p>{isLoading && (<img className="loading" src={loading} alt=""></img>)}</p>
           </div>
           <form onSubmit={handleSubmit} className="form-container">
-         
             <div className="form-container__left">
-           
               <label>
                 {rutaImagen ? (
                   <img
@@ -185,7 +190,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Nombre:
                 </div>
                 <input
-                placeholder={errors.name}
+                  placeholder={errors.name}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   type="text"
@@ -200,7 +205,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Apellido:
                 </div>
                 <input
-                placeholder={errors.lastname}
+                  placeholder={errors.lastname}
                   type="text"
                   value={input.lastname}
                   onChange={handleOnChange}
@@ -215,7 +220,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Correo:
                 </div>
                 <input
-                 placeholder={errors.email}
+                  placeholder={errors.email}
                   type="email"
                   value={input.email}
                   onChange={handleOnChange}
@@ -230,7 +235,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Nickname:
                 </div>
                 <input
-                 placeholder={errors.nickName}
+                  placeholder={errors.nickName}
                   type="text"
                   value={input.nickName}
                   onChange={handleOnChange}
@@ -294,15 +299,13 @@ function Formulario() {
                     <input
                       type="checkbox"
                       name="other"
-                      value="Aun no se agrega otros"
-                      checked={input.ocupation.includes(
-                        "Aun no se agrega otros"
-                      )}
+                      value="Otros"
+                      checked={input.ocupation.includes("Otros")}
                       onChange={handleOccupationChange}
                     />
                     Otros
                   </label>
-                  {input.ocupation.includes("Aun no se agrega otros") && (
+                  {input.ocupation.includes("Otros") && (
                     <input
                       type="text"
                       value={input.value}
@@ -315,19 +318,20 @@ function Formulario() {
               <label>
                 Descripción:
                 <textarea
+                  className="descripcion-area"
                   value={input.aboutMe}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  maxLength={500}
+                  placeholder="500 Palabras max"
+                  maxLength={150}
                   name="aboutMe"
                 />
               </label>
               <button className="upload-form-button" type="submit">
-                Registrarse
+                Registrarse 
               </button>
             </div>
-             </form>
-            
+          </form>
         </div>
       </div>
     </>
