@@ -52,27 +52,223 @@ const Merch = () => {
             </div>
           </div>
         </div>
-        <div className={style.filterBar}>
-          <div className={style.leftBarContainer}>
-            <div className={style.filterContainer}>
-              <div>Filtros</div>
-              <ul className={style.filterList}>
-                <li>Todos</li>
-                <li>Precios Especiales</li>
-                <li>Basicos</li>
-              </ul>
+        <div className={style.lowerProducts}>
+          <div className={style.filterBar}>
+            <div className={style.leftBarContainer}>
+              <div className={style.filterContainer}>
+                <div>Filtros</div>
+                <ul className={style.filterList}>
+                  <li>Todos</li>
+                  <li>Precios Especiales</li>
+                  <li>Basicos</li>
+                </ul>
+              </div>
+              <div className={style.categoryContainer}>
+                <div>Categorias</div>
+                <ul className={style.categoryList}>
+                  <li>Música</li>
+                  <li>Arte</li>
+                  <li>Baile</li>
+                  <li>Especiales</li>
+                  <li>Exclusivos</li>
+                  <li>Para eventos</li>
+                  <li>Otros</li>
+                </ul>
+              </div>
             </div>
-            <div className={style.categoryContainer}>
-              <div>Categorias</div>
-              <ul className={style.categoryList}>
-                <li>Música</li>
-                <li>Arte</li>
-                <li>Baile</li>
-                <li>Especiales</li>
-                <li>Exclusivos</li>
-                <li>Para eventos</li>
-                <li>Otros</li>
-              </ul>
+          </div>
+          <div className={style.productCards}>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Cuadro Decorativo Living</b>
+                </span>
+                <div className={style.productPrice}>
+                  <span>Precio US$11.000</span>
+                </div>
+                <div className={style.productButtonSection}>
+                  <button className={style.productButton}>Comprar ahora</button>
+                  <button className={style.productButton}>
+                    Agregar al carrito
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Cuadro Decorativo Living</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (200+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$11.000</span>
+                </div>
+              </div>
+            </div>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Figura decorativa</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (150+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$7.000</span>
+                </div>
+              </div>
+            </div>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Vinilo decorativo</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (50+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$3.500</span>
+                </div>
+              </div>
+            </div>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Vinilo decorativo</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (50+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$3.500</span>
+                </div>
+              </div>
+            </div>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Vinilo decorativo</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (50+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$3.500</span>
+                </div>
+              </div>
+            </div>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Vinilo decorativo</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (50+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$3.500</span>
+                </div>
+              </div>
+            </div>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Vinilo decorativo</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (50+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$3.500</span>
+                </div>
+              </div>
+            </div>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Vinilo decorativo</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (50+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$3.500</span>
+                </div>
+              </div>
+            </div>
+            <div className={style.productCard}>
+              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <div className={style.productInfo}>
+                <span className={style.productTitle}>
+                  <b>Vinilo decorativo</b>
+                </span>
+                <div className={style.productSubtitle}>
+                  <span className={style.productRating}>
+                    <StarBorderIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </span>
+                  (50+ Reviews)
+                </div>
+                <div className={style.productPrice}>
+                  <span>Precio US$3.500</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
