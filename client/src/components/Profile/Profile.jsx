@@ -324,9 +324,9 @@ const Profile = () => {
                   handleShowEdit={handleShowEdit}
                 />
               )}
-              {
+              {/* {
                         showEditPassword && (<UpdatePassword handleEdit={handleEdit}/>)
-                      }
+                      } */}
             </div>
           ) : (
             <div className="NoAhora">
