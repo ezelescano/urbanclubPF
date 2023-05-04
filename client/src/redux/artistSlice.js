@@ -131,9 +131,8 @@ export const postArtist = (payload,navigate) => {
       const apiData = await axios.post('/artist', payload);
       const result = apiData.data;
       if (result.error) {
-         dispatch(setErrors(result))
-        dispatch(postArtistSuccess());
-        return
+        return dispatch(setErrors(result))
+       
        }
        dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))

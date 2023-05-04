@@ -41,7 +41,9 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleEdit(input);
+    const formData = new FormData(e.target)
+    formData.append("ocupation",input.ocupation)
+    handleEdit(formData);
   }
 
   function addOcupation(ocupation, selected) {

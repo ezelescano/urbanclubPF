@@ -61,7 +61,7 @@ function Formulario() {
   }
 
   function handleOnChange(e) {
-    console.log("errores///", errors.password);
+    // console.log("errores///", errors.password);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -126,13 +126,13 @@ function Formulario() {
     fileInputRef.current.click();
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-
-    console.log(errors);
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation);
-    dispatch(postArtist(formData, navigate));
+    const error = await dispatch(postArtist(formData, navigate));
+    console.log(error)
+    console.log(2)
   }
 
   return (
@@ -141,6 +141,7 @@ function Formulario() {
         <div className="formulario-container formulario-background">
           <div className="error_back">
             <p>{errorForm.error}</p>
+            {console.log(1)}
           </div>
           <form onSubmit={handleSubmit} className="form-container">
             <div className="form-container__left">

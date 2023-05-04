@@ -30,8 +30,8 @@ const updateArtist = async (req) => {
       } else {
         // cloudiconfig()
         ////////Si no se envía foto, no enviar la foto que ya está en BD
-        body.id_coverPhoto = artist.id_coverPhoto
-        body.coverPhoto = artist.coverPhoto
+        body.id_profilePhoto = artist.id_profilePhoto
+        body.profilePhoto = artist.profilePhoto
         // if (artist.id_profilePhoto) await DeletePhoto(artist.id_profilePhoto);
         // body.id_profilePhoto = ""
         // body.profilePhoto = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png"
@@ -46,8 +46,8 @@ const updateArtist = async (req) => {
       } else {
         // cloudiconfig()
         ////////Si no se envía foto, enviar la foto que ya está en BD
-        body.id_profilePhoto = artist.id_profilePhoto
-        body.profilePhoto = artist.profilePhoto
+        body.id_coverPhoto = artist.id_coverPhoto
+        body.coverPhoto = artist.coverPhoto
         // if (artist.id_coverPhoto) await DeletePhoto(artist.id_coverPhoto);
         // body.id_coverPhoto = ""
         // body.coverPhoto = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png"
