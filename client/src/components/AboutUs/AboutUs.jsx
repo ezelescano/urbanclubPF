@@ -1,6 +1,9 @@
 import React from "react";
 import "./AboutUs.css";
 import { NavLink } from "react-router-dom";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
 function AboutUs() {
   return (
     <div className="about-us-container">
@@ -25,12 +28,9 @@ function AboutUs() {
           <div className="card">
             <div className="card-image">
               <NavLink to="/About/Estiven">
-              <img
-                src="../../assets/Estiven.jpeg"
-                alt="Dua Lipa"
-              />
+                <img src="../../assets/Estiven.jpeg" alt="Dua Lipa" />
               </NavLink>
-               </div>
+            </div>
             <div className="card-content">
               <h2>Estiven</h2>
               <img src="../../assets/colombia.ico" alt="" />
@@ -39,22 +39,28 @@ function AboutUs() {
               <br />
               <br />
               <a
+                className="git"
                 href="https://www.github.com/estiven2111"
                 target="_blank"
                 rel="noreferrer"
               >
-                @estiven2111
+                <GitHubIcon />
+              </a>
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>
           <div className="card">
             <div className="card-image">
-             <a href="">
-             <img
-                src="../../assets/alan.jpeg"
-                alt="Dua Lipa"
-              />
-             </a>
+              <a href="">
+                <img src="../../assets/alan.jpeg" alt="Dua Lipa" />
+              </a>
             </div>
             <div className="card-content">
               <h2>Alan</h2>
@@ -65,22 +71,28 @@ function AboutUs() {
               </p>
               <br />
               <a
-                href="https://www.github.com/alanwinkler"
+                className="git"
+                href="https://www.github.com/Alanwinkler"
                 target="_blank"
                 rel="noreferrer"
               >
-                @alanwinkler
+                <GitHubIcon />
+              </a>
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>
           <div className="card">
             <div className="card-image">
-             <a href="">
-             <img
-                src="../../assets/miguel.jpeg"
-                alt="Dua Lipa"
-              />
-             </a>
+              <a href="">
+                <img src="../../assets/miguel.jpeg" alt="Dua Lipa" />
+              </a>
             </div>
             <div className="card-content">
               <h2>Miguel</h2>
@@ -90,22 +102,28 @@ function AboutUs() {
               <br />
               <br />
               <a
-                href="https://github.com/XCODE89"
+                className="git"
+                href="https://www.github.com/XCODE89"
                 target="_blank"
                 rel="noreferrer"
               >
-                @M.APONTE
+                <GitHubIcon />
+              </a>
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>
           <div className="card">
             <div className="card-image">
-            <NavLink to="/About/eze">
-             <img
-                src="../../assets/eze.jpeg"
-                alt="Dua Lipa"
-              />
-            </NavLink>
+              <NavLink to="/About/eze">
+                <img src="../../assets/eze.jpeg" alt="Dua Lipa" />
+              </NavLink>
             </div>
             <div className="card-content">
               <h2>Eze</h2>
@@ -116,21 +134,27 @@ function AboutUs() {
               </p>
               <br />
               <a
-                href="https://github.com/ezelescano"
+                className="git"
+                href="https://www.github.com/ezelescano"
                 target="_blank"
                 rel="noreferrer"
               >
-                @ezelescano
+                <GitHubIcon />
+              </a>
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>
           <div className="card">
             <div className="card-image">
               <a href="">
-              <img
-                src="../../assets/eudes.jpeg"
-                alt="Dua Lipa"
-              />
+                <img src="../../assets/eudes.jpeg" alt="Dua Lipa" />
               </a>
             </div>
             <div className="card-content">
@@ -142,21 +166,27 @@ function AboutUs() {
               </p>
               <br />
               <a
-                href="https://github.com/eudesmieres"
+                className="git"
+                href="https://www.github.com/eudesmieres"
                 target="_blank"
                 rel="noreferrer"
               >
-                @eudesmieres
+                <GitHubIcon />
+              </a>
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>
           <div className="card">
             <div className="card-image">
               <a href="">
-              <img 
-                src="../../assets/pablo.jpeg"
-                alt="Justin Bieber"
-              />
+                <img src="../../assets/pablo.jpeg" alt="Justin Bieber" />
               </a>
             </div>
             <div className="card-content">
@@ -168,21 +198,27 @@ function AboutUs() {
               </p>
               <br />
               <a
-                href="https://github.com/ppalmav"
+                className="git"
+                href="https://www.github.com/ppalmav"
                 target="_blank"
                 rel="noreferrer"
               >
-                @ppalmav
+                <GitHubIcon />
+              </a>
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>
           <div className="card">
             <div className="card-image">
               <a href="">
-              <img
-                src="../../assets/alex.jpeg"
-                alt="Dua Lipa"
-              />
+                <img src="../../assets/alex.jpeg" alt="Dua Lipa" />
               </a>
             </div>
             <div className="card-content">
@@ -194,22 +230,27 @@ function AboutUs() {
                 <br />& Fullstack Master
               </p>
               <a
+                className="git"
                 href="https://www.github.com/Alex-ty10"
                 target="_blank"
                 rel="noreferrer"
               >
-                <br />
-                @Alex-ty10
+                <GitHubIcon />
+              </a>
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>
           <div className="card">
             <div className="card-image">
               <a href="">
-              <img
-                src="../../assets/oscar.jpeg"
-                alt="Dua Lipa"
-              />
+                <img src="../../assets/oscar.jpeg" alt="Dua Lipa" />
               </a>
             </div>
             <div className="card-content">
@@ -221,11 +262,20 @@ function AboutUs() {
               </p>
               <br />
               <a
+                className="git"
                 href="https://www.github.com/AlhuayOscar"
                 target="_blank"
                 rel="noreferrer"
               >
-                @AlhuayOscar
+                <GitHubIcon />
+              </a>
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedInIcon />
               </a>
             </div>
           </div>
