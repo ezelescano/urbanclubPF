@@ -59,12 +59,12 @@ const postArtist = async (req) => {
         cloudiconfig()
         if (profilePhoto) {
             
-            saveProfile = await loadPhoto(profilePhoto.tempFilePath);
+            saveProfile = await loadPhoto(profilePhoto.tempFilePath,"Artist",nickName);
         }
 
         if (coverPhoto) {
             // cloudiconfig()
-            saveCover = await loadPhoto(coverPhoto.tempFilePath);
+            saveCover = await loadPhoto(coverPhoto.tempFilePath,"Artist",nickName);
         } 
     }
     

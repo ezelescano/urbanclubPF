@@ -1,11 +1,179 @@
-.conteinerbackground{
-    background: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+.containerBackground {
+  background: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
 }
-.conteiner {
-    background: url("../../img/contenedor.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 1442px;
-    height: 1374px;
-    margin: auto;
+
+.container {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  width: 100%;
+}
+
+.productStar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  padding-inline: 20px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.596);
+  background-color: #ffffff;
+  border-radius: 10px;
+  word-wrap: break-word;
+  height: auto;
+  max-width: 660px;
+  max-height: 600px;
+}
+
+.productStar img {
+  max-width: 240px;
+  max-height: 220px;
+}
+.productInfo {
+  padding-block: 15px;
+  padding-inline: 10px;
+  text-align: center;
+}
+.productSubtitle {
+  display: flex;
+  align-items: center;
+}
+.productRating {
+  color: khaki;
+}
+.productDetails {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-inline: 20px;
+}
+
+.productText {
+  width: auto;
+}
+.productButtonSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.productButton {
+  background-color: #d9d9d9;
+  border: none;
+  color: #000000;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 12px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.productButton:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+/* Ahora Filtros */
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+.leftBarContainer {
+  display: flex;
+  flex-direction: column;
+}
+.filterContainer {
+  background-color: antiquewhite;
+  margin-block: 20px;
+  font-weight: bold;
+}
+
+.categoryContainer {
+  background-color: rgb(216, 165, 97);
+  flex-grow: 1;
+}
+
+.filterBar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 600px;
+  border-radius: 20px;
+  margin-inline: 50px;
+}
+.filterList,
+.categoryList {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.filterList li,
+.categoryList li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.filterList li:hover,
+.categoryList li:hover {
+  background-color: #ebebeb;
+}
+
+.productCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.productCard {
+  width: 190px;
+  height: 240px;
+  margin-inline: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.productCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lowerProducts {
+  display: flex;
+  padding-bottom: 40px;
+}
+@media (max-width: 986px) {
+  .filterBar {
+    display: none;
+  }
+  .productCards{
+    display: flex;
+    justify-content: center;
+  }
 }

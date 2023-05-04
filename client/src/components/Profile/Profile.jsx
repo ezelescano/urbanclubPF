@@ -17,6 +17,7 @@ import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword"
+import UpdatePassword from "../UpdatePassword/UpdatePassword"
 
 const Profile = () => {
   const dispatch = useDispatch();
