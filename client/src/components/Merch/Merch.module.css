@@ -1,7 +1,10 @@
 .containerBackground {
   background: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
 }
+
 .container {
+  font-family: "Nunito Sans";
+  font-style: normal;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -13,54 +16,127 @@
 .row {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 10px;
   width: 100%;
 }
-.boxNone {
-  width: 30vw;
-  height: 35vh;
-  color: transparent;
-}
-.productBanner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30vw;
-  height: 35vh;
-  border-radius: 20px;
-  margin: 1%;
-  background-color: #ebebeb;
-}
-.box2 {
-  width: 50vw;
-  height: 60vh;
-  background-color: #ccc;
-}
-.box3 {
-  width: 50vw;
-  height: 60vh;
-  background-color: #ccc;
-}
-.productInfo {
-  display: flex;
-  justify-content: flex-end;
-}
+
 .productStar {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: rgba(199, 189, 189, 0.39);
-  border-radius: 20px;
+  padding: 5px;
+  padding-inline: 20px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.596);
+  background-color: #ffffff;
+  border-radius: 10px;
   word-wrap: break-word;
   height: auto;
-  max-width: 600px;
-  max-height: 220px;
+  max-width: 660px;
+  max-height: 600px;
 }
 
 .productStar img {
-  max-width: 220px;
-  max-height: 220px
+  max-width: 240px;
+  max-height: 220px;
 }
-.product {
-  max-width: 220px;
-  max-height: 220px
+.productInfo {
+  padding-block: 15px;
+  padding-inline: 10px;
+  text-align: center;
+}
+.productSubtitle {
+  display: flex;
+  align-items: center;
+}
+.productRating {
+  color: khaki;
+}
+.productDetails {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-inline: 20px;
+}
+
+.productText {
+  width: auto;
+}
+.productButtonSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.productButton {
+  background-color: #d9d9d9;
+  border: none;
+  color: #000000;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 12px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.productButton:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+/* Ahora Filtros */
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+.leftBarContainer{
+  display: flex;
+  flex-direction: column;
+}
+.filterContainer {
+  background-color: antiquewhite;
+  margin-block: 20px;
+  font-weight: bold;
+}
+
+.categoryContainer {
+  background-color: rgb(216, 165, 97);
+  flex-grow: 1;
+}
+
+.filterBar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 600px;
+  border-radius: 20px;
+  margin-inline: 50px;
+}
+.filterList,
+.categoryList {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.filterList li,
+.categoryList li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.filterList li:hover,
+.categoryList li:hover {
+  background-color: #ebebeb;
 }
