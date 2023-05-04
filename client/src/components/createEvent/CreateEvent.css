@@ -1,0 +1,98 @@
+.create-event {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height: 300vh;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-event-container {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1000px;
+  height: 700px;
+  max-width: 80vw;
+  max-height: 88vh;
+  padding: 50px;
+  border-radius: 5px;
+}
+.create-event-left img {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 10px;
+}
+.create-event-left {
+  display: flex;
+}
+.create-event-right form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+/* Parte Derecha del Formulario*/
+
+
+.create-event-right {
+  display: flex;
+  background-color: aliceblue;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
+}
+
+.create-event-right h2 {
+  margin-left: 100px;
+  margin-block: 10px;
+}
+.create-event-right {
+  max-width: 400px;
+  height: 500px;
+}
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  max-width: 450px;
+  margin-inline: 10px;
+  padding-inline: 20px;
+  
+}
+.input-container input {
+  height: 25px;
+  width: 250px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+}
+.input-container input:focus {
+  outline: none;
+}
+.input-container {
+  padding: 10px;
+}
+
+.input-container label {
+  margin-block: 10px;
+}
+
+/* Boton de Crear*/
+.submit-button {
+  display: flex;
+}
+.submit-button button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  max-width: 200px;
+  margin-left: 100px;
+}
