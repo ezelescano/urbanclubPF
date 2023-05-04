@@ -79,7 +79,7 @@ const Merch = () => {
           </div>
           <div className={style.productCards}>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Cuadro Decorativo Living</b>
@@ -97,7 +97,7 @@ const Merch = () => {
             </div>
 
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Cuadro Decorativo Living</b>
@@ -118,7 +118,7 @@ const Merch = () => {
               </div>
             </div>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Figura decorativa</b>
@@ -138,7 +138,7 @@ const Merch = () => {
               </div>
             </div>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Vinilo decorativo</b>
@@ -157,7 +157,7 @@ const Merch = () => {
               </div>
             </div>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Vinilo decorativo</b>
@@ -176,7 +176,7 @@ const Merch = () => {
               </div>
             </div>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Vinilo decorativo</b>
@@ -195,7 +195,7 @@ const Merch = () => {
               </div>
             </div>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Vinilo decorativo</b>
@@ -214,7 +214,7 @@ const Merch = () => {
               </div>
             </div>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Vinilo decorativo</b>
@@ -233,7 +233,7 @@ const Merch = () => {
               </div>
             </div>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Vinilo decorativo</b>
@@ -252,7 +252,7 @@ const Merch = () => {
               </div>
             </div>
             <div className={style.productCard}>
-              <img src="https://via.placeholder.com/190x240.png" alt="" />
+              <img src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683184486/UrbanClub/products/image_48_ms40mj.png" alt="" />
               <div className={style.productInfo}>
                 <span className={style.productTitle}>
                   <b>Vinilo decorativo</b>
