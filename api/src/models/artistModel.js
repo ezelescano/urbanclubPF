@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const {ACTIVATED} = require("../constants")
 
 module.exports = (sequelize) => {
+  
     sequelize.define("Artist", {
       id: {
         type: DataTypes.INTEGER,

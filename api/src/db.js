@@ -38,8 +38,8 @@ const { Artist, Event } = sequelize.models;
 
 // Country.belongsToMany(Activity, { through: "countries_activities" });
 
-Artist.belongsToMany(Event, { through: "artists_events" });
-Event.belongsToMany(Artist, { through: "artists_events" });
+Artist.belongsToMany(Event, { through: "artists_events", onDelete: 'CASCADE' });
+Event.belongsToMany(Artist, { through: "artists_events"});
 
 module.exports = {
   ...sequelize.models,
