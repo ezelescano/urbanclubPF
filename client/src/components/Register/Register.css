@@ -95,6 +95,12 @@
   align-items: center;
   order: 2;
 }
+.loading-gif {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .form-container__right {
   display: flex;
