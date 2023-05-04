@@ -20,13 +20,14 @@
   width: 1000px;
   height: 700px;
   max-width: 80vw;
-  max-height: 70vh;
+  max-height: 88vh;
   padding: 50px;
   border-radius: 5px;
 }
 .create-event-left img {
   max-width: 300px;
   max-height: 300px;
+  border-radius: 10px;
 }
 .create-event-left {
   display: flex;
@@ -37,11 +38,15 @@
   align-items: flex-start;
 }
 
+
+/* Parte Derecha del Formulario*/
+
+
 .create-event-right {
   display: flex;
   background-color: aliceblue;
   border-radius: 10px;
-  height: 450px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
 }
 
 .create-event-right h2 {
@@ -59,6 +64,7 @@
   max-width: 450px;
   margin-inline: 10px;
   padding-inline: 20px;
+  
 }
 .input-container input {
   height: 25px;
