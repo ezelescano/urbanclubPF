@@ -105,6 +105,8 @@ const Profile = () => {
     aboutMe,
   } = usuario;
 
+  const ocupationArray = ocupation && ocupation.split(",");
+
   const { id } = useParams();
   const eventosRef = useRef(null);
 
@@ -123,6 +125,7 @@ const Profile = () => {
       dispatch(clearProfile());
     };
   }, [dispatch, id]);
+
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
@@ -224,7 +227,8 @@ const Profile = () => {
                   <div className='ocupation'>{o}</div>
                 )
               })} */}
-            {ocupation && <div className="ocupation">{ocupation}</div>}
+            {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
+            {ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
           </div>
         </div>
         <div className="info-perfil">
