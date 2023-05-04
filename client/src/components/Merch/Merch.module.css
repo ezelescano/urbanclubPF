@@ -1,11 +1,14 @@
-.conteinerbackground{
-    background: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+.containerBackground {
+  background: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
 }
-.conteiner {
-    background: url("../../img/contenedor.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 1442px;
-    height: 1374px;
-    margin: auto;
+.container {
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: auto;
+}
+
+.container div {
+  min-width: 25vw;
+  min-height: 200px;
 }
