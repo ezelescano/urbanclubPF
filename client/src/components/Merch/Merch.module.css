@@ -3,12 +3,64 @@
 }
 .container {
   display: flex;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: auto;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
 }
 
-.container div {
-  min-width: 25vw;
-  min-height: 200px;
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.boxNone {
+  width: 30vw;
+  height: 35vh;
+  color: transparent;
+}
+.productBanner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  height: 35vh;
+  border-radius: 20px;
+  margin: 1%;
+  background-color: #ebebeb;
+}
+.box2 {
+  width: 50vw;
+  height: 60vh;
+  background-color: #ccc;
+}
+.box3 {
+  width: 50vw;
+  height: 60vh;
+  background-color: #ccc;
+}
+.productInfo {
+  display: flex;
+  justify-content: flex-end;
+}
+.productStar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgba(199, 189, 189, 0.39);
+  border-radius: 20px;
+  word-wrap: break-word;
+  height: auto;
+  max-width: 600px;
+  max-height: 220px;
+}
+
+.productStar img {
+  max-width: 220px;
+  max-height: 220px
+}
+.product {
+  max-width: 220px;
+  max-height: 220px
 }
