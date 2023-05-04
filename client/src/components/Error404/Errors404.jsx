@@ -4,15 +4,15 @@ import img from "./img/404.png"
 
 function Errors404() {
     return (
-        <div className='container'>
+        <div className='container-error'>
             <div className='h_s'>
                 <h1 className='border'>Lo Sentimos...</h1>
             </div>
-            <div className='img'>
+            <div className='img-error'>
                 <img src={img} alt="" />
 
             </div>
-            <div className='txt'>
+            <div className='txt-error'>
                 <p>La pagina que esta buscando no existe...</p>
             </div>
             {/* <div className='btn-home'>

@@ -1,33 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { postEvent } from '../../redux/eventSlice';
-
-
-
-// function validate(input) {
-//   return Object.keys(input).reduce((errors, key) => {
-//     console.log(errors + "Aquí" + key);
-//     return {
-//       ...errors,
-//       [key]: input[key] ? "" : `El ${key} es obligatorio`,
-//     };
-//   }, {});
-// }
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postEvent } from "../../redux/eventSlice";
+import "./CreateEvent.css";
 
 const CreateEvent = () => {
-
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-//   const [errors, setErrors] = useState({})
   const [input, setInput] = useState({
-    eventPhoto: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
+    eventPhoto:
+      "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
     name: "",
     price: 0,
     location: "",
     nameArena: "",
-    date: ""
+    date: "",
   });
 
   const handleInputChange = (event) => {
@@ -35,94 +20,113 @@ const CreateEvent = () => {
       ...input,
       [event.target.name]: event.target.value,
     });
-    // setErrors(
-    //   validate({
-    //     ...input,
-    //     [event.target.name]: event.target.value,
-    //   })
-    // )
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("////input", input);
-    if(!input.name){
-        alert("Se requiere completar los campos")
-    } else{
-        dispatch(postEvent(input));
-        alert("Evento creado!")
-        setInput({
-            eventPhoto: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
-            name: "",
-            price: 0,
-            location: "",
-            nameArena: "",
-            date: "" 
-        })
+    if (!input.name) {
+      alert("Se requiere completar los campos");
+    } else {
+      dispatch(postEvent(input));
+      alert("Evento creado!");
+      setInput({
+        eventPhoto:
+          "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
+        name: "",
+        price: 19.99,
+        location: "",
+        nameArena: "",
+        date: "",
+      });
     }
-  }
-
+  };
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-
-          <div>
-            <label>
-              <button>Subir Foto</button>
-              <input name="eventPhoto" type="file" accept="image/png,image/jpg,image/jpeg"></input>
-            </label>
-          </div>
-
-          <div>
-            <label htmlFor="name">
-              <div>
-                <span >*</span> Name:
+    <div className="create-event">
+      <div className="create-event-container">
+        <div className="create-event-left">
+          <img src={input.eventPhoto} alt="event" />
+        </div>
+        <div className="create-event-right">
+          <form className="create-event-form" onSubmit={handleSubmit}>
+            <h2>Crea Tu Evento</h2>
+            <div className="form-inputs">
+              <div className="input-container">
+                <label htmlFor="name">Nombre del evento:</label>
+                <br />
+                <input
+                  type="text"
+                  name="name"
+                  maxLength="35"
+                  placeholder="Colocar nombre del evento"
+                  required
+                  value={input.name}
+                  onChange={handleInputChange}
+                />
               </div>
-              <input type='text' name="name" maxLength="35" required value={input.name} onChange={handleInputChange} />
-            </label>
-
-            <label htmlFor='price'>
-              <div>
-                <span>*</span> Price:
+              <div className="input-container">
+                <label htmlFor="price">Precio de la entrada: U$D</label>
+                <br />
+                <input
+                  type="number"
+                  name="price"
+                  step="2.5"
+                  placeholder="Ingrese un precio"
+                  required
+                  value={input.price}
+                  onChange={handleInputChange}
+                />
               </div>
-              <input type='number' name='price' required value={input.price} onChange={handleInputChange} />
-            </label>
-
-            <label htmlFor='location'>
-              <div>
-                <span>*</span> Location:
+              <div className="input-container">
+                <label htmlFor="location">Ubicación:</label>
+                <br />
+                <input
+                  type="text"
+                  name="location"
+                  placeholder="Ingrese como ubicar tu evento :)"
+                  maxLength="50"
+                  required
+                  value={input.location}
+                  onChange={handleInputChange}
+                />
               </div>
-              <input type='text' name='location' maxLength="50" required value={input.location} onChange={handleInputChange} />
-            </label>
-
-            <label htmlFor='nameArena'>
-              <div>
-                <span>*</span> Name Arena:
+              <div className="input-container">
+                <label htmlFor="nameArena">Nombre del arena / Escenario:</label>
+                <br />
+                <input
+                  type="text"
+                  name="nameArena"
+                  placeholder="Nombre del local"
+                  maxLength="35"
+                  required
+                  value={input.nameArena}
+                  onChange={handleInputChange}
+                />
               </div>
-              <input type='text' name='nameArena' maxLength="35" required value={input.nameArena} onChange={handleInputChange} />
-            </label>
-
-            <label name="date">
-              <div>
-                <span >*</span> Date:
+              <div className="input-container">
+                <label htmlFor="date">Fecha:</label>
+                <br />
+                <input
+                  type="date"
+                  name="date"
+                  required
+                  value={input.date}
+                  onChange={handleInputChange}
+                />
               </div>
-              <input type='date' name='date' required value={input.date} onChange={handleInputChange} />
-            </label>
-
-          </div>
-
-          <button>Create Event</button>
-        </form>
+              <br />
+              <div className="submit-button">
+                <button type="submit">Crear Evento</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default CreateEvent;
-
-
 
 // crear el formulario con los campos a completar
 // crear los handler que van a manejar los eventos
