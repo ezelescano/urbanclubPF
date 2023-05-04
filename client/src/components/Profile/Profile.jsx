@@ -25,6 +25,7 @@ const Profile = () => {
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [showEditPassword, setShowEditPassword] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const verified = true;
   const links = [
@@ -135,7 +136,7 @@ const Profile = () => {
   };
 
   const handlePasswordChange = () => {
-    alert("Funcion aún no implementada :)");
+    setShowEditPassword(!showEditPassword)
   };
 
   const handleOnBlur = () => {
@@ -323,6 +324,9 @@ const Profile = () => {
                   handleShowEdit={handleShowEdit}
                 />
               )}
+              {
+                        showEditPassword && (<UpdatePassword handleEdit={handleEdit}/>)
+                      }
             </div>
           ) : (
             <div className="NoAhora">
