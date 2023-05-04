@@ -64,7 +64,10 @@ const updateArtist = async (req) => {
     }
     await Artist.update(body, { where: { id: parseInt(id) } });
   }
-  return body;
+  const artistActualizado = await Artist.findOne({
+    where: { id },
+  });
+  return artistActualizado;
 };
 
 module.exports = { updateArtist };

@@ -1,5 +1,7 @@
 import "./UpdatePassword.css";
 import { useState } from "react";
+import swal from 'sweetalert'
+
 
 const UpdatePassword = ({ handleEdit }) => {
 
@@ -21,7 +23,15 @@ const UpdatePassword = ({ handleEdit }) => {
       handleEdit(password);
       setPassword({ password: "" })
       setPassword2({ password2: "" })
+      swal({
+        title: "Información de contraseña",
+        text: "Se actualizo la contraseña",
+        icon: "success",
+        buttons: "Aceptar"
+     })
     }
+
+
   }
 
   const validate = (input) => {

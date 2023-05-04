@@ -5,12 +5,14 @@ import "./Register.css";
 import { postArtist, errorsCreate } from "../../redux/artistSlice";
 import swal from "sweetalert";
 
+import loading from '../../img/loading.gif'
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Formulario() {
   const { errorForm } = useSelector((state) => state.artist);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false)
   const [input, setInput] = useState({
     name: "",
     lastname: "",
@@ -125,14 +127,19 @@ function Formulario() {
   const handleClick = () => {
     fileInputRef.current.click();
   };
-
+  
   async function handleSubmit(e) {
     e.preventDefault();
+
+    //console.log(errors);
+    setIsLoading(true)
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation);
     const error = await dispatch(postArtist(formData, navigate));
     console.log(error)
     console.log(2)
+    setIsLoading(false)
+
   }
 
   return (
@@ -141,7 +148,9 @@ function Formulario() {
         <div className="formulario-container formulario-background">
           <div className="error_back">
             <p>{errorForm.error}</p>
-            {console.log(1)}
+          </div>
+          <div className="loading-gif">
+            <p>{isLoading && (<img className="loading" src={loading} alt=""></img>)}</p>
           </div>
           <form onSubmit={handleSubmit} className="form-container">
             <div className="form-container__left">
