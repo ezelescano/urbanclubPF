@@ -3,8 +3,10 @@ import { useState } from "react";
 
 const UpdatePassword = ({ handleEdit }) => {
 
-  const [input, setInput] = useState({
-    password1: "",
+  const [password, setPassword] = useState({
+    password: "",
+  });
+  const [password2, setPassword2] = useState({
     password2: "",
   });
 
@@ -12,58 +14,62 @@ const UpdatePassword = ({ handleEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!errors){
-      handleEdit(input);
-    } else {
-      alert("Estás actuando de mala manera, deberás ser disciplinada");
+    setErrors(validate({ password: password.password, password2: password2.password2 }));
+    if (Object.keys(validate({ password: password.password, password2: password2.password2 })).length === 0) {
+      handleEdit(password);
+      setPassword({ password: "" })
+      setPassword2({ password2: "" })
     }
-  };
+  }
 
-  const validate = (password1, password2) => {
+  const validate = (input) => {
     let errors = {};
     const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password1)) {
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/;
+    if (!passwordRegex.test(input.password)) {
       errors.password =
-        "La contraseña debe contener un caracter especial, un número, una maýuscula y una minúscula";
+        "La contraseña debe ser de 8 caracteres mínimo, contener dos caracteres especiales, dos número, una maýuscula y una minúscula";
     }
-    if (password1 !== password2){
-      errors.password = "La contraseña no coincide";
+    if (input.password === input.password2){
+      return errors;
     } else {
-      errors = {};
+      errors.password = "Las contraseñas no coinciden";
     }
     return errors;
   };
 
-  const changeHandler = (e) => {
+  const changeHandlerPassword = (e) => {
     const property = e.target.name;
     const value = e.target.value;
-    setInput({
-      ...input,
+    setPassword({
+      ...password,
       [property]: value,
     });
-      setErrors(
-        validate({
-          ...input,
-          [property]: value,
-        })
-      );
   };
+
+  const changeHanlderPassword2 = (e) => {
+    const property = e.target.name;
+    const value = e.target.value;
+    setPassword2({
+      ...password2,
+      [property]: value,
+    })
+  }
 
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <input
-          type="password"
-          name="password1"
-          value={input.password1}
-          onChange={changeHandler}
+          type="text"
+          name="password"
+          value={password.password}
+          onChange={changeHandlerPassword}
         ></input>
         <input
-          type="password"
+          type="text"
           name="password2"
-          value={input.password2}
-          onChange={changeHandler}
+          value={password2.password2}
+          onChange={changeHanlderPassword2}
         ></input>
         { errors && <p>{errors.password}</p>}
         <button type="submit">Guardar nueva contraseña</button>
