@@ -42,6 +42,11 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/createevent" className="nav-link active">
+            Crear Evento :D
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/merch" className="nav-link active">
             Tienda
           </NavLink>

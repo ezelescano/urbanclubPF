@@ -2,7 +2,6 @@ import "./UpdatePassword.css";
 import { useState } from "react";
 
 const UpdatePassword = ({ handleEdit }) => {
-
   const [input, setInput] = useState({
     password1: "",
     password2: "",
@@ -12,7 +11,7 @@ const UpdatePassword = ({ handleEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!errors){
+    if (!errors) {
       handleEdit(input);
     } else {
       alert("Estás actuando de mala manera, deberás ser disciplinada");
@@ -27,7 +26,7 @@ const UpdatePassword = ({ handleEdit }) => {
       errors.password =
         "La contraseña debe contener un caracter especial, un número, una maýuscula y una minúscula";
     }
-    if (password1 !== password2){
+    if (password1 !== password2) {
       errors.password = "La contraseña no coincide";
     } else {
       errors = {};
@@ -42,16 +41,16 @@ const UpdatePassword = ({ handleEdit }) => {
       ...input,
       [property]: value,
     });
-      setErrors(
-        validate({
-          ...input,
-          [property]: value,
-        })
-      );
+    setErrors(
+      validate({
+        ...input,
+        [property]: value,
+      })
+    );
   };
 
   return (
-    <div className="container">
+    <div className="container-updatePassword">
       <form onSubmit={handleSubmit}>
         <input
           type="password"
@@ -65,7 +64,7 @@ const UpdatePassword = ({ handleEdit }) => {
           value={input.password2}
           onChange={changeHandler}
         ></input>
-        { errors && <p>{errors.password}</p>}
+        {errors && <p>{errors.password}</p>}
         <button type="submit">Guardar nueva contraseña</button>
       </form>
     </div>
