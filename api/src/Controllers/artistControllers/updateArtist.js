@@ -27,7 +27,7 @@ const updateArtist = async (req) => {
       cloudiconfig();
       if (profilePhoto) {
         if (artist.id_profilePhoto) await DeletePhoto(artist.id_profilePhoto);
-        const UpdateProfile = await loadPhoto(profilePhoto.tempFilePath);
+        const UpdateProfile = await loadPhoto(profilePhoto.tempFilePath,"Artist",artist.nickName);
         body.id_profilePhoto = UpdateProfile.public_id;
         body.profilePhoto = UpdateProfile.secure_url;
       } else {
@@ -37,7 +37,7 @@ const updateArtist = async (req) => {
 
       if (coverPhoto) {
         if (artist.id_coverPhoto) await DeletePhoto(artist.id_coverPhoto);
-        const UpdateCover = await loadPhoto(coverPhoto.tempFilePath);
+        const UpdateCover = await loadPhoto(coverPhoto.tempFilePath,"Artist",artist.nickName);
         body.id_coverPhoto = UpdateCover.public_id;
         body.coverPhoto = UpdateCover.secure_url;
       } else {

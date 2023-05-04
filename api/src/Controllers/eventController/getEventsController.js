@@ -1,7 +1,10 @@
-const {Event} = require("../../db");
+const {Event,Artist} = require("../../db");
 
 const getEventsController = async () => {
-    const eventDB = await Event.findAll();
+    console.log("hola")
+    const eventDB = await Artist.findAll({
+        include:Event
+    })
     return eventDB;
 };
 
