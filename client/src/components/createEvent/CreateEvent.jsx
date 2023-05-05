@@ -78,7 +78,7 @@ const CreateEvent = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="input-container">
+              <div style={{display:"none"}} className="input-container">
                 <label htmlFor="location">Ubicación:</label>
                 <br />
                 <input

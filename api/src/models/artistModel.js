@@ -65,7 +65,7 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       ocupation: {
-        type: DataTypes.JSON,
+        type: DataTypes.STRING,
         allowNull: true,
       },
       aboutMe: {
