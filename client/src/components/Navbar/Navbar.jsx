@@ -44,9 +44,13 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/createevent" className="nav-link active">
-            Crear Evento :D
-          </NavLink>
+          {
+            islogin.isAuthenticated &&
+            <NavLink to={`/createevent/${usuario.id}`} className="nav-link active">
+              Crear Evento 😄
+            </NavLink>
+          }
+
         </li>
         <li>
           <NavLink to="/merch" className="nav-link active">
