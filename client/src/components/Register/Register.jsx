@@ -149,9 +149,6 @@ function Formulario() {
           <div className="error_back">
             <p>{errorForm.error}</p>
           </div>
-          <div className="loading-gif">
-            <p>{isLoading && (<img className="loading" src={loading} alt=""></img>)}</p>
-          </div>
           <form onSubmit={handleSubmit} className="form-container">
             <div className="form-container__left">
               <label>
@@ -327,9 +324,18 @@ function Formulario() {
                   name="aboutMe"
                 />
               </label>
-              <button className="upload-form-button" type="submit">
+              
+              
+                {isLoading && (<div className="loading-gif">
+                  <img className="loading" src={loading} alt="" width="50px"></img>
+                  </div>)
+                  }
+                  {!isLoading && (<button className="upload-form-button" type="submit">
                 Registrarse 
-              </button>
+              </button>)
+                  }
+              
+              
             </div>
           </form>
         </div>
