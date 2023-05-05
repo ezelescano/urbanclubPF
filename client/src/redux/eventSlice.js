@@ -24,7 +24,6 @@ export const postEvent = (payload) => {
     return async (dispatch) => {
         try {
             const eventData = (await axios.post('/event', payload)).data;
-            console.log("//// soy el eventData", eventData);
        
         return dispatch(postEventSuccess(eventData));
       } catch (error) {

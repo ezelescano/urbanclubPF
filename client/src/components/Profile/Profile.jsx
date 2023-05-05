@@ -228,7 +228,7 @@ const Profile = () => {
                 )
               })} */}
             {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
-            {ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
+            {ocupationArray&&ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
           </div>
         </div>
         <div className="info-perfil">

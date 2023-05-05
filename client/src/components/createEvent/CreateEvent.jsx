@@ -27,7 +27,8 @@ const CreateEvent = () => {
     if (!input.name) {
       alert("Se requiere completar los campos");
     } else {
-      dispatch(postEvent(input));
+      const formData = new FormData(event.target)
+    dispatch(postEvent(formData));
       alert("Evento creado!");
       setInput({
         eventPhoto:
