@@ -132,13 +132,24 @@ function Formulario() {
     e.preventDefault();
 
     //console.log(errors);
-    setIsLoading(true)
+  //  console.log(input.ocupation);
+  if (!input.ocupation.length){
+    await swal({
+      title: "ERROR",
+      text: "Se debe seleccionar al menos 1 ocupación",
+      icon: "error",
+      buttons: "Aceptar"
+    })
+    return 
+  }
+    setIsLoading(true);
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation);
     const error = await dispatch(postArtist(formData, navigate));
-    console.log(error)
-    console.log(2)
-    setIsLoading(false)
+    setIsLoading(false);
+    // console.log(error)
+    // console.log(2)
+    
 
   }
 
