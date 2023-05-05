@@ -47,7 +47,7 @@ function Navbar() {
           {
             islogin.isAuthenticated &&
             <NavLink to={`/createevent/${usuario.id}`} className="nav-link active">
-              Crear Evento :D
+              Crear Evento 😄
             </NavLink>
           }
 
