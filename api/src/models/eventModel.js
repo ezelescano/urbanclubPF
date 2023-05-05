@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         date: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: true,
         },
         id_eventPhoto: {
