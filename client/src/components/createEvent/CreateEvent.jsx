@@ -17,7 +17,7 @@ const CreateEvent = () => {
     location: "",
     nameArena: "", 
     date: ""
-
+   
   });
 
  
