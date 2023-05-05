@@ -4,7 +4,6 @@ import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import EventMap from "../EventMap/EventMap";
 
 const Events = () => {
-  
   const events = [
     {
       id: 1,
@@ -34,7 +33,7 @@ const Events = () => {
         "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1502786129293-79981df4e689_ivqjf8.png",
     },
   ];
-const [selectedLocation, setSelectedLocation] = useState(events[0].location);
+  const [selectedLocation, setSelectedLocation] = useState(events[0].location);
   const handleLocationChange = (location) => {
     setSelectedLocation(location);
   };
@@ -46,8 +45,8 @@ const [selectedLocation, setSelectedLocation] = useState(events[0].location);
       </div>
       <div>Algo</div>
       <div>
+        <p style={{backgroundColor:"white"}}>EventMap location={selectedLocation}</p>
         <EventMap location={selectedLocation} />
-        <p>EventMap location={selectedLocation}</p>
       </div>
     </div>
   );

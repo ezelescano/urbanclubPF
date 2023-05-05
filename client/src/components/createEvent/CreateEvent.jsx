@@ -167,7 +167,7 @@ const CreateEvent = () => {
               </label>
               <label>
                 <div>
-                  <span style={{ color: "red" }}>*</span> Direciion del evento:
+                  <span style={{ color: "red" }}>*</span> Direccion del evento:
                 </div>
                 <input
                   placeholder={errors.location}
