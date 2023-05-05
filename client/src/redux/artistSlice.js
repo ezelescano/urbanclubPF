@@ -49,6 +49,12 @@ export const artistSlice = createSlice({
         allUsuarios: action.payload
       }
     },
+    cleanArtistsSuccess(state, action) {
+      return {
+        ...state,
+        allUsuarios: []
+      }
+    },
     postArtistSuccess(state) {
       return {
         ...state,
@@ -113,6 +119,12 @@ export const getArtistId = (id) => {
     const apiData = await axios.get(`/artist/${id}`);
     const artist = apiData.data;
     return dispatch(getArtistIdSuccess(artist));
+  };
+};
+
+export const cleanArtists = () => {
+  return async (dispatch) => {
+    return dispatch(cleanArtistsSuccess());
   };
 };
 
@@ -239,6 +251,7 @@ export const {
   getArtistIdSuccess,
   getAllArtsSuccess,
   getArtistNameSuccess,
+  cleanArtistsSuccess,
   postArtistSuccess,
   deleteArtistSuccess,
   getauthSuccess,
