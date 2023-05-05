@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 // import { getAllEvents } from "../../redux/eventSlice";
 import style from "./Events.module.css";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
+import EventMap from "../EventMap/EventMap";
 
 const Events = () => {
   const events = [
@@ -79,10 +80,19 @@ const Events = () => {
         "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712069/photo-1419242902214-272b3f66ee7a_yjcuva.png",
     },
   ];
+  const location = {
+    lat: -34.586763,
+    lng: -58.374534,
+  };
+  
   return (
     <div className={style.container}>
       <div className={style.containerHelp}>
         <CardsEvents events={events} />
+      </div>
+      <div>Algo</div>
+      <div>
+        <EventMap location={location} />
       </div>
     </div>
   );
