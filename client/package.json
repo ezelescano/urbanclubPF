@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@googlemaps/google-maps-services-js": "^3.3.29",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@react-google-maps/api": "^2.18.1",

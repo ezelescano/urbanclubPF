@@ -20,20 +20,20 @@ function EventMap({ location }) {
         mapOptions
       );
       setMap(mapInstance);
-
       const geocoder = new window.google.maps.Geocoder();
-      geocoder.geocode({ address: "Tropitango" }, (results, status) => {
+      geocoder.geocode({ address: location }, (results, status) => {
         if (status === "OK") {
           const location = results[0].geometry.location;
           mapInstance.setCenter(location);
+          //Esto es solo el marcador, para el "mapInstance"
           const marker = new window.google.maps.Marker({
             position: location,
             map: mapInstance,
-            title: "Tropitango",
+            title: "Nombre Del Lugar de CrearEvento",
           });
         } else {
           console.error(
-            "Geocode was not successful for the following reason:",
+            "Geocode no pudo encontrar el lugar por lo siguiente:",
             status
           );
         }
