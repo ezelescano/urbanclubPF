@@ -131,9 +131,8 @@ export const postArtist = (payload,navigate) => {
       const apiData = await axios.post('/artist', payload);
       const result = apiData.data;
       if (result.error) {
-         dispatch(setErrors(result))
-        dispatch(postArtistSuccess());
-        return
+        return dispatch(setErrors(result))
+       
        }
        dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))
@@ -145,7 +144,7 @@ export const postArtist = (payload,navigate) => {
         buttons: "Aceptar"
      }).then(res=>{
       if(res){
-        navigate("/")
+        // navigate("/")
       }
      })
      
@@ -200,9 +199,11 @@ export const getauth = (navigate) => {
 export const updateArtist = (id, input) => {
   return async (dispatch) => {
     try {
+      console.log(input)
       const apiData = await axios.put(`/artist/update/${id}`, input);
       const response = apiData.data;
       dispatch(updateArtistSuccess(response));
+      console.log(response)
     } catch (error) {
       swal({
         title: "ERROR",

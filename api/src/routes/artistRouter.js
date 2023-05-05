@@ -13,7 +13,7 @@ const fileupload = require("express-fileupload")
 const passport = require("../middlewares/authGoogle")
 const artistRouter = Router();
 
- 
+
 artistRouter.get("/", getArtistHandler);
 artistRouter.get("/:id", getArtistById);
 artistRouter.delete("/:id", delArtistHandler);
@@ -23,6 +23,7 @@ artistRouter.put("/restore/:id", restoreArtistHandler);
 artistRouter.post("/",fileupload({useTempFiles: true,tempFileDir: "./uploads"}), postArtistHandler);
 artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
+
 
 artistRouter.get(
     "/auth/google",

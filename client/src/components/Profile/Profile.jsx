@@ -9,13 +9,14 @@ import {
   deleteArtist,
   updateArtist,
 } from "../../redux/artistSlice";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
+import UpdatePassword from "../UpdatePassword/UpdatePassword"
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Profile = () => {
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [showEditPassword, setShowEditPassword] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const verified = true;
   const links = [
@@ -103,6 +105,8 @@ const Profile = () => {
     aboutMe,
   } = usuario;
 
+  const ocupationArray = ocupation && ocupation.split(",");
+
   const { id } = useParams();
   const eventosRef = useRef(null);
 
@@ -122,6 +126,7 @@ const Profile = () => {
     };
   }, [dispatch, id]);
 
+
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -135,7 +140,7 @@ const Profile = () => {
   };
 
   const handlePasswordChange = () => {
-    alert("Funcion aún no implementada :)");
+    setShowEditPassword(!showEditPassword);
   };
 
   const handleOnBlur = () => {
@@ -151,27 +156,28 @@ const Profile = () => {
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
       icon: "warning",
-      buttons: ["No", "Si"]
-    }).then(async res=>{
-      if (res && isCurrentUser) {
-        const confirmed = await dispatch(deleteArtist(id));
-       if (confirmed) {
-       return swal({
-          title: "CUENTA ELIMINADA",
-          text: `La cuenta ${name} ha sido eliminada correctamente`,
-          icon: "success",
-          button: "Aceptar"
-        })
-       }
-      } 
-    }).then(res=>{
-      if (res) {
-        dispatch(logout());
-        window.location.replace("/")
-        // navigate("/");
-      }
+      buttons: ["No", "Si"],
     })
-
+      .then(async (res) => {
+        if (res && isCurrentUser) {
+          const confirmed = await dispatch(deleteArtist(id));
+          if (confirmed) {
+            return swal({
+              title: "CUENTA ELIMINADA",
+              text: `La cuenta ${name} ha sido eliminada correctamente`,
+              icon: "success",
+              button: "Aceptar",
+            });
+          }
+        }
+      })
+      .then((res) => {
+        if (res) {
+          dispatch(logout());
+          window.location.replace("/");
+          // navigate("/");
+        }
+      });
   };
 
   const handleEdit = (input) => {
@@ -183,13 +189,13 @@ const Profile = () => {
       title: "CERRAR SESION",
       text: `Deseas cerrar la sesion de ${name}`,
       icon: "warning",
-      buttons: ["No", "Si"]
-    }).then(res => {
+      buttons: ["No", "Si"],
+    }).then((res) => {
       if (res && isCurrentUser) {
         dispatch(logout());
         navigate("/");
       }
-    })
+    });
   };
 
   const handleFollow = () => {
@@ -221,7 +227,8 @@ const Profile = () => {
                   <div className='ocupation'>{o}</div>
                 )
               })} */}
-            {ocupation && <div className="ocupation">{ocupation}</div>}
+            {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
+            {ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
           </div>
         </div>
         <div className="info-perfil">
@@ -323,6 +330,7 @@ const Profile = () => {
                   handleShowEdit={handleShowEdit}
                 />
               )}
+              {showEditPassword && <UpdatePassword handleEdit={handleEdit} />}
             </div>
           ) : (
             <div className="NoAhora">
