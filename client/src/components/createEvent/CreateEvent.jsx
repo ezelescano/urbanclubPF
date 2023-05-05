@@ -50,6 +50,7 @@ const CreateEvent = () => {
     return errors;
   }
 
+  //Va poniendo los caracteres al input
   function handleOnChange(e) {
     // console.log("errores///", errors.password);
     setInput({
@@ -81,7 +82,7 @@ const CreateEvent = () => {
       setRutaImagen(reader.result);
     };
   };
-
+  //Vuelve el boton Personalizado
   const handleClick = () => {
     fileInputRef.current.click();
   };
@@ -101,7 +102,6 @@ const CreateEvent = () => {
         <div className="formulario-container formulario-background">
           <div className="error_back">
           </div>
-          
           <form onSubmit={handleSubmit} className="form-container">
             <div className="form-container__left">
               <label>
