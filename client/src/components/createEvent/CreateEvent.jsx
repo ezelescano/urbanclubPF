@@ -17,7 +17,7 @@ const CreateEvent = () => {
     location: "",
     nameArena: "", 
     date: ""
-
+   
   });
 
  
@@ -50,7 +50,6 @@ const CreateEvent = () => {
     return errors;
   }
 
-  //Va poniendo los caracteres al input
   function handleOnChange(e) {
     // console.log("errores///", errors.password);
     setInput({
@@ -82,7 +81,7 @@ const CreateEvent = () => {
       setRutaImagen(reader.result);
     };
   };
-  //Vuelve el boton Personalizado
+
   const handleClick = () => {
     fileInputRef.current.click();
   };
@@ -102,6 +101,7 @@ const CreateEvent = () => {
         <div className="formulario-container formulario-background">
           <div className="error_back">
           </div>
+          
           <form onSubmit={handleSubmit} className="form-container">
             <div className="form-container__left">
               <label>
@@ -167,7 +167,7 @@ const CreateEvent = () => {
               </label>
               <label>
                 <div>
-                  <span style={{ color: "red" }}>*</span> Direccion del evento:
+                  <span style={{ color: "red" }}>*</span> Direciion del evento:
                 </div>
                 <input
                   placeholder={errors.location}
@@ -220,8 +220,3 @@ const CreateEvent = () => {
 };
 
 export default CreateEvent;
-
-// crear el formulario con los campos a completar
-// crear los handler que van a manejar los eventos
-// crear los dispatch que van a ejecutar las acciones.
-// name, price, location, nameArena, date, eventPhoto
