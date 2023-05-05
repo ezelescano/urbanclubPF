@@ -105,7 +105,7 @@ const Profile = () => {
     aboutMe,
   } = usuario;
 
-  const ocupationArray = ocupation && ocupation.split(",");
+  const ocupationArray = ocupation && (ocupation.length && ocupation.split(","));
 
   const { id } = useParams();
   const eventosRef = useRef(null);
@@ -228,7 +228,7 @@ const Profile = () => {
                 )
               })} */}
             {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
-            {ocupationArray&&ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
+            {ocupationArray && ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
           </div>
         </div>
         <div className="info-perfil">
