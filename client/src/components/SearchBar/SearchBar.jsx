@@ -9,24 +9,30 @@ import {  useNavigate, useLocation } from "react-router-dom";
 
 const SearchBar = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
+  const [input, setInput] = useState({
+    buscar: ''
+})
 
   const handleOnChange = (e) => {
     e.preventDefault();
-    setName(e.target.value);
+    setInput({
+      [e.target.name]: e.target.value
+    });
   };
 
   const handleOnClick = async (e) => {
     e.preventDefault();
-    if (name) {
+    if (input.buscar) {
       if(location.pathname.split("/").pop() !== 'artists'){ 
         //si location no es artist, cambiar a artists y generar busqueda
         await navigate("/artists")
       }
-      dispatch(getArtistName(name));
-      setName("");
+      dispatch(getArtistName(input.buscar));
+      setInput({
+        buscar:''
+      });
       
     }
   };
@@ -37,10 +43,13 @@ const SearchBar = () => {
         <input
           className="searchbar"
           type="text"
+          name="buscar"
           onChange={handleOnChange}
+          value={input.buscar}
           placeholder="¿Qué artista quieres ver hoy?"
+          autoComplete="off"
         />
-        <NavLink to={`/home?name=${name}`}>
+        <NavLink to={`/home?name=${input.buscar}`}>
           <button className="searchbar-btn" onClick={(e) => handleOnClick(e)}>
             <i className="search-icon">
               <SearchIcon />
