@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { postEvent } from "../../redux/eventSlice";
+
 import "./CreateEvent.css";
 
 const CreateEvent = () => {
-  ;
+  const {id} = useParams();
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -15,6 +17,7 @@ const CreateEvent = () => {
     location: "",
     nameArena: "", 
     date: ""
+
   });
 
  
@@ -68,6 +71,7 @@ const CreateEvent = () => {
     const files = e.target.files;
     setFiles(files);
     const reader = new FileReader();
+
     setInput({
       ...input,
       eventPhoto: file.name,
@@ -87,7 +91,8 @@ const CreateEvent = () => {
 
     //console.log(errors);
     const formData = new FormData(e.target);
-     dispatch(postEvent(formData));
+    formData.append("id_Artist", id)
+     dispatch(postEvent(formData, navigate("/events")));
   }
 
   return (
@@ -193,7 +198,7 @@ const CreateEvent = () => {
               <label>
                 <div>Fecha:</div>
                 <input
-                  type="date"
+                  type="text"
                   value={input.date}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}

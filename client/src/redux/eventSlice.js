@@ -23,7 +23,7 @@ export const eventSlice = createSlice({
 export const postEvent = (payload) => {
     return async (dispatch) => {
         try {
-            const eventData = (await axios.post('/event', payload)).data;
+            const eventData = (await axios.post('/events', payload)).data;
            
        
         return dispatch(postEventSuccess(eventData));
