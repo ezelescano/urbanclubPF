@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
   const islogin = useSelector((state) => state.auth);
+  const usuario = useSelector((state) => state.artist.usuario);
+
   return (
     <nav className="navbar">
       <NavLink to="/">
@@ -61,12 +63,12 @@ function Navbar() {
         <NavLink to={`/profile/${islogin.user.id}`}>
           <img
             className="sesionfoto"
-            src={islogin.user.profilePhoto}
+            src={usuario.profilePhoto}
             alt="No hay"
           />
           <img
             className="sesionfotozoom"
-            src={islogin.user.profilePhoto}
+            src={usuario.profilePhoto}
             alt="No hay"
           />
         </NavLink>
