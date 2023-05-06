@@ -106,7 +106,8 @@ const CreateEventTemplate = () => {
 
   return (
     <div className="create-event">
-      <div className="error_back" style={{ color: "red" }}></div>
+      <div className="error_back" style={{ color: "red" }}></div> 
+      <form onSubmit={handleSubmit}>
       <div className="create-event-container">
         <div className="create-event-left">
           <div className="create-event-img-container">
@@ -139,7 +140,7 @@ const CreateEventTemplate = () => {
           </div>
         </div>
         <div className="create-event-right">
-          <form className="create-event-form" onSubmit={handleSubmit}>
+          <div className="create-event-form" >
             <h2>Crea Tu Evento</h2>
             <div className="form-inputs">
               <div className="input-container">
@@ -213,9 +214,10 @@ const CreateEventTemplate = () => {
                 <button type="submit">Crear Evento</button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
+      </form>
     </div>
   );
 };
