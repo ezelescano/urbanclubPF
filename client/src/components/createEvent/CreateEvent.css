@@ -108,6 +108,7 @@
 /* Boton de Crear*/
 .submit-button {
   display: flex;
+  cursor: pointer;
 }
 .submit-button button {
   padding: 10px;
@@ -121,4 +122,12 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   background-color: #222222;
   color: #e6e6e6;
+}
+.loadingGif {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 200px;
+  margin-left: 140px;
 }
