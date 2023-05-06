@@ -1,9 +1,9 @@
 const { Op } = require("sequelize");
-const { Artist } = require("../../db");
+const { Artist,Event } = require("../../db");
 const { ACTIVATED } = require("../../constants");
 
 const getAllArtist = async () => {
-    const artistDB = await Artist?.findAll({ where: { estado: ACTIVATED}})
+    const artistDB = await Artist?.findAll({ where: { estado: ACTIVATED},include: Event})
     return artistDB;
 }
 

@@ -5,6 +5,7 @@ import loading from "../../img/loading.gif";
 import style from "./Events.module.css";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import EventMap from "../EventMap/EventMap";
+import { getAllEvents } from "../../redux/eventSlice";
 
 const Events = () => {
   const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation 
@@ -12,22 +13,25 @@ const Events = () => {
     setSelectedLocation(location);
   };
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getAllEvents());
-  // }, [dispatch]);
+  const {allEvents} = useSelector(state=>state.events)
+  useEffect(() => {
+    dispatch(getAllEvents());
+  }, [dispatch]);
 
   return (
     <div className={style.container}>
       <div className={style.containerHelp}>
-        <CardsEvents onClick={handleLocationChange} />
-      </div>
-      <div>Algo</div>
-      <div>
-        <p style={{ backgroundColor: "white" }}>
-          EventMap location={selectedLocation}
-        </p>
-        <EventMap location={selectedLocation} />
+        {
+          allEvents.map((item)=>{
+           return(
+            <CardsEvents
+            id_art = {item.id}
+            name_art = {item.name}
+            event={item}
+            onClick={handleLocationChange} />
+           )
+          })
+        }
       </div>
     </div>
   );
