@@ -20,6 +20,7 @@ const CreateEvent = () => {
     nameArena: "",
     eventPhoto: "",
     date: "",
+    description: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -223,6 +224,25 @@ const CreateEvent = () => {
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
                     name="date"
+                  />
+                </div>
+                <div className="input-container">
+                  <label htmlFor="description">Describe qué se hará</label>
+                  <br />
+                  <textarea
+                    placeholder={
+                      "Escribe aquí" +
+                      (!errors.description
+                        ? " "
+                        : "Oops!: " + errors.description)
+                    }
+                    type="text"
+                    value={input.description}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="description"
+                    maxLength={150}
+                    required
                   />
                 </div>
                 <br />
