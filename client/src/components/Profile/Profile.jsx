@@ -16,14 +16,14 @@ import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
-import UpdatePassword from "../UpdatePassword/UpdatePassword"
+import UpdatePassword from "../UpdatePassword/UpdatePassword";
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const eventsArtist = useSelector(state=>state.events.allEvents)
+  const eventsArtist = useSelector((state) => state.events.allEvents);
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
 
@@ -39,7 +39,6 @@ const Profile = () => {
     },
   ];
 
-
   const isCurrentUser = currentUser && currentUser.id === usuario.id;
 
   const {
@@ -53,7 +52,7 @@ const Profile = () => {
     aboutMe,
   } = usuario;
 
-  const ocupationArray = ocupation && (ocupation.length && ocupation.split(","));
+  const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
 
   const { id } = useParams();
   const eventosRef = useRef(null);
@@ -74,7 +73,6 @@ const Profile = () => {
     };
   }, [dispatch, id]);
 
-
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -91,9 +89,9 @@ const Profile = () => {
     setShowEditPassword(!showEditPassword);
   };
 
-  const handleShowCreateEvent = () =>{
-    navigate(`/createevent/${id}`)
-  }
+  const handleShowCreateEvent = () => {
+    navigate(`/createevent/${id}`);
+  };
 
   const handleOnBlur = () => {
     setShowSettings(false);
@@ -180,7 +178,12 @@ const Profile = () => {
                 )
               })} */}
             {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
-            {ocupationArray && ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
+            {ocupationArray &&
+              ocupationArray?.map((ocupation) => (
+                <div className="ocupation" key={ocupation}>
+                  {ocupation}
+                </div>
+              ))}
           </div>
         </div>
         <div className="info-perfil">
@@ -299,26 +302,24 @@ const Profile = () => {
       </div>
       <div className="div-eventos">
         <div ref={eventosRef} className="titulo-ev">
-          Eventos
+          Mis eventos
         </div>
-{
-  eventsArtist.map(item=>{
-    if (item.id === usuario.id) {
-     return(
-      <div>{
-        
-        <CardsEvents
-        id_art = {item.id}
-        name_art = {item.name}
-        event={item} />
-        
-        
-        }</div>
-     )
-    }
-  })
-}
-         {/* <div>{events && <CardsEvents  />}</div>  */}
+        {eventsArtist.map((item) => {
+          if (item.id === usuario.id) { //Acá no deberia ser el events.id? para qué el valor de la Imagen del evento primero?
+            return (
+              <div key={item.id}>
+                {
+                  <CardsEvents
+                    id_art={item.id}
+                    name_art={item.name}
+                    event={item}
+                  />
+                }
+              </div>
+            );
+          }
+        })}
+        {/* <div>{events && <CardsEvents  />}</div>  */}
       </div>
     </div>
   );
