@@ -244,6 +244,23 @@ export const updateArtist = (id, input) => {
   }
 }
 
+ export const forgotPassword = (email) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.put("/forgotPassword", email)
+      const response = apiData.data;
+      console.log(response);
+    } catch(error){
+      swal({
+        title: "ERROR",
+        text: error,
+        icon: "warning",
+        buttons: "Aceptar"
+     })
+    }
+  }
+ }
+
 
 
 export const {
