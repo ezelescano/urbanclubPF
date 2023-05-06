@@ -1,77 +1,79 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./Navbar.css";
-//Si aun te rompes con CSS, imaginate con iconos, import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import style from "./Navbar.module.css";
+//import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector } from "react-redux";
+//Si aun te rompes con CSS, imaginate con iconos, import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 function Navbar() {
   const islogin = useSelector((state) => state.auth);
   const usuario = useSelector((state) => state.artist.usuario);
 
   return (
-    <nav className="navbar">
+    <nav className={style.navbar}>
       <NavLink to="/">
         <img
-          className="nav-title-img"
+          className={style.navTitleImg}
           src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682542442/UrbanClub/Urban_Club_Logo_fh8zlb.png"
           alt=""
         />
         <img
-          className="nav-title-img-zoom"
+          className={style.navTitleImgZoom}
           src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
           alt=""
         />
       </NavLink>
-      <div className="searchbar-wrapper">
+      <div className={style.searchbarWrapper}>
         <SearchBar />
       </div>
-      {/*<SearchIcon style={{color:"white"}}/>*/}
-      <ul className="nav-links">
+            {/*<SearchIcon style={{color:"white"}}/>*/}
+      <ul className={style.navLinks}>
         <li>
-          <NavLink to="/artists" className="nav-link active">
+          <NavLink to="/artists" className={`${style.navLink} ${style.active}`}>
             Artistas
           </NavLink>
         </li>
         <li>
-          <NavLink to="/aboutus" className="nav-link active">
+          <NavLink to="/aboutus" className={`${style.navLink} ${style.active}`}>
             Acerca de
           </NavLink>
         </li>
         <li>
-          <NavLink to="/events" className="nav-link active">
+          <NavLink to="/events" className={`${style.navLink} ${style.active}`}>
             Eventos
           </NavLink>
         </li>
         <li>
-          {
-            islogin.isAuthenticated &&
-            <NavLink to={`/createevent/${usuario.id}`} className="nav-link active">
+          {islogin.isAuthenticated && (
+            <NavLink
+              to={`/createevent/${usuario.id}`}
+              className={`${style.navLink} ${style.active}`}
+            >
               Crear Evento 😄
             </NavLink>
-          }
-
+          )}
         </li>
         <li>
-          <NavLink to="/merch" className="nav-link active">
+          <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
             Tienda
           </NavLink>
         </li>
       </ul>
       {!islogin.isAuthenticated ? (
         <NavLink to="/login">
-          <button className="nav-login-btn">Ingresar</button>
-          <button className="nav-login-btn-zoom">Ingresar</button>
+          <button className={style.navLoginBtn}>Ingresar</button>
+          <button className={style.navLoginBtnZoom}>Ingresar</button>
         </NavLink>
       ) : (
         <NavLink to={`/profile/${islogin.user.id}`}>
           <img
-            className="sesionfoto"
+            className={style.sesionfoto}
             src={usuario.profilePhoto}
             alt="No hay"
           />
           <img
-            className="sesionfotozoom"
+            className={style.sesionfotozoom}
             src={usuario.profilePhoto}
             alt="No hay"
           />
