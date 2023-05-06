@@ -132,13 +132,24 @@ function Formulario() {
     e.preventDefault();
 
     //console.log(errors);
-    setIsLoading(true)
+  //  console.log(input.ocupation);
+  if (!input.ocupation.length){
+    await swal({
+      title: "ERROR",
+      text: "Se debe seleccionar al menos 1 ocupación",
+      icon: "error",
+      buttons: "Aceptar"
+    })
+    return 
+  }
+    setIsLoading(true);
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation);
     const error = await dispatch(postArtist(formData, navigate));
-    console.log(error)
-    console.log(2)
-    setIsLoading(false)
+    setIsLoading(false);
+    // console.log(error)
+    // console.log(2)
+    
 
   }
 
@@ -148,9 +159,6 @@ function Formulario() {
         <div className="formulario-container formulario-background">
           <div className="error_back">
             <p>{errorForm.error}</p>
-          </div>
-          <div className="loading-gif">
-            <p>{isLoading && (<img className="loading" src={loading} alt=""></img>)}</p>
           </div>
           <form onSubmit={handleSubmit} className="form-container">
             <div className="form-container__left">
@@ -327,9 +335,18 @@ function Formulario() {
                   name="aboutMe"
                 />
               </label>
-              <button className="upload-form-button" type="submit">
+              
+              
+                {isLoading && (<div className="loading-gif">
+                  <img className="loading" src={loading} alt="" width="50px"></img>
+                  </div>)
+                  }
+                  {!isLoading && (<button className="upload-form-button" type="submit">
                 Registrarse 
-              </button>
+              </button>)
+                  }
+              
+              
             </div>
           </form>
         </div>

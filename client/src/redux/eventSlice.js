@@ -1,28 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
-import swal from 'sweetalert'
+import axios from "axios";
+import swal from "sweetalert";
 
 const initialState = {
-    creaEvents: []
-}
+  creaEvents: [],
+  allEvents: [],
+};
 
 export const eventSlice = createSlice({
-    name: 'events',
-    initialState,
-    reducers: {
-        postEventSuccess(state, action) {
-            return {
-                ...state,
-                creaEvents: action.payload
-            }
-        },
+  name: "events",
+  initialState,
+  reducers: {
+    postEventSuccess(state, action) {
+      return {
+        ...state,
+        creaEvents: action.payload,
+      };
+    },
+    getAllEventsSuccess(state, action) {
+      return {
+        ...state,
+        allEvents: action.payload,
+      };
+    },
+  },
         updateEventSuccess(state, action) {
             return {
                 ...state,
                 creaEvents: action.payload
             }
         }
-    }
 });
 
 export const upEvent = (id, input) => {
@@ -60,8 +67,17 @@ export const postEvent = (payload) => {
     };
 };
 
-export const {
-    postEventSuccess,
+export const getAllEvents = () => {
+  return async (dispatch) => {
+    const apiData = await axios.get(`/events`);
+    const events = apiData.data;
+    return dispatch(getAllEventsSuccess(events));
+  };
+};
+
+
+export const { postEventSuccess,
+   getAllEventsSuccess,
     updateEventSuccess
 } = eventSlice.actions;
 

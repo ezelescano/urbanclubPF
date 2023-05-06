@@ -220,8 +220,3 @@ const CreateEvent = () => {
 };
 
 export default CreateEvent;
-
-// crear el formulario con los campos a completar
-// crear los handler que van a manejar los eventos
-// crear los dispatch que van a ejecutar las acciones.
-// name, price, location, nameArena, date, eventPhoto

@@ -8,7 +8,8 @@ const initialState = {
   allUsuarios: [],
   artist: {},
   allUsuariosArt: [],
-  errorForm: {}
+  errorForm: {},
+  copiArtista: [],
 }
 
 
@@ -17,10 +18,17 @@ export const artistSlice = createSlice({
   name: 'artist',
   initialState,
   reducers: {
+    getFilterArtists(state, action) {
+      return {
+        ...state,
+        allUsuarios: action.payload,
+      }
+    },
     getAllArtsSuccess(state, action) {
       return {
         ...state,
-        allUsuarios: action.payload
+        allUsuarios: action.payload,
+        copiArtista: action.payload
       }
     },
     getArtistIdSuccess(state, action) {
@@ -41,21 +49,27 @@ export const artistSlice = createSlice({
         allUsuarios: action.payload
       }
     },
+    cleanArtistsSuccess(state, action) {
+      return {
+        ...state,
+        allUsuarios: []
+      }
+    },
     postArtistSuccess(state) {
       return {
         ...state,
       }
     },
     setErrors(state, action) {
-      return{
+      return {
         ...state,
-        errorForm:action.payload
+        errorForm: action.payload
       }
     },
-    clearErrors(state){
-      return{
+    clearErrors(state) {
+      return {
         ...state,
-        errorForm:{}
+        errorForm: {}
       }
     },
     // Acá también agregó ALAN
@@ -71,16 +85,24 @@ export const artistSlice = createSlice({
         usuario: {}
       }
     },
-    updateArtistSuccess(state, action){
+    updateArtistSuccess(state, action) {
       return {
         ...state,
         usuario: action.payload
       }
     }
-    
+
   }
-  
+
 });
+
+export const FilterArtists = (ocupation, Country) => {
+  return async (dispatch) => {
+    const apiData = await axios.get('/artist', ocupation, Country);
+    const artist = apiData.data;
+    return dispatch(getFilterArtists(artist));
+  };
+};
 
 
 export const getAllArts = () => {
@@ -100,6 +122,12 @@ export const getArtistId = (id) => {
   };
 };
 
+export const cleanArtists = () => {
+  return async (dispatch) => {
+    return dispatch(cleanArtistsSuccess());
+  };
+};
+
 export const getArtistName = (name) => {
   return async (dispatch) => {
     const apiData = await axios.get(`/artist?name=${name}`);
@@ -108,23 +136,23 @@ export const getArtistName = (name) => {
   };
 };
 
-export const ErrorsCreate = (payload) =>{
+export const ErrorsCreate = (payload) => {
 
- return async (dispatch) =>{
-  try {
-    const apiData = await axios.post('/artist', payload);
-    const result = apiData.data;
-    if (result.error) {
-       dispatch(setErrors(result))
-      return
-     }
-  } catch (error) {
-    
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.post('/artist', payload);
+      const result = apiData.data;
+      if (result.error) {
+        dispatch(setErrors(result))
+        return
+      }
+    } catch (error) {
+
+    }
   }
- }
 }
 
-export const postArtist = (payload,navigate) => {
+export const postArtist = (payload, navigate) => {
 
   return async (dispatch) => {
     try {
@@ -132,9 +160,9 @@ export const postArtist = (payload,navigate) => {
       const result = apiData.data;
       if (result.error) {
         return dispatch(setErrors(result))
-       
-       }
-       dispatch(postArtistSuccess());
+
+      }
+      dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))
       dispatch(clearErrors())
       swal({
@@ -142,19 +170,19 @@ export const postArtist = (payload,navigate) => {
         text: "Usuario Creado con exito",
         icon: "success",
         buttons: "Aceptar"
-     }).then(res=>{
-      if(res){
-        // navigate("/")
-      }
-     })
-     
+      }).then(res => {
+        if (res) {
+          // navigate("/")
+        }
+      })
+
     } catch (error) {
       swal({
         title: "ERROR",
         text: "No se pudo crear el usuario",
         icon: "error",
         buttons: "Aceptar"
-     })
+      })
     }
   };
 };
@@ -173,7 +201,7 @@ export const deleteArtist = (id) => {
         text: "No se pudo borrar el artista",
         icon: "error",
         buttons: "Aceptar"
-     })
+      })
     }
   }
 };
@@ -190,7 +218,7 @@ export const getauth = (navigate) => {
         text: "Inicia seccion",
         icon: "warning",
         buttons: "Aceptar"
-     })
+      })
       //navigate("/artists")
     }
   }
@@ -210,8 +238,25 @@ export const updateArtist = (id, input) => {
         text: error,
         icon: "warning",
         buttons: "Aceptar"
-     })
+      })
       // console.log();
+    }
+  }
+}
+
+ export const forgotPassword = (email) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.put("/forgotPassword", email)
+      const response = apiData.data;
+      console.log(response);
+    } catch(error){
+      swal({
+        title: "ERROR",
+        text: error,
+        icon: "warning",
+        buttons: "Aceptar"
+     })
     }
   }
  }
@@ -219,9 +264,11 @@ export const updateArtist = (id, input) => {
 
 
 export const {
+  getFilterArtists,
   getArtistIdSuccess,
   getAllArtsSuccess,
   getArtistNameSuccess,
+  cleanArtistsSuccess,
   postArtistSuccess,
   deleteArtistSuccess,
   getauthSuccess,

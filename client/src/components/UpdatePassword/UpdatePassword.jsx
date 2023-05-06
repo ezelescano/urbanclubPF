@@ -1,11 +1,18 @@
 import "./UpdatePassword.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams, useLocation } from "react-router-dom";
 import swal from 'sweetalert'
+import { updateArtist } from "../../redux/artistSlice";
 
 
-const UpdatePassword = ({ handleEdit }) => {
+const UpdatePassword = ({handleEdit}) => {
 
+  const dispatch = useDispatch();
+  const {id} = useParams();
+  const location = useLocation();
 
+  console.log(location);
   const [password, setPassword] = useState({
     password: "",
   });
@@ -33,6 +40,10 @@ const UpdatePassword = ({ handleEdit }) => {
 
 
   }
+
+  const handleEditPassword = (input) => {
+    dispatch(updateArtist(id, input));
+  };
 
   const validate = (input) => {
     let errors = {};
@@ -70,7 +81,7 @@ const UpdatePassword = ({ handleEdit }) => {
 
   return (
     <div className="container-updatePassword">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={location.pathname === `/updatePassword/${id}`? handleEditPassword(password) : handleSubmit}>
         <input
           type="text"
           name="password"
