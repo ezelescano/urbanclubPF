@@ -25,6 +25,7 @@ import AboutEze from "./components/AboutUs/AboutEze";
 import Errors404 from "./components/Error404/Errors404";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import UpdatePassword from "./components/UpdatePassword/UpdatePassword";
+import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +69,9 @@ function App() {
         <Route path="/merch" element={<Merch />} />
         <Route path="/forgotPassword" element={<ForgotPassword />}/>
         <Route path="/updatePassword/:id" element={<UpdatePassword />} />
+        <Route path="/detailEvent/:id" element={<DetailsEvents />} />
+
+
         <Route path="*" element={<Errors404 />} />
         
       </Routes>

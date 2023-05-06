@@ -11,7 +11,6 @@ const CreateEvent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
-    eventPhoto: "",
     name: "",
     price: "",
     location: "",
@@ -92,7 +91,7 @@ const CreateEvent = () => {
     //console.log(errors);
     const formData = new FormData(e.target);
     formData.append("id_Artist", id)
-     dispatch(postEvent(formData, navigate("/events")));
+     dispatch(postEvent(formData,));
   }
 
   return (
@@ -117,7 +116,7 @@ const CreateEvent = () => {
                 <button
                   className="upload-picture-button"
                   type="button"
-                  name="profilePhoto"
+                  name="eventPhoto"
                   onClick={handleClick}
                 >
                   Subir foto
@@ -125,7 +124,7 @@ const CreateEvent = () => {
                 <input
                   type="file"
                   accept="image/png,image/jpg,image/jpeg"
-                  name="profilePhoto"
+                  name="eventPhoto"
                   onChange={handleFileChange}
                   ref={fileInputRef}
                   style={{ display: "none" }}

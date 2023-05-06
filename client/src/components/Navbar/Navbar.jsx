@@ -43,7 +43,7 @@ function Navbar() {
             Eventos
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           {
             islogin.isAuthenticated &&
             <NavLink to={`/createevent/${usuario.id}`} className="nav-link active">
@@ -51,7 +51,7 @@ function Navbar() {
             </NavLink>
           }
 
-        </li>
+        </li> */}
         <li>
           <NavLink to="/merch" className="nav-link active">
             Tienda
