@@ -9,7 +9,7 @@ const postArtist = async (req) => {
 
     let {
         name, lastname, email, password, nickName, Country, city,
-        ocupation, aboutMe } = req.body;
+        ocupation,subCategory, aboutMe } = req.body;
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
 
@@ -82,6 +82,7 @@ const postArtist = async (req) => {
             Country,
             city,
             ocupation,
+            subCategory,
             aboutMe,
             password:passwordcrypt
         }

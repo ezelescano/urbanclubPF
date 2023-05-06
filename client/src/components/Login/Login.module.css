@@ -1,4 +1,4 @@
-.form-picture img {
+.formPicture img {
   max-width: 100px;
   border-radius: 50px;
   -webkit-border-radius: 50px;
@@ -7,13 +7,13 @@
   -o-border-radius: 50px;
 }
 
-.form-picture img,
+.formPicture img,
 .MuiSvgIcon-root {
   border-radius: 50%;
   margin-inline: auto;
 }
 
-.upload-picture-button {
+.uploadPictureButton {
   cursor: pointer;
   background-color: black;
   box-shadow: 0px 2px 2px 2px black;
@@ -23,7 +23,7 @@
   border-radius: 5px;
 }
 
-.upload-submit-button {
+.uploadSubmitButton {
   background-color: white;
   border: 2px solid black;
   box-shadow: 2px 2px 2px black;
@@ -36,7 +36,7 @@
   -o-border-radius: 5px;
 }
 
-.formulario-externo-login {
+.formularioExternoLogin {
   background-image: url(https://res.cloudinary.com/dipn8zmq3/image/upload/v1682455230/UrbanClub/image_lsaixn.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -49,7 +49,7 @@
   overflow: hidden;
 }
 
-.form-container {
+.formContainer {
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
@@ -62,21 +62,21 @@
   margin: auto;
 }
 
-.form-login-title {
+.formLoginTitle {
   max-width: 150px;
   font-size: 30px;
 }
 
-.form-login-subtitle {
+.formLoginSubtitle {
   font-size: 35px;
 }
 
-.form-container > * {
+.formContainer > * {
   padding: 5px;
   padding-inline: 40px;
 }
 
-.form-container__left {
+.formContainerLeft {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,7 +84,7 @@
   margin: auto;
 }
 
-.form-container__middle {
+.formContainerMiddle {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,7 +92,7 @@
   order: 2;
 }
 
-.form-container__right {
+.formContainerRight {
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -101,78 +101,78 @@
   order: 3;
 }
 
-.form-container label {
+.formContainer label {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
 @media screen and (max-width: 768px) {
-  .form-container {
+  .formContainer {
     flex-direction: column;
     max-height: 295px;
     padding: 10% 0;
     align-items: center;
   }
 
-  .form-container > * {
+  .formContainer > * {
     padding: 0;
     padding-top: 10px;
     overflow: hidden;
   }
 
-  .form-container__left,
-  .form-container__right {
+  .formContainerLeft,
+  .formContainerRight {
     margin-inline: 40px;
     order: 1;
   }
 
-  .form-login-title {
+  .formCoginTitle {
     max-width: none;
     text-align: center;
   }
 
-  .form-picture img,
+  .formPicture img,
   .MuiSvgIcon-root {
     max-width: 70px;
     margin: 0 auto 10px;
   }
 
-  .form-container__middle {
+  .formContainerMiddle {
     order: 1;
   }
 
-  .form-container__right {
+  .formContainerRight {
     order: 3;
     margin: 0;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .form-container {
+  .formContainer {
     padding: 5%;
   }
 
-  .form-login-title {
+  .formLoginTitle {
     font-size: 25px;
   }
 
-  .form-login-subtitle {
+  .formLoginSubtitle {
     font-size: 30px;
   }
 
-  .form-picture img,
+  .formPicture img,
   .MuiSvgIcon-root {
     max-width: 50px;
     margin: 0 auto 5px;
   }
 
-  .upload-picture-button {
+  .uploadPictureButton {
     padding: 5px;
     border-radius: 3px;
   }
 
-  .upload-submit-button {
+  .uploadSubmitButton {
     padding: 5px;
     border-radius: 3px;
   }

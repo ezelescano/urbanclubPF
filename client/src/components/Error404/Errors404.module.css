@@ -1,5 +1,5 @@
 @import url("https://fonts.cdnfonts.com/css/janda-apple-cobbler");
-.container-error {
+.containerError {
   margin: 0;
   padding: 0;
   display: flex;
@@ -16,16 +16,16 @@
   font-size: 4vw;
   margin-top: 2rem;
 }
-.img-error {
+.imgError {
   margin-bottom: 2rem;
   width: 75vw;
   max-width: 1000px;
   min-width: 220px;
 }
-.img-error img {
+.imgError img {
   width: 100%;
 }
-.txt-error {
+.txtError {
   font-size: 3vw;
   margin-top: 1rem;
   margin-bottom: 2rem;

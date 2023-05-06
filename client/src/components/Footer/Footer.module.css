@@ -1,18 +1,18 @@
 /* Color negro de la Navbar es #1a1919*/
-.footer-container {
+.footerContainer {
   background-color: #0d5a73;
   color:#fff;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   padding: 30px 80px;
   border-bottom: 1.5px solid#004258;
 }
 
-.footer-container img{
+.footerContainer img{
   padding: 15px 20px 0 0;
 }
-.ftr-img{
+.ftrImg{
   transition: 0.8s;
   -webkit-transition: 0.8s;
   -moz-transition: 0.8s;
@@ -20,7 +20,7 @@
   -o-transition: 0.8s;
 }
 
-.ftr-img:hover{
+.ftrImg:hover{
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -29,16 +29,16 @@
 }
 
 
-.searchbar-wrapper{
+.searchbarWrapper{
   position: relative;
 }
 
-.foot-links{
+.footLinks{
   flex-direction: column;
   list-style: none;
 }
 
-.foot-links li{
+.footLinks li{
   padding: 5px 0px;
   vertical-align:middle;
   transition: 0.8s;
@@ -48,7 +48,7 @@
   -o-transition: 0.8s;
 }
 
-.foot-links li:hover{
+.footLinks li:hover{
   
   padding: 5px 0px;
   vertical-align:middle;
@@ -59,13 +59,13 @@
   -o-transform: scale(1.2);
 }
 
-.foot-links li a{
+.footLinks li a{
   color: white;
   text-decoration: none;
   outline: none;
 }
 
-.nav-login-btn {
+.navLoginBtn {
   box-shadow: 5px black;
   padding: 10px 30px;
   border-radius: 15px;
@@ -83,7 +83,7 @@
   -o-transition: 0.8s;
 }
 
-.nav-login-btn:hover{
+.navLoginBtn:hover{
   background-color: #79cfd5;
   transform: scale(1.1);
   -webkit-transform: scale(1.1);

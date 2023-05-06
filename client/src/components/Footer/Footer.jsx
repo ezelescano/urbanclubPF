@@ -1,12 +1,12 @@
-import "./Footer.css";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import style from "./Footer.module.css";
 import gglftr from "./img/ggl-ftr.png";
 import fbftr from "./img/fb-ftr.png";
 
 const Footer = () => {
   return (
-    <div className="footer-container">
+    <div className={style.footerContainer}>
       <div>
         <h3>Atencion al cliente</h3>
         <br />
@@ -23,15 +23,24 @@ const Footer = () => {
       <div>
         <h3>Enlaces Utiles</h3>
         <br />
-        <ul className="foot-links">
+        <ul className={style.footLinks}>
           <li>
-            <NavLink to="/">Inicio</NavLink>
+            <NavLink to="/" className={style.link}>
+              Inicio
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/aboutus">Nosotros</NavLink>
+            <NavLink to="/aboutus" className={style.link}>
+              Nosotros
+            </NavLink>
           </li>
           <li>
-            <a href="https://www.facebook.com/legal/terms" target="_blank">
+            <a
+              href="https://www.facebook.com/legal/terms"
+              target="_blank"
+              rel="noreferrer"
+              className={style.link}
+            >
               Términos y Condiciones
             </a>
           </li>
@@ -42,16 +51,18 @@ const Footer = () => {
         <a
           href="https://www.facebook.com/profile.php?id=100068893039514"
           target="_blank"
+          rel="noreferrer"
           style={{ cursor: "pointer" }}
         >
-          <img className="ftr-img" src={fbftr} alt=""></img>
+          <img className={style.ftrImg} src={fbftr} alt=""></img>
         </a>
         <a
           href="https://drive.google.com/drive/folders/1KaKgiDDZ4VnWFAYnxHlJ96JboY1RU6hK"
           target="_blank"
+          rel="noreferrer"
           style={{ cursor: "pointer" }}
         >
-          <img className="ftr-img" src={gglftr} alt=""></img>
+          <img className={style.ftrImg} src={gglftr} alt=""></img>
         </a>
       </div>
     </div>

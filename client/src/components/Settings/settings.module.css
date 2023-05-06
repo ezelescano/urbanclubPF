@@ -1,4 +1,4 @@
-.settings-container {
+.settingsContainer {
   cursor: pointer;
   position: absolute;
   display: flex;
@@ -25,7 +25,7 @@
   border-bottom: 1px solid #fff;
 } */
 
-.div-settings {
+.divSettings {
   cursor: pointer;
   width: 100%;
   text-align: center;
@@ -33,7 +33,7 @@
   border-bottom: 2px solid #fff;
 }
 
-.div-settings-d {
+.divSettingsD {
   cursor: pointer;
   background-color: #ff7575;
   /* padding: 20px; */
@@ -42,8 +42,8 @@
   height: 50px;
 }
 
-.div-settings button,
-.div-settings-d button {
+.divSettings button,
+.divSettingsD button {
   cursor: pointer;
   background: none;
   border: none;

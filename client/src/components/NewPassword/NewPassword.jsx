@@ -1,8 +1,13 @@
-import style from "./UpdatePassword.module.css";
+import style from "./NewPassword.module.css";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import swal from "sweetalert";
+import { updateArtist } from "../../redux/artistSlice";
 
-const UpdatePassword = ({ handleEdit }) => {
+const NewPassword = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
   const [password, setPassword] = useState({
     password: "",
@@ -27,7 +32,7 @@ const UpdatePassword = ({ handleEdit }) => {
         })
       ).length === 0
     ) {
-      handleEdit(password);
+      dispatch(updateArtist(id, password));
       setPassword({ password: "" });
       setPassword2({ password2: "" });
       swal({
@@ -95,4 +100,4 @@ const UpdatePassword = ({ handleEdit }) => {
   );
 };
 
-export default UpdatePassword;
+export default NewPassword;

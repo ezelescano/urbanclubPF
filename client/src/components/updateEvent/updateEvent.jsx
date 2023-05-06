@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import styles from "./ProfileEdit.module.css";
+import styles from "../ProfileEdit/ProfileEdit.module.css";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { upEvent } from "../../redux/eventSlice";

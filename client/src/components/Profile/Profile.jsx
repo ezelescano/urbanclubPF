@@ -17,10 +17,13 @@ import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword"
+import CreateEvent from "../createEvent/CreateEvent";
+import { getAllEvents } from "../../redux/eventSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const eventsArtist = useSelector(state=>state.events.allEvents)
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
 
@@ -35,62 +38,7 @@ const Profile = () => {
       twitter: "https://twitter.com/",
     },
   ];
-  const events = [
-    {
-      id: 1,
-      name: "Evento 1",
-      date: "29 de abril de 2023",
-      location: "Ciudad A",
-      description: "Descripción del evento 1",
-      image:
-        "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1534447677768-be436bb09401_rampxl.png",
-    },
-    {
-      id: 2,
-      name: "Evento 2",
-      date: "30 de abril de 2023",
-      location: "Ciudad B",
-      description: "Descripción del evento 2",
-      image:
-        "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712168/photo-1490604001847-b712b0c2f967_flsfsy.png",
-    },
-    {
-      id: 3,
-      name: "Evento 3",
-      date: "1 de mayo de 2023",
-      location: "Ciudad C",
-      description: "Descripción del evento 3",
-      image:
-        "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1502786129293-79981df4e689_ivqjf8.png",
-    },
-    {
-      id: 4,
-      name: "Evento 4",
-      date: "2 de mayo de 2023",
-      location: "Ciudad D",
-      description: "Descripción del evento 4",
-      image:
-        "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1444080748397-f442aa95c3e5_lvphop.png",
-    },
-    {
-      id: 5,
-      name: "Evento 5",
-      date: "3 de mayo de 2023",
-      location: "Ciudad E",
-      description: "Descripción del evento 5",
-      image:
-        "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1518098268026-4e89f1a2cd8e_kifydl.png",
-    },
-    {
-      id: 6,
-      name: "Evento 6",
-      date: "4 de mayo de 2023",
-      location: "Ciudad F",
-      description: "Descripción del evento 6",
-      image:
-        "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682712169/photo-1459213599465-03ab6a4d5931_wo41ug.png",
-    },
-  ];
+
 
   const isCurrentUser = currentUser && currentUser.id === usuario.id;
 
@@ -117,8 +65,8 @@ const Profile = () => {
     navigate("/login");
     return
   } */
-
   useEffect(() => {
+    dispatch(getAllEvents());
     dispatch(getArtistId(id));
     return () => {
       //le paso un return cuando se desmonta
@@ -142,6 +90,10 @@ const Profile = () => {
   const handlePasswordChange = () => {
     setShowEditPassword(!showEditPassword);
   };
+
+  const handleShowCreateEvent = () =>{
+    navigate(`/createevent/${id}`)
+  }
 
   const handleOnBlur = () => {
     setShowSettings(false);
@@ -255,7 +207,7 @@ const Profile = () => {
           </div>
           <div className="stas-profile">
             <button className="btn-stas" onClick={scrollToEventos}>
-              {events.length + " "} Eventos
+              {/* {events.length + " "} Eventos //! muestra total de eventos del artista */}
             </button>
             <button className="btn-stas">
               {followDemostrativo} Seguidores
@@ -320,6 +272,7 @@ const Profile = () => {
                   handleLogout={handleLogout}
                   handlePasswordChange={handlePasswordChange}
                   handleShowEdit={handleShowEdit}
+                  handleShowCreateEvent={handleShowCreateEvent}
                 />
               )}
               {showEdit && (
@@ -348,8 +301,24 @@ const Profile = () => {
         <div ref={eventosRef} className="titulo-ev">
           Eventos
         </div>
-
-        <div>{events && <CardsEvents events={events} />}</div>
+{
+  eventsArtist.map(item=>{
+    if (item.id === usuario.id) {
+     return(
+      <div>{
+        
+        <CardsEvents
+        id_art = {item.id}
+        name_art = {item.name}
+        event={item} />
+        
+        
+        }</div>
+     )
+    }
+  })
+}
+         {/* <div>{events && <CardsEvents  />}</div>  */}
       </div>
     </div>
   );
