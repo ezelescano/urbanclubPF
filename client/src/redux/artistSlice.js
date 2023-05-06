@@ -55,9 +55,10 @@ export const artistSlice = createSlice({
         allUsuarios: []
       }
     },
-    postArtistSuccess(state) {
+    postArtistSuccess(state, action) {
       return {
         ...state,
+        allUsuarios: [...state.artist.allUsuarios, action.payload] 
       }
     },
     setErrors(state, action) {
@@ -172,7 +173,7 @@ export const postArtist = (payload, navigate) => {
         buttons: "Aceptar"
       }).then(res => {
         if (res) {
-          // navigate("/")
+          navigate("/")
         }
       })
 
