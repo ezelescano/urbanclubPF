@@ -25,11 +25,11 @@ function DetailsEvents() {
         <h3>{detailEvent.nameArena}</h3>
         <h2>DIRECCION</h2>
         <h3>{detailEvent.location}</h3>
+        <h2>FECHA</h2>
+        <h3>{detailEvent.date}</h3>
         <h2>PRECIO</h2>
         <h3> U$S {detailEvent.price}</h3>
-
         {/* <p>{detailEvent.Description}</p> //!necesitamos una descripcion  */}
-
         <div className={style.links}>
           Comprar Entrada con Debito o Crédito:
           <a href="https://www.visa.com.ar" target="_blank" rel="noreferrer">
