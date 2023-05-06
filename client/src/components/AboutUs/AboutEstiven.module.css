@@ -1,6 +1,7 @@
-@import url("https://fonts.cdnfonts.com/css/gorlock");
-@import url("https://fonts.cdnfonts.com/css/straphanger");
-.container_Es {
+@import url('https://fonts.cdnfonts.com/css/gorlock');
+@import url('https://fonts.cdnfonts.com/css/straphanger');
+
+.container {
   height: 30rem;
   background: rgba(64, 153, 225, 0.231);
   display: flex;
@@ -8,20 +9,21 @@
   object-fit: cover;
 }
 
-.img_Es {
+.img {
   display: flex;
   justify-content: right;
   border-radius: 5px solid;
   width: 40%;
   object-fit: cover;
 }
-.img_Es img {
+
+.img img {
   width: 100%;
   border-radius: 100%;
   object-fit: cover;
 }
 
-.Description {
+.description {
   padding-top: 2%;
   text-align: center;
   display: flex;
@@ -29,20 +31,23 @@
   align-content: center;
   flex-flow: column wrap;
   width: 80%;
-  font-family: "Straphanger", sans-serif;
+  font-family: 'Straphanger', sans-serif;
 }
 
-.Description img {
+.description img {
   margin: 30px;
 }
-.parrafo {
+
+.paragraph {
   font-size: 18px;
   text-align: justify;
   width: 85%;
 }
-.Description h2 {
-  font-family: "Gorlock", sans-serif;
+
+.description h2 {
+  font-family: 'Gorlock', sans-serif;
 }
+
 .links {
   width: 0%;
   margin-top: 10px;
@@ -50,6 +55,7 @@
   justify-content: space-between;
   align-content: center;
 }
-.link a {
+
+.links a {
   padding: 20px;
 }
