@@ -26,7 +26,7 @@ function DetailsEvents() {
         <h2>DIRECCION</h2>
         <h3>{detailEvent.location}</h3>
         <h2>PRECIO</h2>
-        <h3>{detailEvent.price.toString()}</h3>
+        <h3>{detailEvent.price}</h3>
 
         {/* <p>{detailEvent.Description}</p> //!necesitamos una descripcion  */}
 
