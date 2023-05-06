@@ -12,14 +12,15 @@ const CardsEvents = ({ id_art, name_art, event }) => {
           <div className={style.card} key={index}>
             <div className={style.imageContainer}>
               <NavLink to={`/detailEvent/${event.id}`}>
-                <img  
+                <img
                   src={event.eventPhoto}
                   alt={event.name}
                   className={style.image}
                 />
               </NavLink>
               <div className={style.overlay}>
-                <h2>{name_art}</h2>
+                <h2>{event.name}</h2>
+                <p style={{color:"gray"}}>{name_art}</p>
                 <p>{event.date}</p>
                 <p>{event.location}</p>
                 <p>{event.description}</p>
