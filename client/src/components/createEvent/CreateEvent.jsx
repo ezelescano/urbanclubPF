@@ -119,12 +119,13 @@ const CreateEvent = () => {
 
   return (
     <div className="create-event">
-      <div className="error_back" style={{ color: "red" }}></div>
-      <form className="form-container" onSubmit={handleSubmit}>
-        <div className="create-event-container">
-          <div className="create-event-left">
-            <div className="create-event-img-container">
-              {rutaImagen ? (
+      <div className="error_back" style={{ color: "red" }}></div> 
+      <form onSubmit={handleSubmit}>
+      <div className="create-event-container">
+        <div className="create-event-left">
+          <div className="create-event-img-container">
+            {rutaImagen ? (
+
                 <img
                   className="form-picture"
                   src={rutaImagen}
@@ -152,13 +153,14 @@ const CreateEvent = () => {
               />
             </div>
           </div>
-          <div className="create-event-right">
-            <div onSubmit={handleSubmit}>
-              {/*Esto era el form */}
-              <h2>Crea Tu Evento</h2>
-              <div className="form-inputs">
-                <div className="input-container">
-                  <label htmlFor="name">Nombre del evento:</label>
+
+        </div>
+        <div className="create-event-right">
+          <div className="create-event-form" >
+            <h2>Crea Tu Evento</h2>
+            <div className="form-inputs">
+              <div className="input-container">
+                <label htmlFor="name">Nombre del evento:</label>
                   <br />
                   <input
                     placeholder={errors.name}
@@ -246,9 +248,11 @@ const CreateEvent = () => {
                 </div>
               </div>
             </div>
-            {/*Esté es el form*/}
+
           </div>
         </div>
+      </div>
+
       </form>
     </div>
   );
