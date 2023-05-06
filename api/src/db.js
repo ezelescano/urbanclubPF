@@ -34,12 +34,22 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Artist, Event } = sequelize.models;
+const { Artist, Event, Conversation, Message } = sequelize.models;
 
 // Country.belongsToMany(Activity, { through: "countries_activities" });
 
 Artist.belongsToMany(Event, { through: "artists_events", onDelete: 'CASCADE' });
 Event.belongsToMany(Artist, { through: "artists_events"});
+
+//Relaciones chat
+//Artistas-Conversation
+Artist.belongsToMany(Conversation, { through: 'ArtistConversation' });
+Conversation.belongsToMany(Artist, { through: 'ArtistConversation' });
+//Conversation-Message
+Conversation.hasMany(Message, { as: 'menssage', foreignKey: 'conversationId' });
+Message.belongsTo(Conversation, { as: 'conversation', foreignKey: 'conversationId' });
+
+
 
 module.exports = {
   ...sequelize.models,

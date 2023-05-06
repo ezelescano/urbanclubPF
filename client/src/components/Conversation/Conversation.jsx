@@ -1,11 +1,30 @@
+import axios from 'axios';
 import './Conversation.css'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-function Conversation() {
+function Conversation({conversation, currentUser}) {
+
+  const [user, setUser] = useState(null)
+  console.log(user)
+
+useEffect(() => {
+  const friendId = conversation.members.find(m => m !== currentUser.id);
+
+  const getUser =  async () => {
+    try {
+      const res =  await axios(`/artist/${friendId}`) 
+      setUser(res.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  getUser();
+},[currentUser, conversation])
+
   return (
     <div className='conversation'>
-      <img className='conversationImg' src='https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos.jpg' alt='imagen de perfil'/>
-      <span className='conversationName'>John Doe</span>
+      <img className='conversationImg' src={user?.profilePhoto} alt='imagen de perfil'/>
+      <span className='conversationName'>{user?.name}</span>
     </div>
   )
 }
