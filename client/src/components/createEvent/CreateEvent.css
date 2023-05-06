@@ -8,6 +8,7 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -15,7 +16,7 @@
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 1000px;
   height: 700px;
@@ -38,9 +39,7 @@
   align-items: flex-start;
 }
 
-
 /* Parte Derecha del Formulario*/
-
 
 .create-event-right {
   display: flex;
@@ -64,7 +63,6 @@
   max-width: 450px;
   margin-inline: 10px;
   padding-inline: 20px;
-  
 }
 .input-container input {
   height: 25px;
