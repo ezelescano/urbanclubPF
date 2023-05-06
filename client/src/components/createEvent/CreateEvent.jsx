@@ -119,15 +119,15 @@ const CreateEvent = () => {
   }
 
   return (
-    <div className="create-event">
+    <div className="createEvent">
       <div className="error_back" style={{ color: "red" }}></div>
-      <form className="form-container" onSubmit={handleSubmit}>
-        <div className="create-event-container">
-          <div className="create-event-left">
-            <div className="create-event-img-container">
+      <form className="formContainer" onSubmit={handleSubmit}>
+        <div className="createEventContainer">
+          <div className="createEventLeft">
+            <div className="createEventImgContainer">
               {rutaImagen ? (
                 <img
-                  className="form-picture"
+                  className="formPicture"
                   src={rutaImagen}
                   alt="Imagen de perfil"
                 />
@@ -136,7 +136,7 @@ const CreateEvent = () => {
               )}
               <br />
               <button
-                className="upload-picture-button"
+                className="uploadPictureButton"
                 type="button"
                 name="eventPhoto"
                 onClick={handleClick}
@@ -153,12 +153,12 @@ const CreateEvent = () => {
               />
             </div>
           </div>
-          <div className="create-event-right">
+          <div className="createEventRight">
             <div onSubmit={handleSubmit}>
               {/*Esto era el form */}
               <h2>Crea Tu Evento</h2>
-              <div className="form-inputs">
-                <div className="input-container">
+              <div className="formInputs">
+                <div className="inputContainer">
                   <label htmlFor="name">Nombre del evento:</label>
                   <br />
                   <input
@@ -172,7 +172,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-                <div className="input-container">
+                <div className="inputContainer">
                   <label htmlFor="price">Precio de la entrada: U$D</label>
                   <br />
                   <input
@@ -186,7 +186,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-                <div className="input-container">
+                <div className="inputContainer">
                   <label htmlFor="location">Ubicación:</label>
                   <br />
                   <input
@@ -200,7 +200,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-                <div className="input-container">
+                <div className="inputContainer">
                   <label htmlFor="nameArena">
                     Nombre del arena / Escenario:
                   </label>
@@ -215,7 +215,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-                <div className="input-container">
+                <div className="inputContainer">
                   <label htmlFor="date">Fecha:</label>
                   <br />
                   <input
@@ -226,7 +226,7 @@ const CreateEvent = () => {
                     name="date"
                   />
                 </div>
-                <div className="input-container">
+                <div className="inputContainer">
                   <label htmlFor="description">Describe qué se hará</label>
                   <br />
                   <textarea
@@ -246,7 +246,7 @@ const CreateEvent = () => {
                   />
                 </div>
                 <br />
-                <div className="submit-button">
+                <div className="submitButton">
                   {isLoading && (
                     <div className="loadingGif">
                       <img
@@ -258,7 +258,7 @@ const CreateEvent = () => {
                     </div>
                   )}
                   {!isLoading && (
-                    <button className="submit-button" type="submit">
+                    <button className="submitButton" type="submit">
                       Registrarse
                     </button>
                   )}
