@@ -1,13 +1,13 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 import { postEvent } from "../../redux/eventSlice";
 
 import "./CreateEvent.css";
 
-const CreateEvent = () => {
-  const {id} = useParams();
-  
+const CreateEventTemplate = () => {
+  const { id } = useParams();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -15,17 +15,16 @@ const CreateEvent = () => {
     name: "",
     price: "",
     location: "",
-    nameArena: "", 
-    date: ""
-
+    nameArena: "",
+    date: "",
   });
 
- 
   const [errors, setErrors] = useState({});
- 
+
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
+  console.log(files);
 
   function validate(input) {
     const errors = {};
@@ -44,8 +43,8 @@ const CreateEvent = () => {
     if (!input.nameArena) {
       errors.nameArena = "Se requiere Nombre del Lugar";
     }
-    if(!input.date) {
-      errors.date = "Se requiere Fecha"
+    if (!input.date) {
+      errors.date = "Se requiere Fecha";
     }
     return errors;
   }
@@ -64,7 +63,6 @@ const CreateEvent = () => {
     );
   }
 
-
   //Manipular el archivo qué se sube:
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -82,6 +80,17 @@ const CreateEvent = () => {
     };
   };
 
+  const handleCancel = (e) => {
+    //Lógica para eliminar con el boton, qué aun no hace nada
+    //Para añadir el boton, envuelve el IMG "form-picture" y luego añadile un boton.
+    const files = e.target.files;
+    setFiles(files);
+    setInput({
+      ...input,
+      eventPhoto: "",
+    });
+  };
+
   const handleClick = () => {
     fileInputRef.current.click();
   };
@@ -91,53 +100,51 @@ const CreateEvent = () => {
 
     //console.log(errors);
     const formData = new FormData(e.target);
-    formData.append("id_Artist", id)
-     dispatch(postEvent(formData, navigate("/events")));
-  }
+    formData.append("id_Artist", id);
+    dispatch(postEvent(formData, navigate("/events")));
+  };
 
   return (
-    <>
-      <div className="formulario-externo-registro">
-        <div className="formulario-container formulario-background">
-          <div className="error_back">
-          </div>
-          <form onSubmit={handleSubmit} className="form-container">
-            <div className="form-container__left">
-              <label>
-                {rutaImagen ? (
-                  <img
-                    className="form-picture"
-                    src={rutaImagen}
-                    alt="Imagen de perfil"
-                  />
-                ) : (
-                  ""
-                )}
-                <button
-                  className="upload-picture-button"
-                  type="button"
-                  name="profilePhoto"
-                  onClick={handleClick}
-                >
-                  Subir foto
-                </button>
-                <input
-                  type="file"
-                  accept="image/png,image/jpg,image/jpeg"
-                  name="profilePhoto"
-                  onChange={handleFileChange}
-                  ref={fileInputRef}
-                  style={{ display: "none" }}
+    <div className="create-event">
+      <div className="error_back" style={{ color: "red" }}></div>
+      <div className="create-event-container">
+        <div className="create-event-left">
+          <div className="create-event-img-container">
+            {rutaImagen ? (
+                <img
+                  className="form-picture"
+                  src={rutaImagen}
+                  alt="Imagen de perfil"
                 />
-                <br></br>
-                Crea un Evento en<br></br> <b>Urban Club!</b>
-              </label>
-            </div>
-            <div className="form-container__middle">
-              <label className="required">
-                <div>
-                  <span style={{ color: "red" }}>*</span> Nombre del Evento:
-                </div>
+            ) : (
+              ""
+            )}
+            <br />
+            <button
+              className="upload-picture-button"
+              type="button"
+              name="profilePhoto"
+              onClick={handleClick}
+            >
+              Subir foto
+            </button>
+            <input
+              type="file"
+              accept="image/png,image/jpg,image/jpeg"
+              name="profilePhoto"
+              onChange={handleFileChange}
+              ref={fileInputRef}
+              style={{ display: "none" }}
+            />
+          </div>
+        </div>
+        <div className="create-event-right">
+          <form className="create-event-form" onSubmit={handleSubmit}>
+            <h2>Crea Tu Evento</h2>
+            <div className="form-inputs">
+              <div className="input-container">
+                <label htmlFor="name">Nombre del evento:</label>
+                <br />
                 <input
                   placeholder={errors.name}
                   onChange={handleOnChange}
@@ -148,11 +155,10 @@ const CreateEvent = () => {
                   name="name"
                   required
                 />
-              </label>
-              <label>
-                <div>
-                  <span style={{ color: "red" }}>*</span> Precio:
-                </div>
+              </div>
+              <div className="input-container">
+                <label htmlFor="price">Precio de la entrada: U$D</label>
+                <br />
                 <input
                   placeholder={errors.price}
                   type="text"
@@ -163,11 +169,10 @@ const CreateEvent = () => {
                   maxLength={35}
                   required
                 />
-              </label>
-              <label>
-                <div>
-                  <span style={{ color: "red" }}>*</span> Direciion del evento:
-                </div>
+              </div>
+              <div className="input-container">
+                <label htmlFor="location">Ubicación:</label>
+                <br />
                 <input
                   placeholder={errors.location}
                   type="text"
@@ -178,11 +183,10 @@ const CreateEvent = () => {
                   maxLength={45}
                   required
                 />
-              </label>
-              <label>
-                <div>
-                  <span style={{ color: "red" }}>*</span> Estadio / Teatro / Lugar:
-                </div>
+              </div>
+              <div className="input-container">
+                <label htmlFor="nameArena">Nombre del arena / Escenario:</label>
+                <br />
                 <input
                   placeholder={errors.nameArena}
                   type="text"
@@ -192,10 +196,10 @@ const CreateEvent = () => {
                   name="nameArena"
                   required
                 />
-              </label>
-
-              <label>
-                <div>Fecha:</div>
+              </div>
+              <div className="input-container">
+                <label htmlFor="date">Fecha:</label>
+                <br />
                 <input
                   type="text"
                   value={input.date}
@@ -203,19 +207,17 @@ const CreateEvent = () => {
                   onBlur={handleOnChange}
                   name="date"
                 />
-              </label>
-             
-              <button className="upload-form-button" type="submit">
-                Crear Evento
-              </button>
+              </div>
+              <br />
+              <div className="submit-button">
+                <button type="submit">Crear Evento</button>
+              </div>
             </div>
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
-
-
 };
 
-export default CreateEvent;
+export default CreateEventTemplate;
