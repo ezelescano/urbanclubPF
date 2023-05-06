@@ -23,6 +23,7 @@ import { loginSuccess, logout } from './redux/authSlice';
 import { Redirect } from 'react-router-dom';
 import AboutEze from "./components/AboutUs/AboutEze";
 import Errors404 from "./components/Error404/Errors404";
+import EditEvent from "./components/updateEvent/updateEvent";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ function App() {
         <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
+        <Route path="/upevents/:id" element={<EditEvent/>} />
         <Route path="*" element={<Errors404 />} />
       </Routes>
       <Footer />
