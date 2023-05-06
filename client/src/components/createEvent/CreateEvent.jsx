@@ -100,31 +100,34 @@ const CreateEventTemplate = () => {
       </div>
       <div className="create-event-container">
         <div className="create-event-left">
-          {rutaImagen ? (
-            <img
-              className="form-picture"
-              src={rutaImagen}
-              alt="Imagen de perfil"
+          <div className="create-event-img-container">
+            {rutaImagen ? (
+              <img
+                className="form-picture"
+                src={rutaImagen}
+                alt="Imagen de perfil"
+              />
+            ) : (
+              ""
+            )}
+            <br />
+            <button
+              className="upload-picture-button"
+              type="button"
+              name="profilePhoto"
+              onClick={handleClick}
+            >
+              Subir foto
+            </button>
+            <input
+              type="file"
+              accept="image/png,image/jpg,image/jpeg"
+              name="profilePhoto"
+              onChange={handleFileChange}
+              ref={fileInputRef}
+              style={{ display: "none" }}
             />
-          ) : (
-            ""
-          )}
-          <button
-            className="upload-picture-button"
-            type="button"
-            name="profilePhoto"
-            onClick={handleClick}
-          >
-            Subir foto
-          </button>
-          <input
-            type="file"
-            accept="image/png,image/jpg,image/jpeg"
-            name="profilePhoto"
-            onChange={handleFileChange}
-            ref={fileInputRef}
-            style={{ display: "none" }}
-          />
+          </div>
         </div>
         <div className="create-event-right">
           <form className="create-event-form" onSubmit={handleSubmit}>

@@ -25,6 +25,28 @@
   padding: 50px;
   border-radius: 5px;
 }
+.create-event-img-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-picture-button {
+  background-color: #e6e6e6;
+  border: none;
+  color: #666666;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+.upload-picture-button:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background-color: #222222;
+  color: #e6e6e6;
+}
+
 .create-event-left img {
   max-width: 300px;
   max-height: 300px;
@@ -93,4 +115,10 @@
   border: none;
   max-width: 200px;
   margin-left: 100px;
+  transition: all 0.15s ease-in-out;
+}
+.submit-button button:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background-color: #222222;
+  color: #e6e6e6;
 }
