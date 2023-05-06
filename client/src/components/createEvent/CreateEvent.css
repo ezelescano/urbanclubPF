@@ -43,7 +43,7 @@
 
 .create-event-right {
   display: flex;
-  background-color: aliceblue;
+  background-color: rgb(230, 230, 230);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
 }
