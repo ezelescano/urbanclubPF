@@ -41,7 +41,7 @@ function EventMap({ location }) {
         }
       });
     });
-  }, [location, map]);
+  }, [location]);
   //El map originalmente no venia acá... Pero al quitarlo no rompe nada. Es más capaz es mejor.
 
   return <div id="map" className={style.mapSize}></div>;
