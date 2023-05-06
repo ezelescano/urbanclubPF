@@ -1,17 +1,17 @@
 import React from "react";
-import "./AboutUs.css";
+import style from "./AboutUs.module.css";
 import { NavLink } from "react-router-dom";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 function AboutUs() {
   return (
-    <div className="about-us-container">
-      <div className="about-us-background">
-        <div className="about-us-header">
+    <div className={style.aboutUsContainer}>
+      <div className={style.aboutUsBackground}>
+        <div className={style.aboutUsHeader}>
           <h1>Sobre Nosotros</h1>
         </div>
-        <div className="about-us-text">
+        <div className={style.aboutUsText}>
           <h2>
             ¡Bienvenido a nuestra página de UrbanClub! Aquí en nuestra
             plataforma, conectamos a artistas de todo tipo con aquellos que
@@ -24,14 +24,14 @@ function AboutUs() {
           </h2>
           <br />
         </div>
-        <div className="card-container">
-          <div className="card">
-            <div className="card-image">
+        <div className={style.cardContainer}>
+          <div className={style.card}>
+            <div className={style.cardImage}>
               <NavLink to="/About/Estiven">
                 <img src="../../assets/Estiven.jpeg" alt="Dua Lipa" />
               </NavLink>
             </div>
-            <div className="card-content">
+            <div className={style.cardContent}>
               <h2>Estiven</h2>
               <img src="../../assets/colombia.ico" alt="" />
               <h4>Colombia</h4>
@@ -39,7 +39,7 @@ function AboutUs() {
               <br />
               <br />
               <a
-                className="git"
+                className={style.git}
                 href="https://www.github.com/estiven2111"
                 target="_blank"
                 rel="noreferrer"
@@ -47,7 +47,7 @@ function AboutUs() {
                 <GitHubIcon />
               </a>
               <a
-                className="link"
+                className={style.link}
                 href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
                 target="_blank"
                 rel="noreferrer"
@@ -56,13 +56,13 @@ function AboutUs() {
               </a>
             </div>
           </div>
-          <div className="card">
-            <div className="card-image">
+          <div className={style.card}>
+            <div className={style.cardImage}>
               <a href="">
                 <img src="../../assets/alan.jpeg" alt="Dua Lipa" />
               </a>
             </div>
-            <div className="card-content">
+            <div className={style.cardContent}>
               <h2>Alan</h2>
               <img src="../../assets/argentina.ico" alt="" />
               <h4>Argentina</h4>
@@ -71,7 +71,7 @@ function AboutUs() {
               </p>
               <br />
               <a
-                className="git"
+                className={style.git}
                 href="https://www.github.com/Alanwinkler"
                 target="_blank"
                 rel="noreferrer"
@@ -79,7 +79,7 @@ function AboutUs() {
                 <GitHubIcon />
               </a>
               <a
-                className="link"
+                className={style.link}
                 href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
                 target="_blank"
                 rel="noreferrer"
@@ -88,13 +88,13 @@ function AboutUs() {
               </a>
             </div>
           </div>
-          <div className="card">
-            <div className="card-image">
+          <div className={style.card}>
+            <div className={style.cardImage}>
               <a href="">
                 <img src="../../assets/miguel.jpeg" alt="Dua Lipa" />
               </a>
             </div>
-            <div className="card-content">
+            <div className={style.cardContent}>
               <h2>Miguel</h2>
               <img src="../../assets/peru.ico" alt="" />
               <h4>Peru</h4>
@@ -102,7 +102,7 @@ function AboutUs() {
               <br />
               <br />
               <a
-                className="git"
+                className={style.git}
                 href="https://www.github.com/XCODE89"
                 target="_blank"
                 rel="noreferrer"
@@ -110,7 +110,7 @@ function AboutUs() {
                 <GitHubIcon />
               </a>
               <a
-                className="link"
+                className={style.link}
                 href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
                 target="_blank"
                 rel="noreferrer"
@@ -119,13 +119,13 @@ function AboutUs() {
               </a>
             </div>
           </div>
-          <div className="card">
-            <div className="card-image">
+          <div className={style.card}>
+            <div className={style.cardImage}>
               <NavLink to="/About/eze">
                 <img src="../../assets/eze.jpeg" alt="Dua Lipa" />
               </NavLink>
             </div>
-            <div className="card-content">
+            <div className={style.cardContent}>
               <h2>Eze</h2>
               <img src="../../assets/argentina.ico" alt="" />
               <h4>Argentina</h4>
@@ -134,7 +134,7 @@ function AboutUs() {
               </p>
               <br />
               <a
-                className="git"
+                className={style.git}
                 href="https://www.github.com/ezelescano"
                 target="_blank"
                 rel="noreferrer"
@@ -142,7 +142,7 @@ function AboutUs() {
                 <GitHubIcon />
               </a>
               <a
-                className="link"
+                className={style.link}
                 href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
                 target="_blank"
                 rel="noreferrer"
@@ -151,13 +151,13 @@ function AboutUs() {
               </a>
             </div>
           </div>
-          <div className="card">
-            <div className="card-image">
+          <div className={style.card}>
+            <div className={style.cardImage}>
               <a href="">
                 <img src="../../assets/eudes.jpeg" alt="Dua Lipa" />
               </a>
             </div>
-            <div className="card-content">
+            <div className={style.cardContent}>
               <h2>Eudes</h2>
               <img src="../../assets/colombia.ico" alt="" />
               <h4>Colombia</h4>
@@ -166,7 +166,7 @@ function AboutUs() {
               </p>
               <br />
               <a
-                className="git"
+                className={style.git}
                 href="https://www.github.com/eudesmieres"
                 target="_blank"
                 rel="noreferrer"
@@ -174,7 +174,7 @@ function AboutUs() {
                 <GitHubIcon />
               </a>
               <a
-                className="link"
+                className={style.link}
                 href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
                 target="_blank"
                 rel="noreferrer"
@@ -183,13 +183,13 @@ function AboutUs() {
               </a>
             </div>
           </div>
-          <div className="card">
-            <div className="card-image">
+          <div className={style.card}>
+            <div className={style.cardImage}>
               <a href="">
                 <img src="../../assets/pablo.jpeg" alt="Justin Bieber" />
               </a>
             </div>
-            <div className="card-content">
+            <div className={style.cardContent}>
               <h2>Pablo</h2>
               <img src="../../assets/chile.ico" alt="" />
               <h4>Chile</h4>
@@ -198,7 +198,7 @@ function AboutUs() {
               </p>
               <br />
               <a
-                className="git"
+                className={style.git}
                 href="https://www.github.com/ppalmav"
                 target="_blank"
                 rel="noreferrer"
@@ -206,7 +206,7 @@ function AboutUs() {
                 <GitHubIcon />
               </a>
               <a
-                className="link"
+                className={style.link}
                 href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
                 target="_blank"
                 rel="noreferrer"
@@ -215,13 +215,13 @@ function AboutUs() {
               </a>
             </div>
           </div>
-          <div className="card">
-            <div className="card-image">
+          <div className={style.card}>
+            <div className={style.cardImage}>
               <a href="">
                 <img src="../../assets/alex.jpeg" alt="Dua Lipa" />
               </a>
             </div>
-            <div className="card-content">
+            <div className={style.cardContent}>
               <h2>Alex</h2>
               <img src="../../assets/colombia.ico" alt="" />
               <h4>Colombia</h4>
@@ -230,7 +230,7 @@ function AboutUs() {
                 <br />& Fullstack Master
               </p>
               <a
-                className="git"
+                className={style.git}
                 href="https://www.github.com/Alex-ty10"
                 target="_blank"
                 rel="noreferrer"
@@ -238,7 +238,7 @@ function AboutUs() {
                 <GitHubIcon />
               </a>
               <a
-                className="link"
+                className={style.link}
                 href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
                 target="_blank"
                 rel="noreferrer"
@@ -247,13 +247,13 @@ function AboutUs() {
               </a>
             </div>
           </div>
-          <div className="card">
-            <div className="card-image">
+          <div className={style.card}>
+            <div className={style.cardImage}>
               <a href="">
                 <img src="../../assets/oscar.jpeg" alt="Dua Lipa" />
               </a>
             </div>
-            <div className="card-content">
+            <div className={style.cardContent}>
               <h2>Oscar</h2>
               <img src="../../assets/argentina.ico" alt="" />
               <h4>Argentina</h4>
@@ -262,7 +262,7 @@ function AboutUs() {
               </p>
               <br />
               <a
-                className="git"
+                className={style.git}
                 href="https://www.github.com/AlhuayOscar"
                 target="_blank"
                 rel="noreferrer"
@@ -270,7 +270,7 @@ function AboutUs() {
                 <GitHubIcon />
               </a>
               <a
-                className="link"
+                className={style.link}
                 href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
                 target="_blank"
                 rel="noreferrer"
