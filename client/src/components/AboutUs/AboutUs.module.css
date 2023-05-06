@@ -1,4 +1,4 @@
-.about-us-container {
+.aboutUsContainer {
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
   background-size: cover;
   background-position: center;
@@ -9,13 +9,13 @@
   min-height: 100vh;
 }
 
-.about-us-header {
+.aboutUsHeader {
   color: white;
   font-size: 20px;
   text-align: center;
   margin-bottom: 50px;
 }
-.about-us-background {
+.aboutUsBackground {
   border-radius: 1%;
   padding: 70px;
   background-color: #0000007d;
@@ -25,11 +25,11 @@
   -o-border-radius: 1%;
 }
 
-.about-us-text {
+.aboutUsText {
   color: #cfcfcf;
 }
 
-.card-container {
+.cardContainer {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -54,7 +54,7 @@
   box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
 }
 
-.card-image {
+.cardImage {
   width: 100%;
   height: 200px;
   background-color: #fff;
@@ -63,47 +63,47 @@
   justify-content: center;
 }
 
-.card-image img {
+.cardImage img {
   margin-top: 15px;
   width: 250;
   height: 100%;
   object-fit: cover;
 }
 
-.card-content {
+.cardContent {
   padding: 20px;
   text-align: center;
 }
 
-.card-content h2 {
+.cardContent h2 {
   margin-bottom: 10px;
   font-size: 24px;
 }
 
-.card-content p {
+.cardContent p {
   font-size: 16px;
   color: #aaa;
 }
 
-.card-content .git svg {
+.cardContent .git svg {
   font-size: 30px;
   color: black;
   margin-inline: 5px;
 }
 
-.card-content .link svg {
+.cardContent svg {
   font-size: 30px;
   color: #0073b1;
   margin-inline: 5px;
 }
-.card-content .link svg:hover,
-.card-content .git svg:hover {
-  cursor:pointer;
-  color:rgb(107, 107, 107);
-  box-shadow: 5px solid black ;
+
+.cardContent svg:hover {
+  cursor: pointer;
+  color: rgb(107, 107, 107);
+  box-shadow: 5px solid black;
 }
 
-.about-us-header {
+.aboutUsHeader {
   font-family: "Lobster", cursive;
   text-align: center;
   color: #fff;

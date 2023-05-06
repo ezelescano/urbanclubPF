@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import style from "./EventMap.module.css";
 function EventMap({ location }) {
   const [map, setMap] = useState(null);
 
@@ -31,6 +31,8 @@ function EventMap({ location }) {
             map: mapInstance,
             title: "Nombre Del Lugar de CrearEvento",
           });
+          console.log(marker);
+          console.log(map);
         } else {
           console.error(
             "Geocode no pudo encontrar el lugar por lo siguiente:",
@@ -40,8 +42,9 @@ function EventMap({ location }) {
       });
     });
   }, [location]);
+  //El map originalmente no venia acá... Pero al quitarlo no rompe nada. Es más capaz es mejor.
 
-  return <div id="map" style={{ height: "500px" }}></div>;
+  return <div id="map" className={style.mapSize}></div>;
 }
 
 export default EventMap;

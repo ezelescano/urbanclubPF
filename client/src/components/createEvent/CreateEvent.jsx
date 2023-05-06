@@ -101,7 +101,6 @@ const CreateEvent = () => {
         <div className="formulario-container formulario-background">
           <div className="error_back">
           </div>
-          
           <form onSubmit={handleSubmit} className="form-container">
             <div className="form-container__left">
               <label>

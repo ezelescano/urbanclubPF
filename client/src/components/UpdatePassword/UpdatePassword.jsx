@@ -1,15 +1,13 @@
-import "./UpdatePassword.css";
+import style from "./UpdatePassword.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
-import swal from 'sweetalert'
+import swal from "sweetalert";
 import { updateArtist } from "../../redux/artistSlice";
 
-
-const UpdatePassword = ({handleEdit}) => {
-
+const UpdatePassword = ({ handleEdit }) => {
   const dispatch = useDispatch();
-  const {id} = useParams();
+  const { id } = useParams();
   const location = useLocation();
 
   console.log(location);
@@ -25,21 +23,28 @@ const UpdatePassword = ({handleEdit}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setErrors(validate({ password: password.password, password2: password2.password2 }));
-    if (Object.keys(validate({ password: password.password, password2: password2.password2 })).length === 0) {
+    setErrors(
+      validate({ password: password.password, password2: password2.password2 })
+    );
+    if (
+      Object.keys(
+        validate({
+          password: password.password,
+          password2: password2.password2,
+        })
+      ).length === 0
+    ) {
       handleEdit(password);
-      setPassword({ password: "" })
-      setPassword2({ password2: "" })
+      setPassword({ password: "" });
+      setPassword2({ password2: "" });
       swal({
         title: "Información de contraseña",
         text: "Se actualizo la contraseña",
         icon: "success",
-        buttons: "Aceptar"
-     })
+        buttons: "Aceptar",
+      });
     }
-
-
-  }
+  };
 
   const handleEditPassword = (input) => {
     dispatch(updateArtist(id, input));
@@ -53,7 +58,7 @@ const UpdatePassword = ({handleEdit}) => {
       errors.password =
         "La contraseña debe ser de 8 caracteres mínimo, contener dos caracteres especiales, dos número, una maýuscula y una minúscula";
     }
-    if (input.password === input.password2){
+    if (input.password === input.password2) {
       return errors;
     } else {
       errors.password = "Las contraseñas no coinciden";
@@ -76,12 +81,18 @@ const UpdatePassword = ({handleEdit}) => {
     setPassword2({
       ...password2,
       [property]: value,
-    })
-  }
+    });
+  };
 
   return (
-    <div className="container-updatePassword">
-      <form onSubmit={location.pathname === `/updatePassword/${id}`? handleEditPassword(password) : handleSubmit}>
+    <div className={style.containerUpdatePassword}>
+      <form
+        onSubmit={
+          location.pathname === `/updatePassword/${id}`
+            ? handleEditPassword(password)
+            : handleSubmit
+        }
+      >
         <input
           type="text"
           name="password"
