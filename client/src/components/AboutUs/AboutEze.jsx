@@ -1,5 +1,5 @@
 import React from 'react'
-import "./AboutEstiven.css"
+import style from "./AboutEze.module.css";
 function AboutEze() {
     return (
         <div className='container_Es'>
