@@ -24,6 +24,8 @@ import { Redirect } from 'react-router-dom';
 import AboutEze from "./components/AboutUs/AboutEze";
 import Errors404 from "./components/Error404/Errors404";
 import EditEvent from "./components/updateEvent/updateEvent";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import UpdatePassword from "./components/UpdatePassword/UpdatePassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -66,7 +68,10 @@ function App() {
         <Route path="/About/eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
         <Route path="/upevents/:id" element={<EditEvent/>} />
+        <Route path="/forgotPassword" element={<ForgotPassword />}/>
+        <Route path="/updatePassword/:id" element={<UpdatePassword />} />
         <Route path="*" element={<Errors404 />} />
+        
       </Routes>
       <Footer />
     </div>

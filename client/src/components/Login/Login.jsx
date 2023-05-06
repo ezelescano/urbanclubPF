@@ -82,6 +82,9 @@ const dispatch = useDispatch();
                 Aún no tiene usuario?
               </NavLink>
             </label>
+            <label>
+              <NavLink to="/forgotPassword">Olvidaste tu contraseña?</NavLink>
+            </label>
           </div>
         </form>
       </div>

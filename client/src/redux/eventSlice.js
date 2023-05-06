@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
-import swal from 'sweetalert'
+import axios from "axios";
+import swal from "sweetalert";
 
 const initialState = {
-    creaEvents: []
-}
+  creaEvents: [],
+  allEvents: [],
+};
 
 export const eventSlice = createSlice({
+
     name: 'events',
     initialState,
     reducers: {
@@ -41,6 +43,7 @@ export const upEvent = (id, input) => {
         }
     }
 }
+
 
 
 export const postEvent = (payload) => {

@@ -12,6 +12,7 @@ function Settings({handleDeleteAccount, handleLogout, handleShowEdit, handlePass
       <div className="div-settings"><button onClick={handleShowEdit}>Editar perfil</button></div>
       <div className="div-settings"><button onClick={handleLogout}>Logout</button></div>
       <div className="div-settings"><button onClick={handlePasswordChange}>Cambiar contraseña</button></div>
+      <NavLink to="/updatePassword/:id" />
       <div className="div-settings-d"><button onClick={handleDeleteAccount}>Eliminar Cuenta</button></div>
     </div>
   )
