@@ -4,7 +4,7 @@ import style from "./CardsEvents.module.css";
 
 const CardsEvents = ({ id_art, name_art, event }) => {
   const navigate = useNavigate();
-
+  console.log(navigate[0]);
   return (
     <div className={style.container}>
       {event.Events.map((event, index) => {

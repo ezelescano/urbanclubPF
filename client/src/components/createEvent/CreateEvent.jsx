@@ -2,13 +2,17 @@ import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { postEvent } from "../../redux/eventSlice";
+import swal from "sweetalert";
+import loading from "../../img/loading.gif";
 
 import "./CreateEvent.css";
 
 const CreateEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  console.log(navigate);
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState({
     name: "",
     price: "",
@@ -22,8 +26,7 @@ const CreateEvent = () => {
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
-  console.log(files);
-  console.log(rutaImagen);
+  console.log(files[0]);
   function validate(input) {
     const errors = {};
     if (!input.name) {
@@ -77,29 +80,42 @@ const CreateEvent = () => {
     };
   };
 
-  const handleCancel = (e) => {
-    //Lógica para eliminar con el boton, qué aun no hace nada
-    //Para añadir el boton, envuelve el IMG "form-picture" y luego añadile un boton.
-    const file = e.target.files[0];
-    const files = e.target.files;
-    setFiles(files);
-    setInput({
-      ...input,
-      eventPhoto: file.name,
-    });
-  };
+  // const handleCancel = (e) => {
+  //   //Lógica para eliminar con el boton, qué aun no hace nada
+  //   //Para añadir el boton, envuelve el IMG "form-picture" y luego añadile un boton.
+  //   const file = e.target.files[0];
+  //   const files = e.target.files;
+  //   setFiles(files);
+  //   setInput({
+  //     ...input,
+  //     eventPhoto: file.name,
+  //   });
+  // };
 
   const handleClick = () => {
     fileInputRef.current.click();
   };
-  console.log(input);
-  const handleSubmit = (e) => {
+
+  async function handleSubmit(e) {
     e.preventDefault();
     //console.log(errors);
+    if (!input.name.length) {
+      await swal({
+        title: "ERROR",
+        text: "Ingrese almenos el nombre del evento",
+        icon: "error",
+        buttons: "Aceptar",
+      });
+      return;
+    }
+    setIsLoading(true);
     const formData = new FormData(e.target);
     formData.append("id_Artist", id);
-    dispatch(postEvent(formData));
-  };
+    dispatch(postEvent(formData)).then(() => {
+      navigate("/events");
+      setIsLoading(false);
+    });
+  }
 
   return (
     <div className="create-event">
@@ -211,7 +227,22 @@ const CreateEvent = () => {
                 </div>
                 <br />
                 <div className="submit-button">
-                  <button type="submit">Crear Evento</button>
+                  {isLoading && (
+                    <div className="loadingGif">
+                      <img
+                        className="loading"
+                        src={loading}
+                        alt=""
+                        width="30px"
+                      ></img>
+                    </div>
+                  )}
+                  {!isLoading && (
+                    <button className="submit-button" type="submit">
+                      Registrarse
+                    </button>
+                  )}
+                  <div className="loadingGif"></div>
                 </div>
               </div>
             </div>
