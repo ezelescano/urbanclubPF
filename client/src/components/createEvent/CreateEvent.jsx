@@ -23,7 +23,7 @@ const CreateEvent = () => {
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
   console.log(files);
-  console.log(rutaImagen)
+  console.log(rutaImagen);
   function validate(input) {
     const errors = {};
     if (!input.name) {
@@ -104,115 +104,121 @@ const CreateEvent = () => {
   return (
     <div className="create-event">
       <div className="error_back" style={{ color: "red" }}></div>
-      <div className="create-event-container">
-        <div className="create-event-left">
-          <div className="create-event-img-container">
-            {rutaImagen ? (
-              <img
-                className="form-picture"
-                src={rutaImagen}
-                alt="Imagen de perfil"
-              />
-            ) : (
-              ""
-            )}
-            <br />
-            <button
-              className="upload-picture-button"
-              type="button"
-              name="eventPhoto"
-              onClick={handleClick}
-            >
-              Subir foto
-            </button>
-            <input
-              type="file"
-              accept="image/png,image/jpg,image/jpeg"
-              name="eventPhoto"
-              onChange={handleFileChange}
-              ref={fileInputRef}
-              style={{ display: "none" }}
-            />
-          </div>
-        </div>
-        <div className="create-event-right">
-          <form className="create-event-form" onSubmit={handleSubmit}>
-            <h2>Crea Tu Evento</h2>
-            <div className="form-inputs">
-              <div className="input-container">
-                <label htmlFor="name">Nombre del evento:</label>
-                <br />
-                <input
-                  placeholder={errors.name}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  type="text"
-                  value={input.name}
-                  maxLength="35"
-                  name="name"
-                  required
+      <form className="form-container" onSubmit={handleSubmit}>
+        <div className="create-event-container">
+          <div className="create-event-left">
+            <div className="create-event-img-container">
+              {rutaImagen ? (
+                <img
+                  className="form-picture"
+                  src={rutaImagen}
+                  alt="Imagen de perfil"
                 />
-              </div>
-              <div className="input-container">
-                <label htmlFor="price">Precio de la entrada: U$D</label>
-                <br />
-                <input
-                  placeholder={errors.price}
-                  type="text"
-                  value={input.price}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="price"
-                  maxLength={35}
-                  required
-                />
-              </div>
-              <div className="input-container">
-                <label htmlFor="location">Ubicación:</label>
-                <br />
-                <input
-                  placeholder={errors.location}
-                  type="text"
-                  value={input.location}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="location"
-                  maxLength={45}
-                  required
-                />
-              </div>
-              <div className="input-container">
-                <label htmlFor="nameArena">Nombre del arena / Escenario:</label>
-                <br />
-                <input
-                  placeholder={errors.nameArena}
-                  type="text"
-                  value={input.nameArena}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="nameArena"
-                  required
-                />
-              </div>
-              <div className="input-container">
-                <label htmlFor="date">Fecha:</label>
-                <br />
-                <input
-                  type="text"
-                  value={input.date}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="date"
-                />
-              </div>
+              ) : (
+                ""
+              )}
               <br />
-              <div className="submit-button">
-                <button type="submit">Crear Evento</button>
+              <button
+                className="upload-picture-button"
+                type="button"
+                name="eventPhoto"
+                onClick={handleClick}
+              >
+                Subir foto
+              </button>
+              <input
+                type="file"
+                accept="image/png,image/jpg,image/jpeg"
+                name="eventPhoto"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+                style={{ display: "none" }}
+              />
+            </div>
+          </div>
+          <div className="create-event-right">
+            <div onSubmit={handleSubmit}>
+              {/*Esto era el form */}
+              <h2>Crea Tu Evento</h2>
+              <div className="form-inputs">
+                <div className="input-container">
+                  <label htmlFor="name">Nombre del evento:</label>
+                  <br />
+                  <input
+                    placeholder={errors.name}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    type="text"
+                    value={input.name}
+                    maxLength="35"
+                    name="name"
+                    required
+                  />
+                </div>
+                <div className="input-container">
+                  <label htmlFor="price">Precio de la entrada: U$D</label>
+                  <br />
+                  <input
+                    placeholder={errors.price}
+                    type="text"
+                    value={input.price}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="price"
+                    maxLength={35}
+                    required
+                  />
+                </div>
+                <div className="input-container">
+                  <label htmlFor="location">Ubicación:</label>
+                  <br />
+                  <input
+                    placeholder={errors.location}
+                    type="text"
+                    value={input.location}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="location"
+                    maxLength={45}
+                    required
+                  />
+                </div>
+                <div className="input-container">
+                  <label htmlFor="nameArena">
+                    Nombre del arena / Escenario:
+                  </label>
+                  <br />
+                  <input
+                    placeholder={errors.nameArena}
+                    type="text"
+                    value={input.nameArena}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="nameArena"
+                    required
+                  />
+                </div>
+                <div className="input-container">
+                  <label htmlFor="date">Fecha:</label>
+                  <br />
+                  <input
+                    type="text"
+                    value={input.date}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="date"
+                  />
+                </div>
+                <br />
+                <div className="submit-button">
+                  <button type="submit">Crear Evento</button>
+                </div>
               </div>
             </div>
-          </form>
+            {/*Esté es el form*/}
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

@@ -10,22 +10,22 @@ const CardsEvents = ({ id_art, name_art, event }) => {
       {event.Events.map((event, index) => {
         return (
           <div className={style.card} key={index}>
-            <div className={style.imageContainer}>
-              <NavLink to={`/detailEvent/${event.id}`}>
+            <NavLink to={`/detailEvent/${event.id}`}>
+              <div className={style.imageContainer}>
                 <img
                   src={event.eventPhoto}
                   alt={event.name}
                   className={style.image}
                 />
-              </NavLink>
-              <div className={style.overlay}>
-                <h2>{event.name}</h2>
-                <p style={{color:"gray"}}>{name_art}</p>
-                <p>{event.date}</p>
-                <p>{event.location}</p>
-                <p>{event.description}</p>
+                <div className={style.overlay}>
+                  <h2>{event.name}</h2>
+                  <p style={{ color: "gray" }}>{name_art}</p>
+                  <p>{event.date}</p>
+                  <p>{event.location}</p>
+                  <p>{event.description}</p>
+                </div>
               </div>
-            </div>
+            </NavLink>
           </div>
         );
       })}

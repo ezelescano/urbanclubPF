@@ -28,7 +28,6 @@
   align-content: center;
   flex-flow: column wrap;
   width: 80%;
-  font-family: "Straphanger", sans-serif;
 }
 
 .Description img {
@@ -40,7 +39,7 @@
   width: 85%;
 }
 .Description h2 {
-  font-family: "Gorlock", sans-serif;
+  font-weight: 800;
 }
 .links {
   width: 0%;

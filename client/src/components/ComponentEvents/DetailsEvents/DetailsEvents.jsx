@@ -16,11 +16,9 @@ function DetailsEvents() {
       <div className={style.img_Es}>
       <img src={detailEvent.eventPhoto} alt="" />
       </div>
-
-
       <div className={style.Description}>
       <h1>DETALLE DEL EVENTO</h1>
-        <h2>{detailEvent.name}</h2>
+        <h1 style={{color:"#464646"}}>{detailEvent.name}</h1>
         <h2>NOMBRE DEL LUGAR</h2>
         <h3>{detailEvent.nameArena}</h3>
         <h2>DIRECCION</h2>
