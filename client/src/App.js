@@ -13,6 +13,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Artists from "./components/Artists/Artists";
 import Events from "./components/Events/Events";
 import CreateEvent from"./components/createEvent/CreateEvent";
+import CreateEventTemplate from "./components/createEvent/CreateEventTemplate";
 import Footer from "./components/Footer/Footer"
 import Merch from "./components/Merch/Merch"
 
@@ -66,6 +67,7 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/merch" element={<Merch />} />
         <Route path="/createevent/:id" element={<CreateEvent />} />
+        <Route path="/createeventtemplate" element={<CreateEventTemplate />} />
         <Route path="/About/estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/eze" element={<AboutEze />} />
