@@ -80,6 +80,17 @@ const CreateEventTemplate = () => {
     };
   };
 
+  const handleCancel = (e) => {
+    //Lógica para eliminar con el boton, qué aun no hace nada
+    //Para añadir el boton, envuelve el IMG "form-picture" y luego añadile un boton.
+    const files = e.target.files;
+    setFiles(files);
+    setInput({
+      ...input,
+      eventPhoto: "",
+    });
+  };
+
   const handleClick = () => {
     fileInputRef.current.click();
   };
@@ -95,18 +106,16 @@ const CreateEventTemplate = () => {
 
   return (
     <div className="create-event">
-      <div className="error_back" style={{ color: "aqua" }}>
-        Aqui va a ir un error
-      </div>
+      <div className="error_back" style={{ color: "red" }}></div>
       <div className="create-event-container">
         <div className="create-event-left">
           <div className="create-event-img-container">
             {rutaImagen ? (
-              <img
-                className="form-picture"
-                src={rutaImagen}
-                alt="Imagen de perfil"
-              />
+                <img
+                  className="form-picture"
+                  src={rutaImagen}
+                  alt="Imagen de perfil"
+                />
             ) : (
               ""
             )}
