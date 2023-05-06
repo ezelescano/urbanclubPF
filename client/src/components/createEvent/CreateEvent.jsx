@@ -5,9 +5,8 @@ import { postEvent } from "../../redux/eventSlice";
 
 import "./CreateEvent.css";
 
-const CreateEventTemplate = () => {
+const CreateEvent = () => {
   const { id } = useParams();
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -15,17 +14,16 @@ const CreateEventTemplate = () => {
     price: "",
     location: "",
     nameArena: "",
+    eventPhoto: "",
     date: "",
   });
 
-
   const [errors, setErrors] = useState({});
-
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
   console.log(files);
-
+  console.log(rutaImagen)
   function validate(input) {
     const errors = {};
     if (!input.name) {
@@ -69,7 +67,6 @@ const CreateEventTemplate = () => {
     const files = e.target.files;
     setFiles(files);
     const reader = new FileReader();
-
     setInput({
       ...input,
       eventPhoto: file.name,
@@ -83,26 +80,26 @@ const CreateEventTemplate = () => {
   const handleCancel = (e) => {
     //Lógica para eliminar con el boton, qué aun no hace nada
     //Para añadir el boton, envuelve el IMG "form-picture" y luego añadile un boton.
+    const file = e.target.files[0];
     const files = e.target.files;
     setFiles(files);
     setInput({
       ...input,
-      eventPhoto: "",
+      eventPhoto: file.name,
     });
   };
 
   const handleClick = () => {
     fileInputRef.current.click();
   };
-
+  console.log(input);
   const handleSubmit = (e) => {
     e.preventDefault();
-
     //console.log(errors);
     const formData = new FormData(e.target);
-    formData.append("id_Artist", id)
-     dispatch(postEvent(formData,));
-  }
+    formData.append("id_Artist", id);
+    dispatch(postEvent(formData));
+  };
 
   return (
     <div className="create-event">
@@ -111,11 +108,11 @@ const CreateEventTemplate = () => {
         <div className="create-event-left">
           <div className="create-event-img-container">
             {rutaImagen ? (
-                <img
-                  className="form-picture"
-                  src={rutaImagen}
-                  alt="Imagen de perfil"
-                />
+              <img
+                className="form-picture"
+                src={rutaImagen}
+                alt="Imagen de perfil"
+              />
             ) : (
               ""
             )}
@@ -220,4 +217,4 @@ const CreateEventTemplate = () => {
   );
 };
 
-export default CreateEventTemplate;
+export default CreateEvent;

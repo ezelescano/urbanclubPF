@@ -8,12 +8,12 @@ import EventMap from "../EventMap/EventMap";
 import { getAllEvents } from "../../redux/eventSlice";
 
 const Events = () => {
-  const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation 
+  const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation
   const handleLocationChange = (location) => {
     setSelectedLocation(location);
   };
   const dispatch = useDispatch();
-  const {allEvents} = useSelector(state=>state.events)
+  const { allEvents } = useSelector((state) => state.events);
   useEffect(() => {
     dispatch(getAllEvents());
   }, [dispatch]);
@@ -21,17 +21,17 @@ const Events = () => {
   return (
     <div className={style.container}>
       <div className={style.containerHelp}>
-        {
-          allEvents.map((item)=>{
-           return(
+        {allEvents.map((item) => {
+          return (
             <CardsEvents
-            id_art = {item.id}
-            name_art = {item.name}
-            event={item}
-            onClick={handleLocationChange} />
-           )
-          })
-        }
+              key={item.id}
+              id_art={item.id}
+              name_art={item.name}
+              event={item}
+              onClick={handleLocationChange}
+            />
+          );
+        })}
       </div>
     </div>
   );

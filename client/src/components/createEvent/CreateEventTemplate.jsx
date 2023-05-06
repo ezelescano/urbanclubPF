@@ -5,7 +5,7 @@ import { postEvent } from "../../redux/eventSlice";
 
 import "./CreateEvent.css";
 
-const CreateEvent = () => {
+const CreateEventTemplate = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -212,4 +212,4 @@ const CreateEvent = () => {
   );
 };
 
-export default CreateEvent;
+export default CreateEventTemplate;
