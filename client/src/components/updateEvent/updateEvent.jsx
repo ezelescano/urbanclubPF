@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
-import styles from "./ProfileEdit.module.css";
+// import styles from "./ProfileEdit.module.css";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { upEvent } from "../../redux/eventSlice";
 
 
 
-const EditEvent  = ({creaEvents}) => {
+const EditEvent = () => {
 
-const dispatch = useDispatch();
-const { id } = useParams();
+  const { creaEvents } = useSelector((state) => state)
+
+
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const [errors, setErrors] = useState({});
 
 
   const [input, setInput] = useState({
-    name: creaEvents.name,
-    price: creaEvents.price,
-    location: creaEvents.location, 
-    nameArena: creaEvents.nameArena,
-    date: creaEvents.date,
+    name: "",
+    price: "",
+    location: "",
+    nameArena: "",
+    date: "",
   });
 
   function validate(input) {
@@ -37,23 +40,23 @@ const { id } = useParams();
   }
 
 
-  function handleOnChange(e) {
-    const property = e.target.name;
-    const value = e.target.value;
+  function handleOnChange(event) {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    })
+
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.containerflex}>
-        <button className={styles.containerexit} onClick={handleOnChange}>
-          X
-        </button>
-        <form onSubmit={handleSubmit} className={styles.formContainer}>
-            <input type="file" name="eventPhoto"></input>
-          <div className="form-container__middle">
-            <label className="required">
+    <div >
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input type="file" name="eventPhoto"></input>
+          <div >
+            <label >
               <div>
-                <span style={{ color: "red" }}>*</span> Nombre del Evento:
+                <span >*</span> Nombre del Evento:
               </div>
               <input
                 onChange={handleOnChange}
@@ -65,16 +68,16 @@ const { id } = useParams();
               />
             </label>
           </div>
-          <div className="form-container__right">
+          <div >
             <label>
               <div>Precio:</div>
               <input
-               type="text"
-               value={input.price}
-               onChange={handleOnChange}
-               onBlur={handleOnChange}
-               name="price"
-               maxLength={35}
+                type="text"
+                value={input.price}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="price"
+                maxLength={35}
               />
             </label>
             <label>
@@ -91,30 +94,30 @@ const { id } = useParams();
             <label>
               <div>Estadio / Teatro / Lugar: :</div>
               <input
-              type="text"
-              value={input.nameArena}
-              onChange={handleOnChange}
-              onBlur={handleOnChange}
-              name="nameArena"
+                type="text"
+                value={input.nameArena}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="nameArena"
               />
             </label>
             <label>
               <div>Fecha :</div>
               <input
                 type="text"
-                  value={input.date}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="date"
+                value={input.date}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="date"
               />
             </label>
-           
-            <button className="upload-form-button" type="submit">
+
+            <button type="submit">
               Guardar Cambios
             </button>
           </div>
         </form>
-        <div className={styles.button}></div>
+        <div ></div>
       </div>
     </div>
   );

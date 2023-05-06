@@ -20,7 +20,7 @@ export const eventSlice = createSlice({
     getAllEventsSuccess(state, action) {
       return {
         ...state,
-        allEvents: action.payload,
+        allEvents: action.payload
       };
     },
   },
