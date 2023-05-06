@@ -123,7 +123,7 @@ const CreateEventTemplate = () => {
             <button
               className="upload-picture-button"
               type="button"
-              name="profilePhoto"
+              name="eventPhoto"
               onClick={handleClick}
             >
               Subir foto
@@ -131,7 +131,7 @@ const CreateEventTemplate = () => {
             <input
               type="file"
               accept="image/png,image/jpg,image/jpeg"
-              name="profilePhoto"
+              name="eventPhoto"
               onChange={handleFileChange}
               ref={fileInputRef}
               style={{ display: "none" }}

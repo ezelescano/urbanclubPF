@@ -100,6 +100,6 @@ export const getDetailEvents = (id) => {
 }
 
 
-export const { postEventSuccess, getAllEventsSuccess,gellDetailEvent } = eventSlice.actions;
+export const { postEventSuccess, getAllEventsSuccess,gellDetailEvent,updateEventSuccess } = eventSlice.actions;
 
 export default eventSlice.reducer;
