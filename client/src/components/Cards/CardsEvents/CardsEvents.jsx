@@ -1,34 +1,34 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import style from "./CardsEvents.module.css";
 
-const CardsEvents = ({
-  eventPhoto,
-  name,
-  price,
-  location,
-  nameArena,
-  date,
-}) => {
+const CardsEvents = ({ id_art, name_art, event }) => {
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/events");
-  };
+  console.log(navigate[0]);
   return (
     <div className={style.container}>
-      <div className={style.card} key={1} onClick={handleClick}>
-        <div className={style.imageContainer}>
-          <img src={eventPhoto} alt={name} className={style.image} />
-          <div className={style.overlay}>
-            <h2>{name}</h2>
-            <p>{price}</p>
-            <p>{location}</p>
-            <p>{nameArena}</p>
-            <p>{date}</p>
+      {event.Events.map((event, index) => {
+        return (
+          <div className={style.card} key={index}>
+            <NavLink to={`/detailEvent/${event.id}`}>
+              <div className={style.imageContainer}>
+                <img
+                  src={event.eventPhoto}
+                  alt={event.name}
+                  className={style.image}
+                />
+                <div className={style.overlay}>
+                  <h2>{event.name}</h2>
+                  <p style={{ color: "gray" }}>{name_art}</p>
+                  <p>{event.date}</p>
+                  <p>{event.location}</p>
+                  <p>{event.description}</p>
+                </div>
+              </div>
+            </NavLink>
           </div>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 };

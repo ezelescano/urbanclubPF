@@ -1,6 +1,5 @@
 const { cloudiconfig,loadPhoto } = require("../../../utils/cloudinary");
-const {Event} = require("../../db");
-const {Artist} = require("../../db");
+const {Event,Artist} = require("../../db");
 
 const postEventController = async (req) => {
     const { name, price, location, nameArena, date,id_Artist, stock} = req.body;

@@ -7,6 +7,7 @@ function Settings({
   handleLogout,
   handleShowEdit,
   handlePasswordChange,
+  handleShowCreateEvent
 }) {
   return (
     <div className={style.settingsContainer}>
@@ -22,7 +23,11 @@ function Settings({
       <div className={style.divSettings}>
         <button onClick={handlePasswordChange}>Cambiar contraseña</button>
       </div>
-      {/* <NavLink to="/updatePassword/:id" /> */}
+      
+      <div className={style.divSettings}>
+        <button onClick={handleShowCreateEvent}>Crear evento</button>
+        </div> 
+      <NavLink to="/updatePassword/:id" />
       <div className={style.divSettingsD}>
         <button onClick={handleDeleteAccount}>Eliminar Cuenta</button>
       </div>

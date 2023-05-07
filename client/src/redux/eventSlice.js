@@ -5,6 +5,7 @@ import swal from "sweetalert";
 const initialState = {
   creaEvents: [],
   allEvents: [],
+  detailEvent:[]
 };
 
 export const eventSlice = createSlice({
@@ -20,9 +21,15 @@ export const eventSlice = createSlice({
     getAllEventsSuccess(state, action) {
       return {
         ...state,
-        allEvents: action.payload,
+        allEvents: action.payload
       };
     },
+    gellDetailEvent(state,action) {
+      return {
+        ...state,
+        detailEvent:action.payload
+      }
+    }
   },
   updateEventSuccess(state, action) {
     return {
@@ -74,7 +81,25 @@ export const getAllEvents = () => {
   };
 };
 
-export const { postEventSuccess, getAllEventsSuccess, updateEventSuccess } =
-  eventSlice.actions;
+export const getDetailEvents = (id) => {
+  
+ return async (dispatch) =>{
+  try {
+    const result = (await axios.get(`/events/detailEvent/${id}`)).data;
+    console.log(result)
+    return dispatch(gellDetailEvent(result))
+  } catch (error) {
+        swal({
+            title: "EVENTOS",
+            text:  `No hay eventos para este usuario`,
+            icon: "error",
+            buttons: "Aceptar"
+         })
+  }
+ }
+}
+
+
+export const { postEventSuccess, getAllEventsSuccess,gellDetailEvent,updateEventSuccess } = eventSlice.actions;
 
 export default eventSlice.reducer;

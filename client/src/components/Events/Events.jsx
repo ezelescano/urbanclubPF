@@ -5,29 +5,37 @@ import loading from "../../img/loading.gif";
 import style from "./Events.module.css";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import EventMap from "../EventMap/EventMap";
+import { getAllEvents } from "../../redux/eventSlice";
 
 const Events = () => {
-  const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation 
+  const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation
   const handleLocationChange = (location) => {
     setSelectedLocation(location);
   };
   const dispatch = useDispatch();
+  const { allEvents } = useSelector((state) => state.events);
+  useEffect(() => {
+    dispatch(getAllEvents());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(getAllEvents());
-  // }, [dispatch]);
+  const location = {
+    locationName: "Calle C 16 Barrio La campiña 6 N.356",
+  };
 
   return (
     <div className={style.container}>
       <div className={style.containerHelp}>
-        <CardsEvents onClick={handleLocationChange} />
-      </div>
-      <div>Algo</div>
-      <div>
-        <p style={{ backgroundColor: "white" }}>
-          EventMap location={selectedLocation}
-        </p>
-        <EventMap location={selectedLocation} />
+        {allEvents.map((item) => {
+          return (
+            <CardsEvents 
+              key={item.id}
+              id_art={item.id}
+              name_art={item.name}
+              event={item}
+              onClick={handleLocationChange}
+            />
+          );
+        })}
       </div>
     </div>
   );
