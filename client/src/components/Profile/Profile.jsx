@@ -17,10 +17,10 @@ import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword";
-import Error404 from "../Error404/Errors404"
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
+import loading from "../../img/loading.gif"
 
 
 const Profile = () => {
@@ -29,12 +29,13 @@ const Profile = () => {
   const eventsArtist = useSelector((state) => state.events.allEvents);
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
-  const errorId = useSelector((state)=> state.artist.errorId)
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
+  const [isLoading, setIsLoading] = useState(true);
+
   const verified = true;
   const links = [
     {
@@ -69,12 +70,14 @@ const Profile = () => {
     return
   } */
   useEffect(() => {
+
     dispatch(getAllEvents());
-    dispatch(getArtistId(id))
+    setIsLoading(true);
+    dispatch(getArtistId(id));
+    setIsLoading(false);
     return () => {
-      //LIMPIAR ERROR
       //le paso un return cuando se desmonta
-      //dispatch(clearProfile());
+      dispatch(clearProfile());
     };
   }, [dispatch, id]);
 
@@ -163,9 +166,20 @@ const Profile = () => {
 
   return (
     <>
-    {errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
+    {/* {isLoading && (
+                <div className="loadingGif">
+                  <img
+                    className="loading"
+                    src={loading}
+                    alt=""
+                    width="50px"
+                  ></img>
+                </div>
+              )}
+        {!isLoading &&  */}
+        {(errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
+
     <div className="container">
-      
       <div className="portada-profile">
         <img src={coverPhoto} alt="" />
         <div className="rating-g">4.3</div>
@@ -176,7 +190,7 @@ const Profile = () => {
             <img
               className="foto-profile"
               src={profilePhoto}
-              alt="no se jaja x2"
+              alt="Foto de perfil del artista"
             />
           </div>
           <div className="ocupation-container">
@@ -313,7 +327,8 @@ const Profile = () => {
           Mis eventos
         </div>
         {eventsArtist.map((item) => {
-          if (item.id === usuario.id) { //Acá no deberia ser el events.id? para qué el valor de la Imagen del evento primero?
+          if (item.id === usuario.id) {
+            //Acá no deberia ser el events.id? para qué el valor de la Imagen del evento primero?
             return (
               <div key={item.id}>
                 {
@@ -327,15 +342,14 @@ const Profile = () => {
             );
           }
           else
-            return (<div> No se enontraron Eventos</div>)
+            return (<></>)
         })}
         {/* <div>{events && <CardsEvents  />}</div>  */}
       </div>
-      
+    
     </div>
-     )}
+     ))}
     </>
-   
   );
 };
 
