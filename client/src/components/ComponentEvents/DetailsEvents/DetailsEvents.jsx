@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
 import style from "./DetailsEvents.module.css";
+import UpdateEvents from "../../updateEvent/UpdateEvents";
 function DetailsEvents() {
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -59,29 +60,30 @@ function DetailsEvents() {
         ):
         (islogin.isAuthenticated ?
          (
-          <div className={style.Description}>
-          <h1>EDITAR</h1>
-            <h2>{detailEvent.name}</h2>
-            <h2>NOMBRE DEL LUGAR</h2>
-            <h3>{detailEvent.nameArena}</h3>
-            <h3>{detailEvent.id}</h3>
-            <h2>DIRECCION</h2>
-            <h3>{detailEvent.location}</h3>
-            <h2>PRECIO</h2>
-            <h3>{detailEvent.price}</h3>
+          <UpdateEvents id={id} event={detailEvent}/>
+          // <div className={style.Description}>
+          // <h1>EDITAR</h1>
+          //   <h2>{detailEvent.name}</h2>
+          //   <h2>NOMBRE DEL LUGAR</h2>
+          //   <h3>{detailEvent.nameArena}</h3>
+          //   <h3>{detailEvent.id}</h3>
+          //   <h2>DIRECCION</h2>
+          //   <h3>{detailEvent.location}</h3>
+          //   <h2>PRECIO</h2>
+          //   <h3>{detailEvent.price}</h3>
     
-            {/* <p>{detailEvent.Description}</p> //!necesitamos una descripcion  */}
+          //   {/* <p>{detailEvent.Description}</p> //!necesitamos una descripcion  */}
     
-            <div className='links'>
-                        <a href="https://github.com/estiven2111" target='_blank'>
-                            <img src="/assets/Links/github.ico" alt="" />
-                        </a>
-                        <a href="https://www.linkedin.com/in/estiven-arboleda-bb9aa61a4/" target='_blank'>
-                            <img src="/assets/Links/linkedin.ico" alt="" />
-                        </a>
+          //   <div className='links'>
+          //               <a href="https://github.com/estiven2111" target='_blank'>
+          //                   <img src="/assets/Links/github.ico" alt="" />
+          //               </a>
+          //               <a href="https://www.linkedin.com/in/estiven-arboleda-bb9aa61a4/" target='_blank'>
+          //                   <img src="/assets/Links/linkedin.ico" alt="" />
+          //               </a>
                       
-                    </div>
-          </div>
+          //           </div>
+          // </div>
          ):(
           <div></div>
          )

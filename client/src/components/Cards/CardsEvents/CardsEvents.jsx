@@ -23,7 +23,7 @@ const CardsEvents = ({
     })
       .then(async (res) => {
         if (res && islogin.user.id && islogin.isAuthenticated) {
-          window.location.reload()
+           window.location.reload()
            dispatch(deleteEvent(id));
            
           //  console.log(confirmed)

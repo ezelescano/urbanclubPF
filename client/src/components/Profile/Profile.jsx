@@ -86,9 +86,9 @@ const Profile = () => {
     }
     execute()
     
-    return () => {
+    return async () => {
       //le paso un return cuando se desmonta
-      dispatch(clearProfile());
+      await dispatch(clearProfile());
     };
   }, [dispatch, id]);
 
