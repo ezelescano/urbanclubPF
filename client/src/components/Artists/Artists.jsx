@@ -33,7 +33,7 @@ const Artists = () => {
 
     asynGetArtists();
     //dispatch(cleanArtists);
-    return dispatch(cleanArtists);
+     return dispatch(cleanArtists);
   }, [dispatch]);
 
   const [ocupation, setOcupation] = useState("");

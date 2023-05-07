@@ -27,7 +27,7 @@ import { loginSuccess, logout } from './redux/authSlice';
 import { Redirect } from 'react-router-dom';
 import AboutEze from "./components/AboutUs/AboutEze";
 import Errors404 from "./components/Error404/Errors404";
-import EditEvent from "./components/updateEvent/updateEvent";
+import UpdateEvents from "./components/updateEvent/UpdateEvents";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
@@ -74,7 +74,7 @@ function App() {
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
-        <Route path="/upevents/:id" element={<EditEvent/>} />
+        <Route path="/updateEvent" element={<UpdateEvents/>} />
         <Route path="/forgotPassword" element={<ForgotPassword />}/>
         <Route path="/newPassword/:id" element={<NewPassword />} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />

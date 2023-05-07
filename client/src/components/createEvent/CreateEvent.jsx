@@ -27,7 +27,7 @@ const CreateEvent = () => {
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
-  console.log(files[0]);
+
   function validate(input) {
     const errors = {};
     if (!input.name) {
@@ -111,10 +111,18 @@ const CreateEvent = () => {
     }
     setIsLoading(true);
     const formData = new FormData(e.target);
-    formData.append("id_Artist", id);
-    dispatch(postEvent(formData)).then(() => {
-      navigate("/events");
-      setIsLoading(false);
+    formData.append("id_Artist", id)
+     dispatch(postEvent(formData));
+     swal({
+      title: "EVENTO CREADO CORRECTAMENTE",
+      text: `Exitos con tu evento`,
+      icon: "success",
+      buttons: "Aceptar",
+    }).then(res=>{
+      if(res){
+        navigate(`/profile/${id}`)
+        setIsLoading(false);
+      }
     });
   }
 
