@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { postEvent } from "../../redux/eventSlice";
 
 import "./CreateEvent.css";
+import swal from "sweetalert";
 
 const CreateEventTemplate = () => {
   const { id } = useParams();
@@ -96,17 +97,26 @@ const CreateEventTemplate = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
 
-    //console.log(errors);
+    e.preventDefault();
+   
     const formData = new FormData(e.target);
     formData.append("id_Artist", id)
-     dispatch(postEvent(formData,));
+     dispatch(postEvent(formData));
+     swal({
+      title: "EVENTO CREADO CORRECTAMENTE",
+      text: `Exitos con tu evento`,
+      icon: "success",
+      buttons: "Aceptar",
+    }).then(res=>{
+      if(res)navigate(`/profile/${id}`)
+    });
   }
 
   return (
     <div className="create-event">
       <div className="error_back" style={{ color: "red" }}></div>
+      <form  onSubmit={handleSubmit}>
       <div className="create-event-container">
         <div className="create-event-left">
           <div className="create-event-img-container">
@@ -139,8 +149,9 @@ const CreateEventTemplate = () => {
           </div>
         </div>
         <div className="create-event-right">
-          <form className="create-event-form" onSubmit={handleSubmit}>
-            <h2>Crea Tu Evento</h2>
+          <div className="create-event-form">
+           
+            <h2>Crea Tu Event</h2>
             <div className="form-inputs">
               <div className="input-container">
                 <label htmlFor="name">Nombre del evento:</label>
@@ -210,12 +221,13 @@ const CreateEventTemplate = () => {
               </div>
               <br />
               <div className="submit-button">
-                <button type="submit">Crear Evento</button>
+                <button >Crear Evento</button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
+      </form>
     </div>
   );
 };

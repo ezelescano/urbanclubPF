@@ -3,7 +3,6 @@ const {Event,Artist} = require("../../db");
 
 const postEventController = async (req) => {
     const { name, price, location, nameArena, date,id_Artist} = req.body;
-    console.log(name, price);
     let photoEvent = {}
     if (req.files) {
         const {eventPhoto} = req.files
@@ -16,6 +15,7 @@ const postEventController = async (req) => {
     }
    
     const newEvent = {
+        id_Artist,
         name, 
         price,
         location,

@@ -31,6 +31,7 @@ const Profile = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
+  const [eventconut,setEventconut] = useState(0)
   const verified = true;
   const links = [
     {
@@ -66,13 +67,22 @@ const Profile = () => {
     return
   } */
   useEffect(() => {
-    dispatch(getAllEvents());
-    dispatch(getArtistId(id));
+    const execute = async() =>{
+      const even = await dispatch(getAllEvents());
+    const usu = await dispatch(getArtistId(id));
+    
+    even.payload.map((item,index)=>{
+    if (item.id === usu.payload.id) {
+      setEventconut(item.Events.length)
+      }})
+    }
+    execute()
     return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
     };
   }, [dispatch, id]);
+
 
 
   const scrollToEventos = () => {
@@ -103,7 +113,7 @@ const Profile = () => {
     // const confirmed = window.confirm(
     //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
     // );
-
+    
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
@@ -157,8 +167,9 @@ const Profile = () => {
   const handleContact = () => {
     alert("Funcion aun no implementada 😁");
   };
-
+ 
   return (
+   
     <div className="container">
       <div className="portada-profile">
         <img src={coverPhoto} alt="" />
@@ -207,7 +218,7 @@ const Profile = () => {
           </div>
           <div className="stas-profile">
             <button className="btn-stas" onClick={scrollToEventos}>
-              {/* {events.length + " "} Eventos //! muestra total de eventos del artista */}
+            {eventconut + " "} Eventos  {/*  //! muestra total de eventos del artista */}
             </button>
             <button className="btn-stas">
               {followDemostrativo} Seguidores
@@ -302,12 +313,16 @@ const Profile = () => {
           Eventos
         </div>
 {
-  eventsArtist.map(item=>{
+
+  eventsArtist.map((item,index)=>{
+  
     if (item.id === usuario.id) {
+     
      return(
-      <div>{
-        
+      <div key={index}>{
         <CardsEvents
+        key={index}
+        id_edit = {usuario.id}
         id_art = {item.id}
         name_art = {item.name}
         event={item} />

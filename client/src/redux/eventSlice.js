@@ -37,6 +37,11 @@ export const eventSlice = createSlice({
       creaEvents: action.payload,
     };
   },
+  getEvents(state){
+    return{
+      ...state
+    }
+  }
 });
 
 export const upEvent = (id, input) => {
@@ -60,7 +65,8 @@ export const postEvent = (payload) => {
   return async (dispatch) => {
     try {
       const eventData = (await axios.post("/events", payload)).data;
-      return dispatch(postEventSuccess(eventData));
+     await dispatch(postEventSuccess(eventData));
+    
     } catch (error) {
       console.log(error);
       swal({
@@ -82,7 +88,7 @@ export const getAllEvents = () => {
 };
 
 export const getDetailEvents = (id) => {
-  
+ 
  return async (dispatch) =>{
   try {
     const result = (await axios.get(`/events/detailEvent/${id}`)).data;
@@ -99,7 +105,14 @@ export const getDetailEvents = (id) => {
  }
 }
 
+export const deleteEvent = async(id) => {
+  const result = await axios.get(`/detailEvent/${id}`);
+  return async (dispatch)=>{
+   await dispatch(getEvents());
+  }
+}
 
-export const { postEventSuccess, getAllEventsSuccess,gellDetailEvent,updateEventSuccess } = eventSlice.actions;
+
+export const { postEventSuccess, getAllEventsSuccess,gellDetailEvent,updateEventSuccess,getEvents } = eventSlice.actions;
 
 export default eventSlice.reducer;
