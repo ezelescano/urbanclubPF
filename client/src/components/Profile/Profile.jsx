@@ -19,6 +19,9 @@ import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword";
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
+import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
+import loading from "../../img/loading.gif"
+
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -31,6 +34,8 @@ const Profile = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
+  const [isLoading, setIsLoading] = useState(true);
+
   const verified = true;
   const links = [
     {
@@ -65,8 +70,11 @@ const Profile = () => {
     return
   } */
   useEffect(() => {
+
     dispatch(getAllEvents());
+    setIsLoading(true);
     dispatch(getArtistId(id));
+    setIsLoading(false);
     return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
@@ -157,6 +165,20 @@ const Profile = () => {
   };
 
   return (
+    <>
+    {/* {isLoading && (
+                <div className="loadingGif">
+                  <img
+                    className="loading"
+                    src={loading}
+                    alt=""
+                    width="50px"
+                  ></img>
+                </div>
+              )}
+        {!isLoading &&  */}
+        {(errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
+
     <div className="container">
       <div className="portada-profile">
         <img src={coverPhoto} alt="" />
@@ -168,7 +190,7 @@ const Profile = () => {
             <img
               className="foto-profile"
               src={profilePhoto}
-              alt="no se jaja x2"
+              alt="Foto de perfil del artista"
             />
           </div>
           <div className="ocupation-container">
@@ -318,10 +340,15 @@ const Profile = () => {
               </div>
             );
           }
+          else
+            return (<></>)
         })}
         {/* <div>{events && <CardsEvents  />}</div>  */}
       </div>
+    
     </div>
+     ))}
+    </>
   );
 };
 
