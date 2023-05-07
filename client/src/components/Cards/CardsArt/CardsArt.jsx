@@ -2,7 +2,7 @@ import React from "react";
 import style from "./CardsArt.module.css";
 import { NavLink } from "react-router-dom";
 
-const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id }) => {
+const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events }) => {
   return (
     <NavLink className={style.Link} to={`/profile/${id}`}>
       <div className={style.Container}>
@@ -13,6 +13,8 @@ const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id }) => {
           <p>{ocupation}</p>
           <h5>About me:</h5>
           <p>{aboutMe}</p>
+          <h5>Eventos:</h5>
+          <p>{Events?.length && Events[0]?.name }</p>
         </div>
       </div>
     </NavLink>
