@@ -291,7 +291,7 @@ function Formulario() {
               <label>
                 <div className={style.occupationsOptions}>
                   {options.map((option) => (
-                    <label key={option}>
+                    <label key={option} >
                       <input
                         className={style.occupationsOptionsList}
                         type="checkbox"
