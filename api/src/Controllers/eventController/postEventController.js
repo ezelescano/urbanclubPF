@@ -2,7 +2,8 @@ const { cloudiconfig,loadPhoto } = require("../../../utils/cloudinary");
 const {Event,Artist} = require("../../db");
 
 const postEventController = async (req) => {
-    const { name, price, location, nameArena, date,id_Artist} = req.body;
+    const { name, price, location, nameArena, date,
+    stock, Country,city,Description, id_Artist} = req.body;
     let photoEvent = {}
     if (req.files) {
         const {eventPhoto} = req.files
@@ -15,12 +16,16 @@ const postEventController = async (req) => {
     }
    
     const newEvent = {
+        stock,
         id_Artist,
         name, 
         price,
         location,
         nameArena,
         date,
+        city,
+        Country,
+        Description,
         id_eventPhoto:photoEvent.public_id,
         eventPhoto:photoEvent.secure_url
     }
