@@ -20,7 +20,7 @@ import UpdatePassword from "../UpdatePassword/UpdatePassword";
 import Error404 from "../Error404/Errors404"
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
-import { EM_NO_USER_ID } from "../../utils/messages";
+import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 
 
 const Profile = () => {
@@ -163,7 +163,7 @@ const Profile = () => {
 
   return (
     <>
-    {errorId? <Error404></Error404>:(
+    {errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
     <div className="container">
       
       <div className="portada-profile">
