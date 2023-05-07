@@ -22,7 +22,7 @@ function Settings({
       <div className={style.divSettings}>
         <button onClick={handlePasswordChange}>Cambiar contraseña</button>
       </div>
-      <NavLink to="/updatePassword/:id" />
+      {/* <NavLink to="/updatePassword/:id" /> */}
       <div className={style.divSettingsD}>
         <button onClick={handleDeleteAccount}>Eliminar Cuenta</button>
       </div>
