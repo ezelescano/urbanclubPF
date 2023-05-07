@@ -10,7 +10,8 @@ const initialState = {
   allUsuariosArt: [],
   errorForm: {},
   copiArtista: [],
-  errorId:""
+  categoria: [],
+  errorId: ""
 }
 
 
@@ -19,10 +20,19 @@ export const artistSlice = createSlice({
   name: 'artist',
   initialState,
   reducers: {
+    // FilterArtists(state, action) {
+    //   return {
+    //     ...state,
+    //     categoria: action.payload,
+    //   }
+    // },
+
     getFilterArtists(state, action) {
       return {
         ...state,
         allUsuarios: action.payload,
+        categoria: action.payload,
+
       }
     },
     getAllArtsSuccess(state, action) {
@@ -103,10 +113,11 @@ export const artistSlice = createSlice({
 
 });
 
-export const FilterArtists = (ocupation, Country) => {
+export const FilterArtists = (categoria, ubicacion, events) => {
   return async (dispatch) => {
-    const apiData = await axios.get('/artist', ocupation, Country);
-    const artist = apiData.data;
+    const apiData = await axios.get(`/search/resultados?categoria=${categoria}&ubicacion=${ubicacion}&events=${events}`);//`/search/resultados?categoria=${categoria}`
+    const artist = apiData.data.artistas;
+    console.log("HOAL//////////////////////", artist);
     return dispatch(getFilterArtists(artist));
   };
 };
@@ -123,17 +134,17 @@ export const getAllArts = () => {
 
 export const getArtistId = (id) => {
   return async (dispatch) => {
-  try {
-    const apiData = await axios.get(`/artist/${id}`);
-    const artist = apiData.data;
-    console.log(artist);
-    return dispatch(getArtistIdSuccess(artist));
-    
-  } catch (error) {
-    console.log(error,error.name,error.response.data.message);
-    if(error.response.data.message)
-      return dispatch(getArtistIdError(error.response.data.message));
-  }
+    try {
+      const apiData = await axios.get(`/artist/${id}`);
+      const artist = apiData.data;
+      console.log(artist);
+      return dispatch(getArtistIdSuccess(artist));
+
+    } catch (error) {
+      console.log(error, error.name, error.response.data.message);
+      if (error.response.data.message)
+        return dispatch(getArtistIdError(error.response.data.message));
+    }
   };
 };
 
@@ -259,22 +270,22 @@ export const updateArtist = (id, input) => {
   }
 }
 
- export const forgotPassword = (email) => {
+export const forgotPassword = (email) => {
   return async (dispatch) => {
     try {
       const apiData = await axios.put("/forgotPassword", email)
       const response = apiData.data;
       console.log(response);
-    } catch(error){
+    } catch (error) {
       swal({
         title: "ERROR",
         text: error,
         icon: "warning",
         buttons: "Aceptar"
-     })
+      })
     }
   }
- }
+}
 
 
 
