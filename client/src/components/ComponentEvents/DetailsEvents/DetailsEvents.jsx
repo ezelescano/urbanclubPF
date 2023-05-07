@@ -60,7 +60,7 @@ function DetailsEvents() {
         ):
         (islogin.isAuthenticated ?
          (
-          <UpdateEvents id={id} event={detailEvent}/>
+          <UpdateEvents id={islogin.user.id} event={detailEvent}/>
           // <div className={style.Description}>
           // <h1>EDITAR</h1>
           //   <h2>{detailEvent.name}</h2>

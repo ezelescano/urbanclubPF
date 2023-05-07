@@ -7,6 +7,10 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             primaryKey: true,
         },
+        stock: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
         id_Artist: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -28,6 +32,18 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         date: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        Country: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        }, 
+        Description: {
             type: DataTypes.STRING,
             allowNull: true,
         },
