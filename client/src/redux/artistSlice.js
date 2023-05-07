@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { loginSuccess, logout } from './authSlice';
 import swal from 'sweetalert'
+import { EM_NO_USER_ID } from '../utils/messages';
 
 const initialState = {
   usuario: [],
@@ -10,6 +11,7 @@ const initialState = {
   allUsuariosArt: [],
   errorForm: {},
   copiArtista: [],
+  errorId:{}
 }
 
 
@@ -35,6 +37,12 @@ export const artistSlice = createSlice({
       return {
         ...state,
         usuario: action.payload
+      };
+    },
+    getArtistIdError(state, action) {
+      return {
+        ...state,
+        errorId: action.payload
       };
     },
     getauthSuccess(state, action) {
@@ -116,9 +124,17 @@ export const getAllArts = () => {
 
 export const getArtistId = (id) => {
   return async (dispatch) => {
+  try {
     const apiData = await axios.get(`/artist/${id}`);
     const artist = apiData.data;
+    console.log(artist);
     return dispatch(getArtistIdSuccess(artist));
+    
+  } catch (error) {
+    console.log(error,error.name,error.response.data.message);
+    if(error.response.data.message)
+      return dispatch(getArtistIdError(error.response.data.message));
+  }
   };
 };
 
@@ -266,6 +282,7 @@ export const updateArtist = (id, input) => {
 export const {
   getFilterArtists,
   getArtistIdSuccess,
+  getArtistIdError,
   getAllArtsSuccess,
   getArtistNameSuccess,
   cleanArtistsSuccess,
