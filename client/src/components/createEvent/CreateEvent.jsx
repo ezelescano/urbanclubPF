@@ -25,7 +25,6 @@ const CreateEventTemplate = () => {
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
-  console.log(files);
 
   function validate(input) {
     const errors = {};

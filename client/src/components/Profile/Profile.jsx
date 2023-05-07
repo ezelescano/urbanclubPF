@@ -18,7 +18,7 @@ import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword"
 import CreateEvent from "../createEvent/CreateEvent";
-import { getAllEvents } from "../../redux/eventSlice";
+import {getAllEvents } from "../../redux/eventSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -168,6 +168,7 @@ const Profile = () => {
     alert("Funcion aun no implementada 😁");
   };
  
+ 
   return (
    
     <div className="container">
@@ -315,22 +316,26 @@ const Profile = () => {
 {
 
   eventsArtist.map((item,index)=>{
-  
+ return(
+  item.Events.map((event,index) =>{
+    
     if (item.id === usuario.id) {
-     
-     return(
-      <div key={index}>{
-        <CardsEvents
-        key={index}
-        id_edit = {usuario.id}
-        id_art = {item.id}
-        name_art = {item.name}
-        event={item} />
-        
-        
-        }</div>
-     )
-    }
+      return(
+       <div key={index}>{
+         <CardsEvents
+         key={index}
+         id_edit = {usuario.id}
+         id_art = {item.id}
+         name_art = {item.name}
+         event={event} />
+         
+         
+         }</div>
+      )
+     }
+  })
+ )
+  
   })
 }
          {/* <div>{events && <CardsEvents  />}</div>  */}

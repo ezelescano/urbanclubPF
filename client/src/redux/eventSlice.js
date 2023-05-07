@@ -5,7 +5,7 @@ import swal from "sweetalert";
 const initialState = {
   creaEvents: [],
   allEvents: [],
-  detailEvent:[]
+  detailEvent: []
 };
 
 export const eventSlice = createSlice({
@@ -24,10 +24,10 @@ export const eventSlice = createSlice({
         allEvents: action.payload,
       };
     },
-    gellDetailEvent(state,action) {
+    gellDetailEvent(state, action) {
       return {
         ...state,
-        detailEvent:action.payload
+        detailEvent: action.payload
       }
     }
   },
@@ -37,8 +37,8 @@ export const eventSlice = createSlice({
       creaEvents: action.payload,
     };
   },
-  getEvents(state){
-    return{
+  getEvents(state) {
+    return {
       ...state
     }
   }
@@ -65,8 +65,8 @@ export const postEvent = (payload) => {
   return async (dispatch) => {
     try {
       const eventData = (await axios.post("/events", payload)).data;
-     await dispatch(postEventSuccess(eventData));
-    
+      await dispatch(postEventSuccess(eventData));
+
     } catch (error) {
       console.log(error);
       swal({
@@ -88,31 +88,41 @@ export const getAllEvents = () => {
 };
 
 export const getDetailEvents = (id) => {
- 
- return async (dispatch) =>{
+
+  return async (dispatch) => {
+    try {
+      const result = (await axios.get(`/events/detailEvent/${id}`)).data;
+      return dispatch(gellDetailEvent(result))
+    } catch (error) {
+      swal({
+        title: "EVENTOS",
+        text: `No hay eventos para este usuario`,
+        icon: "error",
+        buttons: "Aceptar"
+      })
+    }
+  }
+}
+
+export const deleteEvent = async (id) => {
   try {
-    const result = (await axios.get(`/events/detailEvent/${id}`)).data;
-    console.log(result)
-    return dispatch(gellDetailEvent(result))
+    console.log("el id es",id)
+     axios.delete(`/events/${id}`);
+
+    return async (dispatch) => {
+      dispatch(getEvents());
+    }
   } catch (error) {
-        swal({
-            title: "EVENTOS",
-            text:  `No hay eventos para este usuario`,
-            icon: "error",
-            buttons: "Aceptar"
-         })
-  }
- }
-}
-
-export const deleteEvent = async(id) => {
-  const result = await axios.get(`/detailEvent/${id}`);
-  return async (dispatch)=>{
-   await dispatch(getEvents());
+    swal({
+      title: "EVENTOS",
+      text: `No se pudo eliminar el evento ${error}`,
+      icon: "error",
+      buttons: "Aceptar"
+    })
   }
 }
 
 
-export const { postEventSuccess, getAllEventsSuccess,gellDetailEvent,updateEventSuccess,getEvents } = eventSlice.actions;
+export const { postEventSuccess, getAllEventsSuccess, gellDetailEvent, updateEventSuccess, getEvents } = eventSlice.actions;
 
 export default eventSlice.reducer;

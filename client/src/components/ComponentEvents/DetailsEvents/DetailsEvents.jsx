@@ -14,11 +14,6 @@ function DetailsEvents() {
     useEffect(() => {
       dispatch(getDetailEvents(id));
     }, [dispatch]);
-
-    const deleteEventHandler = () =>{
-      dispatch(deleteEvent(id))
-      navigate("/")
-    }
   return (
     <div className={style.container}>
       <div className={style.img_Es}>
@@ -27,11 +22,11 @@ function DetailsEvents() {
 
 
       {
-        islogin.isAuthenticated && islogin.user.id !== detailEvent.id_Artist ?
+         islogin.user.id !== detailEvent.id_Artist ?
         (
           
           <div className={style.Description}>
-      <h1>DETALLE DEL EVENTO</h1>
+      <h1>DETALLE</h1>
         <h2>{detailEvent.name}</h2>
         <h2>NOMBRE DEL LUGAR</h2>
         <h3>{detailEvent.nameArena}</h3>
@@ -53,31 +48,36 @@ function DetailsEvents() {
                 </div>
       </div>
         ):
-        (
+        (islogin.isAuthenticated ?
+         (
           <div className={style.Description}>
-      <h1>EDITAR EL EVENTO </h1>
-        <h2>{detailEvent.name}</h2>
-        <h2>NOMBRE DEL LUGAR</h2>
-        <h3>{detailEvent.nameArena}</h3>
-        <h3>{detailEvent.id}</h3>
-        <h2>DIRECCION</h2>
-        <h3>{detailEvent.location}</h3>
-        <h2>PRECIO</h2>
-        <h3>{detailEvent.price}</h3>
+          <h1>EDITAR</h1>
+            <h2>{detailEvent.name}</h2>
+            <h2>NOMBRE DEL LUGAR</h2>
+            <h3>{detailEvent.nameArena}</h3>
+            <h3>{detailEvent.id}</h3>
+            <h2>DIRECCION</h2>
+            <h3>{detailEvent.location}</h3>
+            <h2>PRECIO</h2>
+            <h3>{detailEvent.price}</h3>
+    
+            {/* <p>{detailEvent.Description}</p> //!necesitamos una descripcion  */}
+    
+            <div className='links'>
+                        <a href="https://github.com/estiven2111" target='_blank'>
+                            <img src="/assets/Links/github.ico" alt="" />
+                        </a>
+                        <a href="https://www.linkedin.com/in/estiven-arboleda-bb9aa61a4/" target='_blank'>
+                            <img src="/assets/Links/linkedin.ico" alt="" />
+                        </a>
+                      
+                    </div>
+          </div>
+         ):(
+          <div></div>
+         )
 
-        {/* <p>{detailEvent.Description}</p> //!necesitamos una descripcion  */}
-
-        <div className='links'>
-                    <a href="https://github.com/estiven2111" target='_blank'>
-                        <img src="/assets/Links/github.ico" alt="" />
-                    </a>
-                    <a href="https://www.linkedin.com/in/estiven-arboleda-bb9aa61a4/" target='_blank'>
-                        <img src="/assets/Links/linkedin.ico" alt="" />
-                    </a>
-                  
-                </div>
-                <button onClick={deleteEventHandler}>BORRAR ESTE EVENTO</button>
-      </div>
+         
         )
       }
         

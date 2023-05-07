@@ -11,7 +11,7 @@ const Events = () => {
   const {detailEvent} = useSelector(state=>state.events)
   const islogin = useSelector((state) => state.auth);
   const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation 
-  console.log(islogin.user.id , detailEvent.id_Artist)
+ 
   const handleLocationChange = (location) => {
     setSelectedLocation(location);
   };
@@ -26,23 +26,39 @@ const Events = () => {
       <div className={style.containerHelp}>
         {
           allEvents.map((item,index)=>{
-            let ban =1
-          return(
-            item.Events.map(event => {
-              if (islogin.isAuthenticated && islogin.user.id !== event.id_Artist && ban === 1) {
+              return(
+                item.Events.map((event,index) => {
+
+                  if (islogin.isAuthenticated) {
+                    if ( islogin.user.id !== event.id_Artist ) {
+                
+                      return(
+                        <CardsEvents
+                        key={index}
+                        id_art = {item.id}
+                        name_art = {item.name}
+                        event={event}
+                        onClick={handleLocationChange} />
+                      
+                       )
+                     }
+                  }
+                  else{
+                    return(
+                      
+                      <CardsEvents
+                      key={index}
+                      id_art = {item.id}
+                      name_art = {item.name}
+                      event={event}
+                      onClick={handleLocationChange} />
+                     )
+                  }
+                 
+                })
+              )
             
-                return(
-            
-                  <CardsEvents
-                  key={item.id}
-                  id_art = {item.id}
-                  name_art = {item.name}
-                  event={item}
-                  onClick={handleLocationChange} />
-                 )
-               }
-            })
-          )
+         
               
           
           })
