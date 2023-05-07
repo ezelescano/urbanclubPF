@@ -17,7 +17,6 @@ import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword";
-import Error404 from "../Error404/Errors404"
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
@@ -30,7 +29,6 @@ const Profile = () => {
   const eventsArtist = useSelector((state) => state.events.allEvents);
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
-  const errorId = useSelector((state)=> state.artist.errorId)
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -180,7 +178,6 @@ const Profile = () => {
               )}
         {!isLoading &&  */}
         {(errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
-      
 
     <div className="container">
       <div className="portada-profile">
@@ -352,7 +349,6 @@ const Profile = () => {
     </div>
      ))}
     </>
-   
   );
 };
 

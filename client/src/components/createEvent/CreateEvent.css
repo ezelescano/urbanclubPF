@@ -1,4 +1,4 @@
-.createEvent {
+.create-event {
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
 }
-.createEventContainer {
+.create-event-container {
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   display: flex;
@@ -25,38 +25,37 @@
   padding: 50px;
   border-radius: 5px;
 }
-.createEventImgContainer {
+.create-event-img-container {
   display: flex;
   flex-direction: column;
 }
 
-.uploadPictureButton {
+.upload-picture-button {
   background-color: #e6e6e6;
   border: none;
   color: #666666;
   font-weight: bold;
   padding: 10px 20px;
   text-transform: uppercase;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
   border-radius: 15px;
 }
 
-.uploadPictureButton:hover {
+.upload-picture-button:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   background-color: #222222;
   color: #e6e6e6;
 }
 
-.createEventLeft img {
+.create-event-left img {
   max-width: 300px;
   max-height: 300px;
   border-radius: 10px;
 }
-.createEventLeft {
+.create-event-left {
   display: flex;
 }
-.createEventRight form {
+.create-event-right form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -64,22 +63,22 @@
 
 /* Parte Derecha del Formulario*/
 
-.createEventRight {
+.create-event-right {
   display: flex;
   background-color: rgb(230, 230, 230);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
 }
 
-.createEventRight h2 {
+.create-event-right h2 {
   margin-left: 100px;
   margin-block: 10px;
 }
-.createEventRight {
+.create-event-right {
   max-width: 400px;
-  height: 570px;
+  height: 500px;
 }
-.formInputs {
+.form-inputs {
   display: flex;
   flex-direction: column;
   width: 450px;
@@ -87,7 +86,7 @@
   margin-inline: 10px;
   padding-inline: 20px;
 }
-.inputContainer input {
+.input-container input {
   height: 25px;
   width: 250px;
   border-radius: 5px;
@@ -95,48 +94,31 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 15px;
 }
-.inputContainer input:focus {
+.input-container input:focus {
   outline: none;
 }
-.inputContainer textarea {
-  height: 55px;
-  width: 250px;
-  max-width: 250px;
-  max-height: 55px;
-  min-width: 250px;
-  min-height: 55px;
-  resize: none;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  padding: 15px;
-}
-.inputContainer textarea:focus {
-  outline: none;
-}
-.inputContainer {
+.input-container {
   padding: 10px;
 }
 
-.inputContainer label {
+.input-container label {
   margin-block: 10px;
 }
 
 /* Boton de Crear*/
-.submitButton {
+.submit-button {
   display: flex;
   cursor: pointer;
 }
-.submitButton button {
+.submit-button button {
   padding: 10px;
   border-radius: 10px;
   border: none;
   max-width: 200px;
   margin-left: 100px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: all 0.15s ease-in-out;
 }
-.submitButton button:hover {
+.submit-button button:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   background-color: #222222;
   color: #e6e6e6;
