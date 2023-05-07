@@ -17,11 +17,8 @@ import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword";
-import Error404 from "../Error404/Errors404"
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
-import { EM_NO_USER_ID } from "../../utils/messages";
-
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -29,7 +26,6 @@ const Profile = () => {
   const eventsArtist = useSelector((state) => state.events.allEvents);
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
-  const errorId = useSelector((state)=> state.artist.errorId)
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -70,11 +66,10 @@ const Profile = () => {
   } */
   useEffect(() => {
     dispatch(getAllEvents());
-    dispatch(getArtistId(id))
+    dispatch(getArtistId(id));
     return () => {
-      //LIMPIAR ERROR
       //le paso un return cuando se desmonta
-      //dispatch(clearProfile());
+      dispatch(clearProfile());
     };
   }, [dispatch, id]);
 
@@ -162,10 +157,7 @@ const Profile = () => {
   };
 
   return (
-    <>
-    {errorId? <Error404></Error404>:(
     <div className="container">
-      
       <div className="portada-profile">
         <img src={coverPhoto} alt="" />
         <div className="rating-g">4.3</div>
@@ -326,16 +318,10 @@ const Profile = () => {
               </div>
             );
           }
-          else
-            return (<div> No se enontraron Eventos</div>)
         })}
         {/* <div>{events && <CardsEvents  />}</div>  */}
       </div>
-      
     </div>
-     )}
-    </>
-   
   );
 };
 
