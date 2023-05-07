@@ -5,7 +5,6 @@ import HomeArt from "../HomePage/HomeArt.jsx";
 import Events from "../Events/Events.jsx";
 
 const HomePage = () => {
-  
   const images = [
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/3_kaor4h.jpg",
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/6_xuxple.jpg",
