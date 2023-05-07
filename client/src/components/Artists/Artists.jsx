@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getAllArts,
   getFilterArtists,
-  getArtistNameSuccess,
+  FilterArtists,
   cleanArtists,
 } from "../../redux/artistSlice";
 import loading from "../../img/loading.gif";
@@ -15,6 +15,7 @@ import Errors404search from "../Error404/Error404search";
 const Artists = () => {
   const artistas = useSelector((state) => state.artist.allUsuarios);
   const usuario = useSelector((state) => state.artist.copiArtista);
+  const category = useSelector((state) => state.artist.categoria);
 
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -23,7 +24,9 @@ const Artists = () => {
     async function asynGetArtists() {
       // You can await here
       setIsLoading(true);
+      
       await dispatch(getAllArts());
+      
       setIsLoading(false);
       // ...
     }
@@ -39,10 +42,12 @@ const Artists = () => {
   //  const [search, setSearch]= useState('')
 
   useEffect(() => {
+    // dispatch(FilterArtists(ocupation));
     handlesFilter();
   }, [ocupation, country, orden]);
 
-  const filterOcupacionForMap = [
+  const filterOcupacionForMap = 
+  [
     "Bailarin",
     "Cantante",
     "Musico",
@@ -52,19 +57,23 @@ const Artists = () => {
   ];
   const handlesFilter = async () => {
     let artist = [...usuario];
+    const ubicacion = country;
+    const events = orden;
+    console.log("?????????MEEEEEEESI",artist);
     if (ocupation !== "" || country !== "" || orden !== "") {
-      if (ocupation !== "")
-        artist = artist.filter(
-          (artist) => artist.ocupation && artist.ocupation.includes(ocupation)
-        );
-      if (country !== "")
-        artist = artist.filter((artist) => artist.Country === country);
-      if (orden === "ascending")
-        artist = artist.sort((a, z) => a.name.localeCompare(z.name));
-      if (orden === "descending")
-        artist = artist.sort((a, z) => z.name.localeCompare(a.name));
+      console.log("ENTRANDO AL IF");
+      // if (ocupation !== "")
+      //   artist = artist.filter(
+      //     (artist) => artist.ocupation && artist.ocupation.includes(ocupation)
+      //   );
+      // if (country !== "")
+      //   artist = artist.filter((artist) => artist.Country === country);
+      // if (orden === "ascending")
+      //   artist = artist.sort((a, z) => a.Events.localeCompare(z.Events));
+      // if (orden === "descending")
+      //   artist = artist.sort((a, z) => z.Events.localeCompare(a.Events));
       setIsLoading(true);
-      dispatch(getFilterArtists(artist));
+      dispatch(FilterArtists(ocupation, ubicacion ,orden));
       setIsLoading(false);
     } else {
       setIsLoading(true);
@@ -109,8 +118,8 @@ const Artists = () => {
               onChange={(event) => setOrden(event.target.value)}
             >
               <option value="">Nombre</option>
-              <option value="ascending">Desde A a la Z</option>
-              <option value="descending">De la Z a la A</option>
+              <option value="true">Tiene Evento</option>
+              <option value="false">No tiene Evento</option>
             </select>
 
             <button
@@ -130,6 +139,7 @@ const Artists = () => {
           )}
           {!isLoading && artistas.length > 0
             ? artistas.map((item) => {
+              // console.log(artistas);
                 let ocupacion;
                 item.ocupation !== undefined
                   ? (ocupacion = item.ocupation)
@@ -144,6 +154,7 @@ const Artists = () => {
                       aboutMe={item.aboutMe}
                       Country={item.Country}
                       city={item.city}
+                      Events={item.Events}
                     />
                   </div>
                 );
