@@ -20,7 +20,6 @@ const CreateEvent = () => {
     nameArena: "",
     eventPhoto: "",
     date: "",
-    description: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -119,15 +118,16 @@ const CreateEvent = () => {
   }
 
   return (
-    <div className="createEvent">
-      <div className="error_back" style={{ color: "red" }}></div>
-      <form className="formContainer" onSubmit={handleSubmit}>
-        <div className="createEventContainer">
-          <div className="createEventLeft">
-            <div className="createEventImgContainer">
-              {rutaImagen ? (
+    <div className="create-event">
+      <div className="error_back" style={{ color: "red" }}></div> 
+      <form onSubmit={handleSubmit}>
+      <div className="create-event-container">
+        <div className="create-event-left">
+          <div className="create-event-img-container">
+            {rutaImagen ? (
+
                 <img
-                  className="formPicture"
+                  className="form-picture"
                   src={rutaImagen}
                   alt="Imagen de perfil"
                 />
@@ -136,7 +136,7 @@ const CreateEvent = () => {
               )}
               <br />
               <button
-                className="uploadPictureButton"
+                className="upload-picture-button"
                 type="button"
                 name="eventPhoto"
                 onClick={handleClick}
@@ -153,13 +153,14 @@ const CreateEvent = () => {
               />
             </div>
           </div>
-          <div className="createEventRight">
-            <div onSubmit={handleSubmit}>
-              {/*Esto era el form */}
-              <h2>Crea Tu Evento</h2>
-              <div className="formInputs">
-                <div className="inputContainer">
-                  <label htmlFor="name">Nombre del evento:</label>
+
+        </div>
+        <div className="create-event-right">
+          <div className="create-event-form" >
+            <h2>Crea Tu Evento</h2>
+            <div className="form-inputs">
+              <div className="input-container">
+                <label htmlFor="name">Nombre del evento:</label>
                   <br />
                   <input
                     placeholder={errors.name}
@@ -172,7 +173,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-                <div className="inputContainer">
+                <div className="input-container">
                   <label htmlFor="price">Precio de la entrada: U$D</label>
                   <br />
                   <input
@@ -186,7 +187,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-                <div className="inputContainer">
+                <div className="input-container">
                   <label htmlFor="location">Ubicación:</label>
                   <br />
                   <input
@@ -200,7 +201,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-                <div className="inputContainer">
+                <div className="input-container">
                   <label htmlFor="nameArena">
                     Nombre del arena / Escenario:
                   </label>
@@ -215,7 +216,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-                <div className="inputContainer">
+                <div className="input-container">
                   <label htmlFor="date">Fecha:</label>
                   <br />
                   <input
@@ -226,27 +227,8 @@ const CreateEvent = () => {
                     name="date"
                   />
                 </div>
-                <div className="inputContainer">
-                  <label htmlFor="description">Describe qué se hará</label>
-                  <br />
-                  <textarea
-                    placeholder={
-                      "Escribe aquí" +
-                      (!errors.description
-                        ? " "
-                        : "Oops!: " + errors.description)
-                    }
-                    type="text"
-                    value={input.description}
-                    onChange={handleOnChange}
-                    onBlur={handleOnChange}
-                    name="description"
-                    maxLength={150}
-                    required
-                  />
-                </div>
                 <br />
-                <div className="submitButton">
+                <div className="submit-button">
                   {isLoading && (
                     <div className="loadingGif">
                       <img
@@ -258,7 +240,7 @@ const CreateEvent = () => {
                     </div>
                   )}
                   {!isLoading && (
-                    <button className="submitButton" type="submit">
+                    <button className="submit-button" type="submit">
                       Registrarse
                     </button>
                   )}
@@ -266,9 +248,11 @@ const CreateEvent = () => {
                 </div>
               </div>
             </div>
-            {/*Esté es el form*/}
+
           </div>
         </div>
+      </div>
+
       </form>
     </div>
   );
