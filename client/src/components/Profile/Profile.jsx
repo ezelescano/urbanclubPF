@@ -327,7 +327,8 @@ const Profile = () => {
           Mis eventos
         </div>
         {eventsArtist.map((item) => {
-          if (item.id === usuario.id) { //Acá no deberia ser el events.id? para qué el valor de la Imagen del evento primero?
+          if (item.id === usuario.id) {
+            //Acá no deberia ser el events.id? para qué el valor de la Imagen del evento primero?
             return (
               <div key={item.id}>
                 {
