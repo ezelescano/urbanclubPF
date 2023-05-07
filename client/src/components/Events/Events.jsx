@@ -8,7 +8,10 @@ import EventMap from "../EventMap/EventMap";
 import { getAllEvents } from "../../redux/eventSlice";
 
 const Events = () => {
-  const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation
+  const {detailEvent} = useSelector(state=>state.events)
+  const islogin = useSelector((state) => state.auth);
+  const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation 
+ 
   const handleLocationChange = (location) => {
     setSelectedLocation(location);
   };
@@ -25,17 +28,45 @@ const Events = () => {
   return (
     <div className={style.container}>
       <div className={style.containerHelp}>
-        {allEvents.map((item) => {
-          return (
-            <CardsEvents 
-              key={item.id}
-              id_art={item.id}
-              name_art={item.name}
-              event={item}
-              onClick={handleLocationChange}
-            />
-          );
-        })}
+        {
+          allEvents.map((item,index)=>{
+              return(
+                item.Events.map((event,index) => {
+
+                  if (islogin.isAuthenticated) {
+                    if ( islogin.user.id !== event.id_Artist ) {
+                
+                      return(
+                        <CardsEvents
+                        key={index}
+                        id_art = {item.id}
+                        name_art = {item.name}
+                        event={event}
+                        onClick={handleLocationChange} />
+                      
+                       )
+                     }
+                  }
+                  else{
+                    return(
+                      
+                      <CardsEvents
+                      key={index}
+                      id_art = {item.id}
+                      name_art = {item.name}
+                      event={event}
+                      onClick={handleLocationChange} />
+                     )
+                  }
+                 
+                })
+              )
+            
+         
+              
+          
+          })
+        }
       </div>
     </div>
   );

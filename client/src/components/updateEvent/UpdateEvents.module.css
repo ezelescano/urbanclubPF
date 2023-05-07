@@ -1,0 +1,214 @@
+.formPicture {
+  object-fit: cover;
+  max-height: 90px;
+  max-width: 100px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+.formPicture img,
+.MuiSvgIcon-root {
+  border-radius: 50%;
+  margin-inline: auto;
+}
+
+.uploadPictureButton {
+  cursor: pointer;
+  background-color: black;
+  box-shadow: 0px 2px 2px 2px black;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.uploadFormButton {
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0px 2px 2px 2px black;
+  color: black;
+  font-weight: 600;
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.uploadSubmitButton {
+  background-color: white;
+  border: 2px solid black;
+  box-shadow: 2px 2px 2px black;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.formularioExternoRegistro {
+  background-image: url(https://res.cloudinary.com/dipn8zmq3/image/upload/v1682454858/UrbanClub/DSC_5894_rev5jt.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  /* Agregado para alinear en la parte superior */
+  padding: 10%;
+  padding-inline: 50px;
+  max-width: 120%;
+  max-height: 800px;
+  margin: auto;
+}
+
+.formContainer > * {
+  padding: 5px;
+  padding-inline: 40px;
+}
+
+.formContainerLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 1;
+  margin: auto;
+}
+
+.formContainerMiddle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  order: 2;
+}
+.loadingGif {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainerRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  order: 3;
+}
+
+.formContainer label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.occupationsOptions {
+  max-width: 170px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  justify-content: space-evenly;
+}
+
+.occupationsOptions label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.occupationsOptions input[type="checkbox"] {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  margin-right: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+.occupationsOptions label input[type="checkbox"]:hover {
+  background-color: #007bff5e;
+}
+
+.occupationsOptions input[type="checkbox"]:checked {
+  background-color: #007aff;
+  border-color: #007aff;
+}
+
+.occupationsOptions input[type="checkbox"]:checked::before {
+  font-size: 10px;
+  content: "\00a0\2714"; /* el 00a0 es un blanco espacio y el 2714 es el signo de check*/
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
+.errorBack {
+  font-size: 25px;
+  color: red;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
+.errorsFrond {
+  font-size: 13px;
+  color: red;
+}
+.formSubmitButton {
+  background-color: #007aff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.formSubmitButton:hover {
+  background-color: #006fe6;
+}
+
+.formSubmitButton:active {
+  background-color: #0062cc;
+  transform: translateY(1px);
+}
+.descripcionArea {
+  max-width: 140px;
+  max-height: 100px;
+  min-width: 140px;
+  min-height: 50px;
+}
+/*Faltan los media queries oscar :)))) Dale metele pataaaa...*/
+@media (max-width: 768px) {
+  .formContainer {
+    flex-direction: column;
+    padding: 5%;
+  }
+
+  .formContainer > * {
+    padding: 5px;
+    padding-inline: 10px;
+  }
+
+  .formPicture {
+    max-width: 50%;
+  }
+}

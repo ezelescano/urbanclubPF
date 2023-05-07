@@ -16,6 +16,7 @@ const postEventController = async (req) => {
     }
    
     const newEvent = {
+        id_Artist,
         name, 
         price,
         location,

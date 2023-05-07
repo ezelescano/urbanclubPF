@@ -19,7 +19,7 @@ import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword";
 import Error404 from "../Error404/Errors404"
 import CreateEvent from "../createEvent/CreateEvent";
-import { getAllEvents } from "../../redux/eventSlice";
+import {getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import loading from "../../img/loading.gif"
 
@@ -38,6 +38,7 @@ const Profile = () => {
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [eventconut,setEventconut] = useState(0)
   const verified = true;
   const links = [
     {
@@ -72,16 +73,26 @@ const Profile = () => {
     return
   } */
   useEffect(() => {
-
-    dispatch(getAllEvents());
+    const execute = async() =>{
+  
+    const even = await dispatch(getAllEvents());
     setIsLoading(true);
-    dispatch(getArtistId(id));
+    const usu = await dispatch(getArtistId(id));
     setIsLoading(false);
-    return () => {
+    even.payload.map((item,index)=>{
+    if (item.id === usu.payload.id) {
+      setEventconut(item.Events.length)
+      }})
+    }
+    execute()
+    
+    return async () => {
       //le paso un return cuando se desmonta
-      dispatch(clearProfile());
+      await dispatch(clearProfile());
     };
   }, [dispatch, id]);
+
+
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
@@ -111,7 +122,7 @@ const Profile = () => {
     // const confirmed = window.confirm(
     //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
     // );
-
+    
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
@@ -165,7 +176,8 @@ const Profile = () => {
   const handleContact = () => {
     alert("Funcion aun no implementada 😁");
   };
-
+ 
+ 
   return (
     <>
     {/* {isLoading && (
@@ -234,7 +246,7 @@ const Profile = () => {
           </div>
           <div className="stas-profile">
             <button className="btn-stas" onClick={scrollToEventos}>
-              {/* {events.length + " "} Eventos //! muestra total de eventos del artista */}
+            {eventconut + " "} Eventos  {/*  //! muestra total de eventos del artista */}
             </button>
             <button className="btn-stas">
               {followDemostrativo} Seguidores
@@ -328,25 +340,32 @@ const Profile = () => {
         <div ref={eventosRef} className="titulo-ev">
           Mis eventos
         </div>
-        {eventsArtist.map((item) => {
-          if (item.id === usuario.id) {
-            //Acá no deberia ser el events.id? para qué el valor de la Imagen del evento primero?
-            return (
-              <div key={item.id}>
-                {
-                  <CardsEvents
-                    id_art={item.id}
-                    name_art={item.name}
-                    event={item}
-                  />
-                }
-              </div>
-            );
-          }
-          else
-            return (<></>)
-        })}
-        {/* <div>{events && <CardsEvents  />}</div>  */}
+{
+
+  eventsArtist.map((item,index)=>{
+ return(
+  item.Events.map((event,index) =>{
+    
+    if (item.id === usuario.id) {
+      return(
+       <div key={index}>{
+         <CardsEvents
+         key={index}
+         id_edit = {usuario.id}
+         id_art = {item.id}
+         name_art = {item.name}
+         event={event} />
+         
+         
+         }</div>
+      )
+     }
+  })
+ )
+  
+  })
+}
+         {/* <div>{events && <CardsEvents  />}</div>  */}
       </div>
     
     </div>
