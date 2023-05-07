@@ -75,7 +75,7 @@ export const artistSlice = createSlice({
     postArtistSuccess(state, action) {
       return {
         ...state,
-        allUsuarios: [...state.artist.allUsuarios, action.payload] 
+        // allUsuarios: [...state.artist.allUsuarios, action.payload] 
       }
     },
     setErrors(state, action) {
@@ -187,8 +187,9 @@ export const postArtist = (payload, navigate) => {
       const result = apiData.data;
       if (result.error) {
         return dispatch(setErrors(result))
-
+        
       }
+      console.log(result)
       dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))
       dispatch(clearErrors())
