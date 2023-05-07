@@ -1,4 +1,5 @@
 const {Router} = require("express");
+
 const {  getArtistHandler } = require("../Handlers/artistHandler/getAllArtistHandlers");
 const {getArtistById} = require("../Handlers/artistHandler/getArtistById")
 const {delArtistHandler} = require("../Handlers/artistHandler/delArtistHandler");
@@ -7,6 +8,8 @@ const { updateArtistHandler } = require("../Handlers/artistHandler/updateArtistH
 const {delLogArtistHandler} = require("../Handlers/artistHandler/delLogArtistHandler");
 const {restoreArtistHandler} = require("../Handlers/artistHandler/restoreArtistHandler");
 const {forgotPasswordHandler} = require("../Handlers/artistHandler/forgotPasswordHandler");
+const {getArtistByCat} = require("../Handlers/searchHandler/getArtistByCat")
+const {getAllCategories} = require("../Handlers/searchHandler/getAllCategories")
 const authLogin = require("../Handlers/artistHandler/authLogin");
 const authArtist = require("../Handlers/artistHandler/authArtist")
 const verifyAuth = require("../middlewares/verifyAuth");
