@@ -152,7 +152,7 @@ function Formulario({id,event}) {
            
               <label className={style.required}>
                 <div>
-                  <span style={{ color: "red" }}>*</span> Nombre:
+                  <span style={{ color: "red" }}>*</span> Nombre Del Evento:
                 </div>
                 <input
                   placeholder={errors.name}
@@ -165,66 +165,6 @@ function Formulario({id,event}) {
                   required
                 />
               </label>
-              <label>
-                <div>
-                  <span style={{ color: "red" }}>*</span> Apellido:
-                </div>
-                <input
-                  placeholder={errors.lastname}
-                  type="text"
-                  value={input.lastname}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="lastname"
-                  maxLength={35}
-                  required
-                />
-              </label>
-              <label>
-                <div>
-                  <span style={{ color: "red" }}>*</span> Correo:
-                </div>
-                <input
-                  placeholder={errors.email}
-                  type="email"
-                  value={input.email}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="email"
-                  maxLength={45}
-                  required
-                />
-              </label>
-              <label>
-                <div>
-                  <span style={{ color: "red" }}>*</span> Nickname:
-                </div>
-                <input
-                  placeholder={errors.nickName}
-                  type="text"
-                  value={input.nickName}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="nickName"
-                  required
-                />
-              </label>
-              <label>
-                <div>
-                  <span style={{ color: "red" }}>*</span> Contraseña:
-                </div>
-                <input
-                  placeholder={errors.password}
-                  type="password"
-                  maxLength={45}
-                  value={input.password}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="password"
-                  required
-                />
-              </label>
-              <p className={style.errorsFrond}>{errors.password}</p>
               <label>
                 <div>Ciudad:</div>
                 <input
@@ -245,6 +185,84 @@ function Formulario({id,event}) {
                   name="Country"
                 />
               </label>
+              <label>
+                <div>
+                  <span style={{ color: "red" }}>*</span> Dirección:
+                </div>
+                <input
+                  placeholder={errors.location}
+                  type="text"
+                  value={input.location}
+                  onChange={handleOnChange}
+                  onBlur={handleOnChange}
+                  name="location"
+                  maxLength={45}
+                  required
+                />
+              </label>
+              <label>
+                <div>
+                  <span style={{ color: "red" }}>*</span> Nombre del lugar:
+                </div>
+                <input
+                  placeholder={errors.nameArena}
+                  type="text"
+                  value={input.nameArena}
+                  onChange={handleOnChange}
+                  onBlur={handleOnChange}
+                  name="nameArena"
+                  required
+                />
+              </label>
+              <label>
+                <div>
+                  <span style={{ color: "red" }}>*</span> fecha:
+                </div>
+                <input
+                  placeholder={errors.date}
+                  type="text"
+                  maxLength={45}
+                  value={input.date}
+                  onChange={handleOnChange}
+                  onBlur={handleOnChange}
+                  name="date"
+                  required
+                />
+              </label>
+              <p className={style.errorsFrond}>{errors.date}</p>
+             
+              <label>
+                <div>
+                  <span style={{ color: "red" }}>*</span> Cantidad Boletos:
+                </div>
+                <input
+                  placeholder={errors.price}
+                  type="number"
+                  step="0.01"
+                  value={input.price}
+                  onChange={handleOnChange}
+                  onBlur={handleOnChange}
+                  name="price"
+                  maxLength={35}
+                  required
+                />
+              </label>
+              <label>
+                <div>
+                  <span style={{ color: "red" }}>*</span> Precio Entrada $US:
+                </div>
+                <input
+                  placeholder={errors.stock}
+                  type="number"
+                  step="0.01"
+                  value={input.stock}
+                  onChange={handleOnChange}
+                  onBlur={handleOnChange}
+                  name="stock"
+                  maxLength={35}
+                  required
+                />
+              </label>
             </div>
             <div className={style.formContainerRight}>
               
@@ -252,12 +270,12 @@ function Formulario({id,event}) {
                 Descripción:
                 <textarea
                   className={style.descripcionArea}
-                  value={input.aboutMe}
+                  value={input.Description}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   placeholder="500 Palabras max"
                   maxLength={150}
-                  name="aboutMe"
+                  name="Description"
                 />
               </label>
 

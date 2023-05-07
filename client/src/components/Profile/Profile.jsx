@@ -17,11 +17,12 @@ import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword";
-import Error404 from "../Error404/Errors404";
+import Error404 from "../Error404/Errors404"
 import CreateEvent from "../createEvent/CreateEvent";
-import { getAllEvents } from "../../redux/eventSlice";
+import {getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
-import loading from "../../img/loading.gif";
+import loading from "../../img/loading.gif"
+
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const Profile = () => {
   const eventsArtist = useSelector((state) => state.events.allEvents);
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
-  const errorId = useSelector((state) => state.artist.errorId);
+  const errorId = useSelector((state)=> state.artist.errorId)
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -37,7 +38,7 @@ const Profile = () => {
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [eventconut, setEventconut] = useState(0);
+  const [eventconut,setEventconut] = useState(0)
   const verified = true;
   const links = [
     {
@@ -72,24 +73,26 @@ const Profile = () => {
     return
   } */
   useEffect(() => {
-    const execute = async () => {
-      const even = await dispatch(getAllEvents());
-      setIsLoading(true);
-      const usu = await dispatch(getArtistId(id));
-      setIsLoading(false);
-      even.payload.map((item, index) => {
-        if (item.id === usu.payload.id) {
-          setEventconut(item.Events.length);
-        }
-      });
-    };
-    execute();
-
+    const execute = async() =>{
+  
+    const even = await dispatch(getAllEvents());
+    setIsLoading(true);
+    const usu = await dispatch(getArtistId(id));
+    setIsLoading(false);
+    even.payload.map((item,index)=>{
+    if (item.id === usu.payload.id) {
+      setEventconut(item.Events.length)
+      }})
+    }
+    execute()
+    
     return async () => {
       //le paso un return cuando se desmonta
       await dispatch(clearProfile());
     };
   }, [dispatch, id]);
+
+
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
@@ -119,7 +122,7 @@ const Profile = () => {
     // const confirmed = window.confirm(
     //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
     // );
-
+    
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
@@ -173,10 +176,11 @@ const Profile = () => {
   const handleContact = () => {
     alert("Funcion aun no implementada 😁");
   };
-
+ 
+ 
   return (
     <>
-      {/* {isLoading && (
+    {/* {isLoading && (
                 <div className="loadingGif">
                   <img
                     className="loading"
@@ -187,183 +191,185 @@ const Profile = () => {
                 </div>
               )}
         {!isLoading &&  */}
-      {errorId &&
-      (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID)) ? (
-        <Error404></Error404>
-      ) : (
-        <div className="container">
-          <div className="portada-profile">
-            <img src={coverPhoto} alt="" />
-            <div className="rating-g">4.3</div>
+        {(errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
+
+    <div className="container">
+      <div className="portada-profile">
+        <img src={coverPhoto} alt="" />
+        <div className="rating-g">4.3</div>
+      </div>
+      <div className="prim-profile">
+        <div className="">
+          <div className="foto-ocupacion">
+            <img
+              className="foto-profile"
+              src={profilePhoto}
+              alt="Foto de perfil del artista"
+            />
           </div>
-          <div className="prim-profile">
-            <div className="">
-              <div className="foto-ocupacion">
-                <img
-                  className="foto-profile"
-                  src={profilePhoto}
-                  alt="Foto de perfil del artista"
-                />
-              </div>
-              <div className="ocupation-container">
-                {/* {usuario.ocupation?.map(o => {
+          <div className="ocupation-container">
+            {/* {usuario.ocupation?.map(o => {
                 return(
                   <div className='ocupation'>{o}</div>
                 )
               })} */}
-                {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
-                {ocupationArray &&
-                  ocupationArray?.map((ocupation) => (
-                    <div className="ocupation" key={ocupation}>
-                      {ocupation}
-                    </div>
-                  ))}
-              </div>
-            </div>
-            <div className="info-perfil">
-              <div className="nombre-btns">
-                <div>
-                  <div className="nombre">
-                    <h1>
-                      {name}
-                      {/*  {lastname} */}
-                    </h1>
-                    {/* para saber si es verificado funcion aun no implementada */}
-                    {verified && (
-                      <img
-                        className="verificado"
-                        src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
-                        alt="verificado paa"
-                      />
-                    )}
-                  </div>
-                  <h3>
-                    {city}, {Country}
-                  </h3>
+            {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
+            {ocupationArray &&
+              ocupationArray?.map((ocupation) => (
+                <div className="ocupation" key={ocupation}>
+                  {ocupation}
                 </div>
-              </div>
-              <div className="stas-profile">
-                <button className="btn-stas" onClick={scrollToEventos}>
-                  {eventconut + " "} Eventos{" "}
-                  {/*  //! muestra total de eventos del artista */}
-                </button>
-                <button className="btn-stas">
-                  {followDemostrativo} Seguidores
-                </button>
-                <h4>5 Seguidos</h4>
-              </div>
-              <div className="ab-re">
-                <div className="aboutme">{aboutMe}</div>
-                <div className="redes">
-                  {links?.map((l) => {
-                    return (
-                      <div key={l} className="redes-div">
-                        <h4>Otras redes!!</h4>
-                        <div className="container-links">
-                          {l.youtube && (
-                            <a
-                              href={l.youtube}
-                              target="_blank"
-                              rel="noreferrer noopener"
-                            >
-                              <img
-                                className="icon"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
-                                alt="ds"
-                              />
-                            </a>
-                          )}
-
-                          {l.twitter && (
-                            <a
-                              href={l.twitter}
-                              target="_blank"
-                              rel="noreferrer noopener"
-                            >
-                              <img
-                                className="icon"
-                                src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
-                                alt="ds"
-                              />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            <div className="btns">
-              {isCurrentUser ? (
-                <div className="settings-div">
-                  <button className="btn-ajustes" onClick={handleSettings}>
-                    <img
-                      className="ajustes"
-                      src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
-                      alt="ajuste"
-                    />
-                  </button>
-                  {showSettings && (
-                    <Settings
-                      handleDeleteAccount={handleDeleteAccount}
-                      handleLogout={handleLogout}
-                      handlePasswordChange={handlePasswordChange}
-                      handleShowEdit={handleShowEdit}
-                      handleShowCreateEvent={handleShowCreateEvent}
-                    />
-                  )}
-                  {showEdit && (
-                    <ProfileEdit
-                      handleEdit={handleEdit}
-                      id={id}
-                      usuario={usuario}
-                      handleShowEdit={handleShowEdit}
-                    />
-                  )}
-                  {showEditPassword && (
-                    <UpdatePassword handleEdit={handleEdit} />
-                  )}
-                </div>
-              ) : (
-                <div className="NoAhora">
-                  <button className="btn-profile" onClick={handleFollow}>
-                    Seguir
-                  </button>
-                  <button className="btn-profile" onClick={handleContact}>
-                    Contactar
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="div-eventos">
-            <div ref={eventosRef} className="titulo-ev">
-              Mis eventos
-            </div>
-            {eventsArtist.map((item, index) => {
-              return item.Events.map((event, index) => {
-                if (item.id === usuario.id) {
-                  return (
-                    <div key={index}>
-                      {
-                        <CardsEvents
-                          key={index}
-                          id_edit={usuario.id}
-                          id_art={item.id}
-                          name_art={item.name}
-                          event={event}
-                        />
-                      }
-                    </div>
-                  );
-                }
-              });
-            })}
-            {/* <div>{events && <CardsEvents  />}</div>  */}
+              ))}
           </div>
         </div>
-      )}
+        <div className="info-perfil">
+          <div className="nombre-btns">
+            <div>
+              <div className="nombre">
+                <h1>
+                  {name}
+                  {/*  {lastname} */}
+                </h1>
+                {/* para saber si es verificado funcion aun no implementada */}
+                {verified && (
+                  <img
+                    className="verificado"
+                    src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
+                    alt="verificado paa"
+                  />
+                )}
+              </div>
+              <h3>
+                {city}, {Country}
+              </h3>
+            </div>
+          </div>
+          <div className="stas-profile">
+            <button className="btn-stas" onClick={scrollToEventos}>
+            {eventconut + " "} Eventos  {/*  //! muestra total de eventos del artista */}
+            </button>
+            <button className="btn-stas">
+              {followDemostrativo} Seguidores
+            </button>
+            <h4>5 Seguidos</h4>
+          </div>
+          <div className="ab-re">
+            <div className="aboutme">{aboutMe}</div>
+            <div className="redes">
+              {links?.map((l) => {
+                return (
+                  <div key={l} className="redes-div">
+                    <h4>Otras redes!!</h4>
+                    <div className="container-links">
+                      {l.youtube && (
+                        <a
+                          href={l.youtube}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          <img
+                            className="icon"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
+                            alt="ds"
+                          />
+                        </a>
+                      )}
+
+                      {l.twitter && (
+                        <a
+                          href={l.twitter}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          <img
+                            className="icon"
+                            src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
+                            alt="ds"
+                          />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <div className="btns">
+          {isCurrentUser ? (
+            <div className="settings-div">
+              <button className="btn-ajustes" onClick={handleSettings}>
+                <img
+                  className="ajustes"
+                  src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
+                  alt="ajuste"
+                />
+              </button>
+              {showSettings && (
+                <Settings
+                  handleDeleteAccount={handleDeleteAccount}
+                  handleLogout={handleLogout}
+                  handlePasswordChange={handlePasswordChange}
+                  handleShowEdit={handleShowEdit}
+                  handleShowCreateEvent={handleShowCreateEvent}
+                />
+              )}
+              {showEdit && (
+                <ProfileEdit
+                  handleEdit={handleEdit}
+                  id={id}
+                  usuario={usuario}
+                  handleShowEdit={handleShowEdit}
+                />
+              )}
+              {showEditPassword && <UpdatePassword handleEdit={handleEdit} />}
+            </div>
+          ) : (
+            <div className="NoAhora">
+              <button className="btn-profile" onClick={handleFollow}>
+                Seguir
+              </button>
+              <button className="btn-profile" onClick={handleContact}>
+                Contactar
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="div-eventos">
+        <div ref={eventosRef} className="titulo-ev">
+          Mis eventos
+        </div>
+{
+
+  eventsArtist.map((item,index)=>{
+ return(
+  item.Events.map((event,index) =>{
+    
+    if (item.id === usuario.id) {
+      return(
+       <div key={index}>{
+         <CardsEvents
+         key={index}
+         id_edit = {usuario.id}
+         id_art = {item.id}
+         name_art = {item.name}
+         event={event} />
+         
+         
+         }</div>
+      )
+     }
+  })
+ )
+  
+  })
+}
+         {/* <div>{events && <CardsEvents  />}</div>  */}
+      </div>
+    
+    </div>
+     ))}
     </>
   );
 };
