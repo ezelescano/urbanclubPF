@@ -11,6 +11,7 @@ const initialState = {
   errorForm: {},
   copiArtista: [],
   categoria: [],
+  errorId: ""
 }
 
 
@@ -45,6 +46,12 @@ export const artistSlice = createSlice({
       return {
         ...state,
         usuario: action.payload
+      };
+    },
+    getArtistIdError(state, action) {
+      return {
+        ...state,
+        errorId: action.payload
       };
     },
     getauthSuccess(state, action) {
@@ -127,9 +134,17 @@ export const getAllArts = () => {
 
 export const getArtistId = (id) => {
   return async (dispatch) => {
-    const apiData = await axios.get(`/artist/${id}`);
-    const artist = apiData.data;
-    return dispatch(getArtistIdSuccess(artist));
+    try {
+      const apiData = await axios.get(`/artist/${id}`);
+      const artist = apiData.data;
+      console.log(artist);
+      return dispatch(getArtistIdSuccess(artist));
+
+    } catch (error) {
+      console.log(error, error.name, error.response.data.message);
+      if (error.response.data.message)
+        return dispatch(getArtistIdError(error.response.data.message));
+    }
   };
 };
 
@@ -277,6 +292,7 @@ export const forgotPassword = (email) => {
 export const {
   getFilterArtists,
   getArtistIdSuccess,
+  getArtistIdError,
   getAllArtsSuccess,
   getArtistNameSuccess,
   cleanArtistsSuccess,
