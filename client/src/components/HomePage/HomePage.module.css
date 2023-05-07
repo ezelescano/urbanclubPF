@@ -56,3 +56,9 @@
   -ms-border-radius: 50px;
   -o-border-radius: 50px;
 }
+
+.eventsCardsContainer div:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
