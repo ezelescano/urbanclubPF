@@ -68,6 +68,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      // subCategory: {
+      //   type: DataTypes.JSON,
+      //   allowNull: true,
+      // },
       aboutMe: {
         type: DataTypes.STRING,
         allowNull: true,

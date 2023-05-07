@@ -16,21 +16,28 @@ import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
-import UpdatePassword from "../UpdatePassword/UpdatePassword"
+import UpdatePassword from "../UpdatePassword/UpdatePassword";
+import Error404 from "../Error404/Errors404"
 import CreateEvent from "../createEvent/CreateEvent";
 import {getAllEvents } from "../../redux/eventSlice";
+import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
+import loading from "../../img/loading.gif"
+
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const eventsArtist = useSelector(state=>state.events.allEvents)
+  const eventsArtist = useSelector((state) => state.events.allEvents);
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
+  const errorId = useSelector((state)=> state.artist.errorId)
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
+  const [isLoading, setIsLoading] = useState(true);
+
   const [eventconut,setEventconut] = useState(0)
   const verified = true;
   const links = [
@@ -39,7 +46,6 @@ const Profile = () => {
       twitter: "https://twitter.com/",
     },
   ];
-
 
   const isCurrentUser = currentUser && currentUser.id === usuario.id;
 
@@ -54,7 +60,7 @@ const Profile = () => {
     aboutMe,
   } = usuario;
 
-  const ocupationArray = ocupation && (ocupation.length && ocupation.split(","));
+  const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
 
   const { id } = useParams();
   const eventosRef = useRef(null);
@@ -68,15 +74,18 @@ const Profile = () => {
   } */
   useEffect(() => {
     const execute = async() =>{
-      const even = await dispatch(getAllEvents());
+  
+    const even = await dispatch(getAllEvents());
+    setIsLoading(true);
     const usu = await dispatch(getArtistId(id));
-    
+    setIsLoading(false);
     even.payload.map((item,index)=>{
     if (item.id === usu.payload.id) {
       setEventconut(item.Events.length)
       }})
     }
     execute()
+    
     return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
@@ -101,9 +110,9 @@ const Profile = () => {
     setShowEditPassword(!showEditPassword);
   };
 
-  const handleShowCreateEvent = () =>{
-    navigate(`/createevent/${id}`)
-  }
+  const handleShowCreateEvent = () => {
+    navigate(`/createevent/${id}`);
+  };
 
   const handleOnBlur = () => {
     setShowSettings(false);
@@ -170,7 +179,20 @@ const Profile = () => {
  
  
   return (
-   
+    <>
+    {/* {isLoading && (
+                <div className="loadingGif">
+                  <img
+                    className="loading"
+                    src={loading}
+                    alt=""
+                    width="50px"
+                  ></img>
+                </div>
+              )}
+        {!isLoading &&  */}
+        {(errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
+
     <div className="container">
       <div className="portada-profile">
         <img src={coverPhoto} alt="" />
@@ -182,7 +204,7 @@ const Profile = () => {
             <img
               className="foto-profile"
               src={profilePhoto}
-              alt="no se jaja x2"
+              alt="Foto de perfil del artista"
             />
           </div>
           <div className="ocupation-container">
@@ -192,7 +214,12 @@ const Profile = () => {
                 )
               })} */}
             {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
-            {ocupationArray && ocupationArray?.map(ocupation =><div className="ocupation" key={ocupation}>{ocupation}</div>)}
+            {ocupationArray &&
+              ocupationArray?.map((ocupation) => (
+                <div className="ocupation" key={ocupation}>
+                  {ocupation}
+                </div>
+              ))}
           </div>
         </div>
         <div className="info-perfil">
@@ -311,7 +338,7 @@ const Profile = () => {
       </div>
       <div className="div-eventos">
         <div ref={eventosRef} className="titulo-ev">
-          Eventos
+          Mis eventos
         </div>
 {
 
@@ -340,7 +367,10 @@ const Profile = () => {
 }
          {/* <div>{events && <CardsEvents  />}</div>  */}
       </div>
+    
     </div>
+     ))}
+    </>
   );
 };
 

@@ -16,10 +16,14 @@ const Events = () => {
     setSelectedLocation(location);
   };
   const dispatch = useDispatch();
-  const {allEvents} = useSelector(state=>state.events)
+  const { allEvents } = useSelector((state) => state.events);
   useEffect(() => {
     dispatch(getAllEvents());
   }, [dispatch]);
+
+  const location = {
+    locationName: "Calle C 16 Barrio La campiña 6 N.356",
+  };
 
   return (
     <div className={style.container}>
