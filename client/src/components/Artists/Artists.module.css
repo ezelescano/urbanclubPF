@@ -1,13 +1,28 @@
 .container {
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  /* display: flex;
+  flex-wrap: wrap;*/
+  justify-content: center;
+  /* align-items: flex-start;  */
+  overflow: hidden; /* cambiar a 'hidden' */
+  min-height: 100vh;
+}
+.containerFilters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* cambiar a 'hidden' */
+}
+
+.containerArtists{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
   overflow: hidden; /* cambiar a 'hidden' */
   min-height: 100vh;
-}
 
+}
 .containerCar {
   margin: 25px 0px 0px 0px;
 }

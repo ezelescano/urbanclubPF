@@ -1,4 +1,4 @@
-.create-event {
+.createEvent {
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -8,14 +8,15 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.create-event-container {
+.createEventContainer {
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 1000px;
   height: 700px;
@@ -24,49 +25,69 @@
   padding: 50px;
   border-radius: 5px;
 }
-.create-event-left img {
+.createEventImgContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.uploadPictureButton {
+  background-color: #e6e6e6;
+  border: none;
+  color: #666666;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+.uploadPictureButton:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background-color: #222222;
+  color: #e6e6e6;
+}
+
+.createEventLeft img {
   max-width: 300px;
   max-height: 300px;
   border-radius: 10px;
 }
-.create-event-left {
+.createEventLeft {
   display: flex;
 }
-.create-event-right form {
+.createEventRight form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-
 /* Parte Derecha del Formulario*/
 
-
-.create-event-right {
+.createEventRight {
   display: flex;
-  background-color: aliceblue;
+  background-color: rgb(230, 230, 230);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
 }
 
-.create-event-right h2 {
+.createEventRight h2 {
   margin-left: 100px;
   margin-block: 10px;
 }
-.create-event-right {
+.createEventRight {
   max-width: 400px;
-  height: 500px;
+  height: 570px;
 }
-.form-inputs {
+.formInputs {
   display: flex;
   flex-direction: column;
   width: 450px;
   max-width: 450px;
   margin-inline: 10px;
   padding-inline: 20px;
-  
 }
-.input-container input {
+.inputContainer input {
   height: 25px;
   width: 250px;
   border-radius: 5px;
@@ -74,25 +95,57 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 15px;
 }
-.input-container input:focus {
+.inputContainer input:focus {
   outline: none;
 }
-.input-container {
+.inputContainer textarea {
+  height: 55px;
+  width: 250px;
+  max-width: 250px;
+  max-height: 55px;
+  min-width: 250px;
+  min-height: 55px;
+  resize: none;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+}
+.inputContainer textarea:focus {
+  outline: none;
+}
+.inputContainer {
   padding: 10px;
 }
 
-.input-container label {
+.inputContainer label {
   margin-block: 10px;
 }
 
 /* Boton de Crear*/
-.submit-button {
+.submitButton {
   display: flex;
+  cursor: pointer;
 }
-.submit-button button {
+.submitButton button {
   padding: 10px;
   border-radius: 10px;
   border: none;
   max-width: 200px;
   margin-left: 100px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.15s ease-in-out;
+}
+.submitButton button:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background-color: #222222;
+  color: #e6e6e6;
+}
+.loadingGif {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 200px;
+  margin-left: 140px;
 }

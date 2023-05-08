@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./ProfileEdit.module.css";
+import swal from "sweetalert";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,6 +44,15 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target)
+    if (!input.ocupation){
+      swal({
+        title: "ERROR",
+        text: "Se debe seleccionar al menos 1 ocupación",
+        icon: "error",
+        buttons: "Aceptar"
+      })
+      return 
+    }
     formData.append("ocupation",input.ocupation)
     handleEdit(formData);
   }
@@ -260,6 +270,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
               }}
               className="occupation-options"
             >
+              <h3>Ocupaciones</h3>
               {options.map((option) => (
                 <label key={option}>
                   <input

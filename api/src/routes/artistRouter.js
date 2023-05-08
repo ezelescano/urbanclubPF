@@ -1,11 +1,15 @@
 const {Router} = require("express");
+
 const {  getArtistHandler } = require("../Handlers/artistHandler/getAllArtistHandlers");
 const {getArtistById} = require("../Handlers/artistHandler/getArtistById")
 const {delArtistHandler} = require("../Handlers/artistHandler/delArtistHandler");
 const {postArtistHandler} = require("../Handlers/artistHandler/postArtistHandler")
 const { updateArtistHandler } = require("../Handlers/artistHandler/updateArtistHandler");
 const {delLogArtistHandler} = require("../Handlers/artistHandler/delLogArtistHandler");
-const {restoreArtistHandler} = require("../Handlers/artistHandler/restoreArtistHandler")
+const {restoreArtistHandler} = require("../Handlers/artistHandler/restoreArtistHandler");
+const {forgotPasswordHandler} = require("../Handlers/artistHandler/forgotPasswordHandler");
+const {getArtistByCat} = require("../Handlers/searchHandler/getArtistByCat")
+const {getAllCategories} = require("../Handlers/searchHandler/getAllCategories")
 const authLogin = require("../Handlers/artistHandler/authLogin");
 const authArtist = require("../Handlers/artistHandler/authArtist")
 const verifyAuth = require("../middlewares/verifyAuth");
@@ -23,6 +27,7 @@ artistRouter.put("/restore/:id", restoreArtistHandler);
 artistRouter.post("/",fileupload({useTempFiles: true,tempFileDir: "./uploads"}), postArtistHandler);
 artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
+artistRouter.put("/forgotPassword", forgotPasswordHandler)
 
 
 artistRouter.get(

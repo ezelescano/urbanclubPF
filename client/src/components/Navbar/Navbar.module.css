@@ -1,0 +1,129 @@
+.navbar {
+  background-color: #0d5a73;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 80px;
+  border-bottom: 1.5px solid #004258;
+}
+
+.navTitleImg {
+  width: 180px;
+  transition: 0.8s;
+}
+
+.navTitleImg:hover {
+  transform: scale(1.1);
+}
+
+.searchbarWrapper {
+  position: relative;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  width: auto;
+}
+
+.nav-links li {
+  margin-left: 30px;
+  transition: 0.8s;
+}
+
+.nav-links li:hover {
+  transform: scale(1.2);
+}
+
+.navLoginBtn {
+  box-shadow: 5px black;
+  padding: 10px 30px;
+  border-radius: 15px;
+  border: none;
+  color: black;
+  font-weight: 550;
+  transition: 0.8s;
+}
+
+.navLoginBtn:hover {
+  background-color: #79cfd5;
+  transform: scale(1.1);
+}
+
+.navLinks li a {
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  outline: none;
+}
+
+.sesionfoto {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #fff;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.navTitleImgZoom {
+  display: none;
+}
+
+.navLoginBtnZoom {
+  display: none;
+}
+
+.sesionfotozoom {
+  display: none;
+}
+
+.sesionfoto,
+.sesionfotozoom {
+  object-fit: cover;
+}
+
+@media screen and (max-width: 968px) {
+  .navbar img.navTitleImg {
+    display: none;
+  }
+
+  .navbar img.navTitleImgZoom {
+    display: block;
+  }
+
+  .navLoginBtnZoom {
+    display: block;
+    padding: 10px 30px;
+    border-radius: 15px;
+    border: none;
+    color: black;
+    font-weight: 550;
+    transition: 0.8s;
+  }
+
+  .navbar {
+    padding: 20px;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .navLoginBtn {
+    display: none;
+  }
+
+  .sesionfoto {
+    display: none;
+  }
+
+  .sesionfotozoom {
+    object-fit: cover;
+    display: block;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+}

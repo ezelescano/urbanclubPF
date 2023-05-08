@@ -45,7 +45,7 @@
   width: 350px;
   margin: -1vh 0; /*Separa las ocupaciones de la imagen*/
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   position: relative;
 }
 .foto-ocupacion img {
@@ -215,6 +215,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.loadingGif {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1315px) {

@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./Register.css";
+import style from "./Register.module.css";
 import { postArtist, errorsCreate } from "../../redux/artistSlice";
 import swal from "sweetalert";
 
-import loading from '../../img/loading.gif'
+import loading from "../../img/loading.gif";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Formulario() {
   const { errorForm } = useSelector((state) => state.artist);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState({
     name: "",
     lastname: "",
@@ -127,37 +127,43 @@ function Formulario() {
   const handleClick = () => {
     fileInputRef.current.click();
   };
-  
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     //console.log(errors);
-    setIsLoading(true)
+    //  console.log(input.ocupation);
+    if (!input.ocupation.length) {
+      await swal({
+        title: "ERROR",
+        text: "Se debe seleccionar al menos 1 ocupación",
+        icon: "error",
+        buttons: "Aceptar",
+      });
+      return;
+    }
+    setIsLoading(true);
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation);
     const error = await dispatch(postArtist(formData, navigate));
-    console.log(error)
-    console.log(2)
-    setIsLoading(false)
-
+    setIsLoading(false);
+    // console.log(error)
+    // console.log(2)
   }
 
   return (
     <>
-      <div className="formulario-externo-registro">
-        <div className="formulario-container formulario-background">
-          <div className="error_back">
+      <div className={style.formularioExternoRegistro}>
+        <div className={style.formularioContainer}>
+          <div className={style.errorBack}>
             <p>{errorForm.error}</p>
           </div>
-          <div className="loading-gif">
-            <p>{isLoading && (<img className="loading" src={loading} alt=""></img>)}</p>
-          </div>
-          <form onSubmit={handleSubmit} className="form-container">
-            <div className="form-container__left">
+          <form onSubmit={handleSubmit} className={style.formContainer}>
+            <div className={style.formContainerLeft}>
               <label>
                 {rutaImagen ? (
                   <img
-                    className="form-picture"
+                    className={style.formPicture}
                     src={rutaImagen}
                     alt="Imagen de perfil"
                   />
@@ -165,7 +171,7 @@ function Formulario() {
                   ""
                 )}
                 <button
-                  className="upload-picture-button"
+                  className={style.uploadPictureButton}
                   type="button"
                   name="profilePhoto"
                   onClick={handleClick}
@@ -184,8 +190,8 @@ function Formulario() {
                 Registrate a<br></br> <b>Urban Club!</b>
               </label>
             </div>
-            <div className="form-container__middle">
-              <label className="required">
+            <div className={style.formContainerMiddle}>
+              <label className={style.required}>
                 <div>
                   <span style={{ color: "red" }}>*</span> Nombre:
                 </div>
@@ -259,7 +265,7 @@ function Formulario() {
                   required
                 />
               </label>
-              <p className="errors_frond">{errors.password}</p>
+              <p className={style.errorsFrond}>{errors.password}</p>
               <label>
                 <div>Ciudad:</div>
                 <input
@@ -281,12 +287,13 @@ function Formulario() {
                 />
               </label>
             </div>
-            <div className="form-container__right">
+            <div className={style.formContainerRight}>
               <label>
-                <div className="occupation-options">
+                <div className={style.occupationsOptions}>
                   {options.map((option) => (
                     <label key={option}>
                       <input
+                        className={style.occupationsOptionsList}
                         type="checkbox"
                         value={option}
                         checked={input.ocupation.includes(option)}
@@ -318,7 +325,7 @@ function Formulario() {
               <label>
                 Descripción:
                 <textarea
-                  className="descripcion-area"
+                  className={style.descripcionArea}
                   value={input.aboutMe}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
@@ -327,9 +334,22 @@ function Formulario() {
                   name="aboutMe"
                 />
               </label>
-              <button className="upload-form-button" type="submit">
-                Registrarse 
-              </button>
+
+              {isLoading && (
+                <div className={style.loadingGif}>
+                  <img
+                    className="loading"
+                    src={loading}
+                    alt=""
+                    width="50px"
+                  ></img>
+                </div>
+              )}
+              {!isLoading && (
+                <button className={style.uploadFormButton} type="submit">
+                  Registrarse
+                </button>
+              )}
             </div>
           </form>
         </div>
