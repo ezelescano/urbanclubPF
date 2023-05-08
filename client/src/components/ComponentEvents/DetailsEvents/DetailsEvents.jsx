@@ -13,58 +13,65 @@ import swal from "sweetalert";
 
 function DetailsEvents() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { id } = useParams();
-  const { detailEvent } = useSelector(state => state.events)
+  const { detailEvent } = useSelector((state) => state.events);
   const islogin = useSelector((state) => state.auth);
-  const [event, setEvent] = useState({})
+  const [event, setEvent] = useState({});
   const [cantidad, setCantidad] = useState(0);
   const [destino, setDestino] = useState({
     city: "",
     Country: "",
-    ban: false
-  })
+    ban: false,
+  });
 
   useEffect(() => {
     const getEvent = async () => {
       const event = await dispatch(getDetailEvents(id));
-      setEvent(event.payload)
+      setEvent(event.payload);
       setCantidad(event.payload.stock);
-    }
+    };
     getEvent();
   }, [dispatch, id]);
 
   const ubicationHandler = () => {
-    console.log(destino.Country)
-    if ((destino.city === "" || !destino.city) ||
-      (destino.Country === "" || !destino.Country)) {
+    console.log(destino.Country);
+    if (
+      destino.city === "" ||
+      !destino.city ||
+      destino.Country === "" ||
+      !destino.Country
+    ) {
       setDestino({
         ...destino,
-        ban: false
-      })
+        ban: false,
+      });
     } else {
       setDestino({
         ...destino,
-        ban: true
-      })
+        ban: true,
+      });
     }
-    console.log(destino)
-  }
+    console.log(destino);
+  };
   const getdestinohandler = (e) => {
-
-   if ((destino.city === "" || !destino.city) ||
-      (destino.Country === "" || !destino.Country)) {
+    if (
+      destino.city === "" ||
+      !destino.city ||
+      destino.Country === "" ||
+      !destino.Country
+    ) {
       setDestino({
         ...destino,
-        ban: false
-      })
+        ban: false,
+      });
     }
     setDestino({
       ...destino,
       [e.target.name]: e.target.value,
-    })
-   }
-   const buyTicketHandler = () => {
+    });
+  };
+  const buyTicketHandler = () => {
     if (cantidad > 0) {
       let restCant = cantidad - 1;
 
@@ -111,69 +118,59 @@ function DetailsEvents() {
               <h5> U$S {detailEvent.price}</h5>
               <h4>Descripcion</h4>
               <p>{detailEvent.Description}</p>
-
-              
               <br />
-              <label htmlFor="">cual es tu pais</label>
+              <label htmlFor="">¿Cual es tú país?</label>
               <input type="text" name="Country" onChange={getdestinohandler} />
-              <label htmlFor="">cual es tu ciudad</label>
+              <label htmlFor="">¿Y tu ciudad?</label>
               <input type="text" name="city" onChange={getdestinohandler} />
-              <button onClick={ubicationHandler}>buscar ubicacion</button>
-              <button>Reinicar mapa</button>
+              <button onClick={ubicationHandler}>Cómo llego ahi?</button>
+              <button>Reinicar la Busqueda</button>
               <div className={style.links}>
-              <h2>CANTIDAD DE ENTRADAS DISPONIBLES</h2>
-              <h3>{cantidad}</h3>
+                <br/>
+                <h3>Cantidad de entradas Disponibles</h3>
+                <h3>{cantidad}</h3>
                 Comprar Entrada con Debito o Crédito:
-               
-                <button onClick={buyTicketHandler}>Comprar entrada</button>
+                <button onClick={buyTicketHandler}>
+                  Comprar entrada <CreditCardIcon />
+                </button>
                 <a
                   href="https://www.visa.com.ar"
                   target="_blank"
                   rel="noreferrer"
-                >
-                  <CreditCardIcon />
-                </a>
+                ></a>
                 <br />
-                Buscar la ticketeria más cercana
                 <a
                   href="https://www.google.com/maps/place/Teatro+Gran+Rex/@-34.6033873,-58.5313019,12z/data=!4m10!1m2!2m1!1sGran+Rex!3m6!1s0x95bccaceed5746b9:0xf933ab84305babc0!8m2!3d-34.6033873!4d-58.3788666!15sCghHcmFuIFJleJIBF3BlcmZvcm1pbmdfYXJ0c190aGVhdGVy4AEA!16s%2Fm%2F05bzpqm"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <StoreMallDirectoryIcon />
+                  <button>
+                    Compralo desde Teatro Gran Rex <StoreMallDirectoryIcon />
+                  </button>
                 </a>
               </div>
               <br></br>
-
             </div>
-
-
           ) : islogin.isAuthenticated ? (
             <UpdateEvents id={id} event={detailEvent} />
           ) : (
             <div></div>
-          )
-          }
+          )}
           <br></br>
           <br></br>
           <br></br>
-          {
-
-            destino.ban === true ?
-              (
-                <div className={style.maps}>
-                  <Maps city={detailEvent.Country} country={detailEvent.city}
-                    Dcity={destino.city} Dcountry={destino.country} />
-                </div>
-              ) : (<div></div>)
-          }
-          {/* <br></br>
-          <br></br>
-          <br></br>
-          <div className={style.maps}>
-            <Maps location={detailEvent.location}/>
-          </div> */}
-
+          {destino.ban === true ? (
+            <div className={style.maps}>
+              <Maps
+                city={detailEvent.Country}
+                country={detailEvent.city}
+                Dcity={destino.city}
+                Dcountry={destino.country}
+              />
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </>
