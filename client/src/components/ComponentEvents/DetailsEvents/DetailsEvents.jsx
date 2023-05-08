@@ -37,6 +37,12 @@ function DetailsEvents() {
         `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
         stockObjeto
       );
+      swal({
+        title: "COMPRA EXITOSA",
+        text: `Revisa tu correo para ver más detalles de la compra`,
+        icon: "success",
+        buttons: "Aceptar"
+      })
     } else {
       swal({
         title: "ENTRADAS AGOTADAS",
