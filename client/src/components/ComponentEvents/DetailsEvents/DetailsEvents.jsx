@@ -7,7 +7,6 @@ import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
 import style from "./DetailsEvents.module.css";
 import UpdateEvents from "../../updateEvent/UpdateEvents";
 import axios from "axios";
-import { useState } from "react";
 import swal from "sweetalert";
 
 function DetailsEvents() {
