@@ -138,7 +138,7 @@ export const getArtistId = (id) => {
     try {
       const apiData = await axios.get(`/artist/${id}`);
       const artist = apiData.data;
-      console.log(artist);
+      
       return dispatch(getArtistIdSuccess(artist));
 
     } catch (error) {
@@ -255,11 +255,9 @@ export const getauth = (navigate) => {
 export const updateArtist = (id, input) => {
   return async (dispatch) => {
     try {
-      console.log(input)
       const apiData = await axios.put(`/artist/update/${id}`, input);
       const response = apiData.data;
       dispatch(updateArtistSuccess(response));
-      console.log(response)
     } catch (error) {
       swal({
         title: "ERROR",

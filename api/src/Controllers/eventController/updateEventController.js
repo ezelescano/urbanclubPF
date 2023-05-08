@@ -4,7 +4,6 @@ const { Event,Artist } = require('../../db');
 const updateEvent = async (req) => {
     const { id } = req.params;
     const { body } = req;
-
     if (!id) {
         throw new Error("Not specific Id")
     } else {
@@ -28,7 +27,6 @@ const updateEvent = async (req) => {
             if (eventPhoto) {
                 console.log(event.id_eventPhoto)
               if (event.id_eventPhoto !== "") {
-                console.log("entro")
                 await DeletePhoto(event.id_eventPhoto);
               }
               
