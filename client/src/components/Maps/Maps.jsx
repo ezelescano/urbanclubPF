@@ -6,6 +6,7 @@ function Maps({ location }) {
   const [endLocation, setEndLocation] = useState(null);
   const [directions, setDirections] = useState(null);
   const [locationError, setLocationError] = useState(false);
+  const [apiLoaded, setApiLoaded] = useState(false);
   console.log(directions);
 
   useEffect(() => {
@@ -49,6 +50,7 @@ function Maps({ location }) {
     window.document.body.appendChild(googleMapsScript);
 
     googleMapsScript.addEventListener("load", () => {
+      setApiLoaded(true);
       if (startLocation && endLocation) {
         const directionsService = new window.google.maps.DirectionsService();
         directionsService.route(
@@ -120,7 +122,7 @@ function Maps({ location }) {
           </p>
         </div>
       ) : (
-        <div id="map" style={{ width: "100%", height: "100%" }} />
+        apiLoaded && <div id="map" style={{ width: "100%", height: "100%" }} /> // utilizar apiLoaded en el chequeo condicional
       )}
     </div>
   );
