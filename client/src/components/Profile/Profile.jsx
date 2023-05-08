@@ -132,7 +132,7 @@ const Profile = () => {
     })
       .then(async (res) => {
         if (res && isCurrentUser) {
-          const confirmed = await dispatch(deleteArtist(id));
+          const confirmed = dispatch(deleteArtist(id));
           if (confirmed) {
             return swal({
               title: "CUENTA ELIMINADA",
