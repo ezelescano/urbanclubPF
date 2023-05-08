@@ -84,6 +84,7 @@ const Artists = () => {
   return (
     <div className={style.ourPage}>
       <div className={style.container}>
+        <br />
         <div className={style.containerFilters}>
           <form>
             <select
@@ -130,7 +131,6 @@ const Artists = () => {
             </button>
           </form>
         </div>
-
         <div className={style.containerArtists}>
           {isLoading && (
             <div className="loading-gif">
@@ -162,6 +162,7 @@ const Artists = () => {
             : !isLoading &&
               artistas.length === 0 && <Errors404search></Errors404search>}
         </div>
+        <br /> <br />
       </div>
     </div>
   );
