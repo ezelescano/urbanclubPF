@@ -35,9 +35,14 @@ function DetailsEvents() {
   }, [dispatch, id]);
 
   const ubicationHandler = () => {
-    console.log(destino.Country)
     if ((destino.city === "" || !destino.city) ||
       (destino.Country === "" || !destino.Country)) {
+        swal({
+          title: "FALTA INFORMACION",
+          text: "Debe llenar pais y ciudad correctamente",
+          icon: "info",
+          buttons: "Aceptar",
+        })
       setDestino({
         ...destino,
         ban: false
@@ -48,7 +53,13 @@ function DetailsEvents() {
         ban: true
       })
     }
-    console.log(destino)
+  }
+  const resetUbicationHandler = () =>{
+    setDestino({
+      city: "",
+    Country: "",
+    ban: false
+    })
   }
   const getdestinohandler = (e) => {
 
@@ -64,16 +75,18 @@ function DetailsEvents() {
       [e.target.name]: e.target.value,
     })
    }
-   const buyTicketHandler = () => {
+   const buyTicketHandler = async () => {
     if (cantidad > 0) {
       let restCant = cantidad - 1;
 
       setCantidad(restCant);
-      let stockObjeto = { stock: restCant };
-      axios.put(
+      let stockObjeto = { stock: restCant,id_Artist: islogin.user.id };
+      console.log(stockObjeto)
+     const eventd = await axios.put(
         `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
         stockObjeto
       );
+      console.log(eventd)
       swal({
         title: "COMPRA EXITOSA",
         text: `Revisa tu correo para ver más detalles de la compra`,
@@ -115,11 +128,11 @@ function DetailsEvents() {
               
               <br />
               <label htmlFor="">cual es tu pais</label>
-              <input type="text" name="Country" onChange={getdestinohandler} />
+              <input type="text" name="Country" value={destino.Country} onChange={getdestinohandler} />
               <label htmlFor="">cual es tu ciudad</label>
-              <input type="text" name="city" onChange={getdestinohandler} />
-              <button onClick={ubicationHandler}>buscar ubicacion</button>
-              <button>Reinicar mapa</button>
+              <input type="text" name="city" value={destino.city} onChange={getdestinohandler} />
+              <button disabled={destino.ban} onClick={ubicationHandler}>buscar ubicacion</button>
+              <button disabled={!destino.ban} onClick={resetUbicationHandler}>Reinicar mapa</button>
               <div className={style.links}>
               <h2>CANTIDAD DE ENTRADAS DISPONIBLES</h2>
               <h3>{cantidad}</h3>

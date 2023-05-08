@@ -1,8 +1,16 @@
-const { Event } = require("../../db");
-const { Artist } = require("../../db");
+const { Event,Artist } = require("../../db");
+require("dotenv").config();
+const { PASSWORD_EMAIL} = process.env;
 const nodemailer = require("nodemailer");
 
-const buyTicketController = async (id, stock) => {
+const buyTicketController = async (req) => {
+  const { id } = req.params;
+    const { stock,id_Artist } =req.body;
+
+   
+   
+
+
   if (!id) {
     throw new Error("Not specific Id");
   } else {
@@ -10,45 +18,39 @@ const buyTicketController = async (id, stock) => {
       { stock: stock },
       { where: { id: id } }
     );
-    const event = await Event.findAll({
-      where: { id: id },
-      include: {
-        model: Artist,
-        attributes: ["id", "name", "email"],
-        through: {
-          attributes: [],
-        },
-      },
+    const artist = await Artist.findOne({
+      where: { id: id_Artist },
     });
-    // console.log(event)
+   const event = await Event.findOne({
+    where: {id}
+   })
 
-    const artistEmail = event[0].Artists[0].email;
+    const artistEmail = artist.email;
 
     const config = {
       host: "smtp.gmail.com",
       port: 587,
       auth: {
         user: "urbanclub948@gmail.com",
-        pass: "tgDkPBcSb2Mr",
+        pass: PASSWORD_EMAIL,
       },
     };
-
     const mensaje = {
       from: "urbanclub948@gmail.com",
       to: artistEmail,
       subject: "Compra de ticket",
       html: `<body>
-            <h1>Confirmación de compra de entrada para ${event[0].name}</h1>
+            <h1>Confirmación de compra de entrada para ${event.name}</h1>
             
-            <p>Estimado ${event[0].Artists[0].name},</p>
+            <p>Estimado ${artist.name},</p>
             
-            <p>¡Gracias por tu compra de entrada para el evento ${event[0].name}! Nos complace informarte que tu compra ha sido exitosa y tu entrada está reservada.</p>
+            <p>¡Gracias por tu compra de entrada para el evento ${event.name}! Nos complace informarte que tu compra ha sido exitosa y tu entrada está reservada.</p>
             
             <h3>Detalles de la compra:</h3>
             <ul>
-              <li>Nombre del evento: ${event[0].name}</li>
-              <li>Fecha: ${event[0].date}</li>
-              <li>Total pagado: ${event[0].price}</li>
+              <li>Nombre del evento: ${event.name}</li>
+              <li>Fecha: ${event.date}</li>
+              <li>Total pagado: ${event.price}</li>
             </ul>
             
             <p>Por favor, asegúrate de llevar contigo una copia de este correo electrónico y tu identificación al evento. El personal de entrada estará allí para asistirte y darte acceso al evento.</p>
@@ -63,11 +65,10 @@ const buyTicketController = async (id, stock) => {
             
           </body>`,
     };
-    const transport = nodemailer.createTransport(config);
 
+    const transport = await nodemailer.createTransport(config);
+    
     const info = await transport.sendMail(mensaje);
-
-    console.log(info);
 
     return eventActualized;
   }
