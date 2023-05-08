@@ -16,7 +16,7 @@ import CreateEvent from"./components/createEvent/CreateEvent";
 import CreateEventTemplate from "./components/createEvent/CreateEventTemplate";
 import Footer from "./components/Footer/Footer"
 import Merch from "./components/Merch/Merch"
-
+import Maps from "./components/Maps/Maps";
 
 //verificacion del token
 import { useEffect } from 'react';
@@ -74,11 +74,11 @@ function App() {
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
-        <Route path="/updateEvent" element={<UpdateEvents/>} />
-        <Route path="/forgotPassword" element={<ForgotPassword />}/>
+        <Route path="/updateEvent" element={<UpdateEvents />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/newPassword/:id" element={<NewPassword />} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
-
+        <Route path="/Maps" element={<Maps />} />
 
         <Route path="*" element={<Errors404 />} />
       </Routes>

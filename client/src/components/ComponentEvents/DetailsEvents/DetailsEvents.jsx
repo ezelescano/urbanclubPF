@@ -7,22 +7,22 @@ import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
 import style from "./DetailsEvents.module.css";
 import UpdateEvents from "../../updateEvent/UpdateEvents";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import EventMap from "../../EventMap/EventMap";
-
+import Maps from "../../Maps/Maps";
 function DetailsEvents() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const { detailEvent } = useSelector((state) => state.events);
+  console.log(detailEvent)
   const islogin = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(getDetailEvents(id));
   }, [dispatch]);
-
   return (
     <>
       <div className={style.backContainer}>
         <div className={style.container}>
+          <br></br>
           <div className={style.img_Es}>
             <img src={detailEvent.eventPhoto} alt="" />
           </div>
@@ -64,8 +64,11 @@ function DetailsEvents() {
           ) : (
             <div></div>
           )}
+          <br></br>
+          <br></br>
+          <br></br>
           <div className={style.maps}>
-            <EventMap location={"Tropitango"} />
+            <Maps />
           </div>
         </div>
       </div>
