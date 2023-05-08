@@ -89,6 +89,7 @@
 
   .navbar img.navTitleImgZoom {
     display: block;
+    animation: spin 2s linear infinite;
   }
 
   .navLoginBtnZoom {
@@ -125,5 +126,13 @@
     border: 2px solid #fff;
     background-color: #fff;
     border-radius: 50%;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 }
