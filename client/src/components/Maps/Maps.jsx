@@ -135,6 +135,7 @@
 
 
 import React, { useState, useEffect } from "react";
+import swal from "sweetalert";
 function Maps({ city,country,Dcountry,Dcity }) {
   const [map, setMap] = useState(null);
   const [startLocation, setStartLocation] = useState("");
@@ -148,16 +149,14 @@ function Maps({ city,country,Dcountry,Dcity }) {
   useEffect(() => {
  
   
-    console.log(startLocation)
     const googleMapsScript = document.createElement("script");
     googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAY3zPk-r72ELJTbepL7koVfZ6XgrE63dY&libraries=places,geocode`;
     googleMapsScript.async = true;
     googleMapsScript.defer = true;
     window.document.body.appendChild(googleMapsScript);
+   try {
     googleMapsScript.addEventListener("load", () => {
       setApiLoaded(true);
-      
-      // if (startLocation && endLocation) {
         const directionsService = new window.google.maps.DirectionsService();
         console.log(country,city)
         const request = {
@@ -166,11 +165,6 @@ function Maps({ city,country,Dcountry,Dcity }) {
           travelMode: window.google.maps.TravelMode.DRIVING
         };
         directionsService.route(
-          // {
-          //   origin: startLocation,
-          //   destination: endLocation,
-          //   travelMode:  window.google.maps.TravelMode.DRIVING,
-          // },
           request,
           (result, status) => {
             console.log(status)
@@ -198,12 +192,20 @@ function Maps({ city,country,Dcountry,Dcity }) {
                 });
               console.log(directions);
             } else {
-              console.log("Directions request failed due to " + status);
+              swal({
+                title: "INFORMACION INCORRECTA",
+                text: "Verifique su pais y ciudad",
+                icon: "info",
+                buttons: "Aceptar",
+              })
             }
           }
         );
-      // }
+      
     });
+   } catch (error) {
+    console.log("este es error",error)
+   }
   }, [startLocation]);
 
   //! *****************************

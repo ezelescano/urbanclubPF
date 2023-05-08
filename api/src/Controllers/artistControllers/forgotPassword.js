@@ -1,6 +1,7 @@
 const { Artist } = require("../../db");
 const nodemailer = require("nodemailer");
-
+require("dotenv").config();
+const { PASSWORD_EMAIL} = process.env;
 const forgotPassword = async (email) => {
     console.log(email)
     if (!email){
@@ -17,7 +18,7 @@ const forgotPassword = async (email) => {
             port: 587,
             auth: {
                 user: "urbanclub948@gmail.com",
-                pass: 'tgDkPBcSb2Mr'
+                pass: PASSWORD_EMAIL
             }
         }
 
