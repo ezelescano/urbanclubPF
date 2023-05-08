@@ -138,14 +138,14 @@ const Artists = () => {
               Limpiar
             </button>
           </form>
-          <div className={style.selectedFilters}>
+          {/* <div className={style.selectedFilters}>
             {selectedFilters.map((filter) => (
               <div key={filter} className={style.selectedFilter}>
                 <span>{filter}</span>
                 <button onClick={() => handleRemoveFilter(filter)}>X</button>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
         <div className={style.containerArtists}>
           {isLoading && (

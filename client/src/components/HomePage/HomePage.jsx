@@ -6,6 +6,9 @@ import Events from "../Events/Events.jsx";
 import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   const images = [
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/3_kaor4h.jpg",
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/6_xuxple.jpg",
@@ -42,8 +45,10 @@ const HomePage = () => {
         </div>
       </div>
       <div className={style.moreEvents}>
-        <NavLink to="/events">
-          <button className={style.moreEventsButton}>¿Quieres ver más eventos?</button>{" "}
+        <NavLink to="/events" onClick={scrollToTop}>
+          <button className={style.moreEventsButton}>
+            ¿Quieres ver más eventos?
+          </button>{" "}
         </NavLink>
         <br />
       </div>
