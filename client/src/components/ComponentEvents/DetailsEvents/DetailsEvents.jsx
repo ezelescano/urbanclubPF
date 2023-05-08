@@ -18,6 +18,7 @@ function DetailsEvents() {
   const { detailEvent } = useSelector(state => state.events)
   const islogin = useSelector((state) => state.auth);
   const [event, setEvent] = useState({})
+  const [cantidad, setCantidad] = useState(0);
   const [destino, setDestino] = useState({
     city: "",
     Country: "",
@@ -28,6 +29,7 @@ function DetailsEvents() {
     const getEvent = async () => {
       const event = await dispatch(getDetailEvents(id));
       setEvent(event.payload)
+      setCantidad(event.payload.stock);
     }
     getEvent();
   }, [dispatch, id]);
@@ -61,10 +63,32 @@ function DetailsEvents() {
       ...destino,
       [e.target.name]: e.target.value,
     })
-   
+   }
+   const buyTicketHandler = () => {
+    if (cantidad > 0) {
+      let restCant = cantidad - 1;
 
-
-  }
+      setCantidad(restCant);
+      let stockObjeto = { stock: restCant };
+      axios.put(
+        `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
+        stockObjeto
+      );
+      swal({
+        title: "COMPRA EXITOSA",
+        text: `Revisa tu correo para ver más detalles de la compra`,
+        icon: "success",
+        buttons: "Aceptar",
+      });
+    } else {
+      swal({
+        title: "ENTRADAS AGOTADAS",
+        text: `No hay más entradas disponibles para este evento`,
+        icon: "error",
+        buttons: "Aceptar",
+      });
+    }
+  };
   return (
     <>
       <div className={style.backContainer}>
@@ -87,6 +111,8 @@ function DetailsEvents() {
               <h5> U$S {detailEvent.price}</h5>
               <h4>Descripcion</h4>
               <p>{detailEvent.Description}</p>
+
+              
               <br />
               <label htmlFor="">cual es tu pais</label>
               <input type="text" name="Country" onChange={getdestinohandler} />
@@ -95,7 +121,10 @@ function DetailsEvents() {
               <button onClick={ubicationHandler}>buscar ubicacion</button>
               <button>Reinicar mapa</button>
               <div className={style.links}>
+              <h2>CANTIDAD DE ENTRADAS DISPONIBLES</h2>
+              <h3>{cantidad}</h3>
                 Comprar Entrada con Debito o Crédito:
+               
                 <button onClick={buyTicketHandler}>Comprar entrada</button>
                 <a
                   href="https://www.visa.com.ar"
