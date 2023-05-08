@@ -26,6 +26,7 @@ import loading from "../../img/loading.gif";
 
 
 const Profile = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const usuario = useSelector((state) => state.artist.usuario);
@@ -113,8 +114,8 @@ const Profile = () => {
   };
 
   const handleOnBlur = () => {
-    setShowSettings(false);
-  };
+    setShowSettings(false)
+  }
 
   const handleDeleteAccount = () => {
     // const confirmed = window.confirm(
@@ -234,6 +235,7 @@ const Profile = () => {
               ))}
           </div>
         </div>
+
         <div className="info-perfil">
           <div className="nombre-btns">
             <div>
@@ -251,11 +253,13 @@ const Profile = () => {
                   />
                 )}
               </div>
+
               <h3>
-                {city}, {Country}
+                 {city}, {Country}
               </h3>
             </div>
           </div>
+
           <div className="stas-profile">
             <button className="btn-stas" onClick={scrollToEventos}>
             {events?.length + " "} Eventos  {/*  //! muestra total de eventos del artista */}
@@ -266,11 +270,13 @@ const Profile = () => {
             <h4>5 Seguidos</h4>
           </div>
           <div className="ab-re">
-            <div className="aboutme">{aboutMe}</div>
+            <div className="aboutme">
+              {aboutMe}
+            </div>
             <div className="redes">
               {links?.map((l) => {
                 return (
-                  <div key={l} className="redes-div">
+                  <div className="redes-div">
                     <h4>Otras redes!!</h4>
                     <div className="container-links">
                       {l.youtube && (
@@ -278,14 +284,14 @@ const Profile = () => {
                           href={l.youtube}
                           target="_blank"
                           rel="noreferrer noopener"
-                        >
+                         >
                           <img
-                            className="icon"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
-                            alt="ds"
+                              className="icon"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
+                              alt="ds"
                           />
                         </a>
-                      )}
+                        )}
 
                       {l.twitter && (
                         <a
