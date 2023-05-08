@@ -1,13 +1,15 @@
 const delConversation = require("../../Controllers/conversationController/delConversation");
 
-const delCovHandler = async(res, req) => {
+const delConvHandler = async(req, res) => {
   try {
-    const { convId } = req.params;
-    const conversation = await delConversation(convId)
+    const { id } = req.params;
+    const conversation = await delConversation(id)
     return res.status(200).json(conversation)
   } catch (err) {
-    //return res.status(500).send(err);
+    console.log(err);
+    console.log(err.stack);
+    return res.status(500).send(err);
   }
 }
 
-module.exports = delCovHandler;
+module.exports = delConvHandler;

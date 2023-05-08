@@ -13,7 +13,7 @@
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 10px;
+  margin: 0 10px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
