@@ -186,8 +186,9 @@ export const postArtist = (payload, navigate) => {
       const result = apiData.data;
       if (result.error) {
         return dispatch(setErrors(result))
-
+        
       }
+      console.log(result)
       dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))
       dispatch(clearErrors())
