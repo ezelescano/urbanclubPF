@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         date: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATEONLY,
             allowNull: true,
         },
         city: {

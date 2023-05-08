@@ -6,8 +6,6 @@ const delConvHandler = async(req, res) => {
     const conversation = await delConversation(id)
     return res.status(200).json(conversation)
   } catch (err) {
-    console.log(err);
-    console.log(err.stack);
     return res.status(500).send(err);
   }
 }

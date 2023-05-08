@@ -3,7 +3,6 @@ const {cloudiconfig,DeletePhoto} = require("../../../utils/cloudinary")
 
 const delArtist = async (userId) => {
    try {
-    console.log(userId)
     if (!userId) {
       throw new Error("No se especificó el ID del usuario");
     } else {
@@ -13,12 +12,10 @@ const delArtist = async (userId) => {
       let nickName = ""
       nickName = artist.nickName
       if (artist.id_profilePhoto) {
-        console.log("elimino profile")
         cloudiconfig();
         DeletePhoto(artist.id_profilePhoto)
       }
       if (artist.id_coverPhoto) {
-        console.log("elimino cover")
 
         cloudiconfig();
         DeletePhoto(artist.id_coverPhoto)

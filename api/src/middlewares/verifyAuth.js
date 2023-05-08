@@ -14,9 +14,9 @@ const verifyAuth = async (req, res, next) => {
     
     try {
         const authArtist = jwt.verify(token, JWT_SECRET)
-        console.log(authArtist);
+       
         const artist = await artistById(authArtist.id)
-        console.log("hola ",artist);
+       
         if(!artist) {
         res.json("error")
         } else {

@@ -81,12 +81,12 @@ function DetailsEvents() {
 
       setCantidad(restCant);
       let stockObjeto = { stock: restCant,id_Artist: islogin.user.id };
-      console.log(stockObjeto)
+      
      const eventd = await axios.put(
         `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
         stockObjeto
       );
-      console.log(eventd)
+      
       swal({
         title: "COMPRA EXITOSA",
         text: `Revisa tu correo para ver más detalles de la compra`,

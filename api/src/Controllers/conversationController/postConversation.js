@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 
 const postConversation = async(members) => {
   try {
-    //console.log(members)
+    
     const conversationFound = await Conversation.findOne({
       where: {
         members: {
@@ -12,10 +12,10 @@ const postConversation = async(members) => {
       }
     })
 
-    console.log(conversationFound)
+    
 
     if(!conversationFound){
-      console.log('entre al if chamo')
+      
       const newConversation = await Conversation.create({
          members: members
        });

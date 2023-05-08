@@ -1,7 +1,7 @@
 // import React, { useState, useEffect } from "react";
 // function Maps({ location }) {
 //   const [map, setMap] = useState(null);
-//   console.log(map);
+
 //   const [startLocation, setStartLocation] = useState(null);
 //   const [endLocation, setEndLocation] = useState(null);
 //   const [directions, setDirections] = useState(null);
@@ -9,7 +9,7 @@
 //   const [apiLoaded, setApiLoaded] = useState(false);
 //   const [searchLocation, setSearchLocation] = useState(null); // nuevo estado para almacenar la dirección de búsqueda original
 
-//   console.log(directions);
+
 
 //   useEffect(() => {
 //     if (location) {
@@ -77,7 +77,7 @@
 //                 position: startLocation,
 //                 map: mapInstance,
 //               });
-//               console.log(marker);
+//              
 //               setDirections(result);
 //               const directionsRenderer =
 //                 new window.google.maps.DirectionsRenderer({
@@ -158,7 +158,7 @@ function Maps({ city,country,Dcountry,Dcity }) {
     googleMapsScript.addEventListener("load", () => {
       setApiLoaded(true);
         const directionsService = new window.google.maps.DirectionsService();
-        console.log(country,city)
+       
         const request = {
           origin: `${city},${country}`,
           destination: `${Dcity},${Dcountry}`,
@@ -167,7 +167,7 @@ function Maps({ city,country,Dcountry,Dcity }) {
         directionsService.route(
           request,
           (result, status) => {
-            console.log(status)
+            
             if (status === "OK") {
               const mapOptions = {
                 center: `${city},${country}`, //startLocation,
@@ -183,14 +183,14 @@ function Maps({ city,country,Dcountry,Dcity }) {
                 position: `${city},${country}`,//startLocation,
                 map: mapInstance,
               });
-              console.log(marker);
+             
               setDirections(result);
               const directionsRenderer =
                 new window.google.maps.DirectionsRenderer({
                   map: mapInstance,
                   directions: result,
                 });
-              console.log(directions);
+            
             } else {
               swal({
                 title: "INFORMACION INCORRECTA",
