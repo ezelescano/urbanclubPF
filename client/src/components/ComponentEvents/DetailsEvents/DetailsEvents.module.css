@@ -34,6 +34,7 @@
   max-height: 250px;
   border-radius: 15px;
   object-fit: cover;
+  filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.799));
 }
 
 .Description {
@@ -67,7 +68,7 @@
 }
 /*El Lugar en el mapa*/
 .maps {
-  margin-left:auto;
+  margin-left: auto;
   height: 100%;
   width: 50%;
   overflow: visible;
