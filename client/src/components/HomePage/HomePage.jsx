@@ -3,6 +3,7 @@ import Carousel from "../Carousel/Carousel.jsx";
 import style from "../HomePage/HomePage.module.css";
 import HomeArt from "../HomePage/HomeArt.jsx";
 import Events from "../Events/Events.jsx";
+import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
   const images = [
@@ -39,6 +40,12 @@ const HomePage = () => {
         <div className={style.eventsCardsContainer}>
           <Events />
         </div>
+      </div>
+      <div className={style.moreEvents}>
+        <NavLink to="/events">
+          <button className={style.moreEventsButton}>¿Quieres ver más eventos?</button>{" "}
+        </NavLink>
+        <br />
       </div>
     </div>
   );

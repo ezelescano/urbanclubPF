@@ -3,12 +3,13 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-
   background-attachment: fixed;
-
   height: 300vh;
   width: 100vw;
   height: 100vh;
+}
+.container div:first-child{
+  display: flex;
 }
 @media (max-width: 1267px) {
   .container {

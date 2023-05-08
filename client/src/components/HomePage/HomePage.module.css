@@ -63,7 +63,31 @@
   justify-content: space-around;
 }
 /*CAMBIAR SI O SI A FUNCION QUÉ SOLO TRAE 9 CARDS, PORQUE ACA SOLO LAS OCULTAMOS.*/
-.eventsCardsContainer div:nth-child(n + 9) {
+.eventsCardsContainer div:nth-child(n + 10) {
   background-color: white;
   display: none;
+}
+.moreEvents {
+  display: flex;
+  justify-content: center;
+  padding-block: 10px;
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+}
+.moreEventsButton {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+}
+.moreEventsButton:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.1);
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.8);
 }
