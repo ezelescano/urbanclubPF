@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import loading from "../../img/loading.gif";
 import style from "./Events.module.css";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
-import EventMap from "../EventMap/EventMap";
 import { getAllEvents } from "../../redux/eventSlice";
 
 const Events = () => {
