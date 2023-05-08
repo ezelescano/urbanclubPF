@@ -160,7 +160,10 @@ function Messenger() {
                   ))}
               </div>
               <div className="chatBoxBottom">
-                <button onClick={() => setShowPicker(!showPicker)} className="emojiesBox">
+                <button
+                  onClick={() => setShowPicker(!showPicker)}
+                  className="emojiesBox"
+                >
                   <SentimentVerySatisfiedIcon />
                 </button>
                 <textarea
@@ -169,17 +172,18 @@ function Messenger() {
                   onChange={(e) => setNewMessage(e.target.value)}
                   value={newMessage}
                 ></textarea>
-                {showPicker && (
-                  <Picker
-                    data={data}
-                    emojiSize={20}
-                    emojiButtonSize={28}
-                    onEmojiSelect={handleEmojiSelect}
-                    /* onClickOutside={handleOnBlur} */
-                    style={{ position: "absolute" }}
-                  />
-                )}
-
+                <div className="emojieBoxForAbsolute">
+                  {showPicker && (
+                    <Picker
+                      data={data}
+                      emojiSize={20}
+                      emojiButtonSize={28}
+                      onEmojiSelect={handleEmojiSelect}
+                      /* onClickOutside={handleOnBlur} */
+                      style={{ position: "absolute" }}
+                    />
+                  )}
+                </div>
                 <button className="chatSubmitButton" onClick={handleSubmit}>
                   Enviar
                 </button>
