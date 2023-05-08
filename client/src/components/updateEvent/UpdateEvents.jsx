@@ -309,12 +309,10 @@ function Formulario({id,event}) {
                 <textarea
                   className={style.descripcionArea}
                   value={input.Description}
-                  value={input.Description}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   placeholder="500 Palabras max"
                   maxLength={150}
-                  name="Description"
                   name="Description"
                 />
               </label>
