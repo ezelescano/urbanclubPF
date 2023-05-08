@@ -90,7 +90,7 @@ const Profile = () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
     };
-  }, []);
+  }, [id]);
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
