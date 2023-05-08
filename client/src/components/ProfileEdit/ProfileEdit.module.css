@@ -13,7 +13,12 @@
 .formContainer input {
   border-radius: 5px;
 }
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
 .containerflex {
+  padding: 15px;
   display: flex;
   flex-direction: column;
 }
@@ -24,8 +29,8 @@
   margin-left: auto;
   border-radius: 50%;
   padding: 10px;
-  margin-right:5px;
-  margin-top:2px;
+  margin-right: 5px;
+  margin-top: 2px;
 }
 /* .formContainer{
     border: 1px solid red;
@@ -50,14 +55,17 @@
   margin-top: 20px;
   border-radius: 5px;
 }
-
+div .occ {
+    display: flex;
+    flex-direction: column;
+    justify-content: "space-between";
+    gap: 0.5rem;
+    padding-block:10px;
+}
 @media (max-width: 1315px) {
   .container {
     left: -650px;
     top: -150px;
     /* border: 1px solid black; */
-  }
-  .occupation-options {
-    justify-content: space-between;
   }
 }
