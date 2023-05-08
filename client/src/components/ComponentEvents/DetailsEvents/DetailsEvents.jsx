@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailEvents, deleteEvent } from "../../../redux/eventSlice";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,15 +9,21 @@ import UpdateEvents from "../../updateEvent/UpdateEvents";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Maps from "../../Maps/Maps";
 function DetailsEvents() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const { detailEvent } = useSelector((state) => state.events);
-  console.log(detailEvent);
-  const islogin = useSelector((state) => state.auth);
-  useEffect(() => {
-    dispatch(getDetailEvents(id));
-  }, [dispatch]);
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const {id} = useParams();
+     const {detailEvent} = useSelector(state=>state.events)
+     const islogin = useSelector((state) => state.auth);
+  const [event,setEvent] = useState({})
+
+    useEffect( () => {
+     const getEvent = async ()=>{
+      const event = await dispatch(getDetailEvents(id));
+      setEvent(event.payload)
+     }
+     getEvent();
+    }, [dispatch,id]);
+    console.log(islogin.user.id,detailEvent.id_Artist,islogin.isAuthenticated)
   return (
     <>
       <div className={style.backContainer}>

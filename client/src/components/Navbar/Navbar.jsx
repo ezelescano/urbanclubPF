@@ -49,6 +49,11 @@ function Navbar() {
             Tienda
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/messenger" className="nav-link active">
+            Chat
+          </NavLink>
+        </li>
       </ul>
       <div className={style.burgerSelect}>
         <button className={style.hamburgerBtn}>☰</button>

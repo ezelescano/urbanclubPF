@@ -24,6 +24,7 @@ import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import loading from "../../img/loading.gif";
 
 const Profile = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const eventsArtist = useSelector((state) => state.events.allEvents);
@@ -112,8 +113,8 @@ const Profile = () => {
   };
 
   const handleOnBlur = () => {
-    setShowSettings(false);
-  };
+    setShowSettings(false)
+  }
 
   const handleDeleteAccount = () => {
     // const confirmed = window.confirm(
@@ -211,68 +212,72 @@ const Profile = () => {
                   <div className='ocupation'>{o}</div>
                 )
               })} */}
-                {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
-                {ocupationArray &&
-                  ocupationArray?.map((ocupation) => (
-                    <div className="ocupation" key={ocupation}>
-                      {ocupation}
-                    </div>
-                  ))}
-              </div>
-            </div>
-            <div className="info-perfil">
-              <div className="nombre-btns">
-                <div>
-                  <div className="nombre">
-                    <h1>
-                      {name}
-                      {/*  {lastname} */}
-                    </h1>
-                    {/* para saber si es verificado funcion aun no implementada */}
-                    {verified && (
-                      <img
-                        className="verificado"
-                        src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
-                        alt="verificado paa"
-                      />
-                    )}
-                  </div>
-                  <h3>
-                    {city}, {Country}
-                  </h3>
+            {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
+            {ocupationArray &&
+              ocupationArray?.map((ocupation) => (
+                <div className="ocupation" key={ocupation}>
+                  {ocupation}
                 </div>
+              ))}
+          </div>
+        </div>
+
+        <div className="info-perfil">
+          <div className="nombre-btns">
+            <div>
+              <div className="nombre">
+                <h1>
+                  {name}
+                  {/*  {lastname} */}
+                </h1>
+                {/* para saber si es verificado funcion aun no implementada */}
+                {verified && (
+                  <img
+                    className="verificado"
+                    src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
+                    alt="verificado paa"
+                  />
+                )}
               </div>
-              <div className="stas-profile">
-                <button className="btn-stas" onClick={scrollToEventos}>
-                  {eventconut + " "} Eventos{" "}
-                  {/*  //! muestra total de eventos del artista */}
-                </button>
-                <button className="btn-stas">
-                  {followDemostrativo} Seguidores
-                </button>
-                <h4>5 Seguidos</h4>
-              </div>
-              <div className="ab-re">
-                <div className="aboutme">{aboutMe}</div>
-                <div className="redes">
-                  {links?.map((l) => {
-                    return (
-                      <div key={l} className="redes-div">
-                        <h4>Otras redes!!</h4>
-                        <div className="container-links">
-                          {l.youtube && (
-                            <a
-                              href={l.youtube}
-                              target="_blank"
-                              rel="noreferrer noopener"
-                            >
-                              <img
-                                className="icon"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
-                                alt="ds"
-                              />
-                            </a>
-                          )}
+
+              <h3>
+                 {city}, {Country}
+              </h3>
+            </div>
+          </div>
+
+          <div className="stas-profile">
+            <button className="btn-stas" onClick={scrollToEventos}>
+            {eventconut + " "} Eventos  {/*  //! muestra total de eventos del artista */}
+            </button>
+            <button className="btn-stas">
+              {followDemostrativo} Seguidores
+            </button>
+            <h4>5 Seguidos</h4>
+          </div>
+          <div className="ab-re">
+            <div className="aboutme">
+              {aboutMe}
+            </div>
+            <div className="redes">
+              {links?.map((l) => {
+                return (
+                  <div className="redes-div">
+                    <h4>Otras redes!!</h4>
+                    <div className="container-links">
+                      {l.youtube && (
+                        <a
+                          href={l.youtube}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                         >
+                          <img
+                              className="icon"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
+                              alt="ds"
+                          />
+                        </a>
+                        )}
 
                           {l.twitter && (
                             <a

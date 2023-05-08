@@ -10,17 +10,18 @@ import "./CreateEvent.css";
 const CreateEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  console.log(navigate);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState({
     name: "",
     price: "",
     location: "",
+    stock:"",
+    city:"",
+    Country:"",
     nameArena: "",
-    eventPhoto: "",
     date: "",
-    description: "",
+    Description: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -180,22 +181,37 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
+
                 <div className="inputContainer">
-                  <label htmlFor="price">Precio de la entrada: U$D</label>
+                  <label htmlFor="name">Pais:</label>
                   <br />
                   <input
-                    placeholder={errors.price}
-                    type="text"
-                    value={input.price}
+                    placeholder={errors.name}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
-                    name="price"
-                    maxLength={35}
+                    type="text"
+                    value={input.city}
+                    maxLength="35"
+                    name="city"
                     required
                   />
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="location">Ubicación:</label>
+                  <label htmlFor="name">Cuidad:</label>
+                  <br />
+                  <input
+                    placeholder={errors.name}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    type="text"
+                    value={input.Country}
+                    maxLength="35"
+                    name="Country"
+                    required
+                  />
+                </div>
+<div className="inputContainer">
+                  <label htmlFor="location">Direccion:</label>
                   <br />
                   <input
                     placeholder={errors.location}
@@ -210,7 +226,7 @@ const CreateEvent = () => {
                 </div>
                 <div className="inputContainer">
                   <label htmlFor="nameArena">
-                    Nombre del arena / Escenario:
+                  Nombre del lugar:
                   </label>
                   <br />
                   <input
@@ -234,21 +250,51 @@ const CreateEvent = () => {
                     name="date"
                   />
                 </div>
+
                 <div className="inputContainer">
-                  <label htmlFor="description">Describe qué se hará</label>
+                  <label htmlFor="stock">Cantidad boletos: </label>
+                  <br />
+                  <input
+                    placeholder={errors.stock}
+                    type="text"
+                    value={input.stock}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="stock"
+                    maxLength={35}
+                    required
+                  />
+                </div>
+
+                <div className="inputContainer">
+                  <label htmlFor="price">Precio: $USD</label>
+                  <br />
+                  <input
+                    placeholder={errors.price}
+                    type="text"
+                    value={input.price}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="price"
+                    maxLength={35}
+                    required
+                  />
+                </div>
+                <div className="inputContainer">
+                  <label htmlFor="D">Describe qué se hará</label>
                   <br />
                   <textarea
                     placeholder={
                       "Escribe aquí" +
-                      (!errors.description
+                      (!errors.Description
                         ? " "
-                        : "Oops!: " + errors.description)
+                        : "Oops!: " + errors.Description)
                     }
                     type="text"
-                    value={input.description}
+                    value={input.Description}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
-                    name="description"
+                    name="Description"
                     maxLength={150}
                     required
                   />

@@ -7,7 +7,7 @@ import { postArtist, errorsCreate } from "../../redux/artistSlice";
 import swal from "sweetalert";
 
 import loading from "../../img/loading.gif";
-import { upEvent } from "../../redux/eventSlice";
+import { getDetailEvents, upEvent } from "../../redux/eventSlice";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Formulario({id,event}) {
@@ -18,15 +18,40 @@ function Formulario({id,event}) {
   const [input, setInput] = useState({
     name: "",
     price: "",
+    stock:"",
+    Description:"",
+    city:"",
+    Country:"",
     location: "",
     nameArena: "",
     date: "",
+    eventPhoto:""
   });
 
   const [errors, setErrors] = useState({});
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
+  useEffect( () => {
+    const getEvent = async ()=>{
+     const event = await dispatch(getDetailEvents(id));
+     setInput(
+      {
+        name: event.payload.name,
+        price: event.payload.price,
+        stock:event.payload.stock,
+        Description:event.payload.Description,
+        city:event.payload.city,
+        Country:event.payload.Country,
+        location: event.payload.location,
+        nameArena: event.payload.nameArena,
+        date: event.payload.date,
+      }
+     )
+    }
+    getEvent();
+   }, [dispatch,id]);
+
 
   function validate(input) {
     const errors = {};
@@ -73,9 +98,10 @@ function Formulario({id,event}) {
     const files = e.target.files;
     setFiles(files);
     const reader = new FileReader();
+   
     setInput({
       ...input,
-      profilePhoto: file.name,
+      eventPhoto: file.name,
     });
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -93,14 +119,14 @@ function Formulario({id,event}) {
 
     //console.log(errors);
     const formData = new FormData(e.target);
-    formData.append("id_Artist", id)
-     dispatch(upEvent(formData,));
-     swal({
-      title: "ERROR",
-      text: "Se debe seleccionar al menos 1 ocupación",
-      icon: "error",
-      buttons: "Aceptar",
-    });
+    // formData.append("id_Artist", id)
+     dispatch(upEvent(formData,id));
+    //  swal({
+    //   title: "ERROR",
+    //   text: "Se debe seleccionar al menos 1 ocupación",
+    //   icon: "error",
+    //   buttons: "Aceptar",
+    // });
   }
 
 
@@ -271,10 +297,12 @@ function Formulario({id,event}) {
                 <textarea
                   className={style.descripcionArea}
                   value={input.Description}
+                  value={input.Description}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   placeholder="500 Palabras max"
                   maxLength={150}
+                  name="Description"
                   name="Description"
                 />
               </label>
@@ -291,7 +319,7 @@ function Formulario({id,event}) {
               )}
               {!isLoading && (
                 <button className={style.uploadFormButton} type="submit">
-                  Registrarse
+                  Guardar
                 </button>
               )}
             </div>
