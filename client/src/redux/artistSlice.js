@@ -255,6 +255,7 @@ export const updateArtist = (id, input) => {
     try {
       const apiData = await axios.put(`/artist/update/${id}`, input);
       const response = apiData.data;
+      console.log(response)
       dispatch(updateArtistSuccess(response));
     } catch (error) {
       swal({

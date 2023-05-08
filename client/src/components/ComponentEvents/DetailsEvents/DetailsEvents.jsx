@@ -21,7 +21,6 @@ function DetailsEvents() {
      }
      getEvent();
     }, [dispatch,id]);
-    console.log(islogin.user.id,detailEvent.id_Artist,islogin.isAuthenticated)
   return (
     <div className={style.container}>
       <div className={style.img_Es}>

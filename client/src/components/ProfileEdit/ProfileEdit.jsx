@@ -124,7 +124,6 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
     const property = e.target.name;
     const value = e.target.value;
     if (property === "ocupation") {
-      console.log(input);
       setErrors(validate({ ...input, ocupation: [...input.ocupation, value] }));
       setInput({
         ...input,
