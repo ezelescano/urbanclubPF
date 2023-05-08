@@ -87,6 +87,7 @@ const Artists = () => {
         <div className={style.containerFilters}>
           <form>
             <select
+              className={style.selectFilters}
               value={ocupation}
               onChange={(event) => setOcupation(event.target.value)}
             >
@@ -116,7 +117,7 @@ const Artists = () => {
               value={orden}
               onChange={(event) => setOrden(event.target.value)}
             >
-              <option value="">Nombre</option>
+              <option value="">Por Nombre</option>
               <option value="true">Tiene Evento</option>
               <option value="false">No tiene Evento</option>
             </select>

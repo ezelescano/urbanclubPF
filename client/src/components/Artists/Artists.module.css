@@ -14,15 +14,58 @@
   overflow: hidden; /* cambiar a 'hidden' */
 }
 
-.containerArtists{
+.containerArtists {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
   overflow: hidden; /* cambiar a 'hidden' */
   min-height: 100vh;
-
 }
 .containerCar {
   margin: 25px 0px 0px 0px;
+}
+/*Filtros*/
+.containerFilters select,
+.containerFilters button {
+  background-color: #0d5a73;
+  border-bottom: 1.5px solid #004258;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  margin-inline: 20px;
+  font-family: Arial, sans-serif;
+  outline: none;
+  transition: all 0.1s ease;
+}
+
+.containerFilters select option {
+  background-color: #fff;
+  color: #000;
+}
+
+.containerFilters button:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+}
+
+.containerFilters select:focus,
+.containerFilters select:hover,
+.containerFilters button:focus,
+.containerFilters button:hover {
+  background-color: #fff;
+  color: #000;
+  transform: scale(1.10);
+}
+
+.containerFilters select:focus option {
+  background-color: #0d5a73;
+  color: #fff;
+}
+
+.containerFilters button:focus {
+  outline: none;
 }
