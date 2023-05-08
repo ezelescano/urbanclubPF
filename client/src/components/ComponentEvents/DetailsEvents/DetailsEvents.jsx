@@ -12,48 +12,48 @@ import axios from "axios";
 import swal from "sweetalert";
 
 function DetailsEvents() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
-    const {id} = useParams();
-     const {detailEvent} = useSelector(state=>state.events)
-     const islogin = useSelector((state) => state.auth);
-  
-     const [event,setEvent] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { detailEvent } = useSelector((state) => state.events);
+  const islogin = useSelector((state) => state.auth);
 
-     const [cantidad, setCantidad] = useState(0);
-    useEffect(() => {
-      const getEvent = async ()=>{
+  const [event, setEvent] = useState({});
+
+  const [cantidad, setCantidad] = useState(0);
+  useEffect(() => {
+    const getEvent = async () => {
       const event = await dispatch(getDetailEvents(id));
-      setEvent(event.payload)
+      setEvent(event.payload);
       setCantidad(event.payload.stock);
-     }
-     getEvent();
-    }, [dispatch]);
-    const buyTicketHandler = () => {
-      if (cantidad > 0) {
-        let restCant = cantidad - 1;
-  
-        setCantidad(restCant);
-        let stockObjeto = { stock: restCant };
-        axios.put(
-          `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
-          stockObjeto
-        );
-        swal({
-          title: "COMPRA EXITOSA",
-          text: `Revisa tu correo para ver más detalles de la compra`,
-          icon: "success",
-          buttons: "Aceptar"
-        })
-      } else {
-        swal({
-          title: "ENTRADAS AGOTADAS",
-          text: `No hay más entradas disponibles para este evento`,
-          icon: "error",
-          buttons: "Aceptar"
-        })
-      }
     };
+    getEvent();
+  }, [dispatch]);
+  const buyTicketHandler = () => {
+    if (cantidad > 0) {
+      let restCant = cantidad - 1;
+
+      setCantidad(restCant);
+      let stockObjeto = { stock: restCant };
+      axios.put(
+        `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
+        stockObjeto
+      );
+      swal({
+        title: "COMPRA EXITOSA",
+        text: `Revisa tu correo para ver más detalles de la compra`,
+        icon: "success",
+        buttons: "Aceptar",
+      });
+    } else {
+      swal({
+        title: "ENTRADAS AGOTADAS",
+        text: `No hay más entradas disponibles para este evento`,
+        icon: "error",
+        buttons: "Aceptar",
+      });
+    }
+  };
   return (
     <>
       <div className={style.backContainer}>
@@ -75,7 +75,7 @@ function DetailsEvents() {
               <h4>PRECIO</h4>
               <h5> U$S {detailEvent.price}</h5>
               <h2>CANTIDAD DE ENTRADAS DISPONIBLES</h2>
-          <h3>{cantidad}</h3>
+              <h3>{cantidad}</h3>
               {/* <p>{detailEvent.Description}</p> //!necesitamos una descripcion  */}
               <div className={style.links}>
                 Comprar Entrada con Debito o Crédito:
