@@ -10,7 +10,6 @@ import "./CreateEvent.css";
 const CreateEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  console.log(navigate);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState({

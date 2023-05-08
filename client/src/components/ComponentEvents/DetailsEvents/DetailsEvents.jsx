@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailEvents,deleteEvent } from "../../../redux/eventSlice";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,11 +12,16 @@ function DetailsEvents() {
     const {id} = useParams();
      const {detailEvent} = useSelector(state=>state.events)
      const islogin = useSelector((state) => state.auth);
-  
+  const [event,setEvent] = useState({})
 
-    useEffect(() => {
-      dispatch(getDetailEvents(id));
-    }, [dispatch]);
+    useEffect( () => {
+     const getEvent = async ()=>{
+      const event = await dispatch(getDetailEvents(id));
+      setEvent(event.payload)
+     }
+     getEvent();
+    }, [dispatch,id]);
+    console.log(islogin.user.id,detailEvent.id_Artist,islogin.isAuthenticated)
   return (
     <div className={style.container}>
       <div className={style.img_Es}>
@@ -60,7 +65,7 @@ function DetailsEvents() {
         ):
         (islogin.isAuthenticated ?
          (
-          <UpdateEvents id={islogin.user.id} event={detailEvent}/>
+          <UpdateEvents id={detailEvent.id} event={event}/>
           // <div className={style.Description}>
           // <h1>EDITAR</h1>
           //   <h2>{detailEvent.name}</h2>

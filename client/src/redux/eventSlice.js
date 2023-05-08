@@ -44,19 +44,20 @@ export const eventSlice = createSlice({
   }
 });
 
-export const upEvent = (id, input) => {
+export const upEvent = (input, id ) => {
   return async (dispatch) => {
     try {
       const eventDB = await axios.put(`/events/update/${id}`, input);
+      console.log(eventDB)
       const response = eventDB.data;
       dispatch(updateEventSuccess(response));
     } catch (error) {
-      swal({
-        title: "ERROR",
-        text: error,
-        icon: "warning",
-        buttons: "Aceptar",
-      });
+      // swal({
+      //   title: "ERROR",
+      //   text: error,
+      //   icon: "warning",
+      //   buttons: "Aceptar",
+      // });
     }
   };
 };
