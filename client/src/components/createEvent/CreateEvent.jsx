@@ -112,8 +112,9 @@ const CreateEvent = () => {
     }
     setIsLoading(true);
     const formData = new FormData(e.target);
-    formData.append("id_Artist", id);
-    dispatch(postEvent(formData));
+    formData.append("id_Artist", id)
+     await dispatch(postEvent(formData));
+     setIsLoading(false);
     swal({
       title: "EVENTO CREADO CORRECTAMENTE",
       text: `Exitos con tu evento`,
@@ -122,8 +123,7 @@ const CreateEvent = () => {
     }).then(res=>{
       if(res){
         navigate(`/profile/${id}`)
-       
-      }
+       }
     });
   }
 
@@ -254,7 +254,7 @@ const CreateEvent = () => {
                   <br />
                   <input
                     placeholder={errors.stock}
-                    type="text"
+                    type="number"
                     value={input.stock}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
@@ -269,7 +269,8 @@ const CreateEvent = () => {
                   <br />
                   <input
                     placeholder={errors.price}
-                    type="text"
+                    type="number"
+                    step="0.01"
                     value={input.price}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
@@ -277,6 +278,10 @@ const CreateEvent = () => {
                     maxLength={35}
                     required
                   />
+                </div>
+                
+                <div className="inputContainer">
+                  <label htmlFor="">TOTAL USD: {input.price*input.stock}</label>
                 </div>
                 <div className="inputContainer">
                   <label htmlFor="D">Describe qué se hará</label>

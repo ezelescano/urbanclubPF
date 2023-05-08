@@ -7,7 +7,6 @@ const updateEvent = async (req) => {
     if (!id) {
         throw new Error("Not specific Id")
     } else {
-        console.log("//estoy en updatecont",id, body);
 
         // const eventUp = await Event.findByPk(id);
         const event = await Event.findOne({
@@ -19,14 +18,14 @@ const updateEvent = async (req) => {
         if (!event) throw new Error(`No event was found with that ${id}`)
         // if (event.estado === DELETED)
         // throw new Error("No se encontró ningún usuario con ese ID");
-        
+       
         if (req.files) {
-           
+          
             const { eventPhoto} = req.files;
+           
             cloudiconfig();
             if (eventPhoto) {
-                console.log(event.id_eventPhoto)
-              if (event.id_eventPhoto !== "") {
+              if (event.id_eventPhoto) {
                 await DeletePhoto(event.id_eventPhoto);
               }
               

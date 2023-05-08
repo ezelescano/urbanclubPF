@@ -5,7 +5,8 @@ import swal from "sweetalert";
 const initialState = {
   creaEvents: [],
   allEvents: [],
-  detailEvent: []
+  detailEvent: [],
+  Event:[]
 };
 
 export const eventSlice = createSlice({
@@ -34,7 +35,7 @@ export const eventSlice = createSlice({
   updateEventSuccess(state, action) {
     return {
       ...state,
-      creaEvents: action.payload,
+      Event: action.payload,
     };
   },
   deleteEventSucces(state) {
@@ -44,7 +45,7 @@ export const eventSlice = createSlice({
   }
 });
 
-export const upEvent = (id, input) => {
+export const upEvent = (input,id) => {
   return async (dispatch) => {
     try {
       const eventDB = await axios.put(`/events/update/${id}`, input);
