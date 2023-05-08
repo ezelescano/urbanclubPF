@@ -1,12 +1,18 @@
 const { ACTIVATED, DELETED } = require("../../constants");
-const {Artist} = require("../../db")
+const {Artist, Event} = require("../../db")
 
 const artistById = async (artistId) => {
 
     if (!artistId) {
       throw new Error("No se especificó el ID del usuario");
     } else {
-      const infoArtistDB = await Artist.findByPk(artistId);
+      const infoArtistDB = await Artist.findOne({
+          where: {id: artistId},
+          include: {
+            model: Event
+
+          }
+        });
       if (!infoArtistDB) {
         throw new Error("No se encontró ningún usuario con ese ID")
       } else {
@@ -24,12 +30,19 @@ const artistById = async (artistId) => {
           city: infoArtistDB.city,
           ocupation: infoArtistDB.ocupation,
           aboutMe: infoArtistDB.aboutMe,
+          events: infoArtistDB.Events
         };
-  
+    // console.log(infoArtistDB);
         return infoArtistClean;
       }
   
     }
-  
+    // const dataDB = await Recipe.findOne({
+    //   where: {id: id},
+    //   include: {
+    //     model: Diets,
+    //     attributes: ['name']
+    //   }
+    // })
   };
 module.exports = {artistById};

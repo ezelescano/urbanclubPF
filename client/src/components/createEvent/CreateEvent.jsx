@@ -113,7 +113,8 @@ const CreateEvent = () => {
     setIsLoading(true);
     const formData = new FormData(e.target);
     formData.append("id_Artist", id)
-     dispatch(postEvent(formData));
+     await dispatch(postEvent(formData));
+     setIsLoading(false);
      swal({
       title: "EVENTO CREADO CORRECTAMENTE",
       text: `Exitos con tu evento`,
@@ -122,7 +123,7 @@ const CreateEvent = () => {
     }).then(res=>{
       if(res){
         navigate(`/profile/${id}`)
-        setIsLoading(false);
+       
       }
     });
   }
