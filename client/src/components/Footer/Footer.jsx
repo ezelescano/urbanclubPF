@@ -5,6 +5,9 @@ import gglftr from "./img/ggl-ftr.png";
 import fbftr from "./img/fb-ftr.png";
 
 const Footer = () => {
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+    };
   return (
     <div className={style.footerContainer}>
       <div>
@@ -25,12 +28,12 @@ const Footer = () => {
         <br />
         <ul className={style.footLinks}>
           <li>
-            <NavLink to="/" className={style.link}>
+            <NavLink to="/" className={style.link} onClick={scrollToTop}>
               Inicio
             </NavLink>
           </li>
           <li>
-            <NavLink to="/aboutus" className={style.link}>
+            <NavLink to="/aboutus" className={style.link} onClick={scrollToTop}>
               Nosotros
             </NavLink>
           </li>

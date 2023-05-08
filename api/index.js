@@ -15,6 +15,7 @@ app.listen(PORT, ()=>{
 }); */
 
 
+const { truncate } = require("fs-extra");
 const app = require("./src/app");
 const { sequelize } = require("./src/db");
 const http = require("http");

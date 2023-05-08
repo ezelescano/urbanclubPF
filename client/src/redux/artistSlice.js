@@ -151,7 +151,7 @@ export const getArtistId = (id) => {
 
 export const cleanArtists = () => {
   return async (dispatch) => {
-    return dispatch(cleanArtistsSuccess());
+    return dispatch(cleanArtistsSuccess()); //Buscar quien lo hizo
   };
 };
 

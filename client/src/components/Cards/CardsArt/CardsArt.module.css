@@ -4,7 +4,6 @@
   border-radius: 20px;
   margin: 20px;
   border: 2px solid #909090;
-  box-shadow: 6px 6px 6px 0px #a19d9d89;
   width: 330px;
   height: 450px;
   justify-items: center;
@@ -35,7 +34,10 @@
 
 .Container:hover {
   color: #6c6c6c;
-  box-shadow: 2px 2px 15px #979797 inset;
+  box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.937);
+  animation: pulse 1.5s forwards infinite;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.0155);
 }
 
 .text {
@@ -77,4 +79,17 @@
 }
 .Link {
   text-decoration: none;
+}
+
+/*Animaciones*/
+@keyframes pulse {
+  0% {
+    box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.112);
+  }
+  50% {
+    box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.941);
+  }
+  100% {
+    box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.033);
+  }
 }

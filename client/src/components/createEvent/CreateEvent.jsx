@@ -16,9 +16,9 @@ const CreateEvent = () => {
     name: "",
     price: "",
     location: "",
-    stock:"",
-    city:"",
-    Country:"",
+    stock: "",
+    city: "",
+    Country: "",
     nameArena: "",
     date: "",
     Description: "",
@@ -112,9 +112,9 @@ const CreateEvent = () => {
     }
     setIsLoading(true);
     const formData = new FormData(e.target);
-    formData.append("id_Artist", id)
-     dispatch(postEvent(formData));
-     swal({
+    formData.append("id_Artist", id);
+    dispatch(postEvent(formData));
+    swal({
       title: "EVENTO CREADO CORRECTAMENTE",
       text: `Exitos con tu evento`,
       icon: "success",
@@ -122,7 +122,7 @@ const CreateEvent = () => {
     }).then(res=>{
       if(res){
         navigate(`/profile/${id}`)
-        setIsLoading(false);
+       
       }
     });
   }
@@ -210,7 +210,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-<div className="inputContainer">
+                <div className="inputContainer">
                   <label htmlFor="location">Direccion:</label>
                   <br />
                   <input
@@ -225,9 +225,7 @@ const CreateEvent = () => {
                   />
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="nameArena">
-                  Nombre del lugar:
-                  </label>
+                  <label htmlFor="nameArena">Nombre del lugar:</label>
                   <br />
                   <input
                     placeholder={errors.nameArena}
