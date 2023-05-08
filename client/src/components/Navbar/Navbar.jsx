@@ -51,7 +51,7 @@ function Navbar() {
         </li>
       </ul>
       <div class={style.burgerSelect}>
-        <button class={style.hamburgerBtn} onclick="toggleNav()">
+        <button class={style.hamburgerBtn} >
           ☰
         </button>
         <ul class={style.respNavLinks} id="navLinks">
