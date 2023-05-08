@@ -50,28 +50,35 @@ function Navbar() {
           </NavLink>
         </li>
       </ul>
-      <div class={style.burgerSelect}>
-        <button class={style.hamburgerBtn} >
-          ☰
-        </button>
-        <ul class={style.respNavLinks} id="navLinks">
+      <div className={style.burgerSelect}>
+        <button className={style.hamburgerBtn}>☰</button>
+        <ul className={style.respNavLinks} id="navLinks">
           <li>
-            <NavLink to="/artists" class={`${style.navLink} ${style.active}`}>
+            <NavLink
+              to="/artists"
+              className={`${style.navLink} ${style.active}`}
+            >
               Artistas
             </NavLink>
           </li>
           <li>
-            <NavLink to="/aboutus" class={`${style.navLink} ${style.active}`}>
+            <NavLink
+              to="/aboutus"
+              className={`${style.navLink} ${style.active}`}
+            >
               Acerca de
             </NavLink>
           </li>
           <li>
-            <NavLink to="/events" class={`${style.navLink} ${style.active}`}>
+            <NavLink
+              to="/events"
+              className={`${style.navLink} ${style.active}`}
+            >
               Eventos
             </NavLink>
           </li>
           <li>
-            <NavLink to="/merch" class={`${style.navLink} ${style.active}`}>
+            <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
               Tienda
             </NavLink>
           </li>
