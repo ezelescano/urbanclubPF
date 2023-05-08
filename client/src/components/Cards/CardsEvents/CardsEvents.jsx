@@ -83,6 +83,7 @@ const CardsEvents = ({
             <h2>{name_art}</h2>
             <p>{event.date}</p>
             <p>{event.location}</p>
+            <p>{event.stock}</p>
             {
               id_edit === islogin.user.id &&  islogin.user.id ? <form onSubmit={(e) => deleteEventHandler(event.id,event.name,e)}>
                 <button>borrar</button>

@@ -1,43 +1,43 @@
 const { Event } = require("../../db");
 const { Artist } = require("../../db");
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
 
 const buyTicketController = async (id, stock) => {
-    if (!id) {
-        throw new Error("Not specific Id");
-    } else {
-        const eventActualized = await Event.update({stock: stock}, {where: {id: id}})
-        const event = await Event.findAll({ where: {id: id}, 
-            include: {
-                model: Artist,
-                attributes: [
-                  "id",
-                  "name",
-                  "email"
-                ],
-                through: {
-                  attributes: [],
-                },
-              },
-        })
-        // console.log(event)
+  if (!id) {
+    throw new Error("Not specific Id");
+  } else {
+    const eventActualized = await Event.update(
+      { stock: stock },
+      { where: { id: id } }
+    );
+    const event = await Event.findAll({
+      where: { id: id },
+      include: {
+        model: Artist,
+        attributes: ["id", "name", "email"],
+        through: {
+          attributes: [],
+        },
+      },
+    });
+    // console.log(event)
 
-        const artistEmail = event[0].Artists[0].email;
+    const artistEmail = event[0].Artists[0].email;
 
-        const config = {
-            host: "smtp.gmail.com",
-            port: 587,
-            auth: {
-                user: "urbanclub55@gmail.com",
-                pass: 'vmgtifhevjajyyaw'
-            }
-        }
+    const config = {
+      host: "smtp.gmail.com",
+      port: 587,
+      auth: {
+        user: "urbanclub55@gmail.com",
+        pass: "vmgtifhevjajyyaw",
+      },
+    };
 
-        const mensaje = {
-            from: "urbanclub55@gmail.com",
-            to: artistEmail,
-            subject: "Compra de ticket",
-            html: `<body>
+    const mensaje = {
+      from: "urbanclub55@gmail.com",
+      to: artistEmail,
+      subject: "Compra de ticket",
+      html: `<body>
             <h1>Confirmación de compra de entrada para ${event[0].name}</h1>
             
             <p>Estimado ${event[0].Artists[0].name},</p>
@@ -61,17 +61,16 @@ const buyTicketController = async (id, stock) => {
             urbanClub!<br>
             Equipo de Soporte al Cliente</p>
             
-          </body>`
-        }
-        const transport = nodemailer.createTransport(config);
+          </body>`,
+    };
+    const transport = nodemailer.createTransport(config);
 
-        const info = await transport.sendMail(mensaje);
+    const info = await transport.sendMail(mensaje);
 
-        console.log(info);
+    console.log(info);
 
-        
-        return eventActualized;
-    }
+    return eventActualized;
+  }
 };
 
 module.exports = buyTicketController;

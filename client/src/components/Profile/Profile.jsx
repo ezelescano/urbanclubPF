@@ -341,7 +341,7 @@ const Profile = () => {
           Mis eventos
         </div>
 {
-
+  
   eventsArtist.map((item,index)=>{
  return(
   item.Events.map((event,index) =>{
