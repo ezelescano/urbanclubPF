@@ -26,12 +26,13 @@
   border-radius: 100%;
   background-color: #18181814;
   transition: background-color 0.3s ease-in-out;
+  min-width: 200px;
+  max-width: 200px;
 }
 
 .toArtists button {
-  min-width: 100px;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 30px;
   color: white;
   background-color: transparent;
   border: none;
