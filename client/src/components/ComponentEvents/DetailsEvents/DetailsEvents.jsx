@@ -13,7 +13,7 @@ function DetailsEvents() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { detailEvent } = useSelector((state) => state.events);
-  console.log(detailEvent)
+  console.log(detailEvent);
   const islogin = useSelector((state) => state.auth);
   useEffect(() => {
     dispatch(getDetailEvents(id));
@@ -68,7 +68,7 @@ function DetailsEvents() {
           <br></br>
           <br></br>
           <div className={style.maps}>
-            <Maps />
+            <Maps location={detailEvent.location} />
           </div>
         </div>
       </div>
