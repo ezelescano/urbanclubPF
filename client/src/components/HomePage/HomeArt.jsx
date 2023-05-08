@@ -4,9 +4,9 @@ import TopArt from "../Artists/TopArt";
 import { getAllArts } from "../../redux/artistSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-
+import { NavLink } from "react-router-dom";
 const HomeArt = () => {
-  const artista = useSelector((state) => state.artist.allUsuarios);
+  const artista = useSelector((state) => state.artist.allUsuarios.slice(0, 5)); // Limitar a los primeros 6 elementos
 
   const dispatch = useDispatch();
 
@@ -14,11 +14,14 @@ const HomeArt = () => {
     dispatch(getAllArts());
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <div className={style.ConteinerArt}>
       <div className={style.TopArt}>
         {artista.map((item, index) => (
-          <div key={index}> {/*A esté le tenes qué poner key*/}
+          <div key={index}>
             <TopArt
               id={item.id}
               name={item.name}
@@ -28,6 +31,9 @@ const HomeArt = () => {
             />
           </div>
         ))}
+        <NavLink className={style.toArtists}to="/artists" onClick={scrollToTop}>
+          <button>Ver más {">"}</button>
+        </NavLink>
       </div>
     </div>
   );

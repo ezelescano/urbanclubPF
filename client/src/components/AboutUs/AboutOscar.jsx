@@ -8,7 +8,7 @@ function AboutOscar() {
         <img src="/assets/oscar.jpeg" alt="" />
       </div>
       <div className={style.description}>
-        <h2>DESCRIPCION</h2>
+        <h2>Oscar Carlos Alhuay Ramirez :{")"}</h2>
         <div className={style.paragraph}>
           <p>
             <b> ¡Bueeenas! Soy Oscar </b>

@@ -201,7 +201,7 @@ function Formulario() {
                   onBlur={handleOnChange}
                   type="text"
                   value={input.name}
-                  maxLength="35"
+                  maxLength="25"
                   name="name"
                   required
                 />
@@ -217,7 +217,7 @@ function Formulario() {
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="lastname"
-                  maxLength={35}
+                  maxLength={25}
                   required
                 />
               </label>
@@ -257,7 +257,7 @@ function Formulario() {
                 <input
                   placeholder={errors.password}
                   type="password"
-                  maxLength={45}
+                  maxLength={20}
                   value={input.password}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
@@ -291,7 +291,7 @@ function Formulario() {
               <label>
                 <div className={style.occupationsOptions}>
                   {options.map((option) => (
-                    <label key={option}>
+                    <label key={option} >
                       <input
                         className={style.occupationsOptionsList}
                         type="checkbox"
