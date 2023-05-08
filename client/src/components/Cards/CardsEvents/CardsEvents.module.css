@@ -82,9 +82,10 @@
   position: absolute;
   top: 0;
   right: 0;
-  background-color: rgba(249, 1, 1, 0.73);
+  background-color: rgba(98, 95, 95, 0.73);
   border-radius: 20px;
-  padding: 5px;
+  padding-block: 5px;
+  padding-inline: 5px;
   border: none;
   color: white;
   font-size: 1em;

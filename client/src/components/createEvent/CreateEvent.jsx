@@ -316,7 +316,7 @@ const CreateEvent = () => {
                   )}
                   {!isLoading && (
                     <button className="submitButton" type="submit">
-                      Registrarse
+                      Crear el evento
                     </button>
                   )}
                   <div className="loadingGif"></div>
