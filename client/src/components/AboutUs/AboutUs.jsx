@@ -121,7 +121,7 @@ function AboutUs() {
           </div>
           <div className={style.card}>
             <div className={style.cardImage}>
-              <NavLink to="/About/eze">
+              <NavLink to="/About/Eze">
                 <img src="../../assets/eze.jpeg" alt="Dua Lipa" />
               </NavLink>
             </div>
@@ -250,7 +250,9 @@ function AboutUs() {
           <div className={style.card}>
             <div className={style.cardImage}>
               <a href="">
-                <img src="../../assets/oscar.jpeg" alt="Dua Lipa" />
+                <NavLink to="/About/Oscar">
+                  <img src="../../assets/oscar.jpeg" alt="Dua Lipa" />
+                </NavLink>
               </a>
             </div>
             <div className={style.cardContent}>

@@ -12,25 +12,27 @@ import {
 import swal from "sweetalert";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
+import { deleteEvent } from "../../redux/eventSlice";
+
 import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword";
-import Error404 from "../Error404/Errors404"
+import Error404 from "../Error404/Errors404";
 import CreateEvent from "../createEvent/CreateEvent";
-import {getAllEvents } from "../../redux/eventSlice";
+import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
-import loading from "../../img/loading.gif"
+import loading from "../../img/loading.gif";
 
 
 const Profile = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const eventsArtist = useSelector((state) => state.events.allEvents);
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
-  const errorId = useSelector((state)=> state.artist.errorId)
+  const errorId = useSelector((state) => state.artist.errorId);
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -38,7 +40,6 @@ const Profile = () => {
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [eventconut,setEventconut] = useState(0)
   const verified = true;
   const links = [
     {
@@ -58,6 +59,7 @@ const Profile = () => {
     city,
     ocupation,
     aboutMe,
+    events
   } = usuario;
 
   const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
@@ -73,26 +75,22 @@ const Profile = () => {
     return
   } */
   useEffect(() => {
-    const execute = async() =>{
-  
-    const even = await dispatch(getAllEvents());
+    // const even = await dispatch(getAllEvents());
+    // console.log(even);
     setIsLoading(true);
-    const usu = await dispatch(getArtistId(id));
+    dispatch(getArtistId(id));
     setIsLoading(false);
-    even.payload.map((item,index)=>{
-    if (item.id === usu.payload.id) {
-      setEventconut(item.Events.length)
-      }})
-    }
-    execute()
+    // even.payload.map((item,index)=>{
+    // if (item.id === usu.payload.id) {
+    //   setEventconut(item.Events.length)
+    //   }})
+   
     
     return async () => {
       //le paso un return cuando se desmonta
-      await dispatch(clearProfile());
+      dispatch(clearProfile());
     };
-  }, [dispatch, id]);
-
-
+  }, []);
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
@@ -115,14 +113,14 @@ const Profile = () => {
   };
 
   const handleOnBlur = () => {
-    setShowSettings(false);
-  };
+    setShowSettings(false)
+  }
 
   const handleDeleteAccount = () => {
     // const confirmed = window.confirm(
     //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
     // );
-    
+
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
@@ -131,7 +129,7 @@ const Profile = () => {
     })
       .then(async (res) => {
         if (res && isCurrentUser) {
-          const confirmed = await dispatch(deleteArtist(id));
+          const confirmed = dispatch(deleteArtist(id));
           if (confirmed) {
             return swal({
               title: "CUENTA ELIMINADA",
@@ -177,20 +175,34 @@ const Profile = () => {
     alert("Funcion aun no implementada 😁");
   };
  
+
+  const islogin = useSelector((state) => state.auth);
+  const handleDeleteEvent = (id,name) => {
+  
+    swal({
+      title: "ELIMINAR EVENTO",
+      text: `Estas seguro de eliminar el evento ${name} `,
+      icon: "warning",
+      buttons: ["No", "Si"],
+    })
+      .then(async (res) => {
+        if (res && islogin.isAuthenticated) {
+          dispatch(deleteEvent(id));
+          window.location.reload()
+          // navigate(`/profile/${id}`);
+           swal({
+            title: "EVENTO ELIMINADO",
+            text: `Evento  ${name} eliminado con exito`,
+            icon: "success",
+            buttons: "Aceptar"
+          })
+        }
+      })
+    
+  }
  
   return (
     <>
-    {/* {isLoading && (
-                <div className="loadingGif">
-                  <img
-                    className="loading"
-                    src={loading}
-                    alt=""
-                    width="50px"
-                  ></img>
-                </div>
-              )}
-        {!isLoading &&  */}
         {(errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
 
     <div className="container">
@@ -222,6 +234,7 @@ const Profile = () => {
               ))}
           </div>
         </div>
+
         <div className="info-perfil">
           <div className="nombre-btns">
             <div>
@@ -239,14 +252,16 @@ const Profile = () => {
                   />
                 )}
               </div>
+
               <h3>
-                {city}, {Country}
+                 {city}, {Country}
               </h3>
             </div>
           </div>
+
           <div className="stas-profile">
             <button className="btn-stas" onClick={scrollToEventos}>
-            {eventconut + " "} Eventos  {/*  //! muestra total de eventos del artista */}
+            {events?.length + " "} Eventos  {/*  //! muestra total de eventos del artista */}
             </button>
             <button className="btn-stas">
               {followDemostrativo} Seguidores
@@ -254,11 +269,13 @@ const Profile = () => {
             <h4>5 Seguidos</h4>
           </div>
           <div className="ab-re">
-            <div className="aboutme">{aboutMe}</div>
+            <div className="aboutme">
+              {aboutMe}
+            </div>
             <div className="redes">
               {links?.map((l) => {
                 return (
-                  <div key={l} className="redes-div">
+                  <div className="redes-div">
                     <h4>Otras redes!!</h4>
                     <div className="container-links">
                       {l.youtube && (
@@ -266,14 +283,14 @@ const Profile = () => {
                           href={l.youtube}
                           target="_blank"
                           rel="noreferrer noopener"
-                        >
+                         >
                           <img
-                            className="icon"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
-                            alt="ds"
+                              className="icon"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
+                              alt="ds"
                           />
                         </a>
-                      )}
+                        )}
 
                       {l.twitter && (
                         <a
@@ -340,32 +357,16 @@ const Profile = () => {
         <div ref={eventosRef} className="titulo-ev">
           Mis eventos
         </div>
-{
 
-  eventsArtist.map((item,index)=>{
- return(
-  item.Events.map((event,index) =>{
-    
-    if (item.id === usuario.id) {
-      return(
-       <div key={index}>{
+         <div>{events?.map((event,index) => ( 
          <CardsEvents
-         key={index}
-         id_edit = {usuario.id}
-         id_art = {item.id}
-         name_art = {item.name}
-         event={event} />
-         
-         
-         }</div>
-      )
-     }
-  })
- )
-  
-  })
-}
-         {/* <div>{events && <CardsEvents  />}</div>  */}
+            key={index}
+            id_art = {event.id_Artist}
+            name_art = {event.name}
+            event={event}
+            handleDeleteEvent= {handleDeleteEvent} 
+            /> ) ) }
+          </div> 
       </div>
     
     </div>

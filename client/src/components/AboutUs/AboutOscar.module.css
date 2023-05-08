@@ -44,9 +44,6 @@
   width: 85%;
 }
 
-.description h2 {
-  font-family: 'Gorlock', sans-serif;
-}
 
 .links {
   width: 0%;
@@ -57,5 +54,5 @@
 }
 
 .links a {
-  padding: 5px;
+  padding: 0px;
 }

@@ -274,12 +274,12 @@ function Formulario({id,event}) {
                   <span style={{ color: "red" }}>*</span> Cantidad Boletos:
                 </div>
                 <input
-                  placeholder={errors.stock}
+                  placeholder={errors.price}
                   type="number"
                   value={input.stock}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  name="stock"
+                  name="price"
                   maxLength={35}
                   required
                 />
@@ -289,13 +289,13 @@ function Formulario({id,event}) {
                   <span style={{ color: "red" }}>*</span> Precio Entrada $US:
                 </div>
                 <input
-                  placeholder={errors.price}
+                  placeholder={errors.stock}
                   type="number"
                   step="0.01"
-                  value={input.price}
+                  value={input.stock}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  name="price"
+                  name="stock"
                   maxLength={35}
                   required
                 />
@@ -309,10 +309,12 @@ function Formulario({id,event}) {
                 <textarea
                   className={style.descripcionArea}
                   value={input.Description}
+                  value={input.Description}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   placeholder="500 Palabras max"
                   maxLength={150}
+                  name="Description"
                   name="Description"
                 />
               </label>
