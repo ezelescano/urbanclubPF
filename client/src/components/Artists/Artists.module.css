@@ -58,7 +58,6 @@
 .containerFilters button:hover {
   background-color: #fff;
   color: #000;
-  transform: scale(1.10);
 }
 
 .containerFilters select:focus option {
@@ -69,6 +68,66 @@
 .containerFilters button:focus {
   outline: none;
 }
-.selectedFilters{
-  color:white;
+.selectedFilters {
+  color: white;
+}
+.containerFilters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.containerFilters form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectFilters {
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.selectedFilter button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 15px;
+}
+
+.selectedFilter button:hover {
+  background-color: transparent;
+}
+
+.selectedFilters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectedFilter {
+  margin-inline: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  padding-inline: 10px;
+  align-items: center;
+  color: black;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+}
+.selectedFilter:hover {
+  transform: scale(1.05);
 }

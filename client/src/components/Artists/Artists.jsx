@@ -94,7 +94,7 @@ const Artists = () => {
       <div className={style.container}>
         <br />
         <div className={style.containerFilters}>
-          <form>
+          <form className={style.filtersLogic}>
             <select
               className={style.selectFilters}
               value={ocupation}
