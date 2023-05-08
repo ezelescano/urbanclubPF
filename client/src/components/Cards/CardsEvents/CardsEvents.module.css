@@ -13,7 +13,7 @@
   overflow: hidden;
   position: relative;
 }
-.card:hover{
+.card:hover {
   transform: scale(1.05);
 }
 
@@ -70,10 +70,24 @@
   -ms-transition: opacity 0.3s, transform 0.3s;
   -o-transition: opacity 0.3s, transform 0.3s;
 }
-h2 {
+.overlay h2 {
   margin-top: 0;
 }
 
-p {
+.overlay p {
   margin: 0.5rem 0;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(249, 1, 1, 0.73);
+  border-radius: 20px;
+  padding: 5px;
+  border: none;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 5px;
 }
