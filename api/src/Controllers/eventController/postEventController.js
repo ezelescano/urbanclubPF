@@ -32,7 +32,9 @@ const postEventController = async (req) => {
     
    try {
     const newEvents = await Event.create(newEvent);
-    newEvents.addArtist(id_Artist)
+    // newEvents.addArtist(id_Artist)
+    const ArtistEvent = await Artist.findByPk(id_Artist)
+    ArtistEvent.addEvent(newEvents);
 
     
     return newEvents;
