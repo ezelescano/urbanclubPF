@@ -197,7 +197,7 @@ const CreateEvent = () => {
                   />
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="name">Cuidad:</label>
+                  <label htmlFor="name">Ciudad:</label>
                   <br />
                   <input
                     placeholder={errors.name}
