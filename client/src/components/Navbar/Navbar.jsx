@@ -49,11 +49,13 @@ function Navbar() {
             Tienda
           </NavLink>
         </li>
+        {islogin.isAuthenticated && 
         <li>
-          <NavLink to="/messenger" className="nav-link active">
-            Chat
-          </NavLink>
-        </li>
+        <NavLink to="/messenger" className="nav-link active">
+          Chat
+        </NavLink>
+      </li>}
+        
       </ul>
       <div className={style.burgerSelect}>
         <button className={style.hamburgerBtn}>☰</button>

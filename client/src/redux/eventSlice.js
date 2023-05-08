@@ -37,27 +37,26 @@ export const eventSlice = createSlice({
       creaEvents: action.payload,
     };
   },
-  getEvents(state) {
+  deleteEventSucces(state) {
     return {
-      ...state
+      ...state,
     }
   }
 });
 
-export const upEvent = (input, id ) => {
+export const upEvent = (id, input) => {
   return async (dispatch) => {
     try {
       const eventDB = await axios.put(`/events/update/${id}`, input);
-      console.log(eventDB)
       const response = eventDB.data;
       dispatch(updateEventSuccess(response));
     } catch (error) {
-      // swal({
-      //   title: "ERROR",
-      //   text: error,
-      //   icon: "warning",
-      //   buttons: "Aceptar",
-      // });
+      swal({
+        title: "ERROR",
+        text: error,
+        icon: "warning",
+        buttons: "Aceptar",
+      });
     }
   };
 };
@@ -105,25 +104,26 @@ export const getDetailEvents = (id) => {
   }
 }
 
-export const deleteEvent = async (id) => {
-  try {
-    console.log("el id es",id)
-     axios.delete(`/events/${id}`);
+export const deleteEvent = (id) => {
 
     return async (dispatch) => {
-      dispatch(getEvents());
+      try {
+        console.log("el id es",id)
+         const res = await axios.delete(`/events/${id}`);
+          //  dispatch(deleteEventSucces());
+        } catch (error) {
+          swal({
+            title: "EVENTOS",
+            text: `No se pudo eliminar el evento ${error}`,
+            icon: "error",
+            buttons: "Aceptar"
+          })
+        }
     }
-  } catch (error) {
-    swal({
-      title: "EVENTOS",
-      text: `No se pudo eliminar el evento ${error}`,
-      icon: "error",
-      buttons: "Aceptar"
-    })
-  }
+  
 }
 
 
-export const { postEventSuccess, getAllEventsSuccess, gellDetailEvent, updateEventSuccess, getEvents } = eventSlice.actions;
+export const { postEventSuccess, getAllEventsSuccess, gellDetailEvent, updateEventSuccess, deleteEventSucces } = eventSlice.actions;
 
 export default eventSlice.reducer;

@@ -119,10 +119,10 @@ const CreateEvent = () => {
       text: `Exitos con tu evento`,
       icon: "success",
       buttons: "Aceptar",
-    }).then((res) => {
-      if (res) {
-        navigate(`/profile/${id}`);
-        setIsLoading(false);
+    }).then(res=>{
+      if(res){
+        navigate(`/profile/${id}`)
+       
       }
     });
   }

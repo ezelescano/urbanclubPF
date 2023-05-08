@@ -12,6 +12,8 @@ import {
 import swal from "sweetalert";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
 import { logout } from "../../redux/authSlice";
+import { deleteEvent } from "../../redux/eventSlice";
+
 import { useNavigate } from "react-router-dom";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
@@ -23,11 +25,11 @@ import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import loading from "../../img/loading.gif";
 
+
 const Profile = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const eventsArtist = useSelector((state) => state.events.allEvents);
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
   const errorId = useSelector((state) => state.artist.errorId);
@@ -38,7 +40,6 @@ const Profile = () => {
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [eventconut, setEventconut] = useState(0);
   const verified = true;
   const links = [
     {
@@ -58,6 +59,7 @@ const Profile = () => {
     city,
     ocupation,
     aboutMe,
+    events
   } = usuario;
 
   const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
@@ -73,24 +75,22 @@ const Profile = () => {
     return
   } */
   useEffect(() => {
-    const execute = async () => {
-      const even = await dispatch(getAllEvents());
-      setIsLoading(true);
-      const usu = await dispatch(getArtistId(id));
-      setIsLoading(false);
-      even.payload.map((item, index) => {
-        if (item.id === usu.payload.id) {
-          setEventconut(item.Events.length);
-        }
-      });
-    };
-    execute();
-
+    // const even = await dispatch(getAllEvents());
+    // console.log(even);
+    setIsLoading(true);
+    dispatch(getArtistId(id));
+    setIsLoading(false);
+    // even.payload.map((item,index)=>{
+    // if (item.id === usu.payload.id) {
+    //   setEventconut(item.Events.length)
+    //   }})
+   
+    
     return async () => {
       //le paso un return cuando se desmonta
-      await dispatch(clearProfile());
+      dispatch(clearProfile());
     };
-  }, [dispatch, id]);
+  }, []);
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
@@ -129,7 +129,7 @@ const Profile = () => {
     })
       .then(async (res) => {
         if (res && isCurrentUser) {
-          const confirmed = await dispatch(deleteArtist(id));
+          const confirmed = dispatch(deleteArtist(id));
           if (confirmed) {
             return swal({
               title: "CUENTA ELIMINADA",
@@ -174,40 +174,53 @@ const Profile = () => {
   const handleContact = () => {
     alert("Funcion aun no implementada 😁");
   };
+ 
 
+  const islogin = useSelector((state) => state.auth);
+  const handleDeleteEvent = (id,name) => {
+  
+    swal({
+      title: "ELIMINAR EVENTO",
+      text: `Estas seguro de eliminar el evento ${name} `,
+      icon: "warning",
+      buttons: ["No", "Si"],
+    })
+      .then(async (res) => {
+        if (res && islogin.isAuthenticated) {
+          dispatch(deleteEvent(id));
+          window.location.reload()
+          // navigate(`/profile/${id}`);
+           swal({
+            title: "EVENTO ELIMINADO",
+            text: `Evento  ${name} eliminado con exito`,
+            icon: "success",
+            buttons: "Aceptar"
+          })
+        }
+      })
+    
+  }
+ 
   return (
     <>
-      {/* {isLoading && (
-                <div className="loadingGif">
-                  <img
-                    className="loading"
-                    src={loading}
-                    alt=""
-                    width="50px"
-                  ></img>
-                </div>
-              )}
-        {!isLoading &&  */}
-      {errorId &&
-      (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID)) ? (
-        <Error404></Error404>
-      ) : (
-        <div className="container">
-          <div className="portada-profile">
-            <img src={coverPhoto} alt="" />
-            <div className="rating-g">4.3</div>
+        {(errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
+
+    <div className="container">
+      <div className="portada-profile">
+        <img src={coverPhoto} alt="" />
+        <div className="rating-g">4.3</div>
+      </div>
+      <div className="prim-profile">
+        <div className="">
+          <div className="foto-ocupacion">
+            <img
+              className="foto-profile"
+              src={profilePhoto}
+              alt="Foto de perfil del artista"
+            />
           </div>
-          <div className="prim-profile">
-            <div className="">
-              <div className="foto-ocupacion">
-                <img
-                  className="foto-profile"
-                  src={profilePhoto}
-                  alt="Foto de perfil del artista"
-                />
-              </div>
-              <div className="ocupation-container">
-                {/* {usuario.ocupation?.map(o => {
+          <div className="ocupation-container">
+            {/* {usuario.ocupation?.map(o => {
                 return(
                   <div className='ocupation'>{o}</div>
                 )
@@ -248,7 +261,7 @@ const Profile = () => {
 
           <div className="stas-profile">
             <button className="btn-stas" onClick={scrollToEventos}>
-            {eventconut + " "} Eventos  {/*  //! muestra total de eventos del artista */}
+            {events?.length + " "} Eventos  {/*  //! muestra total de eventos del artista */}
             </button>
             <button className="btn-stas">
               {followDemostrativo} Seguidores
@@ -279,96 +292,85 @@ const Profile = () => {
                         </a>
                         )}
 
-                          {l.twitter && (
-                            <a
-                              href={l.twitter}
-                              target="_blank"
-                              rel="noreferrer noopener"
-                            >
-                              <img
-                                className="icon"
-                                src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
-                                alt="ds"
-                              />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            <div className="btns">
-              {isCurrentUser ? (
-                <div className="settings-div">
-                  <button className="btn-ajustes" onClick={handleSettings}>
-                    <img
-                      className="ajustes"
-                      src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
-                      alt="ajuste"
-                    />
-                  </button>
-                  {showSettings && (
-                    <Settings
-                      handleDeleteAccount={handleDeleteAccount}
-                      handleLogout={handleLogout}
-                      handlePasswordChange={handlePasswordChange}
-                      handleShowEdit={handleShowEdit}
-                      handleShowCreateEvent={handleShowCreateEvent}
-                    />
-                  )}
-                  {showEdit && (
-                    <ProfileEdit
-                      handleEdit={handleEdit}
-                      id={id}
-                      usuario={usuario}
-                      handleShowEdit={handleShowEdit}
-                    />
-                  )}
-                  {showEditPassword && (
-                    <UpdatePassword handleEdit={handleEdit} />
-                  )}
-                </div>
-              ) : (
-                <div className="NoAhora">
-                  <button className="btn-profile" onClick={handleFollow}>
-                    Seguir
-                  </button>
-                  <button className="btn-profile" onClick={handleContact}>
-                    Contactar
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="div-eventos">
-            <div ref={eventosRef} className="titulo-ev">
-              Mis eventos
-            </div>
-            {eventsArtist.map((item, index) => {
-              return item.Events.map((event, index) => {
-                if (item.id === usuario.id) {
-                  return (
-                    <div key={index}>
-                      {
-                        <CardsEvents
-                          key={index}
-                          id_edit={usuario.id}
-                          id_art={item.id}
-                          name_art={item.name}
-                          event={event}
-                        />
-                      }
+                      {l.twitter && (
+                        <a
+                          href={l.twitter}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                        >
+                          <img
+                            className="icon"
+                            src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
+                            alt="ds"
+                          />
+                        </a>
+                      )}
                     </div>
-                  );
-                }
-              });
-            })}
-            {/* <div>{events && <CardsEvents  />}</div>  */}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      )}
+        <div className="btns">
+          {isCurrentUser ? (
+            <div className="settings-div">
+              <button className="btn-ajustes" onClick={handleSettings}>
+                <img
+                  className="ajustes"
+                  src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
+                  alt="ajuste"
+                />
+              </button>
+              {showSettings && (
+                <Settings
+                  handleDeleteAccount={handleDeleteAccount}
+                  handleLogout={handleLogout}
+                  handlePasswordChange={handlePasswordChange}
+                  handleShowEdit={handleShowEdit}
+                  handleShowCreateEvent={handleShowCreateEvent}
+                />
+              )}
+              {showEdit && (
+                <ProfileEdit
+                  handleEdit={handleEdit}
+                  id={id}
+                  usuario={usuario}
+                  handleShowEdit={handleShowEdit}
+                />
+              )}
+              {showEditPassword && <UpdatePassword handleEdit={handleEdit} />}
+            </div>
+          ) : (
+            <div className="NoAhora">
+              <button className="btn-profile" onClick={handleFollow}>
+                Seguir
+              </button>
+              <button className="btn-profile" onClick={handleContact}>
+                Contactar
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="div-eventos">
+        <div ref={eventosRef} className="titulo-ev">
+          Mis eventos
+        </div>
+
+         <div>{events?.map((event,index) => ( 
+         <CardsEvents
+            key={index}
+            id_art = {event.id_Artist}
+            name_art = {event.name}
+            event={event}
+            handleDeleteEvent= {handleDeleteEvent} 
+            /> ) ) }
+          </div> 
+      </div>
+    
+    </div>
+     ))}
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AboutUs from "./components/AboutUs/AboutUs";
 import AboutEstiven from "./components/AboutUs/AboutEstiven";
 import AboutOscar from "./components/AboutUs/AboutOscar";
@@ -24,7 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //import { useHistory } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import { loginSuccess, logout } from './redux/authSlice';
-import { Redirect } from 'react-router-dom';
+//import { Redirect } from 'react-router-dom';
 import AboutEze from "./components/AboutUs/AboutEze";
 import Errors404 from "./components/Error404/Errors404";
 import Messenger from "./components/Messenger/Messenger";
@@ -72,30 +72,30 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={!user.isAuthenticated ?( <Login /> ) : (<Navigate to="/" />)} />
+        <Route path="/register" element={!user.isAuthenticated ?( <Register /> ) : (<Navigate to="/" />)} />
         <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/profileEdit/:id" element={<ProfileEdit />} />
+        <Route path="/profileEdit/:id" element={user.isAuthenticated ? (<ProfileEdit />) : (<Navigate to="/login" />)} />
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
         <Route path="/merch" element={<Merch />} />
-        <Route path="/createevent/:id" element={<CreateEvent />} />
+        <Route path="/createevent/:id" element={user.isAuthenticated ? (<CreateEvent />) : (<Navigate to="/login" />)} />
         <Route path="/createeventtemplate" element={<CreateEventTemplate />} />
         <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
-        <Route path="/messenger" element={<Messenger />} />
-        <Route path="/updateEvent" element={<UpdateEvents />} />
-        <Route path="/forgotPassword" element={<ForgotPassword />} />
-        <Route path="/newPassword/:id" element={<NewPassword />} />
+        <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
+        <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents/>) : (<Navigate to="/login" />)} />
+        <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)}/>
+        <Route path="/newPassword/:id" element={!user.isAuthenticated ? (<NewPassword />) : (<Navigate to="/" />)} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      {window.location.pathname !== '/messenger' && <Footer />}
+      {window.location.pathname !== '/messenger' && window.location.pathname !== '/profile/:id' && <Footer />}
     </div>
   );
 }
