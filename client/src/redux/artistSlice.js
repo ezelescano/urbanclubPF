@@ -72,10 +72,9 @@ export const artistSlice = createSlice({
         allUsuarios: []
       }
     },
-    postArtistSuccess(state, action) {
+    postArtistSuccess(state) {
       return {
         ...state,
-        // allUsuarios: [...state.artist.allUsuarios, action.payload] 
       }
     },
     setErrors(state, action) {

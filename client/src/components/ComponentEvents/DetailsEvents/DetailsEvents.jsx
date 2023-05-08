@@ -26,7 +26,8 @@ function DetailsEvents() {
       setCantidad(event.payload.stock);
     };
     getEvent();
-  }, [dispatch]);
+  }, [dispatch, id]);
+  
   const buyTicketHandler = () => {
     if (cantidad > 0) {
       let restCant = cantidad - 1;

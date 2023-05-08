@@ -28,7 +28,6 @@ const postEventController = async (req) => {
         Description,
         id_eventPhoto:photoEvent.public_id,
         eventPhoto:photoEvent.secure_url,
-        stock,
     }
     console.log("primer log", newEvent)
     
