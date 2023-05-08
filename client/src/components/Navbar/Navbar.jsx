@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const islogin = useSelector((state) => state.auth);
   const usuario = useSelector((state) => state.auth.user);
-
   return (
     <nav className={style.navbar}>
       <NavLink to="/">
@@ -27,7 +26,7 @@ function Navbar() {
       <div className={style.searchbarWrapper}>
         <SearchBar />
       </div>
-            {/*<SearchIcon style={{color:"white"}}/>*/}
+      {/*<SearchIcon style={{color:"white"}}/>*/}
       <ul className={style.navLinks}>
         <li>
           <NavLink to="/artists" className={`${style.navLink} ${style.active}`}>
@@ -44,13 +43,41 @@ function Navbar() {
             Eventos
           </NavLink>
         </li>
-      
+
         <li>
           <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
             Tienda
           </NavLink>
         </li>
       </ul>
+      <div class={style.burgerSelect}>
+        <button class={style.hamburgerBtn} onclick="toggleNav()">
+          ☰
+        </button>
+        <ul class={style.respNavLinks} id="navLinks">
+          <li>
+            <NavLink to="/artists" class={`${style.navLink} ${style.active}`}>
+              Artistas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/aboutus" class={`${style.navLink} ${style.active}`}>
+              Acerca de
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/events" class={`${style.navLink} ${style.active}`}>
+              Eventos
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/merch" class={`${style.navLink} ${style.active}`}>
+              Tienda
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+
       {!islogin.isAuthenticated ? (
         <NavLink to="/login">
           <button className={style.navLoginBtn}>Ingresar</button>

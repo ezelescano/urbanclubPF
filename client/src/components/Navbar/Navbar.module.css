@@ -81,7 +81,13 @@
 .sesionfotozoom {
   object-fit: cover;
 }
-
+/*Responsive Botoncitos de Movil*/
+.hamburgerBtn {
+  display: none;
+}
+.respNavLinks {
+  display: none;
+}
 @media screen and (max-width: 968px) {
   .navbar img.navTitleImg {
     display: none;
@@ -126,6 +132,25 @@
     border: 2px solid #fff;
     background-color: #fff;
     border-radius: 50%;
+  }
+  .hamburgerBtn {
+    display: block;
+    color:white;
+    border-radius: 8px;
+    background-color: #004258;
+    text-decoration: none;
+    border:none;
+    padding: 10px;
+    padding-inline: 20px;
+  }
+  .respNavLinks {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+  }
+  .respNavLinks li a {
+    display: none;
+    text-decoration: none;
   }
   @keyframes spin {
     from {
