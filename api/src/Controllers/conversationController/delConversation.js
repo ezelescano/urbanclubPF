@@ -1,7 +1,7 @@
 const { Conversation } = require("../../db");
 
 const delConversation = async(convId) => {
-  console.log(convId)
+ 
   try {
     const conversationDel = await Conversation.destroy({ where: { id: convId } })
     

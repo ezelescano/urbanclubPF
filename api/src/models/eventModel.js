@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         price: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT,
             allowNull: true,
         },
         location: {
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         date: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATEONLY,
             allowNull: true,
         },
         city: {

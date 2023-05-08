@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import style from "./Navbar.module.css";
 //import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchBar from "../SearchBar/SearchBar";
@@ -27,7 +27,7 @@ function Navbar() {
       <div className={style.searchbarWrapper}>
         <SearchBar />
       </div>
-            {/*<SearchIcon style={{color:"white"}}/>*/}
+      {/*<SearchIcon style={{color:"white"}}/>*/}
       <ul className={style.navLinks}>
         <li>
           <NavLink to="/artists" className={`${style.navLink} ${style.active}`}>
@@ -44,7 +44,7 @@ function Navbar() {
             Eventos
           </NavLink>
         </li>
-      
+
         <li>
           <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
             Tienda
@@ -58,14 +58,52 @@ function Navbar() {
       </li>}
         
       </ul>
+      <div className={style.burgerSelect}>
+        <button className={style.hamburgerBtn}>☰</button>
+        <ul className={style.respNavLinks} id="navLinks">
+          <li>
+            <NavLink
+              to="/artists"
+              className={`${style.navLink} ${style.active}`}
+            >
+              Artistas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/aboutus"
+              className={`${style.navLink} ${style.active}`}
+            >
+              Acerca de
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/events"
+              className={`${style.navLink} ${style.active}`}
+            >
+              Eventos
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
+              Tienda
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+
       {!islogin.isAuthenticated ? (
         <NavLink to="/login">
           <button className={style.navLoginBtn}>Ingresar</button>
           <button className={style.navLoginBtnZoom}>Ingresar</button>
         </NavLink>
       ) : (
+        
         <NavLink to={`/profile/${islogin.user.id}`}>
+          
           <img
+          
             className={style.sesionfoto}
             src={usuario.profilePhoto}
             alt="No hay"
@@ -75,7 +113,7 @@ function Navbar() {
             src={usuario.profilePhoto}
             alt="No hay"
           />
-        </NavLink>
+        </NavLink >
       )}
     </nav>
   );

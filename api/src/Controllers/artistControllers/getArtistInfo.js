@@ -4,7 +4,7 @@ const {Artist} = require("../../db");
 const { ACTIVATED, DELETED } = require("../../constants");
 
 const getArtistInfo = async (email, password) => {
-  console.log(email)
+
     const artist = await Artist.findOne({
         where: {
           email

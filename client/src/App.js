@@ -16,7 +16,7 @@ import CreateEvent from"./components/createEvent/CreateEvent";
 import CreateEventTemplate from "./components/createEvent/CreateEventTemplate";
 import Footer from "./components/Footer/Footer"
 import Merch from "./components/Merch/Merch"
-
+import Maps from "./components/Maps/Maps";
 
 //verificacion del token
 import { useEffect } from 'react';
@@ -82,15 +82,16 @@ function App() {
         <Route path="/merch" element={<Merch />} />
         <Route path="/createevent/:id" element={user.isAuthenticated ? (<CreateEvent />) : (<Navigate to="/login" />)} />
         <Route path="/createeventtemplate" element={<CreateEventTemplate />} />
-        <Route path="/About/estiven" element={<AboutEstiven />} />
+        <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
-        <Route path="/About/eze" element={<AboutEze />} />
+        <Route path="/About/Eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
         <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
         <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents/>) : (<Navigate to="/login" />)} />
         <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)}/>
         <Route path="/newPassword/:id" element={!user.isAuthenticated ? (<NewPassword />) : (<Navigate to="/" />)} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
+        <Route path="/Maps" element={<Maps />} />
 
         <Route path="*" element={<Errors404 />} />
       </Routes>

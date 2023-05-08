@@ -1,13 +1,14 @@
 const { Artist } = require("../../db");
 const nodemailer = require("nodemailer");
-
+require("dotenv").config();
+const { PASSWORD_EMAIL} = process.env;
 const forgotPassword = async (email) => {
-    console.log(email)
+    
     if (!email){
         throw new Error("No se especificó el email");
     } else {
         const artist = await Artist.findOne({where: {email: email}});
-        console.log(artist, artist.id);
+     
         if (!artist){
             throw new Error("No se encontró el artista en la base de datos");
         }
@@ -16,13 +17,13 @@ const forgotPassword = async (email) => {
             host: "smtp.gmail.com",
             port: 587,
             auth: {
-                user: "urbanclub55@gmail.com",
-                pass: 'vmgtifhevjajyyaw'
+                user: "urbanclub948@gmail.com",
+                pass: PASSWORD_EMAIL
             }
         }
 
         const mensaje = {
-            from: "urbanclub55@gmail.com",
+            from: "urbanclub948@gmail.com",
             to: email,
             subject: "Recuperación de contraseña",
             html: `<title>Recuperación de contraseña</title>
@@ -59,7 +60,6 @@ const forgotPassword = async (email) => {
 
         const info = await transport.sendMail(mensaje);
 
-        console.log(info);
     }
 }
 

@@ -16,9 +16,9 @@ const CreateEvent = () => {
     name: "",
     price: "",
     location: "",
-    stock:"",
-    city:"",
-    Country:"",
+    stock: "",
+    city: "",
+    Country: "",
     nameArena: "",
     date: "",
     Description: "",
@@ -53,7 +53,7 @@ const CreateEvent = () => {
   }
 
   function handleOnChange(e) {
-    // console.log("errores///", errors.password);
+
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -100,7 +100,7 @@ const CreateEvent = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    //console.log(errors);
+   
     if (!input.name.length) {
       await swal({
         title: "ERROR",
@@ -115,7 +115,7 @@ const CreateEvent = () => {
     formData.append("id_Artist", id)
      await dispatch(postEvent(formData));
      setIsLoading(false);
-     swal({
+    swal({
       title: "EVENTO CREADO CORRECTAMENTE",
       text: `Exitos con tu evento`,
       icon: "success",
@@ -123,8 +123,7 @@ const CreateEvent = () => {
     }).then(res=>{
       if(res){
         navigate(`/profile/${id}`)
-       
-      }
+       }
     });
   }
 
@@ -211,7 +210,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-<div className="inputContainer">
+                <div className="inputContainer">
                   <label htmlFor="location">Direccion:</label>
                   <br />
                   <input
@@ -226,9 +225,7 @@ const CreateEvent = () => {
                   />
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="nameArena">
-                  Nombre del lugar:
-                  </label>
+                  <label htmlFor="nameArena">Nombre del lugar:</label>
                   <br />
                   <input
                     placeholder={errors.nameArena}
@@ -244,7 +241,7 @@ const CreateEvent = () => {
                   <label htmlFor="date">Fecha:</label>
                   <br />
                   <input
-                    type="text"
+                    type="date"
                     value={input.date}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
@@ -257,7 +254,7 @@ const CreateEvent = () => {
                   <br />
                   <input
                     placeholder={errors.stock}
-                    type="text"
+                    type="number"
                     value={input.stock}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
@@ -272,7 +269,8 @@ const CreateEvent = () => {
                   <br />
                   <input
                     placeholder={errors.price}
-                    type="text"
+                    type="number"
+                    step="0.01"
                     value={input.price}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
@@ -280,6 +278,10 @@ const CreateEvent = () => {
                     maxLength={35}
                     required
                   />
+                </div>
+                
+                <div className="inputContainer">
+                  <label htmlFor="">TOTAL USD: {input.price*input.stock}</label>
                 </div>
                 <div className="inputContainer">
                   <label htmlFor="D">Describe qué se hará</label>
@@ -314,7 +316,7 @@ const CreateEvent = () => {
                   )}
                   {!isLoading && (
                     <button className="submitButton" type="submit">
-                      Registrarse
+                      Guardar
                     </button>
                   )}
                   <div className="loadingGif"></div>

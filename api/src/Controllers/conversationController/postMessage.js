@@ -2,7 +2,7 @@ const { Message, Conversation } = require("../../db");
 
 const postMessage = async( conversationId, sender, text ) => {
   try {
-    console.log(conversationId, sender, text)
+   
     const newMessage = await Message.create({
       conversationId,
       sender,

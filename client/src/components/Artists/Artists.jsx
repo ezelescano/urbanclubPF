@@ -18,22 +18,23 @@ const Artists = () => {
   const category = useSelector((state) => state.artist.categoria);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function asynGetArtists() {
       // You can await here
       setIsLoading(true);
-      
+
       await dispatch(getAllArts());
-      
+
       setIsLoading(false);
       // ...
     }
 
     asynGetArtists();
     //dispatch(cleanArtists);
-     return dispatch(cleanArtists);
+    return dispatch(cleanArtists);
   }, [dispatch]);
 
   const [ocupation, setOcupation] = useState("");
@@ -46,8 +47,7 @@ const Artists = () => {
     handlesFilter();
   }, [ocupation, country, orden]);
 
-  const filterOcupacionForMap = 
-  [
+  const filterOcupacionForMap = [
     "Bailarin",
     "Cantante",
     "Musico",
@@ -59,35 +59,44 @@ const Artists = () => {
     let artist = [...usuario];
     const ubicacion = country;
     const events = orden;
-    console.log("?????????MEEEEEEESI",artist);
+
     if (ocupation !== "" || country !== "" || orden !== "") {
-      console.log("ENTRANDO AL IF");
-      // if (ocupation !== "")
-      //   artist = artist.filter(
-      //     (artist) => artist.ocupation && artist.ocupation.includes(ocupation)
-      //   );
-      // if (country !== "")
-      //   artist = artist.filter((artist) => artist.Country === country);
-      // if (orden === "ascending")
-      //   artist = artist.sort((a, z) => a.Events.localeCompare(z.Events));
-      // if (orden === "descending")
-      //   artist = artist.sort((a, z) => z.Events.localeCompare(a.Events));
       setIsLoading(true);
-      dispatch(FilterArtists(ocupation, ubicacion ,orden));
+      dispatch(FilterArtists(ocupation, ubicacion, orden));
       setIsLoading(false);
+
+      // Add selected filters to the state
+      const newFilters = [];
+      if (ocupation !== "") newFilters.push(ocupation);
+      if (country !== "") newFilters.push(country);
+      if (orden !== "") newFilters.push(orden);
+      setSelectedFilters(newFilters);
     } else {
       setIsLoading(true);
       dispatch(getAllArts(artist));
       setIsLoading(false);
+
+      // Clear selected filters
+      setSelectedFilters([]);
     }
   };
+  const handleRemoveFilter = (filter) => {
+    const newFilters = selectedFilters.filter((f) => f !== filter);
+    setSelectedFilters(newFilters);
 
+    // Remove filter from the form
+    if (ocupation === filter) setOcupation("");
+    if (country === filter) setCountry("");
+    if (orden === filter) setOrden("");
+  };
   return (
     <div className={style.ourPage}>
       <div className={style.container}>
+        <br />
         <div className={style.containerFilters}>
-          <form>
+          <form className={style.filtersLogic}>
             <select
+              className={style.selectFilters}
               value={ocupation}
               onChange={(event) => setOcupation(event.target.value)}
             >
@@ -117,7 +126,7 @@ const Artists = () => {
               value={orden}
               onChange={(event) => setOrden(event.target.value)}
             >
-              <option value="">Nombre</option>
+              <option value="">Por Nombre</option>
               <option value="true">Tiene Evento</option>
               <option value="false">No tiene Evento</option>
             </select>
@@ -129,8 +138,15 @@ const Artists = () => {
               Limpiar
             </button>
           </form>
+          {/* <div className={style.selectedFilters}>
+            {selectedFilters.map((filter) => (
+              <div key={filter} className={style.selectedFilter}>
+                <span>{filter}</span>
+                <button onClick={() => handleRemoveFilter(filter)}>X</button>
+              </div>
+            ))}
+          </div> */}
         </div>
-
         <div className={style.containerArtists}>
           {isLoading && (
             <div className="loading-gif">
@@ -139,7 +155,7 @@ const Artists = () => {
           )}
           {!isLoading && artistas.length > 0
             ? artistas.map((item) => {
-              // console.log(artistas);
+                
                 let ocupacion;
                 item.ocupation !== undefined
                   ? (ocupacion = item.ocupation)
@@ -162,6 +178,7 @@ const Artists = () => {
             : !isLoading &&
               artistas.length === 0 && <Errors404search></Errors404search>}
         </div>
+        <br /> <br />
       </div>
     </div>
   );
