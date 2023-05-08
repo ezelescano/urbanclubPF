@@ -19,51 +19,8 @@ const CardsEvents = ({ name_art, event, id_edit }) => {
       if (res && islogin.user.id && islogin.isAuthenticated) {
         window.location.reload();
         dispatch(deleteEvent(id));
-
-        //  console.log(confirmed)
-        // if (true) {
-        //   return swal({
-        //     title: "CUENTA ELIMINADA",
-        //     text: `El evento ${nameEvent} ha sido eliminado correctamente`,
-        //     icon: "success",
-        //     button: "Aceptar",
-        //   });
-        // }
       }
     });
-    //   // .then((res) => {
-    //   //   if (res) {
-    //   //     window.location.reload();
-    //   //   }
-    //   // });
-
-    // swal({
-    //   title: "ELIMINAR CUENTA",
-    //   text: `Estas seguro de eliminar la cuenta `,
-    //   icon: "warning",
-    //   buttons: ["No", "Si"],
-    // })
-    //   .then(async (res) => {
-    //     if (res ) {
-    //       console.log("first")
-    //       const confirmed = dispatch(deleteEvent(id));
-    //       console.log(confirmed)
-    //       if (confirmed) {
-    //         return swal({
-    //           title: "CUENTA ELIMINADA",
-    //           text: `La cuenta ha sido eliminada correctamente`,
-    //           icon: "success",
-    //           button: "Aceptar",
-    //         });
-    //       }
-    //     }
-    //   })
-    //   .then((res) => {
-    //     if (res) {
-    //       window.location.replace("/");
-    //       // navigate("/");
-    //     }
-    //   });
   };
   return (
     <div className={style.container}>
@@ -76,7 +33,7 @@ const CardsEvents = ({ name_art, event, id_edit }) => {
               className={style.image}
             />
             <div className={style.overlay}>
-              <h2>{name_art}</h2>
+              <h2>{event.name}</h2>
               <p>{event.date}</p>
               <p>{event.location}</p>
               {id_edit === islogin.user.id && islogin.user.id ? (
