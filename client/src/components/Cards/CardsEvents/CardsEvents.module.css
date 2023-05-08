@@ -13,6 +13,9 @@
   overflow: hidden;
   position: relative;
 }
+.card:hover{
+  transform: scale(1.05);
+}
 
 .imageContainer {
   position: relative;
