@@ -214,7 +214,7 @@ const Profile = () => {
         <div className="rating-g">4.3</div>
       </div>
       <div className="prim-profile">
-        <div className="">
+        <div className="prim-ocupacion">
           <div className="foto-ocupacion">
             <img
               className="foto-profile"
@@ -360,8 +360,7 @@ const Profile = () => {
         <div ref={eventosRef} className="titulo-ev">
           Mis eventos
         </div>
-
-         <div>{events?.map((event,index) => ( 
+         <div className="div-eventos-profile">{events?.map((event,index) => ( 
          <CardsEvents
             key={index}
             id_art = {event.id_Artist}

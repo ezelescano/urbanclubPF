@@ -20,8 +20,9 @@
   flex-direction: column;
   object-fit: cover;
   align-items: center;
-  min-width: 80%;
-  max-height: 1000px;
+  min-width: 90%;
+  max-height: 1100px;
+  overflow: hidden;
 }
 
 .img_Es {
@@ -70,6 +71,42 @@
 .maps {
   margin-left: auto;
   height: 100%;
-  width: 50%;
-  overflow: visible;
+  width: 50vw;
+  overflow: hidden;
+}
+
+div .Description input[type="text"],
+div .Description button {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+div .Description button {
+  background-color: #ffffff;
+  color: #000000;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+div .Description button:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+div .Description button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+div .Description a {
+  text-decoration: none;
+}
+
+div .Description svg {
+  margin-left: 5px;
 }
