@@ -18,7 +18,6 @@ const getArtistByName = async (name) => {
       finalWords.push(finalWord);
     }
     const finalString = finalWords.join(" ");
-    console.log("//soy el finalstring", finalString);
     const dataBaseByName = await Artist.findAll({ 
     where: {
         estado: ACTIVATED,   //se agrega para funcionar borrado logico no obtener si esta DELETED

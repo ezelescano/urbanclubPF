@@ -35,13 +35,15 @@ function DetailsEvents() {
   }, [dispatch, id]);
 
   const ubicationHandler = () => {
-    console.log(destino.Country);
-    if (
-      destino.city === "" ||
-      !destino.city ||
-      destino.Country === "" ||
-      !destino.Country
-    ) {
+
+    if ((destino.city === "" || !destino.city) ||
+      (destino.Country === "" || !destino.Country)) {
+        swal({
+          title: "FALTA INFORMACION",
+          text: "Debe llenar pais y ciudad correctamente",
+          icon: "info",
+          buttons: "Aceptar",
+        })
       setDestino({
         ...destino,
         ban: false,
@@ -52,8 +54,15 @@ function DetailsEvents() {
         ban: true,
       });
     }
-    console.log(destino);
-  };
+
+  }
+  const resetUbicationHandler = () =>{
+    setDestino({
+      city: "",
+    Country: "",
+    ban: false
+    })
+  }
   const getdestinohandler = (e) => {
     if (
       destino.city === "" ||
@@ -69,18 +78,21 @@ function DetailsEvents() {
     setDestino({
       ...destino,
       [e.target.name]: e.target.value,
-    });
-  };
-  const buyTicketHandler = () => {
+    })
+   }
+   const buyTicketHandler = async () => {
+
     if (cantidad > 0) {
       let restCant = cantidad - 1;
 
       setCantidad(restCant);
-      let stockObjeto = { stock: restCant };
-      axios.put(
+      let stockObjeto = { stock: restCant,id_Artist: islogin.user.id };
+      
+     const eventd = await axios.put(
         `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
         stockObjeto
       );
+      
       swal({
         title: "COMPRA EXITOSA",
         text: `Revisa tu correo para ver más detalles de la compra`,
@@ -120,11 +132,11 @@ function DetailsEvents() {
               <p>{detailEvent.Description}</p>
               <br />
               <label htmlFor="">¿Cual es tú país?</label>
-              <input type="text" name="Country" onChange={getdestinohandler} />
+              <input type="text" name="Country" value={destino.Country} onChange={getdestinohandler} />
               <label htmlFor="">¿Y tu ciudad?</label>
-              <input type="text" name="city" onChange={getdestinohandler} />
-              <button onClick={ubicationHandler}>Cómo llego ahi?</button>
-              <button>Reinicar la Busqueda</button>
+              <input type="text" name="city" value={destino.city} onChange={getdestinohandler} />
+              <button disabled={destino.ban} onClick={ubicationHandler}>Cómo llego ahi?</button>
+              <button disabled={!destino.ban} onClick={resetUbicationHandler}>Reinicar la Busqueda</button>
               <div className={style.links}>
                 <br/>
                 <h3>Cantidad de entradas Disponibles</h3>

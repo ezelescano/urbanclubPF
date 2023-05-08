@@ -155,7 +155,7 @@ const Artists = () => {
           )}
           {!isLoading && artistas.length > 0
             ? artistas.map((item) => {
-                // console.log(artistas);
+                
                 let ocupacion;
                 item.ocupation !== undefined
                   ? (ocupacion = item.ocupation)

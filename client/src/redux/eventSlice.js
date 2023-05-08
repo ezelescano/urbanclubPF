@@ -69,7 +69,7 @@ export const postEvent = (payload) => {
       await dispatch(postEventSuccess(eventData));
 
     } catch (error) {
-      console.log(error);
+     
       swal({
         title: "EVENTOS",
         text: `No se pudo crear el evento`,
@@ -109,7 +109,7 @@ export const deleteEvent = (id) => {
 
     return async (dispatch) => {
       try {
-        console.log("el id es",id)
+      
          const res = await axios.delete(`/events/${id}`);
           //  dispatch(deleteEventSucces());
         } catch (error) {

@@ -55,8 +55,6 @@ function Messenger() {
   useEffect(() => {
     socket.current.emit("addUser", user.id);
     socket.current.on("getUsers", (users) => {
-      console.log(users);
-      //console.log(users)
       setOnlineUser(
         followers.filter((f) => users.some((u) => u.userId === f.id))
       );

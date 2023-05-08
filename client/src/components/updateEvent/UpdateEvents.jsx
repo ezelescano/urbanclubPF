@@ -124,11 +124,12 @@ function Formulario({id,event}) {
     e.preventDefault();
 
     //console.log(errors);
+    setIsLoading(true)
     const formData = new FormData(e.target);
     // formData.append("id_Artist", id)
     await dispatch(upEvent(formData,id));
     await dispatch(getDetailEvents(id))
-   
+    setIsLoading(false)
       swal({
         title: "DATOS GUARDADOS",
         text: "Evento actualizado correctamente",
@@ -258,7 +259,7 @@ function Formulario({id,event}) {
                 </div>
                 <input
                   placeholder={errors.date}
-                  type="text"
+                  type="date"
                   maxLength={45}
                   value={input.date}
                   onChange={handleOnChange}

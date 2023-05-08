@@ -39,7 +39,7 @@ export default function Register() {
 //Manipular el archivo qué se sube:
   function handleImageUpload(e) {
     const file = e.target.files;
-    console.log(file);
+    
     if (file) { 
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -57,7 +57,7 @@ export default function Register() {
     if (!input.name) {
       return alert("Name is required");
     }
-    console.log(input);
+  
 
      axios
       .post("http://localhost:3001/artist", input)
