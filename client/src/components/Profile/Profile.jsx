@@ -90,7 +90,7 @@ const Profile = () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
     };
-  }, [id]);
+  }, []);
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
@@ -188,7 +188,10 @@ const Profile = () => {
       .then(async (res) => {
         if (res && islogin.isAuthenticated) {
           dispatch(deleteEvent(id));
-          window.location.reload()
+          setTimeout(() => {
+            window.location.reload()
+          }, 1000);
+          // window.location.reload()
           // navigate(`/profile/${id}`);
            swal({
             title: "EVENTO ELIMINADO",
