@@ -16,13 +16,13 @@ const forgotPassword = async (email) => {
             host: "smtp.gmail.com",
             port: 587,
             auth: {
-                user: "urbanclub55@gmail.com",
-                pass: 'vmgtifhevjajyyaw'
+                user: "urbanclub948@gmail.com",
+                pass: 'tgDkPBcSb2Mr'
             }
         }
 
         const mensaje = {
-            from: "urbanclub55@gmail.com",
+            from: "urbanclub948@gmail.com",
             to: email,
             subject: "Recuperación de contraseña",
             html: `<title>Recuperación de contraseña</title>

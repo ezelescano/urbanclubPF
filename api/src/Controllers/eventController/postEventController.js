@@ -27,8 +27,9 @@ const postEventController = async (req) => {
         Country,
         Description,
         id_eventPhoto:photoEvent.public_id,
-        eventPhoto:photoEvent.secure_url
+        eventPhoto:photoEvent.secure_url,
     }
+    console.log("primer log", newEvent)
     
    try {
     const newEvents = await Event.create(newEvent);
@@ -36,7 +37,6 @@ const postEventController = async (req) => {
     const ArtistEvent = await Artist.findByPk(id_Artist)
     ArtistEvent.addEvent(newEvents);
 
-    
     return newEvents;
    } catch (error) {
     console.log(error)

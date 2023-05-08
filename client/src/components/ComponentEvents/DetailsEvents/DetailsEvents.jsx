@@ -8,6 +8,9 @@ import style from "./DetailsEvents.module.css";
 import UpdateEvents from "../../updateEvent/UpdateEvents";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Maps from "../../Maps/Maps";
+import axios from "axios";
+import swal from "sweetalert";
+
 function DetailsEvents() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -93,6 +96,7 @@ function DetailsEvents() {
               <button>Reinicar mapa</button>
               <div className={style.links}>
                 Comprar Entrada con Debito o Crédito:
+                <button onClick={buyTicketHandler}>Comprar entrada</button>
                 <a
                   href="https://www.visa.com.ar"
                   target="_blank"
