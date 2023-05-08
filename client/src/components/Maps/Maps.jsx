@@ -7,6 +7,8 @@ function Maps({ location }) {
   const [directions, setDirections] = useState(null);
   const [locationError, setLocationError] = useState(false);
   const [apiLoaded, setApiLoaded] = useState(false);
+  const [searchLocation, setSearchLocation] = useState(null); // nuevo estado para almacenar la dirección de búsqueda original
+
   console.log(directions);
 
   useEffect(() => {
