@@ -51,6 +51,11 @@ function Navbar() {
             Tienda
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/messenger" className="nav-link active">
+            Chat
+          </NavLink>
+        </li>
       </ul>
       {!islogin.isAuthenticated ? (
         <NavLink to="/login">

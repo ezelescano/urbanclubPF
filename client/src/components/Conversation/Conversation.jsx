@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 function Conversation({conversation, currentUser}) {
 
   const [user, setUser] = useState(null)
-  console.log(user)
+  //console.log(user)
 
 useEffect(() => {
   const friendId = conversation.members.find(m => m !== currentUser.id);

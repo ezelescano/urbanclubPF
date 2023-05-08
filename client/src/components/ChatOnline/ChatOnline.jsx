@@ -1,16 +1,47 @@
 import './ChatOnline.css'
-import React from 'react'
+//import React, { useEffect, useState } from 'react'
+import axios from "axios"
 
-function ChatOnline() {
+function ChatOnline({ onlineUser, currentId, setCurrentChat }) {
+
+  /* const [friends, setFriends] = useState([]);
+  const [onlineFriends, setOnlineFriends] = useState([]);
+
+  useEffect(() => {
+   const getFriends = async() => {
+    const res = await axios.get("/artist");
+    setFriends(res.data)
+   }
+   getFriends()
+  },[]) 
+
+  useEffect(() => {
+    console.log(onlineUser)
+    setOnlineFriends(friends.filter((f) => onlineUser.includes(f.id)));
+  },[friends, onlineUser]) */
+  //console.log(onlineUser)
+
+  const handleClick = async(user) => {
+    try {
+      const res = await axios.get(`/conversation/${currentId}/${user.id}`);
+      setCurrentChat(res.data);
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
   return (
     <div className='chatOnline'>
-      <div className='chatOnlineFriend'>
+      {onlineUser.map(o => (
+      <div className='chatOnlineFriend' onClick={() => {handleClick(o)}}>
         <div className="chatOnlineImgContainer">
-        <img className='chatOnlineImg' src='https://www.dzoom.org.es/wp-content/uploads/2020/02/portada-foto-perfil-redes-sociales-consejos.jpg' alt='imagen de perfil'/>
+        <img className='chatOnlineImg' src={o?.profilePhoto} alt='foto perfil'/>
         <span className="chatOnlineBadge"></span>
         </div>
-        <div className="chatOnlineName">John Doe</div>
+        <div className="chatOnlineName">{o?.name}</div>
       </div>
+      ))}
     </div>
   )
 }

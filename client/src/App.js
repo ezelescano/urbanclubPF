@@ -24,11 +24,14 @@ import { Redirect } from 'react-router-dom';
 import AboutEze from "./components/AboutUs/AboutEze";
 import Errors404 from "./components/Error404/Errors404";
 import Messenger from "./components/Messenger/Messenger";
+/* import { io } from "socket.io-client";
+const socket = io("http://localhost:3001"); */
+
 
 function App() {
   const dispatch = useDispatch();
   //const history = useHistory();
-  //const token = useSelector(state => state.auth.token)
+  const user = useSelector(state => state.auth);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -38,6 +41,7 @@ function App() {
         dispatch(logout());
         //history.push('/login');
       } else {
+        const decodedToken = jwtDecode(token);
         dispatch(loginSuccess({ token }));
         const timeout = decodedToken.exp * 1000 - Date.now();
         setTimeout(() => {
@@ -47,6 +51,13 @@ function App() {
       }
     }
   }, [dispatch]);
+
+  /* useEffect(() => {
+    if(user.isAuthenticated){
+      socket.emit("addUser", user.user.id);
+    }
+  },[user])
+ */
 
   return (
     <div>
@@ -68,7 +79,7 @@ function App() {
         <Route path="/messenger" element={<Messenger />} />
         <Route path="*" element={<Errors404 />} />
       </Routes>
-     {/*  <Footer /> */}
+      {window.location.pathname !== '/messenger' && <Footer />}
     </div>
   );
 }

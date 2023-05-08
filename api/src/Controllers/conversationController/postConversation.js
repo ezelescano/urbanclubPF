@@ -1,16 +1,33 @@
 const { Artist, Conversation } = require("../../db");
+const { Op } = require("sequelize");
 
 const postConversation = async(members) => {
   try {
-    const newConversation = await Conversation.create({
-      members: members
-    });
+    //console.log(members)
+    const conversationFound = await Conversation.findOne({
+      where: {
+        members: {
+          [Op.contains]: members
+        }
+      }
+    })
 
-    const artists = await Artist.findAll({ where: { id: members } });
-    await Promise.all(artists.map(artist => artist.addConversation(newConversation)));
+    console.log(conversationFound)
 
-    return newConversation;
-    
+    if(!conversationFound){
+      console.log('entre al if chamo')
+      const newConversation = await Conversation.create({
+         members: members
+       });
+   
+       const artists = await Artist.findAll({ where: { id: members } });
+       await Promise.all(artists.map(artist => artist.addConversation(newConversation)));
+   
+       return newConversation;
+      }
+
+      return conversationFound;
+
   } catch (err) {
     return err;
   }
