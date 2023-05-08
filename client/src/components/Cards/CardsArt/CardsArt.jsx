@@ -13,8 +13,6 @@ const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events }) => {
           <p>{ocupation}</p>
           <h5>About me:</h5>
           <p>{aboutMe}</p>
-          <h5>Eventos:</h5>
-          <p>{Events?.length && Events[0]?.name }</p>
         </div>
       </div>
     </NavLink>

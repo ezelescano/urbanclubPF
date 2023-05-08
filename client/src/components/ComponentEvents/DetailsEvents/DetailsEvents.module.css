@@ -1,23 +1,40 @@
 @import url("https://fonts.cdnfonts.com/css/gorlock");
 @import url("https://fonts.cdnfonts.com/css/straphanger");
-.container {
-  height: 30rem;
-  background: rgba(64, 153, 225, 0.231);
+.backContainer {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  justify-content: center;
   display: flex;
-  flex-direction: row-reverse;
-  object-fit: cover;
+  height: 100%;
+  padding-block: 5%;
 }
+.container {
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  object-fit: cover;
+  align-items: center;
+  min-width: 80%;
+  max-height: 1000px;
+}
+
 .img_Es {
   display: flex;
   justify-content: right;
-  border-radius: 5px solid;
-  width: 40%;
   object-fit: cover;
 }
 .img_Es img {
-  width: 100%;
-  border-radius: 100%;
+  max-width: 350px;
+  max-height: 250px;
+  border-radius: 15px;
   object-fit: cover;
+  filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.799));
 }
 
 .Description {
@@ -27,7 +44,8 @@
   flex-direction: column;
   align-content: center;
   flex-flow: column wrap;
-  width: 80%;
+  width: 30%;
+  flex-basis: 50%;
 }
 
 .Description img {
@@ -47,4 +65,11 @@
 }
 .links a svg {
   font-size: 35px;
+}
+/*El Lugar en el mapa*/
+.maps {
+  margin-left: auto;
+  height: 100%;
+  width: 50%;
+  overflow: visible;
 }

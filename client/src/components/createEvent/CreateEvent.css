@@ -4,9 +4,8 @@
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  height: 300vh;
+  height: 130vh;
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,9 +18,9 @@
   justify-content: space-around;
   align-items: center;
   width: 1000px;
-  height: 700px;
+  height: 1030px;
   max-width: 80vw;
-  max-height: 88vh;
+  max-height: 118vh;
   padding: 50px;
   border-radius: 5px;
 }
@@ -77,7 +76,7 @@
 }
 .createEventRight {
   max-width: 400px;
-  height: 570px;
+  height: 770px;
 }
 .formInputs {
   display: flex;

@@ -3,8 +3,12 @@ import Carousel from "../Carousel/Carousel.jsx";
 import style from "../HomePage/HomePage.module.css";
 import HomeArt from "../HomePage/HomeArt.jsx";
 import Events from "../Events/Events.jsx";
+import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   const images = [
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/3_kaor4h.jpg",
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/6_xuxple.jpg",
@@ -36,9 +40,17 @@ const HomePage = () => {
       <div className={style.events}>
         <h1 className={style.title}>Eventos más populares</h1>
         <br />
-        <div>
+        <div className={style.eventsCardsContainer}>
           <Events />
         </div>
+      </div>
+      <div className={style.moreEvents}>
+        <NavLink to="/events" onClick={scrollToTop}>
+          <button className={style.moreEventsButton}>
+            ¿Quieres ver más eventos?
+          </button>{" "}
+        </NavLink>
+        <br />
       </div>
     </div>
   );

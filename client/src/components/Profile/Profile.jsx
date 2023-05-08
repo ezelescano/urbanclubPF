@@ -19,8 +19,9 @@ import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import Settings from "../Settings/Settings";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import UpdatePassword from "../UpdatePassword/UpdatePassword";
-import Error404 from "../Error404/Errors404"
-import {getAllEvents } from "../../redux/eventSlice";
+import Error404 from "../Error404/Errors404";
+import CreateEvent from "../createEvent/CreateEvent";
+import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import loading from "../../img/loading.gif";
 
@@ -31,7 +32,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth.user);
-  const errorId = useSelector((state)=> state.artist.errorId)
+  const errorId = useSelector((state) => state.artist.errorId);
 
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -91,8 +92,6 @@ const Profile = () => {
     };
   }, []);
 
-
-
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
   };
@@ -121,7 +120,7 @@ const Profile = () => {
     // const confirmed = window.confirm(
     //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
     // );
-    
+
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
