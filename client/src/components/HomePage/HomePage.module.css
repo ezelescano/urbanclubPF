@@ -82,7 +82,7 @@
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+  margin-block: 50px;
 }
 .moreEventsButton:hover {
   background-color: black;
@@ -90,4 +90,5 @@
   transform: scale(1.1);
   margin-bottom: 10px;
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.8);
+  margin-block: 50px;
 }

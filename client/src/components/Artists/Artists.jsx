@@ -24,16 +24,16 @@ const Artists = () => {
     async function asynGetArtists() {
       // You can await here
       setIsLoading(true);
-      
+
       await dispatch(getAllArts());
-      
+
       setIsLoading(false);
       // ...
     }
 
     asynGetArtists();
     //dispatch(cleanArtists);
-     return dispatch(cleanArtists);
+    return dispatch(cleanArtists);
   }, [dispatch]);
 
   const [ocupation, setOcupation] = useState("");
@@ -46,8 +46,7 @@ const Artists = () => {
     handlesFilter();
   }, [ocupation, country, orden]);
 
-  const filterOcupacionForMap = 
-  [
+  const filterOcupacionForMap = [
     "Bailarin",
     "Cantante",
     "Musico",
@@ -59,7 +58,7 @@ const Artists = () => {
     let artist = [...usuario];
     const ubicacion = country;
     const events = orden;
-    console.log("?????????MEEEEEEESI",artist);
+    console.log("?????????MEEEEEEESI", artist);
     if (ocupation !== "" || country !== "" || orden !== "") {
       console.log("ENTRANDO AL IF");
       // if (ocupation !== "")
@@ -73,7 +72,7 @@ const Artists = () => {
       // if (orden === "descending")
       //   artist = artist.sort((a, z) => z.Events.localeCompare(a.Events));
       setIsLoading(true);
-      dispatch(FilterArtists(ocupation, ubicacion ,orden));
+      dispatch(FilterArtists(ocupation, ubicacion, orden));
       setIsLoading(false);
     } else {
       setIsLoading(true);
@@ -139,7 +138,7 @@ const Artists = () => {
           )}
           {!isLoading && artistas.length > 0
             ? artistas.map((item) => {
-              // console.log(artistas);
+                // console.log(artistas);
                 let ocupacion;
                 item.ocupation !== undefined
                   ? (ocupacion = item.ocupation)
