@@ -53,7 +53,7 @@ const CreateEvent = () => {
   }
 
   function handleOnChange(e) {
-    // console.log("errores///", errors.password);
+
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -100,7 +100,7 @@ const CreateEvent = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    //console.log(errors);
+   
     if (!input.name.length) {
       await swal({
         title: "ERROR",
@@ -241,7 +241,7 @@ const CreateEvent = () => {
                   <label htmlFor="date">Fecha:</label>
                   <br />
                   <input
-                    type="text"
+                    type="date"
                     value={input.date}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
@@ -316,7 +316,7 @@ const CreateEvent = () => {
                   )}
                   {!isLoading && (
                     <button className="submitButton" type="submit">
-                      Registrarse
+                      Guardar
                     </button>
                   )}
                   <div className="loadingGif"></div>

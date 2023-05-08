@@ -8,14 +8,14 @@ const deleteEvent = async (idEvent) => {
     } else {
         const delPhoto = await Event.findOne({ where: { id: idEvent } })
         if (delPhoto.id_eventPhoto) {
-            console.log("foto",delPhoto.id_eventPhoto)
+           
             cloudiconfig();
             await  DeletePhoto(delPhoto.id_eventPhoto)
         }
        
         
         const delInfo = await Event.destroy({ where: { id: idEvent } })
-        console.log(delInfo)
+        
         if (!delInfo) {
             throw new Error(`No event was found with that ${idEvent}`)
         }

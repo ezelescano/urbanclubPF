@@ -3,12 +3,12 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 const { PASSWORD_EMAIL} = process.env;
 const forgotPassword = async (email) => {
-    console.log(email)
+    
     if (!email){
         throw new Error("No se especificó el email");
     } else {
         const artist = await Artist.findOne({where: {email: email}});
-        console.log(artist, artist.id);
+     
         if (!artist){
             throw new Error("No se encontró el artista en la base de datos");
         }
@@ -60,7 +60,6 @@ const forgotPassword = async (email) => {
 
         const info = await transport.sendMail(mensaje);
 
-        console.log(info);
     }
 }
 

@@ -7,7 +7,7 @@ const updateEventHandler = async (req, res) => {
         const updaEvent = await updateEvent (req);
         res.status(200).json(updaEvent);
     } catch (error) {
-        console.log(error)
+        
         res.status(400).json({error})
     }
 }
