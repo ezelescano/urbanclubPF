@@ -45,7 +45,7 @@ export const eventSlice = createSlice({
   }
 });
 
-export const upEvent = (id, input) => {
+export const upEvent = (input,id) => {
   return async (dispatch) => {
     try {
       const eventDB = await axios.put(`/events/update/${id}`, input);

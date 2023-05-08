@@ -128,16 +128,16 @@ function Formulario({id,event}) {
     // formData.append("id_Artist", id)
     await dispatch(upEvent(formData,id));
     await dispatch(getDetailEvents(id))
-    // if (sucess) {
-    //   swal({
-    //     title: "DATOS GUARDADOS",
-    //     text: "Evento actualizado correctamente",
-    //     icon: "success",
-    //     buttons: "Aceptar",
-    //   }).then(res=>{
-    //     navigate(`/profile/${user.id}`)
-    //   })
-    // }
+   
+      swal({
+        title: "DATOS GUARDADOS",
+        text: "Evento actualizado correctamente",
+        icon: "success",
+        buttons: "Aceptar",
+      }).then(res=>{
+        navigate(`/profile/${user.id}`)
+      })
+   
      
   }
 

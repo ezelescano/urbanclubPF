@@ -9,20 +9,59 @@ import UpdateEvents from "../../updateEvent/UpdateEvents";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Maps from "../../Maps/Maps";
 function DetailsEvents() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
-    const {id} = useParams();
-     const {detailEvent} = useSelector(state=>state.events)
-     const islogin = useSelector((state) => state.auth);
-  const [event,setEvent] = useState({})
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const { id } = useParams();
+  const { detailEvent } = useSelector(state => state.events)
+  const islogin = useSelector((state) => state.auth);
+  const [event, setEvent] = useState({})
+  const [destino, setDestino] = useState({
+    city: "",
+    Country: "",
+    ban: false
+  })
 
-    useEffect( () => {
-     const getEvent = async ()=>{
+  useEffect(() => {
+    const getEvent = async () => {
       const event = await dispatch(getDetailEvents(id));
       setEvent(event.payload)
-     }
-     getEvent();
-    }, [dispatch,id]);
+    }
+    getEvent();
+  }, [dispatch, id]);
+
+  const ubicationHandler = () => {
+    console.log(destino.Country)
+    if ((destino.city === "" || !destino.city) ||
+      (destino.Country === "" || !destino.Country)) {
+      setDestino({
+        ...destino,
+        ban: false
+      })
+    } else {
+      setDestino({
+        ...destino,
+        ban: true
+      })
+    }
+    console.log(destino)
+  }
+  const getdestinohandler = (e) => {
+
+   if ((destino.city === "" || !destino.city) ||
+      (destino.Country === "" || !destino.Country)) {
+      setDestino({
+        ...destino,
+        ban: false
+      })
+    }
+    setDestino({
+      ...destino,
+      [e.target.name]: e.target.value,
+    })
+   
+
+
+  }
   return (
     <>
       <div className={style.backContainer}>
@@ -43,7 +82,15 @@ function DetailsEvents() {
               </h5>
               <h4>PRECIO</h4>
               <h5> U$S {detailEvent.price}</h5>
-              {/* <p>{detailEvent.Description}</p> //!necesitamos una descripcion  */}
+              <h4>Descripcion</h4>
+              <p>{detailEvent.Description}</p>
+              <br />
+              <label htmlFor="">cual es tu pais</label>
+              <input type="text" name="Country" onChange={getdestinohandler} />
+              <label htmlFor="">cual es tu ciudad</label>
+              <input type="text" name="city" onChange={getdestinohandler} />
+              <button onClick={ubicationHandler}>buscar ubicacion</button>
+              <button>Reinicar mapa</button>
               <div className={style.links}>
                 Comprar Entrada con Debito o Crédito:
                 <a
@@ -63,18 +110,37 @@ function DetailsEvents() {
                   <StoreMallDirectoryIcon />
                 </a>
               </div>
+              <br></br>
+
             </div>
+
+
           ) : islogin.isAuthenticated ? (
             <UpdateEvents id={id} event={detailEvent} />
           ) : (
             <div></div>
-          )}
+          )
+          }
           <br></br>
+          <br></br>
+          <br></br>
+          {
+
+            destino.ban === true ?
+              (
+                <div className={style.maps}>
+                  <Maps city={detailEvent.Country} country={detailEvent.city}
+                    Dcity={destino.city} Dcountry={destino.country} />
+                </div>
+              ) : (<div></div>)
+          }
+          {/* <br></br>
           <br></br>
           <br></br>
           <div className={style.maps}>
-            <Maps location={detailEvent.location} />
-          </div>
+            <Maps location={detailEvent.location}/>
+          </div> */}
+
         </div>
       </div>
     </>

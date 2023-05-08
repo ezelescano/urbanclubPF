@@ -115,7 +115,7 @@ const CreateEvent = () => {
     formData.append("id_Artist", id)
      await dispatch(postEvent(formData));
      setIsLoading(false);
-     swal({
+    swal({
       title: "EVENTO CREADO CORRECTAMENTE",
       text: `Exitos con tu evento`,
       icon: "success",
