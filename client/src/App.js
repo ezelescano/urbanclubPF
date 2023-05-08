@@ -70,9 +70,9 @@ function App() {
         <Route path="/merch" element={<Merch />} />
         <Route path="/createevent/:id" element={<CreateEvent />} />
         <Route path="/createeventtemplate" element={<CreateEventTemplate />} />
-        <Route path="/About/estiven" element={<AboutEstiven />} />
+        <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
-        <Route path="/About/eze" element={<AboutEze />} />
+        <Route path="/About/Eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
         <Route path="/updateEvent" element={<UpdateEvents/>} />
         <Route path="/forgotPassword" element={<ForgotPassword />}/>

@@ -69,3 +69,6 @@
 .containerFilters button:focus {
   outline: none;
 }
+.selectedFilters{
+  color:white;
+}

@@ -36,7 +36,8 @@
   color: #6c6c6c;
   box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.937);
   animation: pulse 1.5s forwards infinite;
-  transition: all 2.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.0155);
 }
 
 .text {

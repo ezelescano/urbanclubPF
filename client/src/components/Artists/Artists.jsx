@@ -18,6 +18,7 @@ const Artists = () => {
   const category = useSelector((state) => state.artist.categoria);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,29 +59,36 @@ const Artists = () => {
     let artist = [...usuario];
     const ubicacion = country;
     const events = orden;
-    console.log("?????????MEEEEEEESI", artist);
+
     if (ocupation !== "" || country !== "" || orden !== "") {
-      console.log("ENTRANDO AL IF");
-      // if (ocupation !== "")
-      //   artist = artist.filter(
-      //     (artist) => artist.ocupation && artist.ocupation.includes(ocupation)
-      //   );
-      // if (country !== "")
-      //   artist = artist.filter((artist) => artist.Country === country);
-      // if (orden === "ascending")
-      //   artist = artist.sort((a, z) => a.Events.localeCompare(z.Events));
-      // if (orden === "descending")
-      //   artist = artist.sort((a, z) => z.Events.localeCompare(a.Events));
       setIsLoading(true);
       dispatch(FilterArtists(ocupation, ubicacion, orden));
       setIsLoading(false);
+
+      // Add selected filters to the state
+      const newFilters = [];
+      if (ocupation !== "") newFilters.push(ocupation);
+      if (country !== "") newFilters.push(country);
+      if (orden !== "") newFilters.push(orden);
+      setSelectedFilters(newFilters);
     } else {
       setIsLoading(true);
       dispatch(getAllArts(artist));
       setIsLoading(false);
+
+      // Clear selected filters
+      setSelectedFilters([]);
     }
   };
+  const handleRemoveFilter = (filter) => {
+    const newFilters = selectedFilters.filter((f) => f !== filter);
+    setSelectedFilters(newFilters);
 
+    // Remove filter from the form
+    if (ocupation === filter) setOcupation("");
+    if (country === filter) setCountry("");
+    if (orden === filter) setOrden("");
+  };
   return (
     <div className={style.ourPage}>
       <div className={style.container}>
@@ -130,6 +138,14 @@ const Artists = () => {
               Limpiar
             </button>
           </form>
+          <div className={style.selectedFilters}>
+            {selectedFilters.map((filter) => (
+              <div key={filter} className={style.selectedFilter}>
+                <span>{filter}</span>
+                <button onClick={() => handleRemoveFilter(filter)}>X</button>
+              </div>
+            ))}
+          </div>
         </div>
         <div className={style.containerArtists}>
           {isLoading && (
