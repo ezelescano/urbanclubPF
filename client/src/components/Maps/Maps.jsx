@@ -80,7 +80,7 @@ function Maps({ location }) {
                   map: mapInstance,
                   directions: result,
                 });
-                console.log(directions);
+              console.log(directions);
             } else {
               console.log("Directions request failed due to " + status);
             }
@@ -111,9 +111,13 @@ function Maps({ location }) {
             border: "1px solid #ccc",
             borderRadius: "10px",
             padding: "20px",
+            boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.3)",
+            cursor: "help",
           }}
         >
-          <p style={{ marginBottom: "10px" }}>No se le puede ubicar {":("}</p>
+          <p style={{ marginBottom: "10px" }}>
+            No se pudo proporcionar una ubicación de referencia {":("}
+          </p>
         </div>
       ) : (
         <div id="map" style={{ width: "100%", height: "100%" }} />
