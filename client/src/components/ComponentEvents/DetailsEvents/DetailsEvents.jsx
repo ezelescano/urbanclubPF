@@ -19,18 +19,9 @@ function DetailsEvents() {
   const islogin = useSelector((state) => state.auth);
 
   const [event, setEvent] = useState({});
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const { detailEvent } = useSelector((state) => state.events);
-  const islogin = useSelector((state) => state.auth);
-
-  const [event, setEvent] = useState({});
 
   const [cantidad, setCantidad] = useState(0);
-  useEffect(() => {
-    const getEvent = async () => {
-  const [cantidad, setCantidad] = useState(0);
+  
   useEffect(() => {
     const getEvent = async () => {
       const event = await dispatch(getDetailEvents(id));
