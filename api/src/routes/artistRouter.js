@@ -32,30 +32,32 @@ artistRouter.put("/forgotPassword", forgotPasswordHandler)
 
 artistRouter.get(
     "/auth/google",
-    passport.authenticate("google", {
-      scope: [
-          "profile", 
-          "email"
-      ]
-  }),
-(req, res, next) => {
+    passport.authenticate("google", { 
+      prompt: 'select_account' 
+    }),
+// (req, res, next) => {
   // Esta función se ejecutará solo si la autenticación falla
-  res.status(401).json({ error: "Autenticación fallida" });
-}
+  // res.status(401).json({ error: "Autenticación fallida" });
+// }
 );
 
 artistRouter.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     failureMessage: "no se pudo iniciar sesion con google",
-    failureRedirect: "/auth/google",
+    failureRedirect: "http://localhost:3000/login", //! una direccion de front 
+    successRedirect: "http://localhost:3000/login/success"
     // session: false,
     }),
     (req, res) => {
   
       try{
     //   const userString = JSON.stringify(req.user);
+<<<<<<< Updated upstream
     
+=======
+      console.log('se envia respuesta', req.user);
+>>>>>>> Stashed changes
       
       res.send(req.user
         // ` 
