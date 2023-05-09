@@ -30,13 +30,13 @@ const HomePage = () => {
         </div>
         <br />
       </div>
-      <div className={style.products}>
-        <br />
+      {/* <div className={style.products}>
+        <br /> // ! tienda comentada por ahora
         <h1 className={style.title}>Productos más populares</h1>
         <br />
         <div className={style.eldivdeeu}></div>
         <br />
-      </div>
+      </div> */}
       <div className={style.events}>
         <h1 className={style.title}>Eventos más populares</h1>
         <br />
