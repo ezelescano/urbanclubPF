@@ -3,7 +3,11 @@ import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
+<<<<<<< Updated upstream
 import GoogleButton from "react-google-button";
+=======
+import GoogleButton from "../GoogleButton/googleButton"
+>>>>>>> Stashed changes
 
 function Login() {
   const dispatch = useDispatch();
@@ -87,7 +91,11 @@ function Login() {
             <label>
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
+<<<<<<< Updated upstream
             <GoogleButton onClick={handleClick} style={{display: "none"}}/>
+=======
+            <GoogleButton></GoogleButton>
+>>>>>>> Stashed changes
           </div>
         </form>
       </div>
