@@ -197,7 +197,7 @@ const CreateEvent = () => {
                   />
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="name">Cuidad:</label>
+                  <label htmlFor="name">Ciudad:</label>
                   <br />
                   <input
                     placeholder={errors.name}
@@ -316,7 +316,7 @@ const CreateEvent = () => {
                   )}
                   {!isLoading && (
                     <button className="submitButton" type="submit">
-                      Guardar
+                      Crear el evento
                     </button>
                   )}
                   <div className="loadingGif"></div>
