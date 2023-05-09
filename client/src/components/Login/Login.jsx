@@ -14,11 +14,13 @@ function Login() {
   });
 
   const handleClick = async () => {
-    const googleLoginURL = "http://localhost:3001/artist/auth/google"
-    const newWindow = window.open(googleLoginURL, "blank", "width=500, height=600");
-    
-  }
-
+    const googleLoginURL = "http://localhost:3001/artist/auth/google";
+    const newWindow = window.open(
+      googleLoginURL,
+      "blank",
+      "width=500, height=600"
+    );
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -87,7 +89,7 @@ function Login() {
             <label>
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
-            <GoogleButton onClick={handleClick} style={{display: "none"}}/>
+            <GoogleButton onClick={handleClick} style={{ display: "none" }} />
           </div>
         </form>
       </div>
