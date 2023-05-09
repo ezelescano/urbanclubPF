@@ -36,19 +36,20 @@ function Navbar() {
         </li>
         <li>
           <NavLink to="/aboutus" className={`${style.navLink} ${style.active}`}>
-            Nosotros
+            Acerca de
           </NavLink>
         </li>
         <li>
           <NavLink to="/events" className={`${style.navLink} ${style.active}`}>
             Eventos
           </NavLink>
-        </li>  
-        {/* <li>  // ! Comentada la tienda
+        </li>
+
+        <li>
           <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
             Tienda
           </NavLink>
-        </li> */}
+        </li>
         {islogin.isAuthenticated && 
         <li>
         <NavLink to="/messenger" className="nav-link active">
@@ -84,11 +85,11 @@ function Navbar() {
               Eventos
             </NavLink>
           </li>
-          {/* <li>  // ! Comentada la tienda
+          <li>
             <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
               Tienda
             </NavLink>
-          </li> */}
+          </li>
         </ul>
       </div>
 

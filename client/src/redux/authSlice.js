@@ -26,7 +26,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginSuccess(state, action) {
+    loginSuccess(state, action){
       const artist = jwt_decode(action.payload.token); // Acá te lo decodifica ###
       localStorage.setItem("token", action.payload.token);
       //localStorage.setItem("user", JSON.stringify(artist));
@@ -37,50 +37,50 @@ export const authSlice = createSlice({
       state.error = null;
     },
 
-    loginFailure(state, action) {
+    loginFailure(state, action){
       return {
         ...state,
         error: action.payload,
       };
     },
 
-    logout(state) {
-      localStorage.removeItem('token');
-      //localStorage.removeItem('user');
-      state.isAuthenticated = false;
-      state.token = null;
-      state.user = {};
-      state.error = null;
-    }
+    logout(state){
+        localStorage.removeItem('token');
+        //localStorage.removeItem('user');
+        state.isAuthenticated = false;
+        state.token = null;
+        state.user = {};
+        state.error = null;
+       }
   }
 });
 
 export const login = (payload, navigate) => {
-  return async (dispatch) => {
+  return async(dispatch) => {
     try {
       const response = await axios.post('/artist/login', payload);
       const data = response.data;
       dispatch(loginSuccess(data));
       swal({
-        title: "Inicio de sesión exitoso",
-        text: `Bienvenido`,
+        title: "LOGUEO EXITOSO",
+        text:  `Bienvenido`,
         icon: "success",
         buttons: "Aceptar"
-      }).then(res => {
-        if (res) {
-          navigate("/artists")
-        }
-      })
-
-
+     }).then(res=>{
+      if (res) {
+        navigate("/artists")
+      } 
+     })
+  
+      
     } catch (e) {
       dispatch(loginFailure(e))
       swal({
         title: "DATOS INVÁLIDOS",
-        text: `Datos Inválidos, Por favor Revisar`,
+        text:  `Datos Inválidos, Por favor Revisar`,
         icon: "warning",
         buttons: "Aceptar"
-      })
+     })
     }
   }
 };
