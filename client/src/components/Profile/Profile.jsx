@@ -155,8 +155,8 @@ const Profile = () => {
 
   const handleLogout = () => {
     swal({
-      title: "CERRAR SESION",
-      text: `Deseas cerrar la sesion de ${name}`,
+      title: "CERRAR SESIÓN",
+      text: `Deseas cerrar la sesión de ${name}`,
       icon: "warning",
       buttons: ["No", "Si"],
     }).then((res) => {
