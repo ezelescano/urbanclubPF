@@ -29,14 +29,6 @@ function Login() {
       password: "",
     });
   };
-  //navigate("/artist");
-  //Esto es para debuggear, No dejar en produccion #####porfavor#####.
-  //const token = response.data.token;
-  /*  const artist = jwt_decode(token); // Acá te lo decodifica ###
-      localStorage.setItem("token", token);
-      localStorage.setItem("artist", JSON.stringify(artist)); */
-  // No funciona más en esta version history.push("/home");
-  //Acá te lo muestra ###
   return (
     <div className={styles.formularioExternoLogin}>
       <div
