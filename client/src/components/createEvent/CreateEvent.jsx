@@ -222,7 +222,7 @@ const CreateEvent = () => {
                   />
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="location">Direccion:</label>
+                  <label htmlFor="location">Dirección:</label>
                   <br />
                   <input
                     placeholder={errors.location}
@@ -294,10 +294,10 @@ const CreateEvent = () => {
                 </div>
                 
                 <div className="inputContainer">
-                  <label htmlFor="">TOTAL USD: {input.price*input.stock}</label>
+                  <label htmlFor="">TOTAL $USD: {input.price*input.stock}</label>
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="D">Describe qué se hará</label>
+                  <label htmlFor="D">Descripción del evento:</label>
                   <br />
                   <textarea
                     placeholder={

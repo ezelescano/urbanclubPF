@@ -3,7 +3,7 @@ import style from "./CardsArt.module.css";
 import { NavLink } from "react-router-dom";
 import OcupationTag from "./OcupationTag";
 
-const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events }) => {
+const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events, Country }) => {
   
   const ocupationRows = ocupation.split(",").map((ocupation) => 
   {
@@ -32,6 +32,9 @@ const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events }) => {
           <div>{ocupationRows}</div>
           <h5>Sobre mí:</h5>
           <p>{aboutMe}</p>
+          {/* <h5>Ubicacion:</h5> */}
+          <h4>{Country}</h4>
+          
         </div>
       </div>
     </NavLink>

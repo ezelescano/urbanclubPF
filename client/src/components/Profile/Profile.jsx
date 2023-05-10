@@ -77,7 +77,7 @@ const Profile = () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
     };
-  }, [id]);
+  }, []);
 
   // const [prevId, setPrevId] = useState(id);
 
@@ -149,8 +149,8 @@ const Profile = () => {
 
   const handleLogout = () => {
     swal({
-      title: "CERRAR SESION",
-      text: `Deseas cerrar la sesion de ${name}`,
+      title: "CERRAR SESIÓN",
+      text: `Deseas cerrar la sesión de ${name}`,
       icon: "warning",
       buttons: ["No", "Si"],
     }).then((res) => {
@@ -182,7 +182,10 @@ const Profile = () => {
       .then(async (res) => {
         if (res && islogin.isAuthenticated) {
           dispatch(deleteEvent(id));
-          window.location.reload()
+          setTimeout(() => {
+            window.location.reload()
+          }, 1000);
+          // window.location.reload()
           // navigate(`/profile/${id}`);
            swal({
             title: "EVENTO ELIMINADO",
