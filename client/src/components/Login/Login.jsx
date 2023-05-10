@@ -3,11 +3,8 @@ import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
-import GoogleButton from "../GoogleButton/googleButton";
 
-//Temporal:
-import { gapi } from "gapi-script";
-import GoogleLogin from "react-google-login";
+import GoogleButton from "../GoogleButton/googleButton"
 
 function Login() {
   const dispatch = useDispatch();
@@ -34,50 +31,6 @@ function Login() {
       password: "",
     });
   };
-
-  // /*En pruebas lo de Google Login: */
-  // const clientID =
-  //   "155420643556-kumc4k1g46jq1bmoqqjavm5h9ltas5ok.apps.googleusercontent.com";
-  // const [user, setUser] = useState({});
-  // const [loggedIn, setLoggedIn] = useState(false);
-
-  // const onSuccess = (response) => {
-  //   const token = generateToken(64);
-  //   setUser({
-  //     ...response.profileObj,
-  //     userId: response.googleId,
-  //     email: response.profileObj.email,
-  //     token: token,
-  //   });
-  //   setLoggedIn(true);
-  //   localStorage.setItem("token", token);
-  // };
-  // const onFailure = (response) => {
-  //   console.log("Something went wrong");
-  // };
-  // const handleLogout = () => {
-  //   setUser({});
-  //   setLoggedIn(false);
-  //   localStorage.removeItem("token");
-  // };
-  // function generateToken(length) {
-  //   const buffer = new Uint8Array(length / 2);
-  //   crypto.getRandomValues(buffer);
-  //   return Array.prototype.map
-  //     .call(buffer, (x) => ("0" + x.toString(16)).slice(-2))
-  //     .join("");
-  // }
-
-  // useEffect(() => {
-  //   function start() {
-  //     gapi.client.init({
-  //       clientId: clientID,
-  //     });
-  //   }
-  //   gapi.load("client:auth2", start);
-  //   //Esto es solo para eliminar el token al refrescar:
-  // }, []);
-  // console.log(loggedIn, handleLogout);
   return (
     <div className={styles.formularioExternoLogin}>
       <div
@@ -129,6 +82,7 @@ function Login() {
             <label>
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
+            <GoogleButton></GoogleButton>
           </div>
         </form>
       </div>
