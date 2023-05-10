@@ -182,7 +182,9 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 Registrate a<br></br> <b>Urban Club!</b>
               </label>
             </div> */}
+          <h4>Edite su perfil</h4>Cambie su foto:
           <input type="file" name="profilePhoto"></input>
+          Cambie su Portada:
           <input type="file" name="coverPhoto"></input>
           <div className="form-container__middle">
             <label className="required">

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
+
 import GoogleButton from "../GoogleButton/googleButton"
 
 function Login() {
@@ -13,13 +14,6 @@ function Login() {
     password: "",
   });
 
-  const handleClick = async () => {
-    const googleLoginURL = "http://localhost:3001/artist/auth/google"
-    const newWindow = window.open(googleLoginURL, "blank", "width=500, height=600");
-    
-  }
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(login(input, navigate));
@@ -28,14 +22,6 @@ function Login() {
       password: "",
     });
   };
-  //navigate("/artist");
-  //Esto es para debuggear, No dejar en produccion #####porfavor#####.
-  //const token = response.data.token;
-  /*  const artist = jwt_decode(token); // Acá te lo decodifica ###
-      localStorage.setItem("token", token);
-      localStorage.setItem("artist", JSON.stringify(artist)); */
-  // No funciona más en esta version history.push("/home");
-  //Acá te lo muestra ###
   return (
     <div className={styles.formularioExternoLogin}>
       <div
@@ -91,6 +77,28 @@ function Login() {
           </div>
         </form>
       </div>
+      {/* PRIMER INTENTO DE GOOGLE LOGIN */}
+      {/* <div>
+        <h1>Login</h1>
+        <div>
+          <GoogleLogin
+            clientId={clientID}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            buttonText="Continue with Google"
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
+        {loggedIn && (
+          <div>
+            <img src={user.imageUrl} alt="User Profile" />
+            <h3>{user.name}</h3>
+            <p>Email: {user.email}</p>
+            <p>User ID: {user.userId}</p>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        )}
+      </div> */}
     </div>
   );
 }

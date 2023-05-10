@@ -26,11 +26,7 @@ const forgotPassword = async (email) => {
             from: "urbanclub948@gmail.com",
             to: email,
             subject: "Recuperación de contraseña",
-            html: `
-            <div style="background-color: black; padding: 10px 20px; text-align: center;">
-                <img src="https://media.discordapp.net/attachments/1097579150350487605/1105670284289249330/our_logo-removebg-preview.png" alt="urbanClub! Logo" style="max-width: 400px;">
-            </div>
-            <title>Recuperación de contraseña</title>
+            html: `<title>Recuperación de contraseña</title>
             </head>
             <body>
                 <h2>Recuperación de contraseña</h2>
