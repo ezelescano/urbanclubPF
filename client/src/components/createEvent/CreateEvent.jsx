@@ -52,8 +52,19 @@ const CreateEvent = () => {
     return errors;
   }
 
-  function handleOnChange(e) {
+  function handleOnBlur(e) {
+    if(e.target.name === "price"){
+      if (!e.target.value.includes("."))
+        e.target.value = e.target.value + ".00"
+      else if (e.target.value.split(".").pop().length>2)
+        e.target.value = e.target.value.split(".").shift().concat(".",e.target.value.split(".").pop().substring(0,2)) 
+        //con regex es mas corto, pero para repasar arrays y strings...
+      }
+    handleOnChange(e)
+  }
 
+  function handleOnChange(e) {
+    
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -183,7 +194,7 @@ const CreateEvent = () => {
                 </div>
 
                 <div className="inputContainer">
-                  <label htmlFor="name">Pais:</label>
+                  <label htmlFor="name">Ciudad:</label>
                   <br />
                   <input
                     placeholder={errors.name}
@@ -197,7 +208,7 @@ const CreateEvent = () => {
                   />
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="name">Ciudad:</label>
+                  <label htmlFor="name">Pais:</label>
                   <br />
                   <input
                     placeholder={errors.name}
@@ -243,6 +254,7 @@ const CreateEvent = () => {
                   <input
                     type="date"
                     value={input.date}
+                    min={new Date().toISOString().split('T')[0]}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
                     name="date"
@@ -259,6 +271,7 @@ const CreateEvent = () => {
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
                     name="stock"
+                    min="1"
                     maxLength={35}
                     required
                   />
@@ -270,11 +283,11 @@ const CreateEvent = () => {
                   <input
                     placeholder={errors.price}
                     type="number"
-                    step="0.01"
                     value={input.price}
                     onChange={handleOnChange}
-                    onBlur={handleOnChange}
+                    onBlur={handleOnBlur}
                     name="price"
+                    min="1"
                     maxLength={35}
                     required
                   />

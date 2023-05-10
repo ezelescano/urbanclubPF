@@ -48,6 +48,7 @@
   max-height: 200px;
   top: 40%;
   left: 50%;
+  padding: 2px;
   transform: translate(
     -50%,
     15%
@@ -77,6 +78,13 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.text div{ /* Alineamos ocupationTag al centro y que sean multilinea (OJO si se crean muchas mas ocupaciones, hay que limitar)*/
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center; 
+}
+
 .Link {
   text-decoration: none;
 }
