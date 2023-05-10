@@ -77,7 +77,13 @@ function App() {
         <Route path="/login/success" element={<LoginSuccess />}></Route>
         <Route path="/register" element={<Register />} />
         <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/profileEdit/:id" element={user.isAuthenticated ? (<ProfileEdit />) : (<Navigate to="/login" />)} />
+        <Route
+          path="/profileEdit/:id"
+          element={
+            user.isAuthenticated ? <ProfileEdit /> : <Navigate to="/login" />
+          }
+        />
+
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
@@ -98,6 +104,8 @@ function App() {
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
+      {window.location.pathname !== "/messenger" && <Footer />}
+
       {window.location.pathname !== '/messenger' && <Footer />}
 
 
