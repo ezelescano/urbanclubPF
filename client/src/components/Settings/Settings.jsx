@@ -18,7 +18,7 @@ function Settings({
         <button onClick={handleShowEdit}>Editar perfil</button>
       </div>
       <div className={style.divSettings}>
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleLogout}>Cerrar sesión</button>
       </div>
       <div className={style.divSettings}>
         <button onClick={handlePasswordChange}>Cambiar contraseña</button>

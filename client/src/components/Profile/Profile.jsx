@@ -65,29 +65,23 @@ const Profile = () => {
   const { id } = useParams();
   const eventosRef = useRef(null);
 
-  /*   const token = localStorage.getItem("token");
- if (!token) {
-    // Redirigir a la página de inicio de sesión
-    alert('inicia sesion')
-    navigate("/login");
-    return
-  } */
   useEffect(() => {
-    // const even = await dispatch(getAllEvents());
-    // console.log(even);
     setIsLoading(true);
     dispatch(getArtistId(id));
     setIsLoading(false);
-    // even.payload.map((item,index)=>{
-    // if (item.id === usu.payload.id) {
-    //   setEventconut(item.Events.length)
-    //   }})
 
     return async () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
     };
-  }, [id]);
+  }, []);
+
+  // const [prevId, setPrevId] = useState(id);
+
+  // if (id !== prevId) {
+  //   setPrevId(id);
+  //   navigate(`/profile/${id}`);
+  // }
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
@@ -152,8 +146,8 @@ const Profile = () => {
 
   const handleLogout = () => {
     swal({
-      title: "CERRAR SESION",
-      text: `Deseas cerrar la sesion de ${name}`,
+      title: "CERRAR SESIÓN",
+      text: `Deseas cerrar la sesión de ${name}`,
       icon: "warning",
       buttons: ["No", "Si"],
     }).then((res) => {
@@ -179,21 +173,26 @@ const Profile = () => {
       text: `Estas seguro de eliminar el evento ${name} `,
       icon: "warning",
       buttons: ["No", "Si"],
-    }).then(async (res) => {
-      if (res && islogin.isAuthenticated) {
-        dispatch(deleteEvent(id));
-        window.location.reload();
-        // navigate(`/profile/${id}`);
-        swal({
-          title: "EVENTO ELIMINADO",
-          text: `Evento  ${name} eliminado con exito`,
-          icon: "success",
-          buttons: "Aceptar",
-        });
-      }
-    });
-  };
-
+    })
+      .then(async (res) => {
+        if (res && islogin.isAuthenticated) {
+          dispatch(deleteEvent(id));
+          setTimeout(() => {
+            window.location.reload()
+          }, 1000);
+          // window.location.reload()
+          // navigate(`/profile/${id}`);
+           swal({
+            title: "EVENTO ELIMINADO",
+            text: `Evento  ${name} eliminado con exito`,
+            icon: "success",
+            buttons: "Aceptar"
+          })
+        }
+      })
+    
+  }
+ 
   return (
     <>
       {errorId &&

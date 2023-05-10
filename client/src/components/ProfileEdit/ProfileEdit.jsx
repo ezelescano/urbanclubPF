@@ -295,7 +295,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
               )}
             </div>
             <button className="upload-form-button" type="submit">
-              Save Changes
+            Guardar cambios
             </button>
           </div>
         </form>
