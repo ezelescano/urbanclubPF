@@ -2,8 +2,8 @@
   position: relative;
   margin: 10px 100px;
 }
-.NoAhora{
-  display:none;
+.NoAhora {
+  display: none;
 }
 .portada-profile {
   position: relative;
@@ -223,14 +223,20 @@
   justify-content: center;
   align-items: center;
 }
-
+.div-eventos-profile {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+}
 @media (max-width: 1315px) {
   .ocupation {
     padding: 5px 10px;
     margin-right: 10px;
     background-color: #d9d9d9;
     border-radius: 10px;
-    min-width: 190px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -238,6 +244,11 @@
     transform: translate(15px, -15px);
   }
   .prim-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .prim-ocupacion{
     display: flex;
     flex-direction: column;
     align-items: center;
