@@ -25,12 +25,12 @@ function AboutOscar() {
             magia detrás de la electrónica y cómo podía ser utilizada para crear
             cosas asombrosas. Desde entonces, he estado explorando y aprendiendo
             todo lo que puedo sobre esta fascinante área.
-          
+            <p>
               Estoy muy emocionado por las oportunidades futuras que esta
               industria me brindará, y espero seguir creciendo y aprendiendo
               para poder contribuir al mundo de la tecnología de manera
               significativa.
-  
+            </p>
             <b> Desde ya, Saludos!</b>
             <br />
             <br />
