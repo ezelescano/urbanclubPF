@@ -67,23 +67,10 @@ const Profile = () => {
   const { id } = useParams();
   const eventosRef = useRef(null);
 
-  /*   const token = localStorage.getItem("token");
- if (!token) {
-    // Redirigir a la página de inicio de sesión
-    alert('inicia sesion')
-    navigate("/login");
-    return
-  } */
   useEffect(() => {
-    // const even = await dispatch(getAllEvents());
-    // console.log(even);
     setIsLoading(true);
     dispatch(getArtistId(id));
     setIsLoading(false);
-    // even.payload.map((item,index)=>{
-    // if (item.id === usu.payload.id) {
-    //   setEventconut(item.Events.length)
-    //   }})
    
     
     return async () => {
@@ -91,6 +78,13 @@ const Profile = () => {
       dispatch(clearProfile());
     };
   }, []);
+
+  // const [prevId, setPrevId] = useState(id);
+
+  // if (id !== prevId) {
+  //   setPrevId(id);
+  //   navigate(`/profile/${id}`);
+  // }
 
   const scrollToEventos = () => {
     eventosRef.current.scrollIntoView({ behavior: "smooth" });
