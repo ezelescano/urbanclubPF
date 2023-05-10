@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
-
-import GoogleButton from "../GoogleButton/googleButton"
+import GoogleButton from "../GoogleButton/googleButton";
 
 function Login() {
   const dispatch = useDispatch();
@@ -13,6 +12,15 @@ function Login() {
     email: "",
     password: "",
   });
+
+  const handleClick = async () => {
+    const googleLoginURL = "http://localhost:3001/artist/auth/google";
+    const newWindow = window.open(
+      googleLoginURL,
+      "blank",
+      "width=500, height=600"
+    );
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -77,28 +85,6 @@ function Login() {
           </div>
         </form>
       </div>
-      {/* PRIMER INTENTO DE GOOGLE LOGIN */}
-      {/* <div>
-        <h1>Login</h1>
-        <div>
-          <GoogleLogin
-            clientId={clientID}
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            buttonText="Continue with Google"
-            cookiePolicy={"single_host_origin"}
-          />
-        </div>
-        {loggedIn && (
-          <div>
-            <img src={user.imageUrl} alt="User Profile" />
-            <h3>{user.name}</h3>
-            <p>Email: {user.email}</p>
-            <p>User ID: {user.userId}</p>
-            <button onClick={handleLogout}>Logout</button>
-          </div>
-        )}
-      </div> */}
     </div>
   );
 }
