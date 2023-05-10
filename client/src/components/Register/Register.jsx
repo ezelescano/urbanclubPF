@@ -45,16 +45,16 @@ function Formulario() {
   function validate(input) {
     const errors = {};
     if (!input.name) {
-      errors.name = "Name is required";
+      errors.name = "Se requiere Nombre";
     }
     if (!input.lastname) {
-      errors.lastname = "Lasname is required";
+      errors.lastname = "Se requiere Apellido";
     }
     if (!input.email) {
-      errors.email = "Email is required";
+      errors.email = "Se requiere Correo";
     }
     if (!input.nickName) {
-      errors.nickName = "Nickname is required";
+      errors.nickName = "Se requiere Alias";
     }
     if (input.password.length <= 8) {
       errors.password = "mayor o igual a 8 caracteres";
@@ -238,7 +238,7 @@ function Formulario() {
               </label>
               <label>
                 <div>
-                  <span style={{ color: "red" }}>*</span> Nickname:
+                  <span style={{ color: "red" }}>*</span> Alias:
                 </div>
                 <input
                   placeholder={errors.nickName}
