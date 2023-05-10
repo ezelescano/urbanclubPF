@@ -5,6 +5,15 @@
   align-items: center;
   padding: 15px 80px;
   border-bottom: 1.5px solid #004258;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+body {
+  padding-top: 80px;
+  /* Ajusta el valor según sea necesario */
 }
 
 .navTitleImg {
@@ -81,13 +90,16 @@
 .sesionfotozoom {
   object-fit: cover;
 }
+
 /*Responsive Botoncitos de Movil*/
 .hamburgerBtn {
   display: none;
 }
+
 .respNavLinks {
   display: none;
 }
+
 @media screen and (max-width: 968px) {
   .navbar img.navTitleImg {
     display: none;
@@ -133,29 +145,34 @@
     background-color: #fff;
     border-radius: 50%;
   }
+
   .hamburgerBtn {
     display: block;
-    color:white;
+    color: white;
     border-radius: 8px;
     background-color: #004258;
     text-decoration: none;
-    border:none;
+    border: none;
     padding: 10px;
     padding-inline: 20px;
   }
+
   .respNavLinks {
     display: flex;
     flex-direction: column;
     list-style: none;
   }
+
   .respNavLinks li a {
     display: none;
     text-decoration: none;
   }
+
   @keyframes spin {
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }

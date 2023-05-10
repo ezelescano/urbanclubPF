@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const islogin = useSelector((state) => state.auth);
   const usuario = useSelector((state) => state.auth.user);
+  
 
   return (
     <nav className={style.navbar}>

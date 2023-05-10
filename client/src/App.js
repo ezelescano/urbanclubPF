@@ -12,7 +12,7 @@ import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Artists from "./components/Artists/Artists";
 import Events from "./components/Events/Events";
-import CreateEvent from"./components/createEvent/CreateEvent";
+import CreateEvent from "./components/createEvent/CreateEvent";
 import CreateEventTemplate from "./components/createEvent/CreateEventTemplate";
 import Footer from "./components/Footer/Footer"
 import Merch from "./components/Merch/Merch"
@@ -95,8 +95,8 @@ function App() {
         <Route path="/About/Eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
         <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
-        <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents/>) : (<Navigate to="/login" />)} />
-        <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)}/>
+        <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents />) : (<Navigate to="/login" />)} />
+        <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)} />
         <Route path="/newPassword/:id" element={!user.isAuthenticated ? (<NewPassword />) : (<Navigate to="/" />)} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
@@ -104,9 +104,8 @@ function App() {
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      {window.location.pathname !== "/messenger" && <Footer />}
-
       {window.location.pathname !== '/messenger' && <Footer />}
+
 
     </div>
   );
