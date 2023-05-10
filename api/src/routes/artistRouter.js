@@ -53,11 +53,7 @@ artistRouter.get(
   
       try{
     //   const userString = JSON.stringify(req.user);
-<<<<<<< Updated upstream
-    
-=======
       console.log('se envia respuesta', req.user);
->>>>>>> Stashed changes
       
       res.send(req.user
         // ` 

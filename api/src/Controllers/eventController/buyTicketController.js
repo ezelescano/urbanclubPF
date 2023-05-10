@@ -1,15 +1,11 @@
-const { Event,Artist } = require("../../db");
+const { Event, Artist } = require("../../db");
 require("dotenv").config();
-const { PASSWORD_EMAIL} = process.env;
+const { PASSWORD_EMAIL } = process.env;
 const nodemailer = require("nodemailer");
 
 const buyTicketController = async (req) => {
   const { id } = req.params;
-    const { stock,id_Artist } =req.body;
-
-   
-   
-
+  const { stock, id_Artist } = req.body;
 
   if (!id) {
     throw new Error("Not specific Id");
@@ -18,14 +14,17 @@ const buyTicketController = async (req) => {
       { stock: stock },
       { where: { id: id } }
     );
-    const artist = await Artist.findOne({
+    const comprador = await Artist.findOne({
       where: { id: id_Artist },
     });
-   const event = await Event.findOne({
-    where: {id}
-   })
 
-    const artistEmail = artist.email;
+    const emailComprador = comprador.email;
+
+    const event = await Event.findOne({
+      where: { id },
+    });
+    const vendedor = await Artist.findOne({ where: { id: event.id_Artist}})
+    const vendedorMail = vendedor.email;
 
     const config = {
       host: "smtp.gmail.com",
@@ -35,41 +34,79 @@ const buyTicketController = async (req) => {
         pass: PASSWORD_EMAIL,
       },
     };
-    const mensaje = {
+    const mensajeCompra = {
       from: "urbanclub948@gmail.com",
-      to: artistEmail,
+      to: emailComprador,
       subject: "Compra de ticket",
-      html: `<body>
-            <h1>Confirmación de compra de entrada para ${event.name}</h1>
+      html: `
+            <div style="background-color: black; padding: 10px 20px; text-align: center;">
+                <img src="https://media.discordapp.net/attachments/1097579150350487605/1105670284289249330/our_logo-removebg-preview.png" alt="urbanClub! Logo" style="max-width: 400px;">
+            </div>
+            <div style="background-color: #f5f5f5; padding: 20px; font-family: Arial, sans-serif;">
+              <div style="background-color: #ffffff; padding: 20px;">
+                <title>Confirmación de compra de entrada para ${event.name}</title>
+                  <body>
+                    <p>Estimado ${comprador.name},</p>
+                    <p>¡Gracias por tu compra de entrada para el evento ${event.name}! Nos complace informarte que tu compra ha sido exitosa y tu entrada está reservada.</p>
+                    <h3>Detalles de la compra:</h3>
+                    <ul>
+                      <li>Nombre del evento: ${event.name}</li>
+                      <li>Fecha: ${event.date}</li>
+                      <li>Total pagado: ${event.price}</li>
+                    </ul>
             
-            <p>Estimado ${artist.name},</p>
+                    <p>Por favor, asegúrate de llevar contigo una copia de este correo electrónico y tu identificación al evento. El personal de entrada estará allí para asistirte y darte acceso al evento.</p>
             
-            <p>¡Gracias por tu compra de entrada para el evento ${event.name}! Nos complace informarte que tu compra ha sido exitosa y tu entrada está reservada.</p>
+                    <p>Si tienes alguna pregunta o necesitas asistencia adicional, no dudes en contactarnos a través de este correo electrónico</p>
             
-            <h3>Detalles de la compra:</h3>
-            <ul>
-              <li>Nombre del evento: ${event.name}</li>
-              <li>Fecha: ${event.date}</li>
-              <li>Total pagado: ${event.price}</li>
-            </ul>
+                    <p>¡Esperamos que disfrutes del evento y gracias por tu apoyo!</p>
             
-            <p>Por favor, asegúrate de llevar contigo una copia de este correo electrónico y tu identificación al evento. El personal de entrada estará allí para asistirte y darte acceso al evento.</p>
-            
-            <p>Si tienes alguna pregunta o necesitas asistencia adicional, no dudes en contactarnos a través de este correo electrónico</p>
-            
-            <p>¡Esperamos que disfrutes del evento y gracias por tu apoyo!</p>
-            
-            <p>Atentamente,<br>
-            urbanClub!<br>
-            Equipo de Soporte al Cliente</p>
-            
+                    <p>Atentamente,
+                    <br>urbanClub!<br>
+                    Equipo de Soporte al Cliente</p>
+              </div>
+            </div>   
           </body>`,
     };
 
-    const transport = await nodemailer.createTransport(config);
-    
-    const info = await transport.sendMail(mensaje);
+    const mensajeVenta = {
+      from: "urbanclub948@gmail.com",
+      to: vendedorMail,
+      subject: "Compra de ticket",
+      html: `
+      <div style="background-color: black; padding: 10px 20px; text-align: center;">
+                <img src="https://media.discordapp.net/attachments/1097579150350487605/1105670284289249330/our_logo-removebg-preview.png" alt="urbanClub! Logo" style="max-width: 400px;">
+            </div>
+      <head>
+      <title>Venta de entrada confirmada</title>
+  </head>
+  <body>
+      <div style="background-color: #f5f5f5; padding: 20px; font-family: Arial, sans-serif;">
+          <div style="background-color: #ffffff; padding: 20px;">
+              <h1 style="color: #333333;">¡Venta de entrada confirmada!</h1>
+              <p>Estimado ${vendedor.name},</p>
+              <p>Te informamos que se ha vendido una entrada para tu evento en urbanClub. ¡Felicidades!</p>
+              <p>Detalles de la venta:</p>
+              <ul>
+                  <li>Evento: ${event.name}</li>
+                  <li>Fecha: ${event.date}</li>
+                  <li>Número de entradas restantes: ${event.stock}</li>
+              </ul>
+              <p>¡Esperamos que tu evento sea un gran éxito y que disfrutes de una increíble experiencia artística!</p>
+              <p>Si tienes alguna pregunta o necesitas más información, no dudes en ponerte en contacto con nuestro equipo de soporte a través de <a href="mailto:urbanclub948@gmail.com">urbanclub948@gmail.com</a>.</p>
+              <p>¡Te deseamos mucho éxito en tu evento!</p>
+              <p>Saludos cordiales,</p>
+              <p>El equipo de urbanClub!</p>
+          </div>
+      </div>
+  </body>`,
+    };
 
+    const transport = await nodemailer.createTransport(config);
+
+    const compra = await transport.sendMail(mensajeCompra);
+    const venta = await transport.sendMail(mensajeVenta);
+    
     return eventActualized;
   }
 };
