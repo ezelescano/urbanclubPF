@@ -5,11 +5,12 @@ import OcupationTag from "./OcupationTag";
 
 const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events, Country }) => {
   
-const ocupationRows = ocupation
-  ? ocupation.split(",").map((ocupation) => {
-      return <OcupationTag ocupation={ocupation} key={ocupation + id} />;
-    })
-  : null;
+  const ocupationRows = ocupation.split(",").map((ocupation) => 
+  {
+    return <OcupationTag
+    ocupation={ocupation}
+      key={ocupation + id} />
+    });
 
   // ocupation.split(",").map((ocup) => {
   //   ocupationRows.push(

@@ -1,23 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from '@reduxjs/toolkit'
+import axios from 'axios';
 import jwt_decode from "jwt-decode";
-import swal from "sweetalert";
+import swal from 'sweetalert'
 //slice de inicio de secion
-//para usar el estado
+//para usar el estado 
 //const nombredelavariable = useSelector(state => state.auth.elestado que necesiten)
 //si van usar una action
 //import { nombredelaaction } from '../../redux2/authSlice'
 //si no entienden preguntar a Alex plsssss
 
+
 const initialState = {
-  token: localStorage.getItem("token") || null,
+  token: localStorage.getItem('token') || null,
   isAuthenticated: false,
   user: {},
   error: null,
 };
 
+
+
+
+
+
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     loginSuccess(state, action) {
@@ -39,49 +45,66 @@ export const authSlice = createSlice({
     },
 
     logout(state) {
-      localStorage.removeItem("token");
+      localStorage.removeItem('token');
       //localStorage.removeItem('user');
       state.isAuthenticated = false;
       state.token = null;
       state.user = {};
       state.error = null;
-    },
-    googleIsAuthenticated(state, action) {
-      state.isAuthenticated = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const login = (payload, navigate) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("/artist/login", payload);
+      const response = await axios.post('/artist/login', payload);
       const data = response.data;
       dispatch(loginSuccess(data));
-      dispatch(googleIsAuthenticated(true));
       swal({
         title: "Inicio de sesión exitoso",
         text: `Bienvenido`,
         icon: "success",
-        buttons: "Aceptar",
-      }).then((res) => {
+        buttons: "Aceptar"
+      }).then(res => {
         if (res) {
-          navigate("/artists");
+          navigate("/artists")
         }
-      });
+      })
+
+
     } catch (e) {
-      dispatch(loginFailure(e));
+      dispatch(loginFailure(e))
       swal({
         title: "DATOS INVÁLIDOS",
         text: `Datos Inválidos, Por favor Revisar`,
         icon: "warning",
-        buttons: "Aceptar",
-      });
+        buttons: "Aceptar"
+      })
     }
-  };
+  }
 };
 
-export const { loginSuccess, loginFailure, logout, googleIsAuthenticated } =
-  authSlice.actions;
+
+/* export const createandLoginUser = (payload) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.post('/artist', payload);
+      const result = apiData.data;
+      return dispatch(postArtistSuccess(result));
+    } catch (error) {
+      alert('No se pudo crear el artista')
+    }
+  };
+}; */
+
+
+export const {
+  loginSuccess,
+  loginFailure,
+  logout
+} = authSlice.actions;
 
 export default authSlice.reducer;
+
+
