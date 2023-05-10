@@ -72,8 +72,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={!user.isAuthenticated ?( <Login /> ) : (<Navigate to="/" />)} />
-        <Route path="/register" element={!user.isAuthenticated ?( <Register /> ) : (<Navigate to="/" />)} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/login/success" element={<LoginSuccess/>}></Route>
+        <Route path="/register" element={<Register />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/profileEdit/:id" element={user.isAuthenticated ? (<ProfileEdit />) : (<Navigate to="/login" />)} />
         <Route path="/artists" element={<Artists />} />
@@ -95,7 +96,8 @@ function App() {
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      {window.location.pathname !== '/messenger' && window.location.pathname !== '/profile/:id' && <Footer />}
+      {window.location.pathname !== '/messenger' && <Footer />}
+
     </div>
   );
 }
