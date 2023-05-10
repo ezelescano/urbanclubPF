@@ -12,7 +12,7 @@ import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 import Artists from "./components/Artists/Artists";
 import Events from "./components/Events/Events";
-import CreateEvent from"./components/createEvent/CreateEvent";
+import CreateEvent from "./components/createEvent/CreateEvent";
 import CreateEventTemplate from "./components/createEvent/CreateEventTemplate";
 import Footer from "./components/Footer/Footer"
 import Merch from "./components/Merch/Merch"
@@ -73,14 +73,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-<<<<<<< Updated upstream
-        <Route path="/login" element={!user.isAuthenticated ?( <Login /> ) : (<Navigate to="/" />)} />
-        <Route path="/register" element={!user.isAuthenticated ?( <Register /> ) : (<Navigate to="/" />)} />
-=======
         <Route path="/login" element={<Login />} />
-        <Route path="/login/success" element={<LoginSuccess/>}></Route>
+        <Route path="/login/success" element={<LoginSuccess />}></Route>
         <Route path="/register" element={<Register />} />
->>>>>>> Stashed changes
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/profileEdit/:id" element={user.isAuthenticated ? (<ProfileEdit />) : (<Navigate to="/login" />)} />
         <Route path="/artists" element={<Artists />} />
@@ -94,8 +89,8 @@ function App() {
         <Route path="/About/Eze" element={<AboutEze />} />
         <Route path="/merch" element={<Merch />} />
         <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
-        <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents/>) : (<Navigate to="/login" />)} />
-        <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)}/>
+        <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents />) : (<Navigate to="/login" />)} />
+        <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)} />
         <Route path="/newPassword/:id" element={!user.isAuthenticated ? (<NewPassword />) : (<Navigate to="/" />)} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
@@ -103,13 +98,9 @@ function App() {
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-<<<<<<< Updated upstream
-      {window.location.pathname !== '/messenger' && window.location.pathname !== '/profile/:id' && <Footer />}
-=======
       {window.location.pathname !== '/messenger' && <Footer />}
 
-      
->>>>>>> Stashed changes
+
     </div>
   );
 }
