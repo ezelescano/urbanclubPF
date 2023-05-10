@@ -4,7 +4,8 @@
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  height: 130vh;
+  padding: 5vh 0;
+  /* height: 130vh; */
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -18,9 +19,9 @@
   justify-content: space-around;
   align-items: center;
   width: 1000px;
-  height:118vh  ;
+  /* height:118vh  ; */
   max-width: 80vw;
-  max-height: 118vh;
+  /* max-height: 118vh; */
   padding: 50px;
   border-radius: 5px;
 }
@@ -68,16 +69,16 @@
   background-color: rgb(230, 230, 230);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
+  padding-bottom: 5vh;
+  max-width: 400px;
+  /* height: 105%; */
 }
 
 .createEventRight h2 {
   margin-left: 100px;
   margin-block: 10px;
 }
-.createEventRight {
-  max-width: 400px;
-  height: 105%;
-}
+
 .formInputs {
   display: flex;
   flex-direction: column;
@@ -92,7 +93,7 @@
   border-radius: 5px;
   border: none;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  padding: 15px;
+  padding: 10px;
 }
 .inputContainer input:focus {
   outline: none;
@@ -114,11 +115,15 @@
   outline: none;
 }
 .inputContainer {
-  padding: 10px;
+  padding: 1vh;
 }
 
 .inputContainer label {
   margin-block: 10px;
+}
+
+.inputContainer .lblPrice {
+  color: #0d5a73;
 }
 
 /* Boton de Crear*/
