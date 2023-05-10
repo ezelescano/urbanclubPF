@@ -8,6 +8,7 @@ import swal from "sweetalert";
 //si van usar una action
 //import { nombredelaaction } from '../../redux2/authSlice'
 //si no entienden preguntar a Alex plsssss
+
 const initialState = {
   token: localStorage.getItem("token") || null,
   isAuthenticated: false,

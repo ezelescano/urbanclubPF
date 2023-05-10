@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { googleIsAuthenticated } from "../../redux/authSlice"; // Importa la acción correspondiente
+import { loginSuccess } from "../../redux/authSlice";
 
 const Success = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

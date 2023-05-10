@@ -14,15 +14,6 @@ function Login() {
     password: "",
   });
 
-  const handleClick = async () => {
-    const googleLoginURL = "http://localhost:3001/artist/auth/google";
-    const newWindow = window.open(
-      googleLoginURL,
-      "blank",
-      "width=500, height=600"
-    );
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(login(input, navigate));
