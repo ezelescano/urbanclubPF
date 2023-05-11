@@ -4,8 +4,10 @@
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
+  top: 1px;
+  height: 101vh;
 }
-.container div:first-child{
+.container div:first-child {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
