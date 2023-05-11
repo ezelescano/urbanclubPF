@@ -40,12 +40,12 @@ const TermsAndConditions = () => {
         </h1>
 
         <h2>5. Limitación de Responsabilidad</h2>
-        <p>
+        <h1>
           En la medida máxima permitida por la ley, no seremos responsables por
           cualquier pérdida o daño directo, indirecto, incidental, consecuente o
           especial que resulte del uso o la imposibilidad de uso de este sitio
           web.
-        </p>
+        </h1>
 
         <h2>6. Ley Aplicable</h2>
         <h1>
