@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const islogin = useSelector((state) => state.auth);
   const usuario = useSelector((state) => state.auth.user);
+  
 
   return (
     <nav className={style.navbar}>
@@ -36,20 +37,19 @@ function Navbar() {
         </li>
         <li>
           <NavLink to="/aboutus" className={`${style.navLink} ${style.active}`}>
-            Acerca de
+            Nosotros
           </NavLink>
         </li>
         <li>
           <NavLink to="/events" className={`${style.navLink} ${style.active}`}>
             Eventos
           </NavLink>
-        </li>
-
-        <li>
+        </li>  
+        {/* <li>  // ! Comentada la tienda
           <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
             Tienda
           </NavLink>
-        </li>
+        </li> */}
         {islogin.isAuthenticated && 
         <li>
         <NavLink to="/messenger" className="nav-link active">
@@ -85,11 +85,11 @@ function Navbar() {
               Eventos
             </NavLink>
           </li>
-          <li>
+          {/* <li>  // ! Comentada la tienda
             <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
               Tienda
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </div>
 

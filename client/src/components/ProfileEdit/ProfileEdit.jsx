@@ -75,23 +75,37 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
       return ocupation;
     }
   }
+
+  const otherInput = document.querySelector('input[name="otherOccupation"]');
+  const otherChb = document.querySelector('input[name="other"]');  
+  
   function handleOccupationChange(e) {
     const selectedOption = e.target.value;
     const isSelected = e.target.checked;
 
-    // if (isSelected) {
-    //   setInput((input) => ({
-    //     ...input,
-    //     ocupation: [...input.ocupation, selectedOption],
-    //   }));
-    // } else {
-    //   setInput((input) => ({
-    //     ...input,
-    //     ocupation: input.ocupation.filter(
-    //       (option) => option !== selectedOption
-    //     ),
-    //   }));
-    // }
+   // check if "other" option is selected and a value is entered
+  //  if (
+  //    otherInput && otherInput.value.trim() !== "" &&
+  //    selectedOption === "Other" && isSelected
+  //  ) {
+  //    setInput((input) => ({
+  //      ...input,
+  //      ocupation: addOcupation(input.ocupation,otherInput.value.trim()),
+  //    }));
+  //    //otherInput.value = ""; // clear the input field
+  //    return
+  //  } else if (
+  //   otherInput && otherInput.value.trim() !== "" &&
+  //   selectedOption === "Other" && !isSelected
+  // ) {
+  //   setInput((input) => ({
+  //     ...input,
+  //     ocupation: remOcupation(input.ocupation,otherInput.value.trim()),
+  //   }));
+  //   //otherInput.value = ""; // clear the input field
+  //   return
+  // }
+
     if (isSelected) {
       setInput((input) => ({
         ...input,
@@ -103,32 +117,22 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
         ocupation: remOcupation(input.ocupation, selectedOption),
       }));
     }
-
-    // check if "other" option is selected and a value is entered
-    const otherInput = document.querySelector('input[name="otherOccupation"]');
-    if (
-      otherInput &&
-      selectedOption === "other" &&
-      otherInput.value.trim() !== ""
-    ) {
-      setInput((input) => ({
-        ...input,
-        ocupation: [...input.ocupation, otherInput.value.trim()],
-      }));
-      otherInput.value = ""; // clear the input field
-    }
   }
 
+
+  console.log(options.reduce(remOcupation,input.ocupation));
+  const [otherOc,setOtherOc] = useState(options.reduce(remOcupation,input.ocupation));
   function handleOnChange(e) {
     const property = e.target.name;
     const value = e.target.value;
-    if (property === "ocupation") {
-      setErrors(validate({ ...input, ocupation: [...input.ocupation, value] }));
-      setInput({
+    if(property === "otherOccupation"){
+      setInput((input) => ({
         ...input,
-        ocupation: [/*...input.ocupation,*/ value],
-      });
-    } else {
+        ocupation: addOcupation(remOcupation(input.ocupation,otherOc), value),
+      }));
+      setOtherOc(value);
+      return
+    }
       setInput({
         ...input,
         [property]: value,
@@ -139,7 +143,6 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
           [property]: value,
         })
       );
-    }
   }
 
   return (
@@ -149,39 +152,6 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
           X
         </button>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
-          {/* <div className="form-container__left">
-  return (
-    <>
-      <form onSubmit={handleSubmit} className="form-container">
-        {/* <div className="form-container__left">
-              <label>
-                {rutaImagen ? (
-                  <img
-                    className="form-picture"
-                    src={rutaImagen}
-                    alt="Imagen de perfil"
-                  />
-                ) : (
-                  <AccountCircleIcon />
-                )}
-                <button
-                  className="upload-picture-button"
-                  type="button"
-                  onClick={handleClick}
-                >
-                  Subir foto
-                </button> 
-                 <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  ref={fileInputRef}
-                  style={{ display: "none" }}
-                />
-                <br></br>
-                Registrate a<br></br> <b>Urban Club!</b>
-              </label>
-            </div> */}
           <input type="file" name="profilePhoto"></input>
           <input type="file" name="coverPhoto"></input>
           <div className="form-container__middle">
@@ -274,26 +244,21 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 </label>
               ))}
               <label>
-                <input
-                  type="checkbox"
-                  name="other"
-                  value="Otros"
-                  checked={input.ocupation.includes("Otros")}
-                  onChange={handleOccupationChange}
-                />
                 Otros
               </label>
-              {input.ocupation.includes("Otros") && (
+              {/* { otherChb.checked && */(
                 <input
                   type="text"
-                  value={input.value}
+                  value={otherOc}
                   name="otherOccupation"
+                  pattern="[a-zA-Z ]{3,15}"
+                  onChange={handleOnChange}
                   placeholder="Ingresa tu oficio"
                 />
               )}
             </div>
             <button className="upload-form-button" type="submit">
-              Save Changes
+            Guardar cambios
             </button>
           </div>
         </form>

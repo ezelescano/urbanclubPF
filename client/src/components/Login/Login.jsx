@@ -3,7 +3,9 @@ import styles from "./Login.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
-import GoogleButton from "react-google-button";
+import GoogleButton from "../GoogleButton/googleButton";
+
+
 
 function Login() {
   const dispatch = useDispatch();
@@ -14,10 +16,13 @@ function Login() {
   });
 
   const handleClick = async () => {
-    const googleLoginURL = "http://localhost:3001/artist/auth/google"
-    const newWindow = window.open(googleLoginURL, "blank", "width=500, height=600");
-    
-  }
+    const googleLoginURL = "http://localhost:3001/artist/auth/google";
+    const newWindow = window.open(
+      googleLoginURL,
+      "blank",
+      "width=500, height=600"
+    );
+  };
 
 
   const handleSubmit = async (event) => {
@@ -87,7 +92,7 @@ function Login() {
             <label>
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
-            <GoogleButton onClick={handleClick} style={{display: "none"}}/>
+            <GoogleButton></GoogleButton>
           </div>
         </form>
       </div>

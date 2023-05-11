@@ -72,6 +72,14 @@ module.exports = (sequelize) => {
       //   type: DataTypes.JSON,
       //   allowNull: true,
       // },
+      followers:{
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        defaultValue: []
+      },
+      followings:{
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        defaultValue: []
+      },
       aboutMe: {
         type: DataTypes.STRING,
         allowNull: true,

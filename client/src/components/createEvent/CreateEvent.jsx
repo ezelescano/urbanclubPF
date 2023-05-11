@@ -52,8 +52,19 @@ const CreateEvent = () => {
     return errors;
   }
 
-  function handleOnChange(e) {
+  function handleOnBlur(e) {
+    if(e.target.name === "price"){
+      if (!e.target.value.includes("."))
+        e.target.value = e.target.value + ".00"
+      else if (e.target.value.split(".").pop().length>2)
+        e.target.value = e.target.value.split(".").shift().concat(".",e.target.value.split(".").pop().substring(0,2)) 
+        //con regex es mas corto, pero para repasar arrays y strings...
+      }
+    handleOnChange(e)
+  }
 
+  function handleOnChange(e) {
+    
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -181,24 +192,8 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-
                 <div className="inputContainer">
                   <label htmlFor="name">Pais:</label>
-                  <br />
-                  <input
-                    placeholder={errors.name}
-                    onChange={handleOnChange}
-                    onBlur={handleOnChange}
-                    type="text"
-                    value={input.city}
-                    maxLength="35"
-                    name="city"
-                    required
-                  />
-                </div>
-                
-                <div className="inputContainer">
-                  <label htmlFor="name">Ciudad:</label>
                   <br />
                   <input
                     placeholder={errors.name}
@@ -211,8 +206,23 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
+                
                 <div className="inputContainer">
-                  <label htmlFor="location">Direccion:</label>
+                  <label htmlFor="name">Ciudad:</label>
+                  <br />
+                  <input
+                    placeholder={errors.name}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    type="text"
+                    value={input.city}
+                    maxLength="35"
+                    name="city"
+                    required
+                  />
+                </div>
+                <div className="inputContainer">
+                  <label htmlFor="location">Dirección:</label>
                   <br />
                   <input
                     placeholder={errors.location}
@@ -244,6 +254,7 @@ const CreateEvent = () => {
                   <input
                     type="date"
                     value={input.date}
+                    min={new Date().toISOString().split('T')[0]}
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
                     name="date"
@@ -260,6 +271,7 @@ const CreateEvent = () => {
                     onChange={handleOnChange}
                     onBlur={handleOnChange}
                     name="stock"
+                    min="1"
                     maxLength={35}
                     required
                   />
@@ -271,21 +283,22 @@ const CreateEvent = () => {
                   <input
                     placeholder={errors.price}
                     type="number"
-                    step="0.01"
                     value={input.price}
                     onChange={handleOnChange}
-                    onBlur={handleOnChange}
+                    onBlur={handleOnBlur}
                     name="price"
+                    min="1"
+                    step="0.01"
                     maxLength={35}
                     required
                   />
                 </div>
                 
                 <div className="inputContainer">
-                  <label htmlFor="">TOTAL USD: {input.price*input.stock}</label>
+                  <label className="lblPrice" htmlFor="">TOTAL $USD: {input.price*input.stock}</label>
                 </div>
                 <div className="inputContainer">
-                  <label htmlFor="D">Describe qué se hará</label>
+                  <label htmlFor="D">Descripción del evento:</label>
                   <br />
                   <textarea
                     placeholder={

@@ -38,14 +38,9 @@ const Footer = () => {
             </NavLink>
           </li>
           <li>
-            <a
-              href="https://www.facebook.com/legal/terms"
-              target="_blank"
-              rel="noreferrer"
-              className={style.link}
-            >
-              Términos y Condiciones
-            </a>
+            <NavLink to="/termsAndConditions" className={style.link} onClick={scrollToTop}>
+            Términos y Condiciones
+            </NavLink>
           </li>
         </ul>
       </div>

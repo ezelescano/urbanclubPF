@@ -3,7 +3,7 @@ const {
   loadPhoto,
   DeletePhoto,
 } = require("../../../utils/cloudinary");
-const { Artist } = require("../../db");
+const { Artist,Event } = require("../../db");
 const { DELETED, ACTIVATED } = require("../../constants");
 const bcrypt = require("bcrypt");
 
@@ -65,9 +65,26 @@ const updateArtist = async (req) => {
     await Artist.update(body, { where: { id: parseInt(id) } });
   }
   const artistActualizado = await Artist.findOne({
-    where: { id },
+    where: {id},
+          include: {
+            model: Event
+          }
   });
-  return artistActualizado;
+  const infoArtistClean = {
+    id: artistActualizado.id,
+    nickname: artistActualizado.nickName,
+    name: artistActualizado.name,
+    lastname: artistActualizado.lastname,
+    email: artistActualizado.email,
+    profilePhoto: artistActualizado.profilePhoto,
+    coverPhoto: artistActualizado.coverPhoto,
+    Country: artistActualizado.Country,
+    city: artistActualizado.city,
+    ocupation: artistActualizado.ocupation,
+    aboutMe: artistActualizado.aboutMe,
+    events: artistActualizado.Events
+  };
+  return infoArtistClean;
 };
 
 module.exports = { updateArtist };

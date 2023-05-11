@@ -8,6 +8,10 @@ module.exports = (sequelize) => {
     text: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    seen: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   });
 };
