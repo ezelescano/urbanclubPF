@@ -15,7 +15,9 @@ const authArtist = require("../Handlers/artistHandler/authArtist")
 const verifyAuth = require("../middlewares/verifyAuth");
 const fileupload = require("express-fileupload")
 const passport = require("../middlewares/authGoogle");
-const followArtistHandler = require("../Handlers/artistHandler/followArtistHandler");
+const followArtistHandler = require("../Handlers/artistHandler/followArtistHandler");;
+const generateJWT = require("../../utils/generateJWT");
+const isAuthGoogle = require("../middlewares/isAuthGoogle")
 const artistRouter = Router();
 
 
@@ -76,7 +78,10 @@ artistRouter.get(
   }
 );
 
-
+artistRouter.get("/auth/user", isAuthGoogle, (req,res)=>{
+  const token = generateJWT(req.user.id, req.user.name, req.user.profilePhoto)
+  res.json(token)
+})
 
 
 
