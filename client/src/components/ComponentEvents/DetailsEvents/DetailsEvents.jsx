@@ -81,7 +81,7 @@ function DetailsEvents() {
     setDestino({
       ...destino,
       [e.target.name]: e.target.value,
-    });
+    })
   };
   const buyTicketHandler = async () => {
     if (!islogin.isAuthenticated) {

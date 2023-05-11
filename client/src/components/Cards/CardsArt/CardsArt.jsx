@@ -3,14 +3,22 @@ import style from "./CardsArt.module.css";
 import { NavLink } from "react-router-dom";
 import OcupationTag from "./OcupationTag";
 
-const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events, Country }) => {
-  
-  const ocupationRows = ocupation.split(",").map((ocupation) => 
-  {
-    return <OcupationTag
-    ocupation={ocupation}
-      key={ocupation + id} />
-    });
+const CardsArt = ({
+  name,
+  profilePhoto,
+  ocupation,
+  aboutMe,
+  id,
+  Events,
+  Country,
+}) => {
+  const ocupationRows =
+    ocupation &&
+    ocupation
+      .split(",")
+      .map((ocupation) => (
+        <OcupationTag ocupation={ocupation} key={ocupation + id} />
+      ));
 
   // ocupation.split(",").map((ocup) => {
   //   ocupationRows.push(
@@ -21,7 +29,6 @@ const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events, Country 
 
   // });
 
-  
   return (
     <NavLink className={style.Link} to={`/profile/${id}`}>
       <div className={style.Container}>
@@ -34,7 +41,6 @@ const CardsArt = ({ name, profilePhoto, ocupation, aboutMe, id, Events, Country 
           <p>{aboutMe}</p> */}
           {/* <h5>Ubicacion:</h5> */}
           <h4>{Country}</h4>
-          
         </div>
       </div>
     </NavLink>

@@ -36,6 +36,7 @@ import UpdateEvents from "./components/updateEvent/UpdateEvents";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
+import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,11 +78,16 @@ function App() {
         <Route path="/login/success" element={<LoginSuccess />}></Route>
         <Route path="/register" element={!user.isAuthenticated ? (<Register />) : (<Navigate to="/" />)} />
         <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/profileEdit/:id" element={user.isAuthenticated ? <ProfileEdit /> : <Navigate to="/login" />}/>
+        <Route
+          path="/profileEdit/:id"
+          element={
+            user.isAuthenticated ? <ProfileEdit /> : <Navigate to="/login" />
+          }
+        />
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-        {/* <Route path="/merch" element={<Merch />} /> */}
+       {/* { <Route path="/merch" element={<Merch />} />} */}
         <Route path="/createevent/:id" element={user.isAuthenticated ? (<CreateEvent />) : (<Navigate to="/login" />)} />
         <Route path="/createeventtemplate" element={<CreateEventTemplate />} />
         <Route path="/About/Estiven" element={<AboutEstiven />} />
@@ -93,6 +99,7 @@ function App() {
         <Route path="/newPassword/:id" element={!user.isAuthenticated ? (<NewPassword />) : (<Navigate to="/" />)} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
+        <Route path="/termsAndConditions" element={<TermsAndConditions />} />
 
 
         <Route path="*" element={<Errors404 />} />
