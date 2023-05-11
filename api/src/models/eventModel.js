@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         price: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT,
             allowNull: true,
         },
         location: {
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         date: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATEONLY,
             allowNull: true,
         },
         city: {
@@ -54,11 +54,6 @@ module.exports = (sequelize) => {
         eventPhoto: {
             type: DataTypes.STRING,
             defaultValue: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png"
-        }, 
-        stock: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            defaultValue: 0,
         }
     })
 }

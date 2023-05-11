@@ -1,13 +1,14 @@
 const { Artist } = require("../../db");
 const nodemailer = require("nodemailer");
-
+require("dotenv").config();
+const { PASSWORD_EMAIL} = process.env;
 const forgotPassword = async (email) => {
-    console.log(email)
+    
     if (!email){
         throw new Error("No se especificó el email");
     } else {
         const artist = await Artist.findOne({where: {email: email}});
-        console.log(artist, artist.id);
+     
         if (!artist){
             throw new Error("No se encontró el artista en la base de datos");
         }
@@ -17,7 +18,7 @@ const forgotPassword = async (email) => {
             port: 587,
             auth: {
                 user: "urbanclub948@gmail.com",
-                pass: 'tgDkPBcSb2Mr'
+                pass: PASSWORD_EMAIL
             }
         }
 
@@ -25,7 +26,11 @@ const forgotPassword = async (email) => {
             from: "urbanclub948@gmail.com",
             to: email,
             subject: "Recuperación de contraseña",
-            html: `<title>Recuperación de contraseña</title>
+            html: `
+            <div style="background-color: black; padding: 10px 20px; text-align: center;">
+                <img src="https://media.discordapp.net/attachments/1097579150350487605/1105670284289249330/our_logo-removebg-preview.png" alt="urbanClub! Logo" style="max-width: 400px;">
+            </div>
+            <title>Recuperación de contraseña</title>
             </head>
             <body>
                 <h2>Recuperación de contraseña</h2>
@@ -59,7 +64,6 @@ const forgotPassword = async (email) => {
 
         const info = await transport.sendMail(mensaje);
 
-        console.log(info);
     }
 }
 

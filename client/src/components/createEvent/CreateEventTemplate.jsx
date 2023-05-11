@@ -24,7 +24,7 @@ const CreateEventTemplate = () => {
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
-  console.log(files);
+ 
 
   function validate(input) {
     const errors = {};
@@ -50,7 +50,7 @@ const CreateEventTemplate = () => {
   }
 
   function handleOnChange(e) {
-    // console.log("errores///", errors.password);
+   
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -87,7 +87,7 @@ const CreateEventTemplate = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //console.log(errors);
+    
     const formData = new FormData(e.target);
     formData.append("id_Artist", id);
     dispatch(postEvent(formData, navigate("/events")));

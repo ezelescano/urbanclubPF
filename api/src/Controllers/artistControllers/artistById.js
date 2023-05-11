@@ -32,7 +32,6 @@ const artistById = async (artistId) => {
           aboutMe: infoArtistDB.aboutMe,
           events: infoArtistDB.Events
         };
-    // console.log(infoArtistDB);
         return infoArtistClean;
       }
   

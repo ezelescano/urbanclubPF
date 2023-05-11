@@ -15,10 +15,10 @@ const cloudiconfig = () => {
 }
 const loadPhoto = async (path,ban,name) => {
     let folder = ""
-    console.log(ban)
+   
     if (ban === "events") folder = `Events/${name}`
     if (ban === "Artist") folder = `Artis/${name}`
-    console.log(folder)
+  
     const savePhoto = await cloudinary.uploader.upload(path, {
         folder: `UrbanClub/${folder}`
     });

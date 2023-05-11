@@ -12,6 +12,7 @@ import { getDetailEvents, upEvent } from "../../redux/eventSlice";
 
 function Formulario({id,event}) {
   const { errorForm } = useSelector((state) => state.artist);
+  const {user} = useSelector((state)=>state.auth)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +26,8 @@ function Formulario({id,event}) {
     location: "",
     nameArena: "",
     date: "",
-    eventPhoto:""
+    eventPhoto:"",
+    total:0
   });
 
   const [errors, setErrors] = useState({});
@@ -46,8 +48,11 @@ function Formulario({id,event}) {
         location: event.payload.location,
         nameArena: event.payload.nameArena,
         date: event.payload.date,
+        total:event.payload.price*event.payload.stock
       }
+      
      )
+   
     }
     getEvent();
    }, [dispatch,id]);
@@ -81,8 +86,9 @@ function Formulario({id,event}) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
+      total:input.price*input.stock
     });
-    setErrors(
+ setErrors(
       validate({
         ...input,
         [e.target.name]: e.target.value,
@@ -114,19 +120,26 @@ function Formulario({id,event}) {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault();
 
     //console.log(errors);
+    setIsLoading(true)
     const formData = new FormData(e.target);
     // formData.append("id_Artist", id)
-     dispatch(upEvent(formData,id));
-    //  swal({
-    //   title: "ERROR",
-    //   text: "Se debe seleccionar al menos 1 ocupación",
-    //   icon: "error",
-    //   buttons: "Aceptar",
-    // });
+    await dispatch(upEvent(formData,id));
+    await dispatch(getDetailEvents(id))
+    setIsLoading(false)
+      swal({
+        title: "DATOS GUARDADOS",
+        text: "Evento actualizado correctamente",
+        icon: "success",
+        buttons: "Aceptar",
+      }).then(res=>{
+        navigate(`/profile/${user.id}`)
+      })
+   
+     
   }
 
 
@@ -246,7 +259,7 @@ function Formulario({id,event}) {
                 </div>
                 <input
                   placeholder={errors.date}
-                  type="text"
+                  type="date"
                   maxLength={45}
                   value={input.date}
                   onChange={handleOnChange}
@@ -264,8 +277,7 @@ function Formulario({id,event}) {
                 <input
                   placeholder={errors.price}
                   type="number"
-                  step="0.01"
-                  value={input.price}
+                  value={input.stock}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="price"
@@ -289,6 +301,7 @@ function Formulario({id,event}) {
                   required
                 />
               </label>
+              <label>TOTAL USD: ${input.total}</label>
             </div>
             <div className={style.formContainerRight}>
               
@@ -297,12 +310,10 @@ function Formulario({id,event}) {
                 <textarea
                   className={style.descripcionArea}
                   value={input.Description}
-                  value={input.Description}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   placeholder="500 Palabras max"
                   maxLength={150}
-                  name="Description"
                   name="Description"
                 />
               </label>

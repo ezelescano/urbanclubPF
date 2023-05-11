@@ -10,7 +10,7 @@ const postEventController = async (req) => {
         cloudiconfig()
         if (eventPhoto)  {
             photoEvent = await loadPhoto(eventPhoto.tempFilePath,"events",id_Artist);
-            console.log(photoEvent)
+            
         }
        
     }
@@ -28,9 +28,8 @@ const postEventController = async (req) => {
         Description,
         id_eventPhoto:photoEvent.public_id,
         eventPhoto:photoEvent.secure_url,
-        stock,
     }
-    console.log("primer log", newEvent)
+   
     
    try {
     const newEvents = await Event.create(newEvent);

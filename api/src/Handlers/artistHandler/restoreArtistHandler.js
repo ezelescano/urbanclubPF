@@ -4,8 +4,7 @@ const { restoreArtist } = require("../../Controllers/artistControllers/restoreAr
   
     const { id } = req.params;
     //const { body } = req; //modificar estado del artista a 'ACTIVED"
-    console.log(id);
-    //console.log(body);
+   
     try {
       const restoredArtist = await restoreArtist(id);
       return res.status(200).json(restoredArtist);

@@ -72,10 +72,9 @@ export const artistSlice = createSlice({
         allUsuarios: []
       }
     },
-    postArtistSuccess(state, action) {
+    postArtistSuccess(state) {
       return {
         ...state,
-        // allUsuarios: [...state.artist.allUsuarios, action.payload] 
       }
     },
     setErrors(state, action) {
@@ -118,7 +117,7 @@ export const FilterArtists = (categoria, ubicacion, events) => {
   return async (dispatch) => {
     const apiData = await axios.get(`/search/resultados?categoria=${categoria}&ubicacion=${ubicacion}&events=${events}`);//`/search/resultados?categoria=${categoria}`
     const artist = apiData.data.artistas;
-    console.log("HOAL//////////////////////", artist);
+   
     return dispatch(getFilterArtists(artist));
   };
 };
@@ -142,7 +141,7 @@ export const getArtistId = (id) => {
       return dispatch(getArtistIdSuccess(artist));
 
     } catch (error) {
-      console.log(error, error.name, error.response.data.message);
+    
       if (error.response.data.message)
         return dispatch(getArtistIdError(error.response.data.message));
     }
@@ -150,9 +149,9 @@ export const getArtistId = (id) => {
 };
 
 export const cleanArtists = () => {
-  return async (dispatch) => {
-    return dispatch(cleanArtistsSuccess()); //Buscar quien lo hizo
-  };
+  // return async (dispatch) => {
+  //  return dispatch(cleanArtistsSuccess()); //! PABLO revisar el dispatch
+  // };
 };
 
 export const getArtistName = (name) => {
@@ -189,7 +188,7 @@ export const postArtist = (payload, navigate) => {
         return dispatch(setErrors(result))
         
       }
-      console.log(result)
+    
       dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))
       dispatch(clearErrors())
@@ -257,6 +256,7 @@ export const updateArtist = (id, input) => {
     try {
       const apiData = await axios.put(`/artist/update/${id}`, input);
       const response = apiData.data;
+      
       dispatch(updateArtistSuccess(response));
     } catch (error) {
       swal({
@@ -275,7 +275,7 @@ export const forgotPassword = (email) => {
     try {
       const apiData = await axios.put("/forgotPassword", email)
       const response = apiData.data;
-      console.log(response);
+    
     } catch (error) {
       swal({
         title: "ERROR",

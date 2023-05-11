@@ -28,6 +28,7 @@ import { loginSuccess, logout } from './redux/authSlice';
 import AboutEze from "./components/AboutUs/AboutEze";
 import Errors404 from "./components/Error404/Errors404";
 import Messenger from "./components/Messenger/Messenger";
+import LoginSuccess from "./components/GoogleButton/loginSuccess"
 /* import { io } from "socket.io-client";
 const socket = io("http://localhost:3001"); */
 
@@ -75,6 +76,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/login/success" element={<LoginSuccess/>}></Route>
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/login/success" element={<LoginSuccess/>}></Route>
+        <Route path="/register" element={<Register />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/profileEdit/:id" element={user.isAuthenticated ? (<ProfileEdit />) : (<Navigate to="/login" />)} />
         <Route path="/artists" element={<Artists />} />
@@ -94,8 +98,12 @@ function App() {
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
 
+
         <Route path="*" element={<Errors404 />} />
       </Routes>
+      {window.location.pathname !== '/messenger' && <Footer />}
+
+      
       {window.location.pathname !== '/messenger' && <Footer />}
 
     </div>

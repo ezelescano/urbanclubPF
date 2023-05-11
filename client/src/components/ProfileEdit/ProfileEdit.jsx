@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 // import { deleteArtist, updateArtist } from "../../redux/artistSlice";
 
 const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
-
   const [errors, setErrors] = useState({});
 
   const [options, setOptions] = useState([
@@ -16,7 +15,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
     "Musico",
     "Actor",
     "Pintor",
-    "Modelo"
+    "Modelo",
   ]);
 
   const [input, setInput] = useState({
@@ -43,17 +42,17 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData(e.target)
-    if (!input.ocupation){
+    const formData = new FormData(e.target);
+    if (!input.ocupation) {
       swal({
         title: "ERROR",
         text: "Se debe seleccionar al menos 1 ocupación",
         icon: "error",
-        buttons: "Aceptar"
-      })
-      return 
+        buttons: "Aceptar",
+      });
+      return;
     }
-    formData.append("ocupation",input.ocupation)
+    formData.append("ocupation", input.ocupation);
     handleEdit(formData);
   }
 
@@ -124,7 +123,6 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
     const property = e.target.name;
     const value = e.target.value;
     if (property === "ocupation") {
-      console.log(input);
       setErrors(validate({ ...input, ocupation: [...input.ocupation, value] }));
       setInput({
         ...input,
@@ -184,8 +182,8 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 Registrate a<br></br> <b>Urban Club!</b>
               </label>
             </div> */}
-            <input type="file" name="profilePhoto"></input>
-            <input type="file" name="coverPhoto"></input>
+          <input type="file" name="profilePhoto"></input>
+          <input type="file" name="coverPhoto"></input>
           <div className="form-container__middle">
             <label className="required">
               <div>
@@ -262,14 +260,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 name="Country"
               />
             </label>
-            <div
-              style={{
-                justifyContent: "space-between",
-                gap: "0.5rem",
-                padding: "5px",
-              }}
-              className="occupation-options"
-            >
+            <div className={styles.occ}>
               <h3>Ocupaciones</h3>
               {options.map((option) => (
                 <label key={option}>
@@ -302,7 +293,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
               )}
             </div>
             <button className="upload-form-button" type="submit">
-              Save Changes
+            Guardar cambios
             </button>
           </div>
         </form>
