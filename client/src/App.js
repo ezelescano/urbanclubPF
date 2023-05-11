@@ -36,6 +36,7 @@ import UpdateEvents from "./components/updateEvent/UpdateEvents";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
+import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
 
 function App() {
   const dispatch = useDispatch();
@@ -98,6 +99,7 @@ function App() {
         <Route path="/newPassword/:id" element={!user.isAuthenticated ? (<NewPassword />) : (<Navigate to="/" />)} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
+        <Route path="/termsAndConditions" element={<TermsAndConditions />} />
 
 
         <Route path="*" element={<Errors404 />} />
