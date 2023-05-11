@@ -10,19 +10,20 @@ const buyTicketController = async (req) => {
   if (!id) {
     throw new Error("Not specific Id");
   } else {
+    const event = await Event.findOne({
+      where: { id },
+    });
+
     const eventActualized = await Event.update(
       { stock: stock },
       { where: { id: id } }
-    );
+      );
     const comprador = await Artist.findOne({
       where: { id: id_Artist },
     });
 
     const emailComprador = comprador.email;
 
-    const event = await Event.findOne({
-      where: { id },
-    });
     const vendedor = await Artist.findOne({ where: { id: event.id_Artist}})
     const vendedorMail = vendedor.email;
 
