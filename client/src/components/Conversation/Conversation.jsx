@@ -1,6 +1,8 @@
 import axios from 'axios';
 import './Conversation.css'
 import React, { useEffect, useState } from 'react'
+import swal from "sweetalert";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Conversation({conversation, currentUser}) {
 
@@ -21,10 +23,25 @@ useEffect(() => {
   getUser();
 },[currentUser, conversation])
 
+const handleDelete = () => {
+  
+  swal({
+    title: "ELIMINAR MENAJE",
+    text: `Deseas eliminar la conversacion con ${user?.name}`,
+    icon: "warning",
+    buttons: ["No", "Si"],
+  }).then((res) => {
+    if (res) {
+      const response = axios.delete(`/conversation/${conversation.id}`)
+    }
+  });
+}
+
   return (
     <div className='conversation'>
       <img className='conversationImg' src={user?.profilePhoto} alt='imagen de perfil'/>
       <span className='conversationName'>{user?.name}</span>
+      <button className="conversationBtn" onClick={handleDelete}><DeleteIcon/></button>
     </div>
   )
 }

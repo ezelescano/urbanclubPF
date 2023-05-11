@@ -24,6 +24,7 @@ import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import loading from "../../img/loading.gif";
+import axios from "axios";
 
 
 const Profile = () => {
@@ -37,7 +38,7 @@ const Profile = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
-  const [followDemostrativo, setFollowDemostrativo] = useState(911);
+  //const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
 
   const verified = true;
@@ -161,8 +162,8 @@ const Profile = () => {
     });
   };
 
-  const handleFollow = () => {
-    setFollowDemostrativo(followDemostrativo + 1);
+  const handleFollow = async() => {
+    const res = await axios.put(`/artist/follow/`)
   };
 
   const handleContact = () => {
@@ -261,7 +262,7 @@ const Profile = () => {
             {events?.length + " "} Eventos  {/*  //! muestra total de eventos del artista */}
             </button>
             <button className="btn-stas">
-              {followDemostrativo} Seguidores
+              {/* {followDemostrativo} */} Seguidores
             </button>
             <h4>5 Seguidos</h4>
           </div>
@@ -339,8 +340,8 @@ const Profile = () => {
               {showEditPassword && <UpdatePassword handleEdit={handleEdit} />}
             </div>
           ) : (
-            <div className="NoAhora">
-              <button className="btn-profile" onClick={handleFollow}>
+            <div className="SIAhora">
+              <button className="btn-profile" /* onClick={handleFollow} */>
                 Seguir
               </button>
               <button className="btn-profile" onClick={handleContact}>
