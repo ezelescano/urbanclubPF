@@ -1,0 +1,18 @@
+.termsContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .termsContent {
+    margin-top: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
