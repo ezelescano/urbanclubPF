@@ -110,3 +110,34 @@ div .Description a {
 div .Description svg {
   margin-left: 5px;
 }
+
+.styledInput {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+  border: none;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.styledInput::-webkit-inner-spin-button,
+.styledInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@keyframes changeColor {
+  0% {
+    color: rgb(180, 118, 118);
+  }
+  100% {
+    color: rgb(119, 119, 194);
+  }
+}
+
+.styledInput:valid {
+  animation: changeColor 1s linear;
+}

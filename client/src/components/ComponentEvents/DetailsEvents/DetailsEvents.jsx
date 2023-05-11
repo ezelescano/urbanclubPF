@@ -84,7 +84,25 @@ function DetailsEvents() {
     });
   };
   const buyTicketHandler = async () => {
-    if(entradas < 0 || entradas === 0){
+    if (!islogin.isAuthenticated) {
+      swal({
+        title: "COMPRA INVÁLIDA",
+        text: `Debes ingresar con tu usuario para hacer una compra`,
+        icon: "error",
+        buttons: {
+          confirm: "Iniciar sesión",
+          cancel: "Cancelar",
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/login");
+        } else {
+          return;
+        }
+      });
+      return;
+    }
+    if (entradas < 0 || entradas === 0) {
       swal({
         title: "COMPRA INVÁLIDA",
         text: `La cantidad de entradas a comprar debe ser 1 o más`,
@@ -93,17 +111,17 @@ function DetailsEvents() {
       });
     } else {
       if (cantidad > 0) {
-        let restCant = cantidad;
-  
-        setCantidad(restCant - entradas);
+        const restCant = cantidad - entradas;
+        setCantidad(restCant);
         let stockObjeto = { stock: restCant, id_Artist: islogin.user.id };
-        setEntradas(0);
-  
+        setEntradas(1);
+        console.log("cantidad", stockObjeto.stock);
+
         const eventd = await axios.put(
           `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
           stockObjeto
         );
-  
+
         swal({
           title: "COMPRA EXITOSA",
           text: `Revisa tu correo para ver más detalles de la compra`,
@@ -122,7 +140,7 @@ function DetailsEvents() {
   };
 
   const handleOnChange = (e) => {
-    setEntradas(e.target.value)
+    setEntradas(e.target.value);
   };
 
   return (
@@ -173,13 +191,12 @@ function DetailsEvents() {
                 <h3>Cantidad de entradas Disponibles</h3>
                 <h3>{cantidad}</h3>
                 <div>
-                  <label>
-                    Comprar Entradas con Debito o Crédito:
-                  </label>
+                  <label>Comprar Entradas con Debito o Crédito:</label>
                   <br />
-                  <input 
+                  <input
                     name="entradas"
                     value={entradas}
+                    min="1"
                     type="number"
                     onChange={handleOnChange}
                   />
@@ -187,7 +204,7 @@ function DetailsEvents() {
                 <button onClick={buyTicketHandler}>
                   Comprar entrada <CreditCardIcon />
                 </button>
-              <p>Total a pagar: {entradas * event.price} USD</p>
+                <p>Total a pagar: {entradas * event.price} USD</p>
                 <a
                   href="https://www.visa.com.ar"
                   target="_blank"
