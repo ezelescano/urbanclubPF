@@ -50,7 +50,7 @@ const SearchBar = () => {
 
   const placeholderText =
     windowWidth <= 1000
-      ? "¿Algún artista en mente?"
+      ? "   Hey! Búscalo"
       : "¿Qué artista quieres ver hoy?";
       
 
