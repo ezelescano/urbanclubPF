@@ -111,12 +111,11 @@ function DetailsEvents() {
       });
     } else {
       if (cantidad > 0) {
-        let restCant = cantidad;
-
-        setCantidad(restCant - entradas);
-        let stockObjeto = { stock: cantidad, id_Artist: islogin.user.id };
+        const restCant = cantidad - entradas;
+        setCantidad(restCant);
+        let stockObjeto = { stock: restCant, id_Artist: islogin.user.id };
         setEntradas(0);
-        console.log("cantidad", stockObjeto.stock)
+        console.log("cantidad", stockObjeto.stock);
 
         const eventd = await axios.put(
           `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
@@ -199,6 +198,7 @@ function DetailsEvents() {
                     value={entradas}
                     type="number"
                     onChange={handleOnChange}
+                    className={style.styledInput}
                   />
                 </div>
                 <button onClick={buyTicketHandler}>
