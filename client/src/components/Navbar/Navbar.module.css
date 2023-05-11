@@ -146,7 +146,7 @@ body {
     border: 2px solid #fff;
     background-color: #fff;
     border-radius: 50%;
-    right: 11%;
+    right: 19.3%;
     bottom: 60px;
   }
 
@@ -189,7 +189,7 @@ body {
   }
   .hamburgerBtn {
     position: fixed;
-    right: 10%;
+    right: 18%;
     bottom: 38%;
     z-index: 99;
     transform: scale(1);
@@ -229,6 +229,9 @@ body {
     transform: scale(1.1);
   }
 
+  .searchbarWrapper {
+    right:58px;
+  }
   @keyframes fadeIn {
     from {
       opacity: 0;
