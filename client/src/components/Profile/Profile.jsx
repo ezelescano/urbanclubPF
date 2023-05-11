@@ -25,9 +25,7 @@ import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import loading from "../../img/loading.gif";
 
-
 const Profile = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const usuario = useSelector((state) => state.artist.usuario);
@@ -59,7 +57,7 @@ const Profile = () => {
     city,
     ocupation,
     aboutMe,
-    events
+    events,
   } = usuario;
 
   const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
@@ -71,8 +69,7 @@ const Profile = () => {
     setIsLoading(true);
     dispatch(getArtistId(id));
     setIsLoading(false);
-   
-    
+
     return async () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
@@ -107,8 +104,8 @@ const Profile = () => {
   };
 
   const handleOnBlur = () => {
-    setShowSettings(false)
-  }
+    setShowSettings(false);
+  };
 
   const handleDeleteAccount = () => {
     // const confirmed = window.confirm(
@@ -168,205 +165,208 @@ const Profile = () => {
   const handleContact = () => {
     alert("Funcion aun no implementada 😁");
   };
- 
 
   const islogin = useSelector((state) => state.auth);
-  const handleDeleteEvent = (id,name) => {
-  
+  const handleDeleteEvent = (id, name) => {
     swal({
       title: "ELIMINAR EVENTO",
       text: `Estas seguro de eliminar el evento ${name} `,
       icon: "warning",
       buttons: ["No", "Si"],
-    })
-      .then(async (res) => {
-        if (res && islogin.isAuthenticated) {
-          dispatch(deleteEvent(id));
-          setTimeout(() => {
-            window.location.reload()
-          }, 1000);
-          // window.location.reload()
-          // navigate(`/profile/${id}`);
-           swal({
-            title: "EVENTO ELIMINADO",
-            text: `Evento  ${name} eliminado con exito`,
-            icon: "success",
-            buttons: "Aceptar"
-          })
-        }
-      })
-    
-  }
- 
+    }).then(async (res) => {
+      if (res && islogin.isAuthenticated) {
+        dispatch(deleteEvent(id));
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+        // window.location.reload()
+        // navigate(`/profile/${id}`);
+        swal({
+          title: "EVENTO ELIMINADO",
+          text: `Evento  ${name} eliminado con exito`,
+          icon: "success",
+          buttons: "Aceptar",
+        });
+      }
+    });
+  };
+
   return (
     <>
-        {(errorId && (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID))? <Error404></Error404>:(
-
-    <div className="container">
-      <div className="portada-profile">
-        <img src={coverPhoto} alt="" />
-        <div className="rating-g">4.3</div>
-      </div>
-      <div className="prim-profile">
-        <div className="prim-ocupacion">
-          <div className="foto-ocupacion">
-            <img
-              className="foto-profile"
-              src={profilePhoto}
-              alt="Foto de perfil del artista"
-            />
+      {errorId &&
+      (errorId === EM_NO_USER_ID || errorId.includes(EM_SYNTAX_ID)) ? (
+        <Error404></Error404>
+      ) : (
+        <div className="container">
+          <div className="portada-profile">
+            <img src={coverPhoto} alt="" />
+            <div className="rating-g">4.3</div>
           </div>
-          <div className="ocupation-container">
-            {/* {usuario.ocupation?.map(o => {
+          <div className="prim-profile">
+            <div className="prim-ocupacion">
+              <div className="foto-ocupacion">
+                <img
+                  className="foto-profile"
+                  src={profilePhoto}
+                  alt="Foto de perfil del artista"
+                />
+              </div>
+            </div>
+
+            <div className="info-perfil">
+              <div className="nombre-btns">
+                <div className="anotherNombreBtns">
+                  <div className="nombre">
+                    <span>
+                      <h1 className="profileNombre">
+                        {name}
+                        {/*  {lastname} */}
+                        {verified && (
+                          <img
+                            className="verificado"
+                            src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
+                            alt="verificado paa"
+                          />
+                        )}
+                      </h1>
+                    </span>
+                    <div className="profileFollow">
+                      <button className="btn-profile" onClick={handleFollow}>
+                        Seguir
+                      </button>
+                      <button className="btn-profile" onClick={handleContact}>
+                        Contactar
+                      </button>
+                    </div>
+                  </div>
+                  <h3 className="principalInfo">
+                    {city}, {Country}
+                    <div className="ocupation-container">
+                      {/* {usuario.ocupation?.map(o => {
                 return(
                   <div className='ocupation'>{o}</div>
                 )
               })} */}
-            {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
-            {ocupationArray &&
-              ocupationArray?.map((ocupation) => (
-                <div className="ocupation" key={ocupation}>
-                  {ocupation}
+                      {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
+                      {ocupationArray &&
+                        ocupationArray?.map((ocupation) => (
+                          <div className="ocupation" key={ocupation}>
+                            {ocupation}
+                          </div>
+                        ))}
+                    </div>
+                  </h3>
                 </div>
-              ))}
-          </div>
-        </div>
-
-        <div className="info-perfil">
-          <div className="nombre-btns">
-            <div>
-              <div className="nombre">
-                <h1>
-                  {name}
-                  {/*  {lastname} */}
-                </h1>
-                {/* para saber si es verificado funcion aun no implementada */}
-                {verified && (
-                  <img
-                    className="verificado"
-                    src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
-                    alt="verificado paa"
-                  />
-                )}
               </div>
 
-              <h3>
-                 {city}, {Country}
-              </h3>
-            </div>
-          </div>
+              <div className="stas-profile">
+                <div className="btn-div">
+                  <button className="btn-stas" onClick={scrollToEventos}>
+                    {events?.length + " "} Eventos{" "}
+                    {/*  //! muestra total de eventos del artista */}
+                  </button>
+                  <button className="btn-stas">
+                    {followDemostrativo} Seguidores
+                  </button>
+                  <h4>5 Seguidos</h4>
+                </div>
+                <div className="redes">
+                  {links?.map((l) => {
+                    return (
+                      <div className="redes-div">
+                        <h4>Otras redes!!</h4>
+                        <div className="container-links">
+                          {l.youtube && (
+                            <a
+                              href={l.youtube}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              <img
+                                className="icon"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
+                                alt="ds"
+                              />
+                            </a>
+                          )}
 
-          <div className="stas-profile">
-            <button className="btn-stas" onClick={scrollToEventos}>
-            {events?.length + " "} Eventos  {/*  //! muestra total de eventos del artista */}
-            </button>
-            <button className="btn-stas">
-              {followDemostrativo} Seguidores
-            </button>
-            <h4>5 Seguidos</h4>
-          </div>
-          <div className="ab-re">
-            <div className="aboutme">
-              {aboutMe}
+                          {l.twitter && (
+                            <a
+                              href={l.twitter}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                            >
+                              <img
+                                className="icon"
+                                src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
+                                alt="ds"
+                              />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="ab-re">
+                <div className="aboutme">{aboutMe}</div>
+              </div>
             </div>
-            <div className="redes">
-              {links?.map((l) => {
-                return (
-                  <div className="redes-div">
-                    <h4>Otras redes!!</h4>
-                    <div className="container-links">
-                      {l.youtube && (
-                        <a
-                          href={l.youtube}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                         >
-                          <img
-                              className="icon"
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
-                              alt="ds"
-                          />
-                        </a>
-                        )}
-
-                      {l.twitter && (
-                        <a
-                          href={l.twitter}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                        >
-                          <img
-                            className="icon"
-                            src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
-                            alt="ds"
-                          />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-        <div className="btns">
-          {isCurrentUser ? (
-            <div className="settings-div">
-              <button className="btn-ajustes" onClick={handleSettings}>
-                <img
-                  className="ajustes"
-                  src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
-                  alt="ajuste"
-                />
-              </button>
-              {showSettings && (
-                <Settings
-                  handleDeleteAccount={handleDeleteAccount}
-                  handleLogout={handleLogout}
-                  handlePasswordChange={handlePasswordChange}
-                  handleShowEdit={handleShowEdit}
-                  handleShowCreateEvent={handleShowCreateEvent}
-                />
+            <div className="btns">
+              {isCurrentUser ? (
+                <div className="settings-div">
+                  <button className="btn-ajustes" onClick={handleSettings}>
+                    <img
+                      className="ajustes"
+                      src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
+                      alt="ajuste"
+                    />
+                  </button>
+                  {showSettings && (
+                    <Settings
+                      handleDeleteAccount={handleDeleteAccount}
+                      handleLogout={handleLogout}
+                      handlePasswordChange={handlePasswordChange}
+                      handleShowEdit={handleShowEdit}
+                      handleShowCreateEvent={handleShowCreateEvent}
+                    />
+                  )}
+                  {showEdit && (
+                    <ProfileEdit
+                      handleEdit={handleEdit}
+                      id={id}
+                      usuario={usuario}
+                      handleShowEdit={handleShowEdit}
+                    />
+                  )}
+                  {showEditPassword && (
+                    <UpdatePassword handleEdit={handleEdit} />
+                  )}
+                </div>
+              ) : (
+                <div></div>
               )}
-              {showEdit && (
-                <ProfileEdit
-                  handleEdit={handleEdit}
-                  id={id}
-                  usuario={usuario}
-                  handleShowEdit={handleShowEdit}
+            </div>
+          </div>
+          <div className="div-eventos">
+            <div ref={eventosRef} className="titulo-ev">
+              Mis eventos
+            </div>
+            <div className="div-eventos-profile">
+              {events?.map((event, index) => (
+                <CardsEvents
+                  key={index}
+                  id_art={event.id_Artist}
+                  name_art={event.name}
+                  event={event}
+                  handleDeleteEvent={handleDeleteEvent}
                 />
-              )}
-              {showEditPassword && <UpdatePassword handleEdit={handleEdit} />}
+              ))}
             </div>
-          ) : (
-            <div className="NoAhora">
-              <button className="btn-profile" onClick={handleFollow}>
-                Seguir
-              </button>
-              <button className="btn-profile" onClick={handleContact}>
-                Contactar
-              </button>
-            </div>
-          )}
+          </div>
         </div>
-      </div>
-      <div className="div-eventos">
-        <div ref={eventosRef} className="titulo-ev">
-          Mis eventos
-        </div>
-         <div className="div-eventos-profile">{events?.map((event,index) => ( 
-         <CardsEvents
-            key={index}
-            id_art = {event.id_Artist}
-            name_art = {event.name}
-            event={event}
-            handleDeleteEvent= {handleDeleteEvent} 
-            /> ) ) }
-          </div> 
-      </div>
-    
-    </div>
-     ))}
+      )}
     </>
   );
 };

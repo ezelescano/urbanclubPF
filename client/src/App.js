@@ -15,7 +15,7 @@ import Events from "./components/Events/Events";
 import CreateEvent from "./components/createEvent/CreateEvent";
 import CreateEventTemplate from "./components/createEvent/CreateEventTemplate";
 import Footer from "./components/Footer/Footer"
-import Merch from "./components/Merch/Merch"
+// import Merch from "./components/Merch/Merch"
 import Maps from "./components/Maps/Maps";
 
 //verificacion del token
@@ -36,6 +36,7 @@ import UpdateEvents from "./components/updateEvent/UpdateEvents";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
+import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
 
 function App() {
   const dispatch = useDispatch();
@@ -67,15 +68,15 @@ function App() {
     }
   },[user])
  */
-
+  //No modifiquen cosas que estan bien solo buscando un error de ustedes plsssssssssssssssssssssssssss, Gracias :))
   return (
     <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={!user.isAuthenticated ? (<Login />) : (<Navigate to="/" />)} />
         <Route path="/login/success" element={<LoginSuccess />}></Route>
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={!user.isAuthenticated ? (<Register />) : (<Navigate to="/" />)} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route
           path="/profileEdit/:id"
@@ -83,30 +84,27 @@ function App() {
             user.isAuthenticated ? <ProfileEdit /> : <Navigate to="/login" />
           }
         />
-
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/merch" element={<Merch />} />
+       {/* { <Route path="/merch" element={<Merch />} />} */}
         <Route path="/createevent/:id" element={user.isAuthenticated ? (<CreateEvent />) : (<Navigate to="/login" />)} />
         <Route path="/createeventtemplate" element={<CreateEventTemplate />} />
         <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
-        <Route path="/merch" element={<Merch />} />
         <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
         <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents />) : (<Navigate to="/login" />)} />
         <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)} />
         <Route path="/newPassword/:id" element={!user.isAuthenticated ? (<NewPassword />) : (<Navigate to="/" />)} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
+        <Route path="/termsAndConditions" element={<TermsAndConditions />} />
 
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      {window.location.pathname !== '/messenger' && <Footer />}
-
-
+      {window.location.pathname !== "/messenger" && <Footer />}
     </div>
   );
 }

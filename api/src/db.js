@@ -52,7 +52,7 @@ Artist.belongsToMany(Conversation, { through: 'ArtistConversation' });
 Conversation.belongsToMany(Artist, { through: 'ArtistConversation' });
 //Conversation-Message
 Conversation.hasMany(Message, { as: 'menssage', foreignKey: 'conversationId' });
-Message.belongsTo(Conversation, { as: 'conversation', foreignKey: 'conversationId' });
+Message.belongsTo(Conversation, { as: 'conversation', foreignKey: 'conversationId',onDelete: 'CASCADE' });
 
 
 

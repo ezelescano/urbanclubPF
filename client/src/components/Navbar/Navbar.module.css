@@ -7,6 +7,7 @@
   border-bottom: 1.5px solid #004258;
   position: fixed;
   top: 0;
+  transform: scale(1.04);
   width: 100%;
   z-index: 9999;
 }
@@ -107,7 +108,7 @@ body {
 
   .navbar img.navTitleImgZoom {
     display: block;
-    animation: spin 2s linear infinite;
+    animation: spin 12s linear infinite;
   }
 
   .navLoginBtnZoom {
