@@ -26,7 +26,7 @@ useEffect(() => {
 const handleDelete = () => {
   
   swal({
-    title: "ELIMINAR MENAJE",
+    title: "ELIMINAR CONVERSACION",
     text: `Deseas eliminar la conversacion con ${user?.name}`,
     icon: "warning",
     buttons: ["No", "Si"],
