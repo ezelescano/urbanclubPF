@@ -108,7 +108,7 @@ body {
 
   .navbar img.navTitleImgZoom {
     display: block;
-    animation: spin 2s linear infinite;
+    animation: spin 12s linear infinite;
   }
 
   .navLoginBtnZoom {

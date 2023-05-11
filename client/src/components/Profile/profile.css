@@ -43,6 +43,7 @@
 .foto-ocupacion {
   display: flex;
   width: 350px;
+  height: 250px;
   margin: -1vh 0; /*Separa las ocupaciones de la imagen*/
   flex-direction: column;
   justify-content: flex-end;
@@ -56,7 +57,7 @@
   width: 250px;
   height: 250px;
   position: absolute;
-
+  left: 50px;
   top: -110px;
   background-color: #fff;
   border: 5px solid #fff;
@@ -70,22 +71,15 @@
 .ocupation-container {
   display: flex;
   flex-wrap: wrap;
-  margin: -15px 30px;
+  margin-top: 10px;
 }
 
 .ocupation {
-  padding: 5px 10px;
-  margin-right: 10px;
-  max-width: 198px;
-  max-height: 70px;
-  margin-top: 190px;
+  padding: 8px 12px;
+  border-radius: 30px;
   background-color: #d9d9d9;
-  border-radius: 10px;
+  margin-right: 10px;
   word-wrap: break-word;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
 }
 
 .info-perfil {
@@ -103,8 +97,18 @@
 
 .nombre {
   display: flex;
+  gap: 2.5vw;
 }
 
+.profileFollow {
+  margin-left: auto;
+}
+.profileNombre {
+  display: flex;
+}
+.nombre span {
+  margin-right: auto;
+}
 .verificado {
   width: 35px;
   height: 35px;
@@ -116,13 +120,14 @@
 }
 
 .btn-profile {
-  background-color: #000;
-  color: #fff;
-  font-weight: 600;
+  background-color: #b8b8b89e;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 700;
   border: none;
-  padding: 10px 30px;
+  padding: 15px 30px;
   border-radius: 15px;
-  margin-left: 20px;
+  margin-left: 40px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
@@ -231,7 +236,7 @@
   justify-content: space-around;
   align-items: center;
 }
-@media (max-width: 1315px) {
+@media (max-width: 1400px) {
   .ocupation {
     padding: 5px 10px;
     margin-right: 10px;
@@ -248,13 +253,14 @@
     flex-direction: column;
     align-items: center;
   }
-  .prim-ocupacion{
+  .prim-ocupacion {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 100px;
   }
   .foto-ocupacion {
-    width: 240px;
+    height: 24px;
   }
   .nombre-btns {
     width: auto;
@@ -264,7 +270,7 @@
     align-items: center;
   }
   .btns {
-    transform: translate(0px, -450px);
+    transform: translate(0px, -405px);
   }
   .aboutme {
     max-width: 50vw;
@@ -279,5 +285,80 @@
   .ab-re {
     flex-direction: column;
     align-items: center;
+  }
+
+  .foto-profile {
+    height: 250px;
+    position: absolute;
+    top: -110px;
+    background-color: #fff;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+
+  .stas-profile {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    flex-wrap: wrap;
+  }
+  .nombre {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    align-items: center;
+  }
+  .nombre span {
+    margin-right: unset;
+  }
+  .principalInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .ocupation-container {
+    margin-top: 30px;
+  }
+  .stas-profile * {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: unset;
+    background: none;
+    border: none;
+  }
+  .stas-profile {
+    display: flex;
+    align-items: center;
+    margin: 12px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .nombre-btns {
+    display: flex;
+  }
+  .btn-div {
+    display: flex;
+    gap: 35px;
+  }
+  .redes {
+    margin-top: 10px;
+  }
+  .stas-profile:nth-child(3) {
+    flex-basis: 100%;
+  }
+  .btn-profile {
+    margin-left: unset;
+  }
+  .profileFollow {
+    display: flex;
+  }
+  .profileFollow:nth-child(1){
+    margin-right:10px;
   }
 }

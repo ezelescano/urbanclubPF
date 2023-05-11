@@ -12,10 +12,10 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
-@media (max-width: 1267px) {
+@media (max-width: 980px) {
   .container {
-    height: unset;
-    width: unset;
+    height: 100%;
+    width: 100vw;
   }
 }
 /*ARREGLADO, PERO NO USAR SIN ITEMS O CARDS*/
