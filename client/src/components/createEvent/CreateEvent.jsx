@@ -316,24 +316,23 @@ const CreateEvent = () => {
                   />
                 </div>
                 <br />
-                <div className="submitButton">
                   {isLoading && (
                     <div className="loadingGif">
-                      <img
-                        className="loading"
-                        src={loading}
-                        alt=""
-                        width="30px"
-                      ></img>
-                    </div>
+                    <img
+                      className="loading"
+                      src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
+                      alt=""
+                    ></img>
+                  </div>
                   )}
                   {!isLoading && (
+                    <div className="submitButton">
                     <button className="submitButton" type="submit">
                       Crear el evento
                     </button>
+                    </div>
                   )}
-                  <div className="loadingGif"></div>
-                </div>
+                
               </div>
             </div>
             {/*Esté es el form*/}
