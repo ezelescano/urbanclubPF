@@ -192,21 +192,6 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
-
-                <div className="inputContainer">
-                  <label htmlFor="name">Ciudad:</label>
-                  <br />
-                  <input
-                    placeholder={errors.name}
-                    onChange={handleOnChange}
-                    onBlur={handleOnChange}
-                    type="text"
-                    value={input.city}
-                    maxLength="35"
-                    name="city"
-                    required
-                  />
-                </div>
                 <div className="inputContainer">
                   <label htmlFor="name">Pais:</label>
                   <br />
@@ -218,6 +203,20 @@ const CreateEvent = () => {
                     value={input.Country}
                     maxLength="35"
                     name="Country"
+                    required
+                  />
+                </div>
+                <div className="inputContainer">
+                  <label htmlFor="name">Ciudad:</label>
+                  <br />
+                  <input
+                    placeholder={errors.name}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    type="text"
+                    value={input.city}
+                    maxLength="35"
+                    name="city"
                     required
                   />
                 </div>
@@ -288,13 +287,14 @@ const CreateEvent = () => {
                     onBlur={handleOnBlur}
                     name="price"
                     min="1"
+                    step="0.01"
                     maxLength={35}
                     required
                   />
                 </div>
                 
                 <div className="inputContainer">
-                  <label htmlFor="">TOTAL $USD: {input.price*input.stock}</label>
+                  <label className="lblPrice" htmlFor="">TOTAL $USD: {input.price*input.stock}</label>
                 </div>
                 <div className="inputContainer">
                   <label htmlFor="D">Descripción del evento:</label>

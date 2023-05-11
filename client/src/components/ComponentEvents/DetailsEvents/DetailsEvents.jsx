@@ -19,6 +19,7 @@ function DetailsEvents() {
   const islogin = useSelector((state) => state.auth);
   const [event, setEvent] = useState({});
   const [cantidad, setCantidad] = useState(0);
+  const [entradas, setEntradas] = useState(1);
   const [destino, setDestino] = useState({
     city: "",
     Country: "",
@@ -35,15 +36,18 @@ function DetailsEvents() {
   }, [dispatch, id]);
 
   const ubicationHandler = () => {
-
-    if ((destino.city === "" || !destino.city) ||
-      (destino.Country === "" || !destino.Country)) {
-        swal({
-          title: "FALTA INFORMACION",
-          text: "Debe llenar pais y ciudad correctamente",
-          icon: "info",
-          buttons: "Aceptar",
-        })
+    if (
+      destino.city === "" ||
+      !destino.city ||
+      destino.Country === "" ||
+      !destino.Country
+    ) {
+      swal({
+        title: "FALTA INFORMACION",
+        text: "Debe llenar pais y ciudad correctamente",
+        icon: "info",
+        buttons: "Aceptar",
+      });
       setDestino({
         ...destino,
         ban: false,
@@ -54,15 +58,14 @@ function DetailsEvents() {
         ban: true,
       });
     }
-
-  }
-  const resetUbicationHandler = () =>{
+  };
+  const resetUbicationHandler = () => {
     setDestino({
       city: "",
-    Country: "",
-    ban: false
-    })
-  }
+      Country: "",
+      ban: false,
+    });
+  };
   const getdestinohandler = (e) => {
     if (
       destino.city === "" ||
@@ -78,36 +81,68 @@ function DetailsEvents() {
     setDestino({
       ...destino,
       [e.target.name]: e.target.value,
-    })
-   }
-   const buyTicketHandler = async () => {
-
-    if (cantidad > 0) {
-      let restCant = cantidad - 1;
-
-      setCantidad(restCant);
-      let stockObjeto = { stock: restCant,id_Artist: islogin.user.id };
-      
-     const eventd = await axios.put(
-        `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
-        stockObjeto
-      );
-      
+    });
+  };
+  const buyTicketHandler = async () => {
+    if (!islogin.isAuthenticated) {
       swal({
-        title: "COMPRA EXITOSA",
-        text: `Revisa tu correo para ver más detalles de la compra`,
-        icon: "success",
-        buttons: "Aceptar",
+        title: "COMPRA INVÁLIDA",
+        text: `Debes ingresar con tu usuario para hacer una compra`,
+        icon: "error",
+        buttons: {
+          confirm: "Iniciar sesión",
+          cancel: "Cancelar",
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/login");
+        } else {
+          return;
+        }
       });
-    } else {
+      return;
+    }
+    if (entradas < 0 || entradas === 0) {
       swal({
-        title: "ENTRADAS AGOTADAS",
-        text: `No hay más entradas disponibles para este evento`,
+        title: "COMPRA INVÁLIDA",
+        text: `La cantidad de entradas a comprar debe ser 1 o más`,
         icon: "error",
         buttons: "Aceptar",
       });
+    } else {
+      if (cantidad > 0) {
+        const restCant = cantidad - entradas;
+        setCantidad(restCant);
+        let stockObjeto = { stock: restCant, id_Artist: islogin.user.id };
+        setEntradas(1);
+        console.log("cantidad", stockObjeto.stock);
+
+        const eventd = await axios.put(
+          `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
+          stockObjeto
+        );
+
+        swal({
+          title: "COMPRA EXITOSA",
+          text: `Revisa tu correo para ver más detalles de la compra`,
+          icon: "success",
+          buttons: "Aceptar",
+        });
+      } else {
+        swal({
+          title: "ENTRADAS AGOTADAS",
+          text: `No hay más entradas disponibles para este evento`,
+          icon: "error",
+          buttons: "Aceptar",
+        });
+      }
     }
   };
+
+  const handleOnChange = (e) => {
+    setEntradas(e.target.value);
+  };
+
   return (
     <>
       <div className={style.backContainer}>
@@ -132,19 +167,44 @@ function DetailsEvents() {
               <p>{detailEvent.Description}</p>
               <br />
               <label htmlFor="">¿Cual es tú país?</label>
-              <input type="text" name="Country" value={destino.Country} onChange={getdestinohandler} />
+              <input
+                type="text"
+                name="Country"
+                value={destino.Country}
+                onChange={getdestinohandler}
+              />
               <label htmlFor="">¿Y tu ciudad?</label>
-              <input type="text" name="city" value={destino.city} onChange={getdestinohandler} />
-              <button disabled={destino.ban} onClick={ubicationHandler}>Cómo llego ahi?</button>
-              <button disabled={!destino.ban} onClick={resetUbicationHandler}>Reinicar la Busqueda</button>
+              <input
+                type="text"
+                name="city"
+                value={destino.city}
+                onChange={getdestinohandler}
+              />
+              <button disabled={destino.ban} onClick={ubicationHandler}>
+                Cómo llego ahi?
+              </button>
+              <button disabled={!destino.ban} onClick={resetUbicationHandler}>
+                Reinicar la Busqueda
+              </button>
               <div className={style.links}>
-                <br/>
+                <br />
                 <h3>Cantidad de entradas Disponibles</h3>
                 <h3>{cantidad}</h3>
-                Comprar Entrada con Debito o Crédito:
+                <div>
+                  <label>Comprar Entradas con Debito o Crédito:</label>
+                  <br />
+                  <input
+                    name="entradas"
+                    value={entradas}
+                    min="1"
+                    type="number"
+                    onChange={handleOnChange}
+                  />
+                </div>
                 <button onClick={buyTicketHandler}>
                   Comprar entrada <CreditCardIcon />
                 </button>
+                <p>Total a pagar: {entradas * event.price} USD</p>
                 <a
                   href="https://www.visa.com.ar"
                   target="_blank"
