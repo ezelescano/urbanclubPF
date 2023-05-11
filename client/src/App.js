@@ -83,13 +83,6 @@ function App() {
             user.isAuthenticated ? <ProfileEdit /> : <Navigate to="/login" />
           }
         />  
-        <Route
-          path="/profileEdit/:id"
-          element={
-            user.isAuthenticated ? <ProfileEdit /> : <Navigate to="/login" />
-          }
-        />
-
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
