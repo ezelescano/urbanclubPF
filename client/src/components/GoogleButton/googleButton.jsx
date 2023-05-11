@@ -3,14 +3,14 @@ import axios from 'axios';
 
 const LoginButton = () => {
     //! Codigo para autorizar acceso
-//   const fetchAuthUser = async() => {
-//     const response = await axios.get('http://localhost:3001/artist/auth/user', {withCredentials:true}).catch((err) => {
-//       console.log("Not properly authenticated")
-//     });
-//     if (response && response.data) {
-//       console.log("User: ", response.data)
-//     }
-//   }
+  const fetchAuthUser = async() => {
+    const response = await axios.get('http://localhost:3001/artist/auth/user', {withCredentials:true}).catch((err) => {
+      console.log("Not properly authenticated")
+    });
+    if (response && response.data) {
+      console.log("ahi esta el bendito token amigo!!!!!----->>>> ", response.data)
+    }
+  }
 
   const handleLogin = async () => {
     let timer = null;
@@ -21,7 +21,7 @@ const LoginButton = () => {
         timer = setInterval(() => {
             if(newWindow.closed) {
                 console.log("We are authenticated");
-                // fetchAuthUser() //! activar con la funcion de arriba
+                fetchAuthUser() //! activar con la funcion de arriba
                 if(timer) clearInterval(timer)
             } 
         }, 500)
