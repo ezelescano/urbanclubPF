@@ -81,7 +81,7 @@ function DetailsEvents() {
     setDestino({
       ...destino,
       [e.target.name]: e.target.value,
-    });
+    })
   };
   const buyTicketHandler = async () => {
     if (!islogin.isAuthenticated) {
@@ -114,7 +114,7 @@ function DetailsEvents() {
         const restCant = cantidad - entradas;
         setCantidad(restCant);
         let stockObjeto = { stock: restCant, id_Artist: islogin.user.id };
-        setEntradas(0);
+        setEntradas(1);
         console.log("cantidad", stockObjeto.stock);
 
         const eventd = await axios.put(
@@ -196,9 +196,9 @@ function DetailsEvents() {
                   <input
                     name="entradas"
                     value={entradas}
+                    min="1"
                     type="number"
                     onChange={handleOnChange}
-                    className={style.styledInput}
                   />
                 </div>
                 <button onClick={buyTicketHandler}>

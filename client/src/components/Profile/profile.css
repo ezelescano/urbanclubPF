@@ -270,7 +270,7 @@
     align-items: center;
   }
   .btns {
-    transform: translate(0px, -405px);
+    transform: translate(0px, -34rem);
   }
   .aboutme {
     max-width: 50vw;
@@ -311,6 +311,8 @@
     flex-direction: column;
     margin-bottom: 15px;
     align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
   }
   .nombre span {
     margin-right: unset;
@@ -358,7 +360,7 @@
   .profileFollow {
     display: flex;
   }
-  .profileFollow:nth-child(1){
-    margin-right:10px;
+  .profileFollow:nth-child(1) {
+    margin-right: 10px;
   }
 }

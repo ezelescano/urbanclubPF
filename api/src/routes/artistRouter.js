@@ -14,7 +14,8 @@ const authLogin = require("../Handlers/artistHandler/authLogin");
 const authArtist = require("../Handlers/artistHandler/authArtist")
 const verifyAuth = require("../middlewares/verifyAuth");
 const fileupload = require("express-fileupload")
-const passport = require("../middlewares/authGoogle")
+const passport = require("../middlewares/authGoogle");
+const followArtistHandler = require("../Handlers/artistHandler/followArtistHandler");
 const artistRouter = Router();
 
 
@@ -28,6 +29,7 @@ artistRouter.post("/", fileupload({ useTempFiles: true, tempFileDir: "./uploads"
 artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
 artistRouter.put("/forgotPassword", forgotPasswordHandler)
+artistRouter.put("/follow/:followerId/:follow", followArtistHandler)
 
 
 artistRouter.get(
