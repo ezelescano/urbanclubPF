@@ -334,14 +334,12 @@ function Formulario() {
                   name="aboutMe"
                 />
               </label>
-
               {isLoading && (
                 <div className={style.loadingGif}>
                   <img
-                    className="loading"
-                    src={loading}
+                    className={style.loading}
+                    src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
                     alt=""
-                    width="50px"
                   ></img>
                 </div>
               )}

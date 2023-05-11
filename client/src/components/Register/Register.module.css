@@ -120,12 +120,6 @@ cursor: pointer;
   align-items: center;
   order: 2;
 }
-.loadingGif {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .formContainerRight {
   display: flex;
@@ -219,6 +213,32 @@ cursor: pointer;
   max-height: 100px;
   min-width: 140px;
   min-height: 50px;
+}
+.loadingGif {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #0d5a73;
+  width: 4em;
+  height: 4em;
+  border-radius: 2em;
+}
+.loadingGif img.loading {
+  /* background-color: #0062cc; */
+  width: 4em;
+  height: 4em;
+  display: block;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 /*Faltan los media queries oscar :)))) Dale metele pataaaa...*/
 @media (max-width: 768px) {
