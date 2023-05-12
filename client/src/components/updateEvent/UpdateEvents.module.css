@@ -196,6 +196,10 @@
   min-width: 140px;
   min-height: 50px;
 }
+.titleContainer {
+  margin-top: 2%;
+  text-align: center;
+}
 /*Faltan los media queries oscar :)))) Dale metele pataaaa...*/
 @media (max-width: 768px) {
   .formContainer {
