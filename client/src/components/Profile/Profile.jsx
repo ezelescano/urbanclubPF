@@ -24,12 +24,13 @@ import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import loading from "../../img/loading.gif";
+import axios from "axios";
 
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const usuario = useSelector((state) => state.artist.usuario);
-  const currentUser = useSelector((state) => state.auth.user);
+  const currentUser = useSelector((state) => state.auth);
   const errorId = useSelector((state) => state.artist.errorId);
 
   const [showSettings, setShowSettings] = useState(false);
@@ -37,6 +38,7 @@ const Profile = () => {
   const [showEditPassword, setShowEditPassword] = useState(false);
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
+  const [followed, setFollowed] = useState(false);
 
   const verified = true;
   const links = [
@@ -46,7 +48,7 @@ const Profile = () => {
     },
   ];
 
-  const isCurrentUser = currentUser && currentUser.id === usuario.id;
+  const isCurrentUser = currentUser.user && currentUser.user.id === usuario.id;
 
   const {
     name,
@@ -58,6 +60,8 @@ const Profile = () => {
     ocupation,
     aboutMe,
     events,
+    followers,
+    followings
   } = usuario;
 
   const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
@@ -69,12 +73,24 @@ const Profile = () => {
     setIsLoading(true);
     dispatch(getArtistId(id));
     setIsLoading(false);
-
+    
     return async () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
     };
-  }, []);
+  }, [id]);
+
+  useEffect(() => {
+    const getUser = async() => {
+      try {
+        const res = await axios.get("/login/me");
+        setFollowed(res.followigs.includes(usuario?.id))
+      } catch (error) {
+        console.log(error)
+      }
+    };
+    getUser();
+  },[usuario.id])
 
   // const [prevId, setPrevId] = useState(id);
 
@@ -158,12 +174,64 @@ const Profile = () => {
     });
   };
 
-  const handleFollow = () => {
-    setFollowDemostrativo(followDemostrativo + 1);
+  const handleFollow = async() => {
+    try {
+      if(followed && !isCurrentUser && currentUser.isAuthenticated){
+        await axios.put(`/artist/follow/${usuario.id}/follow`,{
+          followerId: currentUser.user.id
+        })
+        setFollowed(!followed)
+        return
+      }
+      if(!followed && !isCurrentUser && currentUser.isAuthenticated){
+        await axios.put(`/artist/follow/${usuario.id}/unfollow`,{
+          followerId: currentUser.user.id
+        })
+        setFollowed(!followed)
+        return
+      }
+      swal({
+        title: "INICIAR SESIÓN",
+        text: `Inicia sesión para poder seguir a ${name}`,
+        icon: "info",
+        buttons: {
+          cancel: "Cancelar",
+          confirm: "Iniciar sesión"
+        },
+      }).then((value) => {
+        if (value) {
+          navigate("/login");
+        } else {
+          return;
+        }
+      });
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
 
-  const handleContact = () => {
-    alert("Funcion aun no implementada 😁");
+  const handleContact = async() => {
+    if(currentUser.isAuthenticated && !isCurrentUser){
+    const res = await axios.get(`/conversation/${currentUser.user.id}/${usuario.id}`);
+      navigate("/messenger")
+      return
+    }
+    swal({
+      title: "INICIAR SESIÓN",
+      text: `Inicia sesión para poder hablar con ${name}`,
+      icon: "info",
+      buttons: {
+        cancel: "Cancelar",
+        confirm: "Iniciar sesión"
+      },
+    }).then((value) => {
+      if (value) {
+        navigate("/login");
+      } else {
+        return;
+      }
+    });
   };
 
   const islogin = useSelector((state) => state.auth);
@@ -230,14 +298,17 @@ const Profile = () => {
                         )}
                       </h1>
                     </span>
-                    <div className="profileFollow">
-                      <button className="btn-profile" onClick={handleFollow}>
-                        Seguir
-                      </button>
-                      <button className="btn-profile" onClick={handleContact}>
-                        Contactar
-                      </button>
-                    </div>
+                    {!isCurrentUser &&
+                      <div className="profileFollow">
+                        <button className="btn-profile" onClick={handleFollow}>
+                          {followed ? "dejar de seguir" : "seguir"}
+                          {/* {followed ? "dejar de seguir" : "seguir"} */}
+                        </button>
+                        <button className="btn-profile" onClick={handleContact}>
+                          Contactar
+                        </button>
+                      </div>
+                    }
                   </div>
                   <h3 className="principalInfo">
                     {city}, {Country}
@@ -266,9 +337,9 @@ const Profile = () => {
                     {/*  //! muestra total de eventos del artista */}
                   </button>
                   <button className="btn-stas">
-                    {followDemostrativo} Seguidores
+                    {followings?.length + " "} Seguidores
                   </button>
-                  <h4>5 Seguidos</h4>
+                  <h4>{followers?.length + " "} Seguidos</h4>
                 </div>
                 <div className="redes">
                   {links?.map((l) => {
