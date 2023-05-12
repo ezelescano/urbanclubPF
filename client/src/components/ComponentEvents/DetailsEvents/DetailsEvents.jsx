@@ -119,6 +119,9 @@ function DetailsEvents() {
 
         const eventd = await axios.put(
           `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
+          // `https://pruebaback-production-0050.up.railway.app/events/buyTicket/${detailEvent.id}`,
+
+          
           stockObjeto
         );
 

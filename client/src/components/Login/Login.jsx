@@ -15,7 +15,8 @@ function Login() {
     password: "",
   });
 
-  const handleClick = async () => {
+  const handleClick = async () => {  
+    // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google";
     const googleLoginURL = "http://localhost:3001/artist/auth/google";
     const newWindow = window.open(
       googleLoginURL,
