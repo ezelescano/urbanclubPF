@@ -72,6 +72,11 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
+  flex-basis: 33.33%;
+  box-sizing: border-box;
+  padding: 10px;
+  gap: 5px;
+  max-width: 329px;
 }
 
 .ocupation {
@@ -236,7 +241,7 @@
   justify-content: space-around;
   align-items: center;
 }
-@media (max-width: 1400px) {
+@media (max-width: 960px) {
   .ocupation {
     padding: 5px 10px;
     margin-right: 10px;
@@ -354,13 +359,14 @@
   .stas-profile:nth-child(3) {
     flex-basis: 100%;
   }
-  .btn-profile {
-    margin-left: unset;
-  }
   .profileFollow {
     display: flex;
   }
-  .profileFollow:nth-child(1) {
-    margin-right: 10px;
+  .profileNombre {
+    font-size: 40px;
+  }
+  .container {
+    margin-top:80px;
+    margin-inline: 20px;
   }
 }

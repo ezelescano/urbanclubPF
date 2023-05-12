@@ -56,7 +56,7 @@ const SearchBar = () => {
 
   return (
     <div className="searchbar-container">
-      <form>
+      <form className="searchbarForm">
         <input
           className="searchbar"
           type="text"

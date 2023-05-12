@@ -234,6 +234,7 @@ const Profile = () => {
                       <button className="btn-profile" onClick={handleFollow}>
                         Seguir
                       </button>
+                     
                       <button className="btn-profile" onClick={handleContact}>
                         Contactar
                       </button>
@@ -242,12 +243,6 @@ const Profile = () => {
                   <h3 className="principalInfo">
                     {city}, {Country}
                     <div className="ocupation-container">
-                      {/* {usuario.ocupation?.map(o => {
-                return(
-                  <div className='ocupation'>{o}</div>
-                )
-              })} */}
-                      {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
                       {ocupationArray &&
                         ocupationArray?.map((ocupation) => (
                           <div className="ocupation" key={ocupation}>

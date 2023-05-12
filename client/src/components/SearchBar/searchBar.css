@@ -14,7 +14,9 @@
   -ms-transition: 0.2s ease;
   -o-transition: 0.2s ease;
 }
-
+.searchbarForm{
+  display: flex;
+}
 .searchbar:hover,
 .searchbar:focus {
   background-color: #fff;
