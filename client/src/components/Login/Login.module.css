@@ -107,10 +107,14 @@
   margin-bottom: 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 970px) {
+  .formularioExternoLogin {
+    margin-top: 55px;
+  }
   .formContainer {
     flex-direction: column;
-    max-height: 295px;
+    max-height: 30%;
+    max-width: 650px;
     padding: 10% 0;
     align-items: center;
   }
@@ -123,10 +127,13 @@
 
   .formContainerLeft,
   .formContainerRight {
-    margin-inline: 40px;
+    padding: unset;
+    margin-inline: 20px;
     order: 1;
   }
-
+  .formLoginTitle {
+    max-width: unset;
+  }
   .formCoginTitle {
     max-width: none;
     text-align: center;
@@ -146,11 +153,15 @@
     order: 3;
     margin: 0;
   }
+  .formularioContainer {
+    width: 400px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
   .formContainer {
     padding: 5%;
+    margin: 15%;
   }
 
   .formLoginTitle {

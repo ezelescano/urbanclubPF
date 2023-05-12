@@ -5,18 +5,22 @@
   background-position: center;
   background-attachment: fixed;
   top: 1px;
-  height: 101vh;
+  min-height: 101vh;
 }
 .container div:first-child {
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-@media (max-width: 980px) {
+@media (max-width: 970px) {
   .container {
     height: 100%;
     width: 100vw;
   }
+  .container div:first-child {
+    margin-top: 30px;
+}
 }
 /*ARREGLADO, PERO NO USAR SIN ITEMS O CARDS*/
 /*Limpiar fondo luego*/

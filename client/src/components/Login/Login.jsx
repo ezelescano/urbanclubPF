@@ -5,8 +5,6 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
 import GoogleButton from "../GoogleButton/googleButton";
 
-
-
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +22,6 @@ function Login() {
       "width=500, height=600"
     );
   };
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,9 +41,7 @@ function Login() {
   //Acá te lo muestra ###
   return (
     <div className={styles.formularioExternoLogin}>
-      <div
-        className={`${styles.formularioContainer} ${styles.formularioBackground}`}
-      >
+      <div className={styles.formularioContainer}>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <div className={styles.formContainerLeft}>
             <label className={styles.formLoginTitle}>
