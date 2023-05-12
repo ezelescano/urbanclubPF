@@ -20,7 +20,6 @@ const passport = require("../middlewares/authGoogle");
 const followArtistHandler = require("../Handlers/artistHandler/followArtistHandler");;
 const generateJWT = require("../../utils/generateJWT");
 const isAuthGoogle = require("../middlewares/isAuthGoogle")
-const verifyPassToken = require("../middlewares/verifyPassToken")
 const artistRouter = Router();
 
 
