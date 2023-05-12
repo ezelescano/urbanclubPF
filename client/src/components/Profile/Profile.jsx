@@ -74,7 +74,7 @@ const Profile = () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
     };
-  }, []);
+  }, [id]);
 
   // const [prevId, setPrevId] = useState(id);
 

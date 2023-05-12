@@ -8,10 +8,13 @@ const { filterLocation } = require("../middlewares/filterLocation")
 const { getResults } = require("../Handlers/searchHandler/getResults")
 const { filterEvents } = require("../middlewares/filterEvents")
 const { getSearchEvents } = require("../Handlers/searchHandler/getSearchEvents")
-const { filterDate } = require("../middlewares/filterDate")
+const { filterDate } = require("../middlewares/filterDate");
+const { getSavedLocations } = require("../Handlers/searchHandler/getLocations");
+
 
 
 searchRouter.get("/", getAllCategories);
+searchRouter.get("/locations", getSavedLocations);
 // searchRouter.get("/:category", getArtistByCat);
 searchRouter.get("/artists", filterCategories, filterLocation, filterEvents, getResults);
 searchRouter.get("/events", filterDate, getSearchEvents);

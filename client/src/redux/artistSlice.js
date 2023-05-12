@@ -10,8 +10,9 @@ const initialState = {
   allUsuariosArt: [],
   errorForm: {},
   copiArtista: [],
-  categoria: [],
-  errorId: ""
+  categories: [],
+  errorId: "",
+  locations: [],
 }
 
 
@@ -31,7 +32,7 @@ export const artistSlice = createSlice({
       return {
         ...state,
         allUsuarios: action.payload,
-        categoria: action.payload,
+
 
       }
     },
@@ -107,11 +108,40 @@ export const artistSlice = createSlice({
         ...state,
         usuario: action.payload
       }
-    }
+    },
+
+    getAllCategoriesSuccess(state, action) {
+      return {
+        ...state,
+        categories: action.payload,
+
+      }
+    },
+
+    getAllLocationsSuccess(state, action) {
+      return {
+        ...state,
+        locations: action.payload,
+
+      }
+    },
 
   }
 
 });
+
+export const getAllCategories = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/search/`);
+      const categories = response.data;
+      console.log("//MMEMMMMMM", categories);
+      return dispatch(getAllCategoriesSuccess(categories));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
 
 export const FilterArtists = (categoria, ubicacion, events) => {
   return async (dispatch) => {
@@ -120,6 +150,19 @@ export const FilterArtists = (categoria, ubicacion, events) => {
 
     return dispatch(getFilterArtists(artist));
   };
+};
+
+export const getAllLocations = () => {
+  return async (dispatch) => {
+    try {
+      const result = await axios.get(`/search/locations`);
+      const location = result.data;
+      console.log("//LOCATIONS///", location);
+      return dispatch(getAllLocationsSuccess(location));
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
 
 
@@ -290,6 +333,8 @@ export const forgotPassword = (email) => {
 
 
 export const {
+  getAllCategoriesSuccess,
+  getAllLocationsSuccess,
   getFilterArtists,
   getArtistIdSuccess,
   getArtistIdError,

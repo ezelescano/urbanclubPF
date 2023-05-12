@@ -5,28 +5,41 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getAllArts,
-  getFilterArtists,
   FilterArtists,
   cleanArtists,
+  getAllCategories,
+  getAllLocations,
+  
 } from "../../redux/artistSlice";
 import loading from "../../img/loading.gif";
 import Errors404search from "../Error404/Error404search";
 
 const Artists = () => {
+  // Estados de redux "artistSlice.js"
   const artistas = useSelector((state) => state.artist.allUsuarios);
   const usuario = useSelector((state) => state.artist.copiArtista);
-  const category = useSelector((state) => state.artist.categoria);
+  const categories = useSelector((state) => state.artist.categories);
+  const locations = useSelector((state) => state.artist.locations);
 
+
+
+  // const [selectedCategory, setselectedCategory] = useState("");
+  const [orden, setOrden] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
+  //  const [search, setSearch]= useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function asynGetArtists() {
+    function asynGetArtists() {
       // You can await here
       setIsLoading(true);
 
-      await dispatch(getAllArts());
+      dispatch(getAllArts());
+      dispatch(getAllCategories());
+      dispatch(getAllLocations());
 
       setIsLoading(false);
       // ...
@@ -37,38 +50,27 @@ const Artists = () => {
     return dispatch(cleanArtists);
   }, [dispatch]);
 
-  const [ocupation, setOcupation] = useState("");
-  const [country, setCountry] = useState("");
-  const [orden, setOrden] = useState("");
-  //  const [search, setSearch]= useState('')
 
   useEffect(() => {
-    // dispatch(FilterArtists(ocupation));
+    // dispatch(FilterArtists(selectedCategory));
     handlesFilter();
-  }, [ocupation, country, orden]);
+  }, [selectedCategory, selectedLocation, orden]);
 
-  const filterOcupacionForMap = [
-    "Bailarin",
-    "Cantante",
-    "Musico",
-    "Actor",
-    "Pintor",
-    "Modelo",
-  ];
+ 
   const handlesFilter = async () => {
     let artist = [...usuario];
-    const ubicacion = country;
+    
     const events = orden;
 
-    if (ocupation !== "" || country !== "" || orden !== "") {
+    if (selectedCategory !== "" || selectedLocation !== "" || orden !== "") {
       setIsLoading(true);
-      dispatch(FilterArtists(ocupation, ubicacion, orden));
+      dispatch(FilterArtists(selectedCategory, selectedLocation, orden));
       setIsLoading(false);
 
       // Add selected filters to the state
       const newFilters = [];
-      if (ocupation !== "") newFilters.push(ocupation);
-      if (country !== "") newFilters.push(country);
+      if (selectedCategory !== "") newFilters.push(selectedCategory);
+      if (selectedLocation !== "") newFilters.push(selectedLocation);
       if (orden !== "") newFilters.push(orden);
       setSelectedFilters(newFilters);
     } else {
@@ -85,8 +87,8 @@ const Artists = () => {
     setSelectedFilters(newFilters);
 
     // Remove filter from the form
-    if (ocupation === filter) setOcupation("");
-    if (country === filter) setCountry("");
+    if (selectedCategory === filter) setSelectedCategory("");
+    if (selectedLocation === filter) setSelectedLocation("");
     if (orden === filter) setOrden("");
   };
   return (
@@ -95,7 +97,7 @@ const Artists = () => {
         <br />
         <div className={style.containerFilters}>
           <form className={style.filtersLogic}>
-            <select
+            {/* <select
               className={style.selectFilters}
               value={ocupation}
               onChange={(event) => setOcupation(event.target.value)}
@@ -106,20 +108,27 @@ const Artists = () => {
                   {ocupation}
                 </option>
               ))}
-            </select>
+            </select> */}
+
+              <select
+              className={style.selectFilters} 
+              value={selectedCategory} 
+              onChange={(e) => setSelectedCategory(e.target.value)}>
+              <option value="">Todas las ocupaciones</option>
+              {categories?.map((category) => (
+              <option key={category} value={category}>{category}</option>
+              ))}
+              </select>
+
 
             <select
-              value={country}
-              onChange={(event) => setCountry(event.target.value)}
+              value={selectedLocation}
+              onChange={(event) => setSelectedLocation(event.target.value)}
             >
               <option value="">Todos los países</option>
-              <option value="Argentina">Argentina</option>
-              <option value="México">México</option>
-              <option value="España">España</option>
-              <option value="Colombia">Colombia</option>
-              <option value="Peru">Peru</option>
-              <option value="Chile">Chile</option>
-              <option value="Estados Unidos">Estados Unidos</option>
+              {locations?.map((Country) => (
+              <option key={Country} value={Country}>{Country}</option>
+              ))}
             </select>
 
             <select
@@ -133,7 +142,7 @@ const Artists = () => {
 
             <button
               type="button"
-              onClick={() => (setOcupation(""), setCountry(""), setOrden(""))}
+              onClick={() => (setSelectedCategory(""), setSelectedLocation(""), setOrden(""))}
             >
               Limpiar
             </button>
