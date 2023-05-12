@@ -68,26 +68,26 @@ function App() {
     }
   },[user])
  */
-
+  //No modifiquen cosas que estan bien solo buscando un error de ustedes plsssssssssssssssssssssssssss, Gracias :))
   return (
     <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={!user.isAuthenticated ? (<Login />) : (<Navigate to="/" />)} />
         <Route path="/login/success" element={<LoginSuccess />}></Route>
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={!user.isAuthenticated ? (<Register />) : (<Navigate to="/" />)} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route
           path="/profileEdit/:id"
           element={
             user.isAuthenticated ? <ProfileEdit /> : <Navigate to="/login" />
           }
-        />  
+        />
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-        {/* <Route path="/merch" element={<Merch />} /> */}
+       {/* { <Route path="/merch" element={<Merch />} />} */}
         <Route path="/createevent/:id" element={user.isAuthenticated ? (<CreateEvent />) : (<Navigate to="/login" />)} />
         <Route path="/createeventtemplate" element={<CreateEventTemplate />} />
         <Route path="/About/Estiven" element={<AboutEstiven />} />
@@ -104,9 +104,7 @@ function App() {
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      {window.location.pathname !== '/messenger' && <Footer />}
-
-
+      {window.location.pathname !== "/messenger" && <Footer />}
     </div>
   );
 }

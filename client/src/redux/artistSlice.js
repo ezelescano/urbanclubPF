@@ -115,9 +115,9 @@ export const artistSlice = createSlice({
 
 export const FilterArtists = (categoria, ubicacion, events) => {
   return async (dispatch) => {
-    const apiData = await axios.get(`/search/resultados?categoria=${categoria}&ubicacion=${ubicacion}&events=${events}`);//`/search/resultados?categoria=${categoria}`
+    const apiData = await axios.get(`/search/artists?categoria=${categoria}&ubicacion=${ubicacion}&events=${events}`);//`/search/resultados?categoria=${categoria}`
     const artist = apiData.data.artistas;
-   
+
     return dispatch(getFilterArtists(artist));
   };
 };
@@ -137,11 +137,11 @@ export const getArtistId = (id) => {
     try {
       const apiData = await axios.get(`/artist/${id}`);
       const artist = apiData.data;
-      
-      return dispatch(getArtistIdSuccess(artist));
+      dispatch(getArtistIdSuccess(artist));
+      return artist
 
     } catch (error) {
-    
+
       if (error.response.data.message)
         return dispatch(getArtistIdError(error.response.data.message));
     }
@@ -186,9 +186,9 @@ export const postArtist = (payload, navigate) => {
       const result = apiData.data;
       if (result.error) {
         return dispatch(setErrors(result))
-        
+
       }
-    
+
       dispatch(postArtistSuccess());
       dispatch(loginSuccess(result))
       dispatch(clearErrors())
@@ -199,7 +199,7 @@ export const postArtist = (payload, navigate) => {
         buttons: "Aceptar"
       }).then(res => {
         if (res) {
-           navigate("/")
+          navigate("/")
         }
       })
 
@@ -256,7 +256,7 @@ export const updateArtist = (id, input) => {
     try {
       const apiData = await axios.put(`/artist/update/${id}`, input);
       const response = apiData.data;
-      
+
       dispatch(updateArtistSuccess(response));
     } catch (error) {
       swal({
@@ -275,7 +275,7 @@ export const forgotPassword = (email) => {
     try {
       const apiData = await axios.put("/forgotPassword", email)
       const response = apiData.data;
-    
+
     } catch (error) {
       swal({
         title: "ERROR",

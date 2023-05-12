@@ -16,7 +16,11 @@ const newPasswordHandler = require("../Handlers/artistHandler/newPasswordHandler
 const verifyAuth = require("../middlewares/verifyAuth");
 const verifyPassToken = require("../middlewares/verifyPassToken");
 const fileupload = require("express-fileupload")
-const passport = require("../middlewares/authGoogle")
+const passport = require("../middlewares/authGoogle");
+const followArtistHandler = require("../Handlers/artistHandler/followArtistHandler");;
+const generateJWT = require("../../utils/generateJWT");
+const isAuthGoogle = require("../middlewares/isAuthGoogle")
+const verifyPassToken = require("../middlewares/verifyPassToken")
 const artistRouter = Router();
 
 
@@ -30,6 +34,7 @@ artistRouter.post("/", fileupload({ useTempFiles: true, tempFileDir: "./uploads"
 artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
 artistRouter.put("/forgotPassword", forgotPasswordHandler)
+artistRouter.put("/follow/:followedId/:follow", followArtistHandler)
 artistRouter.put("/newPassword/:id/:token", verifyPassToken, newPasswordHandler)
 
 
@@ -77,7 +82,14 @@ artistRouter.get(
   }
 );
 
+artistRouter.get("/auth/user", isAuthGoogle, (req,res)=>{
+  const token = generateJWT(req.user.id, req.user.name, req.user.profilePhoto)
+  res.json(token)
+})
 
+artistRouter.get("/resetPassword/:token", verifyPassToken, (req, res) => {
+  res.redirect("http://localhost:3000/artist/login")
+})
 
 
 
