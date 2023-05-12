@@ -180,8 +180,8 @@ export const getArtistId = (id) => {
     try {
       const apiData = await axios.get(`/artist/${id}`);
       const artist = apiData.data;
-
-      return dispatch(getArtistIdSuccess(artist));
+      dispatch(getArtistIdSuccess(artist));
+      return artist
 
     } catch (error) {
 

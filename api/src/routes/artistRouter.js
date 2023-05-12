@@ -12,7 +12,9 @@ const { getArtistByCat } = require("../Handlers/searchHandler/getArtistByCat")
 const { getAllCategories } = require("../Handlers/searchHandler/getAllCategories")
 const authLogin = require("../Handlers/artistHandler/authLogin");
 const authArtist = require("../Handlers/artistHandler/authArtist")
+const newPasswordHandler = require("../Handlers/artistHandler/newPasswordHandler");
 const verifyAuth = require("../middlewares/verifyAuth");
+const verifyPassToken = require("../middlewares/verifyPassToken");
 const fileupload = require("express-fileupload")
 const passport = require("../middlewares/authGoogle");
 const followArtistHandler = require("../Handlers/artistHandler/followArtistHandler");;
@@ -31,7 +33,8 @@ artistRouter.post("/", fileupload({ useTempFiles: true, tempFileDir: "./uploads"
 artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
 artistRouter.put("/forgotPassword", forgotPasswordHandler)
-artistRouter.put("/follow/:followerId/:follow", followArtistHandler)
+artistRouter.put("/follow/:followedId/:follow", followArtistHandler)
+artistRouter.put("/newPassword/:id/:token", verifyPassToken, newPasswordHandler)
 
 
 artistRouter.get(
@@ -81,6 +84,10 @@ artistRouter.get(
 artistRouter.get("/auth/user", isAuthGoogle, (req,res)=>{
   const token = generateJWT(req.user.id, req.user.name, req.user.profilePhoto)
   res.json(token)
+})
+
+artistRouter.get("/resetPassword/:token", verifyPassToken, (req, res) => {
+  res.redirect("http://localhost:3000/artist/login")
 })
 
 
