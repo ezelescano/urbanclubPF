@@ -9,6 +9,7 @@ import axios from "axios";
 import store from "./redux/store";
 
 axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'https://pruebaback-production-0050.up.railway.app'; 
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>

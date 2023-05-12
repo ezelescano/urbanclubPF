@@ -59,7 +59,8 @@ export default function Register() {
     }
   
 
-     axios
+     axios  
+      // .post("https://pruebaback-production-0050.up.railway.app/artist", input)
       .post("http://localhost:3001/artist", input)
       .then((res) => console.log(res))
       .catch((errors) => errors);
