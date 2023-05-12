@@ -27,6 +27,7 @@
   align-items: center;
   justify-content: center;
   font-family: "Inter", sans-serif;
+  margin-top: 15px;
 }
 
 .AdminBack {
@@ -44,6 +45,12 @@
   .Admin {
     grid-template-columns: 10% 50% auto;
     overflow-y: scroll;
+    margin-top: 15px;
+  }
+}
+@media (max-width: 970px) {
+  .Admin {
+    margin-top: 70px;
   }
 }
 

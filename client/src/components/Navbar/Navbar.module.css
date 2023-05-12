@@ -90,6 +90,7 @@ body {
 .sesionfoto,
 .sesionfotozoom {
   object-fit: cover;
+    filter: blur(0.3px); /*Más que nada por lo tosco de la foto*/
 }
 
 /*Responsive Botoncitos de Movil*/
@@ -230,7 +231,7 @@ body {
   }
 
   .searchbarWrapper {
-    right:30px;
+    right: 30px;
   }
   @keyframes fadeIn {
     from {
