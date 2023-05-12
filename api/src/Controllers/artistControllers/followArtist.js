@@ -7,13 +7,13 @@ const followArtist = async(followerId, followedId, isfollow) => {
       const follower = await Artist.findByPk(followerId);
   
       await follower.update({
-        followers: [...follower.followers, followedId]
+        followings: [...follower.followings, followedId]
       });
   
       const followed = await Artist.findByPk(followedId);
   
       await followed.update({
-        followings: [...follower.followings, followerId]
+        followers: [...follower.followers, followerId]
       });
 
       return "Follow"
@@ -21,13 +21,13 @@ const followArtist = async(followerId, followedId, isfollow) => {
     const follower = await Artist.findByPk(followerId);
   
       await follower.update({
-        followers: follower.followers.filter(f => f === followedId)
+        followings: follower.followings.filter(f => f === followedId)
       });
   
       const followed = await Artist.findByPk(followedId);
   
       await followed.update({
-        followings: followed.followings.filter(f => f === followerId)
+        followers: followed.followers.filter(f => f === followerId)
       });
 
       return "UnFollow"

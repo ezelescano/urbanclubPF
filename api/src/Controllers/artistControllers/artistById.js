@@ -30,7 +30,9 @@ const artistById = async (artistId) => {
           city: infoArtistDB.city,
           ocupation: infoArtistDB.ocupation,
           aboutMe: infoArtistDB.aboutMe,
-          events: infoArtistDB.Events
+          events: infoArtistDB.Events,
+          followers: infoArtistDB.followers,
+          followings: infoArtistDB.followings
         };
         return infoArtistClean;
       }

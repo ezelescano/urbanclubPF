@@ -150,6 +150,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 200px;
-  margin-left: 140px;
+  width: 100%;
+  height: 4em;
+}
+.loadingGif img.loading {
+  background-color: #0d5a73;
+  border-radius: 2em;
+  width: 4em;
+  height: 4em;
+  display: block;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

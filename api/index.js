@@ -9,7 +9,7 @@ const io = require("socket.io")(server);
 
 app.listen(PORT, ()=>{
 
-    sequelize.sync({force: false});
+    sequelize.sync({force: true});
 
     console.log(`Listening on port ${PORT}`);
 }); */
