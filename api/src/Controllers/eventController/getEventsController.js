@@ -1,4 +1,4 @@
-const {Event,Artist} = require("../../db");
+const { Event, Artist } = require("../../db");
 
 const getEventsController = async () => {
     const eventDB = await Artist.findAll({
@@ -6,6 +6,5 @@ const getEventsController = async () => {
         attributes: ['id', 'name']
     })
     return eventDB;
-};
-
+}
 module.exports = getEventsController;

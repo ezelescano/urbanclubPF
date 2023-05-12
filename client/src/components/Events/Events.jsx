@@ -23,7 +23,7 @@ const Events = () => {
   const location = {
     locationName: "Calle C 16 Barrio La campiña 6 N.356",
   };
-
+console.log(allEvents)
   return (
     <div className={style.container}>
       <div className={style.containerHelp}>
