@@ -90,7 +90,7 @@ body {
 .sesionfoto,
 .sesionfotozoom {
   object-fit: cover;
-    filter: blur(0.3px); /*Más que nada por lo tosco de la foto*/
+  filter: blur(0.3px); /*Más que nada por lo tosco de la foto*/
 }
 
 /*Responsive Botoncitos de Movil*/
@@ -102,7 +102,7 @@ body {
   display: none;
 }
 
-@media screen and (max-width: 968px) {
+@media screen and (max-width: 1150px) {
   .navbar img.navTitleImg {
     display: none;
   }
