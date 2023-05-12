@@ -102,22 +102,28 @@ const NewPassword = () => {
   };
 
   return (
-    <div className={style.containerUpdatePassword}>
+    <div className={style.container}>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="password"
-          value={password.password}
-          onChange={changeHandlerPassword}
-        ></input>
-        <input
-          type="text"
-          name="password2"
-          value={password2.password2}
-          onChange={changeHanlderPassword2}
-        ></input>
+        <div className={style.inputContainer}>
+          <input
+            type="password"
+            name="password"
+            value={password.password}
+            onChange={changeHandlerPassword}
+          />
+        </div>
+        <div className={style.inputContainer}>
+          <input
+            type="password"
+            name="password2"
+            value={password2.password2}
+            onChange={changeHanlderPassword2}
+          />
+        </div>
         {errors && <p>{errors.password}</p>}
-        <button type="submit">Guardar nueva contraseña</button>
+        <button className={style.newPasswordButton} type="submit">
+          Guardar nueva contraseña
+        </button>
       </form>
     </div>
   );

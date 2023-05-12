@@ -47,7 +47,7 @@ const forgotPassword = async (email) => {
                     <li>Haz clic en el siguiente enlace para acceder a la página de restablecimiento de contraseña: <a href="http://localhost:3000/newPassword/${artist.id}/${token}">Enlace único de restablecimiento de contraseña</a></li>
                     <li>Serás redirigido a una página donde podrás crear una nueva contraseña. Asegúrate de elegir una contraseña segura y fácil de recordar.</li>
                     <li>Una vez que hayas creado tu nueva contraseña, podrás acceder nuevamente a tu cuenta con las nuevas credenciales.</li>
-                    <li>Este link dura 5 minutos</li>
+                    <li>Este link dura 5 minutos.</li>
                 </ol>
             
                 <p>Si no solicitaste este cambio o no deseas restablecer tu contraseña, te recomendamos tomar las siguientes medidas de seguridad:</p>

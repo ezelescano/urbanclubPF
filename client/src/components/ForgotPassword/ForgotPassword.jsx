@@ -1,7 +1,7 @@
 import { useState } from "react";
-//import style from "./ForgotPassword.module.css";
 import axios from "axios";
 import swal from "sweetalert";
+import style from "./ForgotPassword.module.css";
 
 const ForgotPassword = () => {
   const [input, setInput] = useState({
@@ -29,16 +29,19 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
-        <label>Ingresa tu correo electrónico</label>
+    <div className={style.container}>
+      <form className={style.form} onSubmit={submitHandler}>
+        <label className={style.label}>Ingresa tu correo electrónico</label>
         <input
+          className={style.input}
           type="text"
           name="email"
           value={input.email}
           onChange={changeHandler}
-        ></input>
-        <button type="submit">Recuperar contraseña</button>
+        />
+        <button className={style.newPasswordButton} type="submit">
+          Recuperar contraseña
+        </button>
       </form>
     </div>
   );
