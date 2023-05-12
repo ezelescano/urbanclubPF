@@ -88,10 +88,10 @@ function DetailsEvents() {
       swal({
         title: "COMPRA INVÁLIDA",
         text: `Debes ingresar con tu usuario para hacer una compra`,
-        icon: "error",
+        icon: "info",
         buttons: {
-          confirm: "Iniciar sesión",
           cancel: "Cancelar",
+          confirm: "Iniciar sesión"
         },
       }).then((value) => {
         if (value) {
