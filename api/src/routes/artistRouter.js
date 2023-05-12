@@ -12,13 +12,14 @@ const { getArtistByCat } = require("../Handlers/searchHandler/getArtistByCat")
 const { getAllCategories } = require("../Handlers/searchHandler/getAllCategories")
 const authLogin = require("../Handlers/artistHandler/authLogin");
 const authArtist = require("../Handlers/artistHandler/authArtist")
+const newPasswordHandler = require("../Handlers/artistHandler/newPasswordHandler");
 const verifyAuth = require("../middlewares/verifyAuth");
+const verifyPassToken = require("../middlewares/verifyPassToken");
 const fileupload = require("express-fileupload")
 const passport = require("../middlewares/authGoogle");
 const followArtistHandler = require("../Handlers/artistHandler/followArtistHandler");;
 const generateJWT = require("../../utils/generateJWT");
 const isAuthGoogle = require("../middlewares/isAuthGoogle")
-const verifyPassToken = require("../middlewares/verifyPassToken")
 const artistRouter = Router();
 
 
@@ -33,6 +34,7 @@ artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
 artistRouter.put("/forgotPassword", forgotPasswordHandler)
 artistRouter.put("/follow/:followedId/:follow", followArtistHandler)
+artistRouter.put("/newPassword/:id/:token", verifyPassToken, newPasswordHandler)
 
 
 artistRouter.get(
@@ -51,7 +53,7 @@ artistRouter.get(
   passport.authenticate("google", {
     failureMessage: "no se pudo iniciar sesion con google",
     failureRedirect: "http://localhost:3000/login", //! una direccion de front 
-    successRedirect: "http://localhost:3000/login/success"
+    successRedirect: "http://localhost:3000/login/success" //!reemplazar por https://urbanclub.club
     // session: false,
   }),
   (req, res) => {
