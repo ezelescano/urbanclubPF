@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import style from "./Navbar.module.css";
 //import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const islogin = useSelector((state) => state.auth);
   const usuario = useSelector((state) => state.auth.user);
-  
 
   return (
     <nav className={style.navbar}>
