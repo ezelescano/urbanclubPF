@@ -35,6 +35,11 @@ function Navbar() {
       {/*<SearchIcon style={{color:"white"}}/>*/}
       <ul className={style.navLinks}>
         <li>
+          <NavLink to="/admin" className={`${style.navLink} ${style.active}`}>
+            Admin
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/artists" className={`${style.navLink} ${style.active}`}>
             Artistas
           </NavLink>
@@ -100,21 +105,21 @@ function Navbar() {
             <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
               Tienda
             </NavLink>
-          </li> */} {!islogin.isAuthenticated ? (
-          <NavLink to="/login">
-            <button className={style.navLoginBtnZoom}>Ingresar</button>
-          </NavLink>
-        ) : (
-          <NavLink to={`/profile/${islogin.user.id}`}>
-            <img
-              className={style.sesionfotozoom}
-              src={usuario.profilePhoto}
-              alt="No hay"
-            />
-          </NavLink>
-        )}
+          </li> */}{" "}
+          {!islogin.isAuthenticated ? (
+            <NavLink to="/login">
+              <button className={style.navLoginBtnZoom}>Ingresar</button>
+            </NavLink>
+          ) : (
+            <NavLink to={`/profile/${islogin.user.id}`}>
+              <img
+                className={style.sesionfotozoom}
+                src={usuario.profilePhoto}
+                alt="No hay"
+              />
+            </NavLink>
+          )}
         </ul>
-       
       </div>
       <div className="profilePicture">
         {!islogin.isAuthenticated ? (

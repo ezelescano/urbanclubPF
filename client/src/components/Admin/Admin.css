@@ -1,0 +1,54 @@
+:root {
+  --yellow: linear-gradient(180deg, #095c8c -146.42%, #05e6de -46.42%);
+  --orange: #1fabfc;
+  --black: #040b20;
+  --gray: #788097;
+  --purple: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+  --pink: #2065cc;
+  --glass: rgba(255, 255, 255, 0.54);
+  --boxShadow: 0px 19px 60px rgba(0, 0, 0, 0.671);
+  --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
+}
+
+.Admin > * {
+  box-sizing: unset;
+}
+.Admin {
+  /* padding: 0.5rem 3.5rem; */
+  color: #040b20;
+  background: linear-gradient(
+    106.37deg,
+    #bceeff 29.63%,
+    #01252d 51.55%,
+    #137f9a 90.85%
+  );
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}
+
+.AdminBack {
+  display: grid;
+  height: 97%;
+  width: 97%;
+  background: rgba(255, 255, 255, 0.54);
+  border-radius: 2rem;
+  gap: 16px;
+  grid-template-columns: 11rem auto 20rem;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  .Admin {
+    grid-template-columns: 10% 50% auto;
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .AdminBack {
+    grid-template-columns: 1fr;
+  }
+}
