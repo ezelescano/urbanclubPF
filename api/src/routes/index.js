@@ -4,6 +4,7 @@ const eventRouter = require("./eventRouter");
 const conversationRouter = require("./conversationRouter");
 const messageRouter = require("./messageRouter");
 const searchRouter = require("./searchRouter");
+const ecommerce = require("./ecommerce");
 
 const mainRouter = Router();
 
@@ -12,6 +13,8 @@ mainRouter.use("/events", eventRouter);
 mainRouter.use("/conversation", conversationRouter)
 mainRouter.use("/message", messageRouter)
 mainRouter.use("/search", searchRouter);
+
+mainRouter.use("/ticket",ecommerce)
 
 
 module.exports = mainRouter;

@@ -53,7 +53,7 @@ artistRouter.get(
   passport.authenticate("google", {
     failureMessage: "no se pudo iniciar sesion con google",
     failureRedirect: "http://localhost:3000/login", //! una direccion de front 
-    successRedirect: "http://localhost:3000/login/success"
+    successRedirect: "http://localhost:3000/login/success" //!reemplazar por https://urbanclub.club
     // session: false,
   }),
   (req, res) => {
