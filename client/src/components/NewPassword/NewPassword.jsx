@@ -105,7 +105,7 @@ const NewPassword = () => {
     <div className={style.container}>
       <form onSubmit={handleSubmit}>
         <div className={style.inputContainer}>
-          <input
+          <input className={style.input}
             type="password"
             name="password"
             value={password.password}
@@ -113,7 +113,7 @@ const NewPassword = () => {
           />
         </div>
         <div className={style.inputContainer}>
-          <input
+          <input className={style.input}
             type="password"
             name="password2"
             value={password2.password2}

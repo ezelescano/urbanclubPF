@@ -32,7 +32,7 @@ const ForgotPassword = () => {
     <div className={style.container}>
       <form className={style.form} onSubmit={submitHandler}>
         <label className={style.label}>Ingresa tu correo electrónico</label>
-        <input
+        <input 
           className={style.input}
           type="text"
           name="email"
