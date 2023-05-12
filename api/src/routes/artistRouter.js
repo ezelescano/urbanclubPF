@@ -12,7 +12,9 @@ const { getArtistByCat } = require("../Handlers/searchHandler/getArtistByCat")
 const { getAllCategories } = require("../Handlers/searchHandler/getAllCategories")
 const authLogin = require("../Handlers/artistHandler/authLogin");
 const authArtist = require("../Handlers/artistHandler/authArtist")
+const newPasswordHandler = require("../Handlers/artistHandler/newPasswordHandler");
 const verifyAuth = require("../middlewares/verifyAuth");
+const verifyPassToken = require("../middlewares/verifyPassToken");
 const fileupload = require("express-fileupload")
 const passport = require("../middlewares/authGoogle")
 const artistRouter = Router();
@@ -28,6 +30,7 @@ artistRouter.post("/", fileupload({ useTempFiles: true, tempFileDir: "./uploads"
 artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
 artistRouter.put("/forgotPassword", forgotPasswordHandler)
+artistRouter.put("/newPassword/:id/:token", verifyPassToken, newPasswordHandler)
 
 
 artistRouter.get(
