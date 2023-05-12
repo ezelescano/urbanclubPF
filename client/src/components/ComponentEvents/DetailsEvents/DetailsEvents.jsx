@@ -113,7 +113,7 @@ function DetailsEvents() {
       if (cantidad > 0) {
         const restCant = cantidad - entradas;
         setCantidad(restCant);
-        let stockObjeto = { stock: restCant, id_Artist: islogin.user.id };
+        let stockObjeto = { stock: restCant, id_Artist: islogin.user.id, totalPayment: entradas * event.price };
         setEntradas(1);
         console.log("cantidad", stockObjeto.stock);
 
