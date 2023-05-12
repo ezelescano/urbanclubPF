@@ -39,7 +39,7 @@ const Sidebar = () => {
           <img
             src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683840993/UrbanClub/carrousel/isotipo_negativo_viewww.png"
             alt="logo"
-            srcset=""
+            srcSet=""
             style={{ objectFit: "cover", width: "120px", height: "120px" }}
           />
         </div>
