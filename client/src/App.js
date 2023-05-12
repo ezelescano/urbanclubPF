@@ -131,7 +131,10 @@ function App() {
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/admin"
+          element={user.isAuthenticated ? <Admin /> : <Navigate to="/login" />}
+        />
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
