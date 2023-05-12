@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 5% 5%;
+  padding: 1% 1%;
   border-bottom: 1.5px solid#004258;
 }
 
@@ -99,4 +99,10 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+@media (max-width: 970px) {
+  .footerContainer {
+    gap: 10px;
+  }
 }
