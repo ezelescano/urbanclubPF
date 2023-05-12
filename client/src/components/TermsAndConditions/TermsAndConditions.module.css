@@ -1,19 +1,19 @@
 .termsContainer {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .termsContent {
-    margin-top: 20px;
-  }
-  
-  h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-  }
-  
-  h1 {
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.termsContent {
+  margin-top: 20px;
+}
+
+.termsContent h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.termsContent h1 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}

@@ -128,6 +128,17 @@ div .Description svg {
   -webkit-appearance: none;
   margin: 0;
 }
+.Description {
+  border-radius: 15px;
+  border: 10px solid #ccc;
+  padding: 5px;
+  transition: all 0.3s ease;
+}
+
+.Description:hover {
+  transform: scale(1.05);
+  outline: none;
+}
 
 @keyframes changeColor {
   0% {

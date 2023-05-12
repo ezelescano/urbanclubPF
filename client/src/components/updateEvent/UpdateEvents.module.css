@@ -96,6 +96,14 @@
   align-items: center;
   order: 2;
 }
+.formContainerMiddle input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
 .loadingGif {
   display: flex;
   flex-direction: column;
