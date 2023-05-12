@@ -63,7 +63,6 @@ const Profile = () => {
     events,
     followings
   } = usuario;
-
   const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
 
   const { id } = useParams();
