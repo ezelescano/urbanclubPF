@@ -18,6 +18,7 @@ const passport = require("../middlewares/authGoogle");
 const followArtistHandler = require("../Handlers/artistHandler/followArtistHandler");;
 const generateJWT = require("../../utils/generateJWT");
 const isAuthGoogle = require("../middlewares/isAuthGoogle")
+const verifyPassToken = require("../middlewares/verifyPassToken")
 const artistRouter = Router();
 
 
@@ -81,6 +82,10 @@ artistRouter.get(
 artistRouter.get("/auth/user", isAuthGoogle, (req,res)=>{
   const token = generateJWT(req.user.id, req.user.name, req.user.profilePhoto)
   res.json(token)
+})
+
+artistRouter.get("/resetPassword/:token", verifyPassToken, (req, res) => {
+  res.redirect("http://localhost:3000/artist/login")
 })
 
 
