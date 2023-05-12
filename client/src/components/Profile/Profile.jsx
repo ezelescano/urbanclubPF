@@ -39,6 +39,7 @@ const Profile = () => {
   const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
   const [followed, setFollowed] = useState(false);
+  const [followers, setFollowers] = useState([]);
 
   const verified = true;
   const links = [
@@ -60,7 +61,6 @@ const Profile = () => {
     ocupation,
     aboutMe,
     events,
-    followers,
     followings
   } = usuario;
 
@@ -71,9 +71,16 @@ const Profile = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    dispatch(getArtistId(id));
     setIsLoading(false);
-    
+    const getFollowers = async() => {
+    try {
+        const res = await dispatch(getArtistId(id));
+        setFollowers(res.followers)
+      } catch (error) {
+      console.log(error)
+      }
+    }
+    getFollowers();
     return async () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
@@ -83,14 +90,15 @@ const Profile = () => {
   useEffect(() => {
     const getUser = async() => {
       try {
-        const res = await axios.get("/login/me");
-        setFollowed(res.followigs.includes(usuario?.id))
+        const res = await axios.get("/artist/login/me");
+        console.log(res.data.followings)
+        setFollowed(res.data.followings.includes(usuario?.id))
       } catch (error) {
         console.log(error)
       }
     };
     getUser();
-  },[usuario.id])
+  },[usuario.id, currentUser.user.id])
 
   // const [prevId, setPrevId] = useState(id);
 
@@ -176,17 +184,19 @@ const Profile = () => {
 
   const handleFollow = async() => {
     try {
-      if(followed && !isCurrentUser && currentUser.isAuthenticated){
+      if(!followed && !isCurrentUser && currentUser.isAuthenticated){
         await axios.put(`/artist/follow/${usuario.id}/follow`,{
-          followerId: currentUser.user.id
+          followerId: `${currentUser.user.id}`
         })
+        setFollowers([...followers, currentUser.user.id])
         setFollowed(!followed)
         return
       }
-      if(!followed && !isCurrentUser && currentUser.isAuthenticated){
+      if(followed && !isCurrentUser && currentUser.isAuthenticated){
         await axios.put(`/artist/follow/${usuario.id}/unfollow`,{
-          followerId: currentUser.user.id
+          followerId: `${currentUser.user.id}`
         })
+        setFollowers(followers.filter(f => f !== currentUser.user.id))
         setFollowed(!followed)
         return
       }
@@ -337,9 +347,9 @@ const Profile = () => {
                     {/*  //! muestra total de eventos del artista */}
                   </button>
                   <button className="btn-stas">
-                    {followings?.length + " "} Seguidores
+                    {followers?.length + " "} Seguidores
                   </button>
-                  <h4>{followers?.length + " "} Seguidos</h4>
+                  <h4>{followings?.length + " "} Seguidos</h4>
                 </div>
                 <div className="redes">
                   {links?.map((l) => {
