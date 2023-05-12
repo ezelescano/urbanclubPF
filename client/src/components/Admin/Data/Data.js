@@ -97,7 +97,7 @@ export const cardsData = [
 export const UpdatesData = [
   {
     img: img1,
-    name: "Alex Jaramillo",
+    name: "Eudes Mieres",
     noti: "Ordenó 3 entradas pará Lolapalooza Argentina",
     time: "Hace 25 segundos",
   },
@@ -109,7 +109,7 @@ export const UpdatesData = [
   },
   {
     img: img3,
-    name: "Eudes Mieres",
+    name: "Alex Jaramillo",
     noti: "Creo el evento 'Lolapalooza 2 - El regreso de la joda'",
     time: "hace 2 horas",
   },
