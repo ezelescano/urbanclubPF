@@ -31,7 +31,7 @@ artistRouter.post("/", fileupload({ useTempFiles: true, tempFileDir: "./uploads"
 artistRouter.post("/login", authLogin);
 artistRouter.get("/login/me", verifyAuth, authArtist)
 artistRouter.put("/forgotPassword", forgotPasswordHandler)
-artistRouter.put("/follow/:followerId/:follow", followArtistHandler)
+artistRouter.put("/follow/:followedId/:follow", followArtistHandler)
 
 
 artistRouter.get(

@@ -30,9 +30,9 @@ const handleDelete = () => {
     text: `Deseas eliminar la conversacion con ${user?.name}`,
     icon: "warning",
     buttons: ["No", "Si"],
-  }).then((res) => {
-    if (res) {
-      const response = axios.delete(`/conversation/${conversation.id}`)
+  }).then( async(res) => {
+    if(res) {
+      const response = await axios.delete(`/conversation/${conversation.id}`)
     }
   });
 }
