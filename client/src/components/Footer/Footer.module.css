@@ -1,12 +1,19 @@
 /* Color negro de la Navbar es #1a1919*/
 .footerContainer {
-  background-color: #0d5a73;
+  background: linear-gradient(
+    106.37deg,
+    #0d5a73 29.63%,
+    #028cb9 51.55%,
+    #0a81c7 90.85%
+  );
+  background-size: 900% auto;
+  animation: moveBackground 20s linear infinite;
   color: #fff;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
   padding: 1% 1%;
-  border-bottom: 1.5px solid#004258;
+  gap: 50px;
 }
 
 .footerContainer img {
@@ -41,7 +48,6 @@
 .footLinks li {
   padding: 5px 0px;
   transition: 0.8s;
-
 }
 
 .footLinks li:hover {
@@ -96,10 +102,23 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
-.footerText{
+.footerText {
   display: flex;
   flex-direction: column;
+  max-width: 400px;
 }
+.footerText:first-child {
+}
+@keyframes moveBackground {
+  100%,
+  0% {
+    background-position: 100% center;
+  }
+  50% {
+    background-position: 0% center;
+  }
+}
+
 @media (max-width: 970px) {
   .footerContainer {
     gap: 10px;

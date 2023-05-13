@@ -11,21 +11,21 @@ const Footer = () => {
   return (
     <div className={style.footerContainer}>
       <div className={style.footerText}>
-        <h3>Atencion al cliente</h3>
-        <br />
-        <h5>Av. Corrientes 500</h5>
-        <br />
-        Lunes a Viernes <br />
-        08:00 a 18:00h <br />
-        <h4>Teléfono </h4>
-        {"(+54) 93487 477269"}
+        <img
+          src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683987657/UrbanClub/urbanclubBanner_jgk112.png"
+          alt=""
+        />
       </div>
       <div className={style.footerText}>
         <h3>Enlaces Utiles</h3>
         <br />
         <ul className={style.footLinks}>
           <li>
-            <NavLink to="/register" className={style.link} onClick={scrollToTop}>
+            <NavLink
+              to="/register"
+              className={style.link}
+              onClick={scrollToTop}
+            >
               Crea una cuenta
             </NavLink>
           </li>

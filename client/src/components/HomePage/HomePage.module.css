@@ -37,14 +37,6 @@
   justify-content: center;
   padding-block: 10px;
 }
-.lower {
-  background: linear-gradient(
-    106.37deg,
-    #079bcc 29.63%,
-    #0a81c7 51.55%,
-    #0d5a73 90.85%
-  );
-}
 
 .eldivdeeu {
   background: url("../../img/productos.png");
@@ -82,10 +74,35 @@
   margin-block: 50px;
 }
 .moreEventsButton:hover {
-  background-color: black;
+  background: linear-gradient(
+    106.37deg,
+    #028cb9 29.63%,
+    #0a81c7 51.55%,
+    #0d5a73 90.85%
+  );
   color: white;
   transform: scale(1.1);
   margin-bottom: 10px;
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.8);
   margin-block: 50px;
+}
+.lower {
+  background: linear-gradient(
+    106.37deg,
+    #028cb9 29.63%,
+    #0a81c7 51.55%,
+    #0d5a73 90.85%
+  );
+  background-size: 900% auto;
+  animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+  100%,
+  0% {
+    background-position: 100% center;
+  }
+  50% {
+    background-position: 0% center;
+  }
 }
