@@ -22,28 +22,30 @@ const HomePage = () => {
       <div className={`${style.ConteinerArt} ${style.CarouselContainer}`}>
         <Carousel images={images} autoPlay={true} showButtons={true} />
       </div>
-      <div className={style.art}>
-        <br />
-        <h1 className={style.title}>Artistas más populares</h1>
-        <div>
-          <HomeArt />
+      <div className={style.lower}>
+        <div className={style.art}>
+          <br />
+          <h1 className={style.title}>Artistas más populares</h1>
+          <div>
+            <HomeArt />
+          </div>
+          <br />
         </div>
-        <br />
-      </div>
-      <div className={style.events}>
-        <h1 className={style.title}>Eventos más populares</h1>
-        <br />
-        <div className={style.eventsCardsContainer}>
-          <Events />
+        <div className={style.events}>
+          <h1 className={style.title}>Eventos más populares</h1>
+          <br />
+          <div className={style.eventsCardsContainer}>
+            <Events />
+          </div>
         </div>
-      </div>
-      <div className={style.moreEvents}>
-        <NavLink to="/events" onClick={scrollToTop}>
-          <button className={style.moreEventsButton}>
-            ¿Quieres ver más eventos?
-          </button>{" "}
-        </NavLink>
-        <br />
+        <div className={style.moreEvents}>
+          <NavLink to="/events" onClick={scrollToTop}>
+            <button className={style.moreEventsButton}>
+              ¿Quieres ver más eventos?
+            </button>{" "}
+          </NavLink>
+          <br />
+        </div>
       </div>
     </div>
   );
