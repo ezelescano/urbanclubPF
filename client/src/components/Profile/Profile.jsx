@@ -11,7 +11,7 @@ import {
 } from "../../redux/artistSlice";
 import swal from "sweetalert";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
-import { logout } from "../../redux/authSlice";
+import { logout, loginUpdatePhoto } from "../../redux/authSlice";
 import { deleteEvent } from "../../redux/eventSlice";
 
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,6 @@ import Error404 from "../Error404/Errors404";
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
-import loading from "../../img/loading.gif";
 import axios from "axios";
 
 const Profile = () => {
@@ -70,10 +69,9 @@ const Profile = () => {
   const eventosRef = useRef(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setIsLoading(false);
-    const getFollowers = async () => {
-      try {
+
+    const getFollowers = async() => {
+    try {
         const res = await dispatch(getArtistId(id));
         setFollowers(res.followers);
       } catch (error) {
@@ -84,6 +82,7 @@ const Profile = () => {
     return async () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
+      setFollowers([])
     };
   }, [id]);
 
@@ -91,8 +90,8 @@ const Profile = () => {
     const getUser = async () => {
       try {
         const res = await axios.get("/artist/login/me");
-        console.log(res.data.followings);
-        setFollowed(res.data.followings.includes(usuario?.id));
+        console.log(res.data.followings)
+        setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
       } catch (error) {
         console.log(error);
       }
@@ -167,8 +166,17 @@ const Profile = () => {
       });
   };
 
-  const handleEdit = (input) => {
-    dispatch(updateArtist(id, input));
+  const handleEdit = async (input) => {
+    const artistUpdated = dispatch(updateArtist(id, input)).data;
+    console.log(input);
+    swal({
+      title: "ARTISTA ACTUALIZADO",
+      text: `Artista  ${input.name} actualizado con exito`,
+      icon: "success",
+      buttons: "Aceptar",
+    });
+    setShowEdit(false);
+    setShowSettings(false);
   };
 
   const handleLogout = () => {
@@ -187,21 +195,22 @@ const Profile = () => {
 
   const handleFollow = async () => {
     try {
-      if (!followed && !isCurrentUser && currentUser.isAuthenticated) {
-        await axios.put(`/artist/follow/${usuario.id}/follow`, {
-          followerId: `${currentUser.user.id}`,
-        });
-        setFollowers([...followers, currentUser.user.id]);
-        setFollowed(!followed);
-        return;
+      if(!followed && !isCurrentUser && currentUser.isAuthenticated){
+        await axios.post(`/artist/follow/${currentUser.user.id}/follow`,{
+         followedId: `${usuario.id}`
+        })
+        const obj = { following_Id: currentUser.user.id }
+        setFollowers([...followers, obj])
+        setFollowed(!followed)
+        return
       }
-      if (followed && !isCurrentUser && currentUser.isAuthenticated) {
-        await axios.put(`/artist/follow/${usuario.id}/unfollow`, {
-          followerId: `${currentUser.user.id}`,
-        });
-        setFollowers(followers.filter((f) => f !== currentUser.user.id));
-        setFollowed(!followed);
-        return;
+      if(followed && !isCurrentUser && currentUser.isAuthenticated){
+        await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`,{
+          followedId: `${usuario.id}`
+        })
+        setFollowers(followers.filter(follow => follow.follower_Id === currentUser.user.id))
+        setFollowed(!followed)
+        return
       }
       swal({
         title: "INICIAR SESIÓN",
@@ -394,7 +403,7 @@ const Profile = () => {
             </div>
             <div className="btns">
               {isCurrentUser ? (
-                <div className="settings-div">
+                <div className="settings-div" >
                   <button className="btn-ajustes" onClick={handleSettings}>
                     <img
                       className="ajustes"

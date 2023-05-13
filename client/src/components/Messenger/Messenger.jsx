@@ -2,13 +2,14 @@ import "./Messenger.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Conversation from "../Conversation/Conversation";
 import Message from "../Message/Message";
-import ChatOnline from "../ChatOnline/ChatOnline";
+import Chats from "../Chats/Chats";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { io } from "socket.io-client";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
+import DetailBar from "../DetailBar/DetailBar";
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -26,7 +27,8 @@ function Messenger() {
   const scrollRef = useRef();
   const followers = artistas.filter((f) => f.id !== user.id);
 
-  useEffect(() => {
+  useEffect(() => { 
+    // socket.current = io("ws://pruebaback-production-0050.up.railway.app");
     socket.current = io("ws://localhost:3001");
     socket.current.on("getMessage", (data) => {
       setArraivalMessage({
@@ -144,6 +146,7 @@ function Messenger() {
         <div className="chatBoxWrapper">
           {currentChat ? (
             <>
+              <DetailBar conversation={currentChat} currentUser={user}/>
               <div className="chatBoxTop">
                 {Array.isArray(messages) &&
                   messages.map((m) => (
@@ -196,10 +199,11 @@ function Messenger() {
       </div>
       <div className="chatOnline">
         <div className="chatOnlineWrapper">
-          <ChatOnline
+          <Chats
             onlineUser={onlineUser}
             currentId={user.id}
             setCurrentChat={setCurrentChat}
+            online={false}
           />
         </div>
       </div>

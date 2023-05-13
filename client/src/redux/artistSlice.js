@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
-import { loginSuccess, logout } from './authSlice';
+import { loginSuccess, logout, loginUpdatePhoto } from './authSlice';
 import swal from 'sweetalert'
 
 const initialState = {
@@ -256,12 +256,15 @@ export const updateArtist = (id, input) => {
     try {
       const apiData = await axios.put(`/artist/update/${id}`, input);
       const response = apiData.data;
+      console.log(response);
 
-      dispatch(updateArtistSuccess(response));
+      dispatch(loginUpdatePhoto(response.profilePhoto))
+      dispatch(updateArtistSuccess(response))
+      return response;
     } catch (error) {
       swal({
         title: "ERROR",
-        text: error,
+        text: error.message,
         icon: "warning",
         buttons: "Aceptar"
       })

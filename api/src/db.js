@@ -10,11 +10,6 @@ const sequelize = new Sequelize(
   { logging: false }
 );
 
-// const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-//   host: DB_HOST,
-//   dialect: "mysql" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-// });
-
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -39,7 +34,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Artist, Event, Conversation, Message } = sequelize.models;
+const { Artist, Event, Conversation, Message, Follow } = sequelize.models;
 
 // Country.belongsToMany(Activity, { through: "countries_activities" });
 
@@ -53,6 +48,10 @@ Conversation.belongsToMany(Artist, { through: 'ArtistConversation' });
 //Conversation-Message
 Conversation.hasMany(Message, { as: 'menssage', foreignKey: 'conversationId' });
 Message.belongsTo(Conversation, { as: 'conversation', foreignKey: 'conversationId',onDelete: 'CASCADE' });
+//Relaciones follow
+Artist.hasMany(Follow, { foreignKey: 'following_Id', as: 'follower' });
+Artist.hasMany(Follow, { foreignKey: 'follower_Id', as: 'following' });
+
 
 
 

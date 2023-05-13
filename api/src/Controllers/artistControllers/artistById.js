@@ -1,5 +1,5 @@
 const { ACTIVATED, DELETED } = require("../../constants");
-const {Artist, Event} = require("../../db")
+const {Artist, Event, Follow} = require("../../db")
 
 const artistById = async (artistId) => {
 
@@ -7,12 +7,13 @@ const artistById = async (artistId) => {
       throw new Error("No se especificó el ID del usuario");
     } else {
       const infoArtistDB = await Artist.findOne({
-          where: {id: artistId},
-          include: {
-            model: Event
-
-          }
-        });
+        where: {id: artistId},
+        include: [
+          { model: Event },
+          { model: Follow, as: 'follower' },
+          { model: Follow, as: 'following' }
+        ]
+      });
       if (!infoArtistDB) {
         throw new Error("No se encontró ningún usuario con ese ID")
       } else {
@@ -31,9 +32,10 @@ const artistById = async (artistId) => {
           ocupation: infoArtistDB.ocupation,
           aboutMe: infoArtistDB.aboutMe,
           events: infoArtistDB.Events,
-          followers: infoArtistDB.followers,
-          followings: infoArtistDB.followings
+          followers: infoArtistDB.follower,
+          followings: infoArtistDB.following
         };
+        //console.log(infoArtistDB)
         return infoArtistClean;
       }
   

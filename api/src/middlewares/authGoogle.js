@@ -14,6 +14,8 @@ passport.use(
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:3001/artist/auth/google/callback",
+      // callbackURL: "https://pruebaback-production-0050.up.railway.app/artist/auth/google/callback",
+      
       scope: ['profile', 'email'],
       passReqToCallback: true
   },
