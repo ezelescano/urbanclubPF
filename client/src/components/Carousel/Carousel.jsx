@@ -31,7 +31,7 @@ export default function Carousel(props) {
         : images.length - 1;
       setSelectedImage(images[nextIndex]);
       setSelectedIndex(nextIndex);
-    }, 500);
+    }, 10);
   };
 
   const previous = () => {
@@ -64,10 +64,16 @@ export default function Carousel(props) {
           ) : (
             <></>
           )}
-        </div>
-        <div>
-          <h1>Urban Club!</h1>
-          <h2>La página de los artistas de todo el mundo, ahora en el tuyo!</h2>
+          <div className={Style.subtitle}>
+            <h1 className={Style.urbanClub}>
+              <span className={Style.bigText}>Urban</span>
+              <br />
+              <span className={Style.bigText}>Club!</span>
+            </h1>
+            <h2>
+              La página de los artistas de todo el mundo, ahora en el tuyo!
+            </h2>
+          </div>
         </div>
       </div>
     </>
