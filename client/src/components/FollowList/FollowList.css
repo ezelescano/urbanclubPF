@@ -1,0 +1,47 @@
+.followListContainer {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  width: 300px;
+  height: 500px;
+  background-color: rgb(114, 114, 114);
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.listFollowList{
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.listFollowList::-webkit-scrollbar {
+  display: none;
+}
+
+.contacfollowlist {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.contacfollowlist:hover {
+  background-color: rgb(245, 243, 243);
+}
+
+.followListImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.followListName {
+  font-weight: 500;
+}
