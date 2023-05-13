@@ -134,17 +134,15 @@
   color: white;
   text-align: center;
   z-index: 2;
-}
-.urbanClub {
-  font-size: 5.5rem;
-  font-weight: 900;
-}
-.subtitle {
-  color: #ffffff; /* Color del texto */
-  padding: 10px; /* Agrega un poco de espacio alrededor del texto */
-  text-shadow: 2px 5px 4px rgba(0, 0, 0, 0.5);
+  width: 50vw;
 }
 
+.subtitle img{
+  color: #ffffff; /* Color del texto */
+  padding: 10px; /* Agrega un poco de espacio alrededor del texto */
+  text-shadow: 5px 15px 4px rgba(0, 0, 0, 0.5);
+  transform:scale(1.8);
+}
 @media (max-width: 970) {
   .subtitle {
     margin-top: 80px;

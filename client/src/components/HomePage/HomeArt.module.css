@@ -5,6 +5,7 @@
 }
 
 .TopArt {
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   margin: 1px;
   display: grid;
   padding-block: 20px;

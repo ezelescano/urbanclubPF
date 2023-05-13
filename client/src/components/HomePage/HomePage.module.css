@@ -4,11 +4,11 @@
 }
 
 .title {
-  color: #101010;
+  color: white;
   margin-left: 50px;
   font-weight: 700;
   font-size: 50px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.5);
   padding-top: 1%;
 }
 .events {
@@ -61,7 +61,7 @@
   display: none;
 }
 
-.moreEventsButton {
+.moreEvents button {
   background-color: white;
   color: black;
   border: none;
@@ -69,16 +69,14 @@
   border-radius: 0.5rem;
   font-size: 1.2rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 40px;
+  transition: 0.3s ease;
+  margin-block: 50px;
 }
-.moreEventsButton:hover {
+.moreEvents button:hover {
   background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   color: white;
   transform: scale(1.1);
-  margin-bottom: 10px;
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.8);
-  margin-block: 50px;
 }
 .lowerContainer {
   background-color: rgba(255, 255, 255, 0.54);
@@ -87,9 +85,14 @@
   border-radius: 25px;
 }
 .lower {
-  background: linear-gradient(106.37deg, #bceeff 0%, #095c8c 50%, #0d5a73 100%);
-  background-size: 200% 200%;
-  animation: rotateColors 1s infinite linear;
+  background: linear-gradient(
+    326.37deg,
+    #bceeff 29.63%,
+    #095c8c 51.55%,
+    #0d5a73 90.85%
+  );
+  background-size: 150% 150%;
+  animation: rotateColors 10s linear infinite;
 }
 
 @keyframes rotateColors {
