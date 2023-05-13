@@ -11,7 +11,7 @@ import {
 } from "../../redux/artistSlice";
 import swal from "sweetalert";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
-import { logout } from "../../redux/authSlice";
+import { logout, loginUpdatePhoto } from "../../redux/authSlice";
 import { deleteEvent } from "../../redux/eventSlice";
 
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,6 @@ import Error404 from "../Error404/Errors404";
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
-import loading from "../../img/loading.gif";
 import axios from "axios";
 
 const Profile = () => {
@@ -70,8 +69,7 @@ const Profile = () => {
   const eventosRef = useRef(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setIsLoading(false);
+
     const getFollowers = async() => {
     try {
         const res = await dispatch(getArtistId(id));
@@ -165,8 +163,17 @@ const Profile = () => {
       });
   };
 
-  const handleEdit = (input) => {
-    dispatch(updateArtist(id, input));
+  const handleEdit = async (input) => {
+    const artistUpdated = dispatch(updateArtist(id, input)).data;
+    console.log(input);
+    swal({
+      title: "ARTISTA ACTUALIZADO",
+      text: `Artista  ${input.name} actualizado con exito`,
+      icon: "success",
+      buttons: "Aceptar",
+    });
+    setShowEdit(false);
+    setShowSettings(false);
   };
 
   const handleLogout = () => {
@@ -325,12 +332,6 @@ const Profile = () => {
                   <h3 className="principalInfo">
                     {city}, {Country}
                     <div className="ocupation-container">
-                      {/* {usuario.ocupation?.map(o => {
-                return(
-                  <div className='ocupation'>{o}</div>
-                )
-              })} */}
-                      {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
                       {ocupationArray &&
                         ocupationArray?.map((ocupation) => (
                           <div className="ocupation" key={ocupation}>
@@ -398,7 +399,7 @@ const Profile = () => {
             </div>
             <div className="btns">
               {isCurrentUser ? (
-                <div className="settings-div">
+                <div className="settings-div" >
                   <button className="btn-ajustes" onClick={handleSettings}>
                     <img
                       className="ajustes"

@@ -3,31 +3,30 @@ const {JWT_SECRET} = process.env;
 const jwt = require("jsonwebtoken")
 
 const verifyPassToken = (req, res, next) => {
-    const {token} = req.query;
-    
-    // Verificar si la ubicación existe
+    const { token } = req.params;
+  console.log(token)
     if (!token) {
-        // return res.redirect('/forgot-password');
-        req.send("regresa a olvidaste la contraseña")
+      // Si no se proporciona el token, envía una respuesta de error
+      return res.status(400).json({ message: 'Token no proporcionado' });
     }
+  
     try {
-        const decoded = jwt.verify(token, JWT_SECRET);
-        if (decoded.exp < Date.now()) {
-        //   return res.redirect('/forgot-password');
-        res.send("regresa a olvidaste tu contraseña")
-        }
-    
-        // Si el token es válido y no ha expirado, puedes pasar algún dato adicional al siguiente middleware o ruta, si es necesario
-        req.userId = decoded.userId; // ver que info viene del token
-    
-        // Llama al siguiente middleware o ruta
-        next();
-      } catch (err) {
-        // Si el token es inválido o ha ocurrido algún error, redirige al usuario a la página de solicitud de recuperación de contraseña
-        // return res.redirect('/forgot-password');
-        res.send('regresa a olvidaste tu contraseña');
+      
+      const decoded = jwt.verify(token, JWT_SECRET);
+      
+      
+      if (decoded.exp * 1000 < Date.now()) {
+        // Si el token ha expirado, envía una respuesta de error
+        return res.status(400).json({ message: 'El token ha expirado' });
       }
-    
-    next();
+  
+      req.userId = decoded.userId; // Asigna el userId al objeto req para usarlo en el controlador
+  
+      // Llama al siguiente middleware o ruta
+      next();
+    } catch (err) {
+      // Si el token es inválido o ha ocurrido algún error, envía una respuesta de error
+      return res.status(400).json({ message: 'Token inválido' });
+    }
   };
   module.exports = verifyPassToken

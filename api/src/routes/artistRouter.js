@@ -11,13 +11,14 @@ const { forgotPasswordHandler } = require("../Handlers/artistHandler/forgotPassw
 const { getArtistByCat } = require("../Handlers/searchHandler/getArtistByCat");
 const { getAllCategories } = require("../Handlers/searchHandler/getAllCategories");
 const authLogin = require("../Handlers/artistHandler/authLogin");
-const authArtist = require("../Handlers/artistHandler/authArtist");
+const authArtist = require("../Handlers/artistHandler/authArtist")
+const newPasswordHandler = require("../Handlers/artistHandler/newPasswordHandler");
 const verifyAuth = require("../middlewares/verifyAuth");
-const fileupload = require("express-fileupload");
+const verifyPassToken = require("../middlewares/verifyPassToken");
+const fileupload = require("express-fileupload")
 const passport = require("../middlewares/authGoogle");
 const generateJWT = require("../../utils/generateJWT");
 const isAuthGoogle = require("../middlewares/isAuthGoogle");
-const verifyPassToken = require("../middlewares/verifyPassToken");
 const followArtistHandler1 = require("../Handlers/artistHandler/followArtistHandler1");
 const unfollowArtistHandler = require("../Handlers/artistHandler/unfollowArtistHandler");
 const getFollowingsHandler = require("../Handlers/artistHandler/getFollowingsHandler");
@@ -40,6 +41,7 @@ artistRouter.get("/followers/:id", getFollowersHandler);
 artistRouter.post("/follow/:userId/follow", followArtistHandler1);
 artistRouter.post("/follow/:userId/unfollow", unfollowArtistHandler);
 
+artistRouter.put("/newPassword/:id/:token", verifyPassToken, newPasswordHandler)
 
 
 artistRouter.get(
@@ -58,7 +60,7 @@ artistRouter.get(
   passport.authenticate("google", {
     failureMessage: "no se pudo iniciar sesion con google",
     failureRedirect: "http://localhost:3000/login", //! una direccion de front 
-    successRedirect: "http://localhost:3000/login/success"
+    successRedirect: "http://localhost:3000/login/success" //!reemplazar por https://urbanclub.club
     // session: false,
   }),
   (req, res) => {

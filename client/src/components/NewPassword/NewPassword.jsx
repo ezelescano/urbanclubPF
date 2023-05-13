@@ -1,12 +1,14 @@
 import style from "./NewPassword.module.css";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
-import { updateArtist } from "../../redux/artistSlice";
+// import { updateArtist } from "../../redux/artistSlice";
+import axios from "axios";
 
 const NewPassword = () => {
-  const { id } = useParams();
+  const { id, token } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [password, setPassword] = useState({
@@ -18,7 +20,7 @@ const NewPassword = () => {
 
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErrors(
@@ -32,15 +34,36 @@ const NewPassword = () => {
         })
       ).length === 0
     ) {
-      dispatch(updateArtist(id, password));
-      setPassword({ password: "" });
-      setPassword2({ password2: "" });
-      swal({
-        title: "Información de contraseña",
-        text: "Se actualizo la contraseña",
-        icon: "success",
-        buttons: "Aceptar",
-      });
+      try {
+        const updatedPassword = await axios.put(
+          `http://localhost:3001/artist/newPassword/${id}/${token}`,
+          password
+        );
+        setPassword({ password: "" });
+        setPassword2({ password2: "" });
+        swal({
+          title: "Contraseña actualizada",
+          text: "Debes iniciar sesión",
+          icon: "success",
+          buttons: {
+            confirm: "Aceptar",
+            cancel: "Cancelar",
+          },
+        }).then((value) => {
+          if (value) {
+            navigate("/login");
+          } else {
+            return;
+          }
+        });
+      } catch (error) {
+        swal({
+          title: "Operación inválida",
+          text: "Su token ha expirado",
+          icon: "error",
+          buttons: "Aceptar",
+        });
+      }
     }
   };
 
@@ -79,22 +102,28 @@ const NewPassword = () => {
   };
 
   return (
-    <div className={style.containerUpdatePassword}>
+    <div className={style.container}>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="password"
-          value={password.password}
-          onChange={changeHandlerPassword}
-        ></input>
-        <input
-          type="text"
-          name="password2"
-          value={password2.password2}
-          onChange={changeHanlderPassword2}
-        ></input>
+        <div className={style.inputContainer}>
+          <input className={style.input}
+            type="password"
+            name="password"
+            value={password.password}
+            onChange={changeHandlerPassword}
+          />
+        </div>
+        <div className={style.inputContainer}>
+          <input className={style.input}
+            type="password"
+            name="password2"
+            value={password2.password2}
+            onChange={changeHanlderPassword2}
+          />
+        </div>
         {errors && <p>{errors.password}</p>}
-        <button type="submit">Guardar nueva contraseña</button>
+        <button className={style.newPasswordButton} type="submit">
+          Guardar nueva contraseña
+        </button>
       </form>
     </div>
   );

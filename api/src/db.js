@@ -10,11 +10,6 @@ const sequelize = new Sequelize(
   { logging: false }
 );
 
-// const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-//   host: DB_HOST,
-//   dialect: "mysql" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
-// });
-
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

@@ -35,7 +35,7 @@ const CreateEvent = () => {
       errors.name = "Se require Nombre del Evento";
     }
     if (!input.eventPhoto) {
-      errors.eventPhoto = "Se requiere Foto";
+       errors.eventPhoto = "Se requiere Foto"; 
     }
     if (!input.price) {
       errors.price = "Se requiere Precio";
@@ -206,6 +206,7 @@ const CreateEvent = () => {
                     required
                   />
                 </div>
+                
                 <div className="inputContainer">
                   <label htmlFor="name">Ciudad:</label>
                   <br />

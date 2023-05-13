@@ -27,7 +27,8 @@ function Messenger() {
   const scrollRef = useRef();
   const followers = artistas.filter((f) => f.id !== user.id);
 
-  useEffect(() => {
+  useEffect(() => { 
+    // socket.current = io("ws://pruebaback-production-0050.up.railway.app");
     socket.current = io("ws://localhost:3001");
     socket.current.on("getMessage", (data) => {
       setArraivalMessage({
