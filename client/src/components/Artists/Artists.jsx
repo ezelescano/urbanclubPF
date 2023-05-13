@@ -9,10 +9,12 @@ import {
   cleanArtists,
   getAllCategories,
   getAllLocations,
+  pagNum,
   
 } from "../../redux/artistSlice";
 import loading from "../../img/loading.gif";
 import Errors404search from "../Error404/Error404search";
+import Paginado from "./PagArtists";
 
 const Artists = () => {
   // Estados de redux "artistSlice.js"
@@ -23,13 +25,20 @@ const Artists = () => {
 
 
 
-  // const [selectedCategory, setselectedCategory] = useState("");
+  
   const [orden, setOrden] = useState("");
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
   //  const [search, setSearch]= useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
+
+  const currentPage = useSelector(state => state.artist.pag)
+  
+  const [artistsPerPage, setArtistsPerPage] = useState(1) // eslint-disable-line
+  const indexOfLastArtists = currentPage * artistsPerPage; //10
+  const indexOfFirstArtists = indexOfLastArtists - artistsPerPage;
+  const currentArtists = artistas.slice(indexOfFirstArtists, indexOfLastArtists);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -52,6 +61,7 @@ const Artists = () => {
 
 
   useEffect(() => {
+    dispatch (pagNum(1));
     // dispatch(FilterArtists(selectedCategory));
     handlesFilter();
   }, [selectedCategory, selectedLocation, orden]);
@@ -97,18 +107,6 @@ const Artists = () => {
         <br />
         <div className={style.containerFilters}>
           <form className={style.filtersLogic}>
-            {/* <select
-              className={style.selectFilters}
-              value={ocupation}
-              onChange={(event) => setOcupation(event.target.value)}
-            >
-              <option value="">Todas las ocupaciones</option>
-              {filterOcupacionForMap?.map((ocupation) => (
-                <option key={ocupation} name="ocupation" value={ocupation}>
-                  {ocupation}
-                </option>
-              ))}
-            </select> */}
 
               <select
               className={style.selectFilters} 
@@ -147,6 +145,7 @@ const Artists = () => {
               Limpiar
             </button>
           </form>
+          
           {/* <div className={style.selectedFilters}>
             {selectedFilters.map((filter) => (
               <div key={filter} className={style.selectedFilter}>
@@ -156,15 +155,20 @@ const Artists = () => {
             ))}
           </div> */}
         </div>
+        <br />
+        <Paginado
+          artistsPerPage={artistsPerPage}
+          artistas={artistas.length}/>
         <div className={style.containerArtists}>
+        
           {isLoading && (
             <div className="loading-gif">
               <img className="loading" src={loading} alt="" width="50px"></img>
             </div>
           )}
-          {!isLoading && artistas.length > 0
-            ? artistas.map((item) => {
-                
+          {!isLoading && currentArtists.length > 0
+            ? currentArtists.map((item) => {
+                console.log("HOLAAAAAAA",currentArtists);
                 let ocupacion;
                 item.ocupation !== undefined
                   ? (ocupacion = item.ocupation)
@@ -185,7 +189,7 @@ const Artists = () => {
                 );
               })
             : !isLoading &&
-              artistas.length === 0 && <Errors404search></Errors404search>}
+              currentArtists.length === 0 && <Errors404search></Errors404search>}
         </div>
         <br /> <br />
       </div>
