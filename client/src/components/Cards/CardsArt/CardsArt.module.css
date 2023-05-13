@@ -22,16 +22,28 @@
   border-radius: 20px;
   z-index: 1; /* asegura que el texto aparezca por encima de la imagen */
 }
-
-.image {
+.userCover {
+  width: 100%;
+  height: 100%;
+}
+.userImage {
   width: 100%;
   object-fit: cover;
   height: 100%;
   background-size: cover;
   box-shadow: 2px 2px 15px #000000 inset;
   border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
 }
-
+.Container:hover .userImage {
+  top: 40%;
+  transform: translate(-50%, -50%);
+  transform: scale(0.5);
+}
 .Container:hover {
   color: #6c6c6c;
   box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.937);
@@ -41,17 +53,18 @@
 }
 
 .text {
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
   position: absolute; /* para que se coloque encima de la imagen */
-  min-width: 100%;
+  min-width: 86%;
+  max-width: 88%;
   min-height: 220px;
   max-height: 200px;
   top: 40%;
   left: 50%;
   padding: 2px;
   transform: translate(
-    -50%,
-    15%
+    0%,
+    35%
   ); /* centra el texto vertical y horizontalmente */
   display: flex;
   flex-direction: column;
@@ -66,7 +79,7 @@
 }
 
 .text h5 {
-  color: rgba(26, 65, 220, 0.669);
+  color: rgba(4, 189, 222, 0.669);
   margin-bottom: 7px;
   font-size: 22px;
 }
@@ -79,17 +92,71 @@
   text-overflow: ellipsis;
 }
 
-.text div{ /* Alineamos ocupationTag al centro y que sean multilinea (OJO si se crean muchas mas ocupaciones, hay que limitar)*/
+.text div {
+  /* Alineamos ocupationTag al centro y que sean multilinea (OJO si se crean muchas mas ocupaciones, hay que limitar)*/
   display: flex;
-  flex-wrap:wrap;
-  justify-content: center; 
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .Link {
   text-decoration: none;
 }
 
+.overlayContainer {
+  position: relative;
+}
+
+.overlayContainer:hover .text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.overlayText {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s;
+  /* Estilo adicional para la superposición */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+  color: #fff; /* Color del texto */
+  padding: 20px;
+  opacity: 0; /* Inicialmente invisible */
+  transition: opacity 1s ease; /* Transición de opacidad con duración de 0.5 segundos */
+}
+
+.overlay.visible {
+  opacity: 1; /* Visible con opacidad completa */
+}
+
+.fadeInText {
+  animation-name: fadeInText;
+  animation-duration: 1s; /* Duración de 2 segundos */
+  animation-fill-mode: forwards; /* Mantener el estado final de la animación */
+  opacity: 0; /* Inicialmente invisible */
+}
 /*Animaciones*/
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @keyframes pulse {
   0% {
     box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.112);

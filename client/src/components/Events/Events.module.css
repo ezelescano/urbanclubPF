@@ -1,0 +1,27 @@
+.container {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  top: 1px;
+  min-height: 101vh;
+  padding-top: 100px;
+}
+.container div:first-child {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+@media (max-width: 970px) {
+  .container {
+    height: 100%;
+    width: 100vw;
+  }
+  .container div:first-child {
+    margin-top: 30px;
+}
+}
+/*ARREGLADO, PERO NO USAR SIN ITEMS O CARDS*/
+/*Limpiar fondo luego*/
