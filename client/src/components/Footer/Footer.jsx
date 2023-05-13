@@ -5,9 +5,9 @@ import gglftr from "./img/ggl-ftr.png";
 import fbftr from "./img/fb-ftr.png";
 
 const Footer = () => {
-    const scrollToTop = () => {
-      window.scrollTo(0, 0);
-    };
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <div className={style.footerContainer}>
       <div>
@@ -38,13 +38,25 @@ const Footer = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/termsAndConditions" className={style.link} onClick={scrollToTop}>
-            Términos y Condiciones
+            <NavLink
+              to="/termsAndConditions"
+              className={style.link}
+              onClick={scrollToTop}
+            >
+              Términos y Condiciones
             </NavLink>
           </li>
         </ul>
       </div>
-      <div>
+      <div
+        style={{
+          cursor: "pointer",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <h3>Contactenos</h3>
         <a
           href="https://www.facebook.com/profile.php?id=100068893039514"
@@ -58,7 +70,6 @@ const Footer = () => {
           href="https://drive.google.com/drive/folders/1KaKgiDDZ4VnWFAYnxHlJ96JboY1RU6hK"
           target="_blank"
           rel="noreferrer"
-          style={{ cursor: "pointer" }}
         >
           <img className={style.ftrImg} src={gglftr} alt=""></img>
         </a>
