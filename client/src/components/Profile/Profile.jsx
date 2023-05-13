@@ -196,7 +196,7 @@ const Profile = () => {
         await axios.post(`/artist/follow/${currentUser.user.id}/follow`,{
          followedId: `${usuario.id}`
         })
-        const obj = { following_Id: currentUser.user.id }
+        const obj = { follower_Id: currentUser.user.id }
         setFollowers([...followers, obj])
         setFollowed(!followed)
         return
@@ -205,7 +205,7 @@ const Profile = () => {
         await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`,{
           followedId: `${usuario.id}`
         })
-        setFollowers(followers.filter(follow => follow.follower_Id === currentUser.user.id))
+        setFollowers(followers.filter(follow => follow.follower_Id !== currentUser.user.id))
         setFollowed(!followed)
         return
       }
