@@ -37,10 +37,12 @@ module.exports = function (server) {
     //cunado se envia y recibes un mensaje
     socket.on("sendMessage", ({ senderId, receiverId, text }) => {
       const user = getUser(receiverId);
-      io.to(user.socketId).emit("getMessage", {
-        senderId,
-        text,
-      });
+      if (user && user.socketId) {
+        io.to(user.socketId).emit("getMessage", {
+          senderId,
+          text,
+        });
+      }
     });
 
     //cuando se desconecta
