@@ -1,14 +1,17 @@
 const { Event, EventComment } = require("../../db");
 
-const postComment = async (eventComment) => {
-  const { writer, comment, id_event } = eventComment;
+const postComment = async (writer, comment, rating, id_event) => {
   try {
     const newComment = await EventComment.create({
       writer,
       comment,
+      rating
     });
-    const event = await Event.findByPk({ where: { id: id_event } });
-    event.addEventComment(newComment);
+    const event = await Event.findByPk(id_event);
+    if (!event){
+      throw new Error("Evento no encontrado");
+    }
+    await event.addEventComment(newComment, { foreignKey: 'eventId' });
     return newComment;
   } catch (error) {
     return error;

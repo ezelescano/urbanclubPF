@@ -56,7 +56,7 @@ Conversation.hasMany(Message, { as: 'menssage', foreignKey: 'conversationId' });
 Message.belongsTo(Conversation, { as: 'conversation', foreignKey: 'conversationId',onDelete: 'CASCADE' });
 //Comments-Events
 Event.hasMany(EventComment, {as: 'eventComment', foreignKey: 'eventId' });
-EventComment.belongsTo(Event, {as: 'event', foreignKey: 'eventCommentId', onDelete: 'CASCADE'});
+EventComment.belongsTo(Event, {as: 'event', foreignKey: 'eventId', onDelete: 'CASCADE'});
 
 
 

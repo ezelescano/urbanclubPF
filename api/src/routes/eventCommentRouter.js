@@ -5,3 +5,5 @@ const postCommentHandler = require("../Handlers/comentsHandler/postCommentHandle
 
 eventCommentRouter.get("/", getAllComentsHandler);
 eventCommentRouter.post("/", postCommentHandler);
+
+module.exports = eventCommentRouter;
