@@ -74,7 +74,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
+        {/* <Route
           path="/login"
           element={!user.isAuthenticated ? <Login /> : <Navigate to="/" />}
         />
@@ -93,7 +93,6 @@ function App() {
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-        {/* { <Route path="/merch" element={<Merch />} />} */}
         <Route
           path="/createevent/:id"
           element={
@@ -117,7 +116,7 @@ function App() {
           element={user.isAuthenticated ? <Admin /> : <Navigate to="/login" />}
         />
 
-        <Route path="*" element={<Errors404 />} />
+        <Route path="*" element={<Errors404 />} /> */}
       </Routes>
       {window.location.pathname !== "/messenger" && <Footer />}
     </div>

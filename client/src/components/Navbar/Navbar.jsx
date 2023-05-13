@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import style from "./Navbar.module.css";
@@ -21,12 +20,12 @@ function Navbar() {
       <NavLink to="/">
         <img
           className={style.navTitleImg}
-          src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682542442/UrbanClub/Urban_Club_Logo_fh8zlb.png"
+          src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683969976/UrbanClub/our_logo-removebg-preview_auto_x2-removebg-preview_1_tsbanf.png"
           alt=""
         />
         <img
           className={style.navTitleImgZoom}
-          src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
+          src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683969976/UrbanClub/our_logo-removebg-preview_auto_x2-removebg-preview_1_tsbanf.png"
           alt=""
         />
       </NavLink>

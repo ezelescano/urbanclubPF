@@ -1,0 +1,102 @@
+:root {
+  --base-font-size: 50px;
+}
+
+.carousel-container {
+  background-color: black;
+  position: relative;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-img {
+  max-width: 100vw;
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+  object-fit: cover;
+}
+.carousel-img.loaded_ {
+  opacity: 1;
+}
+
+.ButtonContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.button:first-of-type {
+  /* Aplicar estilos solo al primer botón */
+  justify-self: flex-start; /* Alinear el botón a la izquierda */
+}
+
+.button:last-of-type {
+  /* Aplicar estilos solo al último botón */
+  justify-self: flex-end; /* Alinear el botón a la derecha */
+}
+
+.button {
+  position: fixed;
+  color: rgb(250, 250, 250);
+  cursor: pointer;
+  background-color: rgba(221, 221, 221, 0);
+  border: transparent;
+  font-size: var(--base-font-size);
+}
+.carousel-container {
+  background-color: black;
+  position: relative;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-img.loaded_ {
+  opacity: 1;
+}
+
+.ButtonContainer {
+}
+
+.button:first-of-type {
+}
+
+.button:last-of-type {
+}
+
+.button {
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+
+.subtitle {
+  position: absolute;
+  top: calc(50% + 60px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
