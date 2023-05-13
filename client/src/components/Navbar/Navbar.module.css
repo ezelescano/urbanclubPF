@@ -7,7 +7,9 @@
   top: 0;
   transform: scale(1.04);
   width: 90vw;
-  z-index: 10;font-weight:600;
+  z-index: 10;
+  font-weight: 600;
+  padding-block: 15px;
 }
 
 .navTitleImg {
@@ -18,7 +20,7 @@
 .navTitleImg:hover {
   animation: spin 2s ease;
   transition: 0.5s ease;
-  width:85px;
+  width: 85px;
   transition: 0.5s ease;
 }
 

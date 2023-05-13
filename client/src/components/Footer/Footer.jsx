@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import style from "./Footer.module.css";
 import gglftr from "./img/ggl-ftr.png";
 import fbftr from "./img/fb-ftr.png";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -11,10 +13,12 @@ const Footer = () => {
   return (
     <div className={style.footerContainer}>
       <div className={style.footerText}>
-        <img
-          src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683987657/UrbanClub/urbanclubBanner_jgk112.png"
-          alt=""
-        />
+        <NavLink to="/" className={style.link} onClick={scrollToTop}>
+          <img
+            src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683987657/UrbanClub/urbanclubBanner_jgk112.png"
+            alt=""
+          />
+        </NavLink>
       </div>
       <div className={style.footerText}>
         <h3>Enlaces Utiles</h3>
@@ -59,16 +63,25 @@ const Footer = () => {
           href="https://www.facebook.com/profile.php?id=100068893039514"
           target="_blank"
           rel="noreferrer"
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            fontSize: "50px",
+            color: "white",
+          }}
         >
-          <img className={style.ftrImg} src={fbftr} alt=""></img>
+          <FacebookIcon
+            style={{
+              fontSize: "50px",
+              color: "#ccf1fd",
+            }}
+          />
         </a>
         <a
           href="https://drive.google.com/drive/folders/1KaKgiDDZ4VnWFAYnxHlJ96JboY1RU6hK"
           target="_blank"
           rel="noreferrer"
         >
-          <img className={style.ftrImg} src={gglftr} alt=""></img>
+          <GoogleIcon style={{ fontSize: "50px", color: "#ccf1fd" }} />
         </a>
       </div>
     </div>
