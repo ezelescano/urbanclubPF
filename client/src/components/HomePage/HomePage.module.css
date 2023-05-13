@@ -1,0 +1,94 @@
+.main {
+  height: 100%;
+  background-color: #212226;
+  overflow: hidden;
+}
+
+.title {
+  color: #efefef;
+}
+.art {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+}
+.events {
+  height: unset;
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+}
+.products {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+}
+.ConteinerArt {
+  overflow: hidden;
+}
+
+.TopArt {
+  margin: 1px;
+  display: grid;
+  grid-template-rows: repeat(1, auto);
+  grid-template-columns: repeat(10, auto);
+}
+
+.CarouselContainer {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5%;
+}
+
+.lower {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+}
+
+.lower {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+}
+
+.eldivdeeu {
+  background: url("../../img/productos.png");
+  width: 1438px;
+  /*Si no funciona eliminar lo de arriba de propiedades y usar este : width: 90vw;*/
+  height: 240px;
+  margin: auto;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+.eventsCardsContainer div:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+/*CAMBIAR SI O SI A FUNCION QUÉ SOLO TRAE 9 CARDS, PORQUE ACA SOLO LAS OCULTAMOS.*/
+.eventsCardsContainer div:nth-child(n + 10) {
+  background-color: white;
+  display: none;
+}
+.moreEvents {
+  display: flex;
+  justify-content: center;
+  padding-block: 10px;
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+}
+.moreEventsButton {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-block: 50px;
+}
+.moreEventsButton:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.1);
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.8);
+  margin-block: 50px;
+}
