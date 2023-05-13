@@ -34,7 +34,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Artist, Event, Conversation, Message } = sequelize.models;
+const { Artist, Event, Conversation, Message, Follow } = sequelize.models;
 
 // Country.belongsToMany(Activity, { through: "countries_activities" });
 
@@ -48,6 +48,10 @@ Conversation.belongsToMany(Artist, { through: 'ArtistConversation' });
 //Conversation-Message
 Conversation.hasMany(Message, { as: 'menssage', foreignKey: 'conversationId' });
 Message.belongsTo(Conversation, { as: 'conversation', foreignKey: 'conversationId',onDelete: 'CASCADE' });
+//Relaciones follow
+Artist.hasMany(Follow, { foreignKey: 'following_Id', as: 'follower' });
+Artist.hasMany(Follow, { foreignKey: 'follower_Id', as: 'following' });
+
 
 
 
