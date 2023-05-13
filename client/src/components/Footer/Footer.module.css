@@ -2,9 +2,9 @@
 .footerContainer {
   background: linear-gradient(
     106.37deg,
-    #0d5a73 29.63%,
-    #028cb9 51.55%,
-    #0a81c7 90.85%
+    #046f93 29.63%,
+    #095c8c 51.55%,
+    #0d5a73 90.85%
   );
   background-size: 900% auto;
   animation: moveBackground 20s linear infinite;

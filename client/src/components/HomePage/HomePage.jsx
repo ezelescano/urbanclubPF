@@ -23,16 +23,8 @@ const HomePage = () => {
         <Carousel images={images} autoPlay={true} showButtons={true} />
       </div>
       <div className={style.lower}>
-        <div className={style.art}>
-          <br />
-          <h1 className={style.title}>Artistas más populares</h1>
-          <div>
-            <HomeArt />
-          </div>
-          <br />
-        </div>
         <div className={style.events}>
-          <h1 className={style.title}>Eventos más populares</h1>
+          <h1 className={style.title}>Eventos más recientes</h1>
           <br />
           <div className={style.eventsCardsContainer}>
             <Events />
@@ -42,8 +34,16 @@ const HomePage = () => {
           <NavLink to="/events" onClick={scrollToTop}>
             <button className={style.moreEventsButton}>
               ¿Quieres ver más eventos?
-            </button>{" "}
+            </button>
           </NavLink>
+          <br />
+        </div>
+        <div className={style.art}>
+          <br />
+          <h1 className={style.title}>Artistas más populares</h1>
+          <div>
+            <HomeArt />
+          </div>
           <br />
         </div>
       </div>

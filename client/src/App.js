@@ -110,13 +110,13 @@ function App() {
         <Route path="/newPassword/:id/:token" element={<NewPassword />} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
-        <Route path="/termsAndConditions" element={<TermsAndConditions />} />
+        <Route path="/termsAndConditions" element={<TermsAndConditions />} /> */}
         <Route
           path="/admin"
           element={user.isAuthenticated ? <Admin /> : <Navigate to="/login" />}
         />
 
-        <Route path="*" element={<Errors404 />} /> */}
+        <Route path="*" element={<Errors404 />} />
       </Routes>
       {window.location.pathname !== "/messenger" && <Footer />}
     </div>

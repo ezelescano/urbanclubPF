@@ -11,7 +11,7 @@ export default function Carousel(props) {
     if (autoPlay || !showButtons) {
       const interval = setInterval(() => {
         selectNewImage(selectedIndex, images);
-      }, 8000);
+      }, 2000);
       return () => clearInterval(interval);
     }
   });
@@ -31,7 +31,7 @@ export default function Carousel(props) {
         : images.length - 1;
       setSelectedImage(images[nextIndex]);
       setSelectedIndex(nextIndex);
-    }, 10);
+    }, 500);
   };
 
   const previous = () => {
@@ -70,6 +70,8 @@ export default function Carousel(props) {
               <br />
               <span className={Style.bigText}>Club!</span>
             </h1>
+            <br />
+            <br />
             <h2>
               La página de los artistas de todo el mundo, ahora en el tuyo!
             </h2>
