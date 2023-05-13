@@ -24,6 +24,7 @@ import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import axios from "axios";
+import FollowList from "../FollowList/FollowList";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,10 @@ const Profile = () => {
   const errorId = useSelector((state) => state.artist.errorId);
 
   const [showSettings, setShowSettings] = useState(false);
+  const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowings, setShowFollowings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
-  const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
   const [followed, setFollowed] = useState(false);
   const [followers, setFollowers] = useState([]);
@@ -253,7 +255,6 @@ const Profile = () => {
     });
   };
 
-  const islogin = useSelector((state) => state.auth);
   const handleDeleteEvent = (id, name) => {
     swal({
       title: "ELIMINAR EVENTO",
@@ -261,7 +262,7 @@ const Profile = () => {
       icon: "warning",
       buttons: ["No", "Si"],
     }).then(async (res) => {
-      if (res && islogin.isAuthenticated) {
+      if (res && currentUser.isAuthenticated) {
         dispatch(deleteEvent(id));
         setTimeout(() => {
           window.location.reload();
@@ -277,6 +278,14 @@ const Profile = () => {
       }
     });
   };
+
+  const handleOnClickFollowers = () => {
+    setShowFollowers(!showFollowers)
+  }
+
+  const handleOnClickFollowings = () => {
+    setShowFollowings(!showFollowings)
+  }
 
   return (
     <>
@@ -320,8 +329,7 @@ const Profile = () => {
                     {!isCurrentUser &&
                       <div className="profileFollow">
                         <button className="btn-profile" onClick={handleFollow}>
-                          {followed ? "dejar de seguir" : "seguir"}
-                          {/* {followed ? "dejar de seguir" : "seguir"} */}
+                          {followed ? "Dejar de seguir" : "Seguir"}
                         </button>
                         <button className="btn-profile" onClick={handleContact}>
                           Contactar
@@ -349,10 +357,22 @@ const Profile = () => {
                     {events?.length + " "} Eventos{" "}
                     {/*  //! muestra total de eventos del artista */}
                   </button>
-                  <button className="btn-stas">
+                  <button className="btn-stas" onClick={handleOnClickFollowers}>
                     {followers?.length + " "} Seguidores
                   </button>
-                  <h4>{followings?.length + " "} Seguidos</h4>
+                  {showFollowers && <FollowList userId={usuario.id}
+                                                isCurrentUser={isCurrentUser}
+                                                action="followers"
+                                                setShowFollowers={setShowFollowers}
+                                                setShowFollowings={setShowFollowings}/>}
+                  <button className="btn-stas" onClick={handleOnClickFollowings}>
+                    {followings?.length + " "} Seguidos
+                  </button>
+                  {showFollowings && <FollowList userId={usuario.id}
+                                                isCurrentUser={isCurrentUser}
+                                                action="followings"
+                                                setShowFollowers={setShowFollowers}
+                                                setShowFollowings={setShowFollowings}/>}
                 </div>
                 <div className="redes">
                   {links?.map((l) => {
