@@ -69,10 +69,9 @@ const Profile = () => {
   const eventosRef = useRef(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setIsLoading(false);
-    const getFollowers = async () => {
-      try {
+
+    const getFollowers = async() => {
+    try {
         const res = await dispatch(getArtistId(id));
         setFollowers(res.followers);
       } catch (error) {
@@ -83,6 +82,7 @@ const Profile = () => {
     return async () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
+      setFollowers([])
     };
   }, [id]);
 
@@ -90,8 +90,8 @@ const Profile = () => {
     const getUser = async () => {
       try {
         const res = await axios.get("/artist/login/me");
-        console.log(res.data.followings);
-        setFollowed(res.data.followings.includes(usuario?.id));
+        console.log(res.data.followings)
+        setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
       } catch (error) {
         console.log(error);
       }
@@ -195,21 +195,22 @@ const Profile = () => {
 
   const handleFollow = async () => {
     try {
-      if (!followed && !isCurrentUser && currentUser.isAuthenticated) {
-        await axios.put(`/artist/follow/${usuario.id}/follow`, {
-          followerId: `${currentUser.user.id}`,
-        });
-        setFollowers([...followers, currentUser.user.id]);
-        setFollowed(!followed);
-        return;
+      if(!followed && !isCurrentUser && currentUser.isAuthenticated){
+        await axios.post(`/artist/follow/${currentUser.user.id}/follow`,{
+         followedId: `${usuario.id}`
+        })
+        const obj = { following_Id: currentUser.user.id }
+        setFollowers([...followers, obj])
+        setFollowed(!followed)
+        return
       }
-      if (followed && !isCurrentUser && currentUser.isAuthenticated) {
-        await axios.put(`/artist/follow/${usuario.id}/unfollow`, {
-          followerId: `${currentUser.user.id}`,
-        });
-        setFollowers(followers.filter((f) => f !== currentUser.user.id));
-        setFollowed(!followed);
-        return;
+      if(followed && !isCurrentUser && currentUser.isAuthenticated){
+        await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`,{
+          followedId: `${usuario.id}`
+        })
+        setFollowers(followers.filter(follow => follow.follower_Id === currentUser.user.id))
+        setFollowed(!followed)
+        return
       }
       swal({
         title: "INICIAR SESIÓN",

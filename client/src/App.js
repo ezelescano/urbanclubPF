@@ -104,6 +104,7 @@ function App() {
         <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
+
         <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
         <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents />) : (<Navigate to="/login" />)} />
         <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)} />
