@@ -4,9 +4,12 @@
 }
 
 .title {
-  color: #efefef;
-  text-align: center;
-  padding-top: 5%;
+  color: #101010;
+  margin-left: 50px;
+  font-weight: 700;
+  font-size: 50px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  padding-top: 1%;
 }
 .events {
   height: unset;
@@ -67,38 +70,36 @@
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-block: 50px;
+  margin-top: 40px;
 }
 .moreEventsButton:hover {
-  background: linear-gradient(
-    106.37deg,
-    #028cb9 29.63%,
-    #0a81c7 51.55%,
-    #0d5a73 90.85%
-  );
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   color: white;
   transform: scale(1.1);
   margin-bottom: 10px;
   box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.8);
   margin-block: 50px;
 }
+.lowerContainer {
+  background-color: rgba(255, 255, 255, 0.54);
+  margin: 25px;
+  padding: 25px;
+  border-radius: 25px;
+}
 .lower {
-  background: linear-gradient(
-    106.37deg,
-    #046f93 29.63%,
-    #095c8c 51.55%,
-    #0d5a73 90.85%
-  );
-  background-size: 900% auto;
-  animation: moveBackground 20s linear infinite;
+  background: linear-gradient(106.37deg, #bceeff 0%, #095c8c 50%, #0d5a73 100%);
+  background-size: 200% 200%;
+  animation: rotateColors 1s infinite linear;
 }
 
-@keyframes moveBackground {
-  100%,
+@keyframes rotateColors {
   0% {
-    background-position: 100% center;
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 0% center;
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

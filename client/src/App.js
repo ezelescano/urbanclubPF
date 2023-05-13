@@ -74,7 +74,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* <Route
+        <Route
           path="/login"
           element={!user.isAuthenticated ? <Login /> : <Navigate to="/" />}
         />
@@ -104,13 +104,28 @@ function App() {
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
 
-        <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
-        <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents />) : (<Navigate to="/login" />)} />
-        <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)} />
+        <Route
+          path="/messenger"
+          element={
+            user.isAuthenticated ? <Messenger /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/updateEvent"
+          element={
+            user.isAuthenticated ? <UpdateEvents /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/forgotPassword"
+          element={
+            !user.isAuthenticated ? <ForgotPassword /> : <Navigate to="/" />
+          }
+        />
         <Route path="/newPassword/:id/:token" element={<NewPassword />} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
-        <Route path="/termsAndConditions" element={<TermsAndConditions />} /> */}
+        <Route path="/termsAndConditions" element={<TermsAndConditions />} />
         <Route
           path="/admin"
           element={user.isAuthenticated ? <Admin /> : <Navigate to="/login" />}

@@ -1,11 +1,6 @@
 /* Color negro de la Navbar es #1a1919*/
 .footerContainer {
-  background: linear-gradient(
-    106.37deg,
-    #046f93 29.63%,
-    #095c8c 51.55%,
-    #0d5a73 90.85%
-  );
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   background-size: 900% auto;
   animation: moveBackground 20s linear infinite;
   color: #fff;

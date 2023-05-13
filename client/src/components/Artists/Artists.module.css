@@ -1,0 +1,138 @@
+.container {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  /* display: flex;
+  flex-wrap: wrap;*/
+  justify-content: center;
+  /* align-items: flex-start;  */
+  overflow: hidden; /* cambiar a 'hidden' */
+  min-height: 100vh;
+}
+.containerFilters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* cambiar a 'hidden' */
+}
+
+.containerArtists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden; /* cambiar a 'hidden' */
+  min-height: 100vh;
+}
+.containerCar {
+  margin: 25px 0px 0px 0px;
+}
+/*Filtros*/
+.containerFilters select,
+.containerFilters button {
+  background-color: #0d5a73;
+  border-bottom: 1.5px solid #004258;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  margin-inline: 20px;
+  font-family: Arial, sans-serif;
+  outline: none;
+  transition: all 0.1s ease;
+}
+
+.containerFilters select option {
+  background-color: #fff;
+  color: #000;
+}
+
+.containerFilters button:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+}
+
+.containerFilters select:focus,
+.containerFilters select:hover,
+.containerFilters button:focus,
+.containerFilters button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.containerFilters select:focus option {
+  background-color: #0d5a73;
+  color: #fff;
+}
+
+.containerFilters button:focus {
+  outline: none;
+}
+.selectedFilters {
+  color: white;
+}
+.containerFilters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.containerFilters form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectFilters {
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.selectedFilter button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 15px;
+}
+
+.selectedFilter button:hover {
+  background-color: transparent;
+}
+
+.selectedFilters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.selectedFilter {
+  margin-inline: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  padding-inline: 10px;
+  align-items: center;
+  color: black;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+}
+.selectedFilter:hover {
+  transform: scale(1.05);
+}
+@media (max-width: 970px) {
+  .container {
+    margin-top: 58px;
+  }
+}

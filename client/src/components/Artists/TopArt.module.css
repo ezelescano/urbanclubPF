@@ -42,7 +42,7 @@
   bottom: -45px;
   left: 50%;
   transform: translateX(-50%);
-  color: white;
+  color: #101010;
   border-radius: 5px;
   opacity: 0;
   transition: opacity 0.2s ease-out;

@@ -23,7 +23,7 @@
   margin-top: unset;
   margin-left: 50px;
   border-radius: 100%;
-  background-color: #ffffff14;
+  background: linear-gradient(180deg, #0d5a738e 0%, #09548ecd 100%);
   height: 200px;
   width: 200px;
   transition: 0.4s ease;
@@ -31,7 +31,7 @@
 
 .toArtists button {
   cursor: pointer;
-  color: white;
+  color: #ffffff;
   background-color: transparent;
   border: none;
 }
@@ -48,7 +48,7 @@
   text-align: center;
   font-size: 30px;
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   transition: opacity 0.4s ease;
 }
 
@@ -57,12 +57,12 @@
   opacity: 1;
 }
 .toArtists:hover {
-  background-color: rgba(24, 24, 24, 0.164);
+  background-color: rgba(187, 199, 205, 0.89);
   animation: pulse-shadow 1s infinite;
 }
 
 .toArtists:active {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.847);
 }
 
 .text {
