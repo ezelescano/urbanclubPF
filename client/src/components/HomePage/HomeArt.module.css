@@ -5,7 +5,6 @@
 }
 
 .TopArt {
-  background-color: #303030;
   margin: 1px;
   display: grid;
   padding-block: 20px;
@@ -24,10 +23,10 @@
   margin-top: unset;
   margin-left: 50px;
   border-radius: 100%;
-  background-color: #18181814;
+  background-color: #ffffff14;
   transition: background-color 0.3s ease-in-out;
-  min-width: 200px;
-  max-width: 200px;
+  height: 200px;
+  width: 200px;
 }
 
 .toArtists button {
@@ -62,4 +61,3 @@
 .toArtists button:active {
   background-color: rgba(255, 255, 255, 0.5);
 }
-

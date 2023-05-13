@@ -44,7 +44,7 @@ export default function Carousel(props) {
 
   return (
     <>
-      <div className="carousel-container">
+      <div className={Style.carouselContainer}>
         <img
           className={`${Style["carousel-img"]} ${loaded ? Style.loaded_ : ""}`}
           src={selectedImage}

@@ -3,7 +3,7 @@
   background-color: #0d5a73;
   color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
   padding: 1% 1%;
   border-bottom: 1.5px solid#004258;
@@ -33,23 +33,19 @@
 }
 
 .footLinks {
+  display: flex;
   flex-direction: column;
   list-style: none;
 }
 
 .footLinks li {
   padding: 5px 0px;
-  vertical-align: middle;
   transition: 0.8s;
-  -webkit-transition: 0.8s;
-  -moz-transition: 0.8s;
-  -ms-transition: 0.8s;
-  -o-transition: 0.8s;
+
 }
 
 .footLinks li:hover {
   padding: 5px 0px;
-  vertical-align: middle;
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -100,7 +96,10 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
-
+.footerText{
+  display: flex;
+  flex-direction: column;
+}
 @media (max-width: 970px) {
   .footerContainer {
     gap: 10px;

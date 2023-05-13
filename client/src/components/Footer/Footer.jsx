@@ -10,31 +10,28 @@ const Footer = () => {
   };
   return (
     <div className={style.footerContainer}>
-      <div>
+      <div className={style.footerText}>
         <h3>Atencion al cliente</h3>
         <br />
         <h5>Av. Corrientes 500</h5>
         <br />
-        <h4>DPTO DE VENTAS</h4>
-        Lunes a Sabado <br />
-        08:00 a 18:00h
-        <br /> <br />
-        <h4>DPTO DE SOPORTE</h4>
         Lunes a Viernes <br />
         08:00 a 18:00h <br />
+        <h4>Teléfono </h4>
+        {"(+54) 93487 477269"}
       </div>
-      <div>
+      <div className={style.footerText}>
         <h3>Enlaces Utiles</h3>
         <br />
         <ul className={style.footLinks}>
           <li>
-            <NavLink to="/" className={style.link} onClick={scrollToTop}>
-              Inicio
+            <NavLink to="/register" className={style.link} onClick={scrollToTop}>
+              Crea una cuenta
             </NavLink>
           </li>
           <li>
             <NavLink to="/aboutus" className={style.link} onClick={scrollToTop}>
-              Nosotros
+              Sobre nosotros
             </NavLink>
           </li>
           <li>
