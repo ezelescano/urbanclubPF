@@ -41,7 +41,7 @@ const Profile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [followed, setFollowed] = useState(false);
   const [followers, setFollowers] = useState([]);
-
+  const [showComponents, setShowComponents] = useState(false);
   const verified = true;
   const links = [
     {
@@ -62,7 +62,7 @@ const Profile = () => {
     ocupation,
     aboutMe,
     events,
-    followings
+    followings,
   } = usuario;
 
   const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
@@ -75,11 +75,11 @@ const Profile = () => {
     const getFollowers = async() => {
     try {
         const res = await dispatch(getArtistId(id));
-        setFollowers(res.followers)
+        setFollowers(res.followers);
       } catch (error) {
-      console.log(error)
+        console.log(error);
       }
-    }
+    };
     getFollowers();
     return async () => {
       //le paso un return cuando se desmonta
@@ -89,17 +89,17 @@ const Profile = () => {
   }, [id]);
 
   useEffect(() => {
-    const getUser = async() => {
+    const getUser = async () => {
       try {
         const res = await axios.get("/artist/login/me");
         console.log(res.data.followings)
         setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
     getUser();
-  },[usuario.id, currentUser.user.id])
+  }, [usuario.id, currentUser.user.id]);
 
   // const [prevId, setPrevId] = useState(id);
 
@@ -114,6 +114,9 @@ const Profile = () => {
 
   const handleSettings = () => {
     setShowSettings(!showSettings);
+    setShowEdit(false);
+    setShowEditPassword(false);
+    setShowComponents(!showComponents);
   };
 
   const handleShowEdit = () => {
@@ -192,7 +195,7 @@ const Profile = () => {
     });
   };
 
-  const handleFollow = async() => {
+  const handleFollow = async () => {
     try {
       if(!followed && !isCurrentUser && currentUser.isAuthenticated){
         await axios.post(`/artist/follow/${currentUser.user.id}/follow`,{
@@ -217,7 +220,7 @@ const Profile = () => {
         icon: "info",
         buttons: {
           cancel: "Cancelar",
-          confirm: "Iniciar sesión"
+          confirm: "Iniciar sesión",
         },
       }).then((value) => {
         if (value) {
@@ -226,17 +229,18 @@ const Profile = () => {
           return;
         }
       });
-      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
-  const handleContact = async() => {
-    if(currentUser.isAuthenticated && !isCurrentUser){
-    const res = await axios.get(`/conversation/${currentUser.user.id}/${usuario.id}`);
-      navigate("/messenger")
-      return
+  const handleContact = async () => {
+    if (currentUser.isAuthenticated && !isCurrentUser) {
+      const res = await axios.get(
+        `/conversation/${currentUser.user.id}/${usuario.id}`
+      );
+      navigate("/messenger");
+      return;
     }
     swal({
       title: "INICIAR SESIÓN",
@@ -244,7 +248,7 @@ const Profile = () => {
       icon: "info",
       buttons: {
         cancel: "Cancelar",
-        confirm: "Iniciar sesión"
+        confirm: "Iniciar sesión",
       },
     }).then((value) => {
       if (value) {
@@ -326,7 +330,7 @@ const Profile = () => {
                         )}
                       </h1>
                     </span>
-                    {!isCurrentUser &&
+                    {!isCurrentUser && (
                       <div className="profileFollow">
                         <button className="btn-profile" onClick={handleFollow}>
                           {followed ? "Dejar de seguir" : "Seguir"}
@@ -335,7 +339,7 @@ const Profile = () => {
                           Contactar
                         </button>
                       </div>
-                    }
+                    )}
                   </div>
                   <h3 className="principalInfo">
                     {city}, {Country}
@@ -375,9 +379,9 @@ const Profile = () => {
                                                 setShowFollowings={setShowFollowings}/>}
                 </div>
                 <div className="redes">
-                  {links?.map((l) => {
+                  {links?.map((l, index) => {
                     return (
-                      <div className="redes-div">
+                      <div key={{ index }} className="redes-div">
                         <h4>Otras redes!!</h4>
                         <div className="container-links">
                           {l.youtube && (
@@ -427,16 +431,17 @@ const Profile = () => {
                       alt="ajuste"
                     />
                   </button>
-                  {showSettings && (
-                    <Settings
-                      handleDeleteAccount={handleDeleteAccount}
-                      handleLogout={handleLogout}
-                      handlePasswordChange={handlePasswordChange}
-                      handleShowEdit={handleShowEdit}
-                      handleShowCreateEvent={handleShowCreateEvent}
-                    />
-                  )}
-                  {showEdit && (
+                  {(showSettings || showEdit || showEditPassword) &&
+                    showComponents && (
+                      <Settings
+                        handleDeleteAccount={handleDeleteAccount}
+                        handleLogout={handleLogout}
+                        handlePasswordChange={handlePasswordChange}
+                        handleShowEdit={handleShowEdit}
+                        handleShowCreateEvent={handleShowCreateEvent}
+                      />
+                    )}
+                  {(showEdit || showEditPassword) && showComponents && (
                     <ProfileEdit
                       handleEdit={handleEdit}
                       id={id}
@@ -444,7 +449,7 @@ const Profile = () => {
                       handleShowEdit={handleShowEdit}
                     />
                   )}
-                  {showEditPassword && (
+                  {showEditPassword && showComponents && (
                     <UpdatePassword handleEdit={handleEdit} />
                   )}
                 </div>
