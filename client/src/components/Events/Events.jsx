@@ -20,10 +20,7 @@ const Events = () => {
     dispatch(getAllEvents());
   }, [dispatch]);
 
-  const location = {
-    locationName: "Calle C 16 Barrio La campiña 6 N.356",
-  };
-console.log(allEvents)
+  console.log(useSelector((state) => state.events.allEvents));
   return (
     <div className={style.container}>
       <div className={style.containerHelp}>
