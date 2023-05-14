@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const {ACTIVATED} = require("../constants")
 
 module.exports = (sequelize) => {
+  
     sequelize.define("Artist", {
       id: {
         type: DataTypes.INTEGER,
@@ -24,6 +25,7 @@ module.exports = (sequelize) => {
       id_profilePhoto: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       estado: {
         type: DataTypes.STRING,
@@ -32,18 +34,19 @@ module.exports = (sequelize) => {
       },
       profilePhoto: {
         type: DataTypes.STRING,
-        allowNull: true,
-        default:
+        allowNull:false,
+        defaultValue:
           "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png",
       },
       id_coverPhoto: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       coverPhoto: {
         type: DataTypes.STRING,
-        allowNull: true,
-        default:
+        allowNull:false,
+        defaultValue:
           "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
       },
       password: {
@@ -58,18 +61,34 @@ module.exports = (sequelize) => {
       Country: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       city: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       ocupation: {
-        type: DataTypes.JSON,
+        type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
+      },
+      // subCategory: {
+      //   type: DataTypes.JSON,
+      //   allowNull: true,
+      // },
+      followers:{
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        defaultValue: []
+      },
+      followings:{
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        defaultValue: []
       },
       aboutMe: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
     });
 }

@@ -3,14 +3,16 @@ const { Artist } = require("../../db");
 const bcrypt = require("bcrypt")
 const { cloudiconfig, loadPhoto } = require("../../../utils/cloudinary")
 const getArtistInfo = require("./getArtistInfo")
+const { PASSWORD_EMAIL} = process.env;
+const nodemailer = require("nodemailer")
+
 
 
 const postArtist = async (req) => {
 
     let {
         name, lastname, email, password, nickName, Country, city,
-        ocupation, aboutMe } = req.body;
-console.log(name, lastname, email, password, nickName,ocupation)
+        ocupation,subCategory, aboutMe } = req.body;
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
 
@@ -55,57 +57,87 @@ console.log(name, lastname, email, password, nickName,ocupation)
 
     let saveProfile = {},
      saveCover = {}
-    let profileSave = { id:"", photo:"" }, 
-    coverSave = { id:"", photo :""}
     if (req.files) {
         const { profilePhoto, coverPhoto } = req.files
         cloudiconfig()
         if (profilePhoto) {
             
-            saveProfile = await loadPhoto(profilePhoto.tempFilePath);
-            profileSave.id =  saveProfile.public_id;
-            profileSave.photo = saveProfile.secure_url
-        }else{
-            
-            profileSave.id = ""
-            profileSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png"
+            saveProfile = await loadPhoto(profilePhoto.tempFilePath,"Artist",nickName);
         }
 
         if (coverPhoto) {
             // cloudiconfig()
-            saveCover = await loadPhoto(coverPhoto.tempFilePath);
-            coverSave.id = saveCover.public_id
-            coverSave.photo = saveCover.secure_url
-        } else {
-            coverSave.id = ""
-            coverSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png"
-        }
-    }else{
-        profileSave.id = ""
-        profileSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710836/defaulr_urbanclub/profilePhoto_r6vbif.png"
-        coverSave.id = ""
-        coverSave.photo = "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png"
+            saveCover = await loadPhoto(coverPhoto.tempFilePath,"Artist",nickName);
+        } 
     }
     
     passwordcrypt = await bcrypt.hash(password, 8);
-
     try {
         let newArtist = {
             name: Nombre,
             lastname,
             email,
-            id_profilePhoto: profileSave.id ,
-            profilePhoto: profileSave.photo,
-            id_coverPhoto: coverSave.id,
-            coverPhoto: coverSave.photo,
+            id_profilePhoto: saveProfile.public_id ,
+            profilePhoto: saveProfile.secure_url,
+            id_coverPhoto: saveCover.public_id,
+            coverPhoto: saveCover.secure_url,
             nickName,
             Country,
             city,
             ocupation,
+            subCategory,
             aboutMe,
             password:passwordcrypt
         }
         await Artist.create(newArtist)
+
+        const config = {
+            host: "smtp.gmail.com",
+            port: 587,
+            auth: {
+                user: "urbanclub948@gmail.com",
+                pass: PASSWORD_EMAIL
+            }
+        }
+
+        const mensaje = {
+            from: "urbanclub948@gmail.com",
+            to: newArtist.email,
+            subject: "Bienvenido a urbanClub!",
+            html: `
+            <div style="background-color: black; padding: 10px 20px; text-align: center;">
+                <img src="https://media.discordapp.net/attachments/1097579150350487605/1105670284289249330/our_logo-removebg-preview.png" alt="urbanClub! Logo" style="max-width: 400px;">
+            </div>
+            <head>
+            <title>Bienvenido a urbanClub!</title>
+        </head>
+        <body>
+            
+            <div style="background-color: #f5f5f5; padding: 20px; font-family: Arial, sans-serif;">
+                <div style="background-color: #ffffff; padding: 20px;">
+                    <h1 style="color: #333333;">¡Bienvenido a urbanClub!</h1>
+                    <p>Estimado ${newArtist.name},</p>
+                    <p>¡Bienvenido a urbanClub!</p>
+                     <p>Nos complace darte la bienvenida a nuestra plataforma diseñada especialmente para artistas como tú, que buscan vender y promocionar sus eventos de una manera sencilla y efectiva.</p>
+                    <p>En urbanClub entendemos la importancia de crear conexiones significativas entre artistas y su público. Nuestra plataforma ofrece una amplia gama de características y herramientas para ayudarte a alcanzar tus metas y maximizar el alcance de tus eventos.</p>
+                    <p>Aquí hay algunas características destacadas de urbanClub:</p>
+                    <ol>
+                        <li>Perfil de artista personalizado: Crea un perfil único que destaque tu talento, experiencias anteriores y muestra tu estilo artístico de manera atractiva.</li>
+                        <li>Calendario de eventos: Mantén a tus seguidores actualizados sobre tus próximos eventos y fechas de presentaciones.</li>
+                        <li>Sistema de venta de entradas: Simplifica el proceso de venta de entradas a través de nuestra plataforma segura y confiable, permitiendo a tus seguidores adquirir boletos fácilmente.</li>
+                        <li>Comunidad de artistas: Conecta con otros artistas, compartiendo conocimientos y experiencias para crecer juntos en la industria.</li>
+                    </ol>
+                    <p>Estamos emocionados de tenerte a bordo y esperamos verte prosperar en urbanClub. Si tienes alguna pregunta, no dudes en ponerte en contacto con nuestro equipo de soporte a través de <a href="mailto:urbanclub948@gmail.com">urbanclub948@gmail.com</a>. Estaremos encantados de ayudarte en cualquier momento.</p>
+                    <p>Una vez más, bienvenido a urbanClub. Estamos ansiosos por ver cómo tus eventos se convierten en un gran éxito en nuestra plataforma. ¡Juntos, haremos vibrar las calles!</p>
+                    <p>Saludos cordiales,</p>
+                    <p>El equipo de urbanClub!</p>
+                </div>
+            </div>
+        </body>`
+        }
+        const transport = nodemailer.createTransport(config);
+
+        const info = await transport.sendMail(mensaje);
         const getall = getArtistInfo(newArtist.email,password)
         return (getall)
     } catch (error) {

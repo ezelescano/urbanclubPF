@@ -3,12 +3,19 @@ import Carousel from "../Carousel/Carousel.jsx";
 import style from "../HomePage/HomePage.module.css";
 import HomeArt from "../HomePage/HomeArt.jsx";
 import Events from "../Events/Events.jsx";
+import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   const images = [
-    "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682605223/Proyecto_nuevo_2_amp37d.jpg",
-    "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682604885/Proyecto_nuevo_rxedju.jpg",
-    "https://res.cloudinary.com/dinvg1hz6/image/upload/v1682605224/Proyecto_nuevo_1_psedq6.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/3_kaor4h.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/6_xuxple.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/1_flhnhc.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/4_zckxd6.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/5_cdgswn.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/2_ehhiho.jpg",
   ];
   return (
     <div className={style.main}>
@@ -23,19 +30,27 @@ const HomePage = () => {
         </div>
         <br />
       </div>
-      <div className={style.products}>
-        <br />
+      {/* <div className={style.products}>
+        <br /> // ! tienda comentada por ahora
         <h1 className={style.title}>Productos más populares</h1>
         <br />
         <div className={style.eldivdeeu}></div>
         <br />
-      </div>
+      </div> */}
       <div className={style.events}>
         <h1 className={style.title}>Eventos más populares</h1>
         <br />
-        <div>
+        <div className={style.eventsCardsContainer}>
           <Events />
         </div>
+      </div>
+      <div className={style.moreEvents}>
+        <NavLink to="/events" onClick={scrollToTop}>
+          <button className={style.moreEventsButton}>
+            ¿Quieres ver más eventos?
+          </button>{" "}
+        </NavLink>
+        <br />
       </div>
     </div>
   );

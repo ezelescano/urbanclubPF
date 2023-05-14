@@ -1,0 +1,68 @@
+.settingsContainer {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: #333333;
+  color: #fff;
+  font-size: 14px;
+  width: 180px;
+  right: 70px;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+/* .div-settings{
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  padding: 16px 0;
+  border-bottom: 1px solid #fff;
+} */
+
+.divSettings {
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  border-bottom: 2px solid #fff;
+}
+
+.divSettingsD {
+  cursor: pointer;
+  background-color: #ff7575;
+  /* padding: 20px; */
+  width: 100%;
+  text-align: center;
+  height: 50px;
+}
+
+.divSettings button,
+.divSettingsD button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
+}
+
+.navlink-st {
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+}
+
+.edit {
+  position: absolute;
+  width: 400px;
+  height: 800px;
+  background-color: #ff7575;
+}

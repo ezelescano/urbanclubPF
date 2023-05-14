@@ -9,17 +9,22 @@ const session = require('express-session');
 
 
 const app = express();
-
-app.use(morgan("dev"));
-app.use(cors())
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
-//? inicializar el modulo passport
-app.use(passport.initialize());
+app.use(morgan("dev"));
 app.use(session({
     secret: 'my-secret-key',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000 
+    }
   }));
+  //? inicializar el modulo passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(cors({origin:"http://localhost:3000", credentials:true}))
 
 // app.use(fileupload({
 //     useTempFiles: true,

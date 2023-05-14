@@ -1,0 +1,147 @@
+.messenger {
+  height: calc(100vh - 70px);
+  display: flex;
+}
+
+.chatMenu {
+  flex: 3.5;
+}
+
+.chatMenuInput {
+  width: 90%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid grey;
+}
+
+.chatMenuInput:focus,
+.chatMenuInput:hover {
+  outline: none;
+}
+
+.chatBox {
+  flex: 5.5;
+}
+
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.chatBoxTop {
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+
+.chatBoxTop::-webkit-scrollbar {
+  display: none;
+}
+
+.chatBoxBottom {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.chatMessageInput {
+  width: 80%;
+  height: 90px;
+  padding: 10px;
+  resize: none;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.chatMessageInput::-webkit-scrollbar {
+  display: none;
+}
+
+.chatSubmitButton {
+  width: 70px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #004258;
+  color: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.chatOnline {
+  flex: 3;
+}
+
+.chatMenuWrapper,
+.chatBoxWrapper,
+.chatOnlineWrapper {
+  padding: 10px;
+  height: 100%;
+}
+.chatBoxWrapper {
+  box-shadow: 0px 0px 10px 0px rgba(0, 66, 88, 0.5);
+  border-inline: 1px solid rgba(0, 66, 88, 0.5);
+}
+
+.noConversationText {
+  position: absolute;
+  top: 10%;
+  font-size: 50px;
+  color: rgb(174, 174, 174);
+  cursor: default;
+}
+.emojiesBox {
+  cursor: pointer;
+  transform: scale(1.3);
+  border: none;
+  background: transparent;
+}
+.emojiesBox svg {
+  border-radius: 100%;
+  transition: box-shadow 0.2s ease-in-out; /* added transition property */
+}
+.emojiesBox svg:hover {
+  box-shadow: 0px 0px 10px 0px rgba(0, 66, 88, 0.5);
+  transform: scale(1.1) translateZ(0);
+  transition: transform 0.6s ease;
+}
+
+.chatSubmitButton:hover {
+  box-shadow: 0px 0px 10px 0px rgba(5, 5, 5, 0.5);
+  background-color: #01688a;
+  transform: scale(1.1) translateZ(0);
+  transition: transform 0.6s ease;
+}
+.emojieBoxForAbsolute{
+  position: absolute;
+  right:105%;
+  bottom:40%;
+}
+
+@media screen and (max-width: 768px) {
+  .chatMenu {
+    flex: 1;
+  }
+
+  .chatMenuInput {
+    display: none;
+  }
+
+  .chatBox {
+    flex: 10;
+  }
+
+  .chatOnline {
+    flex: 1px;
+  }
+}

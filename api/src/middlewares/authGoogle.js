@@ -14,6 +14,9 @@ passport.use(
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:3001/artist/auth/google/callback",
+      // callbackURL: "https://pruebaback-production-0050.up.railway.app/artist/auth/google/callback",
+      
+      scope: ['profile', 'email'],
       passReqToCallback: true
   },
   async (req, accessToken, refreshToken, profile, done) => {
@@ -34,11 +37,10 @@ passport.use(
 
           name : profile.name.givenName,
           lastname: profile.name.familyName,
-          nickName: profile.name.familyName.substring(0,3) + profile.name.givenName.substring(0,3) + Math.floor(Math.random() * 1000),
           email : profile._json.email,
-          profile_img: profile._json.picture,
-          confirmed:true,
-          password: ''
+          nickName: profile.name.familyName.substring(0,3) + profile.name.givenName.substring(0,3) + Math.floor(Math.random() * 1000),
+          password: '',
+          profilePhoto : profile._json.picture
     })
     
     artistByGoogle.token = generateJWT(artistByGoogle.id, artistByGoogle.name);
@@ -56,12 +58,10 @@ passport.serializeUser((artist, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  try {
-    const artist = await Artist.findById(id);
-    return done(null, artist);
-  } catch (error) {
-    return done(error);
-  }
+    const artist = await Artist.findByPk(id).catch((err) => {
+      done(err, null)
+    });
+    if(artist) done(null, artist);
 });
 
 

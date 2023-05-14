@@ -1,57 +1,142 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import "./Navbar.css";
-//Si aun te rompes con CSS, imaginate con iconos, import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
+import React, { useEffect,useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import style from "./Navbar.module.css";
+//import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSelector } from "react-redux";
-
-
-
+//Si aun te rompes con CSS, imaginate con iconos, import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 function Navbar() {
+  const islogin = useSelector((state) => state.auth);
+  const usuario = useSelector((state) => state.auth.user);
 
-  const islogin = useSelector(state => state.auth);
+  const [navLinksVisible, setNavLinksVisible] = useState(false);
 
- 
-
-   
+  const handleHamburgerClick = () => {
+    setNavLinksVisible(!navLinksVisible);
+  };
   return (
-    <nav className="navbar">
+    <nav className={style.navbar}>
       <NavLink to="/">
         <img
-          className="nav-title-img"
+          className={style.navTitleImg}
           src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682542442/UrbanClub/Urban_Club_Logo_fh8zlb.png"
           alt=""
         />
+        <img
+          className={style.navTitleImgZoom}
+          src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
+          alt=""
+        />
       </NavLink>
-      <div className="searchbar-wrapper">
+      <div className={style.searchbarWrapper}>
         <SearchBar />
       </div>
       {/*<SearchIcon style={{color:"white"}}/>*/}
-      <ul className="nav-links">
+      <ul className={style.navLinks}>
         <li>
-          <NavLink to="/artists" className="nav-link active">
+          <NavLink to="/admin" className={`${style.navLink} ${style.active}`}>
+            Admin
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/artists" className={`${style.navLink} ${style.active}`}>
             Artistas
           </NavLink>
         </li>
         <li>
-          <NavLink to="/aboutus" className="nav-link active">
-            Acerca de
+          <NavLink to="/aboutus" className={`${style.navLink} ${style.active}`}>
+            Nosotros
           </NavLink>
         </li>
         <li>
-          <NavLink to="/events" className="nav-link active">
+          <NavLink to="/events" className={`${style.navLink} ${style.active}`}>
             Eventos
           </NavLink>
         </li>
+        {/* <li>  // ! Comentada la tienda
+          <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
+            Tienda
+          </NavLink>
+        </li> */}
+        {islogin.isAuthenticated && (
+          <li>
+            <NavLink to="/messenger" className="nav-link active">
+              Chat
+            </NavLink>
+          </li>
+        )}
       </ul>
-      {!islogin.isAuthenticated ? <NavLink to="/login">
-        <button className="nav-login-btn">Ingresar</button>
-      </NavLink>
-        :<NavLink to={`/profile/${islogin.user.id}`}>
-          <img className="sesionfoto" src={islogin.user.profilePhoto} alt="No hay"/>
-          </NavLink>}
-        
+      <div className={style.burgerSelect}>
+        <button className={style.hamburgerBtn} onClick={handleHamburgerClick}>
+          ☰
+        </button>
+        <ul
+          className={`${style.respNavLinks} ${
+            navLinksVisible ? style.slideIn : style.slideOut
+          }`}
+          id="navLinks"
+        >
+          <li>
+            <NavLink
+              to="/artists"
+              className={`${style.navLink} ${style.active}`}
+            >
+              Artistas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/aboutus"
+              className={`${style.navLink} ${style.active}`}
+            >
+              Acerca de
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/events"
+              className={`${style.navLink} ${style.active}`}
+            >
+              Eventos
+            </NavLink>
+          </li>
+          {/* <li>  // ! Comentada la tienda
+            <NavLink to="/merch" className={`${style.navLink} ${style.active}`}>
+              Tienda
+            </NavLink>
+          </li> */}{" "}
+          {!islogin.isAuthenticated ? (
+            <NavLink to="/login">
+              <button className={style.navLoginBtnZoom}>Ingresar</button>
+            </NavLink>
+          ) : (
+            <NavLink to={`/profile/${islogin.user.id}`}>
+              <img
+                className={style.sesionfotozoom}
+                src={usuario.profilePhoto}
+                alt="No hay"
+              />
+            </NavLink>
+          )}
+        </ul>
+      </div>
+      <div className="profilePicture">
+        {!islogin.isAuthenticated ? (
+          <NavLink to="/login">
+            <button className={style.navLoginBtn}>Ingresar</button>
+          </NavLink>
+        ) : (
+          <NavLink to={`/profile/${islogin.user.id}`}>
+            <img
+              className={style.sesionfoto}
+              src={usuario.profilePhoto}
+              alt="No hay"
+            />
+          </NavLink>
+        )}
+      </div>
     </nav>
   );
 }

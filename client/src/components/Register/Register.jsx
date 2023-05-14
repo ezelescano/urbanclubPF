@@ -1,17 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./Register.css";
-import { postArtist,errorsCreate } from "../../redux/artistSlice";
-import swal from 'sweetalert'
+import style from "./Register.module.css";
+import { postArtist, errorsCreate } from "../../redux/artistSlice";
+import swal from "sweetalert";
 
+import loading from "../../img/loading.gif";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-
 function Formulario() {
-  const {errorForm} = useSelector(state=>state.artist)
+  const { errorForm } = useSelector((state) => state.artist);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState({
     name: "",
     lastname: "",
@@ -25,50 +26,54 @@ function Formulario() {
     ocupation: [],
     aboutMe: "",
   });
- 
+
   const [options, setOptions] = useState([
-    "Dancer",
-    "Singer",
-    "Musician",
+    "Bailarin",
+    "Cantante",
+    "Musico",
     "Actor",
+    "Pintor",
+    "Modelo",
   ]);
 
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
 
-  // function validate(input) {
-  //   console.log(input)
-  //   const errors = {};
-  //   if (!input.name) {
-  //     errors.name = "Name is required";
-  //   }
-  //   if (!input.lastname) {
-  //     errors.lastname = "Last name is required";
-  //   }
-  //   if (!input.email) {
-  //     errors.email = "Email is required";
-  //   }
-  //   if (!input.nickName) {
-  //     errors.nickName = "Nickname is required";
-  //   }
-  //   if (!input.password) {
-  //     errors.password = "Password is required";
-  //   }
-  //   return errors;
-  // }
+  function validate(input) {
+    const errors = {};
+    if (!input.name) {
+      errors.name = "Se requiere Nombre";
+    }
+    if (!input.lastname) {
+      errors.lastname = "Se requiere Apellido";
+    }
+    if (!input.email) {
+      errors.email = "Se requiere Correo";
+    }
+    if (!input.nickName) {
+      errors.nickName = "Se requiere Alias";
+    }
+    if (input.password.length <= 8) {
+      errors.password = "mayor o igual a 8 caracteres";
+    }
+    return errors;
+  }
 
   function handleOnChange(e) {
+    // console.log("errores///", errors.password);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
-    // validate({
-    //   ...input,
-    //   [e.target.name]: e.target.value,
-    // });
-   
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
   function handleOccupationChange(e) {
     const selectedOption = e.target.value;
@@ -118,43 +123,47 @@ function Formulario() {
       setRutaImagen(reader.result);
     };
   };
-  
- 
+
   const handleClick = () => {
     fileInputRef.current.click();
   };
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-  //   swal({
-  //     title: "Usuario Creado",
-  //     text: "Usuario Creado con exito",
-  //     icon: "success",
-  //     buttons: "Aceptar"
-  //  })
-   console.log(errors)
+
+    //console.log(errors);
+    //  console.log(input.ocupation);
+    if (!input.ocupation.length) {
+      await swal({
+        title: "ERROR",
+        text: "Se debe seleccionar al menos 1 ocupación",
+        icon: "error",
+        buttons: "Aceptar",
+      });
+      return;
+    }
+    setIsLoading(true);
     const formData = new FormData(e.target);
-    formData.append("ocupation", input.ocupation); 
-    dispatch(postArtist(formData,navigate));
-   
+    formData.append("ocupation", input.ocupation);
+    const error = await dispatch(postArtist(formData, navigate));
+    setIsLoading(false);
+    // console.log(error)
+    // console.log(2)
   }
 
   return (
     <>
-      <div className="formulario-externo-registro">
-      
-        <div className="formulario-container formulario-background">
-        <div className="error_back">
-             <p>{errorForm.error}</p>
+      <div className={style.formularioExternoRegistro}>
+        <div className={style.formularioContainer}>
+          <div className={style.errorBack}>
+            <p>{errorForm.error}</p>
           </div>
-          <form onSubmit={handleSubmit} className="form-container">
-         
-            <div className="form-container__left">
-           
+          <form onSubmit={handleSubmit} className={style.formContainer}>
+            <div className={style.formContainerLeft}>
               <label>
                 {rutaImagen ? (
                   <img
-                    className="form-picture"
+                    className={style.formPicture}
                     src={rutaImagen}
                     alt="Imagen de perfil"
                   />
@@ -162,7 +171,7 @@ function Formulario() {
                   ""
                 )}
                 <button
-                  className="upload-picture-button"
+                  className={style.uploadPictureButton}
                   type="button"
                   name="profilePhoto"
                   onClick={handleClick}
@@ -181,17 +190,18 @@ function Formulario() {
                 Registrate a<br></br> <b>Urban Club!</b>
               </label>
             </div>
-            <div className="form-container__middle">
-              <label className="required">
+            <div className={style.formContainerMiddle}>
+              <label className={style.required}>
                 <div>
                   <span style={{ color: "red" }}>*</span> Nombre:
                 </div>
                 <input
+                  placeholder={errors.name}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   type="text"
                   value={input.name}
-                  maxLength="35"
+                  maxLength="25"
                   name="name"
                   required
                 />
@@ -201,12 +211,13 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Apellido:
                 </div>
                 <input
+                  placeholder={errors.lastname}
                   type="text"
                   value={input.lastname}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="lastname"
-                  maxLength={35}
+                  maxLength={25}
                   required
                 />
               </label>
@@ -215,6 +226,7 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Correo:
                 </div>
                 <input
+                  placeholder={errors.email}
                   type="email"
                   value={input.email}
                   onChange={handleOnChange}
@@ -226,9 +238,10 @@ function Formulario() {
               </label>
               <label>
                 <div>
-                  <span style={{ color: "red" }}>*</span> Nickname:
+                  <span style={{ color: "red" }}>*</span> Alias:
                 </div>
                 <input
+                  placeholder={errors.nickName}
                   type="text"
                   value={input.nickName}
                   onChange={handleOnChange}
@@ -242,8 +255,9 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Contraseña:
                 </div>
                 <input
-                  type="text"
-                  maxLength={45}
+                  placeholder={errors.password}
+                  type="password"
+                  maxLength={20}
                   value={input.password}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
@@ -251,6 +265,7 @@ function Formulario() {
                   required
                 />
               </label>
+              <p className={style.errorsFrond}>{errors.password}</p>
               <label>
                 <div>Ciudad:</div>
                 <input
@@ -272,12 +287,13 @@ function Formulario() {
                 />
               </label>
             </div>
-            <div className="form-container__right">
+            <div className={style.formContainerRight}>
               <label>
-                <div className="occupation-options">
+                <div className={style.occupationsOptions}>
                   {options.map((option) => (
-                    <label key={option}>
+                    <label key={option} >
                       <input
+                        className={style.occupationsOptionsList}
                         type="checkbox"
                         value={option}
                         checked={input.ocupation.includes(option)}
@@ -290,15 +306,13 @@ function Formulario() {
                     <input
                       type="checkbox"
                       name="other"
-                      value="Aun no se agrega otros"
-                      checked={input.ocupation.includes(
-                        "Aun no se agrega otros"
-                      )}
+                      value="Otros"
+                      checked={input.ocupation.includes("Otros")}
                       onChange={handleOccupationChange}
                     />
                     Otros
                   </label>
-                  {input.ocupation.includes("Aun no se agrega otros") && (
+                  {input.ocupation.includes("Otros") && (
                     <input
                       type="text"
                       value={input.value}
@@ -311,19 +325,31 @@ function Formulario() {
               <label>
                 Descripción:
                 <textarea
+                  className={style.descripcionArea}
                   value={input.aboutMe}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  maxLength={500}
+                  placeholder="500 Palabras max"
+                  maxLength={150}
                   name="aboutMe"
                 />
               </label>
-              <button className="upload-form-button" type="submit">
-                Registrarse
-              </button>
+              {isLoading && (
+                <div className={style.loadingGif}>
+                  <img
+                    className={style.loading}
+                    src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
+                    alt=""
+                  ></img>
+                </div>
+              )}
+              {!isLoading && (
+                <button className={style.uploadFormButton} type="submit">
+                  Registrarse
+                </button>
+              )}
             </div>
-             </form>
-            
+          </form>
         </div>
       </div>
     </>

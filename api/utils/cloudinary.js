@@ -13,9 +13,14 @@ const cloudiconfig = () => {
         secure: true
     });
 }
-const loadPhoto = async (path) => {
+const loadPhoto = async (path,ban,name) => {
+    let folder = ""
+   
+    if (ban === "events") folder = `Events/${name}`
+    if (ban === "Artist") folder = `Artis/${name}`
+  
     const savePhoto = await cloudinary.uploader.upload(path, {
-        folder: "UrbanClub"
+        folder: `UrbanClub/${folder}`
     });
     
     await fs_extra.unlink(path)

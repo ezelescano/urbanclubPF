@@ -1,0 +1,141 @@
+.aboutUsContainer {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  min-height: 100vh;
+}
+
+.aboutUsHeader {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.aboutUsBackground {
+  border-radius: 1%;
+  padding: 5%;
+  background-color: #0000007d;
+  -webkit-border-radius: 1%;
+  -moz-border-radius: 1%;
+  -ms-border-radius: 1%;
+  -o-border-radius: 1%;
+}
+
+.aboutUsText {
+  color: #cfcfcf;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage {
+  width: 100%;
+  height: 200px;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.cardImage img {
+  margin-top: 15px;
+  width: 250;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 20px;
+  text-align: center;
+}
+
+.cardContent h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.cardContent p {
+  font-size: 16px;
+  color: #aaa;
+}
+
+.cardContent .git svg {
+  font-size: 30px;
+  color: black;
+  margin-inline: 5px;
+}
+
+.cardContent svg {
+  font-size: 30px;
+  color: #0073b1;
+  margin-inline: 5px;
+}
+
+.cardContent svg:hover {
+  cursor: pointer;
+  color: rgb(107, 107, 107);
+  box-shadow: 5px solid black;
+}
+
+.aboutUsHeader {
+  font-family: "Lobster", cursive;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0d5a73,
+    0 0 70px #0d5a73, 0 0 80px #0d5a73, 0 0 100px #0d5a73, 0 0 150px #0d5a73;
+  animation: flicker 15s infinite;
+  -webkit-animation: flicker 15s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  19.999%,
+  22%,
+  62.999%,
+  64%,
+  64.999%,
+  70%,
+  100% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0d5a73,
+      0 0 70px #0d5a73, 0 0 80px #0d5a73, 0 0 100px #0d5a73, 0 0 150px #0d5a73;
+  }
+  20%,
+  61.999%,
+  63%,
+  63.999%,
+  65%,
+  69.999% {
+    text-shadow: none;
+  }
+}
+@media screen and (max-width: 968px) {
+  .aboutUsBackground {
+    margin-top:20%;
+}
+}

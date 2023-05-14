@@ -1,130 +1,347 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { postEvent } from '../../redux/eventSlice';
+import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { postEvent } from "../../redux/eventSlice";
+import swal from "sweetalert";
+import loading from "../../img/loading.gif";
 
-
-
-// function validate(input) {
-//   return Object.keys(input).reduce((errors, key) => {
-//     console.log(errors + "Aquí" + key);
-//     return {
-//       ...errors,
-//       [key]: input[key] ? "" : `El ${key} es obligatorio`,
-//     };
-//   }, {});
-// }
+import "./CreateEvent.css";
 
 const CreateEvent = () => {
-
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-//   const [errors, setErrors] = useState({})
+  const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState({
-    eventPhoto: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
     name: "",
-    price: 0,
+    price: "",
     location: "",
+    stock: "",
+    city: "",
+    Country: "",
     nameArena: "",
-    date: ""
+    date: "",
+    Description: "",
   });
 
-  const handleInputChange = (event) => {
-    setInput({
-      ...input,
-      [event.target.name]: event.target.value,
-    });
-    // setErrors(
-    //   validate({
-    //     ...input,
-    //     [event.target.name]: event.target.value,
-    //   })
-    // )
-  };
+  const [errors, setErrors] = useState({});
+  const [rutaImagen, setRutaImagen] = useState("");
+  const fileInputRef = useRef(null);
+  const [files, setFiles] = useState({});
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("////input", input);
-    if(!input.name){
-        alert("Se requiere completar los campos")
-    } else{
-        dispatch(postEvent(input));
-        alert("Evento creado!")
-        setInput({
-            eventPhoto: "https://res.cloudinary.com/draxxv99e/image/upload/v1682710844/defaulr_urbanclub/coverPhoto_rmh1lj.png",
-            name: "",
-            price: 0,
-            location: "",
-            nameArena: "",
-            date: "" 
-        })
+  function validate(input) {
+    const errors = {};
+    if (!input.name) {
+      errors.name = "Se require Nombre del Evento";
     }
+    if (!input.eventPhoto) {
+       errors.eventPhoto = "Se requiere Foto"; 
+    }
+    if (!input.price) {
+      errors.price = "Se requiere Precio";
+    }
+    if (!input.location) {
+      errors.location = "Se requiere Direccion";
+    }
+    if (!input.nameArena) {
+      errors.nameArena = "Se requiere Nombre del Lugar";
+    }
+    if (!input.date) {
+      errors.date = "Se requiere Fecha";
+    }
+    return errors;
   }
 
+  function handleOnBlur(e) {
+    if(e.target.name === "price"){
+      if (!e.target.value.includes("."))
+        e.target.value = e.target.value + ".00"
+      else if (e.target.value.split(".").pop().length>2)
+        e.target.value = e.target.value.split(".").shift().concat(".",e.target.value.split(".").pop().substring(0,2)) 
+        //con regex es mas corto, pero para repasar arrays y strings...
+      }
+    handleOnChange(e)
+  }
+
+  function handleOnChange(e) {
+    
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  }
+
+  //Manipular el archivo qué se sube:
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    const files = e.target.files;
+    setFiles(files);
+    const reader = new FileReader();
+    setInput({
+      ...input,
+      eventPhoto: file.name,
+    });
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setRutaImagen(reader.result);
+    };
+  };
+
+  // const handleCancel = (e) => {
+  //   //Lógica para eliminar con el boton, qué aun no hace nada
+  //   //Para añadir el boton, envuelve el IMG "form-picture" y luego añadile un boton.
+  //   const file = e.target.files[0];
+  //   const files = e.target.files;
+  //   setFiles(files);
+  //   setInput({
+  //     ...input,
+  //     eventPhoto: file.name,
+  //   });
+  // };
+
+  const handleClick = () => {
+    fileInputRef.current.click();
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+   
+    if (!input.name.length) {
+      await swal({
+        title: "ERROR",
+        text: "Ingrese almenos el nombre del evento",
+        icon: "error",
+        buttons: "Aceptar",
+      });
+      return;
+    }
+    setIsLoading(true);
+    const formData = new FormData(e.target);
+    formData.append("id_Artist", id)
+     await dispatch(postEvent(formData));
+     setIsLoading(false);
+    swal({
+      title: "EVENTO CREADO CORRECTAMENTE",
+      text: `Exitos con tu evento`,
+      icon: "success",
+      buttons: "Aceptar",
+    }).then(res=>{
+      if(res){
+        navigate(`/profile/${id}`)
+       }
+    });
+  }
 
   return (
-    <div>
-      <div>
-        <form onSubmit={handleSubmit}>
-
-          <div>
-            <label>
-              <button>Subir Foto</button>
-              <input name="eventPhoto" type="file" accept="image/png,image/jpg,image/jpeg"></input>
-            </label>
+    <div className="createEvent">
+      <div className="error_back" style={{ color: "red" }}></div>
+      <form className="formContainer" onSubmit={handleSubmit}>
+        <div className="createEventContainer">
+          <div className="createEventLeft">
+            <div className="createEventImgContainer">
+              {rutaImagen ? (
+                <img
+                  className="formPicture"
+                  src={rutaImagen}
+                  alt="Imagen de perfil"
+                />
+              ) : (
+                ""
+              )}
+              <br />
+              <button
+                className="uploadPictureButton"
+                type="button"
+                name="eventPhoto"
+                onClick={handleClick}
+              >
+                Subir foto
+              </button>
+              <input
+                type="file"
+                accept="image/png,image/jpg,image/jpeg"
+                name="eventPhoto"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+                style={{ display: "none" }}
+              />
+            </div>
           </div>
+          <div className="createEventRight">
+            <div onSubmit={handleSubmit}>
+              {/*Esto era el form */}
+              <h2>Crea Tu Evento</h2>
+              <div className="formInputs">
+                <div className="inputContainer">
+                  <label htmlFor="name">Nombre del evento:</label>
+                  <br />
+                  <input
+                    placeholder={errors.name}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    type="text"
+                    value={input.name}
+                    maxLength="35"
+                    name="name"
+                    required
+                  />
+                </div>
+                <div className="inputContainer">
+                  <label htmlFor="name">Pais:</label>
+                  <br />
+                  <input
+                    placeholder={errors.name}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    type="text"
+                    value={input.Country}
+                    maxLength="35"
+                    name="Country"
+                    required
+                  />
+                </div>
+                
+                <div className="inputContainer">
+                  <label htmlFor="name">Ciudad:</label>
+                  <br />
+                  <input
+                    placeholder={errors.name}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    type="text"
+                    value={input.city}
+                    maxLength="35"
+                    name="city"
+                    required
+                  />
+                </div>
+                <div className="inputContainer">
+                  <label htmlFor="location">Dirección:</label>
+                  <br />
+                  <input
+                    placeholder={errors.location}
+                    type="text"
+                    value={input.location}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="location"
+                    maxLength={45}
+                    required
+                  />
+                </div>
+                <div className="inputContainer">
+                  <label htmlFor="nameArena">Nombre del lugar:</label>
+                  <br />
+                  <input
+                    placeholder={errors.nameArena}
+                    type="text"
+                    value={input.nameArena}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="nameArena"
+                    required
+                  />
+                </div>
+                <div className="inputContainer">
+                  <label htmlFor="date">Fecha:</label>
+                  <br />
+                  <input
+                    type="date"
+                    value={input.date}
+                    min={new Date().toISOString().split('T')[0]}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="date"
+                  />
+                </div>
 
-          <div>
-            <label htmlFor="name">
-              <div>
-                <span >*</span> Name:
+                <div className="inputContainer">
+                  <label htmlFor="stock">Cantidad boletos: </label>
+                  <br />
+                  <input
+                    placeholder={errors.stock}
+                    type="number"
+                    value={input.stock}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="stock"
+                    min="1"
+                    maxLength={35}
+                    required
+                  />
+                </div>
+
+                <div className="inputContainer">
+                  <label htmlFor="price">Precio: $USD</label>
+                  <br />
+                  <input
+                    placeholder={errors.price}
+                    type="number"
+                    value={input.price}
+                    onChange={handleOnChange}
+                    onBlur={handleOnBlur}
+                    name="price"
+                    min="1"
+                    step="0.01"
+                    maxLength={35}
+                    required
+                  />
+                </div>
+                
+                <div className="inputContainer">
+                  <label className="lblPrice" htmlFor="">TOTAL $USD: {input.price*input.stock}</label>
+                </div>
+                <div className="inputContainer">
+                  <label htmlFor="D">Descripción del evento:</label>
+                  <br />
+                  <textarea
+                    placeholder={
+                      "Escribe aquí" +
+                      (!errors.Description
+                        ? " "
+                        : "Oops!: " + errors.Description)
+                    }
+                    type="text"
+                    value={input.Description}
+                    onChange={handleOnChange}
+                    onBlur={handleOnChange}
+                    name="Description"
+                    maxLength={150}
+                    required
+                  />
+                </div>
+                <br />
+                  {isLoading && (
+                    <div className="loadingGif">
+                    <img
+                      className="loading"
+                      src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
+                      alt=""
+                    ></img>
+                  </div>
+                  )}
+                  {!isLoading && (
+                    <div className="submitButton">
+                    <button className="submitButton" type="submit">
+                      Crear el evento
+                    </button>
+                    </div>
+                  )}
+                
               </div>
-              <input type='text' name="name" maxLength="35" required value={input.name} onChange={handleInputChange} />
-            </label>
-
-            <label htmlFor='price'>
-              <div>
-                <span>*</span> Price:
-              </div>
-              <input type='number' name='price' required value={input.price} onChange={handleInputChange} />
-            </label>
-
-            <label htmlFor='location'>
-              <div>
-                <span>*</span> Location:
-              </div>
-              <input type='text' name='location' maxLength="50" required value={input.location} onChange={handleInputChange} />
-            </label>
-
-            <label htmlFor='nameArena'>
-              <div>
-                <span>*</span> Name Arena:
-              </div>
-              <input type='text' name='nameArena' maxLength="35" required value={input.nameArena} onChange={handleInputChange} />
-            </label>
-
-            <label name="date">
-              <div>
-                <span >*</span> Date:
-              </div>
-              <input type='date' name='date' required value={input.date} onChange={handleInputChange} />
-            </label>
-
+            </div>
+            {/*Esté es el form*/}
           </div>
-
-          <button>Create Event</button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-  )
-}
+  );
+};
 
 export default CreateEvent;
-
-
-
-// crear el formulario con los campos a completar
-// crear los handler que van a manejar los eventos
-// crear los dispatch que van a ejecutar las acciones.
-// name, price, location, nameArena, date, eventPhoto

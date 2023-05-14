@@ -1,18 +1,48 @@
-const {Event} = require("../../db");
+const { cloudiconfig,loadPhoto } = require("../../../utils/cloudinary");
+const {Event,Artist} = require("../../db");
 
 const postEventController = async (req) => {
-    const {eventPhoto, name, price, location, nameArena, date} = req.body;
+    const { name, price, location, nameArena, date,
+    stock, Country,city,Description, id_Artist} = req.body;
+    let photoEvent = {}
+    if (req.files) {
+        const {eventPhoto} = req.files
+        cloudiconfig()
+        if (eventPhoto)  {
+            photoEvent = await loadPhoto(eventPhoto.tempFilePath,"events",id_Artist);
+            
+        }
+       
+    }
+   
     const newEvent = {
-        eventPhoto,
+        stock,
+        id_Artist,
         name, 
         price,
         location,
         nameArena,
-        date
+        date,
+        city,
+        Country,
+        Description,
+        id_eventPhoto:photoEvent.public_id,
+        eventPhoto:photoEvent.secure_url,
     }
-    await Event.create(newEvent);
-    console.log("////soy el event", newEvent);
-    return newEvent;
+   
+    
+   try {
+    const newEvents = await Event.create(newEvent);
+    // newEvents.addArtist(id_Artist)
+    const ArtistEvent = await Artist.findByPk(id_Artist)
+    ArtistEvent.addEvent(newEvents);
+
+    return newEvents;
+   } catch (error) {
+    console.log(error)
+   }
+    
+   
 };
 
 module.exports = postEventController;

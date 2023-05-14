@@ -1,27 +1,51 @@
-.container{
-    position: absolute;
-    left: -400px;
-    width: 400px;
-    height: 500px;
-    background-color: #939393;
-    padding-top: 5%;
-    /* border: 1px solid black; */
+.container {
+  position: absolute;
+  border-radius: 10px;
+  left: -650px;
+  top: -300px;
+  width: 400px;
+  height: 600px;
+  color: white;
+  background-color: #333333;
+  padding-top: 5%;
+  /* border: 1px solid black; */
 }
-
+.formContainer input {
+  border-radius: 5px;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+.containerflex {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.containerexit {
+  border: none;
+  cursor: pointer;
+  width: 35px;
+  margin-left: auto;
+  border-radius: 50%;
+  padding: 10px;
+  margin-right: 5px;
+  margin-top: 2px;
+}
 /* .formContainer{
     border: 1px solid red;
     
 } */
 
-.button{
-    /* border: 5px solid green; */
-    /* align-items: center; */
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
+.button {
+  /* border: 5px solid green; */
+  /* align-items: center; */
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
-.deleteButton{
-    cursor: pointer;
+.deleteButton {
+  cursor: pointer;
   background-color: white;
   box-shadow: 0px 2px 2px 2px black;
   color: black;
@@ -30,4 +54,18 @@
   padding: 10px;
   margin-top: 20px;
   border-radius: 5px;
+}
+div .occ {
+    display: flex;
+    flex-direction: column;
+    justify-content: "space-between";
+    gap: 0.5rem;
+    padding-block:10px;
+}
+@media (max-width: 1315px) {
+  .container {
+    left: -650px;
+    top: -150px;
+    /* border: 1px solid black; */
+  }
 }
