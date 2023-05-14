@@ -11,6 +11,8 @@ const Comments = (event) => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
+    let timeoutId = null;
+
     const getComments = async () => {
       try {
         const { data } = await axios.get(`/eventComments/${event.event.id}`);
@@ -19,14 +21,25 @@ const Comments = (event) => {
       } catch (error) {
         console.log(error);
       }
+
+      // Establecer un nuevo retraso después de completar la llamada
+      const delay = pageRendered ? 2500 : 30000;
+      timeoutId = setTimeout(getComments, delay);
     };
 
+    let pageRendered = false;
+
+    // Marcar la página como renderizada después de un tiempo específico
+    setTimeout(() => {
+      pageRendered = true;
+    }, 5000); // Tiempo de espera de 5 segundos para la página renderizada
+
+    // Llamar a getComments inicialmente
     getComments();
 
-    const interval = setInterval(getComments, 1500); // Llamar a getComments cada 10 segundos
-
+    // Limpiar el timeout al desmontar el componente
     return () => {
-      clearInterval(interval); // Limpiar el intervalo al desmontar el componente
+      clearTimeout(timeoutId);
     };
   }, [event.event.id, submitted]);
 
