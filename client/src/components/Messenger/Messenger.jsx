@@ -10,6 +10,7 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import DetailBar from "../DetailBar/DetailBar";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -19,6 +20,8 @@ function Messenger() {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArraivalMessage] = useState(null);
   const [onlineUser, setOnlineUser] = useState([]);
+  const [showOnlines, setShowOnlines] = useState(false)
+  const [showOfflines, setShowOfflines] = useState(false)
   //cambiar cuando hayan followers
   const[friends, setFriends] = useState([]);
   const artistas = useSelector((state) => state.artist.allUsuarios);
@@ -108,6 +111,14 @@ function Messenger() {
     }
   };
 
+  const handleShowOnlines = () => {
+    setShowOnlines(!showOnlines)
+  }
+
+  const handleShowOfflines = () => {
+    setShowOfflines(!showOfflines)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newMessage) {
@@ -141,8 +152,7 @@ function Messenger() {
     scrollRef.current?.scrollIntoView({ behavior: "auto" });
   }, [messages]);
 
-  console.log(friends.filter((f) => onlineUser.some((u) => u.id !== f.id)))
-  console.log(onlineUser)
+  
 
   return (
     <div className="messenger">
@@ -215,18 +225,33 @@ function Messenger() {
       </div>
       <div className="chatOnline">
         <div className="chatOnlineWrapper">
-          <Chats
-            onlineUser={onlineUser}
-            currentId={user.id}
-            setCurrentChat={setCurrentChat}
-            online={true}
-          />
-          <Chats
-            onlineUser={offlineFriends}
-            currentId={user.id}
-            setCurrentChat={setCurrentChat}
-            online={false}
-          />
+          <div className="listOnline" >
+            Conectados {` ( ${onlineUser.length} )`}
+            <button className="listlinesbtn" onClick={handleShowOnlines}>
+              <ExpandMoreIcon/>
+            </button>
+          </div>
+          {showOnlines && <Chats
+                            onlineUser={onlineUser}
+                            currentId={user.id}
+                            setCurrentChat={setCurrentChat}
+                            online={true}
+                          />
+          }
+          <div className="listOffline">
+            Desconectados {` ( ${offlineFriends.length} )`}
+            <button className="listlinesbtn" onClick={handleShowOfflines}>
+              <ExpandMoreIcon/>
+            </button>
+          </div>
+
+          {showOfflines && <Chats
+                             onlineUser={offlineFriends}
+                             currentId={user.id}
+                             setCurrentChat={setCurrentChat}
+                             online={false}
+                            />
+          }
           
         </div>
       </div>
