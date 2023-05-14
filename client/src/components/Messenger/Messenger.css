@@ -84,6 +84,16 @@
 }
 
 .chatMenuWrapper,
+.chatOnlineWrapper{
+  overflow-y: scroll;
+}
+
+.chatMenuWrapper::-webkit-scrollbar,
+.chatOnlineWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.chatMenuWrapper,
 .chatBoxWrapper,
 .chatOnlineWrapper {
   padding: 10px;

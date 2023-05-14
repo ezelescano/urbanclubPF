@@ -37,7 +37,7 @@ function ChatOnline({ onlineUser, currentId, setCurrentChat, online }) {
       <div className='chatOnlineFriend' onClick={() => {handleClick(o)}}>
         <div className="chatOnlineImgContainer">
         <img className='chatOnlineImg' src={o?.profilePhoto} alt='foto perfil'/>
-        {online && <span className="chatOnlineBadge"></span>}
+        <span className={online ? "chatOnlineBadge" : "chatOfflineBadge"}></span>
         </div>
         <div className="chatOnlineName">{o?.name}</div>
       </div>
