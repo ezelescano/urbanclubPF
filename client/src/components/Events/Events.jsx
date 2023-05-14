@@ -6,7 +6,7 @@ import style from "./Events.module.css";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
 import { FilterEvents, getAllEvents, getAllLocations, getFilterEventsSuccess } from "../../redux/eventSlice";
 
-const Events = () => {
+const Events = ({ showFilters }) => {
   const { detailEvent } = useSelector((state) => state.events);
   const islogin = useSelector((state) => state.auth);
   const locations = useSelector((state) => state.events.locations);
@@ -82,6 +82,8 @@ const handleRemoveFilter = (filter) => {
     <div className={style.container}>
 
      <br />
+     
+     {showFilters ? (
         <div>
           <form>
 
@@ -134,7 +136,7 @@ const handleRemoveFilter = (filter) => {
             ))}
           </div> */}
         </div>
-
+        ) : null}
       <div className={style.containerHelp}>
         {events?.map((item, index) => {
           

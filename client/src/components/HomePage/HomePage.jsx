@@ -6,6 +6,7 @@ import Events from "../Events/Events.jsx";
 import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
+  const isEventsPage = true;
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
@@ -29,7 +30,7 @@ const HomePage = () => {
             <h1 className={style.title}>Eventos más recientes</h1>
             <br />
             <div className={style.eventsCardsContainer}>
-              <Events />
+            {isEventsPage ? <Events showFilters={true} /> : null}
             </div>
           </div>
           <div className={style.moreEvents}>
