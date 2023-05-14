@@ -50,7 +50,7 @@ const Comments = (event) => {
           comentarios?.map((c) => {
             return (
               <Comment
-                key={event.event.id}
+                key={c.id}
                 c={c}
                 // userProfilePhoto={currentUser.user.profilePhoto}
               />
