@@ -32,13 +32,17 @@ passport.use(
           artist.token =  generateJWT(artist.id, artist.name)
           done(null,artist)
     } else {
-
+      const Nombre_ = profile.name.givenName;
+      let Nombre = Nombre_.charAt(0).toUpperCase() + Nombre_.slice(1);
+      const apellido_ = profile.name.familyName;
+      let apellido = apellido_.charAt(0).toUpperCase() + apellido_.slice(1);
+      console.log(Nombre);
       const artistByGoogle = await Artist.create({
 
-          name : profile.name.givenName,
-          lastname: profile.name.familyName,
+          name : Nombre,
+          lastname: apellido,
           email : profile._json.email,
-          nickName: profile.name.familyName.substring(0,3) + profile.name.givenName.substring(0,3) + Math.floor(Math.random() * 1000),
+          nickName: profile.name.familyName.substring(0,3) + Nombre.substring(0,3) + Math.floor(Math.random() * 1000),
           password: '',
           profilePhoto : profile._json.picture
     })

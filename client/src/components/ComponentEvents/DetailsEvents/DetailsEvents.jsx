@@ -18,6 +18,7 @@ function DetailsEvents() {
   const { id } = useParams();
   const { detailEvent } = useSelector((state) => state.events);
   const islogin = useSelector((state) => state.auth);
+  const {copiArtista} = useSelector((state)=>state.artist)
   const [event, setEvent] = useState({});
   const [cantidad, setCantidad] = useState(0);
   const [entradas, setEntradas] = useState(1);
@@ -26,16 +27,27 @@ function DetailsEvents() {
     Country: "",
     ban: false,
   });
-
+  
   useEffect(() => {
+   
     const getEvent = async () => {
       const event = await dispatch(getDetailEvents(id));
       setEvent(event.payload);
       setCantidad(event.payload.stock);
+     let artist_obj =await copiArtista?.filter(artis => artis.id === islogin.user.id)
+    
+     //! para saber si el artista esta logeado y cojer la ubicacion
+      if (artist_obj.length > 0) {
+        setDestino({
+          city: artist_obj[0].city,
+          Country: artist_obj[0].Country,
+          ban: false,
+        })
+      }
+      
     };
     getEvent();
   }, [dispatch, id]);
-
   const ubicationHandler = () => {
     if (
       destino.city === "" ||
@@ -125,7 +137,7 @@ function DetailsEvents() {
         const urlPay = buy.link
 
         // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google"
-        const newWindow = window.open(urlPay, "_blank", "width=550,height=550")
+        const newWindow = window.open(urlPay, "_blank", "width=650,height=550")
         console.log(newWindow);
         let eventd
         eventd = await axios.put(
@@ -275,7 +287,7 @@ function DetailsEvents() {
                 city={detailEvent.Country}
                 country={detailEvent.city}
                 Dcity={destino.city}
-                Dcountry={destino.country}
+                Dcountry={destino.Country}
               />
             </div>
           ) : (

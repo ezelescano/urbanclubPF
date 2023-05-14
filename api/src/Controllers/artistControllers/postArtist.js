@@ -13,11 +13,17 @@ const postArtist = async (req) => {
     let {
         name, lastname, email, password, nickName, Country, city,
         ocupation,subCategory, aboutMe } = req.body;
+        console.log(Country);
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
 
     //?el name se agrega con mayuscula
-    const Nombre = name.toUpperCase();
+    const Nombre_ = name;
+  let Nombre = Nombre_.charAt(0).toUpperCase() + Nombre_.slice(1);
+
+  const apellido_ = lastname;
+      let apellido = apellido_.charAt(0).toUpperCase() + apellido_.slice(1);
+    
 
     //? validacion de correo electronico
     const valueEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -75,7 +81,7 @@ const postArtist = async (req) => {
     try {
         let newArtist = {
             name: Nombre,
-            lastname,
+            lastname:apellido,
             email,
             id_profilePhoto: saveProfile.public_id ,
             profilePhoto: saveProfile.secure_url,

@@ -64,6 +64,7 @@ function Formulario() {
 
   function handleOnChange(e) {
     // console.log("errores///", errors.password);
+    console.log(e.target.name,e.target.value);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -143,6 +144,7 @@ function Formulario() {
       return;
     }
     setIsLoading(true);
+    console.log(e.target);
     const formData = new FormData(e.target);
     formData.append("ocupation", input.ocupation);
     const error = await dispatch(postArtist(formData, navigate));
@@ -266,6 +268,16 @@ function Formulario() {
                 />
               </label>
               <p className={style.errorsFrond}>{errors.password}</p>
+               <label>
+                <div>Pais:</div>
+                <input
+                  type="text"
+                  value={input.Country}
+                  onChange={handleOnChange}
+                  onBlur={handleOnChange}
+                  name="Country"
+                />
+              </label>
               <label>
                 <div>Ciudad:</div>
                 <input
@@ -274,16 +286,6 @@ function Formulario() {
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="city"
-                />
-              </label>
-              <label>
-                <div>Pais:</div>
-                <input
-                  type="text"
-                  value={input.Country}
-                  onChange={handleOnChange}
-                  onBlur={handleOnChange}
-                  name="Country"
                 />
               </label>
             </div>

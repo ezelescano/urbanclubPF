@@ -20,7 +20,6 @@ const Events = () => {
     dispatch(getAllEvents());
   }, [dispatch]);
 
-  console.log(useSelector((state) => state.events.allEvents));
   return (
     <div className={style.container}>
       <div className={style.containerHelp}>
