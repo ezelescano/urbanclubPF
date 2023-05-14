@@ -22,7 +22,7 @@ const CardsArt = ({
   /* Overlay letra por letra: */
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   const coverPhoto =
-    "https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y292ZXIlMjBwaG90b3xlbnwwfHwwfHw%3D&w=1000&q=80";
+    "https://media.tenor.com/MfJ1SfYUNSIAAAAd/dancing-yandel.gif";
   const handleMouseEnter = () => {
     setIsOverlayVisible(true);
   };
@@ -38,13 +38,13 @@ const CardsArt = ({
           <img className={style.userImage} src={profilePhoto} alt={name} />
         </div>
         <div className={`${style.text} ${style.overlay}`}>
-          <h3>{name}</h3>
+          <p>{aboutMe}</p>
+          <h5>Sobre mí:</h5>
           <h5>Ocupación:</h5>
           <div className={`${style.fadeInText}`}>{ocupationRows}</div>
-          {/* <h5>Sobre mí:</h5>
-          <p>{aboutMe}</p> */}
+          <h3>{name}</h3>
           {/* <h5>Ubicacion:</h5> */}
-          <h4>{Country}</h4>
+          {/* <h4>{Country}</h4> */}
         </div>
       </div>
     </NavLink>
