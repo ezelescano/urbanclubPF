@@ -82,6 +82,8 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue:""
       },
-    });
+    },
+      // {paranoid:true}
+    );
 }
 

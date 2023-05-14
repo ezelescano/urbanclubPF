@@ -6,11 +6,15 @@ const getEventsController = require("../../Controllers/eventController/getEvents
 
 
 const getSearchEvents = async (req, res) => {
+  const {page} = req.query;
   const date = req.date;
   // const subcategoria = req.subcategoria;
   const price = req.price;
   const location = req.ubicacion;
-  console.log(location)
+  
+  const pageSize = 3; // Cantidad de eventos por página
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = page * pageSize;
 
   let filteredEvents = await Event.findAll({
     include:[{
@@ -49,7 +53,11 @@ const getSearchEvents = async (req, res) => {
   if (location) {
     filteredEvents = filteredEvents.filter(event => event.Country === location);
   }
-  res.json(filteredEvents);
+
+
+  const pageEvents = filteredEvents.slice(startIndex, endIndex);
+  res.json(pageEvents)
+
 };
 
 module.exports = {

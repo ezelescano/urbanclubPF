@@ -10,6 +10,7 @@ const getAllCategories = async function (req, res) {
     }
   };
 
+
 module.exports= {
     getAllCategories,
 }

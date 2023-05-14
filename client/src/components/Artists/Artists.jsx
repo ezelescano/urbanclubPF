@@ -22,6 +22,8 @@ const Artists = () => {
   const usuario = useSelector((state) => state.artist.copiArtista);
   const categories = useSelector((state) => state.artist.categories);
   const locations = useSelector((state) => state.artist.locations);
+  console.log("category esta aqui", category)
+  console.log("artistas esta aqui", artistas)
 
 
 
