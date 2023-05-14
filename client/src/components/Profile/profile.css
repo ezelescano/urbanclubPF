@@ -350,6 +350,7 @@
     display: flex;
   }
   .btn-div {
+    position: relative;
     display: flex;
     gap: 35px;
   }

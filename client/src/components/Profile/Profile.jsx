@@ -24,6 +24,7 @@ import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import axios from "axios";
+import FollowList from "../FollowList/FollowList";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -33,13 +34,14 @@ const Profile = () => {
   const errorId = useSelector((state) => state.artist.errorId);
 
   const [showSettings, setShowSettings] = useState(false);
+  const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowings, setShowFollowings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
-  const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
   const [followed, setFollowed] = useState(false);
   const [followers, setFollowers] = useState([]);
-
+  const [showComponents, setShowComponents] = useState(false);
   const verified = true;
   const links = [
     {
@@ -60,9 +62,8 @@ const Profile = () => {
     ocupation,
     aboutMe,
     events,
-    followings
+    followings,
   } = usuario;
-
   const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
 
   const { id } = useParams();
@@ -73,11 +74,11 @@ const Profile = () => {
     const getFollowers = async() => {
     try {
         const res = await dispatch(getArtistId(id));
-        setFollowers(res.followers)
+        setFollowers(res.followers);
       } catch (error) {
-      console.log(error)
+        console.log(error);
       }
-    }
+    };
     getFollowers();
     return async () => {
       //le paso un return cuando se desmonta
@@ -87,17 +88,17 @@ const Profile = () => {
   }, [id]);
 
   useEffect(() => {
-    const getUser = async() => {
+    const getUser = async () => {
       try {
         const res = await axios.get("/artist/login/me");
         console.log(res.data.followings)
         setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
     getUser();
-  },[usuario.id, currentUser.user.id])
+  }, [usuario.id, currentUser.user.id]);
 
   // const [prevId, setPrevId] = useState(id);
 
@@ -112,6 +113,9 @@ const Profile = () => {
 
   const handleSettings = () => {
     setShowSettings(!showSettings);
+    setShowEdit(false);
+    setShowEditPassword(false);
+    setShowComponents(!showComponents);
   };
 
   const handleShowEdit = () => {
@@ -190,13 +194,13 @@ const Profile = () => {
     });
   };
 
-  const handleFollow = async() => {
+  const handleFollow = async () => {
     try {
       if(!followed && !isCurrentUser && currentUser.isAuthenticated){
         await axios.post(`/artist/follow/${currentUser.user.id}/follow`,{
          followedId: `${usuario.id}`
         })
-        const obj = { following_Id: currentUser.user.id }
+        const obj = { follower_Id: currentUser.user.id }
         setFollowers([...followers, obj])
         setFollowed(!followed)
         return
@@ -205,7 +209,7 @@ const Profile = () => {
         await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`,{
           followedId: `${usuario.id}`
         })
-        setFollowers(followers.filter(follow => follow.follower_Id === currentUser.user.id))
+        setFollowers(followers.filter(follow => follow.follower_Id !== currentUser.user.id))
         setFollowed(!followed)
         return
       }
@@ -215,7 +219,7 @@ const Profile = () => {
         icon: "info",
         buttons: {
           cancel: "Cancelar",
-          confirm: "Iniciar sesión"
+          confirm: "Iniciar sesión",
         },
       }).then((value) => {
         if (value) {
@@ -224,17 +228,18 @@ const Profile = () => {
           return;
         }
       });
-      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
-  const handleContact = async() => {
-    if(currentUser.isAuthenticated && !isCurrentUser){
-    const res = await axios.get(`/conversation/${currentUser.user.id}/${usuario.id}`);
-      navigate("/messenger")
-      return
+  const handleContact = async () => {
+    if (currentUser.isAuthenticated && !isCurrentUser) {
+      const res = await axios.get(
+        `/conversation/${currentUser.user.id}/${usuario.id}`
+      );
+      navigate("/messenger");
+      return;
     }
     swal({
       title: "INICIAR SESIÓN",
@@ -242,7 +247,7 @@ const Profile = () => {
       icon: "info",
       buttons: {
         cancel: "Cancelar",
-        confirm: "Iniciar sesión"
+        confirm: "Iniciar sesión",
       },
     }).then((value) => {
       if (value) {
@@ -253,7 +258,6 @@ const Profile = () => {
     });
   };
 
-  const islogin = useSelector((state) => state.auth);
   const handleDeleteEvent = (id, name) => {
     swal({
       title: "ELIMINAR EVENTO",
@@ -261,7 +265,7 @@ const Profile = () => {
       icon: "warning",
       buttons: ["No", "Si"],
     }).then(async (res) => {
-      if (res && islogin.isAuthenticated) {
+      if (res && currentUser.isAuthenticated) {
         dispatch(deleteEvent(id));
         setTimeout(() => {
           window.location.reload();
@@ -277,6 +281,14 @@ const Profile = () => {
       }
     });
   };
+
+  const handleOnClickFollowers = () => {
+    setShowFollowers(!showFollowers)
+  }
+
+  const handleOnClickFollowings = () => {
+    setShowFollowings(!showFollowings)
+  }
 
   return (
     <>
@@ -317,17 +329,16 @@ const Profile = () => {
                         )}
                       </h1>
                     </span>
-                    {!isCurrentUser &&
+                    {!isCurrentUser && (
                       <div className="profileFollow">
                         <button className="btn-profile" onClick={handleFollow}>
-                          {followed ? "dejar de seguir" : "seguir"}
-                          {/* {followed ? "dejar de seguir" : "seguir"} */}
+                          {followed ? "Dejar de seguir" : "Seguir"}
                         </button>
                         <button className="btn-profile" onClick={handleContact}>
                           Contactar
                         </button>
                       </div>
-                    }
+                    )}
                   </div>
                   <h3 className="principalInfo">
                     {city}, {Country}
@@ -349,15 +360,27 @@ const Profile = () => {
                     {events?.length + " "} Eventos{" "}
                     {/*  //! muestra total de eventos del artista */}
                   </button>
-                  <button className="btn-stas">
+                  <button className="btn-stas" onClick={handleOnClickFollowers}>
                     {followers?.length + " "} Seguidores
                   </button>
-                  <h4>{followings?.length + " "} Seguidos</h4>
+                  {showFollowers && <FollowList userId={usuario.id}
+                                                isCurrentUser={isCurrentUser}
+                                                action="followers"
+                                                setShowFollowers={setShowFollowers}
+                                                setShowFollowings={setShowFollowings}/>}
+                  <button className="btn-stas" onClick={handleOnClickFollowings}>
+                    {followings?.length + " "} Seguidos
+                  </button>
+                  {showFollowings && <FollowList userId={usuario.id}
+                                                isCurrentUser={isCurrentUser}
+                                                action="followings"
+                                                setShowFollowers={setShowFollowers}
+                                                setShowFollowings={setShowFollowings}/>}
                 </div>
                 <div className="redes">
-                  {links?.map((l) => {
+                  {links?.map((l, index) => {
                     return (
-                      <div className="redes-div">
+                      <div key={{ index }} className="redes-div">
                         <h4>Otras redes!!</h4>
                         <div className="container-links">
                           {l.youtube && (
@@ -407,16 +430,17 @@ const Profile = () => {
                       alt="ajuste"
                     />
                   </button>
-                  {showSettings && (
-                    <Settings
-                      handleDeleteAccount={handleDeleteAccount}
-                      handleLogout={handleLogout}
-                      handlePasswordChange={handlePasswordChange}
-                      handleShowEdit={handleShowEdit}
-                      handleShowCreateEvent={handleShowCreateEvent}
-                    />
-                  )}
-                  {showEdit && (
+                  {(showSettings || showEdit || showEditPassword) &&
+                    showComponents && (
+                      <Settings
+                        handleDeleteAccount={handleDeleteAccount}
+                        handleLogout={handleLogout}
+                        handlePasswordChange={handlePasswordChange}
+                        handleShowEdit={handleShowEdit}
+                        handleShowCreateEvent={handleShowCreateEvent}
+                      />
+                    )}
+                  {(showEdit || showEditPassword) && showComponents && (
                     <ProfileEdit
                       handleEdit={handleEdit}
                       id={id}
@@ -424,7 +448,7 @@ const Profile = () => {
                       handleShowEdit={handleShowEdit}
                     />
                   )}
-                  {showEditPassword && (
+                  {showEditPassword && showComponents && (
                     <UpdatePassword handleEdit={handleEdit} />
                   )}
                 </div>

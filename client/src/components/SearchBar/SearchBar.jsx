@@ -49,30 +49,29 @@ const SearchBar = () => {
   };
 
   const placeholderText =
-    windowWidth <= 1000
-      ? "   Hey! Búscalo"
-      : "¿Qué artista quieres ver hoy?";
-      
+    windowWidth <= 1000 ? "   Hey! Búscalo" : "¿Qué artista quieres ver hoy?";
 
   return (
     <div className="searchbar-container">
       <form className="searchbarForm">
-        <input
-          className="searchbar"
-          type="text"
-          name="buscar"
-          onChange={handleOnChange}
-          value={input.buscar}
-          placeholder={placeholderText}
-          autoComplete="off"
-        />
-        <NavLink to={`/home?name=${input.buscar}`}>
-          <button className="searchbar-btn" onClick={(e) => handleOnClick(e)}>
-            <i className="search-icon">
-              <SearchIcon />
-            </i>
-          </button>
-        </NavLink>
+        <div>
+          <input
+            className="searchbar"
+            type="text"
+            name="buscar"
+            onChange={handleOnChange}
+            value={input.buscar}
+            placeholder={placeholderText}
+            autoComplete="off"
+          />
+          <NavLink to={`/home?name=${input.buscar}`}>
+            <button className="searchbar-btn" onClick={(e) => handleOnClick(e)}>
+              <i className="search-icon">
+                <SearchIcon />
+              </i>
+            </button>
+          </NavLink>
+        </div>
       </form>
     </div>
   );
