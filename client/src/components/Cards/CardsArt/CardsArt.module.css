@@ -45,7 +45,7 @@
 }
 .Container:hover .userImage {
   top: 6%;
-  left: 2%;
+  left: 0%;
   height: 70%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
