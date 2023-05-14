@@ -11,7 +11,7 @@ export default function Carousel(props) {
     if (autoPlay || !showButtons) {
       const interval = setInterval(() => {
         selectNewImage(selectedIndex, images);
-      }, 8000);
+      }, 2000);
       return () => clearInterval(interval);
     }
   });
@@ -44,41 +44,14 @@ export default function Carousel(props) {
 
   return (
     <>
-      <div className="carousel-container" style={{ position: "relative" }}>
-        <div
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.289)",
-            width: "90%",
-            height: "80%",
-            alignItems: "center",
-            textAlign: "center",
-            paddingTop:"20%",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <h1
-            style={{ fontSize: "4rem", color: "#fff", marginBottom: "0.5rem" }}
-          >
-            Urban Club!
-          </h1>
-          <h2 style={{ fontSize: "1.5rem", color: "#fff" }}>
-            La página de los artistas de todo el mundo, ahora en el tuyo!
-          </h2>
-        </div>
+      <div className={Style.carouselContainer}>
         <img
           className={`${Style["carousel-img"]} ${loaded ? Style.loaded_ : ""}`}
           src={selectedImage}
           alt="banda"
-          style={{ objectFit: "cover" }}
           onLoad={() => setLoaded(true)}
         />
-        <div
-          className={Style.ButtonContainer}
-          style={{ position: "absolute", left: 0, right: 0, zIndex: 1 }}
-        >
+        <div className={Style.ButtonContainer}>
           {showButtons ? (
             <>
               <button className={Style.button} onClick={previous}>
@@ -91,6 +64,18 @@ export default function Carousel(props) {
           ) : (
             <></>
           )}
+          <div className={Style.subtitle}>
+            <img
+              src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1684007750/text-1684007710711_hcos93.png"
+              alt=""
+              srcset=""
+            />
+            <br />
+            <br />
+            <h2>
+              La página de los artistas de todo el mundo, ahora en el tuyo!
+            </h2>
+          </div>
         </div>
       </div>
     </>

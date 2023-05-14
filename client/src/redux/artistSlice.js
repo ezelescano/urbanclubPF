@@ -10,8 +10,10 @@ const initialState = {
   allUsuariosArt: [],
   errorForm: {},
   copiArtista: [],
-  categoria: [],
-  errorId: ""
+  categories: [],
+  errorId: "",
+  locations: [],
+  pag: 1,
 }
 
 
@@ -31,7 +33,7 @@ export const artistSlice = createSlice({
       return {
         ...state,
         allUsuarios: action.payload,
-        categoria: action.payload,
+
 
       }
     },
@@ -107,11 +109,55 @@ export const artistSlice = createSlice({
         ...state,
         usuario: action.payload
       }
-    }
+    },
+
+    getAllCategoriesSuccess(state, action) {
+      return {
+        ...state,
+        categories: action.payload,
+
+      }
+    },
+
+    getAllLocationsSuccess(state, action) {
+      return {
+        ...state,
+        locations: action.payload,
+
+      }
+    },
+
+    pagNumSuccess(state, action) {
+      return {
+        ...state,
+        pag: action.payload,
+
+      }
+    },
 
   }
 
 });
+
+
+export const pagNum = (number) => {
+  return async (dispatch) => {
+    dispatch(pagNumSuccess(number));
+  };
+};
+
+export const getAllCategories = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`/search/`);
+      const categories = response.data;
+      // console.log(categories);
+      return dispatch(getAllCategoriesSuccess(categories));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
 
 export const FilterArtists = (categoria, ubicacion, events) => {
   return async (dispatch) => {
@@ -120,6 +166,19 @@ export const FilterArtists = (categoria, ubicacion, events) => {
 
     return dispatch(getFilterArtists(artist));
   };
+};
+
+export const getAllLocations = () => {
+  return async (dispatch) => {
+    try {
+      const result = await axios.get(`/search/locations`);
+      const location = result.data;
+      // console.log(location);
+      return dispatch(getAllLocationsSuccess(location));
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
 
 
@@ -293,6 +352,9 @@ export const forgotPassword = (email) => {
 
 
 export const {
+  pagNumSuccess,
+  getAllCategoriesSuccess,
+  getAllLocationsSuccess,
   getFilterArtists,
   getArtistIdSuccess,
   getArtistIdError,
