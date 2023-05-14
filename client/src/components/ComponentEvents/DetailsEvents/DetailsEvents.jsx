@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailEvents, deleteEvent } from "../../../redux/eventSlice";
+import { getDetailEvents, deleteEvent, buyEvent, buyTicket } from "../../../redux/eventSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
@@ -86,7 +86,8 @@ function DetailsEvents() {
       [e.target.name]: e.target.value,
     });
   };
-  const buyTicketHandler = async () => {
+  const buyTicketHandler = async ({ onvalue }) => {
+
     if (!islogin.isAuthenticated) {
       swal({
         title: "COMPRA INVÁLIDA",
@@ -121,23 +122,58 @@ function DetailsEvents() {
           id_Artist: islogin.user.id,
           totalPayment: entradas * event.price,
         };
+        let compraticket = { value: (entradas * event.price), brand_name: detailEvent.name }
         setEntradas(1);
-        console.log("cantidad", stockObjeto.stock);
 
-        const eventd = await axios.put(
-          `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
+        const buy = await dispatch(buyTicket(compraticket));
+        let timer = null;
+        console.log(buy);
+        const urlPay = buy.link
+
+        // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google"
+        const newWindow = window.open(urlPay, "_blank", "width=550,height=550")
+        console.log(newWindow);
+        let eventd
+        eventd = await axios.put(
+          `/events/buyTicket/${detailEvent.id}`,
           // `https://pruebaback-production-0050.up.railway.app/events/buyTicket/${detailEvent.id}`,
 
 
           stockObjeto
         );
 
-        swal({
-          title: "COMPRA EXITOSA",
-          text: `Revisa tu correo para ver más detalles de la compra`,
-          icon: "success",
-          buttons: "Aceptar",
-        });
+
+
+
+        if (newWindow) {
+          timer = setInterval(async () => {
+            if (newWindow.closed) {
+              if (timer) clearInterval(timer)
+              console.log("prueba");
+              if (eventd) {
+                swal({
+                  title: "COMPRA EXITOSA",
+                  text: `Revisa tu correo para ver más detalles de la compra`,
+                  icon: "success",
+                  buttons: "Aceptar",
+                });
+              } else {
+                swal({
+                  title: "COMPRA EXITOSA",
+                  text: `tuvimos problemas enviando el email a tu correo consulta con urbanclub!!!`,
+                  icon: "info",
+                  buttons: "Aceptar",
+                });
+              }
+
+
+            }
+          }, 500)
+
+        }
+
+
+
       } else {
         swal({
           title: "ENTRADAS AGOTADAS",
@@ -155,7 +191,7 @@ function DetailsEvents() {
 
   return (
     <>
-      <div className={style.backContainer}>
+       <div className={style.backContainer}>
         <div className={style.container}>
           <br></br>
           <div className={style.img_Es}>
