@@ -40,7 +40,7 @@ const Comments = (event) => {
     setComment("");
     setRating(0);
   };
-  
+
   return (
     <>
       <div>
