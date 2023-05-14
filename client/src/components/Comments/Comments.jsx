@@ -8,18 +8,27 @@ const Comments = (event) => {
   const [comment, setComment] = useState("");
   const [comentarios, setComentarios] = useState([]);
   const [rating, setRating] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const getComments = async () => {
       try {
         const { data } = await axios.get(`/eventComments/${event.event.id}`);
         setComentarios(data);
+        setSubmitted(false); // Reiniciar el estado a false
       } catch (error) {
         console.log(error);
       }
     };
+
     getComments();
-  }, [event.event.id]);
+
+    const interval = setInterval(getComments, 1500); // Llamar a getComments cada 10 segundos
+
+    return () => {
+      clearInterval(interval); // Limpiar el intervalo al desmontar el componente
+    };
+  }, [event.event.id, submitted]);
 
   const handleOnChange = (e) => {
     setComment(e.target.value);
@@ -29,9 +38,9 @@ const Comments = (event) => {
     setRating(value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post(`/eventComments`, {
+    await axios.post(`/eventComments`, {
       writer: currentUser.user.id,
       comment: comment,
       rating: rating,
@@ -39,6 +48,7 @@ const Comments = (event) => {
     });
     setComment("");
     setRating(0);
+    setSubmitted(true);
   };
 
   return (
