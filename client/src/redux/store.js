@@ -8,7 +8,7 @@ import eventReducer from './eventSlice'
 const rootReducer = {
   auth: authReducer,
   artist: artistReducer,
-  events: eventReducer
+  events: eventReducer,
 }
 
 const middleware = [...getDefaultMiddleware(), tokenMiddleware];
