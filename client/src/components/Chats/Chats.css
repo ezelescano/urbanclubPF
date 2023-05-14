@@ -28,6 +28,15 @@
   top: 2px;
   right: 2px;
 }
+.chatOfflineBadge{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(123, 123, 123);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
 
 @media screen and (max-width: 768px) {
   .chatOnlineName {
