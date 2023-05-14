@@ -23,9 +23,3 @@
   font-weight: 500;
   color: #fff;
 }
-
-@media screen and (max-width: 768px) {
-  .detailBarName {
-    display: none;
-  }
-}

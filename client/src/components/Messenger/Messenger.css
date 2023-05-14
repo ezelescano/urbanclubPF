@@ -83,6 +83,14 @@
   flex: 3;
 }
 
+.chatOnlineWrapper{
+  overflow-y: scroll;
+}
+
+.chatOnlineWrapper::-webkit-scrollbar {
+  display: none;
+}
+
 .chatMenuWrapper,
 .chatBoxWrapper,
 .chatOnlineWrapper {
