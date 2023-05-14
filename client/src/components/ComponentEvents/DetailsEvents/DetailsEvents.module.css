@@ -1,0 +1,143 @@
+@import url("https://fonts.cdnfonts.com/css/gorlock");
+@import url("https://fonts.cdnfonts.com/css/straphanger");
+.backContainer {
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  padding-block: 5%;
+}
+.container {
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  object-fit: cover;
+  align-items: center;
+  min-width: 90%;
+  max-height: 1100px;
+  overflow: hidden;
+}
+
+.img_Es {
+  display: flex;
+  justify-content: right;
+  object-fit: cover;
+}
+.img_Es img {
+  max-width: 350px;
+  max-height: 250px;
+  border-radius: 15px;
+  object-fit: cover;
+  filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.799));
+}
+
+.Description {
+  padding-top: 2%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-flow: column wrap;
+  width: 30%;
+  flex-basis: 50%;
+}
+
+.Description img {
+  margin: 30px;
+}
+.parrafo {
+  font-size: 18px;
+  text-align: justify;
+  width: 85%;
+}
+.Description h2 {
+  font-weight: 800;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+}
+.links a svg {
+  font-size: 35px;
+}
+/*El Lugar en el mapa*/
+.maps {
+  margin-left: auto;
+  height: 100%;
+  width: 50vw;
+  overflow: hidden;
+}
+
+div .Description input[type="text"],
+div .Description button {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+div .Description button {
+  background-color: #ffffff;
+  color: #000000;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+div .Description button:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+div .Description button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+div .Description a {
+  text-decoration: none;
+}
+
+div .Description svg {
+  margin-left: 5px;
+}
+
+.styledInput {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  outline: none;
+  border: none;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.styledInput::-webkit-inner-spin-button,
+.styledInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@keyframes changeColor {
+  0% {
+    color: rgb(180, 118, 118);
+  }
+  100% {
+    color: rgb(119, 119, 194);
+  }
+}
+
+.styledInput:valid {
+  animation: changeColor 1s linear;
+}

@@ -1,14 +1,12 @@
 /* Color negro de la Navbar es #1a1919*/
 .footerContainer {
-  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
-  background-size: 900% auto;
-  animation: moveBackground 20s linear infinite;
+  background-color: #0d5a73;
   color: #fff;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
   padding: 1% 1%;
-  gap: 50px;
+  border-bottom: 1.5px solid#004258;
 }
 
 .footerContainer img {
@@ -35,18 +33,23 @@
 }
 
 .footLinks {
-  display: flex;
   flex-direction: column;
   list-style: none;
 }
 
 .footLinks li {
   padding: 5px 0px;
+  vertical-align: middle;
   transition: 0.8s;
+  -webkit-transition: 0.8s;
+  -moz-transition: 0.8s;
+  -ms-transition: 0.8s;
+  -o-transition: 0.8s;
 }
 
 .footLinks li:hover {
   padding: 5px 0px;
+  vertical-align: middle;
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -96,22 +99,6 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
-}
-.footerText {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-}
-.footerText:first-child {
-}
-@keyframes moveBackground {
-  100%,
-  0% {
-    background-position: 100% center;
-  }
-  50% {
-    background-position: 0% center;
-  }
 }
 
 @media (max-width: 970px) {

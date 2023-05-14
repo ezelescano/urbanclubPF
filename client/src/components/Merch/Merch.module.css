@@ -1,0 +1,208 @@
+.containerBackground {
+  background: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+}
+
+.container {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  width: 100%;
+}
+
+.productStar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  padding-inline: 20px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.596);
+  background-color: #ffffff;
+  border-radius: 10px;
+  word-wrap: break-word;
+  height: auto;
+  max-width: 660px;
+  max-height: 600px;
+}
+
+.productStar img {
+  max-width: 240px;
+  max-height: 220px;
+}
+.productInfo {
+  padding-block: 15px;
+  padding-inline: 10px;
+  text-align: center;
+}
+.productSubtitle {
+  display: flex;
+  align-items: center;
+}
+.productRating {
+  color: khaki;
+}
+.productDetails {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-inline: 20px;
+}
+
+.productText {
+  width: auto;
+}
+.productButtonSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.productButton {
+  background-color: #d9d9d9;
+  border: none;
+  color: #000000;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  min-height: 75px;
+  box-shadow: 0 5px 5px rgba(88, 88, 88, 0.53);
+}
+
+.productButton:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: scale(1.05);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+  animation: pulse 1s ease-out infinite;
+}
+/* Ahora Filtros */
+.filterBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+.leftBarContainer {
+  background-color: rgba(202, 202, 202, 0.127);
+  border-radius: 5px;
+  padding-inline: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.filterContainer {
+  margin-block: 20px;
+}
+
+.categoryContainer {
+  flex-grow: 1;
+}
+
+.filterBar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 600px;
+  border-radius: 20px;
+  margin-inline: 50px;
+}
+.filterList,
+.categoryList {
+  margin-top: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.filterList li,
+.categoryList li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.filterList li:hover,
+.categoryList li:hover {
+  background-color: #ebebeb;
+}
+
+.productCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 190px;
+  height: 270px;
+
+  margin-inline: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 22px 62px rgba(88, 88, 88, 0.53);
+  overflow: hidden;
+}
+.productCard:hover {
+  transform: scale(1.05);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+  animation: pulse 1s ease-out infinite;
+}
+.productCard img {
+  margin-top: 20px;
+  width: 40%;
+  height: 40%;
+  object-fit: cover;
+}
+
+.lowerProducts {
+  display: flex;
+  padding-bottom: 40px;
+}
+@media (max-width: 986px) {
+  .filterBar {
+    display: none;
+  }
+  .productCards {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 1px 2px rgba(113, 112, 112, 0.232);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(120, 119, 119, 0.205);
+  }
+  100% {
+    box-shadow: 0 1px 3px rgba(118, 117, 117, 0.245);
+  }
+}
