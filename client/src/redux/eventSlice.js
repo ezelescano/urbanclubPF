@@ -6,7 +6,8 @@ const initialState = {
   creaEvents: [],
   allEvents: [],
   detailEvent: [],
-  Event:[]
+  Event:[],
+  buyEvent:[]
 };
 
 export const eventSlice = createSlice({
@@ -30,19 +31,26 @@ export const eventSlice = createSlice({
         ...state,
         detailEvent: action.payload
       }
+    },
+    updateEventSuccess(state, action) {
+      return {
+        ...state,
+        Event: action.payload,
+      };
+    },
+    deleteEventSucces(state) {
+      return {
+        ...state,
+      }
+    },
+    buyEvent(state,action){
+      return{
+        ...state,
+        buyEvent:action.payload
+      }
     }
-  },
-  updateEventSuccess(state, action) {
-    return {
-      ...state,
-      Event: action.payload,
-    };
-  },
-  deleteEventSucces(state) {
-    return {
-      ...state,
-    }
-  }
+},
+ 
 });
 
 export const upEvent = (input,id) => {
@@ -124,7 +132,30 @@ export const deleteEvent = (id) => {
   
 }
 
+export const buyTicket = (compra) => {
+console.log("entro")
+  return async (dispatch) => {
+    try {
+    
+     const res = await axios.post(`/ticket/create-payment`,compra);
+     return res.data
+      // dispatch(buyEvent(res.data));
+      
+      } catch (error) {
+        swal({
+          title: "COMPRA FALLIDA",
+          text: `No se pudo comprar el evento`,
+          icon: "error",
+          buttons: "Aceptar"
+        })
+      }
+  }
 
-export const { postEventSuccess, getAllEventsSuccess, gellDetailEvent, updateEventSuccess, deleteEventSucces } = eventSlice.actions;
+}
+
+
+export const { postEventSuccess, getAllEventsSuccess,
+   gellDetailEvent, updateEventSuccess,
+    deleteEventSucces, buyEvent } = eventSlice.actions;
 
 export default eventSlice.reducer;

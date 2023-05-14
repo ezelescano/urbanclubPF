@@ -1,30 +1,32 @@
 require("dotenv").config();
 const request = require('request');
-const {CLIENT_PAYPAL,SECRET_PAYPAL, API_PAYPAL } = process.env;
+const { CLIENT_PAYPAL, SECRET_PAYPAL, API_PAYPAL } = process.env;
 
 
-const createPaymentControler = (req,res) => {
-   
+const createPaymentControler = (req, res) => {
+
     // const environment = new paypal.core.SandboxEnvironment(userCredentials.client_id, userCredentials.client_secret);
     // const client = new paypal.core.PayPalHttpClient(environment);
     // Canadiandollar = CAD
     // Euro=EUR
     // Mexicanpeso = MXN
     // UnitedStatesdollar = USD
-    const {currency_code, value,brand_name} = req.body
+
+    const { value, brand_name } = req.body
     const auth = { user: CLIENT_PAYPAL, pass: SECRET_PAYPAL }
+    console.log(value, brand_name)
     const body = {
         intent: 'CAPTURE',
         purchase_units: [{
             amount: {
-                currency_code, //https://developer.paypal.com/docs/api/reference/currency-codes/
-                value
+                currency_code: 'USD', //https://developer.paypal.com/docs/api/reference/currency-codes/
+                value: value
             }
         }],
         application_context: {
-            brand_name,
+            brand_name: brand_name,
             landing_page: 'NO_PREFERENCE', // Default, para mas informacion https://developer.paypal.com/docs/api/orders/v2/#definition-order_application_context
-            user_action: 'PAY_NOW', // Accion para que en paypal muestre el monto del pago
+            user_action: 'PAY_NOW', //  PAY_NOW Accion para que en paypal muestre el monto del pago
             return_url: `http://localhost:3001/ticket/execute-payment`, // Url despues de realizar el pago
             cancel_url: `http://localhost:3001/ticket/cancel-payment` // Url despues de realizar el pago
         }
@@ -36,8 +38,12 @@ const createPaymentControler = (req,res) => {
         body,
         json: true
     }, (err, response) => {
-       
-        res.json({ data: response})
+        data = {
+            id: response.body.id,
+            status: response.body.status,
+            link: response.body.links[1].href,
+        }
+        res.send(data)
     })
 }
 
