@@ -1,6 +1,8 @@
 .container {
   position: relative;
   margin: 25px 100px;
+  padding-top:110px;
+    background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
 }
 .NoAhora {
   display: none;
