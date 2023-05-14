@@ -157,31 +157,17 @@ function DetailsEvents() {
     <>
       <div className={style.backContainer}>
         <div className={style.container}>
-          <br></br>
-          <div className={style.img_Es}>
-            <img src={detailEvent.eventPhoto} alt="" />
-          </div>
+          {/* Resto del código */}
           {islogin.user.id !== detailEvent.id_Artist ? (
             <div className={style.Description}>
-              <h1>{detailEvent.name}</h1>
-              <br />
-              <h5>{detailEvent.nameArena}</h5>
-              <h5>{detailEvent.location}</h5>
-              <h5>
-                <CalendarMonthIcon style={{ fontSize: "12px" }} />{" "}
-                {detailEvent.date}
-              </h5>
-              <h4>PRECIO</h4>
-              <h5> U$S {detailEvent.price}</h5>
-              <h4>Descripcion</h4>
-              <p>{detailEvent.Description}</p>
-              <br />
+              {/* Resto del código */}
               <label htmlFor="">¿Cual es tú país?</label>
               <input
                 type="text"
                 name="Country"
                 value={destino.Country}
                 onChange={getdestinohandler}
+                className={style.roundedInput}
               />
               <label htmlFor="">¿Y tu ciudad?</label>
               <input
@@ -189,6 +175,7 @@ function DetailsEvents() {
                 name="city"
                 value={destino.city}
                 onChange={getdestinohandler}
+                className={style.roundedInput}
               />
               <button disabled={destino.ban} onClick={ubicationHandler}>
                 Cómo llego ahi?
@@ -241,21 +228,7 @@ function DetailsEvents() {
           ) : (
             <div></div>
           )}
-          <br></br>
-          <br></br>
-          <br></br>
-          {destino.ban === true ? (
-            <div className={style.maps}>
-              <Maps
-                city={detailEvent.Country}
-                country={detailEvent.city}
-                Dcity={destino.city}
-                Dcountry={destino.country}
-              />
-            </div>
-          ) : (
-            <div></div>
-          )}
+          {/* Resto del código */}
         </div>
       </div>
     </>
