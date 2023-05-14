@@ -4,6 +4,7 @@ import TopArt from "../Artists/TopArt";
 import { getAllArts } from "../../redux/artistSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import GroupsIcon from "@mui/icons-material/Groups";
 
 const HomeArt = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -72,7 +73,12 @@ const HomeArt = () => {
           to="/artists"
           onClick={scrollToTop}
         >
-          <button>Ver más {">"}</button>
+          <button>
+            <GroupsIcon />
+          </button>
+          <span>
+            + Artistas
+          </span>
         </NavLink>
       </div>
     </div>
