@@ -14,21 +14,21 @@ import Artists from "./components/Artists/Artists";
 import Events from "./components/Events/Events";
 import CreateEvent from "./components/createEvent/CreateEvent";
 import CreateEventTemplate from "./components/createEvent/CreateEventTemplate";
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer";
 // import Merch from "./components/Merch/Merch"
 import Maps from "./components/Maps/Maps";
 
 //verificacion del token
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 //import { useHistory } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
-import { loginSuccess, logout } from './redux/authSlice';
+import jwtDecode from "jwt-decode";
+import { loginSuccess, logout } from "./redux/authSlice";
 //import { Redirect } from 'react-router-dom';
 import AboutEze from "./components/AboutUs/AboutEze";
 import Errors404 from "./components/Error404/Errors404";
 import Messenger from "./components/Messenger/Messenger";
-import LoginSuccess from "./components/GoogleButton/loginSuccess"
+import LoginSuccess from "./components/GoogleButton/loginSuccess";
 /* import { io } from "socket.io-client";
 const socket = io("http://localhost:3001"); */
 // reemplazar 3001 por https://pruebaback-production-0050.up.railway.app
@@ -37,14 +37,14 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
 import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
-
+import Admin from "./components/Admin/Admin";
 function App() {
   const dispatch = useDispatch();
   //const history = useHistory();
-  const user = useSelector(state => state.auth);
+  const user = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = jwtDecode(token);
       if (decodedToken.exp * 1000 < Date.now()) {
@@ -74,9 +74,15 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={!user.isAuthenticated ? (<Login />) : (<Navigate to="/" />)} />
+        <Route
+          path="/login"
+          element={!user.isAuthenticated ? <Login /> : <Navigate to="/" />}
+        />
         <Route path="/login/success" element={<LoginSuccess />}></Route>
-        <Route path="/register" element={!user.isAuthenticated ? (<Register />) : (<Navigate to="/" />)} />
+        <Route
+          path="/register"
+          element={!user.isAuthenticated ? <Register /> : <Navigate to="/" />}
+        />
         <Route path="/profile/:id" element={<Profile />} />
         <Route
           path="/profileEdit/:id"
@@ -87,20 +93,26 @@ function App() {
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-       {/* { <Route path="/merch" element={<Merch />} />} */}
-        <Route path="/createevent/:id" element={user.isAuthenticated ? (<CreateEvent />) : (<Navigate to="/login" />)} />
+        {/* { <Route path="/merch" element={<Merch />} />} */}
+        <Route
+          path="/createevent/:id"
+          element={
+            user.isAuthenticated ? <CreateEvent /> : <Navigate to="/login" />
+          }
+        />
         <Route path="/createeventtemplate" element={<CreateEventTemplate />} />
         <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
+
         <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
         <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents />) : (<Navigate to="/login" />)} />
         <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)} />
-        <Route path="/newPassword/:id" element={!user.isAuthenticated ? (<NewPassword />) : (<Navigate to="/" />)} />
+        <Route path="/newPassword/:id/:token" element={<NewPassword />} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
-
+        <Route path="/admin" element={<Admin />} />
 
         <Route path="*" element={<Errors404 />} />
       </Routes>

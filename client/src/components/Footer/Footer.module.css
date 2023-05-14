@@ -1,18 +1,18 @@
 /* Color negro de la Navbar es #1a1919*/
 .footerContainer {
   background-color: #0d5a73;
-  color:#fff;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 30px 80px;
+  padding: 1% 1%;
   border-bottom: 1.5px solid#004258;
 }
 
-.footerContainer img{
+.footerContainer img {
   padding: 15px 20px 0 0;
 }
-.ftrImg{
+.ftrImg {
   transition: 0.8s;
   -webkit-transition: 0.8s;
   -moz-transition: 0.8s;
@@ -20,7 +20,7 @@
   -o-transition: 0.8s;
 }
 
-.ftrImg:hover{
+.ftrImg:hover {
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -28,19 +28,18 @@
   -o-transform: scale(1.2);
 }
 
-
-.searchbarWrapper{
+.searchbarWrapper {
   position: relative;
 }
 
-.footLinks{
+.footLinks {
   flex-direction: column;
   list-style: none;
 }
 
-.footLinks li{
+.footLinks li {
   padding: 5px 0px;
-  vertical-align:middle;
+  vertical-align: middle;
   transition: 0.8s;
   -webkit-transition: 0.8s;
   -moz-transition: 0.8s;
@@ -48,10 +47,9 @@
   -o-transition: 0.8s;
 }
 
-.footLinks li:hover{
-  
+.footLinks li:hover {
   padding: 5px 0px;
-  vertical-align:middle;
+  vertical-align: middle;
   transform: scale(1.2);
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -59,7 +57,7 @@
   -o-transform: scale(1.2);
 }
 
-.footLinks li a{
+.footLinks li a {
   color: white;
   text-decoration: none;
   outline: none;
@@ -83,7 +81,7 @@
   -o-transition: 0.8s;
 }
 
-.navLoginBtn:hover{
+.navLoginBtn:hover {
   background-color: #79cfd5;
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
@@ -101,4 +99,10 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+@media (max-width: 970px) {
+  .footerContainer {
+    gap: 10px;
+  }
 }
