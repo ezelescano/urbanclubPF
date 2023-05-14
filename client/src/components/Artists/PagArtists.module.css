@@ -1,27 +1,26 @@
 /* Estilo del contenedor del paginado */
 .nav {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 /* Estilo de los números de página */
 button.number {
-    display: inline-block;
-    padding: 8px;
-    margin: 0 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f7f7f7;
-    cursor: pointer;
+  display: inline-block;
+  padding: 8px;
+  margin: 0 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  cursor: pointer;
 }
 
 button.number:hover {
-    background-color: #e0e0e0;
+  background-color: #e0e0e0;
 }
 
 button.number:focus {
-    outline: none;
+  outline: none;
 }
