@@ -10,6 +10,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Maps from "../../Maps/Maps";
 import axios from "axios";
 import swal from "sweetalert";
+import Comments from "../../Comments/Comments";
 
 function DetailsEvents() {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ function DetailsEvents() {
     };
     getEvent();
   }, [dispatch, id]);
+  console.log(event);
+  console.log(islogin);
 
   const ubicationHandler = () => {
     if (
@@ -81,7 +84,7 @@ function DetailsEvents() {
     setDestino({
       ...destino,
       [e.target.name]: e.target.value,
-    })
+    });
   };
   const buyTicketHandler = async () => {
     if (!islogin.isAuthenticated) {
@@ -91,7 +94,7 @@ function DetailsEvents() {
         icon: "info",
         buttons: {
           cancel: "Cancelar",
-          confirm: "Iniciar sesión"
+          confirm: "Iniciar sesión",
         },
       }).then((value) => {
         if (value) {
@@ -113,7 +116,11 @@ function DetailsEvents() {
       if (cantidad > 0) {
         const restCant = cantidad - entradas;
         setCantidad(restCant);
-        let stockObjeto = { stock: restCant, id_Artist: islogin.user.id };
+        let stockObjeto = {
+          stock: restCant,
+          id_Artist: islogin.user.id,
+          totalPayment: entradas * event.price,
+        };
         setEntradas(1);
         console.log("cantidad", stockObjeto.stock);
 
@@ -170,7 +177,51 @@ function DetailsEvents() {
                 onChange={getdestinohandler}
                 className={style.roundedInput}
               />
-              {/* Resto del código */}
+              <button disabled={destino.ban} onClick={ubicationHandler}>
+                Cómo llego ahi?
+              </button>
+              <button disabled={!destino.ban} onClick={resetUbicationHandler}>
+                Reinicar la Busqueda
+              </button>
+              <div className={style.links}>
+                <br />
+                <h3>Cantidad de entradas Disponibles</h3>
+                <h3>{cantidad}</h3>
+                <div>
+                  <label>Comprar Entradas con Debito o Crédito:</label>
+                  <br />
+                  <input
+                    name="entradas"
+                    value={entradas}
+                    min="1"
+                    type="number"
+                    onChange={handleOnChange}
+                  />
+                </div>
+                <button onClick={buyTicketHandler}>
+                  Comprar entrada <CreditCardIcon />
+                </button>
+                <p>Total a pagar: {entradas * event.price} USD</p>
+                <a
+                  href="https://www.visa.com.ar"
+                  target="_blank"
+                  rel="noreferrer"
+                ></a>
+                <br />
+                <a
+                  href="https://www.google.com/maps/place/Teatro+Gran+Rex/@-34.6033873,-58.5313019,12z/data=!4m10!1m2!2m1!1sGran+Rex!3m6!1s0x95bccaceed5746b9:0xf933ab84305babc0!8m2!3d-34.6033873!4d-58.3788666!15sCghHcmFuIFJleJIBF3BlcmZvcm1pbmdfYXJ0c190aGVhdGVy4AEA!16s%2Fm%2F05bzpqm"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <button>
+                    Compralo desde Teatro Gran Rex <StoreMallDirectoryIcon />
+                  </button>
+                </a>
+              </div>
+              <div className={style.comments}>
+                {<Comments event={detailEvent} />}
+              </div>
+              <br></br>
             </div>
           ) : islogin.isAuthenticated ? (
             <UpdateEvents id={id} event={detailEvent} />
