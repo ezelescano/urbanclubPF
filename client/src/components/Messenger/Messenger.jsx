@@ -27,7 +27,7 @@ function Messenger() {
   const scrollRef = useRef();
   const followers = artistas.filter((f) => f.id !== user.id);
 
-  useEffect(() => {
+  useEffect(() => { 
     // socket.current = io("ws://pruebaback-production-0050.up.railway.app");
     socket.current = io("ws://localhost:3001");
     socket.current.on("getMessage", (data) => {
@@ -75,21 +75,10 @@ function Messenger() {
     };
     getConversations();
   }, [user.id]);
-  /* Ahora el componente de mensajes cada 700 milisegundos intenta buscar los últimos mensajes*/
-  useEffect(() => {
-    let interval;
 
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        interval = setInterval(getMessages, 700);
-      } else {
-        interval = setInterval(getMessages, 2000);
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    const getMessages = async () => {
+useEffect(() => {
+  const interval = setInterval(() => {
+    const getmessages = async () => {
       try {
         const res = await axios.get(`/message/${currentChat?.id}`);
         setMessages(res.data);
@@ -97,14 +86,13 @@ function Messenger() {
         console.log(err);
       }
     };
+    getmessages();
+  }, 1500);
 
-    handleVisibilityChange();
-
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      clearInterval(interval);
-    };
-  }, [currentChat]);
+  return () => {
+    clearInterval(interval);
+  };
+}, [currentChat]);
 
   const handleEmojiSelect = (emoji) => {
     setNewMessage(newMessage + emoji.native);
@@ -160,7 +148,7 @@ function Messenger() {
         <div className="chatBoxWrapper">
           {currentChat ? (
             <>
-              <DetailBar conversation={currentChat} currentUser={user} />
+              <DetailBar conversation={currentChat} currentUser={user}/>
               <div className="chatBoxTop">
                 {Array.isArray(messages) &&
                   messages.map((m) => (
