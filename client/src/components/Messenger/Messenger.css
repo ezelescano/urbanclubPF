@@ -2,7 +2,8 @@
   height: calc(100vh - 70px);
   display: flex;
   padding-top: 100px;
-  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+  background: linear-gradient(180deg, #0d5a73a2 0%, #09548e 100%);
+  padding-bottom: 40px;
 }
 
 .chatMenu {
@@ -33,7 +34,6 @@
 }
 
 .chatBoxTop {
-  height: 100%;
   overflow-y: scroll;
   padding-right: 10px;
 }
@@ -44,6 +44,7 @@
 
 .chatBoxBottom {
   margin-top: 5px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -85,10 +86,15 @@
 }
 
 .chatMenuWrapper,
-.chatBoxWrapper,
 .chatOnlineWrapper {
   padding: 10px;
   height: 90%;
+}
+
+.detailBar {
+  padding: 0px 0px 10px 0px;
+  border-end-end-radius: 20px;
+  border-end-start-radius: 20px;
 }
 .chatBoxWrapper {
   box-shadow: 0px 0px 10px 0px rgba(0, 66, 88, 0.5);

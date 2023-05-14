@@ -1,22 +1,33 @@
 .detailBar {
   display: flex;
   align-items: center;
-  padding: 10px;
   cursor: pointer;
-  margin-top: 20px;
-  background-color: #0d5a73;
+  justify-content: center;
+  font-size: 20px;
+  flex-direction: column;
+  background: linear-gradient(180deg, #0264854b 0%, #035ea479 100%);
 }
-
-.detailBar:hover {
-  background-color: #1e9ec8;
+.detailBarUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 1s ease;
+  padding: 10px;
+  border-radius: 10%;
+}
+.detailBarUser:hover {
+  padding: 20px;
+  border-radius: 10%;
+  transition: 1s ease;
 }
 
 .detailBarImg {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 20px;
+  margin-bottom: 10px;
+  filter: blur(0.4px);
 }
 
 .detailBarName {
