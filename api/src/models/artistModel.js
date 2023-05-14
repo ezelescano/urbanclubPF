@@ -25,6 +25,7 @@ module.exports = (sequelize) => {
       id_profilePhoto: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       estado: {
         type: DataTypes.STRING,
@@ -40,6 +41,7 @@ module.exports = (sequelize) => {
       id_coverPhoto: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       coverPhoto: {
         type: DataTypes.STRING,
@@ -59,30 +61,26 @@ module.exports = (sequelize) => {
       Country: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       city: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       ocupation: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
       // subCategory: {
       //   type: DataTypes.JSON,
       //   allowNull: true,
       // },
-      followers:{
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
-        defaultValue: []
-      },
-      followings:{
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
-        defaultValue: []
-      },
       aboutMe: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue:""
       },
     });
 }

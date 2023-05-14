@@ -5,7 +5,8 @@ const nodemailer = require("nodemailer");
 
 const buyTicketController = async (req) => {
   const { id } = req.params;
-  const { stock, id_Artist } = req.body;
+  const { stock, id_Artist, totalPayment } = req.body;
+  console.log(totalPayment)
 
   if (!id) {
     throw new Error("Not specific Id");
@@ -53,7 +54,7 @@ const buyTicketController = async (req) => {
                     <ul>
                       <li>Nombre del evento: ${event.name}</li>
                       <li>Fecha: ${event.date}</li>
-                      <li>Total pagado: ${event.price}</li>
+                      <li>Total pagado: ${totalPayment} USD</li>
                     </ul>
             
                     <p>Por favor, asegúrate de llevar contigo una copia de este correo electrónico y tu identificación al evento. El personal de entrada estará allí para asistirte y darte acceso al evento.</p>
