@@ -102,6 +102,12 @@ function Messenger() {
     setShowPicker(false);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newMessage) {
@@ -180,6 +186,7 @@ function Messenger() {
                   className="chatMessageInput"
                   placeholder="Envia un mensaje..."
                   onChange={(e) => setNewMessage(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   value={newMessage}
                 ></textarea>
                 <div className="emojieBoxForAbsolute">
