@@ -6,8 +6,8 @@ const initialState = {
   creaEvents: [],
   allEvents: [],
   detailEvent: [],
-  Event:[],
-  buyEvent:[]
+  Event: [],
+  buyEvent: []
 };
 
 export const eventSlice = createSlice({
@@ -43,17 +43,40 @@ export const eventSlice = createSlice({
         ...state,
       }
     },
-    buyEvent(state,action){
-      return{
+    buyEvent(state, action) {
+      return {
         ...state,
-        buyEvent:action.payload
+        buyEvent: action.payload
       }
     }
-},
- 
+  },
+  getFilterEventsSuccess(state, action) {
+    return {
+      ...state,
+      allEvents: action.payload,
+
+
+    }
+  },
+
 });
 
-export const upEvent = (input,id) => {
+
+export const FilterEvents = (date, price, ubicacion) => {
+  return async (dispatch) => {
+    try {
+      const apiData = await axios.get(`/search/events?date=${date}&price=${price}&ubicacion=${ubicacion}`);
+      const events = apiData.data;
+      console.log("APIIIIIDATA", apiData.data);
+      return dispatch(getFilterEventsSuccess(events));
+
+    } catch (error) {
+      console.log("PINCHE", error);
+    }
+  };
+};
+
+export const upEvent = (input, id) => {
   return async (dispatch) => {
     try {
       const eventDB = await axios.put(`/events/update/${id}`, input);
@@ -77,7 +100,7 @@ export const postEvent = (payload) => {
       await dispatch(postEventSuccess(eventData));
 
     } catch (error) {
-     
+
       swal({
         title: "EVENTOS",
         text: `No se pudo crear el evento`,
@@ -115,47 +138,47 @@ export const getDetailEvents = (id) => {
 
 export const deleteEvent = (id) => {
 
-    return async (dispatch) => {
-      try {
-      
-         const res = await axios.delete(`/events/${id}`);
-          //  dispatch(deleteEventSucces());
-        } catch (error) {
-          swal({
-            title: "EVENTOS",
-            text: `No se pudo eliminar el evento ${error}`,
-            icon: "error",
-            buttons: "Aceptar"
-          })
-        }
+  return async (dispatch) => {
+    try {
+
+      const res = await axios.delete(`/events/${id}`);
+      //  dispatch(deleteEventSucces());
+    } catch (error) {
+      swal({
+        title: "EVENTOS",
+        text: `No se pudo eliminar el evento ${error}`,
+        icon: "error",
+        buttons: "Aceptar"
+      })
     }
-  
+  }
+
 }
 
 export const buyTicket = (compra) => {
-console.log("entro")
+  console.log("entro")
   return async (dispatch) => {
     try {
-    
-     const res = await axios.post(`/ticket/create-payment`,compra);
-     return res.data
+
+      const res = await axios.post(`/ticket/create-payment`, compra);
+      return res.data
       // dispatch(buyEvent(res.data));
-      
-      } catch (error) {
-        swal({
-          title: "COMPRA FALLIDA",
-          text: `No se pudo comprar el evento`,
-          icon: "error",
-          buttons: "Aceptar"
-        })
-      }
+
+    } catch (error) {
+      swal({
+        title: "COMPRA FALLIDA",
+        text: `No se pudo comprar el evento`,
+        icon: "error",
+        buttons: "Aceptar"
+      })
+    }
   }
 
 }
 
 
 export const { postEventSuccess, getAllEventsSuccess,
-   gellDetailEvent, updateEventSuccess,
-    deleteEventSucces, buyEvent } = eventSlice.actions;
+  gellDetailEvent, updateEventSuccess,
+  deleteEventSucces, buyEvent } = eventSlice.actions;
 
 export default eventSlice.reducer;
