@@ -10,6 +10,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Maps from "../../Maps/Maps";
 import axios from "axios";
 import swal from "sweetalert";
+import Comments from "../../Comments/Comments";
 
 function DetailsEvents() {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ function DetailsEvents() {
     };
     getEvent();
   }, [dispatch, id]);
+  console.log(event);
+  console.log(islogin);
 
   const ubicationHandler = () => {
     if (
@@ -81,7 +84,7 @@ function DetailsEvents() {
     setDestino({
       ...destino,
       [e.target.name]: e.target.value,
-    })
+    });
   };
   const buyTicketHandler = async () => {
     if (!islogin.isAuthenticated) {
@@ -91,7 +94,7 @@ function DetailsEvents() {
         icon: "info",
         buttons: {
           cancel: "Cancelar",
-          confirm: "Iniciar sesión"
+          confirm: "Iniciar sesión",
         },
       }).then((value) => {
         if (value) {
@@ -113,7 +116,11 @@ function DetailsEvents() {
       if (cantidad > 0) {
         const restCant = cantidad - entradas;
         setCantidad(restCant);
-        let stockObjeto = { stock: restCant, id_Artist: islogin.user.id };
+        let stockObjeto = {
+          stock: restCant,
+          id_Artist: islogin.user.id,
+          totalPayment: entradas * event.price,
+        };
         setEntradas(1);
         console.log("cantidad", stockObjeto.stock);
 
@@ -220,6 +227,9 @@ function DetailsEvents() {
                     Compralo desde Teatro Gran Rex <StoreMallDirectoryIcon />
                   </button>
                 </a>
+              </div>
+              <div className={style.comments}>
+                {<Comments event={detailEvent} />}
               </div>
               <br></br>
             </div>

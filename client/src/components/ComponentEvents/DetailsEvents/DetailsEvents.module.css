@@ -141,3 +141,9 @@ div .Description svg {
 .styledInput:valid {
   animation: changeColor 1s linear;
 }
+
+.comments {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

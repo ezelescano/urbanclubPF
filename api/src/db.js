@@ -1,6 +1,7 @@
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
+const EventsCommentModel = require("./models/EventsCommentModel");
 require("dotenv").config();
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
@@ -39,7 +40,7 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Artist, Event, Conversation, Message } = sequelize.models;
+const { Artist, Event, Conversation, Message, EventComment } = sequelize.models;
 
 // Country.belongsToMany(Activity, { through: "countries_activities" });
 
@@ -53,6 +54,9 @@ Conversation.belongsToMany(Artist, { through: 'ArtistConversation' });
 //Conversation-Message
 Conversation.hasMany(Message, { as: 'menssage', foreignKey: 'conversationId' });
 Message.belongsTo(Conversation, { as: 'conversation', foreignKey: 'conversationId',onDelete: 'CASCADE' });
+//Comments-Events
+Event.hasMany(EventComment, {as: 'eventComment', foreignKey: 'eventId' });
+EventComment.belongsTo(Event, {as: 'event', foreignKey: 'eventId', onDelete: 'CASCADE'});
 
 
 
