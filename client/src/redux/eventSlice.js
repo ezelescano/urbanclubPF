@@ -7,7 +7,8 @@ const initialState = {
   allEvents: [],
   detailEvent: [],
   Event: [],
-  buyEvent: []
+  buyEvent: [],
+  locations: [],
 };
 
 export const eventSlice = createSlice({
@@ -48,18 +49,38 @@ export const eventSlice = createSlice({
         ...state,
         buyEvent: action.payload
       }
-    }
-  },
-  getFilterEventsSuccess(state, action) {
-    return {
-      ...state,
-      allEvents: action.payload,
+    },
+    getFilterEventsSuccess(state, action) {
+      return {
+        ...state,
+        allEvents: action.payload,
 
 
-    }
+      }
+    },
+    getAllLocationsSuccess(state, action) {
+      return {
+        ...state,
+        locations: action.payload,
+
+      }
+    },
   },
 
 });
+
+export const getAllLocations = () => {
+  return async (dispatch) => {
+    try {
+      const result = await axios.get(`/search/events/locations`);
+      const location = result.data;
+      console.log("LOCATION API", location);
+      return dispatch(getAllLocationsSuccess(location));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
 
 
 export const FilterEvents = (date, price, ubicacion) => {
@@ -177,7 +198,7 @@ export const buyTicket = (compra) => {
 }
 
 
-export const { postEventSuccess, getAllEventsSuccess,
+export const { getAllLocationsSuccess, getFilterEventsSuccess, postEventSuccess, getAllEventsSuccess,
   gellDetailEvent, updateEventSuccess,
   deleteEventSucces, buyEvent } = eventSlice.actions;
 

@@ -17,12 +17,12 @@ const getSearchEvents = async (req, res) => {
   const endIndex = page * pageSize;
 
   let filteredEvents = await Event.findAll({
-    include:[{
+    include: [{
       model: Artist,
       attributes: ['id', 'name']
     }]
   });
-        
+
   const completeDate = new Date() //? fecha en formato completo 2023-05-14T16:16:24.116Z
   const currentDate = completeDate.toISOString().split('T')[0]; //? solo fecha 2023-05-11
   const currentWeekDay = completeDate.getDay() //? dia de la semana actual 4
@@ -32,23 +32,26 @@ const getSearchEvents = async (req, res) => {
 
   if (date) {
     //? los valores de date seran----> a:hoy b:esta semana c:este mes
-    if(date ==="Hoy"){
-      filteredEvents = filteredEvents.filter(event=>event.date===currentDate);
+    if (date === "Hoy") {
+      filteredEvents = filteredEvents.filter(event => event.date === currentDate);
     } else if (date === "Esta semana") {
-        filteredEvents = filteredEvents.filter(event=>event.date>=currentDate && event.date<=endWeekDate);
-      } else if (date === "Este mes") {
-        filteredEvents = filteredEvents.filter(event=>event.date>=currentDate&&event.date<=endMonthDate);
-      }
+      filteredEvents = filteredEvents.filter(event => event.date >= currentDate && event.date <= endWeekDate);
+    } else if (date === "Este mes") {
+      filteredEvents = filteredEvents.filter(event => event.date >= currentDate && event.date <= endMonthDate);
+    } else if (date === "Proximos") {
+      filteredEvents = filteredEvents.filter(event => event.date > endMonthDate);
+    }
   }
-
   if (price) {
-    if(price === "0"){
-      filteredEvents = filteredEvents.filter(event=>event.price===0);
+    if (price === "0") {
+      filteredEvents = filteredEvents.filter(event => event.price === 0);
     } else if (price === "1-50") {
-        filteredEvents = filteredEvents.filter(event=>event.price>0 && event.price<=50)
-      } else if (price === "51-100") {
-        filteredEvents = filteredEvents.filter(event=>event.price>50 && event.price<=100)
-      }
+      filteredEvents = filteredEvents.filter(event => event.price > 0 && event.price <= 50)
+    } else if (price === "51-100") {
+      filteredEvents = filteredEvents.filter(event => event.price > 50 && event.price <= 100)
+    } else if (price === "101 a mas") {
+      filteredEvents = filteredEvents.filter(event => event.price > 100);
+    }
   }
   if (location) {
     filteredEvents = filteredEvents.filter(event => event.Country === location);
