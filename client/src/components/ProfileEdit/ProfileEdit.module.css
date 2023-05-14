@@ -2,17 +2,49 @@
   position: absolute;
   border-radius: 10px;
   left: -650px;
-  top: -230px;
+  top: -270px;
   width: 400px;
-  height: 600px;
+  height: auto;
   color: white;
   background-color: #333333;
-  padding-top: 5%;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.462);
+  padding-top: 10px;
   z-index: 15;
+
   /* border: 1px solid black; */
 }
 .formContainer input {
   border-radius: 5px;
+  padding: 5px;
+  border: none;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.462);
+  transition: 0.5 ease;
+}
+.formContainer input:hover {
+  transform: scale(1.02);
+}
+.formContainer .bannerChange,
+.formContainer .profileChange {
+  box-shadow: unset;
+}
+.formContainer .bannerChange,
+.formContainer .profileChange {
+  border-radius: 15px;
+  background-color: #333333;
+  color: #33333300;
+}
+.filesContainer {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  flex-direction: column;
+  width: 135px;
+}
+.filesContainer input {
+  width: 135px;
+}
+.filesContainer img {
+  height: 100px;
 }
 .formContainer {
   display: flex;
@@ -23,15 +55,38 @@
   display: flex;
   flex-direction: column;
 }
-.containerexit {
+.containerExit {
   border: none;
   cursor: pointer;
   width: 35px;
   margin-left: auto;
-  border-radius: 50%;
+  border-radius: 50px;
   padding: 10px;
   margin-right: 5px;
   margin-top: 2px;
+  transition: 0.3s ease;
+}
+.containerExit:hover {
+  transform: scale(1.15);
+  background-color: #f33939;
+}
+.submitButton button[type="submit"] {
+  border-radius: 15px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.submitButton button[type="submit"]:hover {
+  background-color: #868686; /* Cambia el color al pasar el mouse */
+  color: white;
+  transform: scale(1.1);
+}
+
+.submitButton button[type="submit"]:active {
+  transform: scale(0.9); /* Escalamiento al hacer clic */
 }
 /* .formContainer{
     border: 1px solid red;
@@ -57,16 +112,62 @@
   border-radius: 5px;
 }
 div .occ {
-    display: flex;
-    flex-direction: column;
-    justify-content: "space-between";
-    gap: 0.5rem;
-    padding-block:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: "space-between";
+  gap: 0.5rem;
+  padding-block: 10px;
+  transition: 0.5s ease;
 }
+.ocupationList {
+  display: flex;
+    align-items: center;
+}
+.formContainer input[type="checkbox"] {
+  appearance: none;
+  min-width: 35px;
+  min-height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+  transition: 0.3s ease;
+}
+.formContainer label:hover input[type="checkbox"] {
+  background-color: #007bff5e;
+  min-width: 35px;
+  min-height: 35px;
+}
+
+.formContainer input[type="checkbox"]:checked {
+  background-color: #007aff;
+  border-color: #007aff;
+  min-width: 35px;
+}
+
+.formContainer input[type="checkbox"]:checked::before {
+  font-size: 10px;
+  content: "\00a0\2714"; /* el 00a0 es un blanco espacio y el 2714 es el signo de check*/
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
 @media (max-width: 1315px) {
   .container {
-    left: -650px;
+    left: -60vw;
     top: -150px;
+    z-index: 11;
+    transform: scale(0.8);
+    /* border: 1px solid black; */
+  }
+}
+@media (max-width: 975px) {
+  .container {
+    left: -80vw;
+
     /* border: 1px solid black; */
   }
 }
