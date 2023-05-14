@@ -71,7 +71,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #004258;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   color: #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

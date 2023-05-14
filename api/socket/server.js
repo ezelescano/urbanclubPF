@@ -2,6 +2,7 @@ const socketio = require("socket.io");
 
 module.exports = function (server) {
   const io = socketio(server, {
+    pingTimeout: 6000,
     cors: {
       // origin: "https://tecnoeam.com",https://tecnoeam.com/urbanclub/
       origin: "http://localhost:3000",
