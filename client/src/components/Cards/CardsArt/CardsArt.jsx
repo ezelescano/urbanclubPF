@@ -40,8 +40,8 @@ const CardsArt = ({
         <div className={`${style.text} ${style.overlay}`}>
           <p>{aboutMe}</p>
           <h5>Sobre mí:</h5>
-          <h5>Ocupación:</h5>
           <div className={`${style.fadeInText}`}>{ocupationRows}</div>
+          <h5>Ocupación:</h5>
           <h3>{name}</h3>
           {/* <h5>Ubicacion:</h5> */}
           {/* <h4>{Country}</h4> */}

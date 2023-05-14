@@ -26,7 +26,6 @@
 .userCover {
   width: 100%;
   height: 200px;
-  
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
@@ -56,10 +55,10 @@
 }
 .Container:hover {
   color: #6c6c6c;
-  box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.937);
-  animation: pulse 1.5s forwards infinite;
+  box-shadow: 3px 3px 3px 0px rgba(161, 157, 157, 0.142);
+  animation: pulse 2.5s forwards infinite;
   transition: all 0.3s ease-in-out;
-  transform: scale(1.0155);
+  transform: scale(1.0855);
 }
 
 .text {
@@ -70,14 +69,14 @@
   position: absolute; /* para que se coloque encima de la imagen */
   min-width: 86%;
   max-width: 88%;
-  min-height: 220px;
+  min-height: 215px;
   max-height: 200px;
   top: 40%;
   left: 50%;
   padding: 2px;
   transform: translate(
     0%,
-    75%
+    76%
   ); /* centra el texto vertical y horizontalmente */
   display: flex;
   flex-direction: column-reverse;
@@ -90,12 +89,14 @@
 .text h3 {
   margin-bottom: 10px;
   font-size: 25px;
+  text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.5);
 }
 
 .text h5 {
-  color: rgba(4, 189, 222, 0.669);
+  color: rgb(0, 0, 0);
   margin-bottom: 7px;
   font-size: 22px;
+  text-shadow: 1px 0px 2px rgba(0, 0, 0, 0.5);
 }
 
 .text p {
@@ -176,9 +177,26 @@
     box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.112);
   }
   50% {
-    box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.941);
+    box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.322);
   }
   100% {
-    box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.033);
+    box-shadow: 6px 6px 6px 0px rgba(161, 157, 157, 0.125);
+  }
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0); /* posición inicial */
+  }
+  25% {
+    transform: translateY(-10px); /* rebote hacia arriba */
+  }
+  50% {
+    transform: translateY(0); /* posición central */
+  }
+  75% {
+    transform: translateY(10px); /* rebote hacia abajo */
+  }
+  100% {
+    transform: translateY(0); /* posición final */
   }
 }
