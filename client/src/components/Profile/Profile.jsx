@@ -83,10 +83,12 @@ const Profile = () => {
       }
     };
     getFollowers();
-    return async () => {
+    return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
-      setFollowers([]);
+      setFollowers([])
+      setShowFollowings(false)
+      setShowFollowers(false)
     };
   }, [id]);
 
@@ -294,12 +296,14 @@ const Profile = () => {
   };
 
   const handleOnClickFollowers = () => {
-    setShowFollowers(!showFollowers);
-  };
+    setShowFollowers(!showFollowers)
+    setShowFollowings(false)
+  }
 
   const handleOnClickFollowings = () => {
-    setShowFollowings(!showFollowings);
-  };
+    setShowFollowings(!showFollowings)
+    setShowFollowers(false)
+  }
 
   return (
     <>
@@ -331,7 +335,9 @@ const Profile = () => {
                       <h1 className="profileNombre">
                         {name}
                         {/*  {lastname} */}
-                        {verified && <VerifiedIcon />}
+                        {verified && (
+                          <VerifiedIcon/>
+                        )}
                       </h1>
                     </span>
                     {!isCurrentUser && (
@@ -405,7 +411,7 @@ const Profile = () => {
                               rel="noreferrer noopener"
                               className="youtube"
                             >
-                              <YouTubeIcon />
+                              <YouTubeIcon/>
                             </a>
                           )}
 
@@ -416,7 +422,7 @@ const Profile = () => {
                               rel="noreferrer noopener"
                               className="twitter"
                             >
-                              <TwitterIcon />
+                              <TwitterIcon/>
                             </a>
                           )}
                         </div>
@@ -433,11 +439,7 @@ const Profile = () => {
               {isCurrentUser ? (
                 <div className="settings-div">
                   <button className="btn-ajustes" onClick={handleSettings}>
-                    <img
-                      className="ajustes"
-                      src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
-                      alt="ajuste"
-                    />
+                    <SettingsIcon/>
                   </button>
                   {(showSettings || showEdit || showEditPassword) &&
                     showComponents && (

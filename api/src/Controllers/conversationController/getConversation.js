@@ -11,7 +11,7 @@ const getConversation = async(userId) => {
       }
     })
     
-    return conversationFound;
+    return conversationFound.reverse();
   } catch (err) {
     return err
   }
