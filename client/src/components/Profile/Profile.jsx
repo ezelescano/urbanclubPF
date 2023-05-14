@@ -11,7 +11,7 @@ import {
 } from "../../redux/artistSlice";
 import swal from "sweetalert";
 //import { getauth, clearProfile } from "../../redux/artistSlice";
-import { logout } from "../../redux/authSlice";
+import { logout, loginUpdatePhoto } from "../../redux/authSlice";
 import { deleteEvent } from "../../redux/eventSlice";
 
 import { useNavigate } from "react-router-dom";
@@ -23,8 +23,8 @@ import Error404 from "../Error404/Errors404";
 import CreateEvent from "../createEvent/CreateEvent";
 import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
-import loading from "../../img/loading.gif";
 import axios from "axios";
+import FollowList from "../FollowList/FollowList";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -34,9 +34,10 @@ const Profile = () => {
   const errorId = useSelector((state) => state.artist.errorId);
 
   const [showSettings, setShowSettings] = useState(false);
+  const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowings, setShowFollowings] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showEditPassword, setShowEditPassword] = useState(false);
-  const [followDemostrativo, setFollowDemostrativo] = useState(911);
   const [isLoading, setIsLoading] = useState(true);
   const [followed, setFollowed] = useState(false);
   const [followers, setFollowers] = useState([]);
@@ -70,8 +71,7 @@ const Profile = () => {
   const eventosRef = useRef(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setIsLoading(false);
+
     const getFollowers = async() => {
     try {
         const res = await dispatch(getArtistId(id));
@@ -84,6 +84,7 @@ const Profile = () => {
     return async () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
+      setFollowers([])
     };
   }, [id]);
 
@@ -92,7 +93,7 @@ const Profile = () => {
       try {
         const res = await axios.get("/artist/login/me");
         console.log(res.data.followings)
-        setFollowed(res.data.followings.includes(usuario?.id))
+        setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
       } catch (error) {
         console.log(error)
       }
@@ -164,8 +165,17 @@ const Profile = () => {
       });
   };
 
-  const handleEdit = (input) => {
-    dispatch(updateArtist(id, input));
+  const handleEdit = async (input) => {
+    const artistUpdated = dispatch(updateArtist(id, input)).data;
+    console.log(input);
+    swal({
+      title: "ARTISTA ACTUALIZADO",
+      text: `Artista  ${input.name} actualizado con exito`,
+      icon: "success",
+      buttons: "Aceptar",
+    });
+    setShowEdit(false);
+    setShowSettings(false);
   };
 
   const handleLogout = () => {
@@ -185,18 +195,19 @@ const Profile = () => {
   const handleFollow = async() => {
     try {
       if(!followed && !isCurrentUser && currentUser.isAuthenticated){
-        await axios.put(`/artist/follow/${usuario.id}/follow`,{
-          followerId: `${currentUser.user.id}`
+        await axios.post(`/artist/follow/${currentUser.user.id}/follow`,{
+         followedId: `${usuario.id}`
         })
-        setFollowers([...followers, currentUser.user.id])
+        const obj = { follower_Id: currentUser.user.id }
+        setFollowers([...followers, obj])
         setFollowed(!followed)
         return
       }
       if(followed && !isCurrentUser && currentUser.isAuthenticated){
-        await axios.put(`/artist/follow/${usuario.id}/unfollow`,{
-          followerId: `${currentUser.user.id}`
+        await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`,{
+          followedId: `${usuario.id}`
         })
-        setFollowers(followers.filter(f => f !== currentUser.user.id))
+        setFollowers(followers.filter(follow => follow.follower_Id !== currentUser.user.id))
         setFollowed(!followed)
         return
       }
@@ -244,7 +255,6 @@ const Profile = () => {
     });
   };
 
-  const islogin = useSelector((state) => state.auth);
   const handleDeleteEvent = (id, name) => {
     swal({
       title: "ELIMINAR EVENTO",
@@ -252,7 +262,7 @@ const Profile = () => {
       icon: "warning",
       buttons: ["No", "Si"],
     }).then(async (res) => {
-      if (res && islogin.isAuthenticated) {
+      if (res && currentUser.isAuthenticated) {
         dispatch(deleteEvent(id));
         setTimeout(() => {
           window.location.reload();
@@ -268,6 +278,14 @@ const Profile = () => {
       }
     });
   };
+
+  const handleOnClickFollowers = () => {
+    setShowFollowers(!showFollowers)
+  }
+
+  const handleOnClickFollowings = () => {
+    setShowFollowings(!showFollowings)
+  }
 
   return (
     <>
@@ -311,8 +329,7 @@ const Profile = () => {
                     {!isCurrentUser &&
                       <div className="profileFollow">
                         <button className="btn-profile" onClick={handleFollow}>
-                          {followed ? "dejar de seguir" : "seguir"}
-                          {/* {followed ? "dejar de seguir" : "seguir"} */}
+                          {followed ? "Dejar de seguir" : "Seguir"}
                         </button>
                         <button className="btn-profile" onClick={handleContact}>
                           Contactar
@@ -323,12 +340,6 @@ const Profile = () => {
                   <h3 className="principalInfo">
                     {city}, {Country}
                     <div className="ocupation-container">
-                      {/* {usuario.ocupation?.map(o => {
-                return(
-                  <div className='ocupation'>{o}</div>
-                )
-              })} */}
-                      {/* {ocupation && <div className="ocupation">{ocupation.split(",")}</div>} */}
                       {ocupationArray &&
                         ocupationArray?.map((ocupation) => (
                           <div className="ocupation" key={ocupation}>
@@ -346,10 +357,22 @@ const Profile = () => {
                     {events?.length + " "} Eventos{" "}
                     {/*  //! muestra total de eventos del artista */}
                   </button>
-                  <button className="btn-stas">
+                  <button className="btn-stas" onClick={handleOnClickFollowers}>
                     {followers?.length + " "} Seguidores
                   </button>
-                  <h4>{followings?.length + " "} Seguidos</h4>
+                  {showFollowers && <FollowList userId={usuario.id}
+                                                isCurrentUser={isCurrentUser}
+                                                action="followers"
+                                                setShowFollowers={setShowFollowers}
+                                                setShowFollowings={setShowFollowings}/>}
+                  <button className="btn-stas" onClick={handleOnClickFollowings}>
+                    {followings?.length + " "} Seguidos
+                  </button>
+                  {showFollowings && <FollowList userId={usuario.id}
+                                                isCurrentUser={isCurrentUser}
+                                                action="followings"
+                                                setShowFollowers={setShowFollowers}
+                                                setShowFollowings={setShowFollowings}/>}
                 </div>
                 <div className="redes">
                   {links?.map((l) => {
@@ -396,7 +419,7 @@ const Profile = () => {
             </div>
             <div className="btns">
               {isCurrentUser ? (
-                <div className="settings-div">
+                <div className="settings-div" >
                   <button className="btn-ajustes" onClick={handleSettings}>
                     <img
                       className="ajustes"

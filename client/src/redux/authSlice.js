@@ -51,6 +51,21 @@ export const authSlice = createSlice({
       state.token = null;
       state.user = {};
       state.error = null;
+    },
+
+    loginUpdatePhoto(state,action) {
+      // state.user.profilePhoto = action.payload;
+      return { ...state, user :{
+              id: state.user.id,
+              name: state.user.name,
+              profilePhoto: action.payload,
+              iat: state.user.iat,
+              exp: state.user.exp
+      }}
+      // return {
+      //   ...state,
+      //   user: action.payload
+      // };
     }
   }
 });
@@ -102,7 +117,8 @@ export const login = (payload, navigate) => {
 export const {
   loginSuccess,
   loginFailure,
-  logout
+  logout,
+  loginUpdatePhoto
 } = authSlice.actions;
 
 export default authSlice.reducer;
