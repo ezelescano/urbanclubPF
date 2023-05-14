@@ -64,7 +64,6 @@ const Profile = () => {
     events,
     followings,
   } = usuario;
-
   const ocupationArray = ocupation && ocupation.length && ocupation.split(",");
 
   const { id } = useParams();
@@ -81,10 +80,12 @@ const Profile = () => {
       }
     };
     getFollowers();
-    return async () => {
+    return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
       setFollowers([])
+      setShowFollowings(false)
+      setShowFollowers(false)
     };
   }, [id]);
 
@@ -285,10 +286,12 @@ const Profile = () => {
 
   const handleOnClickFollowers = () => {
     setShowFollowers(!showFollowers)
+    setShowFollowings(false)
   }
 
   const handleOnClickFollowings = () => {
     setShowFollowings(!showFollowings)
+    setShowFollowers(false)
   }
 
   return (
