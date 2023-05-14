@@ -10,6 +10,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Maps from "../../Maps/Maps";
 import axios from "axios";
 import swal from "sweetalert";
+import Comments from "../../Comments/Comments";
 
 function DetailsEvents() {
   const dispatch = useDispatch();
@@ -34,6 +35,8 @@ function DetailsEvents() {
     };
     getEvent();
   }, [dispatch, id]);
+  console.log(event);
+  console.log(islogin);
 
   const ubicationHandler = () => {
     if (
@@ -113,13 +116,18 @@ function DetailsEvents() {
       if (cantidad > 0) {
         const restCant = cantidad - entradas;
         setCantidad(restCant);
-        let stockObjeto = { stock: restCant, id_Artist: islogin.user.id };
+        let stockObjeto = {
+          stock: restCant,
+          id_Artist: islogin.user.id,
+          totalPayment: entradas * event.price,
+        };
         setEntradas(1);
         console.log("cantidad", stockObjeto.stock);
 
         const eventd = await axios.put(
           `http://localhost:3001/events/buyTicket/${detailEvent.id}`,
           // `https://pruebaback-production-0050.up.railway.app/events/buyTicket/${detailEvent.id}`,
+
 
           stockObjeto
         );
@@ -222,6 +230,9 @@ function DetailsEvents() {
                     Compralo desde Teatro Gran Rex <StoreMallDirectoryIcon />
                   </button>
                 </a>
+              </div>
+              <div className={style.comments}>
+                {<Comments event={detailEvent} />}
               </div>
               <br></br>
             </div>
