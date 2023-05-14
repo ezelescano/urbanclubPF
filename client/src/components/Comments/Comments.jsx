@@ -8,7 +8,6 @@ const Comments = (event) => {
   const [comment, setComment] = useState("");
   const [comentarios, setComentarios] = useState([]);
   const [rating, setRating] = useState(0);
-  console.log(currentUser);
 
   useEffect(() => {
     const getComments = async () => {
