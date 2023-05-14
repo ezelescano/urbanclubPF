@@ -4,7 +4,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
 import GoogleButton from "../GoogleButton/googleButton";
-
+import swal from "sweetalert";
+import { EM_CORREO_INV,EM_PASS_INV, BTX_ACEPTAR, TLE_WARNING, ICO_WARN, ICO_ERROR, TLE_ERROR } from "../../utils/messages";
+// mostrar error onblur como texto en div, luego mostrar error al intentar registrarse
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -12,6 +14,39 @@ function Login() {
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  function validate(input) {
+    const errors = {};
+    // setErrors({email: "",
+    //           password: "",});
+    if (!input.email?.trim() || !validarCorreo(input.email)) {
+      // setErrors({...errors, email : EM_CORREO_INV});
+      errors.email = EM_CORREO_INV;
+      // swal(errors.email);
+    }
+    if (!input.password?.trim()) {
+      // setErrors({...errors, password: EM_PASS_INV});
+      errors.password = EM_PASS_INV;
+      // swal(errors.password);
+    }
+    setErrors(errors)
+    return !!Object.keys(errors).length;
+  }
+
+  function validateOnBlur(e) {
+    switch(e.target.name){
+      case "email": setErrors({email: (!input.email?.trim() || !validarCorreo(input.email))?EM_CORREO_INV:"" });
+        break;
+      case "password": setErrors({password: !input.password?.trim()?EM_PASS_INV:"" });
+        break;
+      default: validate(input);
+        break;
+    }
+  }
 
   const handleClick = async () => {  
     // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google";
@@ -23,13 +58,45 @@ function Login() {
     );
   };
 
+  const validarCorreo = (str) =>{
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(str.trim())
+  }
+
+  const handleOnChange = (e) =>{
+  setInput({
+    ...input,
+    [e.target.name]: e.target.value,
+     })
+  }
+
+  const handleOnBlur = (e) => {
+    validateOnBlur(e);
+    // setErrors(
+    //   validate({
+    //     ...input,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(login(input, navigate));
-    setInput({
-      email: "",
-      password: "",
-    });
+    if(validate(input)){
+        swal({
+        title: TLE_ERROR,
+        text: "",
+        icon: ICO_ERROR,
+        buttons: BTX_ACEPTAR
+      })
+    }
+    else{
+      dispatch(login(input, navigate));
+      setInput({
+        email: "",
+        password: "",
+      });
+    }
   };
   //navigate("/artist");
   //Esto es para debuggear, No dejar en produccion #####porfavor#####.
@@ -53,13 +120,12 @@ function Login() {
             <label>
               <div>Correo:</div>
               <input
-                type="email"
+                type="text"
+                name="email"
                 maxLength={45}
-                required
                 value={input.email}
-                onChange={(event) =>
-                  setInput({ ...input, email: event.target.value })
-                }
+                onBlur={handleOnBlur}
+                onChange={handleOnChange}
               />
             </label>
             <label>
@@ -67,11 +133,10 @@ function Login() {
               <input
                 type="password"
                 maxLength={45}
-                required
+                name="password"
                 value={input.password}
-                onChange={(event) =>
-                  setInput({ ...input, password: event.target.value })
-                }
+                onBlur={handleOnBlur}
+                onChange={handleOnChange}
               />
             </label>
           </div>
@@ -89,8 +154,15 @@ function Login() {
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
             <GoogleButton></GoogleButton>
+            
           </div>
         </form>
+        <div className={styles.formContainerMiddle} style={{ color: "red" }}>
+                {Object.keys(errors).map((e) => { 
+                    return (<>{errors[e]} <br/> </>)
+                  })
+                  }
+        </div>
       </div>
     </div>
   );
