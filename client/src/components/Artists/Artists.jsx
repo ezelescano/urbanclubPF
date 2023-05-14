@@ -33,10 +33,10 @@ const Artists = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
+  // Paginado
   const currentPage = useSelector(state => state.artist.pag)
-  
   const [artistsPerPage, setArtistsPerPage] = useState(1) // eslint-disable-line
-  const indexOfLastArtists = currentPage * artistsPerPage; //10
+  const indexOfLastArtists = currentPage * artistsPerPage; //1
   const indexOfFirstArtists = indexOfLastArtists - artistsPerPage;
   const currentArtists = artistas.slice(indexOfFirstArtists, indexOfLastArtists);
   const dispatch = useDispatch();
