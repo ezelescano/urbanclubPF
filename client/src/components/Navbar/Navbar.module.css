@@ -9,6 +9,7 @@
   font-weight: 600;
   padding-block: 15px;
   transition: 0.4s ease;
+  min-height: 80px;
 }
 
 .scrolled {
