@@ -1,8 +1,8 @@
 .container {
   position: relative;
-  margin: 25px 100px;
-  padding-top:110px;
-    background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+  padding: 25px 100px;
+  padding-top: 110px;
+  background: linear-gradient(0deg, #38cafb17 0%, #09548e 100%);
 }
 .NoAhora {
   display: none;
@@ -17,7 +17,7 @@
   background-color: #0d5a73;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 4px 8px 6px 0 #adabab;
+  box-shadow: 1px 2px 3px 0 #f5f4f4;
 }
 
 .rating-g {
@@ -112,6 +112,13 @@
 }
 .profileNombre {
   display: flex;
+  align-items: center;
+  font-size: 30px;
+}
+.profileNombre svg {
+  color: rgb(13, 171, 233);
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+  margin-inline: 15px;
 }
 .nombre span {
   margin-right: auto;
@@ -135,10 +142,15 @@
   padding: 15px 30px;
   border-radius: 15px;
   margin-left: 40px;
+  cursor: pointer;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+  transition: 0.4s ease;
+}
+.btn-profile:hover {
+  transform: scale(1.2);
 }
 
 .btn-ajustes {
@@ -193,10 +205,25 @@
 }
 
 .container-links {
-  margin: auto;
   display: flex;
   justify-content: left;
   align-items: center;
+}
+.container-links a,
+.container-links svg {
+  font-size: 40px;
+  text-decoration: none;
+}
+.youtube {
+  color: red;
+  margin-right: 0px;
+}
+.youtube svg {
+  margin-right: 30px;
+}
+.twitter {
+  color: #1389e3;
+  margin-right: 0px;
 }
 
 .redes-div h4 {
@@ -310,7 +337,7 @@
   .stas-profile {
     display: flex;
     align-items: center;
-    margin: 12px 0;
+    margin: 5px 0;
     flex-wrap: wrap;
   }
   .nombre {
@@ -369,7 +396,7 @@
     font-size: 40px;
   }
   .container {
-    margin-top:80px;
+    margin-top: 80px;
     margin-inline: 20px;
   }
 }

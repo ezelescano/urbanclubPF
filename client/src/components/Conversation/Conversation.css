@@ -7,7 +7,8 @@
 }
 
 .conversation:hover {
-  background-color: rgb(245, 243, 243);
+  background: linear-gradient(180deg, #0d5a7337 0%, #09548e39 100%);
+  border-radius: 15px;
 }
 
 .conversationImg {
@@ -22,7 +23,7 @@
   font-weight: 500;
 }
 
-.conversationBtn{
+.conversationBtn {
   display: flex;
   background: none;
   border: none;
@@ -45,13 +46,12 @@
   -o-transition: 2s;
 }
 
-.conversation:hover .conversationBtn{
+.conversation:hover .conversationBtn {
   background-color: #d17272;
   opacity: 100%;
-  
 }
 
-.conversationBtn svg{
+.conversationBtn svg {
   width: 18px;
   height: 18px;
 }

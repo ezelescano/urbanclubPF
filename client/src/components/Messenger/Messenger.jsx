@@ -135,6 +135,7 @@ useEffect(() => {
     <div className="messenger">
       <div className="chatMenu">
         <div className="chatMenuWrapper">
+          Conversaciones Activas
           {/* <input placeholder="Buscar amigos..." className="chatMenuInput"/> */}
           {Array.isArray(conversations) &&
             conversations.map((c) => (
@@ -148,7 +149,7 @@ useEffect(() => {
         <div className="chatBoxWrapper">
           {currentChat ? (
             <>
-              <DetailBar conversation={currentChat} currentUser={user}/>
+              <DetailBar conversation={currentChat} currentUser={user} />
               <div className="chatBoxTop">
                 {Array.isArray(messages) &&
                   messages.map((m) => (
@@ -201,6 +202,7 @@ useEffect(() => {
       </div>
       <div className="chatOnline">
         <div className="chatOnlineWrapper">
+          Personas Activas
           <Chats
             onlineUser={onlineUser}
             currentId={user.id}
