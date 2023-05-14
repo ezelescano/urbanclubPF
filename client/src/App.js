@@ -69,6 +69,9 @@ function App() {
   },[user])
  */
   //No modifiquen cosas que estan bien solo buscando un error de ustedes plsssssssssssssssssssssssssss, Gracias :))
+  const isMessengerOrProfileRoute = window.location.pathname.includes("/messenger") ||
+    window.location.pathname.includes("/profile/") || window.location.pathname.includes("/admin");
+
   return (
     <div>
       <Navbar />
@@ -133,7 +136,7 @@ function App() {
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      {window.location.pathname !== "/messenger" && <Footer />}
+      {!isMessengerOrProfileRoute && <Footer />}
     </div>
   );
 }

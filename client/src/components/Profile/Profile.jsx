@@ -25,6 +25,10 @@ import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import axios from "axios";
 import FollowList from "../FollowList/FollowList";
+import VerifiedIcon from '@mui/icons-material/Verified';
+import SettingsIcon from '@mui/icons-material/Settings';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -80,10 +84,12 @@ const Profile = () => {
       }
     };
     getFollowers();
-    return async () => {
+    return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
       setFollowers([])
+      setShowFollowings(false)
+      setShowFollowers(false)
     };
   }, [id]);
 
@@ -284,10 +290,12 @@ const Profile = () => {
 
   const handleOnClickFollowers = () => {
     setShowFollowers(!showFollowers)
+    setShowFollowings(false)
   }
 
   const handleOnClickFollowings = () => {
     setShowFollowings(!showFollowings)
+    setShowFollowers(false)
   }
 
   return (
@@ -321,11 +329,7 @@ const Profile = () => {
                         {name}
                         {/*  {lastname} */}
                         {verified && (
-                          <img
-                            className="verificado"
-                            src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
-                            alt="verificado paa"
-                          />
+                          <VerifiedIcon/>
                         )}
                       </h1>
                     </span>
@@ -389,11 +393,7 @@ const Profile = () => {
                               target="_blank"
                               rel="noreferrer noopener"
                             >
-                              <img
-                                className="icon"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
-                                alt="ds"
-                              />
+                              <YouTubeIcon/>
                             </a>
                           )}
 
@@ -403,11 +403,7 @@ const Profile = () => {
                               target="_blank"
                               rel="noreferrer noopener"
                             >
-                              <img
-                                className="icon"
-                                src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
-                                alt="ds"
-                              />
+                              <TwitterIcon/>
                             </a>
                           )}
                         </div>
@@ -424,11 +420,7 @@ const Profile = () => {
               {isCurrentUser ? (
                 <div className="settings-div" >
                   <button className="btn-ajustes" onClick={handleSettings}>
-                    <img
-                      className="ajustes"
-                      src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
-                      alt="ajuste"
-                    />
+                    <SettingsIcon/>
                   </button>
                   {(showSettings || showEdit || showEditPassword) &&
                     showComponents && (
