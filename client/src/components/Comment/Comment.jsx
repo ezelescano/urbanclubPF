@@ -5,7 +5,6 @@ import StarRating from "../StarRating/StarRating";
 
 const Comment = (props) => {
   const { c } = props;
-  console.log(c);
   const [user, setUser] = useState([]);
 
   useEffect(() => {
