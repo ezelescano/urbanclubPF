@@ -1,15 +1,26 @@
 .container {
-  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
   top: 1px;
+  padding-top: 105px;
+  color: #040b20;
+  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
+  padding-bottom: 20px;
   min-height: 101vh;
-  padding-top: 100px;
+  animation: rotateColors 25s ease infinite;
+}
+.containerHelp {
+  justify-self: center;
+  margin-inline: 20px;
+  background: rgba(255, 255, 255, 0.54);
+  border-radius: 2rem;
+  gap: 16px;
+  grid-template-columns: 11rem auto 20rem;
+  overflow: hidden;
+  padding-block: 20px;
+}
+.card {
+  min-height: 300px;
 }
 .container div:first-child {
-
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -21,7 +32,18 @@
   }
   .container div:first-child {
     margin-top: 30px;
-}
+  }
 }
 /*ARREGLADO, PERO NO USAR SIN ITEMS O CARDS*/
 /*Limpiar fondo luego*/
+@keyframes rotateColors {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

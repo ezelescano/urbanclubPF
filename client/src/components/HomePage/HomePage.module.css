@@ -54,6 +54,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  background: none;
+  min-height: unset;
 }
 /*CAMBIAR SI O SI A FUNCION QUÉ SOLO TRAE 9 CARDS, PORQUE ACA SOLO LAS OCULTAMOS.*/
 .eventsCardsContainer div:nth-child(n + 10) {
