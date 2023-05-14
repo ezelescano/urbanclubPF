@@ -50,6 +50,12 @@
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
+  transition: 0.4s ease;
+}
+.foto-ocupacion:hover {
+  transform: scale(1.1);
+  transition: 0.4s ease;
+  cursor:pointer
 }
 .foto-ocupacion img {
   object-fit: cover;
@@ -217,6 +223,11 @@
 .youtube {
   color: red;
   margin-right: 0px;
+  transition: 0.4s;
+}
+.youtube:hover {
+  transform: scale(1.25);
+  transition: 0.4s;
 }
 .youtube svg {
   margin-right: 30px;
@@ -224,8 +235,12 @@
 .twitter {
   color: #1389e3;
   margin-right: 0px;
+  transition: 0.4s;
 }
-
+.twitter:hover {
+  transform: scale(1.25);
+  transition: 0.4s;
+}
 .redes-div h4 {
   margin: 0;
   margin-bottom: 15px;

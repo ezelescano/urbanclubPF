@@ -1,11 +1,12 @@
 .createEvent {
-  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
   padding-top: 110px;
   /* height: 130vh; */
+  background: linear-gradient(
+    10.37deg,
+    #bceeff 29.63%,
+    #095c8c 51.55%,
+    #0d5a73 90.85%
+  );
   width: 100vw;
   display: flex;
   flex-direction: column;
