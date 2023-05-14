@@ -29,6 +29,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmptyCard from "../Cards/CardsEvents/EmptyCard";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -86,9 +87,9 @@ const Profile = () => {
     return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
-      setFollowers([])
-      setShowFollowings(false)
-      setShowFollowers(false)
+      setFollowers([]);
+      setShowFollowings(false);
+      setShowFollowers(false);
     };
   }, [id]);
 
@@ -296,14 +297,14 @@ const Profile = () => {
   };
 
   const handleOnClickFollowers = () => {
-    setShowFollowers(!showFollowers)
-    setShowFollowings(false)
-  }
+    setShowFollowers(!showFollowers);
+    setShowFollowings(false);
+  };
 
   const handleOnClickFollowings = () => {
-    setShowFollowings(!showFollowings)
-    setShowFollowers(false)
-  }
+    setShowFollowings(!showFollowings);
+    setShowFollowers(false);
+  };
 
   return (
     <>
@@ -335,9 +336,7 @@ const Profile = () => {
                       <h1 className="profileNombre">
                         {name}
                         {/*  {lastname} */}
-                        {verified && (
-                          <VerifiedIcon/>
-                        )}
+                        {verified && <VerifiedIcon />}
                       </h1>
                     </span>
                     {!isCurrentUser && (
@@ -411,7 +410,7 @@ const Profile = () => {
                               rel="noreferrer noopener"
                               className="youtube"
                             >
-                              <YouTubeIcon/>
+                              <YouTubeIcon />
                             </a>
                           )}
 
@@ -422,7 +421,7 @@ const Profile = () => {
                               rel="noreferrer noopener"
                               className="twitter"
                             >
-                              <TwitterIcon/>
+                              <TwitterIcon />
                             </a>
                           )}
                         </div>
@@ -439,7 +438,7 @@ const Profile = () => {
               {isCurrentUser ? (
                 <div className="settings-div">
                   <button className="btn-ajustes" onClick={handleSettings}>
-                    <SettingsIcon/>
+                    <SettingsIcon />
                   </button>
                   {(showSettings || showEdit || showEditPassword) &&
                     showComponents && (
@@ -474,15 +473,17 @@ const Profile = () => {
             </div>
             <div className="div-eventos-profile">
               {events && events.length > 0 ? (
-                events.map((event, index) => (
-                  <CardsEvents
-                    key={index}
-                    id_art={event.id_Artist}
-                    name_art={event.name}
-                    event={event}
-                    handleDeleteEvent={handleDeleteEvent}
-                  />
-                ))
+                <div className="div-eventos-profile">
+                  {events.map((event, index) => (
+                    <CardsEvents
+                      key={index}
+                      id_art={event.id_Artist}
+                      name_art={event.name}
+                      event={event}
+                      handleDeleteEvent={handleDeleteEvent}
+                    />
+                  ))}
+                </div>
               ) : (
                 <EmptyCard />
               )}

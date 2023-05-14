@@ -106,6 +106,9 @@
   padding: 10px;
   height: 90%;
 }
+.chatOnlineWrapper {
+  overflow-y: scroll;
+}
 
 .detailBar {
   padding: 0px 0px 10px 0px;
