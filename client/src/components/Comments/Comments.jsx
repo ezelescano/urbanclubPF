@@ -42,19 +42,13 @@ const Comments = (event) => {
     setComment("");
     setRating(0);
   };
-
+  
   return (
     <>
       <div>
         {comentarios ? (
           comentarios?.map((c) => {
-            return (
-              <Comment
-                key={c.id}
-                c={c}
-                // userProfilePhoto={currentUser.user.profilePhoto}
-              />
-            );
+            return <Comment key={c.id} c={c} />;
           })
         ) : (
           <div></div>
