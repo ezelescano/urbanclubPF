@@ -4,11 +4,17 @@
   padding: 10px;
   cursor: pointer;
   margin-top: 20px;
+  justify-content: space-between;
 }
 
 .conversation:hover {
   background: linear-gradient(180deg, #0d5a7337 0%, #09548e39 100%);
   border-radius: 15px;
+}
+
+.conversationleft{
+  display: flex;
+  align-items: center;
 }
 
 .conversationImg {
@@ -21,6 +27,9 @@
 
 .conversationName {
   font-weight: 500;
+  transition: 0.5s ease;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.251));
 }
 
 .conversationBtn {
@@ -47,7 +56,6 @@
 }
 
 .conversation:hover .conversationBtn {
-  background-color: #d17272;
   opacity: 100%;
 }
 

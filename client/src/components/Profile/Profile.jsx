@@ -1,6 +1,6 @@
 import "./profile.css";
 import React, { useRef } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -97,12 +97,8 @@ const Profile = () => {
     const getUser = async () => {
       try {
         const res = await axios.get("/artist/login/me");
-        console.log(res.data.followings);
-        setFollowed(
-          res.data.followings.some(
-            (follow) => follow.following_Id === usuario?.id
-          )
-        );
+        //console.log(res.data.followings)
+        setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
       } catch (error) {
         console.log(error);
       }
@@ -145,10 +141,7 @@ const Profile = () => {
   };
 
   const handleDeleteAccount = () => {
-    // const confirmed = window.confirm(
-    //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
-    // );
-
+   
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
