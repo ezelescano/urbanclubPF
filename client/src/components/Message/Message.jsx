@@ -25,7 +25,7 @@ function Message({ message, own, userPhoto }) {
       <div className='messageTop'>
         {own ? 
         <>
-        <p className='messageText'>{message.text}</p>
+        <p className='messageText1'>{message.text}</p>
         <img className='messageImg' src={photo} alt='imagen de perfil'/>
         </>
         :<>
