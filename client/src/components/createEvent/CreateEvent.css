@@ -1,5 +1,5 @@
 .createEvent {
-  padding-top: 110px;
+  padding-block: 110px;
   /* height: 130vh; */
   background: linear-gradient(
     10.37deg,
@@ -70,20 +70,17 @@
   background-color: rgb(230, 230, 230);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
-  padding-bottom: 5vh;
   max-width: 400px;
   /* height: 105%; */
 }
 
 .createEventRight h2 {
-  margin-left: 100px;
   margin-block: 10px;
 }
 
 .formInputs {
   display: flex;
   flex-direction: column;
-  width: 450px;
   max-width: 450px;
   margin-inline: 10px;
   padding-inline: 20px;
@@ -131,6 +128,7 @@
 .submitButton {
   display: flex;
   cursor: pointer;
+  padding: 20px;
 }
 .submitButton button {
   padding: 10px;
