@@ -121,6 +121,26 @@ const CreateEvent = () => {
   const handleClick = () => {
     fileInputRef.current.click();
   };
+  const isEmptyForm = () => {
+    // Verificar si todos los campos requeridos están vacíos
+    const requiredFields = [
+      "name",
+      "date",
+      "Description",
+      "nameArena",
+      "location",
+      "city",
+      "Country",
+      "stock",
+      "price",
+    ];
+    for (const field of requiredFields) {
+      if (!input[field]) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -218,27 +238,36 @@ const CreateEvent = () => {
               <div className="formInputs">
                 {progress === 100 ? (
                   <p>
-                    <progress value={progress} max="100"></progress>Completado!
-                    :D
+                    <div className="progressBar completed">
+                      <progress value={progress} max="100"></progress>
+                    </div>
+                    Completado! :D
                   </p> // Mensaje de completado
                 ) : (
-                  <progress value={progress} max="100"></progress> // Barra de progreso
+                  <progress
+                    className="progressBar"
+                    value={progress}
+                    max="100"
+                  ></progress> // Barra de progreso
                 )}
-                <button
-                  type="button" // Cambiado a tipo "button"
-                  onClick={handlePreviousStep}
-                  disabled={currentStep === 1}
-                  style={{ marginRight: "10px" }}
-                >
-                  Anterior
-                </button>
-                <button
-                  type="button" // Cambiado a tipo "button"
-                  onClick={handleNextStep}
-                  disabled={currentStep === 3}
-                >
-                  Siguiente
-                </button>
+
+                <div className="formArrowButtons">
+                  <button
+                    type="button" // Cambiado a tipo "button"
+                    onClick={handlePreviousStep}
+                    disabled={currentStep === 1}
+                    style={{ marginRight: "10px" }}
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    type="button" // Cambiado a tipo "button"
+                    onClick={handleNextStep}
+                    disabled={currentStep === 3}
+                  >
+                    Siguiente
+                  </button>
+                </div>
                 <section
                   name="step1"
                   style={{
@@ -413,7 +442,16 @@ const CreateEvent = () => {
                   </div>
                 )}
               </div>
-              {!isLoading && (
+              {isLoading && (
+                <div className="loadingGif">
+                  <img
+                    className="loading"
+                    src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
+                    alt=""
+                  ></img>
+                </div>
+              )}
+              {!isLoading && !isEmptyForm() && progress === 100 && (
                 <div className="submitButton">
                   <button className="submitButton" type="submit">
                     Crear el evento

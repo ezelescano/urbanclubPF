@@ -164,6 +164,35 @@
 .fade-in {
   animation: fadeIn 1s ease-in-out;
 }
+.formArrowButtons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.progressBar {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(
+    10.37deg,
+    #bceeff 29.63%,
+    #095c8c 51.55%,
+    #0d5a73 90.85%
+  );
+}
+
+.progressBar.completed progress {
+  background: linear-gradient(
+    10.37deg,
+    #bceeff 29.63%,
+    #095c8c 51.55%,
+    #0d5a73 90.85%
+  );
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
