@@ -178,9 +178,9 @@ const Profile = () => {
       text: `Artista  ${input.name} actualizado con exito`,
       icon: "success",
       buttons: "Aceptar",
-    }).then(res=>{
-      if(res) window.location.reload()
-    })
+    }).then((res) => {
+      if (res) window.location.reload();
+    });
     setShowEdit(false);
     setShowSettings(false);
   };
@@ -361,11 +361,21 @@ const Profile = () => {
               <div className="stas-profile">
                 <div className="btn-div">
                   <button className="btn-stas" onClick={scrollToEventos}>
-                    {events?.length + " "} Eventos{" "}
+                    <div className="btn-stas-text">
+                      <div className="btn-stas-number">
+                        {events?.length + " "}
+                      </div>{" "}
+                      Eventos
+                    </div>{" "}
                     {/*  //! muestra total de eventos del artista */}
                   </button>
                   <button className="btn-stas" onClick={handleOnClickFollowers}>
-                    {followers?.length + " "} Seguidores
+                    <div className="btn-stas-text">
+                      <div className="btn-stas-number">
+                        {followers?.length + " "}{" "}
+                      </div>
+                      Seguidores
+                    </div>
                   </button>
                   {showFollowers && (
                     <FollowList
@@ -380,7 +390,12 @@ const Profile = () => {
                     className="btn-stas"
                     onClick={handleOnClickFollowings}
                   >
-                    {followings?.length + " "} Seguidos
+                    <div className="btn-stas-text">
+                      <div className="btn-stas-number">
+                        {followings?.length + " "}
+                      </div>
+                      Seguidos
+                    </div>
                   </button>
                   {showFollowings && (
                     <FollowList

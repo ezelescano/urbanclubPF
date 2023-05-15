@@ -24,18 +24,22 @@
 }
 
 .uploadSubmitButton {
-  background-color: white;
-  border: 2px solid black;
-  box-shadow: 2px 2px 2px black;
-  color: black;
+  cursor: pointer;
+  background-color: black;
+  box-shadow: 0px 2px 2px 2px black;
+  color: white;
+  border: none;
   padding: 10px;
   border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+  transition: all 0.45s ease;
 }
-
+.uploadSubmitButton:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(180deg, #0d5a73 25%, #025494 100%);
+  color: #fafafa;
+  transition: all 0.45s ease;
+}
 .formularioExternoLogin {
   background-image: url(https://res.cloudinary.com/dipn8zmq3/image/upload/v1682455230/UrbanClub/image_lsaixn.png);
   background-size: cover;
@@ -50,7 +54,7 @@
 }
 
 .formContainer {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.859);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -60,17 +64,32 @@
   max-width: 120%;
   max-height: 800px;
   margin: auto;
+  border-radius: 15px;
+  transition: 1s ease 5s;
+}
+.formContainer:hover {
+  transform: scale(1.15);
+  transition: 1s ease;
 }
 
 .formLoginTitle {
   max-width: 150px;
   font-size: 30px;
+  transition: 0.4s ease;
 }
 
 .formLoginSubtitle {
   font-size: 35px;
+  transition: 0.4s ease;
 }
-
+.formLoginSubtitle:hover {
+  transform: scale(1.15);
+  transition: 0.4s ease;
+}
+.formLoginTitle:hover {
+  transform: scale(1.1);
+  transition: 0.4s ease;
+}
 .formContainer > * {
   padding: 5px;
   padding-inline: 40px;
@@ -100,13 +119,61 @@
   align-items: center;
   order: 3;
 }
-
 .formContainer label {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
 }
-
+.formContainer input {
+  padding: 10px;
+  margin-block: 10px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.45s ease;
+}
+.formContainer input:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background-color: #222222;
+  color: #e6e6e6;
+  transition: all 0.45s ease;
+}
+.formContainerRight a {
+  text-decoration: none;
+  background: black;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.45s ease;
+}
+.formContainerRight a:hover {
+  transform: scale(1.2);
+  background: linear-gradient(180deg, #0e98a5 50%, #066fbf 70%, #025494 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  transition: all 0.45s ease;
+}
+.googleContainer button:first-child {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.45s ease;
+  color: rgb(18, 18, 18);
+  cursor: pointer;
+}
+.googleContainer button:first-child:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
+  transition: all 0.45s ease;
+  color: white;
+}
+.googleContainer button:first-child svg {
+  color: #066fbf;
+  transition: all 0.45s ease;
+}
+.googleContainer button:first-child:hover svg {
+     color: #3da8fa;
+}
 @media screen and (max-width: 970px) {
   .formularioExternoLogin {
     margin-top: 55px;
