@@ -29,8 +29,10 @@ const handleOnClick = () => {
 
   return (
     <div className='detailBar' onClick={handleOnClick}>
+      <div className='detailBarUser'>
       <img className='detailBarImg' src={user?.profilePhoto} alt='imagen de perfil'/>
       <span className='detailBarName'>{user?.name}</span>
+      </div>
     </div>
   )
 }

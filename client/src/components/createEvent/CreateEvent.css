@@ -1,19 +1,21 @@
 .createEvent {
-  background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  padding-top: 110px;
+  padding-block: 110px;
   /* height: 130vh; */
-  width: 100vw;
+  background: linear-gradient(
+    10.37deg,
+    #bceeff 29.63%,
+    #095c8c 51.55%,
+    #0d5a73 90.85%
+  );
+  width: 99vw;
+  min-height: 72vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .createEventContainer {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.54);
   color: rgb(0, 0, 0);
   display: flex;
   justify-content: space-around;
@@ -38,14 +40,16 @@
   padding: 10px 20px;
   text-transform: uppercase;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
   border-radius: 15px;
+  cursor: pointer;
 }
 
 .uploadPictureButton:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   background-color: #222222;
   color: #e6e6e6;
+  transform: scale(1.05);
 }
 
 .createEventLeft img {
@@ -69,21 +73,36 @@
   background-color: rgb(230, 230, 230);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
-  padding-bottom: 5vh;
   max-width: 400px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   /* height: 105%; */
 }
 
 .createEventRight h2 {
-  margin-left: 100px;
+  color: white;
   margin-block: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  transition: 0.4s ease;
+  filter: drop-shadow(0 2px 4px rgb(0, 0, 0));
+}
+.createEventRight h2 svg {
+  font-size: 30px;
+}
+.createEventRight h2:hover {
+  transform: scale(1.02);
 }
 
 .formInputs {
+  color: #323232;
+  font-size: 20px;
+  font-weight: 500;
   display: flex;
   flex-direction: column;
-  width: 450px;
   max-width: 450px;
+  min-height: 500px;
+  max-height: 520px;
   margin-inline: 10px;
   padding-inline: 20px;
 }
@@ -97,6 +116,12 @@
 }
 .inputContainer input:focus {
   outline: none;
+}
+.inputContainer {
+  transition: 0.4s ease;
+}
+.inputContainer:hover {
+  transform: scale(1.02);
 }
 .inputContainer textarea {
   height: 55px;
@@ -130,6 +155,7 @@
 .submitButton {
   display: flex;
   cursor: pointer;
+  padding: 20px;
 }
 .submitButton button {
   padding: 10px;
@@ -150,23 +176,122 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 4em;
+  margin: 10px;
+  transition: 1s ease;
+  animation: bounce 1s ease infinite;
 }
 .loadingGif img.loading {
-  background-color: #0d5a73;
   border-radius: 2em;
-  width: 4em;
-  height: 4em;
   display: block;
-  animation: spin 2s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+.formArrowButtons {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.progressContainer {
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid rgb(208, 208, 208);
+  background-color: white;
+  margin-block: 20px;
+  transition: 1s ease;
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+  transition: width 0.5s ease-in-out;
+  transition: 1s ease;
+}
+
+.completed {
+  transform: scale(1.05);
+  transition: 1s ease;
+  background: linear-gradient(180deg, #0d5a73 0%, #025494 100%);
+}
+
+.progressText {
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  transition: 1s ease;
+}
+.stepsButtons {
+  border-radius: 15px;
+  outline: none;
+  border: 2px solid rgb(208, 208, 208);
+  padding: 5px;
+  margin-block: 5px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  color: rgb(80, 80, 80);
+}
+.stepsButtons:nth-child(1) {
+  background-color: rgba(0, 0, 0, 0.082);
+}
+.stepsButtons:nth-child(2) {
+  background-color: rgba(4, 4, 4, 0.082);
+}
+.stepsButtons:hover {
+  transform: scale(1.1);
+  background-color: rgba(234, 234, 234, 0.082);
+}
+.smooth-transition {
+  transition: all 0.3s ease;
+}
+
+.formInputs section {
+  position: relative;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.formInputs section.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.hide {
+  display: none;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes spin {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.05);
   }
 }
