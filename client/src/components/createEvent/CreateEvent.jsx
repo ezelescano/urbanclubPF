@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { postEvent } from "../../redux/eventSlice";
 import swal from "sweetalert";
 import loading from "../../img/loading.gif";
-
+import DrawIcon from "@mui/icons-material/Draw";
 import "./CreateEvent.css";
 
 const CreateEvent = () => {
@@ -177,7 +177,6 @@ const CreateEvent = () => {
   const handlePreviousStep = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
-  
 
   return (
     <div className="createEvent">
@@ -243,7 +242,7 @@ const CreateEvent = () => {
                       className="progressBar completed"
                       style={{ width: `${progress}%` }}
                     >
-                      <div className="progressText">Completado! :D</div>
+                      <div className="progressText">Todo listo!</div>
                     </div>
                   </div>
                 ) : (
@@ -254,34 +253,14 @@ const CreateEvent = () => {
                     ></div>
                   </div>
                 )}
-
-                <div className="formArrowButtons">
-                  <button
-                    type="button" // Cambiado a tipo "button"
-                    onClick={handlePreviousStep}
-                    className="stepsButtons"
-                    disabled={currentStep === 1}
-                    style={{ marginRight: "10px" }}
-                  >
-                    Anterior
-                  </button>
-                  <button
-                    type="button" // Cambiado a tipo "button"
-                    onClick={handleNextStep}
-                    className="stepsButtons"
-                    disabled={currentStep === 3}
-                  >
-                    Siguiente
-                  </button>
-                </div>
                 <section
                   name="step1"
                   className={currentStep === 1 ? "show" : "hide"}
-                  style={{
-                    backgroundColor: "#fb282833",
-                  }}
                 >
-                  <h2>1# Describe tu evento</h2>
+                  <h2 className="createEventRightTitle">
+                    <DrawIcon />
+                    Describe tu evento
+                  </h2>
                   <div className="inputContainer">
                     <label htmlFor="name">Nombre del evento:</label>
                     <br />
@@ -331,11 +310,8 @@ const CreateEvent = () => {
                 <section
                   name="step2"
                   className={currentStep === 2 ? "show" : "hide"}
-                  style={{
-                    backgroundColor: "#0000ff36",
-                  }}
                 >
-                  <h2>2# Ubícalo en el mapa</h2>
+                  <h2 className="createEventRightTitle">Ubícalo en el mapa</h2>
                   <div className="inputContainer">
                     <label htmlFor="nameArena">Nombre del lugar:</label>
                     <br />
@@ -395,11 +371,8 @@ const CreateEvent = () => {
                 <section
                   name="step3"
                   className={currentStep === 3 ? "show" : "hide"}
-                  style={{
-                    backgroundColor: "#ffff003d",
-                  }}
                 >
-                  <h2>3# Dale un valor</h2>
+                  <h2 className="createEventRightTitle">Dale un valor</h2>
                   <div className="inputContainer">
                     <label htmlFor="stock">Cantidad boletos: </label>
                     <br />
@@ -437,26 +410,36 @@ const CreateEvent = () => {
                     </label>
                   </div>
                 </section>
+                <div className="formArrowButtons">
+                  <button
+                    type="button" // Cambiado a tipo "button"
+                    onClick={handlePreviousStep}
+                    className="stepsButtons"
+                    disabled={currentStep === 1}
+                    style={{ marginRight: "10px" }}
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    type="button" // Cambiado a tipo "button"
+                    onClick={handleNextStep}
+                    className="stepsButtons"
+                    disabled={currentStep === 3}
+                  >
+                    Siguiente
+                  </button>
+                </div>
                 <br />
                 {isLoading && (
                   <div className="loadingGif">
                     <img
                       className="loading"
-                      src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
+                      src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1684119388/Untitled_mjallz.png"
                       alt=""
                     ></img>
                   </div>
                 )}
               </div>
-              {isLoading && (
-                <div className="loadingGif">
-                  <img
-                    className="loading"
-                    src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
-                    alt=""
-                  ></img>
-                </div>
-              )}
               {!isLoading && !isEmptyForm() && progress === 100 && (
                 <div className="submitButton">
                   <button className="submitButton" type="submit">

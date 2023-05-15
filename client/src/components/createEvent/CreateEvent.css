@@ -72,17 +72,34 @@
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.803);
   max-width: 400px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   /* height: 105%; */
 }
 
 .createEventRight h2 {
+  color: white;
   margin-block: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  transition: 0.4s ease;
+  filter: drop-shadow(0 2px 4px rgb(0, 0, 0));
+}
+.createEventRight h2 svg {
+  font-size: 30px;
+}
+.createEventRight h2:hover {
+  transform: scale(1.02);
 }
 
 .formInputs {
+  color: #323232;
+  font-size: 20px;
+  font-weight: 500;
   display: flex;
   flex-direction: column;
   max-width: 450px;
+  min-height: 470px;
   margin-inline: 10px;
   padding-inline: 20px;
 }
@@ -96,6 +113,12 @@
 }
 .inputContainer input:focus {
   outline: none;
+}
+.inputContainer {
+  transition: 0.4s ease;
+}
+.inputContainer:hover {
+  transform: scale(1.02);
 }
 .inputContainer textarea {
   height: 55px;
@@ -150,22 +173,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 4em;
+  margin: 10px;
+  transition: 1s ease;
+  animation: bounce 1s ease infinite;
 }
 .loadingGif img.loading {
-  background-color: #0d5a73;
   border-radius: 2em;
-  width: 4em;
-  height: 4em;
   display: block;
-  animation: spin 2s linear infinite;
+  animation: spin 1.5s linear infinite;
 }
 
 .fade-in {
   animation: fadeIn 1s ease-in-out;
 }
 .formArrowButtons {
+  margin-top: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -179,22 +201,22 @@
   border-radius: 10px;
   border: 2px solid rgb(208, 208, 208);
   background-color: white;
-  margin-block: 5px;
+  margin-block: 20px;
   transition: 1s ease;
 }
 
 .progressBar {
   height: 100%;
-  border-radius: 8px;
-  background-color: #0d5a73;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   transition: width 0.5s ease-in-out;
   transition: 1s ease;
 }
 
 .completed {
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: 1s ease;
-  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+  background: linear-gradient(180deg, #0d5a73 0%, #025494 100%);
 }
 
 .progressText {
@@ -206,15 +228,22 @@
 .stepsButtons {
   border-radius: 15px;
   outline: none;
-  border: 1px solid rgb(208, 208, 208);
+  border: 2px solid rgb(208, 208, 208);
   padding: 5px;
   margin-block: 5px;
   transition: all 0.4s ease;
   cursor: pointer;
+  color: rgb(80, 80, 80);
 }
-
+.stepsButtons:nth-child(1) {
+  background-color: rgba(0, 0, 0, 0.082);
+}
+.stepsButtons:nth-child(2) {
+  background-color: rgba(4, 4, 4, 0.082);
+}
 .stepsButtons:hover {
   transform: scale(1.1);
+  background-color: rgba(234, 234, 234, 0.082);
 }
 .smooth-transition {
   transition: all 0.3s ease;
@@ -243,10 +272,23 @@
 }
 
 @keyframes spin {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.05);
   }
 }
