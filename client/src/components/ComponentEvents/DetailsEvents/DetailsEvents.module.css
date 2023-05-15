@@ -409,7 +409,7 @@ div .Description h5 svg {
   gap: 20px;
 }
 .section form div label {
-  transition: 0.4s ease;
+  transition: 0.4s ease 1s;
   cursor: pointer;
 }
 .section form div label:hover {
