@@ -13,6 +13,7 @@ function Login() {
   const [input, setInput] = useState({
     email: "",
     password: "",
+    target: ""
   });
   const [errors, setErrors] = useState({
     email: "",
@@ -27,26 +28,27 @@ function Login() {
       // setErrors({...errors, email : EM_CORREO_INV});
       errors.email = EM_CORREO_INV;
       // swal(errors.email);
-    }
+    } else errors.email = ""
     if (!input.password?.trim()) {
       // setErrors({...errors, password: EM_PASS_INV});
       errors.password = EM_PASS_INV;
       // swal(errors.password);
-    }
-    setErrors(errors)
-    return !!Object.keys(errors).length;
+    } else errors.password = ""
+    // setErrors(errors)
+    // return !!Object.keys(errors).length;
+    return errors;
   }
 
-  function validateOnBlur(e) {
-    switch(e.target.name){
-      case "email": setErrors({email: (!input.email?.trim() || !validarCorreo(input.email))?EM_CORREO_INV:"" });
-        break;
-      case "password": setErrors({password: !input.password?.trim()?EM_PASS_INV:"" });
-        break;
-      default: validate(input);
-        break;
-    }
-  }
+  // function validateOnBlur(e) {
+  //   switch(e.target.name){
+  //     case "email": setErrors({email: (!input.email?.trim() || !validarCorreo(input.email))?EM_CORREO_INV:"" });
+  //       break;
+  //     case "password": setErrors({password: !input.password?.trim()?EM_PASS_INV:"" });
+  //       break;
+  //     default: validate(input);
+  //       break;
+  //   }
+  // }
 
   const handleClick = async () => {  
     // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google";
@@ -66,12 +68,13 @@ function Login() {
   const handleOnChange = (e) =>{
   setInput({
     ...input,
-    [e.target.name]: e.target.value,
+    [e.target.name]: e.target.value
      })
   }
 
   const handleOnBlur = (e) => {
-    validateOnBlur(e);
+    validate(input);
+    setErrors({...errors, target: e.target.name})
     // setErrors(
     //   validate({
     //     ...input,
@@ -82,13 +85,21 @@ function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if(validate(input)){
-        swal({
+    setErrors(validate(input));
+    if(!!Object.keys(errors).length){
+      const errorMsgs = Object.keys(errors).map((e) => (errors[e])).join('\n');
+      swal({
         title: TLE_ERROR,
-        text: "",
+        text: errorMsgs,
         icon: ICO_ERROR,
         buttons: BTX_ACEPTAR
       })
+      //   swal({
+      //   title: TLE_ERROR,
+      //   text: Object.keys(errors).map((e) => (errors[e] + "\n")),
+      //   icon: ICO_ERROR,
+      //   buttons: BTX_ACEPTAR
+      // })
     }
     else{
       dispatch(login(input, navigate));
@@ -158,9 +169,11 @@ function Login() {
           </div>
         </form>
         <div className={styles.formContainerMiddle} style={{ color: "red" }}>
-                {Object.keys(errors).map((e) => { 
-                    return (<>{errors[e]} <br/> </>)
-                  })
+                {
+                  errors.target && errors[errors.target]
+                // Object.keys(errors).map((e) => { 
+                //     return (<>{errors[e]} <br/> </>)
+                //   })
                   }
         </div>
       </div>
