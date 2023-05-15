@@ -144,7 +144,6 @@ function DetailsEvents() {
         eventd = await axios.put(
           `/events/buyTicket/${detailEvent.id}`,
           // `https://pruebaback-production-0050.up.railway.app/events/buyTicket/${detailEvent.id}`,
-
           stockObjeto
         );
 
