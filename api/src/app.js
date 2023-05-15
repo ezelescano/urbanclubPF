@@ -5,7 +5,7 @@ const cors = require("cors")
 const mainRouter = require("./routes/index");
 const passport = require("passport");
 const session = require('express-session');
-
+const {URL_FRONT} = require("../src/env")
 
 
 const app = express();
@@ -24,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors({origin:"http://localhost:3000", credentials:true}))
+app.use(cors({origin:URL_FRONT, credentials:true}))
 
 // app.use(fileupload({
 //     useTempFiles: true,
