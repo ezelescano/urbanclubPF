@@ -485,7 +485,7 @@ const Profile = () => {
                   ))}
                 </div>
               ) : (
-                <EmptyCard />
+                <EmptyCard id={id} />
               )}
             </div>
           </div>

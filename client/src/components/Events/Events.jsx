@@ -82,55 +82,54 @@ const Events = ({ showFilters }) => {
 
   return (
     <div className={style.container}>
-      <br />
-
-      {showFilters ? (
-        <div>
-          <form>
-            <select value={date} onChange={(e) => setDate(e.target.value)}>
-              <option hidden value="">
-                Fechas
-              </option>
-              <option value="Hoy">Hoy</option>
-              <option value="Esta semana">Esta semana</option>
-              <option value="Este mes">Este mes</option>
-              <option value="Proximos">Proximamente</option>
-            </select>
-
-            <select
-              value={price}
-              onChange={(event) => setPrice(event.target.value)}
-            >
-              <option value="">Precios</option>
-              <option value="0">Gratis</option>
-              <option value="1-50">Rango medio</option>
-              <option value="51-100">Rango alto</option>
-              <option value="101 a mas">Rango maximo</option>
-            </select>
-
-            <select
-              value={ubicacion}
-              onChange={(event) => setUbicacion(event.target.value)}
-            >
-              <option value="">Todos los países</option>
-
-              {locations?.map((Country) => (
-                <option key={Country} value={Country}>
-                  {Country}
+      {/* {
+        showFilters ? (
+          <div className={style.eventsFilters}>
+            <form className={style.eventsFilters}>
+              <select value={date} onChange={(e) => setDate(e.target.value)}>
+                <option hidden value="">
+                  Fechas
                 </option>
-              ))}
-            </select>
+                <option value="Hoy">Hoy</option>
+                <option value="Esta semana">Esta semana</option>
+                <option value="Este mes">Este mes</option>
+                <option value="Proximos">Proximamente</option>
+              </select>
 
-            <button
-              type="button"
-              onClick={() => (setDate(""), setPrice(""), setUbicacion(""))}
-            >
-              Limpiar
-            </button>
-          </form>
+              <select
+                value={price}
+                onChange={(event) => setPrice(event.target.value)}
+              >
+                <option value="">Precios</option>
+                <option value="0">Gratis</option>
+                <option value="1-50">Rango medio</option>
+                <option value="51-100">Rango alto</option>
+                <option value="101 a mas">Rango maximo</option>
+              </select>
 
-        </div>
-      ) : null /* Colocar el maquetado de arriba para verlos, al estilarlo*/} 
+              <select
+                value={ubicacion}
+                onChange={(event) => setUbicacion(event.target.value)}
+              >
+                <option value="">Todos los países</option>
+
+                {locations?.map((Country) => (
+                  <option key={Country} value={Country}>
+                    {Country}
+                  </option>
+                ))}
+              </select>
+
+              <button
+                type="button"
+                onClick={() => (setDate(""), setPrice(""), setUbicacion(""))}
+              >
+                Limpiar
+              </button>
+            </form>
+          </div>
+        ) : null
+      } */}
       <div className={style.containerHelp}>
         {events?.map((item, index) => {
           if (islogin.isAuthenticated) {
