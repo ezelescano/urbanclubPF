@@ -33,7 +33,7 @@ function Formulario({ id, event }) {
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
-  
+
   useEffect(() => {
     const getEvent = async () => {
       const event = await dispatch(getDetailEvents(id));
@@ -179,6 +179,7 @@ function Formulario({ id, event }) {
                 <span style={{ color: "red" }}>*</span> Nombre Del Evento:
               </div>
               <input
+                className={style.formContainerInputs}
                 placeholder={errors.name}
                 onChange={handleOnChange}
                 onBlur={handleOnChange}
@@ -197,11 +198,13 @@ function Formulario({ id, event }) {
                 onChange={handleOnChange}
                 onBlur={handleOnChange}
                 name="city"
+                className={style.formContainerInputs}
               />
             </label>
             <label>
               <div>Pais:</div>
               <input
+                className={style.formContainerInputs}
                 type="text"
                 value={input.Country}
                 onChange={handleOnChange}
@@ -221,6 +224,7 @@ function Formulario({ id, event }) {
                 onBlur={handleOnChange}
                 name="location"
                 maxLength={45}
+                className={style.formContainerInputs}
                 required
               />
             </label>
@@ -235,6 +239,7 @@ function Formulario({ id, event }) {
                 onChange={handleOnChange}
                 onBlur={handleOnChange}
                 name="nameArena"
+                className={style.formContainerInputs}
                 required
               />
             </label>
@@ -250,6 +255,7 @@ function Formulario({ id, event }) {
                 onChange={handleOnChange}
                 onBlur={handleOnChange}
                 name="date"
+                className={style.formContainerInputs}
                 required
               />
             </label>
@@ -268,6 +274,7 @@ function Formulario({ id, event }) {
                 name="price"
                 maxLength={35}
                 required
+                className={style.formContainerInputs}
               />
             </label>
             <label>
@@ -284,6 +291,7 @@ function Formulario({ id, event }) {
                 name="stock"
                 maxLength={35}
                 required
+                className={style.formContainerInputs}
               />
             </label>
             <label>TOTAL USD: ${input.total}</label>
@@ -298,7 +306,7 @@ function Formulario({ id, event }) {
                 onBlur={handleOnChange}
                 placeholder="500 Palabras max"
                 maxLength={150}
-                name="Description"
+                name="Description" 
               />
             </label>
 
@@ -314,7 +322,7 @@ function Formulario({ id, event }) {
             )}
             {!isLoading && (
               <button className={style.uploadFormButton} type="submit">
-                Guardar
+                Guardar Cambios
               </button>
             )}
           </div>

@@ -1,15 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import style from "./UpdateEvents.module.css";
 import { postArtist, errorsCreate } from "../../redux/artistSlice";
-
+import DrawIcon from "@mui/icons-material/Draw";
 import swal from "sweetalert";
-
+import "./UpdateEvents.css";
 import loading from "../../img/loading.gif";
 import { getDetailEvents, upEvent } from "../../redux/eventSlice";
 
-function Formulario({ id, event }) {
+function UpdateEvents({ id, event }) {
   const { errorForm } = useSelector((state) => state.artist);
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -153,35 +152,34 @@ function Formulario({ id, event }) {
       //con regex es mas corto, pero para repasar arrays y strings...
     }
     handleOnChange(e);
-    const isEmptyForm = () => {
-      // Verificar si todos los campos requeridos están vacíos
-      const requiredFields = [
-        "name",
-        "date",
-        "Description",
-        "nameArena",
-        "location",
-        "city",
-        "Country",
-        "stock",
-        "price",
-      ];
-      for (const field of requiredFields) {
-        if (!input[field]) {
-          return true;
-        }
-      }
-      return false;
-    };
-    const handleNextStep = () => {
-      setCurrentStep((prevStep) => prevStep + 1);
-    };
-
-    const handlePreviousStep = () => {
-      setCurrentStep((prevStep) => prevStep - 1);
-    };
   }
+  const isEmptyForm = () => {
+    // Verificar si todos los campos requeridos están vacíos
+    const requiredFields = [
+      "name",
+      "date",
+      "Description",
+      "nameArena",
+      "location",
+      "city",
+      "Country",
+      "stock",
+      "price",
+    ];
+    for (const field of requiredFields) {
+      if (input[field]) {
+        return true;
+      }
+    }
+    return false;
+  };
+  const handleNextStep = () => {
+    setCurrentStep((prevStep) => prevStep + 1);
+  };
 
+  const handlePreviousStep = () => {
+    setCurrentStep((prevStep) => prevStep - 1);
+  };
   return (
     <div className="createEvent">
       <div className="error_back" style={{ color: "red" }}></div>
@@ -442,3 +440,4 @@ function Formulario({ id, event }) {
     </div>
   );
 }
+export default UpdateEvents;
