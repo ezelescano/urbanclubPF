@@ -20,6 +20,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import PlaceIcon from "@mui/icons-material/Place";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import ApartmentIcon from "@mui/icons-material/Apartment";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+
 function DetailsEvents() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -187,97 +189,133 @@ function DetailsEvents() {
   const handleOnChange = (e) => {
     setEntradas(e.target.value);
   };
+  const [activeSection, setActiveSection] = useState("step1");
 
+  const handleSectionChange = (section) => {
+    setActiveSection(section);
+  };
   return (
     <>
       <div className={style.backContainer}>
         <div className={style.container}>
           <div className={style.info}>
-            <div className={style.img_Es}>
-              <img src={detailEvent.eventPhoto} alt="" />
-            </div>
             {islogin.user.id !== detailEvent.id_Artist ? (
               <div className={style.Description}>
-                <div className={style.infoText}>
-                  <h1>
-                    <TheaterComedyIcon /> <span>{detailEvent.name}</span>
-                  </h1>
-                  <br />
-                  <h5>
-                    <ApartmentIcon /> {detailEvent.nameArena}
-                  </h5>
-                  <h5>
-                    <PlaceIcon /> {detailEvent.location}
-                  </h5>
-                  <h5>
-                    <CalendarMonthIcon /> {detailEvent.date}
-                  </h5>
-                  <h3>PRECIO</h3>
-                  <h3 className={style.money}>${detailEvent.price} USD</h3>
-                  <h4>Descripcion</h4>
-                  <p>{detailEvent.Description}</p>
+                <div className={style.selectionButtons}>
+                  <TheaterComedyIcon
+                    onClick={() => handleSectionChange("step1")}
+                  />
+                  <PlaceIcon onClick={() => handleSectionChange("step2")} />
+                  <AddShoppingCartIcon
+                    onClick={() => handleSectionChange("step3")}
+                  />
                 </div>
-                <br />
-                <label htmlFor="">¿Cual es tú país?</label>
-                <input
-                  type="text"
-                  name="Country"
-                  value={destino.Country}
-                  onChange={getdestinohandler}
-                />
-                <label htmlFor="">¿Y tu ciudad?</label>
-                <input
-                  type="text"
-                  name="city"
-                  value={destino.city}
-                  onChange={getdestinohandler}
-                />
-                <button disabled={destino.ban} onClick={ubicationHandler}>
-                  Cómo llego ahi?
-                </button>
-                <button disabled={!destino.ban} onClick={resetUbicationHandler}>
-                  Reinicar la Busqueda
-                </button>
-                <div className={style.links}>
-                  <br />
-                  <label>Cantidad de entradas Disponibles</label>
-                  <p className={style.quantity}>{cantidad}</p>
-                  <label>Comprar Entradas con Paypal:</label>
-                  <br />
-                  <div className={style.money}>
-                    <input
-                      name="entradas"
-                      value={entradas}
-                      min="1"
-                      type="number"
-                      onChange={handleOnChange}
-                    />
+
+                <div className={style.img_Es}>
+                  <img src={detailEvent.eventPhoto} alt="" />
+                </div>
+                <h1>
+                  <TheaterComedyIcon /> <span>{detailEvent.name}</span>
+                </h1>
+                <section
+                  className={`${style.section} ${
+                    activeSection === "step1" ? style.active : ""
+                  }`}
+                >
+                  <div className={style.infoText}>
+                    <br />
+                    <h5>
+                      <ApartmentIcon /> {detailEvent.nameArena}
+                    </h5>
+                    <h5>
+                      <PlaceIcon /> {detailEvent.location}
+                    </h5>
+                    <h5>
+                      <CalendarMonthIcon /> {detailEvent.date}
+                    </h5>
+                    <h3>PRECIO</h3>
+                    <h3 className={style.money}>${detailEvent.price} USD</h3>
+                    <h4>Descripcion</h4>
+                    <p>{detailEvent.Description}</p>
                   </div>
-                  <button
-                    className={style.buyButton}
-                    onClick={buyTicketHandler}
-                  >
-                    Comprar entrada <CreditCardIcon />
-                  </button>
-                  <p className={style.lastMoney}>
-                    Total a pagar: <h2>${entradas * event.price} USD</h2>
-                  </p>
-                  <a
-                    href="https://www.visa.com.ar"
-                    target="_blank"
-                    rel="noreferrer"
-                  ></a>
+                </section>
+                <section
+                  className={`${style.section} ${
+                    activeSection === "step2" ? style.active : ""
+                  }`}
+                >
                   <br />
-                  <a
-                    href="https://www.google.com/maps/place/Teatro+Gran+Rex/@-34.6033873,-58.5313019,12z/data=!4m10!1m2!2m1!1sGran+Rex!3m6!1s0x95bccaceed5746b9:0xf933ab84305babc0!8m2!3d-34.6033873!4d-58.3788666!15sCghHcmFuIFJleJIBF3BlcmZvcm1pbmdfYXJ0c190aGVhdGVy4AEA!16s%2Fm%2F05bzpqm"
-                    target="_blank"
-                    rel="noreferrer"
+                  <label htmlFor="">¿Cual es tú país?</label>
+                  <input
+                    type="text"
+                    name="Country"
+                    value={destino.Country}
+                    onChange={getdestinohandler}
+                  />
+                  <label htmlFor="">¿Y tu ciudad?</label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={destino.city}
+                    onChange={getdestinohandler}
+                  />
+                  <button disabled={destino.ban} onClick={ubicationHandler}>
+                    Cómo llego ahi?
+                  </button>
+                  <button
+                    disabled={!destino.ban}
+                    onClick={resetUbicationHandler}
                   >
-                    <button>
-                      Compralo desde Teatro Gran Rex <StoreMallDirectoryIcon />
+                    Reinicar la Busqueda
+                  </button>
+                </section>
+                <section
+                  className={`${style.section} ${
+                    activeSection === "step3" ? style.active : ""
+                  }`}
+                >
+                  <div className={style.links}>
+                    <br />
+                    <label>Cantidad de entradas Disponibles</label>
+                    <p className={style.quantity}>{cantidad}</p>
+                    <label>Comprar Entradas con Paypal:</label>
+                    <br />
+                    <div className={style.money}>
+                      <input
+                        name="entradas"
+                        value={entradas}
+                        min="1"
+                        type="number"
+                        onChange={handleOnChange}
+                      />
+                    </div>
+                    <button
+                      className={style.buyButton}
+                      onClick={buyTicketHandler}
+                    >
+                      Comprar entrada <CreditCardIcon />
                     </button>
-                  </a>
-                </div>
+                    <p className={style.lastMoney}>
+                      Total a pagar: <h2>${entradas * event.price} USD</h2>
+                    </p>
+                    <a
+                      href="https://www.visa.com.ar"
+                      target="_blank"
+                      rel="noreferrer"
+                    ></a>
+                    <br />
+                    <a
+                      href="https://www.google.com/maps/place/Teatro+Gran+Rex/@-34.6033873,-58.5313019,12z/data=!4m10!1m2!2m1!1sGran+Rex!3m6!1s0x95bccaceed5746b9:0xf933ab84305babc0!8m2!3d-34.6033873!4d-58.3788666!15sCghHcmFuIFJleJIBF3BlcmZvcm1pbmdfYXJ0c190aGVhdGVy4AEA!16s%2Fm%2F05bzpqm"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <button>
+                        Compralo desde Teatro Gran Rex{" "}
+                        <StoreMallDirectoryIcon />
+                      </button>
+                    </a>
+                  </div>
+                </section>
                 {/* <div className={style.comments}> 
                 {<Comments event={detailEvent} />}
               </div> */}
