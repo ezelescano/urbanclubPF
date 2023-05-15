@@ -187,7 +187,9 @@ function Formulario() {
                   style={{ display: "none" }}
                 />
                 <br></br>
-                Registrate a<br></br> <b>Urban Club!</b>
+                <div className={style.sugerencia}>
+                  Registrate a<br></br> <b>Urban Club!</b>
+                </div>
               </label>
             </div>
             <div className={style.formContainerMiddle}>
@@ -291,7 +293,7 @@ function Formulario() {
               <label>
                 <div className={style.occupationsOptions}>
                   {options.map((option) => (
-                    <label key={option} >
+                    <label key={option}>
                       <input
                         className={style.occupationsOptionsList}
                         type="checkbox"
