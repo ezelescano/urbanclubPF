@@ -343,7 +343,7 @@ function Formulario() {
                   value={input.aboutMe}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  placeholder="500 Palabras max"
+                  placeholder="150 Palabras max"
                   maxLength={150}
                   name="aboutMe"
                 />
