@@ -16,9 +16,10 @@ function Login() {
     target: ""
   });
   const [errors, setErrors] = useState({
-    email: "",
-    password: "",
+    email: EM_CORREO_INV,
+    password: EM_PASS_INV
   });
+
 
   function validate(input) {
     const errors = {};
@@ -28,12 +29,12 @@ function Login() {
       // setErrors({...errors, email : EM_CORREO_INV});
       errors.email = EM_CORREO_INV;
       // swal(errors.email);
-    } else errors.email = ""
+    } //else errors.email = ""
     if (!input.password?.trim()) {
       // setErrors({...errors, password: EM_PASS_INV});
       errors.password = EM_PASS_INV;
       // swal(errors.password);
-    } else errors.password = ""
+    } //else errors.password = ""
     // setErrors(errors)
     // return !!Object.keys(errors).length;
     return errors;
@@ -70,17 +71,20 @@ function Login() {
     ...input,
     [e.target.name]: e.target.value
      })
+  setErrors(validate(input))
   }
 
   const handleOnBlur = (e) => {
-    validate(input);
-    setErrors({...errors, target: e.target.name})
+    // setErrors({...errors})
     // setErrors(
     //   validate({
     //     ...input,
     //     [e.target.name]: e.target.value,
     //   })
     // );
+  }
+  const handleOnFocus = (e) => {
+    setErrors(validate(input));
   }
 
   const handleSubmit = async (event) => {
@@ -152,7 +156,7 @@ function Login() {
             </label>
           </div>
           <div className={styles.formContainerRight}>
-            <button className={styles.uploadPictureButton} type="submit">
+            <button className={styles.uploadPictureButton} type="submit" onFocus={handleOnFocus}>
               Ingresar
             </button>
             <br />
