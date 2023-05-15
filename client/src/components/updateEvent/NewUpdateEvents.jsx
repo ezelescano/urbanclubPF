@@ -1,27 +1,32 @@
-import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { postEvent } from "../../redux/eventSlice";
-import swal from "sweetalert";
-import loading from "../../img/loading.gif";
-import DrawIcon from "@mui/icons-material/Draw";
-import "./CreateEvent.css";
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import style from "./UpdateEvents.module.css";
+import { postArtist, errorsCreate } from "../../redux/artistSlice";
 
-const CreateEvent = () => {
-  const { id } = useParams();
+import swal from "sweetalert";
+
+import loading from "../../img/loading.gif";
+import { getDetailEvents, upEvent } from "../../redux/eventSlice";
+
+function Formulario({ id, event }) {
+  const { errorForm } = useSelector((state) => state.artist);
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [input, setInput] = useState({
     name: "",
     price: "",
-    location: "",
     stock: "",
+    Description: "",
     city: "",
     Country: "",
+    location: "",
     nameArena: "",
     date: "",
-    Description: "",
+    eventPhoto: "",
+    total: 0,
   });
 
   const [errors, setErrors] = useState({});
@@ -31,6 +36,25 @@ const CreateEvent = () => {
   //Nuevo estilado:
   const [progress, setProgress] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
+  useEffect(() => {
+    const getEvent = async () => {
+      const event = await dispatch(getDetailEvents(id));
+      setInput({
+        name: event.payload.name,
+        price: event.payload.price,
+        stock: event.payload.stock,
+        Description: event.payload.Description,
+        city: event.payload.city,
+        Country: event.payload.Country,
+        location: event.payload.location,
+        nameArena: event.payload.nameArena,
+        date: event.payload.date,
+        total: event.payload.price * event.payload.stock,
+      });
+    };
+    getEvent();
+  }, [dispatch, id]);
+
   function validate(input) {
     const errors = {};
     if (!input.name) {
@@ -54,24 +78,12 @@ const CreateEvent = () => {
     return errors;
   }
 
-  function handleOnBlur(e) {
-    if (e.target.name === "price") {
-      if (!e.target.value.includes("."))
-        e.target.value = e.target.value + ".00";
-      else if (e.target.value.split(".").pop().length > 2)
-        e.target.value = e.target.value
-          .split(".")
-          .shift()
-          .concat(".", e.target.value.split(".").pop().substring(0, 2));
-      //con regex es mas corto, pero para repasar arrays y strings...
-    }
-    handleOnChange(e);
-  }
-
   function handleOnChange(e) {
+    // console.log("errores///", errors.password);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
+      total: input.price * input.stock,
     });
     setErrors(
       validate({
@@ -104,68 +116,71 @@ const CreateEvent = () => {
       };
     }
   };
-  const handleDelete = () => {
-    setRutaImagen("");
-  };
+
   const handleClick = () => {
     fileInputRef.current.click();
   };
-  const isEmptyForm = () => {
-    // Verificar si todos los campos requeridos están vacíos
-    const requiredFields = [
-      "name",
-      "date",
-      "Description",
-      "nameArena",
-      "location",
-      "city",
-      "Country",
-      "stock",
-      "price",
-    ];
-    for (const field of requiredFields) {
-      if (!input[field]) {
-        return true;
-      }
-    }
-    return false;
-  };
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!input.name.length) {
-      await swal({
-        title: "ERROR",
-        text: "Ingrese almenos el nombre del evento",
-        icon: "error",
-        buttons: "Aceptar",
-      });
-      return;
-    }
+    //console.log(errors);
     setIsLoading(true);
     const formData = new FormData(e.target);
-    formData.append("id_Artist", id);
-    await dispatch(postEvent(formData));
+    // formData.append("id_Artist", id)
+    await dispatch(upEvent(formData, id));
+    await dispatch(getDetailEvents(id));
     setIsLoading(false);
     swal({
-      title: "EVENTO CREADO CORRECTAMENTE",
-      text: `Exitos con tu evento`,
+      title: "DATOS GUARDADOS",
+      text: "Evento actualizado correctamente",
       icon: "success",
       buttons: "Aceptar",
     }).then((res) => {
-      if (res) {
-        navigate(`/profile/${id}`);
-      }
+      navigate(`/profile/${user.id}`);
     });
-  }
-  const handleNextStep = () => {
-    setCurrentStep((prevStep) => prevStep + 1);
   };
 
-  const handlePreviousStep = () => {
-    setCurrentStep((prevStep) => prevStep - 1);
-  };
+  function handleOnBlur(e) {
+    if (e.target.name === "price") {
+      if (!e.target.value.includes("."))
+        e.target.value = e.target.value + ".00";
+      else if (e.target.value.split(".").pop().length > 2)
+        e.target.value = e.target.value
+          .split(".")
+          .shift()
+          .concat(".", e.target.value.split(".").pop().substring(0, 2));
+      //con regex es mas corto, pero para repasar arrays y strings...
+    }
+    handleOnChange(e);
+    const isEmptyForm = () => {
+      // Verificar si todos los campos requeridos están vacíos
+      const requiredFields = [
+        "name",
+        "date",
+        "Description",
+        "nameArena",
+        "location",
+        "city",
+        "Country",
+        "stock",
+        "price",
+      ];
+      for (const field of requiredFields) {
+        if (!input[field]) {
+          return true;
+        }
+      }
+      return false;
+    };
+    const handleNextStep = () => {
+      setCurrentStep((prevStep) => prevStep + 1);
+    };
+
+    const handlePreviousStep = () => {
+      setCurrentStep((prevStep) => prevStep - 1);
+    };
+  }
 
   return (
     <div className="createEvent">
@@ -426,6 +441,4 @@ const CreateEvent = () => {
       </form>
     </div>
   );
-};
-
-export default CreateEvent;
+}

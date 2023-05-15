@@ -8,7 +8,6 @@ import swal from "sweetalert";
 
 import loading from "../../img/loading.gif";
 import { getDetailEvents, upEvent } from "../../redux/eventSlice";
-// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Formulario({ id, event }) {
   const { errorForm } = useSelector((state) => state.artist);
@@ -34,6 +33,7 @@ function Formulario({ id, event }) {
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
+  
   useEffect(() => {
     const getEvent = async () => {
       const event = await dispatch(getDetailEvents(id));
@@ -139,7 +139,6 @@ function Formulario({ id, event }) {
           <p>{errorForm.error}</p>
         </div>
         <h2>
-          {`Editar evento`}
           <br /> {event.name}
         </h2>
         <form onSubmit={handleSubmit} className={style.formContainer}>
