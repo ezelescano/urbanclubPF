@@ -185,7 +185,9 @@ const Profile = () => {
       text: `Artista  ${input.name} actualizado con exito`,
       icon: "success",
       buttons: "Aceptar",
-    });
+    }).then(res=>{
+      if(res) window.location.reload()
+    })
     setShowEdit(false);
     setShowSettings(false);
   };
