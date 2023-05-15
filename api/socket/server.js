@@ -1,10 +1,11 @@
 const socketio = require("socket.io");
-
+const {URL_FRONT} = require("../src/env")
 module.exports = function (server) {
   const io = socketio(server, {
+    pingTimeout: 6000,
     cors: {
       // origin: "https://tecnoeam.com",https://tecnoeam.com/urbanclub/
-      origin: "http://localhost:3000",
+      origin: URL_FRONT,
 
     },
   });
@@ -37,10 +38,12 @@ module.exports = function (server) {
     //cunado se envia y recibes un mensaje
     socket.on("sendMessage", ({ senderId, receiverId, text }) => {
       const user = getUser(receiverId);
-      io.to(user.socketId).emit("getMessage", {
-        senderId,
-        text,
-      });
+      if (user && user.socketId) {
+        io.to(user.socketId).emit("getMessage", {
+          senderId,
+          text,
+        });
+      }
     });
 
     //cuando se desconecta

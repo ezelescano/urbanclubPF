@@ -3,7 +3,7 @@ const passport = require("passport")
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const {artistById} = require("../Controllers/artistControllers/artistById")
 const generateJWT = require("../../utils/generateJWT")
-
+const {URL_BACK} = require("../env")
 require("dotenv").config();
 const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET} = process.env;
 
@@ -13,7 +13,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3001/artist/auth/google/callback",
+      callbackURL: `${URL_BACK}/artist/auth/google/callback`,
       // callbackURL: "https://pruebaback-production-0050.up.railway.app/artist/auth/google/callback",
       
       scope: ['profile', 'email'],

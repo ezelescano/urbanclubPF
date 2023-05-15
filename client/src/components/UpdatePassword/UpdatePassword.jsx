@@ -75,19 +75,23 @@ const UpdatePassword = ({ handleEdit }) => {
 
   return (
     <div className={style.containerUpdatePassword}>
-      <form onSubmit={handleSubmit}>
+      <form className={style.formUpdatePassword} onSubmit={handleSubmit}>
+        Contraseña nueva
         <input
           type="text"
           name="password"
           value={password.password}
           onChange={changeHandlerPassword}
         ></input>
+        <br />
+        Vuelve a escribirla
         <input
           type="text"
           name="password2"
           value={password2.password2}
           onChange={changeHanlderPassword2}
         ></input>
+        <br />
         {errors && <p>{errors.password}</p>}
         <button type="submit">Guardar nueva contraseña</button>
       </form>

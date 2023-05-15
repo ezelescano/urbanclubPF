@@ -1,8 +1,8 @@
-import './ChatOnline.css'
+import './Chats.css'
 //import React, { useEffect, useState } from 'react'
 import axios from "axios"
 
-function ChatOnline({ onlineUser, currentId, setCurrentChat }) {
+function ChatOnline({ onlineUser, currentId, setCurrentChat, online }) {
 
   /* const [friends, setFriends] = useState([]);
   const [onlineFriends, setOnlineFriends] = useState([]);
@@ -37,7 +37,7 @@ function ChatOnline({ onlineUser, currentId, setCurrentChat }) {
       <div className='chatOnlineFriend' onClick={() => {handleClick(o)}}>
         <div className="chatOnlineImgContainer">
         <img className='chatOnlineImg' src={o?.profilePhoto} alt='foto perfil'/>
-        <span className="chatOnlineBadge"></span>
+        <span className={online ? "chatOnlineBadge" : "chatOfflineBadge"}></span>
         </div>
         <div className="chatOnlineName">{o?.name}</div>
       </div>

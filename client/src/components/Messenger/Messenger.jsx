@@ -2,13 +2,15 @@ import "./Messenger.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Conversation from "../Conversation/Conversation";
 import Message from "../Message/Message";
-import ChatOnline from "../ChatOnline/ChatOnline";
+import Chats from "../Chats/Chats";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { io } from "socket.io-client";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
+import DetailBar from "../DetailBar/DetailBar";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -18,13 +20,20 @@ function Messenger() {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArraivalMessage] = useState(null);
   const [onlineUser, setOnlineUser] = useState([]);
+  const [showOnlines, setShowOnlines] = useState(false)
+  const [showOfflines, setShowOfflines] = useState(false)
   //cambiar cuando hayan followers
-  //const[followers, setFollowers] = useState([]);
+  const[friends, setFriends] = useState([]);
   const artistas = useSelector((state) => state.artist.allUsuarios);
   const socket = useRef();
   const user = useSelector((state) => state.auth.user);
   const scrollRef = useRef();
   const followers = artistas.filter((f) => f.id !== user.id);
+  const offlineFriends = friends.filter((friend) => {
+    return !onlineUser.some((user) => {
+      return user.id === friend.id;
+    });
+  });
 
   useEffect(() => { 
     // socket.current = io("ws://pruebaback-production-0050.up.railway.app");
@@ -45,19 +54,20 @@ function Messenger() {
   }, [arrivalMessage, currentChat]);
 
   //cambiar cuando hayan followers
-  /*  useEffect(() => {
-    const getFollowers = async() =>{
-      const res = await axios.get("/artist");
-      setFollowers(res.data.filter((f) => f.id !== user.id))
+   useEffect(() => {
+    const getFriends = async() =>{
+      const res = await axios.get(`artist/followings/${user.id}`);
+      setFriends(res.data)
     }
-    getFollowers()
-  },[]) */
+    getFriends()
+  },[user.id])
 
   useEffect(() => {
     socket.current.emit("addUser", user.id);
     socket.current.on("getUsers", (users) => {
+      console.log(users)
       setOnlineUser(
-        followers.filter((f) => users.some((u) => u.userId === f.id))
+        friends.filter((f) => users.some((u) => u.userId === f.id))
       );
       /* setOnlineUser(users) */
     });
@@ -75,7 +85,8 @@ function Messenger() {
     getConversations();
   }, [user.id]);
 
-  useEffect(() => {
+useEffect(() => {
+  const interval = setInterval(() => {
     const getmessages = async () => {
       try {
         const res = await axios.get(`/message/${currentChat?.id}`);
@@ -85,7 +96,12 @@ function Messenger() {
       }
     };
     getmessages();
-  }, [currentChat]);
+  }, 1500);
+
+  return () => {
+    clearInterval(interval);
+  };
+}, [currentChat]);
 
   const handleEmojiSelect = (emoji) => {
     setNewMessage(newMessage + emoji.native);
@@ -94,6 +110,20 @@ function Messenger() {
   const handleOnBlur = () => {
     setShowPicker(false);
   };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
+  const handleShowOnlines = () => {
+    setShowOnlines(!showOnlines)
+  }
+
+  const handleShowOfflines = () => {
+    setShowOfflines(!showOfflines)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -124,14 +154,17 @@ function Messenger() {
     }
   };
 
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "auto" });
-  }, [messages]);
+  // useEffect(() => {
+  //   scrollRef.current?.scrollIntoView({ behavior: "auto" });
+  // }, [messages]);
+
+  
 
   return (
     <div className="messenger">
       <div className="chatMenu">
         <div className="chatMenuWrapper">
+          Conversaciones Activas
           {/* <input placeholder="Buscar amigos..." className="chatMenuInput"/> */}
           {Array.isArray(conversations) &&
             conversations.map((c) => (
@@ -145,6 +178,7 @@ function Messenger() {
         <div className="chatBoxWrapper">
           {currentChat ? (
             <>
+              <DetailBar conversation={currentChat} currentUser={user} />
               <div className="chatBoxTop">
                 {Array.isArray(messages) &&
                   messages.map((m) => (
@@ -167,8 +201,9 @@ function Messenger() {
                 </button>
                 <textarea
                   className="chatMessageInput"
-                  placeholder="write something..."
+                  placeholder="Envia un mensaje..."
                   onChange={(e) => setNewMessage(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   value={newMessage}
                 ></textarea>
                 <div className="emojieBoxForAbsolute">
@@ -197,11 +232,34 @@ function Messenger() {
       </div>
       <div className="chatOnline">
         <div className="chatOnlineWrapper">
-          <ChatOnline
-            onlineUser={onlineUser}
-            currentId={user.id}
-            setCurrentChat={setCurrentChat}
-          />
+          <div className="listOnline" >
+            Conectados {` ( ${onlineUser.length} )`}
+            <button className="listlinesbtn" onClick={handleShowOnlines}>
+              <ExpandMoreIcon/>
+            </button>
+          </div>
+          {showOnlines && <Chats
+                            onlineUser={onlineUser}
+                            currentId={user.id}
+                            setCurrentChat={setCurrentChat}
+                            online={true}
+                          />
+          }
+          <div className="listOffline">
+            Desconectados {` ( ${offlineFriends.length} )`}
+            <button className="listlinesbtn" onClick={handleShowOfflines}>
+              <ExpandMoreIcon/>
+            </button>
+          </div>
+
+          {showOfflines && <Chats
+                             onlineUser={offlineFriends}
+                             currentId={user.id}
+                             setCurrentChat={setCurrentChat}
+                             online={false}
+                            />
+          }
+          
         </div>
       </div>
     </div>

@@ -30,7 +30,7 @@ import Errors404 from "./components/Error404/Errors404";
 import Messenger from "./components/Messenger/Messenger";
 import LoginSuccess from "./components/GoogleButton/loginSuccess";
 /* import { io } from "socket.io-client";
-const socket = io("http://localhost:3001"); */
+const socket = io("URLS"); */
 // reemplazar 3001 por https://pruebaback-production-0050.up.railway.app
 import UpdateEvents from "./components/updateEvent/UpdateEvents";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
@@ -69,6 +69,11 @@ function App() {
   },[user])
  */
   //No modifiquen cosas que estan bien solo buscando un error de ustedes plsssssssssssssssssssssssssss, Gracias :))
+  const isMessengerOrProfileRoute =
+    window.location.pathname.includes("/messenger") ||
+    window.location.pathname.includes("/profile/") ||
+    window.location.pathname.includes("/admin");
+
   return (
     <div>
       <Navbar />
@@ -93,7 +98,6 @@ function App() {
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/events" element={<Events />} />
-        {/* { <Route path="/merch" element={<Merch />} />} */}
         <Route
           path="/createevent/:id"
           element={
@@ -105,18 +109,36 @@ function App() {
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
 
-        <Route path="/messenger" element={user.isAuthenticated ? (<Messenger />) : (<Navigate to="/login" />)} />
-        <Route path="/updateEvent" element={user.isAuthenticated ? (<UpdateEvents />) : (<Navigate to="/login" />)} />
-        <Route path="/forgotPassword" element={!user.isAuthenticated ? (<ForgotPassword />) : (<Navigate to="/" />)} />
+        <Route
+          path="/messenger"
+          element={
+            user.isAuthenticated ? <Messenger /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/updateEvent"
+          element={
+            user.isAuthenticated ? <UpdateEvents /> : <Navigate to="/login" />
+          }
+        />
+        <Route
+          path="/forgotPassword"
+          element={
+            !user.isAuthenticated ? <ForgotPassword /> : <Navigate to="/" />
+          }
+        />
         <Route path="/newPassword/:id/:token" element={<NewPassword />} />
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
-        <Route path="/admin" element={<Admin />} />
+        {/* <Route
+          path="/admin"
+          element={user.isAuthenticated ? <Admin /> : <Navigate to="/login" />}
+        /> */}
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      {window.location.pathname !== "/messenger" && <Footer />}
+      <Footer />
     </div>
   );
 }
