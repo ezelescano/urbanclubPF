@@ -78,7 +78,7 @@ artistRouter.get(
 
 
         // </body>
-        // <script> window.opener.postMessage(${userString}, 'http://localhost:3001') </script>
+        // <script> window.opener.postMessage(${userString}, '${URL_BACK}') </script>
         // </html>
         // `
       )

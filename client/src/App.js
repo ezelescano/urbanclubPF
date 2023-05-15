@@ -30,7 +30,7 @@ import Errors404 from "./components/Error404/Errors404";
 import Messenger from "./components/Messenger/Messenger";
 import LoginSuccess from "./components/GoogleButton/loginSuccess";
 /* import { io } from "socket.io-client";
-const socket = io("http://localhost:3001"); */
+const socket = io("URLS"); */
 // reemplazar 3001 por https://pruebaback-production-0050.up.railway.app
 import UpdateEvents from "./components/updateEvent/UpdateEvents";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";

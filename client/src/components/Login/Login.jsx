@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
 import GoogleButton from "../GoogleButton/googleButton";
-
+import {URLS} from "../../env"
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function Login() {
 
   const handleClick = async () => {  
     // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google";
-    const googleLoginURL = "http://localhost:3001/artist/auth/google";
+    const googleLoginURL = `${URLS}/artist/auth/google`;
     const newWindow = window.open(
       googleLoginURL,
       "blank",
