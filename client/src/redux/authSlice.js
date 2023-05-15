@@ -93,7 +93,7 @@ export const login = (payload, navigate) => {
       swal({
         title: "DATOS INVÁLIDOS",
         text: `Datos Inválidos, Por favor Revisar`,
-        icon: "warning",
+        icon: "error",
         buttons: "Aceptar"
       })
     }
