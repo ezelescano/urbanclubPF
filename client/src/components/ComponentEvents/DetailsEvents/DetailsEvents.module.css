@@ -26,7 +26,7 @@
   object-fit: cover;
   align-items: center;
   overflow: hidden;
-  min-width: 30vw;
+  min-width: 40vw;
   padding-block: 50px;
   padding-inline: 6%;
   transition: all 0.4s ease;
@@ -378,7 +378,64 @@ div .Description h5 svg {
 }
 
 .comments {
-  position: absolute;
   margin-top: 100px;
   right: 0;
+}
+.section form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section form div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.commentContainer div {
+  max-height: 500px;
+  min-width: 400px;
+  overflow: auto;
+}
+.section form div:nth-child(-n + 5):not(:last-child) {
+  flex-direction: row;
+  font-size: 30px;
+}
+.section input:nth-child(2) {
+  min-height: 150px;
+  min-width: 350px;
+}
+.section form div:first-child {
+  gap: 20px;
+}
+.section form div label {
+  transition: 0.4s ease;
+  cursor: pointer;
+}
+.section form div label:hover {
+  color: yellow;
+  transition: 0.4s ease;
+  transform: scale(1.5);
+}
+.section form div label:nth-child(1) {
+  content: "1";
+}
+
+.section form div label:nth-child(2) {
+  content: "2";
+}
+
+.section form div label:nth-child(3) {
+  content: "3";
+}
+
+.section form div label:nth-child(4) {
+  content: "4";
+}
+
+.section form div label:nth-child(5) {
+  content: "5";
+}
+.section form div label input[type="radio"] {
+  display: none;
 }

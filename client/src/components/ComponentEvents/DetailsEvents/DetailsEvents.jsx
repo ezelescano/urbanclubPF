@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getDetailEvents,
@@ -21,6 +21,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import MessageIcon from "@mui/icons-material/Message";
 
 function DetailsEvents() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function DetailsEvents() {
   const [event, setEvent] = useState({});
   const [cantidad, setCantidad] = useState(0);
   const [entradas, setEntradas] = useState(1);
+  const radioRef = useRef(null);
   const [destino, setDestino] = useState({
     city: "",
     Country: "",
@@ -194,6 +196,28 @@ function DetailsEvents() {
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
+  useEffect(() => {
+    const handleClick = (event) => {
+      const label = event.target;
+      const div = label.parentNode;
+      const inputs = div.getElementsByTagName("input");
+      const radio = inputs[0]; // El primer input[type="radio"] dentro del div
+
+      radio.checked = true;
+    };
+
+    const labels = document.querySelectorAll(".section form div label");
+
+    labels.forEach((label) => {
+      label.addEventListener("click", handleClick);
+    });
+
+    return () => {
+      labels.forEach((label) => {
+        label.removeEventListener("click", handleClick);
+      });
+    };
+  }, []);
   return (
     <>
       <div className={style.backContainer}>
@@ -209,6 +233,7 @@ function DetailsEvents() {
                   <AddShoppingCartIcon
                     onClick={() => handleSectionChange("step3")}
                   />
+                  <MessageIcon onClick={() => handleSectionChange("step4")} />
                 </div>
                 <div className={style.img_Es}>
                   <img src={detailEvent.eventPhoto} alt="" />
@@ -315,13 +340,22 @@ function DetailsEvents() {
                     </a>
                   </div>
                 </section>
-                {/* <div className={style.comments}> 
-                {<Comments event={detailEvent} />}
-              </div> */}
-                <br></br>
+                <section
+                  className={`${style.section} ${
+                    activeSection === "step4" ? style.active : ""
+                  }`}
+                >
+                  <div className={style.commentContainer}>
+                    {<Comments event={detailEvent} />}
+                  </div>
+                </section>
               </div>
             ) : islogin.isAuthenticated ? (
-              <UpdateEvents id={id} event={detailEvent} />
+              <UpdateEvents
+                classname={style.editable}
+                id={id}
+                event={detailEvent}
+              />
             ) : (
               <div></div>
             )}
