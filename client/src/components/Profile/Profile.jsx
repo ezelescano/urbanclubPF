@@ -1,6 +1,6 @@
 import "./profile.css";
 import React, { useRef } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -97,12 +97,8 @@ const Profile = () => {
     const getUser = async () => {
       try {
         const res = await axios.get("/artist/login/me");
-        console.log(res.data.followings);
-        setFollowed(
-          res.data.followings.some(
-            (follow) => follow.following_Id === usuario?.id
-          )
-        );
+        //console.log(res.data.followings)
+        setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
       } catch (error) {
         console.log(error);
       }
@@ -145,10 +141,7 @@ const Profile = () => {
   };
 
   const handleDeleteAccount = () => {
-    // const confirmed = window.confirm(
-    //   `Estas seguro que deseas eliminar la cuenta con el nombre ${name}`
-    // );
-
+   
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
@@ -185,9 +178,9 @@ const Profile = () => {
       text: `Artista  ${input.name} actualizado con exito`,
       icon: "success",
       buttons: "Aceptar",
-    }).then(res=>{
-      if(res) window.location.reload()
-    })
+    }).then((res) => {
+      if (res) window.location.reload();
+    });
     setShowEdit(false);
     setShowSettings(false);
   };
@@ -368,11 +361,21 @@ const Profile = () => {
               <div className="stas-profile">
                 <div className="btn-div">
                   <button className="btn-stas" onClick={scrollToEventos}>
-                    {events?.length + " "} Eventos{" "}
+                    <div className="btn-stas-text">
+                      <div className="btn-stas-number">
+                        {events?.length + " "}
+                      </div>{" "}
+                      Eventos
+                    </div>{" "}
                     {/*  //! muestra total de eventos del artista */}
                   </button>
                   <button className="btn-stas" onClick={handleOnClickFollowers}>
-                    {followers?.length + " "} Seguidores
+                    <div className="btn-stas-text">
+                      <div className="btn-stas-number">
+                        {followers?.length + " "}{" "}
+                      </div>
+                      Seguidores
+                    </div>
                   </button>
                   {showFollowers && (
                     <FollowList
@@ -387,7 +390,12 @@ const Profile = () => {
                     className="btn-stas"
                     onClick={handleOnClickFollowings}
                   >
-                    {followings?.length + " "} Seguidos
+                    <div className="btn-stas-text">
+                      <div className="btn-stas-number">
+                        {followings?.length + " "}
+                      </div>
+                      Seguidos
+                    </div>
                   </button>
                   {showFollowings && (
                     <FollowList

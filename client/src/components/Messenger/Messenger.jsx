@@ -14,6 +14,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
+  const [arrivalConversations, setArrivalConversations] = useState(null);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [showPicker, setShowPicker] = useState(false);
@@ -22,13 +23,11 @@ function Messenger() {
   const [onlineUser, setOnlineUser] = useState([]);
   const [showOnlines, setShowOnlines] = useState(false)
   const [showOfflines, setShowOfflines] = useState(false)
-  //cambiar cuando hayan followers
   const[friends, setFriends] = useState([]);
   const artistas = useSelector((state) => state.artist.allUsuarios);
   const socket = useRef();
   const user = useSelector((state) => state.auth.user);
   const scrollRef = useRef();
-  const followers = artistas.filter((f) => f.id !== user.id);
   const offlineFriends = friends.filter((friend) => {
     return !onlineUser.some((user) => {
       return user.id === friend.id;
@@ -39,19 +38,34 @@ function Messenger() {
     // socket.current = io("ws://pruebaback-production-0050.up.railway.app");
     socket.current = io("ws://localhost:3001");
     socket.current.on("getMessage", (data) => {
+      console.log(data)
       setArraivalMessage({
         sender: data.senderId,
         text: data.text,
         createdAt: Date.now(),
       });
     });
+    socket.current.on("getConversation", (data) => {
+      
+      setArrivalConversations({
+        id: data.id,
+        members: data.members
+      });
+    });
   }, []);
+
+  console.log(arrivalMessage)
 
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
       setMessages((prev) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    arrivalConversations && !conversations?.find((conv) => conv.id === arrivalConversations.id) &&
+      setConversations((prev) => [...prev, arrivalConversations]);
+  }, [arrivalConversations, conversations]);
 
   //cambiar cuando hayan followers
    useEffect(() => {
@@ -63,7 +77,7 @@ function Messenger() {
   },[user.id])
 
   useEffect(() => {
-    socket.current.emit("addUser", user.id);
+    //socket.current.emit("addUser", user.id);
     socket.current.on("getUsers", (users) => {
       console.log(users)
       setOnlineUser(
@@ -154,11 +168,11 @@ useEffect(() => {
     }
   };
 
-  // useEffect(() => {
-  //   scrollRef.current?.scrollIntoView({ behavior: "auto" });
-  // }, [messages]);
+  /*  useEffect(() => {
+     scrollRef.current?.scrollIntoView({ behavior: "auto" });
+   }, [messages]);
 
-  
+   */
 
   return (
     <div className="messenger">
