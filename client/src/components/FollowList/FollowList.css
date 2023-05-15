@@ -24,10 +24,13 @@
   padding: 10px;
   cursor: pointer;
   margin: 10px;
+  transition: 0.4s ease;
 }
 
 .contacfollowlist:hover {
   background-color: rgba(254, 254, 254, 0.274);
+  transition: 0.4s ease 0.1s;
+  transform: scale(1.05);
 }
 
 .followListImg {
