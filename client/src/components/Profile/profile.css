@@ -55,7 +55,7 @@
 .foto-ocupacion:hover {
   transform: scale(1.1);
   transition: 0.4s ease;
-  cursor:pointer
+  cursor: pointer;
 }
 .foto-ocupacion img {
   object-fit: cover;
@@ -171,6 +171,12 @@
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+.btn-ajustes svg {
+  color: rgb(217, 217, 217);
+  font-size: 35px;
+  text-decoration: none;
 }
 .ajustes-botones {
   cursor: pointer;
@@ -219,6 +225,7 @@
 .container-links svg {
   font-size: 40px;
   text-decoration: none;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
 }
 .youtube {
   color: red;
