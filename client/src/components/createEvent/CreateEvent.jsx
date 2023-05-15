@@ -89,35 +89,24 @@ const CreateEvent = () => {
 
   //Manipular el archivo qué se sube:
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
     const files = e.target.files;
-    setFiles(files);
-    const reader = new FileReader();
-    setInput({
-      ...input,
-      eventPhoto: file.name,
-    });
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      setRutaImagen(reader.result);
-    };
+    if (files && files.length > 0) {
+      const file = files[0];
+      setFiles(files);
+      const reader = new FileReader();
+      setInput({
+        ...input,
+        eventPhoto: file.name,
+      });
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setRutaImagen(reader.result);
+      };
+    }
   };
   const handleDelete = () => {
     setRutaImagen("");
   };
-
-  // const handleCancel = (e) => {
-  //   //Lógica para eliminar con el boton, qué aun no hace nada
-  //   //Para añadir el boton, envuelve el IMG "form-picture" y luego añadile un boton.
-  //   const file = e.target.files[0];
-  //   const files = e.target.files;
-  //   setFiles(files);
-  //   setInput({
-  //     ...input,
-  //     eventPhoto: file.name,
-  //   });
-  // };
-
   const handleClick = () => {
     fileInputRef.current.click();
   };
