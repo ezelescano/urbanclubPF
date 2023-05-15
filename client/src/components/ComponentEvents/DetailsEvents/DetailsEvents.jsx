@@ -241,10 +241,10 @@ function DetailsEvents() {
                 <div className={style.links}>
                   <br />
                   <label>Cantidad de entradas Disponibles</label>
-                  <h3>{cantidad}</h3>
+                  <p className={style.quantity}>{cantidad}</p>
+                  <label>Comprar Entradas con Paypal:</label>
+                  <br />
                   <div className={style.money}>
-                    <label>Comprar Entradas con Paypal:</label>
-                    <br />
                     <input
                       name="entradas"
                       value={entradas}
@@ -253,7 +253,10 @@ function DetailsEvents() {
                       onChange={handleOnChange}
                     />
                   </div>
-                  <button onClick={buyTicketHandler}>
+                  <button
+                    className={style.buyButton}
+                    onClick={buyTicketHandler}
+                  >
                     Comprar entrada <CreditCardIcon />
                   </button>
                   <p className={style.lastMoney}>

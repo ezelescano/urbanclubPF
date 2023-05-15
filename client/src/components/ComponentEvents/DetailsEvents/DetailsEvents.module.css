@@ -56,7 +56,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
   flex-basis: 50%;
   max-width: 400px;
   word-break: break-word;
@@ -66,8 +66,8 @@
   margin: 30px;
 }
 .img_Es img:hover {
-  max-width: 825px;
-  max-height: 950px;
+  max-width: 500px;
+  max-height: 650px;
   transform: scale(1.1);
   transition: 1s ease 0.6s;
 }
@@ -116,6 +116,14 @@ div .Description button:hover {
   background-color: #000000;
   color: #ffffff;
   transform: scale(1.05);
+  transition: 0.4s ease;
+}
+div .Description button.buyButton {
+  transition: 0.4s ease;
+}
+div .Description button.buyButton:hover {
+  background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
+  transition: 0.8s ease;
 }
 div .Description button {
   display: flex;
@@ -146,6 +154,7 @@ div .Description h2:hover {
 div .Description h1 {
   font-size: 40px;
   transition: 0.4s ease;
+  text-indent: -30px;
   background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -213,6 +222,7 @@ div .Description h4 {
   filter: drop-shadow(0 2px 4px rgb(0, 0, 0));
 }
 div .Description h5 {
+  text-indent: -45px;
   color: white;
   font-size: 22px;
   margin-block: 10px;
@@ -237,15 +247,34 @@ div .Description h5 svg {
   font-size: 20px;
 }
 .money:hover {
-  color: rgb(12, 129, 115);
-  transform: scale(1.15);
+  transform: scale(1.05);
   transition: 0.4s ease;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 40px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.145));
 }
 .lastMoney {
   padding-block: 20px;
+  transition: 0.4s ease;
+}
+.links .quantity {
+  color: rgb(3, 3, 3);
+  font-weight: 600;
+  font-size: 30px;
+  transition: 0.4s ease 0.8s;
+}
+.lastMoney h2 {
+  transition: 0.4s ease;
+}
+.links:hover .lastMoney h2 {
+  color: rgb(12, 129, 115);
+  font-size: 30px;
+  transition: 0.4s ease;
+}
+.links:hover .quantity {
+  color: rgb(215, 60, 60);
+  font-size: 40px;
+  transition: 0.4s ease 0.8s;
 }
 .styledInput {
   -moz-appearance: textfield;
@@ -277,7 +306,7 @@ div .Description h5 svg {
 }
 .Description label:hover {
   color: black;
-  transform: scale(1.15);
+  transform: scale(1.05);
   transition: 0.4s ease;
   font-weight: 600;
   font-size: 20px;
@@ -290,7 +319,7 @@ div .Description h5 svg {
   transform: scale(1.05);
   transition: 0.4s ease;
 }
-.infoText{
+.infoText {
   display: flex;
   flex-direction: column;
 }
