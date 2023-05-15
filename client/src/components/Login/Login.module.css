@@ -36,7 +36,7 @@
 .uploadSubmitButton:hover {
   transform: scale(1.15);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(180deg, #0d5a73 0%, #025494 100%);
+  background: linear-gradient(180deg, #0d5a73 25%, #025494 100%);
   color: #fafafa;
   transition: all 0.45s ease;
 }
@@ -54,7 +54,7 @@
 }
 
 .formContainer {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.859);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -64,6 +64,12 @@
   max-width: 120%;
   max-height: 800px;
   margin: auto;
+  border-radius: 15px;
+  transition: 1s ease 15s;
+}
+.formContainer:hover {
+  transform: scale(1.15);
+  transition: 1s ease;
 }
 
 .formLoginTitle {
@@ -113,7 +119,6 @@
   align-items: center;
   order: 3;
 }
-
 .formContainer label {
   display: flex;
   flex-direction: column;
@@ -144,11 +149,23 @@
 }
 .formContainerRight a:hover {
   transform: scale(1.2);
-  background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
+  background: linear-gradient(180deg, #0e98a5 50%, #066fbf 70%, #025494 100%);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   transition: all 0.45s ease;
+}
+.googleContainer button:first-child {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.45s ease;
+  color: rgb(18, 18, 18);
+  cursor: pointer;
+}
+.googleContainer button:first-child:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
+  transition: all 0.45s ease;
+  color: white;
 }
 @media screen and (max-width: 970px) {
   .formularioExternoLogin {

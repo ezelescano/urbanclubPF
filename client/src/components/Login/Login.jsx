@@ -13,7 +13,7 @@ function Login() {
     password: "",
   });
 
-  const handleClick = async () => {  
+  const handleClick = async () => {
     // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google";
     const googleLoginURL = "http://localhost:3001/artist/auth/google";
     const newWindow = window.open(
@@ -88,7 +88,9 @@ function Login() {
             <label>
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
-            <GoogleButton></GoogleButton>
+            <div className={styles.googleContainer}>
+              <GoogleButton></GoogleButton>
+            </div>
           </div>
         </form>
       </div>
