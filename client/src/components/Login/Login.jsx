@@ -76,7 +76,7 @@ function Login() {
             </label>
           </div>
           <div className={styles.formContainerRight}>
-            <button className={styles.uploadPictureButton} type="submit">
+            <button className={styles.uploadSubmitButton} type="submit">
               Ingresar
             </button>
             <br />
