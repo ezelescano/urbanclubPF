@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { loginSuccess } from "../../redux/authSlice";
 import { useDispatch } from "react-redux";
+import GoogleIcon from "@mui/icons-material/Google";
 
 const LoginButton = () => {
   const dispatch = useDispatch();
@@ -47,14 +48,19 @@ const LoginButton = () => {
       className="google"
       style={{
         padding: "10px",
+        paddingInline: "10px",
         marginBlock: "10px",
         borderRadius: "10px",
         border: "none",
         boxShadow: "0 0 5px rgba(0, 0, 0, 0.3);",
         transition: "all 0.45s ease;",
+        display: "flex",
+        alignItems: "center",
+        gap: "3px",
       }}
     >
-      Iniciar sesión con Google
+      Iniciar sesión con Google{"  "}
+      <GoogleIcon />
     </button>
   );
 };

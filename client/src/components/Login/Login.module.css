@@ -65,7 +65,7 @@
   max-height: 800px;
   margin: auto;
   border-radius: 15px;
-  transition: 1s ease 15s;
+  transition: 1s ease 5s;
 }
 .formContainer:hover {
   transform: scale(1.15);
@@ -166,6 +166,13 @@
   background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
   transition: all 0.45s ease;
   color: white;
+}
+.googleContainer button:first-child svg {
+  color: #066fbf;
+  transition: all 0.45s ease;
+}
+.googleContainer button:first-child:hover svg {
+     color: #3da8fa;
 }
 @media screen and (max-width: 970px) {
   .formularioExternoLogin {
