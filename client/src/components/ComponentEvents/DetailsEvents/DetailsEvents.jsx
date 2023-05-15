@@ -210,7 +210,6 @@ function DetailsEvents() {
                     onClick={() => handleSectionChange("step3")}
                   />
                 </div>
-
                 <div className={style.img_Es}>
                   <img src={detailEvent.eventPhoto} alt="" />
                 </div>

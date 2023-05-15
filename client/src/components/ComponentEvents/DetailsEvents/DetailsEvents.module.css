@@ -2,7 +2,7 @@
 @import url("https://fonts.cdnfonts.com/css/straphanger");
 .backContainer {
   background: linear-gradient(
-    10.37deg,
+    300.37deg,
     #bceeff 29.63%,
     #095c8c 51.55%,
     #0d5a73 90.85%
@@ -14,6 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 .container {
   background-color: rgba(255, 255, 255, 0.54);
@@ -24,9 +25,10 @@
   flex-direction: row;
   object-fit: cover;
   align-items: center;
-  min-width: 90%;
   overflow: hidden;
+  min-width: 30vw;
   padding-block: 50px;
+  padding-inline: 6%;
   transition: all 0.4s ease;
 }
 
@@ -69,8 +71,9 @@
   max-width: 500px;
   max-height: 650px;
   transform: scale(1.1);
-  transition: 1s ease 0.6s;
+  transition: 1s ease 0.4s;
 }
+
 .parrafo {
   font-size: 18px;
   text-align: justify;
@@ -140,6 +143,7 @@ div .Description svg {
 }
 
 div .Description p {
+  padding-top: 20px;
   font-weight: 700;
   transition: 1s ease;
 }
@@ -261,7 +265,7 @@ div .Description h5 svg {
   color: rgb(3, 3, 3);
   font-weight: 600;
   font-size: 30px;
-  transition: 0.4s ease 0.8s;
+  transition: 0.4s ease 0.4s;
 }
 .lastMoney h2 {
   transition: 0.4s ease;
@@ -336,16 +340,27 @@ div .Description h5 svg {
 .section {
   display: none;
 }
+/*MUCHO CUIDADO, ESTO ES FLEX, NO BLOCK*/
 .section.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.selectionButtons{
+.selectionButtons {
+  font-size: 30px;
   cursor: pointer;
+  color: white;
+  margin-block: 10px;
+  display: flex;
+  gap: 40px;
+  transition: 0.4s ease;
+  filter: drop-shadow(0 2px 4px rgb(0, 0, 0));
 }
-.selectionButtons svg{
+.selectionButtons svg {
+  font-size: 30px;
   transition: 0.4s ease;
 }
-.selectionButtons svg:hover{
+.selectionButtons svg:hover {
   font-size: 50px;
   transition: 0.4s ease;
 }
