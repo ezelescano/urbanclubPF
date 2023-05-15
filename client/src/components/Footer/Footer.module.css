@@ -1,6 +1,6 @@
 /* Color negro de la Navbar es #1a1919*/
 .footerContainer {
-  background-color: #0d5a73;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   color: #fff;
   display: flex;
   justify-content: space-between;

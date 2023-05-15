@@ -4,23 +4,27 @@ import { useSelector, useDispatch } from "react-redux";
 import loading from "../../img/loading.gif";
 import style from "./Events.module.css";
 import CardsEvents from "../Cards/CardsEvents/CardsEvents";
-import { FilterEvents, getAllEvents, getAllLocations, getFilterEventsSuccess } from "../../redux/eventSlice";
+import {
+  FilterEvents,
+  getAllEvents,
+  getAllLocations,
+  getFilterEventsSuccess,
+} from "../../redux/eventSlice";
 
 const Events = ({ showFilters }) => {
   const { detailEvent } = useSelector((state) => state.events);
   const islogin = useSelector((state) => state.auth);
   const locations = useSelector((state) => state.events.locations);
-  console.log("locationssssss",locations);
+  console.log("locationssssss", locations);
 
+  const events = useSelector((state) => state.events.allEvents); //state.events.
+  console.log("EVEnnnttssss", events);
 
-  const events = useSelector((state) => state.events.allEvents);//state.events.
-  console.log("EVEnnnttssss",events);
-  
   const dispatch = useDispatch();
   const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation
   const [date, setDate] = useState("");
-  const [price, setPrice] = useState('');
-  const [ubicacion, setUbicacion] = useState('');
+  const [price, setPrice] = useState("");
+  const [ubicacion, setUbicacion] = useState("");
 
   // const [isLoading, setIsLoading] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
@@ -37,71 +41,66 @@ const Events = ({ showFilters }) => {
     locationName: "Calle C 16 Barrio La campiña 6 N.356",
   };
 
+  useEffect(() => {
+    // dispatch (pagNum(1));
+    // dispatch(FilterArtists(selectedCategory));
+    handlesFilterEvents();
+  }, [date, price, ubicacion]);
 
-useEffect(() => {
-  // dispatch (pagNum(1));
-  // dispatch(FilterArtists(selectedCategory));
-  handlesFilterEvents();
-}, [date , price , ubicacion]);
+  const handlesFilterEvents = () => {
+    let Eventos = [...events];
+    dispatch(FilterEvents(date, price, ubicacion));
 
+    if (date !== "" || price !== "" || ubicacion !== "") {
+      // setIsLoading(true);
+      // setIsLoading(false);
 
-const handlesFilterEvents = () => {
-  let Eventos = [...events];
-  dispatch(FilterEvents(date, price, ubicacion));
-  
-  if (date !== "" || price !== "" || ubicacion !== "") {
-    // setIsLoading(true);
-    // setIsLoading(false);
+      // Add selected filters to the state
+      const newFilters = [];
+      if (date !== "") newFilters.push(date);
+      if (price !== "") newFilters.push(price);
+      if (ubicacion !== "") newFilters.push(ubicacion);
+      setSelectedFilters(newFilters);
+    } else {
+      // setIsLoading(true);
+      dispatch(getAllEvents(Eventos));
+      // setIsLoading(false);
 
-    // Add selected filters to the state
-    const newFilters = [];
-    if (date !== "") newFilters.push(date);
-    if (price !== "") newFilters.push(price);
-    if (ubicacion !== "") newFilters.push(ubicacion);
+      // Clear selected filters
+      setSelectedFilters([]);
+    }
+  };
+  const handleRemoveFilter = (filter) => {
+    const newFilters = selectedFilters.filter((f) => f !== filter);
     setSelectedFilters(newFilters);
-  } else {
-    // setIsLoading(true);
-    dispatch(getAllEvents(Eventos));
-    // setIsLoading(false);
 
-    // Clear selected filters
-    setSelectedFilters([]);
-  }
-};
-const handleRemoveFilter = (filter) => {
-  const newFilters = selectedFilters.filter((f) => f !== filter);
-  setSelectedFilters(newFilters);
-
-  // Remove filter from the form
-  if (date === filter) setDate("");
-  if (price === filter) setPrice("");
-  if (ubicacion === filter) setUbicacion("");
-};
+    // Remove filter from the form
+    if (date === filter) setDate("");
+    if (price === filter) setPrice("");
+    if (ubicacion === filter) setUbicacion("");
+  };
 
   return (
     <div className={style.container}>
+      <br />
 
-     <br />
-     
-     {showFilters ? (
+      {showFilters ? (
         <div>
           <form>
-
-              <select
-              
-              value={date} 
-              onChange={(e) => setDate(e.target.value)}>
-              <option hidden value="">Fechas</option>
+            <select value={date} onChange={(e) => setDate(e.target.value)}>
+              <option hidden value="">
+                Fechas
+              </option>
               <option value="Hoy">Hoy</option>
               <option value="Esta semana">Esta semana</option>
               <option value="Este mes">Este mes</option>
               <option value="Proximos">Proximamente</option>
-              </select>
-
+            </select>
 
             <select
               value={price}
-              onChange={(event) => setPrice(event.target.value)}>
+              onChange={(event) => setPrice(event.target.value)}
+            >
               <option value="">Precios</option>
               <option value="0">Gratis</option>
               <option value="1-50">Rango medio</option>
@@ -111,11 +110,14 @@ const handleRemoveFilter = (filter) => {
 
             <select
               value={ubicacion}
-              onChange={(event) => setUbicacion(event.target.value)}>
+              onChange={(event) => setUbicacion(event.target.value)}
+            >
               <option value="">Todos los países</option>
-            
+
               {locations?.map((Country) => (
-              <option key={Country} value={Country}>{Country}</option>
+                <option key={Country} value={Country}>
+                  {Country}
+                </option>
               ))}
             </select>
 
@@ -126,33 +128,13 @@ const handleRemoveFilter = (filter) => {
               Limpiar
             </button>
           </form>
-          
-          {/* <div className={style.selectedFilters}>
-            {selectedFilters.map((filter) => (
-              <div key={filter} className={style.selectedFilter}>
-                <span>{filter}</span>
-                <button onClick={() => handleRemoveFilter(filter)}>X</button>
-              </div>
-            ))}
-          </div> */}
+
         </div>
-        ) : null}
+      ) : null /* Colocar el maquetado de arriba para verlos, al estilarlo*/} 
       <div className={style.containerHelp}>
         {events?.map((item, index) => {
-          
-            if (islogin.isAuthenticated) {
-              if (islogin.user.id !== item.id_Artist) {
-                return (
-                  <CardsEvents
-                    key={index}
-                    id_art={item.id}
-                    name_art={item.name}
-                    event={item}
-                    onClick={handleLocationChange}
-                  />
-                );
-              }
-            } else {
+          if (islogin.isAuthenticated) {
+            if (islogin.user.id !== item.id_Artist) {
               return (
                 <CardsEvents
                   key={index}
@@ -163,7 +145,17 @@ const handleRemoveFilter = (filter) => {
                 />
               );
             }
-          
+          } else {
+            return (
+              <CardsEvents
+                key={index}
+                id_art={item.id}
+                name_art={item.name}
+                event={item}
+                onClick={handleLocationChange}
+              />
+            );
+          }
         })}
       </div>
     </div>
@@ -171,4 +163,3 @@ const handleRemoveFilter = (filter) => {
 };
 
 export default Events;
-

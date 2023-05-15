@@ -85,7 +85,8 @@ function Messenger() {
     getConversations();
   }, [user.id]);
 
-  useEffect(() => {
+useEffect(() => {
+  const interval = setInterval(() => {
     const getmessages = async () => {
       try {
         const res = await axios.get(`/message/${currentChat?.id}`);
@@ -95,7 +96,12 @@ function Messenger() {
       }
     };
     getmessages();
-  }, [currentChat]);
+  }, 1500);
+
+  return () => {
+    clearInterval(interval);
+  };
+}, [currentChat]);
 
   const handleEmojiSelect = (emoji) => {
     setNewMessage(newMessage + emoji.native);
@@ -158,6 +164,7 @@ function Messenger() {
     <div className="messenger">
       <div className="chatMenu">
         <div className="chatMenuWrapper">
+          Conversaciones Activas
           {/* <input placeholder="Buscar amigos..." className="chatMenuInput"/> */}
           {Array.isArray(conversations) &&
             conversations.map((c) => (
@@ -171,7 +178,7 @@ function Messenger() {
         <div className="chatBoxWrapper">
           {currentChat ? (
             <>
-              <DetailBar conversation={currentChat} currentUser={user}/>
+              <DetailBar conversation={currentChat} currentUser={user} />
               <div className="chatBoxTop">
                 {Array.isArray(messages) &&
                   messages.map((m) => (
