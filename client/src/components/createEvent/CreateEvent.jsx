@@ -102,6 +102,9 @@ const CreateEvent = () => {
       setRutaImagen(reader.result);
     };
   };
+  const handleDelete = () => {
+    setRutaImagen("");
+  };
 
   // const handleCancel = (e) => {
   //   //Lógica para eliminar con el boton, qué aun no hace nada
@@ -161,7 +164,11 @@ const CreateEvent = () => {
       <form className="formContainer" onSubmit={handleSubmit}>
         <div className="createEventContainer">
           <div className="createEventLeft">
-            <div className="createEventImgContainer">
+            <div
+              className={`createEventImgContainer ${
+                rutaImagen ? "fade-in" : ""
+              }`}
+            >
               {rutaImagen ? (
                 <img
                   className="formPicture"
@@ -178,8 +185,24 @@ const CreateEvent = () => {
                 name="eventPhoto"
                 onClick={handleClick}
               >
-                Subir foto
+                {rutaImagen ? "Cambiar" : "Cargar foto"}
               </button>
+              {/* {rutaImagen ? (
+                <>
+                  <br />
+                  <button
+                    className="uploadPictureButton"
+                    type="button"
+                    name="deletePhoto"
+                    onClick={handleDelete}
+                  >
+                    Eliminar foto
+                  </button>
+                </>
+              ) : (
+                ""
+              )} */}
+              {/* No funciona lo de arriba aún */}
               <input
                 type="file"
                 accept="image/png,image/jpg,image/jpeg"
@@ -202,13 +225,18 @@ const CreateEvent = () => {
                   <progress value={progress} max="100"></progress> // Barra de progreso
                 )}
                 <button
+                  type="button" // Cambiado a tipo "button"
                   onClick={handlePreviousStep}
                   disabled={currentStep === 1}
                   style={{ marginRight: "10px" }}
                 >
                   Anterior
                 </button>
-                <button onClick={handleNextStep} disabled={currentStep === 3}>
+                <button
+                  type="button" // Cambiado a tipo "button"
+                  onClick={handleNextStep}
+                  disabled={currentStep === 3}
+                >
                   Siguiente
                 </button>
                 <section
