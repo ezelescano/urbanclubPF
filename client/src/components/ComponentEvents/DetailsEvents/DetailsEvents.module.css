@@ -294,8 +294,6 @@ div .Description h5 svg {
   display: flex;
   flex-direction: column;
 }
-.infoText svg {
-}
 @keyframes changeColor {
   0% {
     color: rgb(180, 118, 118);
