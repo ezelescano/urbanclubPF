@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { loginSuccess, logout, loginUpdatePhoto } from './authSlice';
 import swal from 'sweetalert'
+import { BTX_ACEPTAR, EM_USER_NOT_CR, ICO_ERROR, ICO_SUCCESS, SM_USER_CREATED, TLE_ERROR, TLE_INFORMATION } from '../utils/messages';
 
 const initialState = {
   usuario: [],
@@ -244,18 +245,23 @@ export const postArtist = (payload, navigate) => {
       const apiData = await axios.post('/artist', payload);
       const result = apiData.data;
       if (result.error) {
-        return dispatch(setErrors(result))
-
+        swal({
+          title: TLE_ERROR,
+          text: result.error,
+          icon: ICO_ERROR,
+          buttons: BTX_ACEPTAR
+        })
+        return dispatch(setErrors(result));
       }
 
       dispatch(postArtistSuccess());
-      dispatch(loginSuccess(result))
-      dispatch(clearErrors())
+      dispatch(loginSuccess(result));
+      dispatch(clearErrors());
       swal({
-        title: "Usuario Creado",
-        text: "Usuario Creado con exito",
-        icon: "success",
-        buttons: "Aceptar"
+        title: TLE_INFORMATION,
+        text: SM_USER_CREATED,
+        icon: ICO_SUCCESS,
+        buttons: BTX_ACEPTAR
       }).then(res => {
         if (res) {
           navigate("/")
@@ -264,10 +270,10 @@ export const postArtist = (payload, navigate) => {
 
     } catch (error) {
       swal({
-        title: "ERROR",
-        text: "No se pudo crear el usuario",
-        icon: "error",
-        buttons: "Aceptar"
+        title: TLE_ERROR,
+        text: EM_USER_NOT_CR,
+        icon: ICO_ERROR,
+        buttons: BTX_ACEPTAR
       })
     }
   };
@@ -283,10 +289,10 @@ export const deleteArtist = (id) => {
       return dispatch(deleteArtistSuccess(result));
     } catch (error) {
       swal({
-        title: "ERROR",
+        title: TLE_ERROR,
         text: "No se pudo borrar el artista",
-        icon: "error",
-        buttons: "Aceptar"
+        icon: ICO_ERROR,
+        buttons: BTX_ACEPTAR
       })
     }
   }
@@ -300,10 +306,10 @@ export const getauth = (navigate) => {
       return dispatch(getauthSuccess(artist));
     } catch (e) {
       swal({
-        title: "ERROR",
-        text: "Inicia seccion",
-        icon: "warning",
-        buttons: "Aceptar"
+        title: TLE_ERROR,
+        text: "Inicia sesion",
+        icon: ICO_ERROR,
+        buttons: BTX_ACEPTAR
       })
       //navigate("/artists")
     }
