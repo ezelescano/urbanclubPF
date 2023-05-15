@@ -1,7 +1,9 @@
 .messenger {
   height: calc(100vh - 70px);
   display: flex;
-  padding-top:100px
+  padding-top: 100px;
+  background: linear-gradient(180deg, #0d5a73a2 0%, #09548e 100%);
+  padding-bottom: 40px;
 }
 
 .chatMenu {
@@ -32,7 +34,6 @@
 }
 
 .chatBoxTop {
-  height: 100%;
   overflow-y: scroll;
   padding-right: 10px;
 }
@@ -43,6 +44,7 @@
 
 .chatBoxBottom {
   margin-top: 5px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -71,7 +73,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #004258;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   color: #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -84,10 +86,34 @@
 }
 
 .chatMenuWrapper,
-.chatBoxWrapper,
+.chatMenuWrapper::-webkit-scrollbar,
+.chatOnlineWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.chatMenuWrapper,
+.chatOnlineWrapper {
+  overflow-y: scroll;
+}
+
+.chatMenuWrapper::-webkit-scrollbar,
+.chatOnlineWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.chatMenuWrapper,
 .chatOnlineWrapper {
   padding: 10px;
-  height: 100%;
+  height: 90%;
+}
+.chatOnlineWrapper {
+  overflow-y: scroll;
+}
+
+.detailBar {
+  padding: 0px 0px 10px 0px;
+  border-end-end-radius: 20px;
+  border-end-start-radius: 20px;
 }
 .chatBoxWrapper {
   box-shadow: 0px 0px 10px 0px rgba(0, 66, 88, 0.5);
@@ -123,10 +149,10 @@
   transform: scale(1.1) translateZ(0);
   transition: transform 0.6s ease;
 }
-.emojieBoxForAbsolute{
+.emojieBoxForAbsolute {
   position: absolute;
-  right:105%;
-  bottom:40%;
+  right: 105%;
+  bottom: 40%;
 }
 
 @media screen and (max-width: 768px) {
@@ -145,4 +171,22 @@
   .chatOnline {
     flex: 1px;
   }
+}
+
+.listOnline,
+.listOffline {
+  width: 100%;
+  height: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+  color: #fff;
+}
+
+.listlinesbtn {
+  padding-top: 2px;
+  background: none;
+  border: none;
+  color: #fff;
 }

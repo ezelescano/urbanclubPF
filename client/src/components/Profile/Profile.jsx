@@ -25,6 +25,11 @@ import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import axios from "axios";
 import FollowList from "../FollowList/FollowList";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import EmptyCard from "../Cards/CardsEvents/EmptyCard";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -70,9 +75,8 @@ const Profile = () => {
   const eventosRef = useRef(null);
 
   useEffect(() => {
-
-    const getFollowers = async() => {
-    try {
+    const getFollowers = async () => {
+      try {
         const res = await dispatch(getArtistId(id));
         setFollowers(res.followers);
       } catch (error) {
@@ -80,10 +84,12 @@ const Profile = () => {
       }
     };
     getFollowers();
-    return async () => {
+    return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
-      setFollowers([])
+      setFollowers([]);
+      setShowFollowings(false);
+      setShowFollowers(false);
     };
   }, [id]);
 
@@ -91,8 +97,12 @@ const Profile = () => {
     const getUser = async () => {
       try {
         const res = await axios.get("/artist/login/me");
-        console.log(res.data.followings)
-        setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
+        console.log(res.data.followings);
+        setFollowed(
+          res.data.followings.some(
+            (follow) => follow.following_Id === usuario?.id
+          )
+        );
       } catch (error) {
         console.log(error);
       }
@@ -196,22 +206,26 @@ const Profile = () => {
 
   const handleFollow = async () => {
     try {
-      if(!followed && !isCurrentUser && currentUser.isAuthenticated){
-        await axios.post(`/artist/follow/${currentUser.user.id}/follow`,{
-         followedId: `${usuario.id}`
-        })
-        const obj = { follower_Id: currentUser.user.id }
-        setFollowers([...followers, obj])
-        setFollowed(!followed)
-        return
+      if (!followed && !isCurrentUser && currentUser.isAuthenticated) {
+        await axios.post(`/artist/follow/${currentUser.user.id}/follow`, {
+          followedId: `${usuario.id}`,
+        });
+        const obj = { follower_Id: currentUser.user.id };
+        setFollowers([...followers, obj]);
+        setFollowed(!followed);
+        return;
       }
-      if(followed && !isCurrentUser && currentUser.isAuthenticated){
-        await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`,{
-          followedId: `${usuario.id}`
-        })
-        setFollowers(followers.filter(follow => follow.follower_Id !== currentUser.user.id))
-        setFollowed(!followed)
-        return
+      if (followed && !isCurrentUser && currentUser.isAuthenticated) {
+        await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`, {
+          followedId: `${usuario.id}`,
+        });
+        setFollowers(
+          followers.filter(
+            (follow) => follow.follower_Id !== currentUser.user.id
+          )
+        );
+        setFollowed(!followed);
+        return;
       }
       swal({
         title: "INICIAR SESIÓN",
@@ -283,12 +297,14 @@ const Profile = () => {
   };
 
   const handleOnClickFollowers = () => {
-    setShowFollowers(!showFollowers)
-  }
+    setShowFollowers(!showFollowers);
+    setShowFollowings(false);
+  };
 
   const handleOnClickFollowings = () => {
-    setShowFollowings(!showFollowings)
-  }
+    setShowFollowings(!showFollowings);
+    setShowFollowers(false);
+  };
 
   return (
     <>
@@ -320,13 +336,7 @@ const Profile = () => {
                       <h1 className="profileNombre">
                         {name}
                         {/*  {lastname} */}
-                        {verified && (
-                          <img
-                            className="verificado"
-                            src="https://static.vecteezy.com/system/resources/previews/014/296/309/non_2x/blue-verified-social-media-account-icon-approved-profile-sign-illustration-vector.jpg"
-                            alt="verificado paa"
-                          />
-                        )}
+                        {verified && <VerifiedIcon />}
                       </h1>
                     </span>
                     {!isCurrentUser && (
@@ -353,7 +363,6 @@ const Profile = () => {
                   </h3>
                 </div>
               </div>
-
               <div className="stas-profile">
                 <div className="btn-div">
                   <button className="btn-stas" onClick={scrollToEventos}>
@@ -363,19 +372,30 @@ const Profile = () => {
                   <button className="btn-stas" onClick={handleOnClickFollowers}>
                     {followers?.length + " "} Seguidores
                   </button>
-                  {showFollowers && <FollowList userId={usuario.id}
-                                                isCurrentUser={isCurrentUser}
-                                                action="followers"
-                                                setShowFollowers={setShowFollowers}
-                                                setShowFollowings={setShowFollowings}/>}
-                  <button className="btn-stas" onClick={handleOnClickFollowings}>
+                  {showFollowers && (
+                    <FollowList
+                      userId={usuario.id}
+                      isCurrentUser={isCurrentUser}
+                      action="followers"
+                      setShowFollowers={setShowFollowers}
+                      setShowFollowings={setShowFollowings}
+                    />
+                  )}
+                  <button
+                    className="btn-stas"
+                    onClick={handleOnClickFollowings}
+                  >
                     {followings?.length + " "} Seguidos
                   </button>
-                  {showFollowings && <FollowList userId={usuario.id}
-                                                isCurrentUser={isCurrentUser}
-                                                action="followings"
-                                                setShowFollowers={setShowFollowers}
-                                                setShowFollowings={setShowFollowings}/>}
+                  {showFollowings && (
+                    <FollowList
+                      userId={usuario.id}
+                      isCurrentUser={isCurrentUser}
+                      action="followings"
+                      setShowFollowers={setShowFollowers}
+                      setShowFollowings={setShowFollowings}
+                    />
+                  )}
                 </div>
                 <div className="redes">
                   {links?.map((l, index) => {
@@ -388,12 +408,9 @@ const Profile = () => {
                               href={l.youtube}
                               target="_blank"
                               rel="noreferrer noopener"
+                              className="youtube"
                             >
-                              <img
-                                className="icon"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYBkoHVpJNDq7zkN5eqjnF31QVBGPb7hloyw&usqp=CAU"
-                                alt="ds"
-                              />
+                              <YouTubeIcon />
                             </a>
                           )}
 
@@ -402,12 +419,9 @@ const Profile = () => {
                               href={l.twitter}
                               target="_blank"
                               rel="noreferrer noopener"
+                              className="twitter"
                             >
-                              <img
-                                className="icon"
-                                src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
-                                alt="ds"
-                              />
+                              <TwitterIcon />
                             </a>
                           )}
                         </div>
@@ -422,13 +436,9 @@ const Profile = () => {
             </div>
             <div className="btns">
               {isCurrentUser ? (
-                <div className="settings-div" >
+                <div className="settings-div">
                   <button className="btn-ajustes" onClick={handleSettings}>
-                    <img
-                      className="ajustes"
-                      src="https://thumbs.dreamstime.com/b/icono-de-la-l%C3%ADnea-del-engranaje-en-fondo-negro-ilustraci%C3%B3n-vectores-estilo-plano-170443759.jpg"
-                      alt="ajuste"
-                    />
+                    <SettingsIcon />
                   </button>
                   {(showSettings || showEdit || showEditPassword) &&
                     showComponents && (
@@ -462,15 +472,21 @@ const Profile = () => {
               Mis eventos
             </div>
             <div className="div-eventos-profile">
-              {events?.map((event, index) => (
-                <CardsEvents
-                  key={index}
-                  id_art={event.id_Artist}
-                  name_art={event.name}
-                  event={event}
-                  handleDeleteEvent={handleDeleteEvent}
-                />
-              ))}
+              {events && events.length > 0 ? (
+                <div className="div-eventos-profile">
+                  {events.map((event, index) => (
+                    <CardsEvents
+                      key={index}
+                      id_art={event.id_Artist}
+                      name_art={event.name}
+                      event={event}
+                      handleDeleteEvent={handleDeleteEvent}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <EmptyCard id={id} />
+              )}
             </div>
           </div>
         </div>
