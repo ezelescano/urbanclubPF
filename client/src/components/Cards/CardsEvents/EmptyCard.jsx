@@ -7,7 +7,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 
-const EmptyCard = () => {
+const EmptyCard = ({id}) => {
   const usuario = useSelector((state) => state.artist.usuario);
   const currentUser = useSelector((state) => state.auth);
   const isCurrentUser = currentUser.user && currentUser.user.id === usuario.id;
@@ -37,7 +37,7 @@ const EmptyCard = () => {
             <div className={style.imageContainer}>
               <div className={style.imageWrapper}>
                 <div className={style.emptyText}>
-                  <NavLink to={"/createevent/${id}"} onClick={scrollToTop}>
+                  <NavLink to={`/createevent/${id}`} onClick={scrollToTop}>
                     <LibraryAddIcon />
                   </NavLink>
                 </div>
