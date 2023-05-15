@@ -168,11 +168,11 @@ useEffect(() => {
     }
   };
 
-  // useEffect(() => {
-  //   scrollRef.current?.scrollIntoView({ behavior: "auto" });
-  // }, [messages]);
+  /*  useEffect(() => {
+     scrollRef.current?.scrollIntoView({ behavior: "auto" });
+   }, [messages]);
 
-  
+   */
 
   return (
     <div className="messenger">

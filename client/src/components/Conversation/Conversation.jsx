@@ -39,8 +39,10 @@ const handleDelete = () => {
 
   return (
     <div className='conversation'>
-      <img className='conversationImg' src={user?.profilePhoto} alt='imagen de perfil'/>
-      <span className='conversationName'>{user?.name}</span>
+      <div className="conversationleft">
+        <img className='conversationImg' src={user?.profilePhoto} alt='imagen de perfil'/>
+        <span className='conversationName'>{user?.name}</span>
+      </div>
       <button className="conversationBtn" onClick={handleDelete}><DeleteIcon/></button>
     </div>
   )
