@@ -3,8 +3,7 @@
   align-items: center;
   padding: 10px;
   cursor: pointer;
-  margin-top: 20px;
-  background-color: #0d5a73;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
 }
 
 .detailBar:hover {
@@ -22,10 +21,4 @@
 .detailBarName {
   font-weight: 500;
   color: #fff;
-}
-
-@media screen and (max-width: 768px) {
-  .detailBarName {
-    display: none;
-  }
 }

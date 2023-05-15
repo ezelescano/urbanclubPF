@@ -71,7 +71,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #004258;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   color: #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -81,6 +81,16 @@
 
 .chatOnline {
   flex: 3;
+}
+
+.chatMenuWrapper,
+.chatOnlineWrapper{
+  overflow-y: scroll;
+}
+
+.chatMenuWrapper::-webkit-scrollbar,
+.chatOnlineWrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .chatMenuWrapper,
@@ -145,4 +155,21 @@
   .chatOnline {
     flex: 1px;
   }
+}
+
+.listOnline, .listOffline {
+  width: 100%;
+  height: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+  color: #fff;
+}
+
+.listlinesbtn{
+  padding-top: 2px;
+  background: none;
+  border: none;
+  color: #fff;
 }
