@@ -71,7 +71,10 @@ function Login() {
     ...input,
     [e.target.name]: e.target.value
      })
-  setErrors(validate(input))
+  setErrors(validate({
+    ...input,
+    [e.target.name]: e.target.value
+     }))
   }
 
   const handleOnBlur = (e) => {
@@ -139,7 +142,7 @@ function Login() {
                 name="email"
                 maxLength={45}
                 value={input.email}
-                onBlur={handleOnBlur}
+                // onBlur={handleOnBlur}
                 onChange={handleOnChange}
               />
             </label>
@@ -150,7 +153,7 @@ function Login() {
                 maxLength={45}
                 name="password"
                 value={input.password}
-                onBlur={handleOnBlur}
+                // onBlur={handleOnBlur}
                 onChange={handleOnChange}
               />
             </label>
@@ -173,12 +176,12 @@ function Login() {
           </div>
         </form>
         <div className={styles.formContainerMiddle} style={{ color: "red" }}>
-                {
+                {/* {
                   errors.target && errors[errors.target]
                 // Object.keys(errors).map((e) => { 
                 //     return (<>{errors[e]} <br/> </>)
                 //   })
-                  }
+                  } */}
         </div>
       </div>
     </div>
