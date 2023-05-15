@@ -40,14 +40,16 @@
   padding: 10px 20px;
   text-transform: uppercase;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
   border-radius: 15px;
+  cursor: pointer;
 }
 
 .uploadPictureButton:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   background-color: #222222;
   color: #e6e6e6;
+  transform: scale(1.05);
 }
 
 .createEventLeft img {
