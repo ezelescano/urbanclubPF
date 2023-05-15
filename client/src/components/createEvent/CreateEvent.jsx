@@ -177,6 +177,7 @@ const CreateEvent = () => {
   const handlePreviousStep = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
+  
 
   return (
     <div className="createEvent">
@@ -237,24 +238,28 @@ const CreateEvent = () => {
             <div onSubmit={handleSubmit}>
               <div className="formInputs">
                 {progress === 100 ? (
-                  <p>
-                    <div className="progressBar completed">
-                      <progress value={progress} max="100"></progress>
+                  <div className="progressContainer">
+                    <div
+                      className="progressBar completed"
+                      style={{ width: `${progress}%` }}
+                    >
+                      <div className="progressText">Completado! :D</div>
                     </div>
-                    Completado! :D
-                  </p> // Mensaje de completado
+                  </div>
                 ) : (
-                  <progress
-                    className="progressBar"
-                    value={progress}
-                    max="100"
-                  ></progress> // Barra de progreso
+                  <div className="progressContainer">
+                    <div
+                      className="progressBar"
+                      style={{ width: `${progress}%` }}
+                    ></div>
+                  </div>
                 )}
 
                 <div className="formArrowButtons">
                   <button
                     type="button" // Cambiado a tipo "button"
                     onClick={handlePreviousStep}
+                    className="stepsButtons"
                     disabled={currentStep === 1}
                     style={{ marginRight: "10px" }}
                   >
@@ -263,6 +268,7 @@ const CreateEvent = () => {
                   <button
                     type="button" // Cambiado a tipo "button"
                     onClick={handleNextStep}
+                    className="stepsButtons"
                     disabled={currentStep === 3}
                   >
                     Siguiente
@@ -270,9 +276,9 @@ const CreateEvent = () => {
                 </div>
                 <section
                   name="step1"
+                  className={currentStep === 1 ? "show" : "hide"}
                   style={{
                     backgroundColor: "#fb282833",
-                    display: currentStep === 1 ? "block" : "none",
                   }}
                 >
                   <h2>1# Describe tu evento</h2>
@@ -324,9 +330,9 @@ const CreateEvent = () => {
                 </section>
                 <section
                   name="step2"
+                  className={currentStep === 2 ? "show" : "hide"}
                   style={{
                     backgroundColor: "#0000ff36",
-                    display: currentStep === 2 ? "block" : "none",
                   }}
                 >
                   <h2>2# Ubícalo en el mapa</h2>
@@ -388,9 +394,9 @@ const CreateEvent = () => {
                 </section>
                 <section
                   name="step3"
+                  className={currentStep === 3 ? "show" : "hide"}
                   style={{
                     backgroundColor: "#ffff003d",
-                    display: currentStep === 3 ? "block" : "none",
                   }}
                 >
                   <h2>3# Dale un valor</h2>

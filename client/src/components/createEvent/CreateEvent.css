@@ -7,14 +7,15 @@
     #095c8c 51.55%,
     #0d5a73 90.85%
   );
-  width: 100vw;
+  width: 99vw;
+  min-height: 72vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .createEventContainer {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.54);
   color: rgb(0, 0, 0);
   display: flex;
   justify-content: space-around;
@@ -172,27 +173,66 @@
   justify-content: space-between;
   align-items: center;
 }
-.progressBar {
+.progressContainer {
   width: 100%;
   height: 20px;
   border-radius: 10px;
-  background: linear-gradient(
-    10.37deg,
-    #bceeff 29.63%,
-    #095c8c 51.55%,
-    #0d5a73 90.85%
-  );
+  border: 2px solid rgb(208, 208, 208);
+  background-color: white;
+  margin-block: 5px;
+  transition: 1s ease;
 }
 
-.progressBar.completed progress {
-  background: linear-gradient(
-    10.37deg,
-    #bceeff 29.63%,
-    #095c8c 51.55%,
-    #0d5a73 90.85%
-  );
+.progressBar {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #0d5a73;
+  transition: width 0.5s ease-in-out;
+  transition: 1s ease;
 }
 
+.completed {
+  transform: scale(1.1);
+  transition: 1s ease;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+}
+
+.progressText {
+  color: white;
+  text-align: center;
+  line-height: 20px;
+  transition: 1s ease;
+}
+.stepsButtons {
+  border-radius: 15px;
+  outline: none;
+  border: 1px solid rgb(208, 208, 208);
+  padding: 5px;
+  margin-block: 5px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.stepsButtons:hover {
+  transform: scale(1.1);
+}
+.smooth-transition {
+  transition: all 0.3s ease;
+}
+
+.formInputs section {
+  position: relative;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.formInputs section.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.hide {
+  display: none;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
