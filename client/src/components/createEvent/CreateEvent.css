@@ -101,7 +101,8 @@
   display: flex;
   flex-direction: column;
   max-width: 450px;
-  min-height: 470px;
+  min-height: 500px;
+  max-height: 520px;
   margin-inline: 10px;
   padding-inline: 20px;
 }
