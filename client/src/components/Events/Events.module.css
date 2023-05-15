@@ -20,7 +20,7 @@
 .card {
   min-height: 300px;
 }
-.container div:first-child {
+.container div {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -30,12 +30,15 @@
     height: 100%;
     width: 100vw;
   }
-  .container div:first-child {
+  .container div {
     margin-top: 30px;
   }
 }
 /*ARREGLADO, PERO NO USAR SIN ITEMS O CARDS*/
 /*Limpiar fondo luego*/
+.eventsFilters{
+  display: none;
+}
 @keyframes rotateColors {
   0% {
     background-position: 0% 50%;

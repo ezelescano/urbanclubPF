@@ -25,10 +25,11 @@ import { getAllEvents } from "../../redux/eventSlice";
 import { EM_NO_USER_ID, EM_SYNTAX_ID } from "../../utils/messages";
 import axios from "axios";
 import FollowList from "../FollowList/FollowList";
-import VerifiedIcon from '@mui/icons-material/Verified';
-import SettingsIcon from '@mui/icons-material/Settings';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import VerifiedIcon from "@mui/icons-material/Verified";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import EmptyCard from "../Cards/CardsEvents/EmptyCard";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -74,9 +75,8 @@ const Profile = () => {
   const eventosRef = useRef(null);
 
   useEffect(() => {
-
-    const getFollowers = async() => {
-    try {
+    const getFollowers = async () => {
+      try {
         const res = await dispatch(getArtistId(id));
         setFollowers(res.followers);
       } catch (error) {
@@ -87,9 +87,9 @@ const Profile = () => {
     return () => {
       //le paso un return cuando se desmonta
       dispatch(clearProfile());
-      setFollowers([])
-      setShowFollowings(false)
-      setShowFollowers(false)
+      setFollowers([]);
+      setShowFollowings(false);
+      setShowFollowers(false);
     };
   }, [id]);
 
@@ -178,7 +178,9 @@ const Profile = () => {
       text: `Artista  ${input.name} actualizado con exito`,
       icon: "success",
       buttons: "Aceptar",
-    });
+    }).then(res=>{
+      if(res) window.location.reload()
+    })
     setShowEdit(false);
     setShowSettings(false);
   };
@@ -199,22 +201,26 @@ const Profile = () => {
 
   const handleFollow = async () => {
     try {
-      if(!followed && !isCurrentUser && currentUser.isAuthenticated){
-        await axios.post(`/artist/follow/${currentUser.user.id}/follow`,{
-         followedId: `${usuario.id}`
-        })
-        const obj = { follower_Id: currentUser.user.id }
-        setFollowers([...followers, obj])
-        setFollowed(!followed)
-        return
+      if (!followed && !isCurrentUser && currentUser.isAuthenticated) {
+        await axios.post(`/artist/follow/${currentUser.user.id}/follow`, {
+          followedId: `${usuario.id}`,
+        });
+        const obj = { follower_Id: currentUser.user.id };
+        setFollowers([...followers, obj]);
+        setFollowed(!followed);
+        return;
       }
-      if(followed && !isCurrentUser && currentUser.isAuthenticated){
-        await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`,{
-          followedId: `${usuario.id}`
-        })
-        setFollowers(followers.filter(follow => follow.follower_Id !== currentUser.user.id))
-        setFollowed(!followed)
-        return
+      if (followed && !isCurrentUser && currentUser.isAuthenticated) {
+        await axios.post(`/artist/follow/${currentUser.user.id}/unfollow`, {
+          followedId: `${usuario.id}`,
+        });
+        setFollowers(
+          followers.filter(
+            (follow) => follow.follower_Id !== currentUser.user.id
+          )
+        );
+        setFollowed(!followed);
+        return;
       }
       swal({
         title: "INICIAR SESIÓN",
@@ -286,14 +292,14 @@ const Profile = () => {
   };
 
   const handleOnClickFollowers = () => {
-    setShowFollowers(!showFollowers)
-    setShowFollowings(false)
-  }
+    setShowFollowers(!showFollowers);
+    setShowFollowings(false);
+  };
 
   const handleOnClickFollowings = () => {
-    setShowFollowings(!showFollowings)
-    setShowFollowers(false)
-  }
+    setShowFollowings(!showFollowings);
+    setShowFollowers(false);
+  };
 
   return (
     <>
@@ -325,9 +331,7 @@ const Profile = () => {
                       <h1 className="profileNombre">
                         {name}
                         {/*  {lastname} */}
-                        {verified && (
-                          <VerifiedIcon/>
-                        )}
+                        {verified && <VerifiedIcon />}
                       </h1>
                     </span>
                     {!isCurrentUser && (
@@ -354,7 +358,6 @@ const Profile = () => {
                   </h3>
                 </div>
               </div>
-
               <div className="stas-profile">
                 <div className="btn-div">
                   <button className="btn-stas" onClick={scrollToEventos}>
@@ -364,19 +367,30 @@ const Profile = () => {
                   <button className="btn-stas" onClick={handleOnClickFollowers}>
                     {followers?.length + " "} Seguidores
                   </button>
-                  {showFollowers && <FollowList userId={usuario.id}
-                                                isCurrentUser={isCurrentUser}
-                                                action="followers"
-                                                setShowFollowers={setShowFollowers}
-                                                setShowFollowings={setShowFollowings}/>}
-                  <button className="btn-stas" onClick={handleOnClickFollowings}>
+                  {showFollowers && (
+                    <FollowList
+                      userId={usuario.id}
+                      isCurrentUser={isCurrentUser}
+                      action="followers"
+                      setShowFollowers={setShowFollowers}
+                      setShowFollowings={setShowFollowings}
+                    />
+                  )}
+                  <button
+                    className="btn-stas"
+                    onClick={handleOnClickFollowings}
+                  >
                     {followings?.length + " "} Seguidos
                   </button>
-                  {showFollowings && <FollowList userId={usuario.id}
-                                                isCurrentUser={isCurrentUser}
-                                                action="followings"
-                                                setShowFollowers={setShowFollowers}
-                                                setShowFollowings={setShowFollowings}/>}
+                  {showFollowings && (
+                    <FollowList
+                      userId={usuario.id}
+                      isCurrentUser={isCurrentUser}
+                      action="followings"
+                      setShowFollowers={setShowFollowers}
+                      setShowFollowings={setShowFollowings}
+                    />
+                  )}
                 </div>
                 <div className="redes">
                   {links?.map((l, index) => {
@@ -389,8 +403,9 @@ const Profile = () => {
                               href={l.youtube}
                               target="_blank"
                               rel="noreferrer noopener"
+                              className="youtube"
                             >
-                              <YouTubeIcon/>
+                              <YouTubeIcon />
                             </a>
                           )}
 
@@ -399,8 +414,9 @@ const Profile = () => {
                               href={l.twitter}
                               target="_blank"
                               rel="noreferrer noopener"
+                              className="twitter"
                             >
-                              <TwitterIcon/>
+                              <TwitterIcon />
                             </a>
                           )}
                         </div>
@@ -415,9 +431,9 @@ const Profile = () => {
             </div>
             <div className="btns">
               {isCurrentUser ? (
-                <div className="settings-div" >
+                <div className="settings-div">
                   <button className="btn-ajustes" onClick={handleSettings}>
-                    <SettingsIcon/>
+                    <SettingsIcon />
                   </button>
                   {(showSettings || showEdit || showEditPassword) &&
                     showComponents && (
@@ -451,15 +467,21 @@ const Profile = () => {
               Mis eventos
             </div>
             <div className="div-eventos-profile">
-              {events?.map((event, index) => (
-                <CardsEvents
-                  key={index}
-                  id_art={event.id_Artist}
-                  name_art={event.name}
-                  event={event}
-                  handleDeleteEvent={handleDeleteEvent}
-                />
-              ))}
+              {events && events.length > 0 ? (
+                <div className="div-eventos-profile">
+                  {events.map((event, index) => (
+                    <CardsEvents
+                      key={index}
+                      id_art={event.id_Artist}
+                      name_art={event.name}
+                      event={event}
+                      handleDeleteEvent={handleDeleteEvent}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <EmptyCard id={id} />
+              )}
             </div>
           </div>
         </div>

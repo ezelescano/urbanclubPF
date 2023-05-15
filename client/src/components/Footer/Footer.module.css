@@ -1,12 +1,13 @@
 /* Color negro de la Navbar es #1a1919*/
 .footerContainer {
-  background-color: #0d5a73;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding: 1% 1%;
   border-bottom: 1.5px solid#004258;
+  border-top: 2px solid #699cac;
 }
 
 .footerContainer img {

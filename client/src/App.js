@@ -71,8 +71,10 @@ function App() {
   },[user])
 
   //No modifiquen cosas que estan bien solo buscando un error de ustedes plsssssssssssssssssssssssssss, Gracias :))
-  const isMessengerOrProfileRoute = window.location.pathname.includes("/messenger") ||
-    window.location.pathname.includes("/profile/") || window.location.pathname.includes("/admin");
+  const isMessengerOrProfileRoute =
+    window.location.pathname.includes("/messenger") ||
+    window.location.pathname.includes("/profile/") ||
+    window.location.pathname.includes("/admin");
 
   return (
     <div>
@@ -131,14 +133,14 @@ function App() {
         <Route path="/detailEvent/:id" element={<DetailsEvents />} />
         <Route path="/Maps" element={<Maps />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
-        <Route
+        {/* <Route
           path="/admin"
           element={user.isAuthenticated ? <Admin /> : <Navigate to="/login" />}
-        />
+        /> */}
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      {!isMessengerOrProfileRoute && <Footer />}
+      <Footer />
     </div>
   );
 }

@@ -68,7 +68,6 @@ export default function Carousel(props) {
             <img
               src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1684007750/text-1684007710711_hcos93.png"
               alt=""
-              srcset=""
             />
             <br />
             <br />
