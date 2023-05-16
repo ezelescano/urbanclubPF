@@ -41,7 +41,7 @@ const HomePage = () => {
             </NavLink>
           </div>
           <div className={style.art}>
-            <h1 className={style.title}>Artistas más populares</h1>
+            <h1 className={style.title}>Artistas más recientes</h1>
             <div>
               <HomeArt />
             </div>
