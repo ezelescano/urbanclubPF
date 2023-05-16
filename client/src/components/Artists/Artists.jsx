@@ -128,7 +128,6 @@ const Artists = () => {
                 </option>
               ))}
             </select>
-
             <select
               value={orden}
               onChange={(event) => setOrden(event.target.value)}
