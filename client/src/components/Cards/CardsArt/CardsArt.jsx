@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./CardsArt.module.css";
 import { NavLink } from "react-router-dom";
 import OcupationTag from "./OcupationTag";
+import axios from "axios";
 
 const CardsArt = ({
   name,
@@ -19,6 +20,31 @@ const CardsArt = ({
       .map((ocupation) => (
         <OcupationTag ocupation={ocupation} key={ocupation + id} />
       ));
+
+      const [followers, setFollowers] = useState(0);
+
+
+      const getFollowers = async () => {
+        try {
+          const response = await axios.get(`/artist/followers/${id}`);
+          const data = response.data;
+          //console.log("response.data", setFollowers);
+          if (Array.isArray(data)) {
+            setFollowers(data.length);
+          } else {
+            console.error("Invalid data structure:", data);
+          }
+        } catch (error) {
+          console.error("Error fetching followers:", error);
+        }
+      };
+      
+      useEffect(() => {
+        getFollowers();
+      }, [id]);
+      
+//console.log("followers", followers);
+
   /* Overlay letra por letra: */
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   const coverPhoto =
@@ -39,7 +65,8 @@ const CardsArt = ({
         </div>
         <div className={`${style.text} ${style.overlay}`}>
           <p>{Country}</p>
-          <h5>Ubicacion:</h5>
+          <h5>Ubicacion:</h5>{/* COLOCAR ICONS */}
+          <h4>Seguidores:{followers}</h4>{/* COLOCAR ICONS */}
           <div className={`${style.fadeInText}`}>{ocupationRows}</div>
           {/* <h5>Ocupación:</h5> */}
           <h3>{name}</h3>
