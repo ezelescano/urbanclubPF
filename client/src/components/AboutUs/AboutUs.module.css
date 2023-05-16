@@ -1,6 +1,6 @@
 .aboutUsContainer {
   background-image: url("https://e0.pxfuel.com/wallpapers/742/341/desktop-wallpaper-solid-black-background.jpg");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   display: flex;
   flex-direction: column;

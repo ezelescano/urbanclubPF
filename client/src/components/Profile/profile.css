@@ -114,7 +114,8 @@
 }
 
 .profileFollow {
-  margin-left: auto;
+  display: flex;
+  gap: 30px;
 }
 .profileNombre {
   display: flex;
@@ -145,9 +146,9 @@
   font-size: 20px;
   font-weight: 700;
   border: none;
-  padding: 15px 30px;
+  padding: 15px 15px;
   border-radius: 15px;
-  margin-left: 40px;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
   cursor: pointer;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -156,7 +157,7 @@
   transition: 0.4s ease;
 }
 .btn-profile:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .btn-ajustes {
@@ -195,12 +196,48 @@
 
 .stas-profile * {
   margin-right: 70px;
+  border-radius: 15px;
   font-size: 18px;
   font-weight: bold;
   background: none;
   border: none;
 }
-
+.btn-div .followListContainer {
+  color: white;
+  background: linear-gradient(180deg, #0d5a73 0%, #025494 100%);
+  border: 2px solid #0d5a73;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease-in-out;
+}
+.btn-stas-text {
+  margin-right: 10px;
+  display: flex;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  gap: 0;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.459));
+  cursor: pointer;
+}
+.btn-stas-number {
+  margin-right: 10px;
+  transition: 0.4s ease;
+}
+.btn-stas:hover .btn-stas-number {
+  transition: 0.4s ease;
+  transform: scale(1.5);
+  cursor: pointer;
+  background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.459));
+}
+.div-eventos {
+  cursor: pointer;
+}
 .ab-re {
   display: flex;
 }

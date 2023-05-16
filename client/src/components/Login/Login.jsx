@@ -159,7 +159,7 @@ function Login() {
             </label>
           </div>
           <div className={styles.formContainerRight}>
-            <button className={styles.uploadPictureButton} type="submit" onFocus={handleOnFocus}>
+            <button className={styles.uploadSubmitButton} type="submit">
               Ingresar
             </button>
             <br />
@@ -171,8 +171,9 @@ function Login() {
             <label>
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
-            <GoogleButton></GoogleButton>
-            
+            <div className={styles.googleContainer}>
+              <GoogleButton></GoogleButton>
+            </div>
           </div>
         </form>
         <div className={styles.formContainerMiddle} style={{ color: "red" }}>
