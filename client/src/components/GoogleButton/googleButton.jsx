@@ -21,7 +21,8 @@ const LoginButton = () => {
     }
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
     let timer = null;
     const googleLoginURL = "http://localhost:3001/artist/auth/google";
     // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google"
