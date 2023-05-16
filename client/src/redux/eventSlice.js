@@ -74,7 +74,7 @@ export const getAllLocations = () => {
     try {
       const result = await axios.get(`/search/events/locations`);
       const location = result.data;
-      console.log("LOCATION API", location);
+      //console.log("LOCATION API", location);
       return dispatch(getAllLocationsSuccess(location));
     } catch (error) {
       console.log(error);
@@ -88,7 +88,7 @@ export const FilterEvents = (date, price, ubicacion) => {
     try {
       const apiData = await axios.get(`/search/events?date=${date}&price=${price}&ubicacion=${ubicacion}`);
       const events = apiData.data;
-      console.log("APIIIIIDATA", apiData.data);
+      //console.log("APIIIIIDATA", apiData.data);
       return dispatch(getFilterEventsSuccess(events));
 
     } catch (error) {

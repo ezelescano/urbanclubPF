@@ -15,10 +15,10 @@ const Events = ({ showFilters }) => {
   const { detailEvent } = useSelector((state) => state.events);
   const islogin = useSelector((state) => state.auth);
   const locations = useSelector((state) => state.events.locations);
-  console.log("locationssssss", locations);
+  //console.log("locationssssss", locations);
 
   const events = useSelector((state) => state.events.allEvents); //state.events.
-  console.log("EVEnnnttssss", events);
+  //console.log("EVEnnnttssss", events);
 
   const dispatch = useDispatch();
   const [selectedLocation, setSelectedLocation] = useState([0]); //Colocar el "location" de Eventos en el selectedLocation
