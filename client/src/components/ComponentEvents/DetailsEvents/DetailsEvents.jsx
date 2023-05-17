@@ -195,28 +195,28 @@ function DetailsEvents() {
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
-  // useEffect(() => {
-  //   const handleClick = (event) => {
-  //     const label = event.target;
-  //     const div = label.parentNode;
-  //     const inputs = div.getElementsByTagName("input");
-  //     const radio = inputs[0]; // El primer input[type="radio"] dentro del div
+  useEffect(() => {
+    const handleClick = (event) => {
+      const label = event.target;
+      const div = label.parentNode;
+      const inputs = div.getElementsByTagName("input");
+      const radio = inputs[0]; // El primer input[type="radio"] dentro del div
 
-  //     radio.checked = true;
-  //   };
+      radio.checked = true;
+    };
 
-  //   const labels = document.querySelectorAll(".section form div label");
+    const labels = document.querySelectorAll(".section form div label");
 
-  //   labels.forEach((label) => {
-  //     label.addEventListener("click", handleClick);
-  //   });
+    labels.forEach((label) => {
+      label.addEventListener("click", handleClick);
+    });
 
-  //   return () => {
-  //     labels.forEach((label) => {
-  //       label.removeEventListener("click", handleClick);
-  //     });
-  //   };
-  // }, []);
+    return () => {
+      labels.forEach((label) => {
+        label.removeEventListener("click", handleClick);
+      });
+    };
+  }, []);
 
   
   return (
