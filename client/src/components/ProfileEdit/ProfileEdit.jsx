@@ -224,6 +224,16 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
                 name="Country"
               />
             </label>
+            <label>
+              <div>Descripción:</div>
+              <input
+                type="text"
+                value={input.aboutMe}
+                onChange={handleOnChange}
+                onBlur={handleOnChange}
+                name="aboutMe"
+              />
+            </label>
             <div className={styles.occ}>
               <h3>Ocupaciones</h3>
               {options.map((option) => (
