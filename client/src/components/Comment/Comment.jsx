@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import axios from "axios";
 import styles from "./Comment.module.css";
 import StarRating from "../StarRating/StarRating";
@@ -7,8 +6,6 @@ import StarRating from "../StarRating/StarRating";
 const Comment = (props) => {
   const { c } = props;
   const [user, setUser] = useState([]);
-  const currentUser = useSelector((state) => state.auth);
-  console.log(c);
 
   useEffect(() => {
     const getUser = async () => {
@@ -21,11 +18,6 @@ const Comment = (props) => {
     };
     getUser();
   }, [c.writer]);
-
-  const handleOnClick = async () => {
-    await axios.delete(`/eventComments/${c.id}`);
-  };
-  console.log(c);
 
   return (
     <div className={styles.commentContainer}>
