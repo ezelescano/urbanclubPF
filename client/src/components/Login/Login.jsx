@@ -5,7 +5,15 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/authSlice";
 import GoogleButton from "../GoogleButton/googleButton";
 import swal from "sweetalert";
-import { EM_CORREO_INV,EM_PASS_INV, BTX_ACEPTAR, TLE_WARNING, ICO_WARN, ICO_ERROR, TLE_ERROR } from "../../utils/messages";
+import {
+  EM_CORREO_INV,
+  EM_PASS_INV,
+  BTX_ACEPTAR,
+  TLE_WARNING,
+  ICO_WARN,
+  ICO_ERROR,
+  TLE_ERROR,
+} from "../../utils/messages";
 // mostrar error onblur como texto en div, luego mostrar error al intentar registrarse
 function Login() {
   const dispatch = useDispatch();
@@ -13,13 +21,12 @@ function Login() {
   const [input, setInput] = useState({
     email: "",
     password: "",
-    target: ""
+    target: "",
   });
   const [errors, setErrors] = useState({
     email: EM_CORREO_INV,
-    password: EM_PASS_INV
+    password: EM_PASS_INV,
   });
-
 
   function validate(input) {
     const errors = {};
@@ -51,7 +58,7 @@ function Login() {
   //   }
   // }
 
-  const handleClick = async () => {  
+  const handleClick = async () => {
     // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google";
     const googleLoginURL = "http://localhost:3001/artist/auth/google";
     const newWindow = window.open(
@@ -61,21 +68,24 @@ function Login() {
     );
   };
 
-  const validarCorreo = (str) =>{
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(str.trim())
-  }
+  const validarCorreo = (str) => {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(str.trim());
+  };
 
-  const handleOnChange = (e) =>{
-  setInput({
-    ...input,
-    [e.target.name]: e.target.value
-     })
-  setErrors(validate({
-    ...input,
-    [e.target.name]: e.target.value
-     }))
-  }
+  const handleOnChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
 
   const handleOnBlur = (e) => {
     // setErrors({...errors})
@@ -85,30 +95,31 @@ function Login() {
     //     [e.target.name]: e.target.value,
     //   })
     // );
-  }
+  };
   const handleOnFocus = (e) => {
     setErrors(validate(input));
-  }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrors(validate(input));
-    if(!!Object.keys(errors).length){
-      const errorMsgs = Object.keys(errors).map((e) => (errors[e])).join('\n');
+    if (!!Object.keys(errors).length) {
+      const errorMsgs = Object.keys(errors)
+        .map((e) => errors[e])
+        .join("\n");
       swal({
         title: TLE_ERROR,
         text: errorMsgs,
         icon: ICO_ERROR,
-        buttons: BTX_ACEPTAR
-      })
+        buttons: BTX_ACEPTAR,
+      });
       //   swal({
       //   title: TLE_ERROR,
       //   text: Object.keys(errors).map((e) => (errors[e] + "\n")),
       //   icon: ICO_ERROR,
       //   buttons: BTX_ACEPTAR
       // })
-    }
-    else{
+    } else {
       dispatch(login(input, navigate));
       setInput({
         email: "",
@@ -176,14 +187,10 @@ function Login() {
             </div>
           </div>
         </form>
-        <div className={styles.formContainerMiddle} style={{ color: "red" }}>
-                {/* {
-                  errors.target && errors[errors.target]
-                // Object.keys(errors).map((e) => { 
-                //     return (<>{errors[e]} <br/> </>)
-                //   })
-                  } */}
-        </div>
+        <div
+          className={styles.formContainerMiddle}
+          style={{ color: "red" }}
+        ></div>
       </div>
     </div>
   );
