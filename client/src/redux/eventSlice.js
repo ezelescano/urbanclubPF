@@ -9,6 +9,7 @@ const initialState = {
   Event: [],
   buyEvent: [],
   locations: [],
+  pag: 1,
 };
 
 export const eventSlice = createSlice({
@@ -65,9 +66,24 @@ export const eventSlice = createSlice({
 
       }
     },
-  },
+
+    pagNumSuccess(state, action) {
+      return {
+        ...state,
+        pag: action.payload,
+
+      }
+    },
+  }
 
 });
+
+
+export const pagNum = (number) => {
+  return async (dispatch) => {
+    dispatch(pagNumSuccess(number));
+  };
+};
 
 export const getAllLocations = () => {
   return async (dispatch) => {
@@ -198,8 +214,15 @@ export const buyTicket = (compra) => {
 }
 
 
-export const { getAllLocationsSuccess, getFilterEventsSuccess, postEventSuccess, getAllEventsSuccess,
-  gellDetailEvent, updateEventSuccess,
-  deleteEventSucces, buyEvent } = eventSlice.actions;
+export const { pagNumSuccess,
+  getAllLocationsSuccess,
+  getFilterEventsSuccess,
+  postEventSuccess,
+  getAllEventsSuccess,
+  gellDetailEvent,
+  updateEventSuccess,
+  deleteEventSucces,
+  buyEvent,
+} = eventSlice.actions;
 
 export default eventSlice.reducer;

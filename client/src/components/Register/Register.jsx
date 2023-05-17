@@ -137,9 +137,6 @@ function Formulario() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    //console.log(errors);
-    //  console.log(input.ocupation);
     
     let errorMsgs = ""
     if (input.ocupation.length < 1) {
@@ -206,7 +203,6 @@ function Formulario() {
               </label>
             </div>
             <div className={style.formContainerMiddle}>
-            
               <label className={style.required}>
                 <div>
                   <span style={{ color: "red" }}>*</span> Nombre:
@@ -300,7 +296,6 @@ function Formulario() {
               <span style={{ color: "red" }}>* : Campos obligatorios</span>
             </div>
             <div className={style.formContainerRight}>
-            
               <label>
                 <div className={style.occupationsOptions}>
                   {options.map((option) => (
@@ -325,7 +320,9 @@ function Formulario() {
                     />
                     Otros
                   </label>
-                  <span style={{ color: "red" }}>Seleccione al menos una ocupación</span>
+                  <span style={{ color: "red" }}>
+                    Seleccione al menos una ocupación
+                  </span>
                   {input.ocupation.includes("Otros") && (
                     <input
                       type="text"
@@ -343,7 +340,7 @@ function Formulario() {
                   value={input.aboutMe}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
-                  placeholder="500 Palabras max"
+                  placeholder="150 Palabras max"
                   maxLength={150}
                   name="aboutMe"
                 />
@@ -352,13 +349,17 @@ function Formulario() {
                 <div className={style.loadingGif}>
                   <img
                     className={style.loading}
-                    src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1682996222/UrbanClub/carrousel/Urban_Club_Logo_Single_de3jqi.png"
+                    src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1684119388/Untitled_mjallz.png"
                     alt=""
                   ></img>
                 </div>
               )}
               {!isLoading && (
-                <button name="submit" className={style.uploadFormButton} type="submit">
+                <button
+                  name="submit"
+                  className={style.uploadFormButton}
+                  type="submit"
+                >
                   Registrarse
                 </button>
               )}

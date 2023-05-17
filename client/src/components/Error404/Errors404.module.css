@@ -6,7 +6,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(201, 201, 201, 0.502);
+  padding-top: 100px;
+  padding-inline: 100px;
+  background: linear-gradient(
+    300.37deg,
+    #bceeff 29.63%,
+    #095c8c 51.55%,
+    #0d5a73 90.85%
+  );
 }
 .border h1 {
   font-size: 6vw;

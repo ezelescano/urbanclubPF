@@ -398,6 +398,7 @@ const CreateEvent = () => {
                     onClick={handleNextStep}
                     className="stepsButtons"
                     disabled={currentStep === 3}
+                    style={{ display: currentStep === 3 ? 'none' : 'block' }}
                   >
                     Siguiente
                   </button>
