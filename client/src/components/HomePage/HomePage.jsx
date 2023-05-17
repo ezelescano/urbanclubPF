@@ -30,7 +30,7 @@ const HomePage = () => {
             <h1 className={style.title}>Eventos más recientes</h1>
             <br />
             <div className={style.eventsCardsContainer}>
-            {isEventsPage ? <Events showFilters={true} /> : null}
+            {isEventsPage ? <Events showFilters={false} /> : null}
             </div>
           </div>
           <div className={style.moreEvents}>
@@ -41,7 +41,7 @@ const HomePage = () => {
             </NavLink>
           </div>
           <div className={style.art}>
-            <h1 className={style.title}>Artistas más populares</h1>
+            <h1 className={style.title}>Artistas más recientes</h1>
             <div>
               <HomeArt />
             </div>

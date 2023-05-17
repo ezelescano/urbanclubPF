@@ -24,6 +24,7 @@
 }
 
 .navTitleImg:hover {
+  cursor: pointer;
   animation: spin 2s ease;
   transition: 0.5s ease;
   width: 85px;
@@ -46,6 +47,7 @@
 }
 
 .nav-links li:hover {
+  cursor: pointer;
   transform: scale(1.2);
 }
 
@@ -60,8 +62,10 @@
 }
 
 .navLoginBtn:hover {
-  background-color: #79cfd5;
+  background: linear-gradient(180deg, #0e98a5 40%, #066fbf 90%, #025494 100%);
+  color: white;
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 .navLinks li a {

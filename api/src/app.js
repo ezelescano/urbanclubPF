@@ -5,7 +5,7 @@ const cors = require("cors")
 const mainRouter = require("./routes/index");
 const passport = require("passport");
 const session = require('express-session');
-
+const {URL_FRONT,URL_BACK} = require("../src/env")
 
 
 const app = express();
@@ -23,13 +23,14 @@ app.use(session({
   //? inicializar el modulo passport
 app.use(passport.initialize());
 app.use(passport.session());
+const optionCors ={
+  origin:URL_FRONT,
+  methods:'GET, POST, OPTIONS, PUT, DELETE',
+  allowedHeaders: 'Content-Type,Authorization',
+  credentials:true
+}
+ app.use(cors(optionCors))
 
-app.use(cors({origin:"http://localhost:3000", credentials:true}))
-
-// app.use(fileupload({
-//     useTempFiles: true,
-//     tempFileDir: "./uploads" // crea una carpeta temporal ponemos la que queramos crear
-// }))
 app.use(mainRouter);
 
 module.exports = app;

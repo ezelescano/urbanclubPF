@@ -99,7 +99,7 @@ function App() {
         />
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/events" element={<Events />} />
+        <Route path="/events" element={<Events showFilters={true}/>} />
         <Route
           path="/createevent/:id"
           element={

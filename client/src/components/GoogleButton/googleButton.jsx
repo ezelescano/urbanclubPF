@@ -3,27 +3,41 @@ import axios from "axios";
 import { loginSuccess } from "../../redux/authSlice";
 import { useDispatch } from "react-redux";
 import GoogleIcon from "@mui/icons-material/Google";
+import {URLS} from "../../env"
 
 const LoginButton = () => {
   const dispatch = useDispatch();
-  //! Codigo para autorizar acceso
-  const fetchAuthUser = async () => {
+    //! Codigo para autorizar acceso
+  const fetchAuthUser = async() => {
+    console.log("entre a fetchaurh");
     // const response = await axios.get('https://pruebaback-production-0050.up.railway.app/artist/auth/user', {withCredentials:true}).catch((err) => {
-    const response = await axios
-      .get("http://localhost:3001/artist/auth/user", { withCredentials: true })
-      .catch((err) => {
-        console.log("Not properly authenticated");
-      });
-    if (response && response.data) {
-      const token = response.data;
-      dispatch(loginSuccess({ token }));
-      //console.log("ahi esta el bendito token amigo!!!!!----->>>> ", response.data)
-    }
-  };
+    try {
+      const res = await axios.get("/artist")
+      console.log(res);
 
-  const handleLogin = async () => {
+      let response = await axios.get('/artist/auth/user', {withCredentials:true})
+      // fetch('https://pruebaback-production-0050.up.railway.app/artist/auth/user',{withCredentials:true})
+      // .then(res =>{
+      //   console.log(res);
+      // })
+     console.log(response);
+      if (response && response.data) {
+        const token = response.data
+        dispatch(loginSuccess({ token }))
+        //console.log("ahi esta el bendito token amigo!!!!!----->>>> ", response.data)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+   
+  
+  }
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
     let timer = null;
-    const googleLoginURL = "http://localhost:3001/artist/auth/google";
+    const googleLoginURL = `${URLS}/artist/auth/google`
+    console.log("loginsucces");
     // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google"
     const newWindow = window.open(
       googleLoginURL,
@@ -31,20 +45,45 @@ const LoginButton = () => {
       "width=350,height=450"
     );
 
-    if (newWindow) {
-      timer = setInterval(() => {
-        if (newWindow.closed) {
-          console.log("We are authenticated");
-          fetchAuthUser(); //! activar con la funcion de arriba
-          if (timer) clearInterval(timer);
+      newWindow.addEventListener('message', event => {
+        
+        console.log(event.origin);
+        if(event.origin == URLS) {
+        if(event.data) {
+           dispatch(loginSuccess( event.data.token ))
+          
+          // localStorage.setItem('token', event.data.token)
+
+          newWindow.close()
         }
-      }, 500);
-    }
+
+        }
+      })
   };
+
+
+  const googleLogIn = (e) => {
+    e.preventDefault()
+    const popup = window.open(`${URLS}/artist/auth/google`, "_blank", `location=none width=620 height=700 toolbar=no status=no menubar=no scrollbars=yes resizable=yes`)
+
+    window.addEventListener('message', event => {
+      if (event.origin === `${URLS}`) {
+
+        if (event.data) {
+          console.log(event.data)
+          dispatch(loginSuccess( event.data ))
+          // localStorage.setItem('token', event.data.token)
+
+          popup.close()
+
+        }
+      }
+    })
+  }
 
   return (
     <button
-      onClick={handleLogin}
+      onClick={googleLogIn}
       className="google"
       style={{
         padding: "10px",

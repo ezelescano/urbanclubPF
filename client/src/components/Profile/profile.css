@@ -196,12 +196,17 @@
 }
 
 .stas-profile * {
-  margin-right: 70px;
   border-radius: 15px;
   font-size: 18px;
   font-weight: bold;
   background: none;
   border: none;
+}
+.btn-div {
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  margin-right: 30px;
 }
 .btn-div .followListContainer {
   color: white;
@@ -364,7 +369,7 @@
     align-items: center;
   }
   .btns {
-    transform: translate(0px, -34rem);
+    transform: translate(0px, -33rem);
   }
   .aboutme {
     max-width: 50vw;
@@ -454,9 +459,5 @@
   }
   .profileNombre {
     font-size: 40px;
-  }
-  .container {
-    margin-top: 80px;
-    margin-inline: 20px;
   }
 }

@@ -3,7 +3,7 @@ const passport = require("passport")
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const {artistById} = require("../Controllers/artistControllers/artistById")
 const generateJWT = require("../../utils/generateJWT")
-
+const {URL_BACK} = require("../env")
 require("dotenv").config();
 const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET} = process.env;
 
@@ -13,14 +13,16 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3001/artist/auth/google/callback",
+      callbackURL: `${URL_BACK}/artist/auth/google/callback`,
       // callbackURL: "https://pruebaback-production-0050.up.railway.app/artist/auth/google/callback",
-      
+      session:false,
       scope: ['profile', 'email'],
       passReqToCallback: true
   },
   async (req, accessToken, refreshToken, profile, done) => {
-
+    console.log("tokengoogle", req.query.code)
+    console.log("req.user", req.user)
+    console.log("profile", profile)
     const newArtist = await Artist.findOne({
         where: {
           email : profile._json.email,
@@ -29,7 +31,9 @@ passport.use(
 
   if(newArtist) {
           const artist = await artistById(newArtist.id)
-          artist.token =  generateJWT(artist.id, artist.name)
+          // artist.token =  generateJWT(artist.id, artist.name)
+          artist.token = generateJWT(artist.id, artist.name)
+          console.log("aaartisssssssssss",artist);
           done(null,artist)
     } else {
 
@@ -42,13 +46,14 @@ passport.use(
           password: '',
           profilePhoto : profile._json.picture
     })
-    
-    artistByGoogle.token = generateJWT(artistByGoogle.id, artistByGoogle.name);
-    await artistByGoogle.save();
-    
-    done(null, artistByGoogle)
+     artistByGoogle.dataValues.token = generateJWT(artistByGoogle.id,artistByGoogle.name, artistByGoogle.profilePhoto)
+   
+     
+  
+     done(null, artistByGoogle.dataValues)
 
     }
+    console.log("---------------------req user -------------------",req.user);
   }
 ));
 
