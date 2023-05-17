@@ -136,7 +136,6 @@ function DetailsEvents() {
         console.log(buy);
         const urlPay = buy.link;
 
-        // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google"
         const newWindow = window.open(urlPay, "_blank", "width=550,height=550");
         console.log(newWindow);
         let eventd;
@@ -212,12 +211,14 @@ function DetailsEvents() {
   //     label.addEventListener("click", handleClick);
   //   });
 
-  //   return () => {
-  //     labels.forEach((label) => {
-  //       label.removeEventListener("click", handleClick);
-  //     });
-  //   };
-  // }, []);
+    return () => {
+      labels.forEach((label) => {
+        label.removeEventListener("click", handleClick);
+      });
+    };
+  }, []);
+
+  
   return (
     <>
       <div className={style.backContainer}>

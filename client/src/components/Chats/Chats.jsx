@@ -31,7 +31,6 @@ function ChatOnline({ onlineUser, currentId, setCurrentChat, online }) {
         id: data.id,
         members: data.members
       }
-    
       socket.emit("newConversation", obj);
       setCurrentChat(data);
     } catch (err) {

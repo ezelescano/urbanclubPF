@@ -1,6 +1,7 @@
 const { Artist } = require("../../db");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
+const {URL_FRONT} = require("../../env")
 const { PASSWORD_EMAIL, JWT_SECRET} = process.env;
 const jwt = require("jsonwebtoken");
 
@@ -44,7 +45,7 @@ const forgotPassword = async (email) => {
                 <p>Recibimos una solicitud para restablecer la contraseña de tu cuenta en nuestro sitio web. Para proceder con la recuperación de tu contraseña, por favor sigue los pasos a continuación:</p>
             
                 <ol>
-                    <li>Haz clic en el siguiente enlace para acceder a la página de restablecimiento de contraseña: <a href="http://localhost:3000/newPassword/${artist.id}/${token}">Enlace único de restablecimiento de contraseña</a></li>
+                    <li>Haz clic en el siguiente enlace para acceder a la página de restablecimiento de contraseña: <a href="${URL_FRONT}/newPassword/${artist.id}/${token}">Enlace único de restablecimiento de contraseña</a></li>
                     <li>Serás redirigido a una página donde podrás crear una nueva contraseña. Asegúrate de elegir una contraseña segura y fácil de recordar.</li>
                     <li>Una vez que hayas creado tu nueva contraseña, podrás acceder nuevamente a tu cuenta con las nuevas credenciales.</li>
                 </ol>

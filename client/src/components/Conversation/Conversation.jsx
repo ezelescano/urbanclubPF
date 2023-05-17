@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import swal from "sweetalert";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-function Conversation({conversation, currentUser}) {
+function Conversation({conversation, currentUser, handleDeleteConversation}) {
 
   const [user, setUser] = useState(null)
   
@@ -24,7 +24,6 @@ useEffect(() => {
 },[currentUser, conversation])
 
 const handleDelete = () => {
-  
   swal({
     title: "ELIMINAR CONVERSACION",
     text: `Deseas eliminar la conversacion con ${user?.name}`,
@@ -33,6 +32,7 @@ const handleDelete = () => {
   }).then( async(res) => {
     if(res) {
       const response = await axios.delete(`/conversation/${conversation.id}`)
+      handleDeleteConversation(conversation.id)
     }
   });
 }

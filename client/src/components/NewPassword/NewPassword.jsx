@@ -36,7 +36,7 @@ const NewPassword = () => {
     ) {
       try {
         const updatedPassword = await axios.put(
-          `http://localhost:3001/artist/newPassword/${id}/${token}`,
+          `/artist/newPassword/${id}/${token}`,
           password
         );
         setPassword({ password: "" });

@@ -94,17 +94,20 @@ const Profile = () => {
   }, [id]);
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const res = await axios.get("/artist/login/me");
-        //console.log(res.data.followings)
-        setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getUser();
-  }, [usuario.id, currentUser.user.id]);
+    if(!isCurrentUser){
+      const getUser = async () => {
+        try {
+          const res = await axios.get("/artist/login/me");
+          //const res = await axios.get(`/artist/4`)
+          //console.log(res.data.followings)
+          setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getUser();
+    }
+  }, [usuario.id, isCurrentUser]);
 
   // const [prevId, setPrevId] = useState(id);
 
@@ -174,12 +177,17 @@ const Profile = () => {
     const artistUpdated = dispatch(updateArtist(id, input)).data;
     console.log(input);
     swal({
-      title: "ARTISTA ACTUALIZADO",
-      text: `Artista  ${input.name} actualizado con exito`,
+      title: "PERFIL ACTUALIZADO",
+      text: `Tu perfil se ha actualizado con exito`,
       icon: "success",
       buttons: "Aceptar",
     }).then((res) => {
-      if (res) window.location.reload();
+      if (res) {
+        setTimeout(() => {
+          window.location.reload();
+        }, 800);
+      }
+      //window.location.reload();
     });
     setShowEdit(false);
     setShowSettings(false);
