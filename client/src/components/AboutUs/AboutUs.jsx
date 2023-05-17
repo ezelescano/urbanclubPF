@@ -111,7 +111,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/dante-aponte-hernandez-3b61b826b/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -143,7 +143,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/eze-lescano83/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -153,9 +153,11 @@ function AboutUs() {
           </div>
           <div className={style.card}>
             <div className={style.cardImage}>
-              <a href="">
+            <div className={style.cardImage}>
+              <NavLink to="/About/Eudes">
                 <img src="../../assets/eudes.jpeg" alt="Dua Lipa" />
-              </a>
+              </NavLink>
+            </div>
             </div>
             <div className={style.cardContent}>
               <h2>Eudes</h2>
@@ -175,7 +177,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/eudesmieres/"
                 target="_blank"
                 rel="noreferrer"
               >
