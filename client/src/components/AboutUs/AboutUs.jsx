@@ -153,9 +153,11 @@ function AboutUs() {
           </div>
           <div className={style.card}>
             <div className={style.cardImage}>
-              <a href="">
+            <div className={style.cardImage}>
+              <NavLink to="/About/Eudes">
                 <img src="../../assets/eudes.jpeg" alt="Dua Lipa" />
-              </a>
+              </NavLink>
+            </div>
             </div>
             <div className={style.cardContent}>
               <h2>Eudes</h2>

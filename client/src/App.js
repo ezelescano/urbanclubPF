@@ -40,6 +40,7 @@ import AboutMiguel from "./components/AboutUs/AboutMiguel";
 import AboutAlan from "./components/AboutUs/AboutAlan";
 import AboutPablo from "./components/AboutUs/AboutPablo";
 import AboutAlex from "./components/AboutUs/AboutAlex";
+import AboutEudes from "./components/AboutUs/AboutEudes";
 /* import { io } from "socket.io-client";
 const socket = io("http://localhost:8900"); */
 
@@ -103,7 +104,7 @@ function App() {
         />
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/events" element={<Events showFilters={true}/>} />
+        <Route path="/events" element={<Events showFilters={true} />} />
         <Route
           path="/createevent/:id"
           element={
@@ -118,6 +119,7 @@ function App() {
         <Route path="/About/Alan" element={<AboutAlan />} />
         <Route path="/About/Pablo" element={<AboutPablo />} />
         <Route path="/About/Alex" element={<AboutAlex />} />
+        <Route path="/About/Eudes" element={<AboutEudes />} />
 
         <Route
           path="/messenger"
