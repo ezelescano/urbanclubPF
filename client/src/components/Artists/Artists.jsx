@@ -177,6 +177,7 @@ const Artists = () => {
                       id={item.id}
                       name={item.name}
                       profilePhoto={item.profilePhoto}
+                      coverPhoto={item.coverPhoto}
                       ocupation={ocupacion}
                       aboutMe={item.aboutMe}
                       Country={item.Country}

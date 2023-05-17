@@ -7,6 +7,13 @@
   min-height: 101vh;
   animation: rotateColors 25s ease infinite;
 }
+.eventsFilters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .containerHelp {
   justify-self: center;
   margin-inline: 20px;

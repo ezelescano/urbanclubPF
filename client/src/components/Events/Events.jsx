@@ -51,7 +51,7 @@ const Events = ({ showFilters }) => {
   };
 
   useEffect(() => {
-     dispatch (pagNum(1));
+    dispatch(pagNum(1));
     // dispatch(FilterArtists(selectedCategory));
     handlesFilterEvents();
   }, [date, price, ubicacion]);
@@ -91,59 +91,56 @@ const Events = ({ showFilters }) => {
 
   return (
     <div className={style.container}>
-      {
-        showFilters ? (
-          <div className={style.eventsFilters}>
-            <Paginado events={events.length} eventsPerPage={eventsPerPage} />
-            <form className={style.eventsFilters}>
-              <select value={date} onChange={(e) => setDate(e.target.value)}>
-                <option hidden value="">
-                  Fechas
+      {showFilters ? (
+        <div className={style.eventsFilters}>
+          <Paginado events={events.length} eventsPerPage={eventsPerPage} />
+          <form className={style.eventsFilters}>
+            <select value={date} onChange={(e) => setDate(e.target.value)}>
+              <option hidden value="">
+                Fechas
+              </option>
+              <option value="Hoy">Hoy</option>
+              <option value="Esta semana">Esta semana</option>
+              <option value="Este mes">Este mes</option>
+              <option value="Proximos">Proximamente</option>
+            </select>
+
+            <select
+              value={price}
+              onChange={(event) => setPrice(event.target.value)}
+            >
+              <option value="">Precios</option>
+              <option value="0">Gratis</option>
+              <option value="1-50">Rango medio</option>
+              <option value="51-100">Rango alto</option>
+              <option value="101 a mas">Rango maximo</option>
+            </select>
+
+            <select
+              value={ubicacion}
+              onChange={(event) => setUbicacion(event.target.value)}
+            >
+              <option value="">Todos los países</option>
+
+              {locations?.map((Country) => (
+                <option key={Country} value={Country}>
+                  {Country}
                 </option>
-                <option value="Hoy">Hoy</option>
-                <option value="Esta semana">Esta semana</option>
-                <option value="Este mes">Este mes</option>
-                <option value="Proximos">Proximamente</option>
-              </select>
+              ))}
+            </select>
 
-              <select
-                value={price}
-                onChange={(event) => setPrice(event.target.value)}
-              >
-                <option value="">Precios</option>
-                <option value="0">Gratis</option>
-                <option value="1-50">Rango medio</option>
-                <option value="51-100">Rango alto</option>
-                <option value="101 a mas">Rango maximo</option>
-              </select>
+            <button
+              type="button"
+              onClick={() => (setDate(""), setPrice(""), setUbicacion(""))}
+            >
+              Limpiar
+            </button>
+          </form>
+        </div>
+      ) : null}
 
-              <select
-                value={ubicacion}
-                onChange={(event) => setUbicacion(event.target.value)}
-              >
-                <option value="">Todos los países</option>
+      <br />
 
-                {locations?.map((Country) => (
-                  <option key={Country} value={Country}>
-                    {Country}
-                  </option>
-                ))}
-              </select>
-
-              <button
-                type="button"
-                onClick={() => (setDate(""), setPrice(""), setUbicacion(""))}
-              >
-                Limpiar
-              </button>
-            </form>
-          </div>
-        ) : null
-      }
-
-
-      <br/>
-      
       <div className={style.containerHelp}>
         {currentEvents?.map((item, index) => {
           if (islogin.isAuthenticated) {
