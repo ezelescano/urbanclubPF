@@ -36,6 +36,10 @@ import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
 import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
 import Admin from "./components/Admin/Admin";
+import AboutMiguel from "./components/AboutUs/AboutMiguel";
+import AboutAlan from "./components/AboutUs/AboutAlan";
+import AboutPablo from "./components/AboutUs/AboutPablo";
+import AboutAlex from "./components/AboutUs/AboutAlex";
 /* import { io } from "socket.io-client";
 const socket = io("http://localhost:8900"); */
 
@@ -110,6 +114,10 @@ function App() {
         <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
+        <Route path="/About/Miguel" element={<AboutMiguel />} />
+        <Route path="/About/Alan" element={<AboutAlan />} />
+        <Route path="/About/Pablo" element={<AboutPablo />} />
+        <Route path="/About/Alex" element={<AboutAlex />} />
 
         <Route
           path="/messenger"

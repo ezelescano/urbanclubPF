@@ -48,7 +48,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/estiven-arboleda-bb9aa61a4/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -58,9 +58,9 @@ function AboutUs() {
           </div>
           <div className={style.card}>
             <div className={style.cardImage}>
-              <a href="">
+              <NavLink to="/About/Alan">
                 <img src="../../assets/alan.jpeg" alt="Dua Lipa" />
-              </a>
+              </NavLink>
             </div>
             <div className={style.cardContent}>
               <h2>Alan</h2>
@@ -80,7 +80,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/alan-winkler-65a44a268/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -90,9 +90,9 @@ function AboutUs() {
           </div>
           <div className={style.card}>
             <div className={style.cardImage}>
-              <a href="">
+              <NavLink to="/About/Miguel">
                 <img src="../../assets/miguel.jpeg" alt="Dua Lipa" />
-              </a>
+              </NavLink>
             </div>
             <div className={style.cardContent}>
               <h2>Miguel</h2>
@@ -111,7 +111,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/dante-aponte-hernandez-3b61b826b/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -143,7 +143,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/eze-lescano83/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -175,7 +175,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/eudesmieres/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -185,9 +185,9 @@ function AboutUs() {
           </div>
           <div className={style.card}>
             <div className={style.cardImage}>
-              <a href="">
+              <NavLink to="/About/Pablo">
                 <img src="../../assets/pablo.jpeg" alt="Justin Bieber" />
-              </a>
+              </NavLink>
             </div>
             <div className={style.cardContent}>
               <h2>Pablo</h2>
@@ -207,7 +207,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/pablo-pv/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -217,12 +217,12 @@ function AboutUs() {
           </div>
           <div className={style.card}>
             <div className={style.cardImage}>
-              <a href="">
-                <img src="../../assets/alex.jpeg" alt="Dua Lipa" />
-              </a>
-            </div>
+            <NavLink to="/About/Alex">
+            <img src="../../assets/alex.jpeg" alt="Dua Lipa" />
+              </NavLink>
+               </div>
             <div className={style.cardContent}>
-              <h2>Alex</h2>
+              <h2>Alexander</h2>
               <img src="../../assets/colombia.ico" alt="" />
               <h4>Colombia</h4>
               <p>
@@ -239,7 +239,7 @@ function AboutUs() {
               </a>
               <a
                 className={style.link}
-                href="https://www.linkedin.com/in/oscar-carlos-alhuay-ramirez-3a5b73196/"
+                href="https://www.linkedin.com/in/john-jaramillo-915b47260/"
                 target="_blank"
                 rel="noreferrer"
               >
