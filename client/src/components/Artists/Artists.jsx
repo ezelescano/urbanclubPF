@@ -31,7 +31,7 @@ const Artists = () => {
 
   // Paginado
   const currentPage = useSelector((state) => state.artist.pag);
-  const [artistsPerPage, setArtistsPerPage] = useState(8); // Modificá la cantidad de Items vistos.
+  const [artistsPerPage, setArtistsPerPage] = useState(9); // Modificá la cantidad de Items vistos.
   const indexOfLastArtists = currentPage * artistsPerPage; //1
   const indexOfFirstArtists = indexOfLastArtists - artistsPerPage;
   const currentArtists = artistas.slice(
