@@ -1,4 +1,5 @@
 require("dotenv").config();
+const {URL_FRONT,URL_BACK} = require("../../env")
 const request = require('request');
 const { CLIENT_PAYPAL, SECRET_PAYPAL, API_PAYPAL } = process.env;
 
@@ -27,8 +28,8 @@ const createPaymentControler = (req, res) => {
             brand_name: brand_name,
             landing_page: 'NO_PREFERENCE', // Default, para mas informacion https://developer.paypal.com/docs/api/orders/v2/#definition-order_application_context
             user_action: 'PAY_NOW', //  PAY_NOW Accion para que en paypal muestre el monto del pago
-            return_url: `http://localhost:3001/ticket/execute-payment`, // Url despues de realizar el pago
-            cancel_url: `http://localhost:3001/ticket/cancel-payment` // Url despues de realizar el pago
+            return_url: `${URL_BACK}/ticket/execute-payment`, // Url despues de realizar el pago
+            cancel_url: `${URL_BACK}/ticket/cancel-payment` // Url despues de realizar el pago
         }
     }
     //https://api-m.sandbox.paypal.com/v2/checkout/orders [POST]
@@ -43,7 +44,7 @@ const createPaymentControler = (req, res) => {
             status: response.body.status,
             link: response.body.links[1].href,
         }
-        res.send(data)
+        res.json(data)
     })
 }
 

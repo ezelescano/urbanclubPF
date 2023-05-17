@@ -91,7 +91,7 @@ const Events = ({ showFilters }) => {
 
   return (
     <div className={style.container}>
-      {/* {
+      {
         showFilters ? (
           <div className={style.eventsFilters}>
             <form className={style.eventsFilters}>
@@ -138,7 +138,9 @@ const Events = ({ showFilters }) => {
             </form>
           </div>
         ) : null
-      } */}
+      }
+
+
       <br/>
       <Paginado events={events.length} eventsPerPage={eventsPerPage} />
       <div className={style.containerHelp}>

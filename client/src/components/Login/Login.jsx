@@ -14,6 +14,7 @@ import {
   ICO_ERROR,
   TLE_ERROR,
 } from "../../utils/messages";
+import {URLS} from "../../env"
 // mostrar error onblur como texto en div, luego mostrar error al intentar registrarse
 function Login() {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ function Login() {
 
   const handleClick = async () => {
     // const googleLoginURL = "https://pruebaback-production-0050.up.railway.app/artist/auth/google";
-    const googleLoginURL = "http://localhost:3001/artist/auth/google";
+    const googleLoginURL = `${URLS}/artist/auth/google`;
     const newWindow = window.open(
       googleLoginURL,
       "blank",
@@ -183,10 +184,11 @@ function Login() {
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
             <div className={styles.googleContainer}>
-              <GoogleButton></GoogleButton>
+              <GoogleButton/>
             </div>
           </div>
         </form>
+        
         <div
           className={styles.formContainerMiddle}
           style={{ color: "red" }}

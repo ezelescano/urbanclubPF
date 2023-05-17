@@ -60,13 +60,13 @@ module.exports = function (server) {
 
 
 const socketio = require("socket.io");
-
+const {URL_FRONT} = require("../src/env")
 module.exports = function (server) {
   const io = socketio(server, {
     pingTimeout: 6000,
     cors: {
       // origin: "https://tecnoeam.com",https://tecnoeam.com/urbanclub/
-      origin: "http://localhost:3000",
+      origin: URL_FRONT,
 
     },
   });
