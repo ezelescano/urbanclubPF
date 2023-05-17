@@ -98,7 +98,7 @@ function DetailsEvents() {
       [e.target.name]: e.target.value,
     });
   };
-  const buyTicketHandler = async ({ onvalue }) => {
+  const buyTicketHandler = async () => {
     if (!islogin.isAuthenticated) {
       swal({
         title: "COMPRA INVÁLIDA",
@@ -126,18 +126,10 @@ function DetailsEvents() {
       });
     } else {
       if (cantidad > 0) {
-        const restCant = cantidad - entradas;
-        setCantidad(restCant);
-        let stockObjeto = {
-          stock: restCant,
-          id_Artist: islogin.user.id,
-          totalPayment: entradas * event.price,
-        };
         let compraticket = {
           value: entradas * event.price,
           brand_name: detailEvent.name,
         };
-        setEntradas(1);
 
         const buy = await dispatch(buyTicket(compraticket));
         let timer = null;
@@ -147,17 +139,25 @@ function DetailsEvents() {
         const newWindow = window.open(urlPay, "_blank", "width=550,height=550");
         console.log(newWindow);
         let eventd;
-        eventd = await axios.put(
-          `/events/buyTicket/${detailEvent.id}`,
-          // `https://pruebaback-production-0050.up.railway.app/events/buyTicket/${detailEvent.id}`,
-          stockObjeto
-        );
 
         if (newWindow) {
           timer = setInterval(async () => {
             if (newWindow.closed) {
               if (timer) clearInterval(timer);
-              console.log("prueba");
+              const restCant = cantidad - entradas;
+              setCantidad(restCant);
+              let stockObjeto = {
+                stock: restCant,
+                id_Artist: islogin.user.id,
+                totalPayment: entradas * event.price,
+              };
+              eventd = await axios.put(
+                `/events/buyTicket/${detailEvent.id}`,
+                // `https://pruebaback-production-0050.up.railway.app/events/buyTicket/${detailEvent.id}`,
+                stockObjeto
+                );
+                
+                setEntradas(1);
               if (eventd) {
                 swal({
                   title: "COMPRA EXITOSA",
