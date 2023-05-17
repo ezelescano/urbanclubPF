@@ -2,7 +2,8 @@ import './Chats.css'
 //import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { io } from "socket.io-client";
-const socket = io("http://localhost:3001");
+import { URLS } from "../../env";
+const socket = io(URLS);
 
 function ChatOnline({ onlineUser, currentId, setCurrentChat, online }) {
 
@@ -31,7 +32,6 @@ function ChatOnline({ onlineUser, currentId, setCurrentChat, online }) {
         id: data.id,
         members: data.members
       }
-    
       socket.emit("newConversation", obj);
       setCurrentChat(data);
     } catch (err) {

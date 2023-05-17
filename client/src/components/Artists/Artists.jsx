@@ -10,6 +10,7 @@ import {
   getAllCategories,
   getAllLocations,
   pagNum,
+  getArtistName,
 } from "../../redux/artistSlice";
 import loading from "../../img/loading.gif";
 import Errors404search from "../Error404/Error404search";
@@ -25,7 +26,7 @@ const Artists = () => {
   const [orden, setOrden] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
-  //  const [search, setSearch]= useState('')
+   const [search, setSearch]= useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
@@ -57,6 +58,16 @@ const Artists = () => {
     //dispatch(cleanArtists);
     return dispatch(cleanArtists);
   }, [dispatch]);
+
+  
+  useEffect(() => {
+    if (search.trim() !== "") {
+      dispatch(getArtistName(search));
+      //dispatch (pagNum(1));
+    }else {
+      dispatch(getAllArts())
+    }
+  },[search]) // eslint-disable-line
 
   useEffect(() => {
     dispatch(pagNum(1));
@@ -103,7 +114,16 @@ const Artists = () => {
       <div className={style.container}>
         <br />
         <div className={style.containerFilters}>
+        
+          
+        
           <form className={style.filtersLogic}>
+          <input
+          className={style.selectFilters}
+          type="text"
+          value={search}
+          placeholder="¿Qué artista quieres ver hoy?"
+          onChange={ event => setSearch(event.target.value)}/>
             <select
               className={style.selectFilters}
               value={selectedCategory}
@@ -140,7 +160,7 @@ const Artists = () => {
             <button
               type="button"
               onClick={() => (
-                setSelectedCategory(""), setSelectedLocation(""), setOrden("")
+                setSelectedCategory(""), setSelectedLocation(""), setOrden(""), setSearch("")
               )}
             >
               Limpiar

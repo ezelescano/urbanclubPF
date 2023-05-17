@@ -11,6 +11,7 @@ import Picker from "@emoji-mart/react";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import DetailBar from "../DetailBar/DetailBar";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { URLS } from "../../env"
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -36,9 +37,8 @@ function Messenger() {
 
   useEffect(() => { 
     // socket.current = io("ws://pruebaback-production-0050.up.railway.app");
-    socket.current = io("ws://localhost:3001");
+    socket.current = io(URLS);
     socket.current.on("getMessage", (data) => {
-      console.log(data)
       setArraivalMessage({
         sender: data.senderId,
         text: data.text,
@@ -54,12 +54,11 @@ function Messenger() {
     });
   }, []);
 
-  console.log(arrivalMessage)
 
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
-      setMessages((prev) => [...prev, arrivalMessage]);
+      setMessages((prev) => (Array.isArray(prev) ? [...prev, arrivalMessage] : [arrivalMessage]));
   }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
@@ -77,14 +76,18 @@ function Messenger() {
   },[user.id])
 
   useEffect(() => {
-    //socket.current.emit("addUser", user.id);
+    socket.current.emit("addUser", user.id);
     socket.current.on("getUsers", (users) => {
       console.log(users)
+      console.log(friends)
       setOnlineUser(
         friends.filter((f) => users.some((u) => u.userId === f.id))
       );
       /* setOnlineUser(users) */
     });
+    return () => {      //le paso un return cuando se desmonta
+      socket.current.emit("disconnectSocket");
+    }
   }, [user]);
 
   useEffect(() => {
@@ -100,7 +103,7 @@ function Messenger() {
   }, [user.id]);
 
 useEffect(() => {
-  const interval = setInterval(() => {
+ /*  const interval = setInterval(() => { */
     const getmessages = async () => {
       try {
         const res = await axios.get(`/message/${currentChat?.id}`);
@@ -110,11 +113,11 @@ useEffect(() => {
       }
     };
     getmessages();
-  }, 1500);
+  /* }, 1500);
 
   return () => {
     clearInterval(interval);
-  };
+  }; */
 }, [currentChat]);
 
   const handleEmojiSelect = (emoji) => {
@@ -137,6 +140,10 @@ useEffect(() => {
 
   const handleShowOfflines = () => {
     setShowOfflines(!showOfflines)
+  }
+
+  const handleDeleteConversation = (convId) => {
+    setConversations(conversations.filter(c => c.id !== convId))
   }
 
   const handleSubmit = async (e) => {
@@ -168,11 +175,12 @@ useEffect(() => {
     }
   };
 
-  /*  useEffect(() => {
+   useEffect(() => {
      scrollRef.current?.scrollIntoView({ behavior: "auto" });
    }, [messages]);
 
-   */
+  
+  //console.log(conversations);
 
   return (
     <div className="messenger">
@@ -183,7 +191,7 @@ useEffect(() => {
           {Array.isArray(conversations) &&
             conversations.map((c) => (
               <div onClick={() => setCurrentChat(c)}>
-                <Conversation conversation={c} currentUser={user} />
+                <Conversation conversation={c} currentUser={user} handleDeleteConversation={handleDeleteConversation}/>
               </div>
             ))}
         </div>
@@ -256,6 +264,7 @@ useEffect(() => {
                             onlineUser={onlineUser}
                             currentId={user.id}
                             setCurrentChat={setCurrentChat}
+                            setConversations={setConversations}
                             online={true}
                           />
           }
@@ -270,6 +279,7 @@ useEffect(() => {
                              onlineUser={offlineFriends}
                              currentId={user.id}
                              setCurrentChat={setCurrentChat}
+                             setConversations={setConversations}
                              online={false}
                             />
           }
