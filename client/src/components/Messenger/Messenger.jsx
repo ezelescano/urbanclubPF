@@ -11,6 +11,7 @@ import Picker from "@emoji-mart/react";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import DetailBar from "../DetailBar/DetailBar";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { URLS } from "../../env"
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -36,7 +37,7 @@ function Messenger() {
 
   useEffect(() => { 
     // socket.current = io("ws://pruebaback-production-0050.up.railway.app");
-    socket.current = io("ws://localhost:3001");
+    socket.current = io(URLS);
     socket.current.on("getMessage", (data) => {
       setArraivalMessage({
         sender: data.senderId,
