@@ -36,9 +36,7 @@
 }
 /*ARREGLADO, PERO NO USAR SIN ITEMS O CARDS*/
 /*Limpiar fondo luego*/
-.eventsFilters{
-  display: none;
-}
+
 @keyframes rotateColors {
   0% {
     background-position: 0% 50%;

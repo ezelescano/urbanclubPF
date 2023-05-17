@@ -85,7 +85,7 @@ artistRouter.get(
 
     try {
        const userString = JSON.stringify(req.user);
-      console.log('se envia respuesta', req.user);
+      // console.log('se envia respuesta', req.user);
 
       res.send(
          ` 

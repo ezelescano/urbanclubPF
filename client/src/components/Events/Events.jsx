@@ -82,7 +82,7 @@ const Events = ({ showFilters }) => {
 
   return (
     <div className={style.container}>
-      {/* {
+      {
         showFilters ? (
           <div className={style.eventsFilters}>
             <form className={style.eventsFilters}>
@@ -129,7 +129,9 @@ const Events = ({ showFilters }) => {
             </form>
           </div>
         ) : null
-      } */}
+      }
+
+
       <div className={style.containerHelp}>
         {events?.map((item, index) => {
           if (islogin.isAuthenticated) {

@@ -183,11 +183,12 @@ function Login() {
             <label>
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
-          </div>
-        </form>
-        <div className={styles.googleContainer}>
+            <div className={styles.googleContainer}>
               <GoogleButton/>
             </div>
+          </div>
+        </form>
+        
         <div
           className={styles.formContainerMiddle}
           style={{ color: "red" }}

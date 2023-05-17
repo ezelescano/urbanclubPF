@@ -33,6 +33,7 @@ passport.use(
           const artist = await artistById(newArtist.id)
           // artist.token =  generateJWT(artist.id, artist.name)
           artist.token = generateJWT(artist.id, artist.name)
+          console.log("aaartisssssssssss",artist);
           done(null,artist)
     } else {
 
@@ -45,15 +46,11 @@ passport.use(
           password: '',
           profilePhoto : profile._json.picture
     })
-    
-     // artistByGoogle.token = generateJWT(artistByGoogle.id, artistByGoogle.name);
-
-      const token = generateJWT(artistByGoogle.id,artistByGoogle.name, artistByGoogle.profilePhoto)
-      await artistByGoogle.save();
-      artistByGoogle.token = token
-     req.user = artistByGoogle
-
-     done(null, artistByGoogle)
+     artistByGoogle.dataValues.token = generateJWT(artistByGoogle.id,artistByGoogle.name, artistByGoogle.profilePhoto)
+   
+     
+  
+     done(null, artistByGoogle.dataValues)
 
     }
     console.log("---------------------req user -------------------",req.user);
