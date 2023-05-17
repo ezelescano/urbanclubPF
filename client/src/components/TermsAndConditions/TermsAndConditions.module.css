@@ -1,19 +1,53 @@
+.terms {
+  padding-top: 100px;
+  background: linear-gradient(
+    106.37deg,
+    #bceeff 29.63%,
+    #095c8c 51.55%,
+    #0d5a73 90.85%
+  );
+  margin: 0 auto;
+  padding-bottom: 100px;
+}
 .termsContainer {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .termsContent {
-    margin-top: 20px;
-  }
-  
-  h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-  }
-  
-  h1 {
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
+  border-radius: 15px;
+  padding: 20px;
+  padding-inline: 50px;
+  background: rgba(255, 255, 255, 0.54);
+  max-width: 800px;
+  margin: 0 auto;
+  transition: 1s ease;
+}
+.termsContainer:hover {
+  transform: scale(1.05);
+  transition: 1s ease;
+}
+.termsContent {
+  margin-top: 20px;
+  transition: 1s ease;
+}
+
+.termsContent h2:hover {
+  transform: scale(1.2);
+  transition: 1s ease;
+  filter: drop-shadow(0 1px 2px rgba(249, 247, 247, 0.34));
+  background: linear-gradient(180deg, #036972 10%, #014172 70%, #002a4a 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.termsContent h2 {
+  background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 10px;
+  transition: 1s ease;
+}
+
+.termsContent h1 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}

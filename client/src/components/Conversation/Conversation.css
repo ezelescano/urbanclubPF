@@ -4,10 +4,17 @@
   padding: 10px;
   cursor: pointer;
   margin-top: 20px;
+  justify-content: space-between;
 }
 
 .conversation:hover {
-  background-color: rgb(245, 243, 243);
+  background: linear-gradient(180deg, #0d5a7337 0%, #09548e39 100%);
+  border-radius: 15px;
+}
+
+.conversationleft{
+  display: flex;
+  align-items: center;
 }
 
 .conversationImg {
@@ -20,9 +27,12 @@
 
 .conversationName {
   font-weight: 500;
+  transition: 0.5s ease;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.251));
 }
 
-.conversationBtn{
+.conversationBtn {
   display: flex;
   background: none;
   border: none;
@@ -45,13 +55,11 @@
   -o-transition: 2s;
 }
 
-.conversation:hover .conversationBtn{
-  background-color: #d17272;
+.conversation:hover .conversationBtn {
   opacity: 100%;
-  
 }
 
-.conversationBtn svg{
+.conversationBtn svg {
   width: 18px;
   height: 18px;
 }

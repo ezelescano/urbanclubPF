@@ -159,8 +159,8 @@ function AboutUs() {
             </div>
             <div className={style.cardContent}>
               <h2>Eudes</h2>
-              <img src="../../assets/colombia.ico" alt="" />
-              <h4>Colombia</h4>
+              <img src="../../assets/venezuela.ico" alt="" />
+              <h4>Venezuela</h4>
               <p>
                 Software Quality Manager <br />& Fullstack Master
               </p>

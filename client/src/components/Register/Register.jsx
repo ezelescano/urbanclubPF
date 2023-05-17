@@ -6,6 +6,7 @@ import { postArtist, errorsCreate } from "../../redux/artistSlice";
 import swal from "sweetalert";
 
 import loading from "../../img/loading.gif";
+import { BTX_ACEPTAR, EM_ALIAS_INV, EM_APELLIDO_INV, EM_CORREO_INV, EM_NOMBRE_INV, EM_OCUPAT_SEL1, EM_PASS_CARACT, ICO_ERROR, TLE_ERROR } from "../../utils/messages";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Formulario() {
@@ -36,28 +37,34 @@ function Formulario() {
     "Modelo",
   ]);
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    name: EM_NOMBRE_INV,
+    lastname: EM_APELLIDO_INV,
+    nickName: EM_ALIAS_INV,
+    email: EM_CORREO_INV,
+    password: EM_PASS_CARACT
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [rutaImagen, setRutaImagen] = useState("");
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
 
-  function validate(input) {
+  function validate(input, target = "") {
     const errors = {};
     if (!input.name) {
-      errors.name = "Se requiere Nombre";
+      errors.name = EM_NOMBRE_INV;
     }
     if (!input.lastname) {
-      errors.lastname = "Se requiere Apellido";
+      errors.lastname = EM_APELLIDO_INV;
     }
     if (!input.email) {
-      errors.email = "Se requiere Correo";
+      errors.email = EM_CORREO_INV;
     }
     if (!input.nickName) {
-      errors.nickName = "Se requiere Alias";
+      errors.nickName = EM_ALIAS_INV;
     }
-    if (input.password.length <= 8) {
-      errors.password = "mayor o igual a 8 caracteres";
+    if (input.password.length < 8) {
+      errors.password = EM_PASS_CARACT;
     }
     return errors;
   }
@@ -133,20 +140,26 @@ function Formulario() {
 
     //console.log(errors);
     //  console.log(input.ocupation);
-    if (!input.ocupation.length) {
+    
+    let errorMsgs = ""
+    if (input.ocupation.length < 1) {
+      errorMsgs = errorMsgs + EM_OCUPAT_SEL1 + '\n';
+      if (!!Object.keys(errors).length) {
+        errorMsgs = errorMsgs + Object.keys(errors).map((e) => (errors[e])).join('\n');
+      }
       await swal({
-        title: "ERROR",
-        text: "Se debe seleccionar al menos 1 ocupación",
-        icon: "error",
-        buttons: "Aceptar",
+        title: TLE_ERROR,
+        text: errorMsgs,
+        icon: ICO_ERROR,
+        buttons: BTX_ACEPTAR,
       });
-      return;
+    }else{
+      setIsLoading(true);
+      const formData = new FormData(e.target);
+      formData.append("ocupation", input.ocupation);
+      const error = await dispatch(postArtist(formData, navigate));
+      setIsLoading(false);
     }
-    setIsLoading(true);
-    const formData = new FormData(e.target);
-    formData.append("ocupation", input.ocupation);
-    const error = await dispatch(postArtist(formData, navigate));
-    setIsLoading(false);
     // console.log(error)
     // console.log(2)
   }
@@ -187,23 +200,25 @@ function Formulario() {
                   style={{ display: "none" }}
                 />
                 <br></br>
-                Registrate a<br></br> <b>Urban Club!</b>
+                <div className={style.sugerencia}>
+                  Registrate a<br></br> <b>Urban Club!</b>
+                </div>
               </label>
             </div>
             <div className={style.formContainerMiddle}>
+            
               <label className={style.required}>
                 <div>
                   <span style={{ color: "red" }}>*</span> Nombre:
                 </div>
                 <input
-                  placeholder={errors.name}
+                  // placeholder={errors.name}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   type="text"
                   value={input.name}
                   maxLength="25"
                   name="name"
-                  required
                 />
               </label>
               <label>
@@ -211,14 +226,13 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Apellido:
                 </div>
                 <input
-                  placeholder={errors.lastname}
+                  // placeholder={errors.lastname}
                   type="text"
                   value={input.lastname}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="lastname"
                   maxLength={25}
-                  required
                 />
               </label>
               <label>
@@ -226,14 +240,13 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Correo:
                 </div>
                 <input
-                  placeholder={errors.email}
+                  // placeholder={errors.email}
                   type="email"
                   value={input.email}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="email"
                   maxLength={45}
-                  required
                 />
               </label>
               <label>
@@ -241,13 +254,12 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Alias:
                 </div>
                 <input
-                  placeholder={errors.nickName}
+                  // placeholder={errors.nickName}
                   type="text"
                   value={input.nickName}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="nickName"
-                  required
                 />
               </label>
               <label>
@@ -255,17 +267,16 @@ function Formulario() {
                   <span style={{ color: "red" }}>*</span> Contraseña:
                 </div>
                 <input
-                  placeholder={errors.password}
+                  // placeholder={errors.password}
                   type="password"
                   maxLength={20}
                   value={input.password}
                   onChange={handleOnChange}
                   onBlur={handleOnChange}
                   name="password"
-                  required
                 />
               </label>
-              <p className={style.errorsFrond}>{errors.password}</p>
+              {/* <p className={style.errorsFrond}>{errors.password}</p> */}
               <label>
                 <div>Ciudad:</div>
                 <input
@@ -286,12 +297,14 @@ function Formulario() {
                   name="Country"
                 />
               </label>
+              <span style={{ color: "red" }}>* : Campos obligatorios</span>
             </div>
             <div className={style.formContainerRight}>
+            
               <label>
                 <div className={style.occupationsOptions}>
                   {options.map((option) => (
-                    <label key={option} >
+                    <label key={option}>
                       <input
                         className={style.occupationsOptionsList}
                         type="checkbox"
@@ -312,6 +325,7 @@ function Formulario() {
                     />
                     Otros
                   </label>
+                  <span style={{ color: "red" }}>Seleccione al menos una ocupación</span>
                   {input.ocupation.includes("Otros") && (
                     <input
                       type="text"
@@ -344,7 +358,7 @@ function Formulario() {
                 </div>
               )}
               {!isLoading && (
-                <button className={style.uploadFormButton} type="submit">
+                <button name="submit" className={style.uploadFormButton} type="submit">
                   Registrarse
                 </button>
               )}

@@ -1,6 +1,8 @@
 import './Chats.css'
 //import React, { useEffect, useState } from 'react'
 import axios from "axios"
+import { io } from "socket.io-client";
+const socket = io("http://localhost:3001");
 
 function ChatOnline({ onlineUser, currentId, setCurrentChat, online }) {
 
@@ -23,8 +25,15 @@ function ChatOnline({ onlineUser, currentId, setCurrentChat, online }) {
 
   const handleClick = async(user) => {
     try {
-      const res = await axios.get(`/conversation/${currentId}/${user.id}`);
-      setCurrentChat(res.data);
+      const { data } = await axios.get(`/conversation/${currentId}/${user.id}`);
+
+      const obj = {
+        id: data.id,
+        members: data.members
+      }
+    
+      socket.emit("newConversation", obj);
+      setCurrentChat(data);
     } catch (err) {
       console.log(err)
     }

@@ -1,6 +1,8 @@
 .container {
   position: relative;
-  margin: 25px 100px;
+  padding: 25px 100px;
+  padding-top: 110px;
+  background: linear-gradient(0deg, #38cafb17 0%, #09548e 100%);
 }
 .NoAhora {
   display: none;
@@ -15,7 +17,7 @@
   background-color: #0d5a73;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 4px 8px 6px 0 #adabab;
+  box-shadow: 1px 2px 3px 0 #f5f4f4;
 }
 
 .rating-g {
@@ -48,6 +50,12 @@
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
+  transition: 0.4s ease;
+}
+.foto-ocupacion:hover {
+  transform: scale(1.1);
+  transition: 0.4s ease;
+  cursor: pointer;
 }
 .foto-ocupacion img {
   object-fit: cover;
@@ -106,10 +114,18 @@
 }
 
 .profileFollow {
-  margin-left: auto;
+  display: flex;
+  gap: 30px;
 }
 .profileNombre {
   display: flex;
+  align-items: center;
+  font-size: 30px;
+}
+.profileNombre svg {
+  color: rgb(13, 171, 233);
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+  margin-inline: 15px;
 }
 .nombre span {
   margin-right: auto;
@@ -130,13 +146,18 @@
   font-size: 20px;
   font-weight: 700;
   border: none;
-  padding: 15px 30px;
+  padding: 15px 15px;
   border-radius: 15px;
-  margin-left: 40px;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+  cursor: pointer;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+  transition: 0.4s ease;
+}
+.btn-profile:hover {
+  transform: scale(1.1);
 }
 
 .btn-ajustes {
@@ -151,6 +172,12 @@
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+.btn-ajustes svg {
+  color: rgb(217, 217, 217);
+  font-size: 35px;
+  text-decoration: none;
 }
 .ajustes-botones {
   cursor: pointer;
@@ -169,12 +196,48 @@
 
 .stas-profile * {
   margin-right: 70px;
+  border-radius: 15px;
   font-size: 18px;
   font-weight: bold;
   background: none;
   border: none;
 }
-
+.btn-div .followListContainer {
+  color: white;
+  background: linear-gradient(180deg, #0d5a73 0%, #025494 100%);
+  border: 2px solid #0d5a73;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease-in-out;
+}
+.btn-stas-text {
+  margin-right: 10px;
+  display: flex;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  gap: 0;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.459));
+  cursor: pointer;
+}
+.btn-stas-number {
+  margin-right: 10px;
+  transition: 0.4s ease;
+}
+.btn-stas:hover .btn-stas-number {
+  transition: 0.4s ease;
+  transform: scale(1.5);
+  cursor: pointer;
+  background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.459));
+}
+.div-eventos {
+  cursor: pointer;
+}
 .ab-re {
   display: flex;
 }
@@ -191,12 +254,37 @@
 }
 
 .container-links {
-  margin: auto;
   display: flex;
   justify-content: left;
   align-items: center;
 }
-
+.container-links a,
+.container-links svg {
+  font-size: 40px;
+  text-decoration: none;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+}
+.youtube {
+  color: red;
+  margin-right: 0px;
+  transition: 0.4s;
+}
+.youtube:hover {
+  transform: scale(1.25);
+  transition: 0.4s;
+}
+.youtube svg {
+  margin-right: 30px;
+}
+.twitter {
+  color: #1389e3;
+  margin-right: 0px;
+  transition: 0.4s;
+}
+.twitter:hover {
+  transform: scale(1.25);
+  transition: 0.4s;
+}
 .redes-div h4 {
   margin: 0;
   margin-bottom: 15px;
@@ -308,7 +396,7 @@
   .stas-profile {
     display: flex;
     align-items: center;
-    margin: 12px 0;
+    margin: 5px 0;
     flex-wrap: wrap;
   }
   .nombre {
@@ -367,7 +455,7 @@
     font-size: 40px;
   }
   .container {
-    margin-top:80px;
+    margin-top: 80px;
     margin-inline: 20px;
   }
 }

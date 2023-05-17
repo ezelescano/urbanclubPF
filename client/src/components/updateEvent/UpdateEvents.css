@@ -36,15 +36,8 @@
   padding: 10px;
   margin-top: 20px;
   border-radius: 5px;
-  transition: 0.4s ease;
 }
-.uploadFormButton:hover {
-  background-color: rgb(0, 0, 0);
-  box-shadow: 0px 2px 2px 2px rgb(255, 255, 255);
-  color: rgb(255, 251, 251);
-  transition: 0.4s ease;
-  transform: scale(1.1);
-}
+
 .uploadSubmitButton {
   background-color: white;
   border: 2px solid black;
@@ -202,35 +195,12 @@
   max-height: 100px;
   min-width: 140px;
   min-height: 50px;
-  transition: 0.4s ease;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-.descripcionArea:hover {
-  transform: scale(1.05);
-  transition: 0.4s ease;
 }
 .titleContainer {
   margin-top: 2%;
   text-align: center;
 }
-.formContainerInputs {
-  transition: 0.4s ease;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-.formContainerInputs:hover {
-  transform: scale(1.05);
-  transition: 0.4s ease;
-}
+
 /*Faltan los media queries oscar :)))) Dale metele pataaaa...*/
 @media (max-width: 768px) {
   .formContainer {
