@@ -87,7 +87,6 @@
 }
 
 .text h3 {
-  margin-bottom: 10px;
   font-size: 25px;
   text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.5);
 }
@@ -162,6 +161,7 @@
   animation-duration: 1s; /* Duración de 2 segundos */
   animation-fill-mode: forwards; /* Mantener el estado final de la animación */
   opacity: 0; /* Inicialmente invisible */
+  transform: scale(0.8);
 }
 /*Animaciones*/
 @keyframes fadeInText {
