@@ -128,7 +128,6 @@ const Artists = () => {
                 </option>
               ))}
             </select>
-
             <select
               value={orden}
               onChange={(event) => setOrden(event.target.value)}
@@ -167,7 +166,7 @@ const Artists = () => {
           )}
           {!isLoading && currentArtists.length > 0
             ? currentArtists.map((item) => {
-                console.log("HOLAAAAAAA", currentArtists);
+                //console.log("HOLAAAAAAA", currentArtists);
                 let ocupacion;
                 item.ocupation !== undefined
                   ? (ocupacion = item.ocupation)

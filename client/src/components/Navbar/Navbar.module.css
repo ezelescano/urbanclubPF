@@ -20,9 +20,11 @@
 .navTitleImg {
   width: 80px;
   transition: 0.2s;
+  outline: none;
 }
 
 .navTitleImg:hover {
+  cursor: pointer;
   animation: spin 2s ease;
   transition: 0.5s ease;
   width: 85px;
@@ -45,6 +47,7 @@
 }
 
 .nav-links li:hover {
+  cursor: pointer;
   transform: scale(1.2);
 }
 
@@ -59,28 +62,49 @@
 }
 
 .navLoginBtn:hover {
-  background-color: #79cfd5;
+  background: linear-gradient(180deg, #0e98a5 40%, #066fbf 90%, #025494 100%);
+  color: white;
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 .navLinks li a {
-  color: white;
   text-decoration: none;
   padding: 12px;
   outline: none;
   font-size: 20px;
+  background: white;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.8s ease;
 }
-
+.navLinks li a:hover {
+  font-size: 24px;
+  background: linear-gradient(180deg, #0e98a5 40%, #066fbf 90%, #025494 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.459));
+  transition: 0.8s ease;
+}
 .sesionfoto {
   width: 60px;
   height: 60px;
   border: 2px solid #fff;
   background-color: #fff;
   border-radius: 50%;
+  transition: 1s ease;
+}
+.sesionfoto:hover {
+  transform: scale(1.05);
+  animation: 1s spin 3s linear infinite;
+  transition: 1s ease;
+  outline: none;
 }
 
 .navTitleImgZoom {
   display: none;
+  outline: none;
 }
 
 .navLoginBtnZoom {
@@ -89,6 +113,7 @@
 
 .sesionfotozoom {
   display: none;
+  outline: none;
 }
 
 .sesionfoto,
@@ -108,19 +133,23 @@
 @keyframes spin {
   from {
     transform: rotate(0deg);
+    transition: 1s ease;
   }
 
   to {
     transform: rotate(360deg);
+    transition: 1s ease;
   }
 }
 @media screen and (max-width: 930px) {
   .navbar img.navTitleImg {
     display: none;
+    outline: none;
   }
 
   .navbar img.navTitleImgZoom {
     display: block;
+    outline: none;
     animation: spin 12s linear infinite;
   }
 

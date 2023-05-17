@@ -1,4 +1,6 @@
 .star {
-    color: gold;
-    font-size: 20px;
-  }
+  color: gold;
+}
+.starRating {
+  display: flex;
+}

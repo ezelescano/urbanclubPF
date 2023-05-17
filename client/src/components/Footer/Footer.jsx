@@ -77,7 +77,7 @@ const Footer = () => {
           />
         </a>
         <a
-          href="https://drive.google.com/drive/folders/1KaKgiDDZ4VnWFAYnxHlJ96JboY1RU6hK"
+          href="mailto:urbanclub948@gmail.com"
           target="_blank"
           rel="noreferrer"
         >

@@ -44,11 +44,13 @@ const HomeArt = () => {
   };
 
   const hideCards = artista.length > getDisplayedItems();
+  const sortedArtists = [...artista].sort((a, b) => b.id - a.id);
+
 
   return (
     <div className={style.ConteinerArt}>
       <div className={style.TopArt}>
-        {artista.slice(0, getDisplayedItems()).map((item, index) => (
+        {sortedArtists.slice(0, getDisplayedItems()).map((item, index) => (
           <div
             key={index}
             style={{
