@@ -98,7 +98,7 @@ function DetailsEvents() {
       [e.target.name]: e.target.value,
     });
   };
-  const buyTicketHandler = async ({ onvalue }) => {
+  const buyTicketHandler = async () => {
     if (!islogin.isAuthenticated) {
       swal({
         title: "COMPRA INVÁLIDA",

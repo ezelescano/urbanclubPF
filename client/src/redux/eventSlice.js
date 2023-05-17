@@ -176,6 +176,7 @@ export const deleteEvent = (id) => {
 
 }
 
+
 export const buyTicket = (compra) => {
   console.log("entro")
   return async (dispatch) => {
