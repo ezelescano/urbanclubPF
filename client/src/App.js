@@ -36,6 +36,7 @@ import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
 import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
 import Admin from "./components/Admin/Admin";
+import AboutEudes from "./components/AboutUs/AboutEudes";
 /* import { io } from "socket.io-client";
 const socket = io("http://localhost:8900"); */
 
@@ -99,7 +100,7 @@ function App() {
         />
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/events" element={<Events showFilters={true}/>} />
+        <Route path="/events" element={<Events showFilters={true} />} />
         <Route
           path="/createevent/:id"
           element={
@@ -110,6 +111,7 @@ function App() {
         <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
+        <Route path="/About/Eudes" element={<AboutEudes />} />
 
         <Route
           path="/messenger"
