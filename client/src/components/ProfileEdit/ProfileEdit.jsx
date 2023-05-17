@@ -152,6 +152,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
         </button>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <div className={styles.filesContainer}>
+          <div>Editar foto de perfil:</div>
             {profilePhotoPreview && (
               <div>
                 <img
@@ -169,6 +170,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
               className={styles.profileChange}
             />
             <br />
+            <div>Editar foto de portada:</div>
             {coverPhotoPreview && (
               <img
                 src={coverPhotoPreview}
