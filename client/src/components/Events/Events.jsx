@@ -9,7 +9,9 @@ import {
   getAllEvents,
   getAllLocations,
   getFilterEventsSuccess,
+  pagNum,
 } from "../../redux/eventSlice";
+import Paginado from "./PagEvents";
 
 const Events = ({ showFilters }) => {
   const { detailEvent } = useSelector((state) => state.events);
@@ -29,6 +31,13 @@ const Events = ({ showFilters }) => {
   // const [isLoading, setIsLoading] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
+  // Paginación
+  const currentPage = useSelector((state) => state.events.pag);
+  const [eventsPerPage, setEventsPerPage] = useState(6);
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent);
+
   const handleLocationChange = (location) => {
     setSelectedLocation(location);
   };
@@ -42,7 +51,7 @@ const Events = ({ showFilters }) => {
   };
 
   useEffect(() => {
-    // dispatch (pagNum(1));
+     dispatch (pagNum(1));
     // dispatch(FilterArtists(selectedCategory));
     handlesFilterEvents();
   }, [date, price, ubicacion]);
@@ -130,8 +139,10 @@ const Events = ({ showFilters }) => {
           </div>
         ) : null
       } */}
+      <br/>
+      <Paginado events={events.length} eventsPerPage={eventsPerPage} />
       <div className={style.containerHelp}>
-        {events?.map((item, index) => {
+        {currentEvents?.map((item, index) => {
           if (islogin.isAuthenticated) {
             if (islogin.user.id !== item.id_Artist) {
               return (
