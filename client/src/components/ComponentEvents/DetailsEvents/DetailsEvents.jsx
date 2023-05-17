@@ -145,7 +145,6 @@ function DetailsEvents() {
           timer = setInterval(async () => {
             if (newWindow.closed) {
               if (timer) clearInterval(timer);
-              console.log("prueba");
               const restCant = cantidad - entradas;
               setCantidad(restCant);
               let stockObjeto = {
