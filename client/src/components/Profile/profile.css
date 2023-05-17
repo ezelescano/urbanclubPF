@@ -2,7 +2,8 @@
   position: relative;
   padding: 25px 100px;
   padding-top: 110px;
-  background: linear-gradient(0deg, #38cafb17 0%, #09548e 100%);
+  /* background: linear-gradient(0deg, #38cafb17 0%, #09548e 100%); */
+  background-color: #ededed;
 }
 .NoAhora {
   display: none;

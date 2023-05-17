@@ -36,8 +36,8 @@ import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
 import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
 import Admin from "./components/Admin/Admin";
-import { io } from "socket.io-client";
-const socket = io("http://localhost:3001");
+/* import { io } from "socket.io-client";
+const socket = io("http://localhost:8900"); */
 
 
 function App() {
@@ -64,11 +64,11 @@ function App() {
     }
   }, [dispatch]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if(user.isAuthenticated){
       socket.emit("addUser", user.user.id);
     }
-  },[user])
+  },[user]) */
 
   //No modifiquen cosas que estan bien solo buscando un error de ustedes plsssssssssssssssssssssssssss, Gracias :))
   const isMessengerOrProfileRoute =

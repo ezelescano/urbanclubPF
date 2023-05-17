@@ -41,7 +41,6 @@ function FollowList({ userId, isCurrentUser, action, setShowFollowers, setShowFo
           <div className="contacfollowlist" onClick={() => handleGoProfile(f.id)}>
             <img className="followListImg" src={f.profilePhoto} alt='foto'/>
             <span className="followListName">{f.name}</span>
-            {/* {isCurrentUser ? <button className="followListbtn">Contactar</button> : <button className="followListbtn">Seguir</button>} */}
           </div>
         ))}
       </div>
