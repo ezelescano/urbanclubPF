@@ -218,6 +218,8 @@ function DetailsEvents() {
       });
     };
   }, []);
+
+  
   return (
     <>
       <div className={style.backContainer}>
