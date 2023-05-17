@@ -94,6 +94,7 @@ const Events = ({ showFilters }) => {
       {
         showFilters ? (
           <div className={style.eventsFilters}>
+            <Paginado events={events.length} eventsPerPage={eventsPerPage} />
             <form className={style.eventsFilters}>
               <select value={date} onChange={(e) => setDate(e.target.value)}>
                 <option hidden value="">
@@ -142,7 +143,7 @@ const Events = ({ showFilters }) => {
 
 
       <br/>
-      <Paginado events={events.length} eventsPerPage={eventsPerPage} />
+      
       <div className={style.containerHelp}>
         {currentEvents?.map((item, index) => {
           if (islogin.isAuthenticated) {
