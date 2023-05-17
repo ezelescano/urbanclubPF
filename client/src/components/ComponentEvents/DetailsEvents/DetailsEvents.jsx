@@ -155,9 +155,9 @@ function DetailsEvents() {
                 `/events/buyTicket/${detailEvent.id}`,
                 // `https://pruebaback-production-0050.up.railway.app/events/buyTicket/${detailEvent.id}`,
                 stockObjeto
-              );
-              setEntradas(1);
-
+                );
+                
+                setEntradas(1);
               if (eventd) {
                 swal({
                   title: "COMPRA EXITOSA",
