@@ -88,9 +88,9 @@ function Login() {
             <label>
               <NavLink to="/forgotPassword">¿Olvidaste tu contraseña?</NavLink>
             </label>
-            <GoogleButton></GoogleButton>
           </div>
         </form>
+            <GoogleButton/>
       </div>
     </div>
   );

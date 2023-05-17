@@ -15,12 +15,14 @@ passport.use(
       clientSecret: GOOGLE_CLIENT_SECRET,
       callbackURL: `${URL_BACK}/artist/auth/google/callback`,
       // callbackURL: "https://pruebaback-production-0050.up.railway.app/artist/auth/google/callback",
-      
+      session:false,
       scope: ['profile', 'email'],
       passReqToCallback: true
   },
   async (req, accessToken, refreshToken, profile, done) => {
-
+    console.log("tokengoogle", req.query.code)
+    console.log("req.user", req.user)
+    console.log("profile", profile)
     const newArtist = await Artist.findOne({
         where: {
           email : profile._json.email,
@@ -29,7 +31,8 @@ passport.use(
 
   if(newArtist) {
           const artist = await artistById(newArtist.id)
-          artist.token =  generateJWT(artist.id, artist.name)
+          // artist.token =  generateJWT(artist.id, artist.name)
+          artist.token = generateJWT(artist.id, artist.name)
           done(null,artist)
     } else {
 
@@ -43,12 +46,17 @@ passport.use(
           profilePhoto : profile._json.picture
     })
     
-    artistByGoogle.token = generateJWT(artistByGoogle.id, artistByGoogle.name);
-    await artistByGoogle.save();
-    
-    done(null, artistByGoogle)
+     // artistByGoogle.token = generateJWT(artistByGoogle.id, artistByGoogle.name);
+
+      const token = generateJWT(artistByGoogle.id,artistByGoogle.name, artistByGoogle.profilePhoto)
+      await artistByGoogle.save();
+      artistByGoogle.token = token
+     req.user = artistByGoogle
+
+     done(null, artistByGoogle)
 
     }
+    console.log("---------------------req user -------------------",req.user);
   }
 ));
 
