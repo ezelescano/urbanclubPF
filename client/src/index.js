@@ -7,9 +7,8 @@ import { Provider } from "react-redux";
 //import store from "./redux/store";
 import axios from "axios";
 import store from "./redux/store";
-
-axios.defaults.baseURL = 'http://localhost:3001';
-// axios.defaults.baseURL = 'https://pruebaback-production-0050.up.railway.app'; 
+import {URLS} from "./env"
+axios.defaults.baseURL = URLS;
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
