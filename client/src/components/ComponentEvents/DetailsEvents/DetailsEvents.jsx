@@ -211,12 +211,12 @@ function DetailsEvents() {
   //     label.addEventListener("click", handleClick);
   //   });
 
-    return () => {
-      labels.forEach((label) => {
-        label.removeEventListener("click", handleClick);
-      });
-    };
-  }, []);
+  //   return () => {
+  //     labels.forEach((label) => {
+  //       label.removeEventListener("click", handleClick);
+  //     });
+  //   };
+  // }, []);
 
   
   return (
