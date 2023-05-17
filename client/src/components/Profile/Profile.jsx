@@ -182,12 +182,10 @@ const Profile = () => {
       icon: "success",
       buttons: "Aceptar",
     }).then((res) => {
-      if (res) {
-        setTimeout(() => {
-          window.location.reload();
-        }, 800);
-      }
-      //window.location.reload();
+
+      // if (res) window.location.reload(); 
+      //porque estaba este windows realoaded?, quite este codigo y volvio a funcar el cambio de foto en navbar
+
     });
     setShowEdit(false);
     setShowSettings(false);
