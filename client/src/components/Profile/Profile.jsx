@@ -486,7 +486,8 @@ const Profile = () => {
                     />
                   )}
                   {showEditPassword && showComponents && (
-                    <UpdatePassword handleEdit={handleEdit} />
+                    <UpdatePassword handleEdit={handleEdit} 
+                                    handlePasswordChange={handlePasswordChange}/>
                   )}
                 </div>
               ) : (

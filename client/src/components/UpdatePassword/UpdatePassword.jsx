@@ -2,7 +2,7 @@ import style from "./UpdatePassword.module.css";
 import { useState } from "react";
 import swal from "sweetalert";
 
-const UpdatePassword = ({ handleEdit }) => {
+const UpdatePassword = ({ handleEdit, handlePasswordChange }) => {
   const [password, setPassword] = useState({
     password: "",
   });
@@ -74,6 +74,9 @@ const UpdatePassword = ({ handleEdit }) => {
 
   return (
     <div className={style.containerUpdatePassword}>
+      <button className={style.containerExitUP} onClick={handlePasswordChange}>
+          X
+        </button>
       <form className={style.formUpdatePassword} onSubmit={handleSubmit}>
         Contraseña nueva
         <input
