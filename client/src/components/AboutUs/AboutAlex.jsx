@@ -12,7 +12,7 @@ function AboutAlex() {
         <br />
         <div className={style.paragraph}>
           <p>
-            <b>Soy John Alexander Jaramillo Ruiz </b>
+            Soy<b> Alex </b>
             un desarrollador que está dando sus primeros pasos
             en el apasionante mundo del desarrollo de software.
             Me emociona embarcarme en esta carrera y adquirir
