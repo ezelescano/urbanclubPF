@@ -12,7 +12,7 @@ const forgotPassword = async (email) => {
     } else {
 
         const artist = await Artist.findOne({where: {email: email}});
-        const token = jwt.sign({userId: artist.id}, JWT_SECRET, {expiresIn: "1s"})
+        const token = jwt.sign({userId: artist.id}, JWT_SECRET, {expiresIn: "5m"})
      
         if (!artist){
             throw new Error("No se encontró el artista en la base de datos");

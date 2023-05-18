@@ -15,7 +15,9 @@ const postArtist = async (req) => {
         ocupation,subCategory, aboutMe } = req.body;
     if (!name || !lastname || !email || !nickName)
         return { error: "Debe llenar todos los campos" };
-
+        const pais = Country.charAt(0).toUpperCase() + Country.slice(1).toLowerCase();
+        const ciudad = city.charAt(0).toUpperCase() + city.slice(1).toLowerCase();
+        
     //?el name se agrega con mayuscula
     const Nombre = name.toUpperCase();
 
