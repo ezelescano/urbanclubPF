@@ -27,8 +27,9 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     loginSuccess(state, action) {
-      console.log(action)
+      
       const artist = jwt_decode(action.payload.token); // Acá te lo decodifica ###
+
       localStorage.setItem("token", action.payload.token);
       //localStorage.setItem("user", JSON.stringify(artist));
       state.isAuthenticated = true;
@@ -74,6 +75,7 @@ export const authSlice = createSlice({
 export const login = (payload, navigate) => {
   return async (dispatch) => {
     try {
+      console.log('payload de login ...........',payload)
       const response = await axios.post('/artist/login', payload);
       const data = response.data;
       dispatch(loginSuccess(data));

@@ -9,14 +9,13 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const islogin = useSelector((state) => state.auth);
   const usuario = useSelector((state) => state.auth.user);
-
+  const autho = useSelector((state) => state)
   const [navLinksVisible, setNavLinksVisible] = useState(false);
   const [navbarHeight, setNavbarHeight] = useState(0);
   const handleHamburgerClick = () => {
     setNavLinksVisible(!navLinksVisible);
   };
   const [isScrolled, setIsScrolled] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset;
@@ -35,6 +34,10 @@ function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    console.log('--------------------------')
+  },[autho])
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);

@@ -58,6 +58,7 @@ function App() {
         dispatch(logout());
         //history.push('/login');
       } else {
+       
         const decodedToken = jwtDecode(token);
         dispatch(loginSuccess({ token }));
         const timeout = decodedToken.exp * 1000 - Date.now();

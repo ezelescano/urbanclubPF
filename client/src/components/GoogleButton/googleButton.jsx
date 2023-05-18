@@ -65,7 +65,6 @@ const LoginButton = () => {
   const googleLogIn = (e) => {
     e.preventDefault()
     const popup = window.open(`${URLS}/artist/auth/google`, "_blank", `location=none width=620 height=700 toolbar=no status=no menubar=no scrollbars=yes resizable=yes`)
-
     window.addEventListener('message', event => {
       if (event.origin === `${URLS}`) {
 
