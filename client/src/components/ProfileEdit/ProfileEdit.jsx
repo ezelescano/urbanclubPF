@@ -53,7 +53,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
 
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 1200);
   }
 
   function addOcupation(ocupation, selected) {
