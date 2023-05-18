@@ -30,6 +30,10 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmptyCard from "../Cards/CardsEvents/EmptyCard";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { io } from "socket.io-client";
+import { URLS } from "../../env";
+const socket = io(URLS);
+
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -250,9 +254,14 @@ const Profile = () => {
 
   const handleContact = async () => {
     if (currentUser.isAuthenticated && !isCurrentUser) {
-      const res = await axios.get(
+      const { data } = await axios.get(
         `/conversation/${currentUser.user.id}/${usuario.id}`
       );
+      const obj = {
+        id: data.id,
+        members: data.members
+      }
+      socket.emit("newConversation", obj);
       navigate("/messenger");
       return;
     }
