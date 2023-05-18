@@ -12,6 +12,7 @@
   min-height: 80px;
 }
 .navbar a {
+  text-decoration: none;
   display: flex;
   object-fit: contain;
   align-items: center;
@@ -73,6 +74,7 @@
   color: black;
   font-weight: 550;
   transition: 0.8s;
+  text-decoration: none;
 }
 
 .navLoginBtn:hover {
@@ -144,6 +146,11 @@
 .respNavLinks {
   display: none;
 }
+
+.profilePicture {
+  text-decoration: none;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
