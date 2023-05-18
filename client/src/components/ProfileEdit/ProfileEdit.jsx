@@ -152,7 +152,7 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
         </button>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
           <div className={styles.filesContainer}>
-          <div>Editar foto de perfil:</div>
+            <div>Editar foto de perfil:</div>
             {profilePhotoPreview && (
               <div>
                 <img
