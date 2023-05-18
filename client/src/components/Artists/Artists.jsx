@@ -140,12 +140,18 @@ const Artists = () => {
               onChange={(event) => setSelectedLocation(event.target.value)}
             >
               <option value="">Todos los países</option>
-              {locations?.map((Country) => (
-                <option key={Country} value={Country}>
-                  {Country}
-                </option>
-              ))}
+              {locations?.map((Country) => {
+                if (Country.trim() !== "") {
+                  return (
+                    <option key={Country} value={Country}>
+                      {Country}
+                    </option>
+                  );
+                }
+                return null;
+              })}
             </select>
+
             <select
               value={orden}
               onChange={(event) => setOrden(event.target.value)}
@@ -167,14 +173,6 @@ const Artists = () => {
               Limpiar
             </button>
           </form>
-          {/* <div className={style.selectedFilters}>
-            {selectedFilters.map((filter) => (
-              <div key={filter} className={style.selectedFilter}>
-                <span>{filter}</span>
-                <button onClick={() => handleRemoveFilter(filter)}>X</button>
-              </div>
-            ))}
-          </div> */}
         </div>
         <br />
         <Paginado artistsPerPage={artistsPerPage} artistas={artistas.length} />
@@ -186,7 +184,6 @@ const Artists = () => {
           )}
           {!isLoading && currentArtists.length > 0
             ? currentArtists.map((item) => {
-                //console.log("HOLAAAAAAA", currentArtists);
                 let ocupacion;
                 item.ocupation !== undefined
                   ? (ocupacion = item.ocupation)
