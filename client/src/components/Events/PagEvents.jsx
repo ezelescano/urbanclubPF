@@ -14,7 +14,7 @@ const Paginado = ({ events, eventsPerPage }) => {
 
   return (
     <nav className={styles.nav}>
-      <div>
+      <div className={styles.navFlexer}>
         {pageNumbers &&
           pageNumbers.map((number) => (
             <button

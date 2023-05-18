@@ -3,7 +3,6 @@ import { useState } from "react";
 import swal from "sweetalert";
 
 const UpdatePassword = ({ handleEdit }) => {
-
   const [password, setPassword] = useState({
     password: "",
   });

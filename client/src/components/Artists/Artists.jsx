@@ -26,7 +26,7 @@ const Artists = () => {
   const [orden, setOrden] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
-   const [search, setSearch]= useState('')
+  const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
@@ -59,15 +59,14 @@ const Artists = () => {
     return dispatch(cleanArtists);
   }, [dispatch]);
 
-  
   useEffect(() => {
     if (search.trim() !== "") {
       dispatch(getArtistName(search));
       //dispatch (pagNum(1));
-    }else {
-      dispatch(getAllArts())
+    } else {
+      dispatch(getAllArts());
     }
-  },[search]) // eslint-disable-line
+  }, [search]); // eslint-disable-line
 
   useEffect(() => {
     dispatch(pagNum(1));
@@ -114,16 +113,15 @@ const Artists = () => {
       <div className={style.container}>
         <br />
         <div className={style.containerFilters}>
-        
-          
-        
           <form className={style.filtersLogic}>
-          <input
-          className={style.selectFilters}
-          type="text"
-          value={search}
-          placeholder="¿Qué artista quieres ver hoy?"
-          onChange={ event => setSearch(event.target.value)}/>
+            <input
+              style={{ width: "180px" }}
+              className={style.selectFilters}
+              type="text"
+              value={search}
+              placeholder="¿Qué artista quieres ver hoy?"
+              onChange={(event) => setSearch(event.target.value)}
+            />
             <select
               className={style.selectFilters}
               value={selectedCategory}
@@ -160,13 +158,15 @@ const Artists = () => {
             <button
               type="button"
               onClick={() => (
-                setSelectedCategory(""), setSelectedLocation(""), setOrden(""), setSearch("")
+                setSelectedCategory(""),
+                setSelectedLocation(""),
+                setOrden(""),
+                setSearch("")
               )}
             >
               Limpiar
             </button>
           </form>
-
           {/* <div className={style.selectedFilters}>
             {selectedFilters.map((filter) => (
               <div key={filter} className={style.selectedFilter}>
@@ -197,6 +197,7 @@ const Artists = () => {
                       id={item.id}
                       name={item.name}
                       profilePhoto={item.profilePhoto}
+                      coverPhoto={item.coverPhoto}
                       ocupation={ocupacion}
                       aboutMe={item.aboutMe}
                       Country={item.Country}

@@ -11,7 +11,12 @@
   transition: 0.4s ease;
   min-height: 80px;
 }
-
+.navbar a {
+  display: flex;
+  object-fit: contain;
+  align-items: center;
+  gap: 20px;
+}
 .scrolled {
   background-color: #0d5a73ad;
   transform: scale(1.04);
@@ -22,7 +27,16 @@
   transition: 0.2s;
   outline: none;
 }
-
+.navTitleImgText {
+  width: 300px;
+  height: 40px;
+  transition: 0.2s;
+  outline: none;
+}
+.navTitleImgText:hover {
+  cursor: pointer;
+  transition: 0.5s ease;
+}
 .navTitleImg:hover {
   cursor: pointer;
   animation: spin 2s ease;

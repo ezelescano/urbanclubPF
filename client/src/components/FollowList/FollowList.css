@@ -20,7 +20,7 @@
 
 .contacfollowlist {
   display: flex;
-  width: 100%;
+  width: 80%;
   align-items: center;
   padding: 10px;
   cursor: pointer;
@@ -44,4 +44,23 @@
 
 .followListName {
   font-weight: 500;
+}
+
+.closeButton {
+  color: white;
+  align-self: flex-end;
+  width: 20%;
+  transition: ease 0.4s;
+}
+.closeButton:hover {
+  transform: scale(1.15);
+  transition: ease 0.4s;
+}
+.listFollowList:first-child {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.listFollowList svg {
+  cursor: pointer;
 }
