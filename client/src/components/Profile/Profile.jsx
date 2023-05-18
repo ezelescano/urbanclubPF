@@ -351,7 +351,7 @@ const Profile = () => {
                     </span>
                     {!isCurrentUser && (
                       <div className="profileFollow">
-                        <button className="btn-profile" onClick={handleFollow}>
+                        <button className={followed ? "btn-profile-act" : "btn-profile"} onClick={handleFollow}>
                           {followed ? "Dejar de seguir" : "Seguir"}
                         </button>
                         <button className="btn-profile" onClick={handleContact}>

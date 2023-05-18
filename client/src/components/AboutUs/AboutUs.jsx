@@ -224,7 +224,7 @@ function AboutUs() {
               </NavLink>
                </div>
             <div className={style.cardContent}>
-              <h2>Alexander</h2>
+              <h2>Alex</h2>
               <img src="../../assets/colombia.ico" alt="" />
               <h4>Colombia</h4>
               <p>
