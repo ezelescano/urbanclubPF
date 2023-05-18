@@ -142,6 +142,7 @@ function Maps({ city, country, Dcountry, Dcity }) {
   const [apiLoaded, setApiLoaded] = useState(false);
   const [searchLocation, setSearchLocation] = useState(null); // nuevo estado para almacenar la dirección de búsqueda original
 
+
   useEffect(() => {
     const googleMapsScript = document.createElement("script");
     googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAY3zPk-r72ELJTbepL7koVfZ6XgrE63dY&libraries=places,geocode`;
