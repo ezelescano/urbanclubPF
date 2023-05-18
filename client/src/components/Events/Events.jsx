@@ -115,10 +115,10 @@ const Events = ({ showFilters }) => {
                 onChange={(event) => setPrice(event.target.value)}
               >
                 <option value="">Precios</option>
-                <option value="0">Gratis</option>
-                <option value="1-50">Rango medio</option>
-                <option value="51-100">Rango alto</option>
-                <option value="101 a mas">Rango maximo</option>
+                {/* <option value="0">Gratis</option> */}
+                <option value="1-50">1 a 50 USD</option>
+                <option value="51-100">51 a 100 USD</option>
+                <option value="101 a mas">+ 100 USD</option>
               </select>
 
               <select
