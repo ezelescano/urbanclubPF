@@ -63,11 +63,11 @@ const CardsArt = ({
           <img className={style.userImage} src={profilePhoto} alt={name} />
         </div>
         <div className={`${style.text} ${style.overlay}`}>
-          <p>
+          {/* <p>
             <AutoFixHighIcon />
             {"  "}
             {aboutMe}
-          </p>
+          </p> */}
           <p>
             <PersonPinCircleIcon /> {"  "}
             {Country}
