@@ -8,6 +8,7 @@ const Comments = (event) => {
   const [comment, setComment] = useState("");
   const [comentarios, setComentarios] = useState([]);
   const [rating, setRating] = useState(0);
+  const [selectedStars, setSelectedStars] = useState([]);
 
   useEffect(() => {
     const getComments = async () => {
@@ -27,6 +28,11 @@ const Comments = (event) => {
 
   const handleRatingChange = (value) => {
     setRating(value);
+    if (selectedStars.includes(value)) {
+      setSelectedStars(selectedStars.filter((star) => star !== value));
+    } else {
+      setSelectedStars([...selectedStars, value]);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -72,7 +78,18 @@ const Comments = (event) => {
                   checked={rating === value}
                   onChange={() => handleRatingChange(value)}
                 />
-                <span className="star">&#9733;</span>
+                <span
+                  className={`star ${
+                    selectedStars.includes(value) ? "selected" : ""
+                  }`}
+                  style={
+                    selectedStars.includes(value)
+                      ? { color: "Yellow", transform: "scale(1.3)" }
+                      : null
+                  }
+                >
+                  &#9733;
+                </span>
               </label>
             ))}
           </div>
