@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Comment from "../Comment/Comment";
-
+import style from "./Comments.module.css";
 const Comments = (event) => {
   const currentUser = useSelector((state) => state.auth);
   const [comment, setComment] = useState("");
@@ -70,7 +70,8 @@ const Comments = (event) => {
         <form onSubmit={handleSubmit}>
           <div className="rating">
             {[1, 2, 3, 4, 5].map((value) => (
-              <label key={value}>
+              <label className={style.divStar} key={value}>
+                {value} {/* Número de la estrella */}
                 <input
                   type="radio"
                   name="rating"
@@ -78,18 +79,7 @@ const Comments = (event) => {
                   checked={rating === value}
                   onChange={() => handleRatingChange(value)}
                 />
-                <span
-                  className={`star ${
-                    selectedStars.includes(value) ? "selected" : ""
-                  }`}
-                  style={
-                    selectedStars.includes(value)
-                      ? { color: "Yellow", transform: "scale(1.3)" }
-                      : null
-                  }
-                >
-                  &#9733;
-                </span>
+                <span className={style.star}>&#9733;</span>
               </label>
             ))}
           </div>
