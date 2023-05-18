@@ -5,6 +5,7 @@ import gglftr from "./img/ggl-ftr.png";
 import fbftr from "./img/fb-ftr.png";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
+import {EMAIL_ADDRES} from "../../env"
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -77,7 +78,7 @@ const Footer = () => {
           />
         </a>
         <a
-          href="mailto:urbanclub948@gmail.com"
+          href= {`${EMAIL_ADDRES}`}
           target="_blank"
           rel="noreferrer"
         >

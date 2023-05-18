@@ -1,6 +1,6 @@
 const { Event, Artist } = require("../../db");
 require("dotenv").config();
-const { PASSWORD_EMAIL } = process.env;
+const { PASSWORD_EMAIL,EMAIL_ADDRES } = process.env;
 const nodemailer = require("nodemailer");
 
 const buyTicketController = async (req) => {
@@ -11,33 +11,33 @@ const buyTicketController = async (req) => {
   if (!id) {
     throw new Error("Not specific Id");
   } else {
-    
+
     const eventActualized = await Event.update(
       { stock: stock },
       { where: { id: id } }
-      );
-      const comprador = await Artist.findOne({
-        where: { id: id_Artist },
-      });
-      const event = await Event.findOne({
-        where: { id },
-      });
+    );
+    const comprador = await Artist.findOne({
+      where: { id: id_Artist },
+    });
+    const event = await Event.findOne({
+      where: { id },
+    });
 
     const emailComprador = comprador.email;
 
-    const vendedor = await Artist.findOne({ where: { id: event.id_Artist}})
+    const vendedor = await Artist.findOne({ where: { id: event.id_Artist } })
     const vendedorMail = vendedor.email;
 
     const config = {
       host: "smtp.gmail.com",
       port: 587,
       auth: {
-        user: "urbanclub948@gmail.com",
-        pass: PASSWORD_EMAIL,
+        user: EMAIL_ADDRES,
+        pass: PASSWORD_EMAIL
       },
     };
     const mensajeCompra = {
-      from: "urbanclub948@gmail.com",
+      from: EMAIL_ADDRES,
       to: emailComprador,
       subject: "Compra de ticket",
       html: `
@@ -72,7 +72,7 @@ const buyTicketController = async (req) => {
     };
 
     const mensajeVenta = {
-      from: "urbanclub948@gmail.com",
+      from: EMAIL_ADDRES,
       to: vendedorMail,
       subject: "Compra de ticket",
       html: `
@@ -95,7 +95,7 @@ const buyTicketController = async (req) => {
                   <li>Número de entradas restantes: ${event.stock}</li>
               </ul>
               <p>¡Esperamos que tu evento sea un gran éxito y que disfrutes de una increíble experiencia artística!</p>
-              <p>Si tienes alguna pregunta o necesitas más información, no dudes en ponerte en contacto con nuestro equipo de soporte a través de <a href="mailto:urbanclub948@gmail.com">urbanclub948@gmail.com</a>.</p>
+              <p>Si tienes alguna pregunta o necesitas más información, no dudes en ponerte en contacto con nuestro equipo de soporte a través de <a href="${EMAIL_ADDRES}">${EMAIL_ADDRES}</a>.</p>
               <p>¡Te deseamos mucho éxito en tu evento!</p>
               <p>Saludos cordiales,</p>
               <p>El equipo de urbanClub!</p>
@@ -108,7 +108,7 @@ const buyTicketController = async (req) => {
 
     const compra = await transport.sendMail(mensajeCompra);
     const venta = await transport.sendMail(mensajeVenta);
-    
+
     return eventActualized;
   }
 };

@@ -1,7 +1,7 @@
 const { Artist, Event } = require("../../db");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
-const { PASSWORD_EMAIL } = process.env;
+const { PASSWORD_EMAIL, EMAIL_ADDRES } = process.env;
 const cron = require("node-cron");
 const { Op } = require('sequelize');
 
@@ -26,13 +26,13 @@ const upcomingEvent = async () => {
             host: "smtp.gmail.com",
             port: 587,
             auth: {
-                user: "urbanclub948@gmail.com",
+                user: EMAIL_ADDRES,
                 pass: PASSWORD_EMAIL
             }
         }
         for (const artist of artistDB) {
             const mensaje = {
-                from: "urbanclub948@gmail.com",
+                from: EMAIL_ADDRES,
                 to: artist.email,
                 subject: "Próximos Eventos!!",
                 html: `

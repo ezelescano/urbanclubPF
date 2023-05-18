@@ -5,8 +5,8 @@ const {artistById} = require("../Controllers/artistControllers/artistById")
 const generateJWT = require("../../utils/generateJWT")
 const {URL_BACK} = require("../env")
 require("dotenv").config();
-const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET} = process.env;
-
+const {GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET,
+  PASSWORD_EMAIL,EMAIL_ADDRES} = process.env;
 passport.use(
   "google",
   new GoogleStrategy(
@@ -66,13 +66,13 @@ const sendemail = async(newArtist) =>{
       host: "smtp.gmail.com",
       port: 587,
       auth: {
-          user: "urbanclub948@gmail.com",
+          user: EMAIL_ADDRES,
           pass: PASSWORD_EMAIL
       }
   }
   
   const mensaje = {
-      from: "urbanclub948@gmail.com",
+      from: EMAIL_ADDRES,
       to: newArtist.email,
       subject: "Bienvenido a urbanClub!",
       html: `
@@ -98,7 +98,7 @@ const sendemail = async(newArtist) =>{
                   <li>Sistema de venta de entradas: Simplifica el proceso de venta de entradas a través de nuestra plataforma segura y confiable, permitiendo a tus seguidores adquirir boletos fácilmente.</li>
                   <li>Comunidad de artistas: Conecta con otros artistas, compartiendo conocimientos y experiencias para crecer juntos en la industria.</li>
               </ol>
-              <p>Estamos emocionados de tenerte a bordo y esperamos verte prosperar en urbanClub. Si tienes alguna pregunta, no dudes en ponerte en contacto con nuestro equipo de soporte a través de <a href="mailto:urbanclub948@gmail.com">urbanclub948@gmail.com</a>. Estaremos encantados de ayudarte en cualquier momento.</p>
+              <p>Estamos emocionados de tenerte a bordo y esperamos verte prosperar en urbanClub. Si tienes alguna pregunta, no dudes en ponerte en contacto con nuestro equipo de soporte a través de <a href="${EMAIL_ADDRES}">${EMAIL_ADDRES}</a>. Estaremos encantados de ayudarte en cualquier momento.</p>
               <p>Una vez más, bienvenido a urbanClub. Estamos ansiosos por ver cómo tus eventos se convierten en un gran éxito en nuestra plataforma. ¡Juntos, haremos vibrar las calles!</p>
               <p>Saludos cordiales,</p>
               <p>El equipo de urbanClub!</p>

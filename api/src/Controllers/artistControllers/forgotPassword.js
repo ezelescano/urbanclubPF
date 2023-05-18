@@ -2,7 +2,7 @@ const { Artist } = require("../../db");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 const {URL_FRONT} = require("../../env")
-const { PASSWORD_EMAIL, JWT_SECRET} = process.env;
+const { PASSWORD_EMAIL,EMAIL_ADDRES, JWT_SECRET} = process.env;
 const jwt = require("jsonwebtoken");
 
 const forgotPassword = async (email) => {
@@ -12,7 +12,7 @@ const forgotPassword = async (email) => {
     } else {
 
         const artist = await Artist.findOne({where: {email: email}});
-        const token = jwt.sign({userId: artist.id}, JWT_SECRET, {expiresIn: "5m"})
+        const token = jwt.sign({userId: artist.id}, JWT_SECRET, {expiresIn: "1s"})
      
         if (!artist){
             throw new Error("No se encontró el artista en la base de datos");
@@ -22,13 +22,13 @@ const forgotPassword = async (email) => {
             host: "smtp.gmail.com",
             port: 587,
             auth: {
-                user: "urbanclub948@gmail.com",
+                user: EMAIL_ADDRES,
                 pass: PASSWORD_EMAIL
             }
         }
 
         const mensaje = {
-            from: "urbanclub948@gmail.com",
+            from: EMAIL_ADDRES,
             to: email,
             subject: "Recuperación de contraseña",
             html: `
