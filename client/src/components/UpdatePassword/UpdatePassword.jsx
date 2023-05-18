@@ -77,7 +77,7 @@ const UpdatePassword = ({ handleEdit }) => {
       <form className={style.formUpdatePassword} onSubmit={handleSubmit}>
         Contraseña nueva
         <input
-          type="text"
+          type="password"
           name="password"
           value={password.password}
           onChange={changeHandlerPassword}
@@ -85,14 +85,14 @@ const UpdatePassword = ({ handleEdit }) => {
         <br />
         Vuelve a escribirla
         <input
-          type="text"
+          type="password"
           name="password2"
           value={password2.password2}
           onChange={changeHanlderPassword2}
         ></input>
         <br />
         {errors && <p>{errors.password}</p>}
-        <button type="submit">Guardar nueva contraseña</button>
+        <button type="submit">Guardar</button>
       </form>
     </div>
   );

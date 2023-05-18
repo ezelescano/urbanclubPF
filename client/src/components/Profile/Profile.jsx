@@ -132,10 +132,12 @@ const Profile = () => {
   };
 
   const handleShowEdit = () => {
+    setShowEditPassword(false);
     setShowEdit(!showEdit);
   };
 
   const handlePasswordChange = () => {
+    setShowEdit(false);
     setShowEditPassword(!showEditPassword);
   };
 
@@ -475,7 +477,7 @@ const Profile = () => {
                         handleShowCreateEvent={handleShowCreateEvent}
                       />
                     )}
-                  {(showEdit || showEditPassword) && showComponents && (
+                  {showEdit && showComponents && (
                     <ProfileEdit
                       handleEdit={handleEdit}
                       id={id}
