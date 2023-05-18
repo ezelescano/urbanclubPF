@@ -32,7 +32,7 @@
   background-color: #0d5a73;
   border-bottom: 1.5px solid #004258;
   color: #fff;
-   border: none;
+  border: none;
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
@@ -57,6 +57,8 @@
 .containerFilters select:focus,
 .containerFilters select:hover,
 .containerFilters button:focus,
+.selectFilters:hover,
+.selectFilters:focus,
 .containerFilters button:hover {
   background-color: #fff;
   color: #000;
@@ -93,7 +95,9 @@
 
 .selectFilters {
   margin: 10px;
-  padding: 5px;
+  padding: 10px;
+  border: none;
+  outline: none;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
