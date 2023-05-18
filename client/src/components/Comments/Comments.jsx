@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import Comment from "../Comment/Comment";
 import style from "./Comments.module.css";
+
 const Comments = (event) => {
   const currentUser = useSelector((state) => state.auth);
   const [comment, setComment] = useState("");
   const [comentarios, setComentarios] = useState([]);
   const [rating, setRating] = useState(0);
-  const [selectedStars, setSelectedStars] = useState([]);
 
   useEffect(() => {
     const getComments = async () => {
@@ -28,11 +28,6 @@ const Comments = (event) => {
 
   const handleRatingChange = (value) => {
     setRating(value);
-    if (selectedStars.includes(value)) {
-      setSelectedStars(selectedStars.filter((star) => star !== value));
-    } else {
-      setSelectedStars([...selectedStars, value]);
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -53,15 +48,13 @@ const Comments = (event) => {
     <>
       <div>
         {comentarios ? (
-          comentarios?.map((c) => {
-            return (
-              <Comment
-                key={c.id}
-                c={c}
-                // userProfilePhoto={currentUser.user.profilePhoto}
-              />
-            );
-          })
+          comentarios.map((c) => (
+            <Comment
+              key={c.id}
+              c={c}
+              // userProfilePhoto={currentUser.user.profilePhoto}
+            />
+          ))
         ) : (
           <div></div>
         )}
@@ -69,19 +62,33 @@ const Comments = (event) => {
       {currentUser.isAuthenticated ? (
         <form onSubmit={handleSubmit}>
           <div className="rating">
-            {[1, 2, 3, 4, 5].map((value) => (
-              <label className={style.divStar} key={value}>
-                {value} {/* Número de la estrella */}
-                <input
-                  type="radio"
-                  name="rating"
-                  value={value}
-                  checked={rating === value}
-                  onChange={() => handleRatingChange(value)}
-                />
-                <span className={style.star}>&#9733;</span>
-              </label>
-            ))}
+            {[1, 2, 3, 4, 5].map((value) => {
+              const isSelected = rating === value;
+              return (
+                <label
+                  className={`${style.divStar} ${
+                    isSelected ? style.selected : ""
+                  }`}
+                  key={value}
+                >
+                  {value} {/* Número de la estrella */}
+                  <input
+                    type="radio"
+                    name="rating"
+                    value={value}
+                    checked={isSelected}
+                    onChange={() => handleRatingChange(value)}
+                  />
+                  <span
+                    className={`${style.star} ${
+                      isSelected ? style.yellow : style.white
+                    }`}
+                  >
+                    &#9733;
+                  </span>
+                </label>
+              );
+            })}
           </div>
           <input
             type="text"

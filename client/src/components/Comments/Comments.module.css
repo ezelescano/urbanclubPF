@@ -1,7 +1,7 @@
-.divStar:hover {
-  font-size: 35px;
-  color: white;
-}
-.star:hover {
+.selected .star {
   color: yellow;
+}
+
+.star {
+  color: white;
 }
