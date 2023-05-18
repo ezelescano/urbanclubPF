@@ -143,10 +143,7 @@ const Events = ({ showFilters }) => {
                 Limpiar
               </button>
             </form>
-            <Paginado
-              events={events.length}
-              eventsPerPage={eventsPerPage}
-            />
+            <Paginado events={events.length} eventsPerPage={eventsPerPage} />
           </div>
         </div>
       ) : null}

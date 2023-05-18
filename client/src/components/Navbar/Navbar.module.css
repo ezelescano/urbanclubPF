@@ -12,6 +12,7 @@
   min-height: 80px;
 }
 .navbar a {
+  text-decoration: none;
   display: flex;
   object-fit: contain;
   align-items: center;
@@ -73,6 +74,7 @@
   color: black;
   font-weight: 550;
   transition: 0.8s;
+  text-decoration: none;
 }
 
 .navLoginBtn:hover {
@@ -144,6 +146,11 @@
 .respNavLinks {
   display: none;
 }
+
+.profilePicture {
+  text-decoration: none;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -164,7 +171,6 @@
   .navbar img.navTitleImgZoom {
     display: block;
     outline: none;
-    animation: spin 12s linear infinite;
   }
 
   .navLoginBtnZoom {
@@ -178,7 +184,7 @@
   }
 
   .navbar {
-    padding: 20px;
+    padding-block: 20px;
     z-index: 10;
   }
 
@@ -224,10 +230,10 @@
     list-style: none;
     background-color: #0d5a73;
     width: 100%;
-    height: 200px;
+    height: 300px;
     align-items: center;
     position: fixed;
-    right: -2%;
+    right: 0%;
     top: -250px;
     justify-content: center;
     font-size: 30px;
@@ -284,6 +290,9 @@
   .hamburgerBtn:focus:not(:hover) {
     /* Estilos cuando el mouse deja de estar en hover o deja de estar en focus */
     transform: scale(1.1);
+  }
+  .navTitleImgText {
+    display: none;
   }
 
   .searchbarWrapper {

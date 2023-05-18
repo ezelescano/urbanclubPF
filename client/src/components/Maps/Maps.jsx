@@ -229,7 +229,7 @@ function Maps({ city, country, Dcountry, Dcity }) {
           </p>
         </div>
       ) : (
-        apiLoaded && <div id="map" style={{ width: "100%", height: "65vh" }} /> // utilizar apiLoaded en el chequeo condicional
+        apiLoaded && <div id="map" style={{ width: "100%", height: "95vh" }} /> // utilizar apiLoaded en el chequeo condicional
       )}
     </div>
   );

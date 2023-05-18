@@ -22,6 +22,7 @@ import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import MessageIcon from "@mui/icons-material/Message";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 function DetailsEvents() {
   const dispatch = useDispatch();
@@ -256,8 +257,10 @@ function DetailsEvents() {
                     <h5>
                       <CalendarMonthIcon /> {detailEvent.date}
                     </h5>
-                    <h3>PRECIO</h3>
-                    <h3 className={style.money}>${detailEvent.price} USD</h3>
+                    <h3 className={style.money}>
+                      <AttachMoneyIcon />
+                      {detailEvent.price} USD
+                    </h3>
                     <h4>Descripcion</h4>
                     <p>{detailEvent.Description}</p>
                   </div>

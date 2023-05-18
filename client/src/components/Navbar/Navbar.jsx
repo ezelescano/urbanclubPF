@@ -168,6 +168,17 @@ function Navbar() {
                 />
               </NavLink>
             )}
+            {islogin.isAuthenticated && (
+              <li>
+                <NavLink
+                  to="/messenger"
+                  className="nav-link active"
+                  onClick={scrollToTop}
+                >
+                  Chat
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
         <div className="profilePicture">

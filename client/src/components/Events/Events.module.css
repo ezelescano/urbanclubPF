@@ -15,7 +15,7 @@
 .containerHelp {
   justify-self: center;
   margin-inline: 20px;
-  background: rgba(255, 255, 255, 0.54);
+  background: linear-gradient(0deg, #ffffff 0%, #0d5a73 115%, #09548e 100%);
   border-radius: 2rem;
   gap: 16px;
   grid-template-columns: 11rem auto 20rem;
@@ -69,7 +69,7 @@
 .eventsFilters select,
 .eventsFilters option {
   transition: 0.2s ease;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .eventsFilters button:hover,

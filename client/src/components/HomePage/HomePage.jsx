@@ -12,11 +12,17 @@ const HomePage = () => {
   };
   const images = [
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/3_kaor4h.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1684393631/UrbanClub/carrousel/new%20carrousel/cultura_y_comunidad_j0gp3g.jpg",
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/6_xuxple.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1684393629/UrbanClub/carrousel/new%20carrousel/pexels-photo-433452_bqvyxs.jpg",
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/1_flhnhc.jpg",
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/4_zckxd6.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1684393630/UrbanClub/carrousel/new%20carrousel/eventos-miami_vtnwph.jpg",
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/5_cdgswn.jpg",
     "https://res.cloudinary.com/dipn8zmq3/image/upload/v1682992962/UrbanClub/carrousel/2_ehhiho.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1684393630/UrbanClub/carrousel/new%20carrousel/pexels-teddy-yang-2263436-1536x998_kz9glr.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1684393631/UrbanClub/carrousel/new%20carrousel/awfwa_trvc44.jpg",
+    "https://res.cloudinary.com/dipn8zmq3/image/upload/v1684393960/UrbanClub/carrousel/new%20carrousel/festival_fnp8hr.jpg",
   ];
   return (
     <div className={style.main}>
@@ -30,7 +36,7 @@ const HomePage = () => {
             <h1 className={style.title}>Eventos más recientes</h1>
             <br />
             <div className={style.eventsCardsContainer}>
-            {isEventsPage ? <Events showFilters={false} /> : null}
+              {isEventsPage ? <Events showFilters={false} /> : null}
             </div>
           </div>
           <div className={style.moreEvents}>

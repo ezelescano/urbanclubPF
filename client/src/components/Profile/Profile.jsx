@@ -1,6 +1,6 @@
 import "./profile.css";
 import React, { useRef } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -30,10 +30,11 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmptyCard from "../Cards/CardsEvents/EmptyCard";
 import SettingsIcon from "@mui/icons-material/Settings";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+
 import { io } from "socket.io-client";
 import { URLS } from "../../env";
 const socket = io(URLS);
-
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -98,13 +99,17 @@ const Profile = () => {
   }, [id]);
 
   useEffect(() => {
-    if(!isCurrentUser){
+    if (!isCurrentUser) {
       const getUser = async () => {
         try {
           const res = await axios.get("/artist/login/me");
           //const res = await axios.get(`/artist/4`)
           //console.log(res.data.followings)
-          setFollowed(res.data.followings.some(follow => follow.following_Id === usuario?.id))
+          setFollowed(
+            res.data.followings.some(
+              (follow) => follow.following_Id === usuario?.id
+            )
+          );
         } catch (error) {
           console.log(error);
         }
@@ -150,7 +155,6 @@ const Profile = () => {
   };
 
   const handleDeleteAccount = () => {
-   
     swal({
       title: "ELIMINAR CUENTA",
       text: `Estas seguro de eliminar la cuenta de ${name}`,
@@ -188,10 +192,8 @@ const Profile = () => {
       icon: "success",
       buttons: "Aceptar",
     }).then((res) => {
-
-      // if (res) window.location.reload(); 
+      // if (res) window.location.reload();
       //porque estaba este windows realoaded?, quite este codigo y volvio a funcar el cambio de foto en navbar
-
     });
     setShowEdit(false);
     setShowSettings(false);
@@ -261,8 +263,8 @@ const Profile = () => {
       );
       const obj = {
         id: data.id,
-        members: data.members
-      }
+        members: data.members,
+      };
       socket.emit("newConversation", obj);
       navigate("/messenger");
       return;
@@ -327,7 +329,6 @@ const Profile = () => {
         <div className="container">
           <div className="portada-profile">
             <img src={coverPhoto} alt="" />
-
           </div>
           <div className="prim-profile">
             <div className="prim-ocupacion">
@@ -348,12 +349,17 @@ const Profile = () => {
                       <h1 className="profileNombre">
                         {name}
                         {/*  {lastname} */}
-                        {verified && <VerifiedIcon />}
+                        {/* {verified && <VerifiedIcon />} */}
                       </h1>
                     </span>
                     {!isCurrentUser && (
                       <div className="profileFollow">
-                        <button className={followed ? "btn-profile-act" : "btn-profile"} onClick={handleFollow}>
+                        <button
+                          className={
+                            followed ? "btn-profile-act" : "btn-profile"
+                          }
+                          onClick={handleFollow}
+                        >
                           {followed ? "Dejar de seguir" : "Seguir"}
                         </button>
                         <button className="btn-profile" onClick={handleContact}>
@@ -363,10 +369,17 @@ const Profile = () => {
                     )}
                   </div>
                   <h3 className="principalInfo">
-                    {city}, {Country}
+                    {city || Country ? (
+                      `${city}, ${Country}`
+                    ) : (
+                      <div>
+                        Paradero Desconocido{" "}
+                        <LocationOnIcon style={{ color: "white" }} />
+                      </div>
+                    )}
                     <div className="ocupation-container">
                       {ocupationArray &&
-                        ocupationArray?.map((ocupation) => (
+                        ocupationArray.map((ocupation) => (
                           <div className="ocupation" key={ocupation}>
                             {ocupation}
                           </div>
@@ -458,7 +471,11 @@ const Profile = () => {
                 </div>
               </div>
               <div className="ab-re">
-                <div className="aboutme">{aboutMe}</div>
+                <div className="aboutme">
+                  {aboutMe
+                    ? aboutMe
+                    : "Hola! Soy parte de Urbanclub, a gran o pequeña medida :)"}
+                </div>
               </div>
             </div>
             <div className="btns">

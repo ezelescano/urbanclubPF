@@ -104,6 +104,10 @@
 
 @media (max-width: 970px) {
   .footerContainer {
-    gap: 10px;
+    gap: 0px;
+    justify-content: space-around;
+  }
+  .footerText:first-child img {
+    display: none;
   }
 }
