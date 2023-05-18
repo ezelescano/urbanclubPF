@@ -72,19 +72,6 @@
   opacity: 1;
 }
 
-.ButtonContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  padding: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-}
 .button:first-of-type:hover {
   font-size: 30px;
   transition: 0.4s ease;

@@ -506,4 +506,8 @@
   .profileNombre {
     font-size: 40px;
   }
+  .container {
+    padding: 15px 30px;
+    padding-top: 150px;
+  }
 }
