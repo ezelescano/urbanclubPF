@@ -316,7 +316,7 @@ const Profile = () => {
         <div className="container">
           <div className="portada-profile">
             <img src={coverPhoto} alt="" />
-            <div className="rating-g">4.3</div>
+
           </div>
           <div className="prim-profile">
             <div className="prim-ocupacion">

@@ -3,7 +3,7 @@
   padding: 25px 100px;
   padding-top: 110px;
   /* background: linear-gradient(0deg, #38cafb17 0%, #09548e 100%); */
-  background-color: #ededed;
+  background: linear-gradient(0deg, #ffffff 0%, #0d5a73 115%, #09548e 100%);
 }
 .NoAhora {
   display: none;
@@ -214,6 +214,7 @@
   border: 2px solid #0d5a73;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: all 0.4s ease-in-out;
+  z-index: 16;
 }
 .btn-stas-text {
   margin-right: 10px;
@@ -271,7 +272,7 @@
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
 }
 .youtube {
-  color: red;
+  color: rgb(255, 255, 255);
   margin-right: 0px;
   transition: 0.4s;
 }
@@ -283,7 +284,7 @@
   margin-right: 30px;
 }
 .twitter {
-  color: #1389e3;
+  color: #ffffff;
   margin-right: 0px;
   transition: 0.4s;
 }
@@ -335,6 +336,7 @@
   justify-content: space-around;
   align-items: center;
 }
+
 @media (max-width: 960px) {
   .ocupation {
     padding: 5px 10px;

@@ -30,6 +30,8 @@
   border-top-right-radius: 20px;
 }
 .userImage {
+  background: linear-gradient(0deg, #ffffff 0%, #0d5a73 90%, #09548e 100%);
+
   width: 100%;
   object-fit: cover;
   height: 100%;
@@ -44,7 +46,7 @@
   z-index: 3;
 }
 .Container:hover .userImage {
-  top: 6%;
+  top: 2%;
   left: 0%;
   height: 70%;
   transform: translate(-50%, -50%);
@@ -84,6 +86,7 @@
   font-size: 20px;
   z-index: 2; /* asegura que el texto aparezca por encima de .overlay */
   border-top: 2px solid white;
+  padding-top: 100px;
 }
 
 .text h3 {
@@ -161,7 +164,7 @@
   animation-duration: 1s; /* Duración de 2 segundos */
   animation-fill-mode: forwards; /* Mantener el estado final de la animación */
   opacity: 0; /* Inicialmente invisible */
-  transform: scale(0.8);
+  transform: scale(0.7);
 }
 /*Animaciones*/
 @keyframes fadeInText {
