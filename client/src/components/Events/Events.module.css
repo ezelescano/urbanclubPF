@@ -7,10 +7,15 @@
   min-height: 101vh;
   animation: rotateColors 25s ease infinite;
 }
+.eventsFiltersFlex {
+  flex-direction: column;
+  gap: 5px;
+}
+
 .containerHelp {
   justify-self: center;
   margin-inline: 20px;
-  background: rgba(255, 255, 255, 0.54);
+  background: linear-gradient(0deg, #ffffff 0%, #0d5a73 115%, #09548e 100%);
   border-radius: 2rem;
   gap: 16px;
   grid-template-columns: 11rem auto 20rem;
@@ -36,6 +41,45 @@
 }
 /*ARREGLADO, PERO NO USAR SIN ITEMS O CARDS*/
 /*Limpiar fondo luego*/
+/* Filtros */
+/* styles.module.css */
+.eventsFilters {
+  gap: 20px;
+  display: flex;
+  color: white;
+}
+.eventsFilters select {
+  padding: 10px;
+  background-color: #0d5a73;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  transition: 0.4s ease;
+}
+
+.eventsFilters button {
+  padding: 5px;
+  background-color: white;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  transition: 0.2s ease;
+}
+.eventsFilters button,
+.eventsFilters select,
+.eventsFilters option {
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.eventsFilters button:hover,
+.eventsFilters button:focus,
+.eventsFilters select:hover,
+.eventsFilters select:focus,
+.eventsFilters option:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease;
+}
 
 @keyframes rotateColors {
   0% {

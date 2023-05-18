@@ -50,9 +50,10 @@ const ProfileEdit = ({ usuario, handleEdit, handleShowEdit }) => {
     }
     formData.append("ocupation", input.ocupation);
     handleEdit(formData);
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 800);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1200);
   }
 
   function addOcupation(ocupation, selected) {

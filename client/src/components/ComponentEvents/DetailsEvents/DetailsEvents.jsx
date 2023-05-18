@@ -22,6 +22,7 @@ import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import MessageIcon from "@mui/icons-material/Message";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 function DetailsEvents() {
   const dispatch = useDispatch();
@@ -155,9 +156,8 @@ function DetailsEvents() {
                 `/events/buyTicket/${detailEvent.id}`,
                 // `https://pruebaback-production-0050.up.railway.app/events/buyTicket/${detailEvent.id}`,
                 stockObjeto
-                );
-                
-                setEntradas(1);
+              );
+              setEntradas(1);
               if (eventd) {
                 swal({
                   title: "COMPRA EXITOSA",
@@ -218,7 +218,6 @@ function DetailsEvents() {
     };
   }, []);
 
-  
   return (
     <>
       <div className={style.backContainer}>
@@ -258,8 +257,10 @@ function DetailsEvents() {
                     <h5>
                       <CalendarMonthIcon /> {detailEvent.date}
                     </h5>
-                    <h3>PRECIO</h3>
-                    <h3 className={style.money}>${detailEvent.price} USD</h3>
+                    <h3 className={style.money}>
+                      <AttachMoneyIcon />
+                      {detailEvent.price} USD
+                    </h3>
                     <h4>Descripcion</h4>
                     <p>{detailEvent.Description}</p>
                   </div>

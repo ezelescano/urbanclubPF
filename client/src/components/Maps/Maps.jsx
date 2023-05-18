@@ -9,8 +9,6 @@
 //   const [apiLoaded, setApiLoaded] = useState(false);
 //   const [searchLocation, setSearchLocation] = useState(null); // nuevo estado para almacenar la dirección de búsqueda original
 
-
-
 //   useEffect(() => {
 //     if (location) {
 //       const geocoder = new window.google.maps.Geocoder();
@@ -77,7 +75,7 @@
 //                 position: startLocation,
 //                 map: mapInstance,
 //               });
-//              
+//
 //               setDirections(result);
 //               const directionsRenderer =
 //                 new window.google.maps.DirectionsRenderer({
@@ -131,12 +129,11 @@
 // }
 // export default Maps;
 
- //! *****************************
-
+//! *****************************
 
 import React, { useState, useEffect } from "react";
 import swal from "sweetalert";
-function Maps({ city,country,Dcountry,Dcity }) {
+function Maps({ city, country, Dcountry, Dcity }) {
   const [map, setMap] = useState(null);
   const [startLocation, setStartLocation] = useState("");
   const [endLocation, setEndLocation] = useState(null);
@@ -145,67 +142,59 @@ function Maps({ city,country,Dcountry,Dcity }) {
   const [apiLoaded, setApiLoaded] = useState(false);
   const [searchLocation, setSearchLocation] = useState(null); // nuevo estado para almacenar la dirección de búsqueda original
 
-  
+
   useEffect(() => {
- 
-  
     const googleMapsScript = document.createElement("script");
     googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAY3zPk-r72ELJTbepL7koVfZ6XgrE63dY&libraries=places,geocode`;
     googleMapsScript.async = true;
     googleMapsScript.defer = true;
     window.document.body.appendChild(googleMapsScript);
-   try {
-    googleMapsScript.addEventListener("load", () => {
-      setApiLoaded(true);
+    try {
+      googleMapsScript.addEventListener("load", () => {
+        setApiLoaded(true);
         const directionsService = new window.google.maps.DirectionsService();
-       
+
         const request = {
           origin: `${city},${country}`,
           destination: `${Dcity},${Dcountry}`,
-          travelMode: window.google.maps.TravelMode.DRIVING
+          travelMode: window.google.maps.TravelMode.DRIVING,
         };
-        directionsService.route(
-          request,
-          (result, status) => {
-            
-            if (status === "OK") {
-              const mapOptions = {
-                center: `${city},${country}`, //startLocation,
-                zoom: 18,
-                disableDoubleClickZoom: true,
-              };
-              const mapInstance = new window.google.maps.Map(
-                document.getElementById("map"),
-                mapOptions
-              );
-              setMap(mapInstance);
-              const marker = new window.google.maps.Marker({
-                position: `${city},${country}`,//startLocation,
+        directionsService.route(request, (result, status) => {
+          if (status === "OK") {
+            const mapOptions = {
+              center: `${city},${country}`, //startLocation,
+              zoom: 18,
+              disableDoubleClickZoom: true,
+            };
+            const mapInstance = new window.google.maps.Map(
+              document.getElementById("map"),
+              mapOptions
+            );
+            setMap(mapInstance);
+            const marker = new window.google.maps.Marker({
+              position: `${city},${country}`, //startLocation,
+              map: mapInstance,
+            });
+
+            setDirections(result);
+            const directionsRenderer =
+              new window.google.maps.DirectionsRenderer({
                 map: mapInstance,
+                directions: result,
               });
-             
-              setDirections(result);
-              const directionsRenderer =
-                new window.google.maps.DirectionsRenderer({
-                  map: mapInstance,
-                  directions: result,
-                });
-            
-            } else {
-              swal({
-                title: "INFORMACION INCORRECTA",
-                text: "Verifique su pais y ciudad",
-                icon: "info",
-                buttons: "Aceptar",
-              })
-            }
+          } else {
+            swal({
+              title: "INFORMACION INCORRECTA",
+              text: "Verifique su pais y ciudad",
+              icon: "info",
+              buttons: "Aceptar",
+            });
           }
-        );
-      
-    });
-   } catch (error) {
-    console.log("este es error",error)
-   }
+        });
+      });
+    } catch (error) {
+      console.log("este es error", error);
+    }
   }, [startLocation]);
 
   //! *****************************
@@ -240,7 +229,7 @@ function Maps({ city,country,Dcountry,Dcity }) {
           </p>
         </div>
       ) : (
-        apiLoaded && <div id="map" style={{ width: "100%", height: "100%" }} /> // utilizar apiLoaded en el chequeo condicional
+        apiLoaded && <div id="map" style={{ width: "100%", height: "95vh" }} /> // utilizar apiLoaded en el chequeo condicional
       )}
     </div>
   );
@@ -379,4 +368,3 @@ export default Maps;
 //   );
 // }
 // export default Maps;
- 

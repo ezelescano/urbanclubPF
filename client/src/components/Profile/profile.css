@@ -3,7 +3,7 @@
   padding: 25px 100px;
   padding-top: 110px;
   /* background: linear-gradient(0deg, #38cafb17 0%, #09548e 100%); */
-  background-color: #ededed;
+  background: linear-gradient(0deg, #ffffff 0%, #0d5a73 115%, #09548e 100%);
 }
 .NoAhora {
   display: none;
@@ -91,9 +91,10 @@
 .ocupation {
   padding: 8px 12px;
   border-radius: 30px;
-  background-color: #d9d9d9;
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
   margin-right: 10px;
   word-wrap: break-word;
+  color: #fff;
 }
 
 .info-perfil {
@@ -124,7 +125,7 @@
   font-size: 30px;
 }
 .profileNombre svg {
-  color: rgb(13, 171, 233);
+  color: rgb(255, 255, 255);
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
   margin-inline: 15px;
 }
@@ -142,8 +143,9 @@
 }
 
 .btn-profile {
-  background-color: #b8b8b89e;
-  color: #000000;
+  background-color: rgb(255, 255, 255);
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+  color: #000;
   font-size: 20px;
   font-weight: 700;
   border: none;
@@ -158,6 +160,28 @@
   transition: 0.4s ease;
 }
 .btn-profile:hover {
+  transform: scale(1.1);
+}
+
+.btn-profile-act {
+  background: linear-gradient(180deg, #0d5a73 0%, #09548e 100%);
+  color: #000000;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  padding: 15px 15px;
+  border-radius: 15px;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+  cursor: pointer;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  transition: 0.4s ease;
+  color: #fff;
+}
+
+.btn-profile-act:hover {
   transform: scale(1.1);
 }
 
@@ -214,6 +238,7 @@
   border: 2px solid #0d5a73;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   transition: all 0.4s ease-in-out;
+  z-index: 16;
 }
 .btn-stas-text {
   margin-right: 10px;
@@ -233,14 +258,34 @@
 }
 .btn-stas:hover .btn-stas-number {
   transition: 0.4s ease;
-  transform: scale(1.5);
+  transform: scale(1.15);
   cursor: pointer;
   background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.459));
+  -webkit-transform: scale(1.15);
+  -moz-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  -o-transform: scale(1.15);
 }
+
+.btn-stas:hover .btn-stas-text {
+  transition: 0.4s ease;
+  transform: scale(1.15);
+  cursor: pointer;
+  background: linear-gradient(180deg, #0e98a5 10%, #066fbf 70%, #025494 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.459));
+  -webkit-transform: scale(1.15);
+  -moz-transform: scale(1.15);
+  -ms-transform: scale(1.15);
+  -o-transform: scale(1.15);
+}
+
 .div-eventos {
   cursor: pointer;
 }
@@ -271,7 +316,7 @@
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
 }
 .youtube {
-  color: red;
+  color: rgb(255, 255, 255);
   margin-right: 0px;
   transition: 0.4s;
 }
@@ -283,7 +328,7 @@
   margin-right: 30px;
 }
 .twitter {
-  color: #1389e3;
+  color: #ffffff;
   margin-right: 0px;
   transition: 0.4s;
 }
@@ -335,6 +380,7 @@
   justify-content: space-around;
   align-items: center;
 }
+
 @media (max-width: 960px) {
   .ocupation {
     padding: 5px 10px;
@@ -459,5 +505,9 @@
   }
   .profileNombre {
     font-size: 40px;
+  }
+  .container {
+    padding: 15px 30px;
+    padding-top: 150px;
   }
 }

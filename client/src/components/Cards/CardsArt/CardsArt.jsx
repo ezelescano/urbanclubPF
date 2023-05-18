@@ -3,6 +3,9 @@ import style from "./CardsArt.module.css";
 import { NavLink } from "react-router-dom";
 import OcupationTag from "./OcupationTag";
 import axios from "axios";
+import Diversity1Icon from "@mui/icons-material/Diversity1";
+import PersonPinCircleIcon from "@mui/icons-material/PersonPinCircle";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 
 const CardsArt = ({
   name,
@@ -12,6 +15,7 @@ const CardsArt = ({
   id,
   Events,
   Country,
+  coverPhoto, // Nuevo atributo coverPhoto
 }) => {
   const ocupationRows =
     ocupation &&
@@ -21,34 +25,28 @@ const CardsArt = ({
         <OcupationTag ocupation={ocupation} key={ocupation + id} />
       ));
 
-      const [followers, setFollowers] = useState(0);
+  const [followers, setFollowers] = useState(0);
 
+  const getFollowers = async () => {
+    try {
+      const response = await axios.get(`/artist/followers/${id}`);
+      const data = response.data;
+      if (Array.isArray(data)) {
+        setFollowers(data.length);
+      } else {
+        console.error("Invalid data structure:", data);
+      }
+    } catch (error) {
+      console.error("Error fetching followers:", error);
+    }
+  };
 
-      const getFollowers = async () => {
-        try {
-          const response = await axios.get(`/artist/followers/${id}`);
-          const data = response.data;
-          //console.log("response.data", setFollowers);
-          if (Array.isArray(data)) {
-            setFollowers(data.length);
-          } else {
-            console.error("Invalid data structure:", data);
-          }
-        } catch (error) {
-          console.error("Error fetching followers:", error);
-        }
-      };
-      
-      useEffect(() => {
-        getFollowers();
-      }, [id]);
-      
-//console.log("followers", followers);
+  useEffect(() => {
+    getFollowers();
+  }, [id]);
 
-  /* Overlay letra por letra: */
   const [isOverlayVisible, setIsOverlayVisible] = useState(false);
-  const coverPhoto =
-    "https://media.tenor.com/MfJ1SfYUNSIAAAAd/dancing-yandel.gif";
+
   const handleMouseEnter = () => {
     setIsOverlayVisible(true);
   };
@@ -56,6 +54,7 @@ const CardsArt = ({
   const handleMouseLeave = () => {
     setIsOverlayVisible(false);
   };
+  console.log();
   return (
     <NavLink className={style.Link} to={`/profile/${id}`}>
       <div className={`${style.Container} ${style.overlayContainer}`}>
@@ -64,14 +63,22 @@ const CardsArt = ({
           <img className={style.userImage} src={profilePhoto} alt={name} />
         </div>
         <div className={`${style.text} ${style.overlay}`}>
-          <p>{Country}</p>
-          <h5>Ubicacion:</h5>{/* COLOCAR ICONS */}
-          <h4>Seguidores:{followers}</h4>{/* COLOCAR ICONS */}
+          {/* <p>
+            <AutoFixHighIcon />
+            {"  "}
+            {aboutMe}
+          </p> */}
+          <p>
+            <PersonPinCircleIcon /> {"  "}
+            {Country}
+          </p>
+          <h4>
+            <Diversity1Icon />
+            {"  "}
+            {followers}
+          </h4>
           <div className={`${style.fadeInText}`}>{ocupationRows}</div>
-          {/* <h5>Ocupación:</h5> */}
           <h3>{name}</h3>
-          {/* <h5>Ubicacion:</h5> */}
-          {/* <h4>{Country}</h4> */}
         </div>
       </div>
     </NavLink>

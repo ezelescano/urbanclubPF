@@ -1,9 +1,9 @@
 .messenger {
-  height: calc(100vh - 70px);
+  height: calc(95vh - 70px);
   display: flex;
   padding-top: 100px;
+  padding-bottom: 0.5%;
   background: linear-gradient(180deg, #0d5a73a2 0%, #09548e 100%);
-  padding-bottom: 40px;
 }
 
 .chatMenu {
@@ -96,7 +96,6 @@
   flex: 3;
 }
 
-
 .chatMenuWrapper,
 .chatOnlineWrapper {
   overflow-y: scroll;
@@ -111,8 +110,9 @@
 .chatOnlineWrapper {
   padding: 10px;
   height: 97%;
+  color: white;
+  font-size: 20px;
 }
-
 
 .detailBar {
   padding: 0px 0px 10px 0px;
@@ -156,8 +156,8 @@
 }
 .emojieBoxForAbsolute {
   position: absolute;
-  right: 105%;
-  bottom: 40%;
+  left: 12px;
+  bottom: 70%;
 }
 
 @media screen and (max-width: 768px) {

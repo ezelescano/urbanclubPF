@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import AboutUs from "./components/AboutUs/AboutUs";
 import AboutEstiven from "./components/AboutUs/AboutEstiven";
 import AboutOscar from "./components/AboutUs/AboutOscar";
@@ -36,14 +36,19 @@ import NewPassword from "./components/NewPassword/NewPassword";
 import DetailsEvents from "./components/ComponentEvents/DetailsEvents/DetailsEvents";
 import TermsAndConditions from "./components/TermsAndConditions/TermsAndConditions";
 import Admin from "./components/Admin/Admin";
+import AboutMiguel from "./components/AboutUs/AboutMiguel";
+import AboutAlan from "./components/AboutUs/AboutAlan";
+import AboutPablo from "./components/AboutUs/AboutPablo";
+import AboutAlex from "./components/AboutUs/AboutAlex";
+import AboutEudes from "./components/AboutUs/AboutEudes";
 /* import { io } from "socket.io-client";
 const socket = io("http://localhost:8900"); */
-
 
 function App() {
   const dispatch = useDispatch();
   //const history = useHistory();
   const user = useSelector((state) => state.auth);
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -63,7 +68,7 @@ function App() {
       }
     }
   }, [dispatch]);
-
+  const isMessengerPage = location.pathname === "/messenger";
   /* useEffect(() => {
     if(user.isAuthenticated){
       socket.emit("addUser", user.user.id);
@@ -99,7 +104,7 @@ function App() {
         />
         <Route path="/artists" element={<Artists />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/events" element={<Events showFilters={true}/>} />
+        <Route path="/events" element={<Events showFilters={true} />} />
         <Route
           path="/createevent/:id"
           element={
@@ -110,6 +115,11 @@ function App() {
         <Route path="/About/Estiven" element={<AboutEstiven />} />
         <Route path="/About/oscar" element={<AboutOscar />} />
         <Route path="/About/Eze" element={<AboutEze />} />
+        <Route path="/About/Miguel" element={<AboutMiguel />} />
+        <Route path="/About/Alan" element={<AboutAlan />} />
+        <Route path="/About/Pablo" element={<AboutPablo />} />
+        <Route path="/About/Alex" element={<AboutAlex />} />
+        <Route path="/About/Eudes" element={<AboutEudes />} />
 
         <Route
           path="/messenger"
@@ -140,7 +150,7 @@ function App() {
 
         <Route path="*" element={<Errors404 />} />
       </Routes>
-      <Footer />
+      {!isMessengerPage && <Footer />}
     </div>
   );
 }

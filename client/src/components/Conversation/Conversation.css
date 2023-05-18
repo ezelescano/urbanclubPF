@@ -12,7 +12,7 @@
   border-radius: 15px;
 }
 
-.conversationleft{
+.conversationleft {
   display: flex;
   align-items: center;
 }
@@ -57,6 +57,9 @@
 
 .conversation:hover .conversationBtn {
   opacity: 100%;
+  transition: 0.2s ease;
+  color: #023258;
+  transform: scale(1.3);
 }
 
 .conversationBtn svg {

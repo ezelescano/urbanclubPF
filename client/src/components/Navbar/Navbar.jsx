@@ -53,10 +53,15 @@ function Navbar() {
             src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1683969976/UrbanClub/our_logo-removebg-preview_auto_x2-removebg-preview_1_tsbanf.png"
             alt=""
           />
+          <img
+            className={style.navTitleImgText}
+            src="https://res.cloudinary.com/dipn8zmq3/image/upload/v1684272293/filename_5_jnxox9.png"
+            alt=""
+          />
         </NavLink>
-        <div className={style.searchbarWrapper} onClick={scrollToTop}>
-          <SearchBar />
-        </div>
+        {/* <div className={style.searchbarWrapper} onClick={scrollToTop}></div> */}
+        {/* <SearchBar /> Estó en deploy está roto*/}
+
         {/*<SearchIcon style={{color:"white"}}/>*/}
         <ul className={style.navLinks}>
           {/* <li>
@@ -162,6 +167,17 @@ function Navbar() {
                   alt="No hay"
                 />
               </NavLink>
+            )}
+            {islogin.isAuthenticated && (
+              <li>
+                <NavLink
+                  to="/messenger"
+                  className="nav-link active"
+                  onClick={scrollToTop}
+                >
+                  Chat
+                </NavLink>
+              </li>
             )}
           </ul>
         </div>

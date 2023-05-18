@@ -32,7 +32,7 @@
   background-color: #0d5a73;
   border-bottom: 1.5px solid #004258;
   color: #fff;
-  border: 1px solid #fff;
+  border: none;
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
@@ -40,6 +40,7 @@
   font-family: Arial, sans-serif;
   outline: none;
   transition: all 0.1s ease;
+  transition: 0.4s ease;
 }
 
 .containerFilters select option {
@@ -56,9 +57,13 @@
 .containerFilters select:focus,
 .containerFilters select:hover,
 .containerFilters button:focus,
+.selectFilters:hover,
+.selectFilters:focus,
 .containerFilters button:hover {
   background-color: #fff;
   color: #000;
+  transform: scale(1.1);
+  transition: 0.4s ease;
 }
 
 .containerFilters select:focus option {
@@ -90,7 +95,9 @@
 
 .selectFilters {
   margin: 10px;
-  padding: 5px;
+  padding: 10px;
+  border: none;
+  outline: none;
   border-radius: 5px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
@@ -134,6 +141,6 @@
 }
 @media (max-width: 970px) {
   .container {
-    padding-top: 58px;
+    padding-top: 108px;
   }
 }

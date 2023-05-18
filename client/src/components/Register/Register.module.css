@@ -2,6 +2,8 @@
   object-fit: cover;
   max-height: 90px;
   max-width: 100px;
+  height: 90px;
+  width: 100px;
   border-radius: 50px;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
@@ -145,6 +147,7 @@
   flex-wrap: wrap;
   gap: 0.2rem;
   justify-content: center;
+  transition: 0.4s ease 0.1s;
 }
 
 .occupationsOptions label {
@@ -230,15 +233,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #0d5a73;
   width: 4em;
   height: 4em;
   border-radius: 2em;
+  transform: scale(0.8);
 }
 .loadingGif img.loading {
   /* background-color: #0062cc; */
-  width: 4em;
-  height: 4em;
   display: block;
   animation: spin 2s linear infinite;
 }
