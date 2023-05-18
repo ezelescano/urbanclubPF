@@ -6,7 +6,17 @@ import { postArtist, errorsCreate } from "../../redux/artistSlice";
 import swal from "sweetalert";
 
 import loading from "../../img/loading.gif";
-import { BTX_ACEPTAR, EM_ALIAS_INV, EM_APELLIDO_INV, EM_CORREO_INV, EM_NOMBRE_INV, EM_OCUPAT_SEL1, EM_PASS_CARACT, ICO_ERROR, TLE_ERROR } from "../../utils/messages";
+import {
+  BTX_ACEPTAR,
+  EM_ALIAS_INV,
+  EM_APELLIDO_INV,
+  EM_CORREO_INV,
+  EM_NOMBRE_INV,
+  EM_OCUPAT_SEL1,
+  EM_PASS_CARACT,
+  ICO_ERROR,
+  TLE_ERROR,
+} from "../../utils/messages";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Formulario() {
@@ -42,7 +52,7 @@ function Formulario() {
     lastname: EM_APELLIDO_INV,
     nickName: EM_ALIAS_INV,
     email: EM_CORREO_INV,
-    password: EM_PASS_CARACT
+    password: EM_PASS_CARACT,
   });
   const [showPassword, setShowPassword] = useState(false);
   const [rutaImagen, setRutaImagen] = useState("");
@@ -137,12 +147,16 @@ function Formulario() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
-    let errorMsgs = ""
+
+    let errorMsgs = "";
     if (input.ocupation.length < 1) {
-      errorMsgs = errorMsgs + EM_OCUPAT_SEL1 + '\n';
+      errorMsgs = errorMsgs + EM_OCUPAT_SEL1 + "\n";
       if (!!Object.keys(errors).length) {
-        errorMsgs = errorMsgs + Object.keys(errors).map((e) => (errors[e])).join('\n');
+        errorMsgs =
+          errorMsgs +
+          Object.keys(errors)
+            .map((e) => errors[e])
+            .join("\n");
       }
       await swal({
         title: TLE_ERROR,
@@ -150,7 +164,7 @@ function Formulario() {
         icon: ICO_ERROR,
         buttons: BTX_ACEPTAR,
       });
-    }else{
+    } else {
       setIsLoading(true);
       const formData = new FormData(e.target);
       formData.append("ocupation", input.ocupation);
@@ -293,7 +307,13 @@ function Formulario() {
                   name="Country"
                 />
               </label>
-              <span style={{ color: "red" }}>* : Campos obligatorios</span>
+              {input.name &&
+              input.lastname &&
+              input.email &&
+              input.nickName &&
+              input.password ? null : (
+                <span style={{ color: "red" }}>* : Campos obligatorios</span>
+              )}
             </div>
             <div className={style.formContainerRight}>
               <label>
@@ -320,9 +340,11 @@ function Formulario() {
                     />
                     Otros
                   </label>
-                  <span style={{ color: "red" }}>
-                    Seleccione al menos una ocupación
-                  </span>
+                  {input.ocupation.length === 0 && (
+                    <span style={{ color: "red" }}>
+                      Seleccione al menos una ocupación
+                    </span>
+                  )}
                   {input.ocupation.includes("Otros") && (
                     <input
                       type="text"
