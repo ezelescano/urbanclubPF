@@ -32,7 +32,7 @@ passport.use(
   if(newArtist) {
           const artist = await artistById(newArtist.id)
           // artist.token =  generateJWT(artist.id, artist.name)
-          artist.token = generateJWT(artist.id, artist.name)
+          artist.token = generateJWT(artist.id, artist.name, artist.profilePhoto)
           console.log("aaartisssssssssss",artist);
           done(null,artist)
     } else {
