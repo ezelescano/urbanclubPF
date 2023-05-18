@@ -147,6 +147,7 @@
   flex-wrap: wrap;
   gap: 0.2rem;
   justify-content: center;
+  transition: 0.4s ease 0.1s;
 }
 
 .occupationsOptions label {

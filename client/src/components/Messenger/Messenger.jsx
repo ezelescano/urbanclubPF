@@ -10,8 +10,8 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 import DetailBar from "../DetailBar/DetailBar";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { URLS } from "../../env"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { URLS } from "../../env";
 
 function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -22,9 +22,9 @@ function Messenger() {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArraivalMessage] = useState(null);
   const [onlineUser, setOnlineUser] = useState([]);
-  const [showOnlines, setShowOnlines] = useState(false)
-  const [showOfflines, setShowOfflines] = useState(false)
-  const[friends, setFriends] = useState([]);
+  const [showOnlines, setShowOnlines] = useState(false);
+  const [showOfflines, setShowOfflines] = useState(false);
+  const [friends, setFriends] = useState([]);
   const artistas = useSelector((state) => state.artist.allUsuarios);
   const socket = useRef();
   const user = useSelector((state) => state.auth.user);
@@ -35,7 +35,7 @@ function Messenger() {
     });
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     // socket.current = io("ws://pruebaback-production-0050.up.railway.app");
     socket.current = io(URLS);
     socket.current.on("getMessage", (data) => {
@@ -46,48 +46,50 @@ function Messenger() {
       });
     });
     socket.current.on("getConversation", (data) => {
-      
       setArrivalConversations({
         id: data.id,
-        members: data.members
+        members: data.members,
       });
     });
   }, []);
 
-
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
-      setMessages((prev) => (Array.isArray(prev) ? [...prev, arrivalMessage] : [arrivalMessage]));
+      setMessages((prev) =>
+        Array.isArray(prev) ? [...prev, arrivalMessage] : [arrivalMessage]
+      );
   }, [arrivalMessage, currentChat]);
 
   useEffect(() => {
-    arrivalConversations && !conversations?.find((conv) => conv.id === arrivalConversations.id) &&
+    arrivalConversations &&
+      !conversations?.find((conv) => conv.id === arrivalConversations.id) &&
       setConversations((prev) => [...prev, arrivalConversations]);
   }, [arrivalConversations, conversations]);
 
   //cambiar cuando hayan followers
-   useEffect(() => {
-    const getFriends = async() =>{
+  useEffect(() => {
+    const getFriends = async () => {
       const res = await axios.get(`artist/followings/${user.id}`);
-      setFriends(res.data)
-    }
-    getFriends()
-  },[user.id])
+      setFriends(res.data);
+    };
+    getFriends();
+  }, [user.id]);
 
   useEffect(() => {
     socket.current.emit("addUser", user.id);
     socket.current.on("getUsers", (users) => {
-      console.log(users)
-      console.log(friends)
+      console.log(users);
+      console.log(friends);
       setOnlineUser(
         friends.filter((f) => users.some((u) => u.userId === f.id))
       );
       /* setOnlineUser(users) */
     });
-    return () => {      //le paso un return cuando se desmonta
+    return () => {
+      //le paso un return cuando se desmonta
       socket.current.emit("disconnectSocket");
-    }
+    };
   }, [user]);
 
   useEffect(() => {
@@ -102,8 +104,8 @@ function Messenger() {
     getConversations();
   }, [user.id]);
 
-useEffect(() => {
- /*  const interval = setInterval(() => { */
+  useEffect(() => {
+    /*  const interval = setInterval(() => { */
     const getmessages = async () => {
       try {
         const res = await axios.get(`/message/${currentChat?.id}`);
@@ -113,12 +115,12 @@ useEffect(() => {
       }
     };
     getmessages();
-  /* }, 1500);
+    /* }, 1500);
 
   return () => {
     clearInterval(interval);
   }; */
-}, [currentChat]);
+  }, [currentChat]);
 
   const handleEmojiSelect = (emoji) => {
     setNewMessage(newMessage + emoji.native);
@@ -135,16 +137,16 @@ useEffect(() => {
   };
 
   const handleShowOnlines = () => {
-    setShowOnlines(!showOnlines)
-  }
+    setShowOnlines(!showOnlines);
+  };
 
   const handleShowOfflines = () => {
-    setShowOfflines(!showOfflines)
-  }
+    setShowOfflines(!showOfflines);
+  };
 
   const handleDeleteConversation = (convId) => {
-    setConversations(conversations.filter(c => c.id !== convId))
-  }
+    setConversations(conversations.filter((c) => c.id !== convId));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -175,11 +177,10 @@ useEffect(() => {
     }
   };
 
-   useEffect(() => {
-     scrollRef.current?.scrollIntoView({ behavior: "auto" });
-   }, [messages]);
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "auto" });
+  }, [messages]);
 
-  
   //console.log(conversations);
 
   return (
@@ -191,7 +192,11 @@ useEffect(() => {
           {Array.isArray(conversations) &&
             conversations.map((c) => (
               <div onClick={() => setCurrentChat(c)}>
-                <Conversation conversation={c} currentUser={user} handleDeleteConversation={handleDeleteConversation}/>
+                <Conversation
+                  conversation={c}
+                  currentUser={user}
+                  handleDeleteConversation={handleDeleteConversation}
+                />
               </div>
             ))}
         </div>
@@ -254,36 +259,37 @@ useEffect(() => {
       </div>
       <div className="chatOnline">
         <div className="chatOnlineWrapper">
-          <div className="listOnline" >
+          <div className="listOnline">
             Conectados {` ( ${onlineUser.length} )`}
             <button className="listlinesbtn" onClick={handleShowOnlines}>
-              <ExpandMoreIcon/>
+              <ExpandMoreIcon />
             </button>
           </div>
-          {showOnlines && <Chats
-                            onlineUser={onlineUser}
-                            currentId={user.id}
-                            setCurrentChat={setCurrentChat}
-                            setConversations={setConversations}
-                            online={true}
-                          />
-          }
+          {showOnlines && (
+            <Chats
+              onlineUser={onlineUser}
+              currentId={user.id}
+              setCurrentChat={setCurrentChat}
+              setConversations={setConversations}
+              online={true}
+            />
+          )}
           <div className="listOffline">
             Desconectados {` ( ${offlineFriends.length} )`}
             <button className="listlinesbtn" onClick={handleShowOfflines}>
-              <ExpandMoreIcon/>
+              <ExpandMoreIcon />
             </button>
           </div>
 
-          {showOfflines && <Chats
-                             onlineUser={offlineFriends}
-                             currentId={user.id}
-                             setCurrentChat={setCurrentChat}
-                             setConversations={setConversations}
-                             online={false}
-                            />
-          }
-          
+          {showOfflines && (
+            <Chats
+              onlineUser={offlineFriends}
+              currentId={user.id}
+              setCurrentChat={setCurrentChat}
+              setConversations={setConversations}
+              online={false}
+            />
+          )}
         </div>
       </div>
     </div>
